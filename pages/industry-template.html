@@ -1,0 +1,241 @@
+<!-- ============================================================
+     SAMOTICS INDUSTRY PAGE TEMPLATE — Bricks Code Element
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  industry-template.css
+       3. JavaScript   →  industry-template.js
+
+     Replace {{PLACEHOLDERS}} with industry-specific content.
+     ============================================================ -->
+
+
+<!-- ===================== PHP & HTML ===================== -->
+
+<main id="main-content" class="sam-ind">
+
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-hero sam-hero--ind" style="background-image: url('{{HERO_IMAGE}}'); background-color: var(--sam-space-cadet);">
+    <div class="sam-hero__overlay"></div>
+    <div class="sam-hero__inner">
+      <div class="sam-hero__content">
+        <nav class="sam-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/industries/">Industries</a></li>
+            <li aria-current="page">{{INDUSTRY_NAME}}</li>
+          </ol>
+        </nav>
+        <h1 class="sam-hero__h1">{{HERO_HEADLINE}}</h1>
+        <p class="sam-hero__lead">{{HERO_LEAD}}</p>
+        <div class="sam-hero__ctas">
+          <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+          <a href="#how-we-help" class="sam-btn sam-btn--ghost">See How We Help</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. TRUST BAR ─── -->
+  <section class="sam-ind-trust">
+    <div class="sam-ind-trust__inner">
+      <p class="sam-ind-trust__label">Trusted by leaders in {{INDUSTRY_NAME_LOWER}}</p>
+      <div class="sam-ind-trust__logos">
+        <!-- Replace with <img> tags for real logos -->
+        <span class="sam-ind-trust__logo">{{LOGO_1}}</span>
+        <span class="sam-ind-trust__logo">{{LOGO_2}}</span>
+        <span class="sam-ind-trust__logo">{{LOGO_3}}</span>
+        <span class="sam-ind-trust__logo">{{LOGO_4}}</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 3. KEY CHALLENGES ─── -->
+  <section id="how-we-help" class="sam-ind-challenges">
+    <div class="sam-ind-challenges__inner">
+      <p class="overline">The challenge</p>
+      <h2>{{CHALLENGES_HEADLINE}}</h2>
+      <p class="lead">{{CHALLENGES_LEAD}}</p>
+
+      <div class="sam-ind-challenges__grid">
+
+        <div class="sam-ind-challenges__card">
+          <div class="sam-ind-challenges__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3>{{CHALLENGE_1_TITLE}}</h3>
+          <p>{{CHALLENGE_1_DESC}}</p>
+        </div>
+
+        <div class="sam-ind-challenges__card">
+          <div class="sam-ind-challenges__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>{{CHALLENGE_2_TITLE}}</h3>
+          <p>{{CHALLENGE_2_DESC}}</p>
+        </div>
+
+        <div class="sam-ind-challenges__card">
+          <div class="sam-ind-challenges__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>{{CHALLENGE_3_TITLE}}</h3>
+          <p>{{CHALLENGE_3_DESC}}</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 4. ASSETS MONITORED ─── -->
+  <section class="sam-ind-assets">
+    <div class="sam-ind-assets__inner">
+      <p class="overline">What we monitor</p>
+      <h2>Critical assets in {{INDUSTRY_NAME_LOWER}}</h2>
+
+      <div class="sam-ind-assets__grid">
+
+        <a href="/platform/what-we-monitor/{{ASSET_1_SLUG}}" class="sam-ind-assets__card">
+          <h3>{{ASSET_1_NAME}}</h3>
+          <p>{{ASSET_1_DESC}}</p>
+          <span class="sam-ind-assets__link">Learn more &rarr;</span>
+        </a>
+
+        <a href="/platform/what-we-monitor/{{ASSET_2_SLUG}}" class="sam-ind-assets__card">
+          <h3>{{ASSET_2_NAME}}</h3>
+          <p>{{ASSET_2_DESC}}</p>
+          <span class="sam-ind-assets__link">Learn more &rarr;</span>
+        </a>
+
+        <a href="/platform/what-we-monitor/{{ASSET_3_SLUG}}" class="sam-ind-assets__card">
+          <h3>{{ASSET_3_NAME}}</h3>
+          <p>{{ASSET_3_DESC}}</p>
+          <span class="sam-ind-assets__link">Learn more &rarr;</span>
+        </a>
+
+        <!-- Add more asset cards as needed -->
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. RESULTS / STATS ─── -->
+  <section class="sam-ind-results">
+    <div class="sam-ind-results__inner">
+      <p class="overline">Results</p>
+      <h2>{{RESULTS_HEADLINE}}</h2>
+
+      <div class="sam-ind-results__stats">
+        <div class="sam-ind-results__stat">
+          <span class="sam-ind-results__stat-value kpi-value">{{STAT_1_VALUE}}</span>
+          <span class="sam-ind-results__stat-label">{{STAT_1_LABEL}}</span>
+        </div>
+        <div class="sam-ind-results__stat">
+          <span class="sam-ind-results__stat-value kpi-value">{{STAT_2_VALUE}}</span>
+          <span class="sam-ind-results__stat-label">{{STAT_2_LABEL}}</span>
+        </div>
+        <div class="sam-ind-results__stat">
+          <span class="sam-ind-results__stat-value kpi-value">{{STAT_3_VALUE}}</span>
+          <span class="sam-ind-results__stat-label">{{STAT_3_LABEL}}</span>
+        </div>
+        <div class="sam-ind-results__stat">
+          <span class="sam-ind-results__stat-value kpi-value">{{STAT_4_VALUE}}</span>
+          <span class="sam-ind-results__stat-label">{{STAT_4_LABEL}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 6. CASE STUDIES ─── -->
+  <section class="sam-ind-cases">
+    <div class="sam-ind-cases__inner">
+      <p class="overline">Proof</p>
+      <h2>{{INDUSTRY_NAME}} case studies</h2>
+
+      <div class="sam-ind-cases__grid">
+
+        <a href="{{CASE_1_URL}}" class="sam-ind-cases__card">
+          <div class="sam-ind-cases__card-kpi">
+            <span class="kpi-value">{{CASE_1_KPI}}</span>
+            <span class="sam-ind-cases__card-kpi-label">{{CASE_1_KPI_LABEL}}</span>
+          </div>
+          <h3>{{CASE_1_TITLE}}</h3>
+          <p>{{CASE_1_DESC}}</p>
+          <span class="sam-ind-cases__link">Read case study &rarr;</span>
+        </a>
+
+        <a href="{{CASE_2_URL}}" class="sam-ind-cases__card">
+          <div class="sam-ind-cases__card-kpi">
+            <span class="kpi-value">{{CASE_2_KPI}}</span>
+            <span class="sam-ind-cases__card-kpi-label">{{CASE_2_KPI_LABEL}}</span>
+          </div>
+          <h3>{{CASE_2_TITLE}}</h3>
+          <p>{{CASE_2_DESC}}</p>
+          <span class="sam-ind-cases__link">Read case study &rarr;</span>
+        </a>
+
+        <a href="{{CASE_3_URL}}" class="sam-ind-cases__card">
+          <div class="sam-ind-cases__card-kpi">
+            <span class="kpi-value">{{CASE_3_KPI}}</span>
+            <span class="sam-ind-cases__card-kpi-label">{{CASE_3_KPI_LABEL}}</span>
+          </div>
+          <h3>{{CASE_3_TITLE}}</h3>
+          <p>{{CASE_3_DESC}}</p>
+          <span class="sam-ind-cases__link">Read case study &rarr;</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 7. HOW IT WORKS ─── -->
+  <section class="sam-ind-install">
+    <div class="sam-ind-install__inner">
+      <div class="sam-ind-install__text">
+        <p class="overline">How it works</p>
+        <h2>Simple installation, immediate insights</h2>
+        <p class="lead">SAM4 installs inside the motor control cabinet — no sensors on the asset, no production interruption, no confined-space entry.</p>
+        <ol class="sam-ind-install__steps">
+          <li>
+            <strong>Install in the MCC</strong>
+            <span>Clip-on current and voltage sensors attach to existing wiring in the motor control cabinet. Takes 20 minutes per asset.</span>
+          </li>
+          <li>
+            <strong>Connect to SAM4 cloud</strong>
+            <span>The edge device samples at 20 kHz and sends data securely to the SAM4 platform for AI analysis.</span>
+          </li>
+          <li>
+            <strong>Get actionable alerts</strong>
+            <span>Receive predictive alerts weeks to months before failure, with fault type, severity, and recommended action.</span>
+          </li>
+        </ol>
+        <a href="/platform/how-it-installs/" class="sam-text-link">See how it installs &rarr;</a>
+      </div>
+      <div class="sam-ind-install__image">
+        <!-- Placeholder for installation photo -->
+        <div class="sam-ind-install__placeholder">
+          <span>Installation photo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 8. CTA ─── -->
+  <section class="sam-cta-block">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">Ready to protect your {{INDUSTRY_NAME_LOWER}} assets?</h2>
+      <p class="sam-cta-block__sub">See how SAM4 detects faults weeks to months before failure — with no sensors on the asset.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/tools/coverage-calculator/" class="sam-btn sam-btn--secondary">Coverage Calculator</a>
+      </div>
+    </div>
+  </section>
+
+</main>

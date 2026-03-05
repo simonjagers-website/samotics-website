@@ -1,0 +1,59 @@
+---
+title: "Expert interview: Dirk-Jan Wienen talks about condition-based maintenance in the water industry"
+slug: "expert-interview-dirk-jan-wienen-condition-based-maintenance-water-industry"
+date: "Tue, 16 May 2023 13:00:08 +0000"
+category: "Blog"
+category_slug: "blog"
+tags: ["Wastewater"]
+original_url: "https://samotics.com/blog/expert-interview-dirk-jan-wienen-condition-based-maintenance-water-industry"
+images: 0
+word_count: 1886
+---
+
+We recently sat down with Dirk-Jan Wienen, one of our customer success managers, to learn some best practices to follow and stumbling blocks to avoid for companies looking to integrate AI-based asset health monitoring and energy intelligence into their existing systems. Dirk-Jan shared his experience from working with some of the world’s largest water and wastewater companies to implement condition-based maintenance at scale.
+## Thanks for taking time out to chat with us, Dirk-Jan! What’s the number-one piece of advice you would give to companies that are starting to explore today’s digital condition monitoring technologies?
+
+
+The most important thing you can do is to know where you want to end up. It will save you immense frustration and wasted time if you start with the end in mind. That’s not to say you can’t get there unless you plan the whole thing in advance, but it does get you there much faster, and the result is generally much better.
+## Can you give us an example of what you mean?
+
+
+Sure. Suppose one of your maintenance teams has identified a new condition monitoring system they want to try. They’ve been using manual inspections with handheld vibration forever, and they’ve worked out that an automated version with permanently installed wireless sensors will save them a huge amount of time. So they start up a pilot with an AI-based vibration system that handles all the analysis on its own platform and sends alerts when it sees a developing problem. Since it’s a pilot, they’re just testing it out to see how it works, so they install it on maybe ten critical assets. The trial ends, the system worked great, they’ve been able to totally abandon scheduled routine visits to those ten machines. A lot of time saved. So they roll out the system to all of their assets, maybe five hundred different pieces of equipment. And suddenly they’re drowning in notifications. They didn’t think about how the system would scale, and now the bottleneck is that they only assigned one engineer to process and prioritize alerts. So machines are still failing unexpectedly, even though the condition monitoring system is working perfectly. If they’d considered what full-scale implementation would look like from the beginning, they’d have been able to plan for the workload.
+
+**RELATED READING: **[**Condition-based maintenance: from technology pilot to implementation at scale**](/blog/condition-based-maintenance-pilot-to-implementation-at-scale-part-1-plan)
+## What are some other stumbling blocks you’ve seen companies trip over?
+
+
+Forgetting to consider how your intended outcomes overlap and impact wider business results and incentives. Condition monitoring pilots generally focus on improving the company’s maintenance strategy, preventing failures and eliminating routine inspections. But you also have to consider what other processes you’ve got running in your organization that touch or intersect your condition-based maintenance processes at certain points in time. Not just internal constraints, but external ones, too. For example, Ofwat, the regulatory body for water utilities in the UK, works with a regulatory framework where companies are rewarded or penalized based on their expenditure throughout the year versus any improved results they’re showing. However, additional OPEX has a negative impact on a utility’s score compared to additional CAPEX, which has water companies preferring CAPEX solutions. That incentivizes water companies to run their assets to failure, because the cost of proactively repairing a pump based on a CBM alert comes from OPEX, whereas replacing a pump that’s died comes from CAPEX. If you don’t address this misguided incentive, you’ll lose out on much of the value of the new condition monitoring technology and you won’t ever truly be able to adopt a proactive, condition-based maintenance strategy.
+
+The same holds true for digital energy intelligence systems. For example, UK water companies operate in a way that makes it much more important for them to keep their assets running than to actually have them running in the most efficient way possible. At our UK water customers, we routinely see pumps that are wildly inefficient, where they could save literally six figures a year by optimizing the way the pumps operate or even replacing them with a more efficient version. But the team that would reap the benefits of a pump that’s run more healthily and efficiently in the long run is not the team that’s actually in charge of making the changes required to get those results. And those teams only get judged on whether their pumps are doing what they’re supposed to be doing — whether they’re doing it well or poorly doesn’t matter. They know that what they’re currently doing is keeping the pumps running, and for them, operational changes are nothing but a risk.
+## How can companies avoid this pitfall?
+
+
+They need to be aware that if they really want to maximize the benefits that (for example) their energy optimization teams can bring them, then they have to give them the mandate to make certain changes and as a company accept the risk. There needs to be someone higher up in the organization who takes on the responsibility for the risk that when you make these changes to optimize pumps, you can never rule out a temporary interruption to operations. So my actionable tip would be to find the highest-up person you can and get them enthused about the project.
+## What are some other ways companies can broaden their scope?
+
+
+It’s important to make sure the new CBM system can work with all the tooling used by all the teams that are involved in the relevant processes. You have to take all these people on the change journey you’re going on. Not in the same way as you’ll be doing with the maintenance teams who will be working much more directly with the new system, of course, but for example the teams planning the asset replacement cycles need to be aware there’s a CBM tool somewhere that may very well help them plan their own work in a better way, as additional input. Similarly, the teams working on your drought response plan (if you supply drinking water) need to be included, because they know better than anyone which risks need to be managed to avoid interruptions to supply when every drop of water has become essential.
+
+**RELATED READING: **[**Securing water supply in drought season: remote condition monitoring on borehole pumps**](/blog/secure-water-supply-drought-season-condition-monitoring-borehole-pumps)
+
+If you really start thinking ahead, then implementing CBM at scale also opens up new opportunities. If you’re in a situation where at any given point in time you know the condition of each of your assets and you know that the quality of that condition data is good enough to trust and operate on that basis, then you can start considering things like integrating the CBM tool with your control systems. For example, every time the condition monitoring system sends out a red alert on a pump, the pump is automatically deprioritized in the duty cycle to make sure it doesn’t break down completely from continuing to run in this severely degraded state. That will give you more time to sort out a preventive replacement. But that level of integration with your other systems requires you to start talking to the teams in charge of process automation and IT security.
+## You talked about bringing people along on the change journey. Can you say a little more about that?
+
+
+It’s actually really simple: it boils down to the fact that everyone wants their work to be rewarding. So all you have to do, at bottom, is tell people how this change will improve their day-to-day job.
+
+One mistake companies can make is to focus exclusively on things that are only motivating to management. Money saved, high ROI, fewer hours of downtime, and so on. These things are motivating to management because these are their day-to-day job! But abstract numbers have very little to do with most people’s daily work. So you have to make the effort to see people’s jobs through their own eyes, and talk to them about their frustrations and what they’d like to change.
+
+For example, when one of our wastewater customers first started using our system, they were in a transition phase where they couldn’t prioritize a fix based on our alerts yet. So they sent someone to the site every day to check that things weren’t getting worse. That made the system’s value very concrete: if they can rely on its alerts to prioritize their maintenance, then no one needs to spend mindless hours traveling to check on things just in case. Not just this one guy in this one situation, but the tens of thousands of check-see visits they make each year to pumping stations. For the site manager, too, the benefit was clear: if he can rely on our alerts, he’ll rarely have to call his team out of bed for a midnight emergency to get a replacement asset up and running. The money saved is a good thing, yes, but for the people doing the work, the reduction in hassle is a hundred times more compelling.
+## What advice do you have for companies when they’re assessing new CBM technologies?
+
+
+First of all, understand that there is no catch-all condition monitoring solution. In a pilot it’s easy to focus on the one technology you’re trialing, but you will need multiple, complementary systems to catch everything and do really well-rounded CBM.
+
+Given that, you need to pick CBM systems that will integrate with your existing systems. You can’t force the entire organization to start using five separate dashboards in addition to the one they’re already familiar with. One of our customers started thinking about the design of the condition monitoring notifications from the start. They have hundreds of sites and each team has localized workflows for getting data in and out of the company’s central system. The corporate innovation team at headquarters knew that the new condition monitoring technology was going to have to integrate into that existing central system, not enforce the use of its own standalone dashboard. They took that requirement as a filter when considering which technology vendor to choose for the pilot.
+
+**RELATED READING: **[**The quick-start guide to predictive maintenance: 6 concrete steps to take your program from idea to launch**](/blog/predictive-maintenance-quick-start-guide)
+
+Always consider the supplier behind the technology. If they try to convince you they’re the only solution you need, walk away. You also ideally want a supplier with a track record of successful implementations in your industry. An experienced supplier can provide you with useful guidance. This is actually one of the things I like best about my work as a customer success manager. Companies in a given sector share a set of industry-specific problems they need to solve, which means they gravitate toward similar best practices, similar asset types, and so on. We’ve been doing this long enough to know what stumbling blocks they tend to face. We’re not going to come in and explain wastewater maintenance processes to someone working in wastewater maintenance, but if we know that the project manager at water company A has worked on a really good CBM implementation, then when the project manager at water company B is looking for the best way to move forward, we can put them in touch with each other directly. Our experience helps us act as a liaison to move the whole industry forward.

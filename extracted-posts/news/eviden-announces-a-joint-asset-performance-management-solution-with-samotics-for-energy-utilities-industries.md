@@ -1,0 +1,40 @@
+---
+title: "Eviden announces a joint asset performance management solution with Samotics for energy & utilities industries"
+slug: "eviden-announces-a-joint-asset-performance-management-solution-with-samotics-for-energy-utilities-industries"
+date: "Tue, 05 Dec 2023 08:00:32 +0000"
+category: "News"
+category_slug: "news"
+tags: []
+original_url: "https://samotics.com/news/eviden-announces-a-joint-asset-performance-management-solution-with-samotics-for-energy-utilities-industries"
+images: 0
+word_count: 751
+---
+
+**Paris, France and Leiden, The Netherlands – December 5, 2023** – [Eviden](https://eviden.com/), the [Atos](https://atos.net/en/) business, leading in digital, cloud, big data and security, and Samotics, a leading provider of real-time actionable insights to eliminate industrial energy waste and unplanned downtime, today announce a new strategic partnership. The collaboration will bring a comprehensive remote asset monitoring solution to global industrial companies and deliver advanced data analytics to drive energy-efficient operations and reduced energy waste.
+
+Through this partnership, Eviden’s Intelligent Asset Management portfolio will be enhanced with Samotics’ predictive maintenance system SAM4, bringing to market a highly accurate, easily scalable, cost-effective, and quick to implement end-to-end remote monitoring system for industries such as water and wastewater and oil and gas, among others. With its non-intrusive sensors that are installed in the safety of a motor control cabinet, the SAM4 solution is ideally suited for hard-to-reach operational environments where the equipment is either hard-to-access (e.g. borehole pumps in the water) or is operated in harsh conditions (e.g. ATEX zones).
+
+The solution will provide advanced and automated data analytics to detect mechanical degradation, misalignment, electrical faults and other equipment failures in advance, as well as provide real-time performance insights to spot inefficient use of equipment. These concrete and actionable insights will enable companies to eliminate unplanned downtime, optimize performance, increase energy efficiency and reduce waste. With this information, the customers will be able to reduce operational and maintenance costs as well as minimize overall environmental impact.
+> **Rita Marissen, Head of Industry Resources & Services, Northern Europe & Asia-Pacific for Eviden, at Atos Group** said “The industry sectors, in particular energy & utilities, are characterized by legacy assets in need of upgrade, modernization, and digitalization due to societal, regulatory, and investor pressures. Monitoring and analysis of these critical assets is essential information to be able to optimize and improve performance. With this partnership we have boosted our portfolio with new asset performance management capabilities, driving customers’ operational resilience, energy efficiency as well as simultaneously reducing energy costs and their carbon footprint.”
+> 
+> **Jasper Hoogeweegen, CEO of Samotics** said “Our SAM4 technology is delivering significant value to global industrial companies, helping to address the challenges with unplanned downtime and energy waste. With our joint commitment to help customers improve the performance and efficiency of their critical assets, we’re excited to be partnering with Eviden to bring our proven technology to more organizations around the world and help them eliminate unplanned downtime, significantly reduce energy waste and optimize operations.
+
+
+Eviden will deliver the complete Asset Performance Management solution, including implementation, integration and cybersecurity services. Samotics will provide expert fault detection and performance analysis services that offer customers real-time actionable insights into the health and performance of their industrial assets.
+#### 
+
+
+#### About Eviden
+
+
+Eviden is a next-gen technology leader in data-driven, trusted and sustainable digital transformation with a strong portfolio of patented technologies. With worldwide leading positions in advanced computing, security, AI, cloud and digital platforms, it provides deep expertise for all industries in more than 47 countries. Bringing together 53,000 world-class talents, Eviden expands the possibilities of data and technology across the digital continuum, now and for generations to come. Eviden is an Atos Group company with an annual revenue of c. € 5 billion.
+#### About Atos
+
+
+Atos is a global leader in digital transformation with c. 105,000 employees and annual revenue of c. € 11 billion. European number one in cybersecurity, cloud and high-performance computing, the Group provides tailored end-to-end solutions for all industries in 69 countries. A pioneer in decarbonization services and products, Atos is committed to a secure and decarbonized digital for its clients. Atos is a SE (Societas Europaea) and listed on Euronext Paris.
+
+The [purpose of Atos](https://atos.net/en/raison-detre) is to help design the future of the information space. Its expertise and services support the development of knowledge, education and research in a multicultural approach and contribute to the development of scientific and technological excellence. Across the world, the Group enables its customers and employees, and members of societies at large to live, work and develop sustainably, in a safe and secure information space.
+#### About Samotics
+
+
+Samotics is a leading provider of real-time actionable insights to optimize performance and energy efficiency of AC motors and rotating equipment. An expert team of data scientists, software developers and technical specialists has developed an AI-driven platform that supports global industrial companies in reducing energy waste and unplanned downtime. Our customer base includes sector-leading players such as Anglian Water, ArcelorMittal, Nobian, Evonik and TotalEnergies.

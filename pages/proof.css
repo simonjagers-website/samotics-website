@@ -1,0 +1,706 @@
+/* ============================================================
+   SAMOTICS PROOF HUB PAGE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  /* Core Palette */
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+
+  /* Fonts */
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Spacing */
+  --sp-01: 2px;
+  --sp-02: 4px;
+  --sp-03: 8px;
+  --sp-04: 12px;
+  --sp-05: 16px;
+  --sp-06: 24px;
+  --sp-07: 32px;
+  --sp-08: 48px;
+  --sp-09: 64px;
+  --sp-10: 96px;
+  --sp-11: 128px;
+  --sp-12: 160px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Transitions */
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset ── */
+.sam-proof {
+  overflow-x: hidden;
+}
+
+/* ── Shared: Overline ── */
+.overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin: 0 0 var(--sp-06) 0;
+}
+
+/* ── Shared: Lead ── */
+.lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-space-cadet);
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* ── Shared: Text Link ── */
+.sam-text-link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--sam-blue);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-text-link:hover {
+  color: var(--sam-blue-dark);
+}
+
+/* ── Shared: Buttons ── */
+.sam-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font: 600 1rem/1 var(--sam-font);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
+  white-space: nowrap;
+}
+.sam-btn:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-btn--primary {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-btn--primary:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+  box-shadow: var(--shadow-cta);
+}
+.sam-btn--primary:active {
+  background: var(--sam-orange-deep);
+  color: var(--sam-white);
+}
+.sam-btn--secondary {
+  background: transparent;
+  color: var(--sam-teal-dark);
+  border: 2px solid var(--sam-teal-dark);
+}
+.sam-btn--secondary:hover {
+  background: var(--sam-teal-dark);
+  color: var(--sam-white);
+}
+.sam-btn--secondary:active {
+  background: #004D4D;
+  color: var(--sam-white);
+  border-color: #004D4D;
+}
+
+/* ── KPI Value ── */
+.kpi-value {
+  font-family: var(--sam-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+
+.sam-hero--proof {
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: var(--sp-12) 0 var(--sp-11) 0;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sam-hero--proof .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.75) 45%, rgba(31,31,51,0.35) 100%);
+  z-index: 0;
+}
+.sam-hero--proof .sam-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+.sam-hero__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  width: 100%;
+}
+.sam-hero__overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-hero__h1 {
+  font-family: var(--sam-font);
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-07) 0;
+  max-width: 22ch;
+}
+.sam-hero__lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-white);
+  margin: 0;
+  max-width: 60ch;
+}
+
+
+/* ============================================================
+   2. AGGREGATE STATS
+   ============================================================ */
+
+.sam-proof-stats {
+  background: var(--sam-white);
+  padding: var(--sp-09) 0;
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-proof-stats__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-proof-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-07);
+  text-align: center;
+}
+.sam-proof-stats__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+}
+.sam-proof-stats__number {
+  font-size: 3rem;
+  line-height: 1.1;
+  color: var(--sam-space-cadet);
+}
+.sam-proof-stats__label {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--sam-comet);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+/* ============================================================
+   3. FILTERABLE GRID
+   ============================================================ */
+
+.sam-proof-grid {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-proof-grid__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-proof-grid__inner .overline {
+  color: var(--sam-blue);
+}
+.sam-proof-grid__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 30ch;
+}
+
+/* Filter Controls */
+.sam-proof-grid__filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-05);
+  margin-bottom: var(--sp-08);
+}
+.sam-proof-grid__filter-group {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-03);
+  flex-wrap: wrap;
+}
+.sam-proof-grid__filter-label {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--sam-space-cadet);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  min-width: 80px;
+}
+.sam-proof-grid__filter-btn {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-03) var(--sp-05);
+  cursor: pointer;
+  transition: background-color var(--ease), color var(--ease), border-color var(--ease);
+}
+.sam-proof-grid__filter-btn:hover {
+  color: var(--sam-space-cadet);
+  border-color: var(--sam-space-cadet);
+}
+.sam-proof-grid__filter-btn--active {
+  background: var(--sam-space-cadet);
+  color: var(--sam-white);
+  border-color: var(--sam-space-cadet);
+}
+.sam-proof-grid__filter-btn:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+/* Card Grid */
+.sam-proof-grid__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+
+/* Individual Card */
+.sam-proof-card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+  transition: box-shadow var(--ease);
+}
+.sam-proof-card:hover {
+  box-shadow: var(--shadow-md);
+}
+.sam-proof-card[hidden] {
+  display: none;
+}
+
+/* Card Header */
+.sam-proof-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sam-proof-card__industry {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sam-blue);
+}
+
+/* Card Content */
+.sam-proof-card__customer {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-proof-card__headline {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--sam-orange-dark);
+  margin: 0;
+}
+.sam-proof-card__summary {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+/* Tags */
+.sam-proof-card__tags {
+  display: flex;
+  gap: var(--sp-03);
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: var(--sp-03);
+}
+.sam-proof-card__tag {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sam-comet);
+  background: var(--sam-seashell);
+  padding: var(--sp-02) var(--sp-03);
+  border: 1px solid var(--sam-border-light);
+}
+
+/* Card Actions */
+.sam-proof-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--sp-04);
+  border-top: 1px solid var(--sam-border-light);
+}
+.sam-proof-card__link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--sam-blue);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-proof-card__link:hover {
+  color: var(--sam-blue-dark);
+}
+.sam-proof-card__link:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-proof-card__download {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-02);
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sam-comet);
+  text-decoration: none;
+  padding: var(--sp-02) var(--sp-03);
+  border: 1px solid var(--sam-border-light);
+  transition: color var(--ease), border-color var(--ease);
+}
+.sam-proof-card__download:hover {
+  color: var(--sam-space-cadet);
+  border-color: var(--sam-space-cadet);
+}
+.sam-proof-card__download:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+/* Empty state */
+.sam-proof-grid__empty {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  color: var(--sam-space-cadet); /* Changed from Comet — 4.0:1 on seashell fails WCAG AA */
+  text-align: center;
+  padding: var(--sp-09) 0;
+}
+.sam-proof-grid__reset {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--sam-blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+.sam-proof-grid__reset:hover {
+  color: var(--sam-blue-dark);
+}
+
+
+/* ============================================================
+   3b. DETECTION STORY CARDS — Additional styles
+   ============================================================ */
+
+/* Type badge (Use case / Multi-detection) */
+.sam-proof-card__type {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sam-teal-dark);
+  background: rgba(0, 108, 108, 0.08);
+  padding: var(--sp-02) var(--sp-03);
+  border: 1px solid rgba(0, 108, 108, 0.2);
+}
+
+/* Detection card variant — teal top border instead of none */
+.sam-proof-card--detect {
+  border-top: 3px solid var(--sam-teal-dark);
+}
+
+
+/* ============================================================
+   4. DETECTION STORIES SECTION
+   ============================================================ */
+
+.sam-proof-detect {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-proof-detect__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-proof-detect__inner .overline {
+  color: var(--sam-teal-dark);
+}
+.sam-proof-detect__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 30ch;
+}
+.sam-proof-detect__lead {
+  color: var(--sam-black);
+  max-width: 60ch;
+}
+
+/* Reuse .sam-proof-grid__cards inside detect section */
+.sam-proof-detect .sam-proof-grid__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+
+
+/* ============================================================
+   5. CTA BLOCK
+   ============================================================ */
+
+.sam-cta-block--proof {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-cta-block__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  text-align: center;
+}
+.sam-cta-block__heading {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-cta-block__sub {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 56ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sam-cta-block__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-05);
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   FOCUS & REDUCED MOTION
+   ============================================================ */
+
+.sam-text-link:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sam-btn,
+  .sam-text-link,
+  .sam-proof-card,
+  .sam-proof-grid__filter-btn,
+  .sam-proof-card__link,
+  .sam-proof-card__download {
+    transition: none !important;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet (max-width: 1055px) */
+@media (max-width: 1055px) {
+
+  .sam-hero--proof {
+    padding: var(--sp-10) 0;
+    min-height: auto;
+  }
+  .sam-hero__h1 {
+    font-size: 3rem;
+    max-width: none;
+  }
+
+  .sam-proof-stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-06);
+  }
+
+  .sam-proof-grid__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sam-proof-detect { padding: var(--sp-10) 0; }
+  .sam-proof-detect .sam-proof-grid__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (max-width: 671px) */
+@media (max-width: 671px) {
+
+  .sam-hero--proof {
+    padding: var(--sp-09) 0;
+  }
+  .sam-hero__inner {
+    padding: 0 16px;
+  }
+  .sam-hero__h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .sam-hero__lead {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .sam-proof-stats {
+    padding: var(--sp-08) 0;
+  }
+  .sam-proof-stats__inner {
+    padding: 0 16px;
+  }
+  .sam-proof-stats__number {
+    font-size: 2.5rem;
+  }
+
+  .sam-proof-grid {
+    padding: var(--sp-10) 0;
+  }
+  .sam-proof-grid__inner {
+    padding: 0 16px;
+  }
+  .sam-proof-grid__inner h2 {
+    font-size: 2rem;
+  }
+  .sam-proof-grid__filter-group {
+    gap: var(--sp-02);
+  }
+  .sam-proof-grid__filter-label {
+    width: 100%;
+    min-width: auto;
+  }
+  .sam-proof-grid__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .sam-proof-detect { padding: var(--sp-09) 0; }
+  .sam-proof-detect__inner { padding: 0 16px; }
+  .sam-proof-detect__inner h2 { font-size: 2rem; }
+  .sam-proof-detect .sam-proof-grid__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .sam-cta-block--proof {
+    padding: var(--sp-10) 0;
+  }
+  .sam-cta-block__inner {
+    padding: 0 16px;
+  }
+  .sam-cta-block__heading {
+    font-size: 2rem;
+  }
+  .sam-cta-block__actions {
+    flex-direction: column;
+  }
+  .sam-cta-block__actions .sam-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+}

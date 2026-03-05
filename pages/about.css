@@ -1,0 +1,518 @@
+/* ============================================================
+   SAMOTICS ABOUT PAGE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  /* Core Palette */
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+
+  /* Fonts */
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Spacing */
+  --sp-01: 2px;
+  --sp-02: 4px;
+  --sp-03: 8px;
+  --sp-04: 12px;
+  --sp-05: 16px;
+  --sp-06: 24px;
+  --sp-07: 32px;
+  --sp-08: 48px;
+  --sp-09: 64px;
+  --sp-10: 96px;
+  --sp-11: 128px;
+  --sp-12: 160px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Transitions */
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset ── */
+.sam-about { overflow-x: hidden; }
+
+/* ── Shared: Overline ── */
+.overline {
+  font-family: var(--sam-font);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 var(--sp-04) 0;
+}
+
+/* ── Shared: Lead ── */
+.lead {
+  font-family: var(--sam-font);
+  font-size: 1.25rem;
+  line-height: 1.55;
+  margin: 0 0 var(--sp-07) 0;
+}
+
+/* ── Shared: KPI Value ── */
+.kpi-value {
+  font-family: var(--sam-mono);
+  font-weight: 700;
+}
+
+/* ── Shared: Button ── */
+.sam-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--sam-font); font-size: 1rem; font-weight: 600;
+  text-decoration: none; border-radius: 6px; cursor: pointer;
+  padding: 14px 32px; transition: background var(--ease), box-shadow var(--ease);
+}
+.sam-btn--primary {
+  background: var(--sam-orange); color: var(--sam-white); border: none;
+}
+.sam-btn--primary:hover {
+  background: var(--sam-orange-dark); box-shadow: var(--shadow-cta);
+}
+.sam-btn--outline {
+  background: transparent; color: var(--sam-space-cadet);
+  border: 2px solid var(--sam-space-cadet);
+}
+.sam-btn--outline:hover { background: var(--sam-seashell); }
+.sam-btn--outline-light {
+  background: transparent; color: var(--sam-white);
+  border: 2px solid rgba(255,255,255,0.5);
+}
+.sam-btn--outline-light:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--sam-white);
+}
+
+
+/* ============================================================
+   1. HERO — dark
+   ============================================================ */
+.sam-hero--about {
+  position: relative;
+  min-height: 520px;
+  display: flex; align-items: center;
+  background-size: cover; background-position: center;
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.75) 45%, rgba(31,31,51,0.35) 100%);
+  z-index: 1;
+}
+.sam-hero__inner {
+  position: relative; z-index: 2;
+  max-width: 1120px; width: 100%; margin: 0 auto;
+}
+.sam-hero__content { max-width: 640px; }
+.sam-hero__overline {
+  font-family: var(--sam-font); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--sam-orange); margin: 0 0 var(--sp-04) 0;
+}
+.sam-hero__h1 {
+  font-family: var(--sam-font); font-size: 2.75rem; font-weight: 700;
+  line-height: 1.15; color: var(--sam-white);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-hero__lead {
+  font-family: var(--sam-font); font-size: 1.125rem; line-height: 1.6;
+  color: var(--sam-muted-dark); margin: 0 0 var(--sp-07) 0;
+}
+.sam-hero__actions { display: flex; gap: var(--sp-05); flex-wrap: wrap; }
+
+
+/* ============================================================
+   2. NUMBERS AT A GLANCE — white
+   ============================================================ */
+.sam-about-numbers {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-about-numbers__inner {
+  max-width: 1120px; margin: 0 auto;
+}
+.sam-about-numbers__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--sp-07);
+  text-align: center;
+}
+.sam-about-numbers__item {
+  display: flex; flex-direction: column; gap: var(--sp-03);
+}
+.sam-about-numbers__stat {
+  font-size: 2.5rem; color: var(--sam-space-cadet);
+}
+.sam-about-numbers__label {
+  font-family: var(--sam-font); font-size: 0.875rem;
+  color: var(--sam-comet); line-height: 1.5;
+}
+
+
+/* ============================================================
+   3. ORIGIN STORY — seashell
+   ============================================================ */
+.sam-about-origin {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-about-origin__inner {
+  max-width: 1120px; margin: 0 auto;
+}
+.sam-about-origin .overline { color: var(--sam-orange); }
+.sam-about-origin h2 {
+  font-family: var(--sam-font); font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-about-origin__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-07);
+}
+.sam-about-origin__card {
+  background: var(--sam-white);
+  border-top: 4px solid var(--sam-orange);
+  border-radius: 8px;
+  padding: var(--sp-07) var(--sp-06);
+}
+.sam-about-origin__card-num {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--sam-orange);
+  margin-bottom: var(--sp-04);
+  min-height: 2rem;
+}
+.sam-about-origin__card-title {
+  font-family: var(--sam-font); font-size: 1.125rem; font-weight: 700;
+  color: var(--sam-space-cadet); margin: 0 0 var(--sp-04) 0;
+}
+.sam-about-origin__card-desc {
+  font-family: var(--sam-font); font-size: 0.9375rem; line-height: 1.65;
+  color: var(--sam-black); margin: 0;
+}
+
+
+/* ============================================================
+   4. STRATEGIC PARTNERSHIPS — white
+   ============================================================ */
+.sam-about-partners {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-about-partners__inner {
+  max-width: 1120px; margin: 0 auto;
+}
+.sam-about-partners .overline { color: var(--sam-space-cadet); }
+.sam-about-partners h2 {
+  font-family: var(--sam-font); font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-about-partners__lead {
+  color: var(--sam-black); max-width: 780px;
+}
+.sam-about-partners__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-07);
+}
+.sam-about-partners__card {
+  background: var(--sam-seashell);
+  border-top: 4px solid var(--sam-teal-dark);
+  border-radius: 8px;
+  padding: var(--sp-07) var(--sp-06);
+}
+.sam-about-partners__card-name {
+  font-family: var(--sam-font); font-size: 1.25rem; font-weight: 700;
+  color: var(--sam-space-cadet); margin: 0 0 var(--sp-03) 0;
+}
+.sam-about-partners__card-relation {
+  font-size: 0.875rem; color: var(--sam-teal-dark);
+  margin: 0 0 var(--sp-05) 0;
+}
+.sam-about-partners__card-desc {
+  font-family: var(--sam-font); font-size: 0.9375rem; line-height: 1.6;
+  color: var(--sam-black); margin: 0 0 var(--sp-05) 0;
+}
+.sam-about-partners__card-link {
+  font-family: var(--sam-font); font-size: 0.9375rem; font-weight: 600;
+  color: var(--sam-orange-dark); text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-about-partners__card-link:hover { color: var(--sam-orange-deep); }
+.sam-about-partners__secondary {
+  font-family: var(--sam-font); font-size: 1rem; color: var(--sam-comet);
+  margin: var(--sp-07) 0 0 0;
+}
+.sam-about-partners__secondary-link {
+  font-weight: 600; color: var(--sam-orange-dark); text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-about-partners__secondary-link:hover { color: var(--sam-orange-deep); }
+
+
+/* ============================================================
+   5. LEADERSHIP TEAM — seashell
+   ============================================================ */
+.sam-about-team {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-about-team__inner {
+  max-width: 1120px; margin: 0 auto;
+  text-align: center;
+}
+.sam-about-team .overline { color: var(--sam-space-cadet); }
+.sam-about-team h2 {
+  font-family: var(--sam-font); font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-about-team__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-08) var(--sp-07);
+}
+.sam-about-team__member { text-align: center; }
+.sam-about-team__photo {
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: var(--sam-border-light);
+  margin: 0 auto var(--sp-05) auto;
+  overflow: hidden;
+}
+.sam-about-team__photo img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.sam-about-team__name {
+  font-family: var(--sam-font); font-size: 1rem; font-weight: 600;
+  color: var(--sam-space-cadet); margin: 0 0 var(--sp-02) 0;
+}
+.sam-about-team__role {
+  font-family: var(--sam-font); font-size: 0.875rem;
+  color: var(--sam-comet); margin: 0 0 var(--sp-03) 0;
+}
+.sam-about-team__linkedin {
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--sam-comet);
+  transition: color var(--ease);
+}
+.sam-about-team__linkedin:hover { color: var(--sam-blue); }
+
+
+/* ============================================================
+   6. ADVISORS — white
+   ============================================================ */
+.sam-about-advisors {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-about-advisors__inner {
+  max-width: 1120px; margin: 0 auto;
+  text-align: center;
+}
+.sam-about-advisors h2 {
+  font-family: var(--sam-font); font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-about-advisors__grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-09);
+}
+
+
+/* ============================================================
+   7. WORKING AT SAMOTICS — seashell
+   ============================================================ */
+.sam-about-culture {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-about-culture__inner {
+  max-width: 1120px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-09);
+  align-items: center;
+}
+.sam-about-culture__content { text-align: left; }
+.sam-about-culture .overline { color: var(--sam-orange); }
+.sam-about-culture h2 {
+  font-family: var(--sam-font); font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-about-culture__lead {
+  color: var(--sam-black); max-width: 520px;
+}
+.sam-about-culture__traits {
+  display: flex; flex-direction: column;
+  gap: var(--sp-06);
+  margin-bottom: var(--sp-07);
+}
+.sam-about-culture__trait-title {
+  font-family: var(--sam-font); font-size: 1rem; font-weight: 700;
+  color: var(--sam-space-cadet); margin: 0 0 var(--sp-03) 0;
+}
+.sam-about-culture__trait-desc {
+  font-family: var(--sam-font); font-size: 0.9375rem; line-height: 1.65;
+  color: var(--sam-black); margin: 0;
+}
+.sam-about-culture__image {
+  background: var(--sam-border-light);
+  border-radius: 12px;
+  min-height: 420px;
+  overflow: hidden;
+}
+.sam-about-culture__image img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: 12px;
+}
+
+
+/* ============================================================
+   8. CTA BLOCK — white
+   ============================================================ */
+.sam-about-cta {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+  text-align: center;
+}
+.sam-about-cta__inner {
+  max-width: 720px; margin: 0 auto;
+}
+
+/* Inline investor quote */
+.sam-about-cta__quote {
+  margin: 0 0 var(--sp-09) 0;
+  padding: 0;
+}
+.sam-about-cta__quote p {
+  font-family: var(--sam-font); font-size: 1.125rem; font-weight: 400;
+  line-height: 1.6; color: var(--sam-comet); font-style: italic;
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-about-cta__quote footer {
+  font-family: var(--sam-font); font-size: 0.875rem; color: var(--sam-comet);
+}
+.sam-about-cta__quote cite {
+  font-style: normal;
+}
+
+.sam-about-cta h2 {
+  font-family: var(--sam-font); font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-about-cta__lead {
+  color: var(--sam-black); margin-bottom: var(--sp-08);
+}
+.sam-about-cta__actions {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--sp-07); flex-wrap: wrap;
+}
+.sam-about-cta__link {
+  font-family: var(--sam-font); font-size: 1rem; font-weight: 600;
+  color: var(--sam-orange-dark); text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-about-cta__link:hover { color: var(--sam-orange-deep); }
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* ── Tablet (≤ 1055px) ── */
+@media (max-width: 1055px) {
+  .sam-hero--about { min-height: 440px; padding: var(--sp-10) var(--sp-06); }
+  .sam-hero__h1 { font-size: 2.25rem; }
+
+  .sam-about-numbers { padding: var(--sp-10) var(--sp-06); }
+  .sam-about-numbers__grid { grid-template-columns: repeat(3, 1fr); }
+  .sam-about-numbers__stat { font-size: 2rem; }
+
+  .sam-about-origin { padding: var(--sp-10) var(--sp-06); }
+  .sam-about-origin__grid { grid-template-columns: 1fr; max-width: 560px; }
+
+  .sam-about-partners { padding: var(--sp-10) var(--sp-06); }
+  .sam-about-partners__grid { grid-template-columns: 1fr; }
+
+  .sam-about-team { padding: var(--sp-10) var(--sp-06); }
+  .sam-about-team__grid { grid-template-columns: repeat(3, 1fr); }
+
+  .sam-about-advisors { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-about-culture { padding: var(--sp-10) var(--sp-06); }
+  .sam-about-culture__inner { gap: var(--sp-07); }
+
+  .sam-about-cta { padding: var(--sp-10) var(--sp-06); }
+}
+
+/* ── Mobile (≤ 671px) ── */
+@media (max-width: 671px) {
+  .sam-hero--about { min-height: 380px; padding: var(--sp-09) var(--sp-05); }
+  .sam-hero__h1 { font-size: 1.75rem; }
+  .sam-hero__lead { font-size: 1rem; }
+  .sam-hero__overlay {
+    background: linear-gradient(to bottom, rgba(31,31,51,0.92) 0%, rgba(31,31,51,0.7) 100%);
+  }
+  .sam-hero__content { max-width: 100%; }
+  .sam-hero__actions { flex-direction: column; }
+
+  .sam-about-numbers { padding: var(--sp-09) var(--sp-05); }
+  .sam-about-numbers__grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-06); }
+  .sam-about-numbers__stat { font-size: 1.75rem; }
+
+  .sam-about-origin { padding: var(--sp-09) var(--sp-05); }
+  .sam-about-origin h2 { font-size: 1.5rem; }
+  .sam-about-origin__grid { grid-template-columns: 1fr; }
+
+  .sam-about-partners { padding: var(--sp-09) var(--sp-05); }
+  .sam-about-partners h2 { font-size: 1.5rem; }
+  .lead { font-size: 1.0625rem; }
+
+  .sam-about-team { padding: var(--sp-09) var(--sp-05); }
+  .sam-about-team h2 { font-size: 1.5rem; }
+  .sam-about-team__grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-06); }
+  .sam-about-team__photo { width: 110px; height: 110px; }
+
+  .sam-about-advisors { padding: var(--sp-09) var(--sp-05); }
+  .sam-about-advisors h2 { font-size: 1.5rem; }
+  .sam-about-advisors__grid { gap: var(--sp-07); }
+
+  .sam-about-culture { padding: var(--sp-09) var(--sp-05); }
+  .sam-about-culture__inner { grid-template-columns: 1fr; }
+  .sam-about-culture__image { min-height: 240px; }
+  .sam-about-culture h2 { font-size: 1.5rem; }
+
+  .sam-about-cta { padding: var(--sp-09) var(--sp-05); }
+  .sam-about-cta h2 { font-size: 1.5rem; }
+  .sam-about-cta__actions { flex-direction: column; }
+  .sam-about-cta__quote p { font-size: 1rem; }
+  .sam-btn { width: 100%; min-height: 48px; font-size: 1rem; }
+}

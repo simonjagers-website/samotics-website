@@ -1,0 +1,206 @@
+<!-- ============================================================
+     SAMOTICS CASE STUDY TEMPLATE — Bricks Template (Single)
+     Use as a Single Post template in Bricks → condition: Category = Case studies
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  case-study-template.css
+       3. JavaScript   →  case-study-template.js
+
+     Custom fields (set via ACF or standard custom fields):
+       case_industry     — e.g. "Water & Wastewater"
+       case_asset_type   — e.g. "Centrifugal pumps"
+       case_fault_type   — e.g. "Bearing degradation"
+       case_lead_time    — e.g. "6 weeks"
+       case_customer     — e.g. "Southern Water"
+       case_kpi_1_value  — e.g. "£748K"
+       case_kpi_1_label  — e.g. "Cost savings"
+       case_kpi_2_value  — e.g. "637"
+       case_kpi_2_label  — e.g. "Assets monitored"
+       case_kpi_3_value  — e.g. "3"
+       case_kpi_3_label  — e.g. "Failures prevented"
+     ============================================================ -->
+
+<?php
+// Get post data
+$post_id = get_the_ID();
+
+// Custom fields
+$industry   = get_post_meta($post_id, 'case_industry', true) ?: '';
+$asset_type = get_post_meta($post_id, 'case_asset_type', true) ?: '';
+$fault_type = get_post_meta($post_id, 'case_fault_type', true) ?: '';
+$lead_time  = get_post_meta($post_id, 'case_lead_time', true) ?: '';
+$customer   = get_post_meta($post_id, 'case_customer', true) ?: get_the_title();
+
+// KPIs
+$kpi_1_val = get_post_meta($post_id, 'case_kpi_1_value', true) ?: '';
+$kpi_1_lbl = get_post_meta($post_id, 'case_kpi_1_label', true) ?: '';
+$kpi_2_val = get_post_meta($post_id, 'case_kpi_2_value', true) ?: '';
+$kpi_2_lbl = get_post_meta($post_id, 'case_kpi_2_label', true) ?: '';
+$kpi_3_val = get_post_meta($post_id, 'case_kpi_3_value', true) ?: '';
+$kpi_3_lbl = get_post_meta($post_id, 'case_kpi_3_label', true) ?: '';
+
+$has_kpis = $kpi_1_val || $kpi_2_val || $kpi_3_val;
+
+// Related case studies
+$related_args = array(
+  'post_type'      => 'post',
+  'posts_per_page' => 3,
+  'post__not_in'   => array($post_id),
+  'category_name'  => 'case-studies',
+  'orderby'        => 'date',
+  'order'          => 'DESC',
+);
+$related = new WP_Query($related_args);
+?>
+
+<main id="main-content" class="sam-case">
+
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-case-hero">
+    <div class="sam-case-hero__inner">
+      <nav class="sam-breadcrumb sam-breadcrumb--dark" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/proof/">Proof</a></li>
+          <li><a href="/proof/case-studies/">Case Studies</a></li>
+          <li aria-current="page"><?php echo wp_trim_words(get_the_title(), 6, '&hellip;'); ?></li>
+        </ol>
+      </nav>
+      <div class="sam-case-hero__meta">
+        <?php if ($industry) : ?>
+          <span class="sam-case-hero__industry"><?php echo esc_html($industry); ?></span>
+        <?php endif; ?>
+        <?php if ($asset_type) : ?>
+          <span class="sam-case-hero__asset-type"><?php echo esc_html($asset_type); ?></span>
+        <?php endif; ?>
+      </div>
+      <h1 class="sam-case-hero__title"><?php the_title(); ?></h1>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. KPI STRIP ─── -->
+  <?php if ($has_kpis) : ?>
+  <section class="sam-case-kpis">
+    <div class="sam-case-kpis__inner">
+      <?php if ($kpi_1_val) : ?>
+        <div class="sam-case-kpis__item">
+          <span class="sam-case-kpis__value kpi-value" data-target="<?php echo esc_attr($kpi_1_val); ?>"><?php echo esc_html($kpi_1_val); ?></span>
+          <span class="sam-case-kpis__label"><?php echo esc_html($kpi_1_lbl); ?></span>
+        </div>
+      <?php endif; ?>
+      <?php if ($kpi_2_val) : ?>
+        <div class="sam-case-kpis__item">
+          <span class="sam-case-kpis__value kpi-value" data-target="<?php echo esc_attr($kpi_2_val); ?>"><?php echo esc_html($kpi_2_val); ?></span>
+          <span class="sam-case-kpis__label"><?php echo esc_html($kpi_2_lbl); ?></span>
+        </div>
+      <?php endif; ?>
+      <?php if ($kpi_3_val) : ?>
+        <div class="sam-case-kpis__item">
+          <span class="sam-case-kpis__value kpi-value" data-target="<?php echo esc_attr($kpi_3_val); ?>"><?php echo esc_html($kpi_3_val); ?></span>
+          <span class="sam-case-kpis__label"><?php echo esc_html($kpi_3_lbl); ?></span>
+        </div>
+      <?php endif; ?>
+    </div>
+  </section>
+  <?php endif; ?>
+
+
+  <!-- ─── 3. BODY ─── -->
+  <article class="sam-case-body">
+    <div class="sam-case-body__inner">
+
+      <aside class="sam-case-body__sidebar">
+        <dl class="sam-case-body__meta">
+          <?php if ($customer) : ?>
+            <dt>Customer</dt>
+            <dd><?php echo esc_html($customer); ?></dd>
+          <?php endif; ?>
+          <?php if ($industry) : ?>
+            <dt>Industry</dt>
+            <dd><?php echo esc_html($industry); ?></dd>
+          <?php endif; ?>
+          <?php if ($asset_type) : ?>
+            <dt>Asset type</dt>
+            <dd><?php echo esc_html($asset_type); ?></dd>
+          <?php endif; ?>
+          <?php if ($fault_type) : ?>
+            <dt>Fault detected</dt>
+            <dd><?php echo esc_html($fault_type); ?></dd>
+          <?php endif; ?>
+          <?php if ($lead_time) : ?>
+            <dt>Lead time</dt>
+            <dd><?php echo esc_html($lead_time); ?></dd>
+          <?php endif; ?>
+        </dl>
+      </aside>
+
+      <div class="sam-case-body__content">
+        <?php the_content(); ?>
+      </div>
+
+    </div>
+  </article>
+
+
+  <!-- ─── 4. SHARE / TAGS ─── -->
+  <section class="sam-case-footer">
+    <div class="sam-case-footer__inner">
+      <?php
+      $tags = get_the_tags();
+      if ($tags) : ?>
+        <div class="sam-case-footer__tags">
+          <?php foreach ($tags as $tag) : ?>
+            <span class="sam-case-footer__tag"><?php echo esc_html($tag->name); ?></span>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <div class="sam-case-footer__share">
+        <span class="sam-case-footer__share-label">Share:</span>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode(get_permalink()); ?>&title=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener" class="sam-case-footer__share-link" aria-label="Share on LinkedIn">LinkedIn</a>
+        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener" class="sam-case-footer__share-link" aria-label="Share on X">X</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. RELATED CASE STUDIES ─── -->
+  <?php if ($related->have_posts()) : ?>
+  <section class="sam-case-related">
+    <div class="sam-case-related__inner">
+      <h2>More case studies</h2>
+      <div class="sam-case-related__grid">
+        <?php while ($related->have_posts()) : $related->the_post();
+          $rel_industry = get_post_meta(get_the_ID(), 'case_industry', true);
+          $rel_kpi      = get_post_meta(get_the_ID(), 'case_kpi_1_value', true);
+        ?>
+          <a href="<?php the_permalink(); ?>" class="sam-case-related__card">
+            <?php if ($rel_industry) : ?>
+              <span class="sam-case-related__card-industry"><?php echo esc_html($rel_industry); ?></span>
+            <?php endif; ?>
+            <?php if ($rel_kpi) : ?>
+              <span class="sam-case-related__card-kpi kpi-value"><?php echo esc_html($rel_kpi); ?></span>
+            <?php endif; ?>
+            <h3><?php the_title(); ?></h3>
+            <span class="sam-case-related__link">Read case study &rarr;</span>
+          </a>
+        <?php endwhile; wp_reset_postdata(); ?>
+      </div>
+    </div>
+  </section>
+  <?php endif; ?>
+
+
+  <!-- ─── 6. CTA ─── -->
+  <section class="sam-cta-block">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">Want results like this?</h2>
+      <p class="sam-cta-block__sub">See how SAM4 detects faults weeks to months before failure.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/proof/" class="sam-btn sam-btn--secondary">See All Proof</a>
+      </div>
+    </div>
+  </section>
+
+</main>

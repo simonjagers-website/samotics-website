@@ -1,0 +1,679 @@
+/* ============================================================
+   SAMOTICS PROXIMITY PENALTY PAGE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  /* Core Palette */
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+
+  /* Fonts */
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Spacing */
+  --sp-01: 2px;
+  --sp-02: 4px;
+  --sp-03: 8px;
+  --sp-04: 12px;
+  --sp-05: 16px;
+  --sp-06: 24px;
+  --sp-07: 32px;
+  --sp-08: 48px;
+  --sp-09: 64px;
+  --sp-10: 96px;
+  --sp-11: 128px;
+  --sp-12: 160px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Transitions */
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset for main ── */
+.sam-proximity {
+  overflow-x: hidden;
+}
+
+/* ── Shared: Overline ── */
+.overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin: 0 0 var(--sp-06) 0;
+}
+
+/* ── Shared: Lead ── */
+.lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-space-cadet);
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* ── Shared: Text Link ── */
+.sam-text-link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--sam-blue);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-text-link:hover {
+  color: var(--sam-blue-dark);
+}
+
+/* ── Shared: Buttons ── */
+.sam-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font: 600 1rem/1 var(--sam-font);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
+  white-space: nowrap;
+}
+.sam-btn:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+/* Primary: Orange */
+.sam-btn--primary {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-btn--primary:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+  box-shadow: var(--shadow-cta);
+}
+.sam-btn--primary:active {
+  background: var(--sam-orange-deep);
+  color: var(--sam-white);
+}
+
+/* Secondary: Teal outline */
+.sam-btn--secondary {
+  background: transparent;
+  color: var(--sam-teal-dark);
+  border: 2px solid var(--sam-teal-dark);
+}
+.sam-btn--secondary:hover {
+  background: var(--sam-teal-dark);
+  color: var(--sam-white);
+}
+.sam-btn--secondary:active {
+  background: #004D4D;
+  color: var(--sam-white);
+  border-color: #004D4D;
+}
+
+/* ── KPI Value ── */
+.kpi-value {
+  font-family: var(--sam-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+
+.sam-hero--proximity {
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: var(--sp-12) 0 var(--sp-11) 0;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sam-hero--proximity .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.75) 45%, rgba(31,31,51,0.35) 100%);
+  z-index: 0;
+}
+.sam-hero--proximity .sam-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+.sam-hero__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  width: 100%;
+}
+.sam-hero__overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-hero__h1 {
+  font-family: var(--sam-font);
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-07) 0;
+  max-width: 18ch;
+}
+.sam-hero__lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-white);
+  margin: 0;
+  max-width: 60ch;
+}
+
+
+/* ============================================================
+   2. THREE BARRIERS
+   ============================================================ */
+
+.sam-prox-barriers {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-prox-barriers__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-prox-barriers__inner .overline {
+  color: var(--sam-orange-dark);
+}
+.sam-prox-barriers__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 30ch;
+}
+.sam-prox-barriers__lead {
+  margin-bottom: var(--sp-09);
+}
+
+/* Individual Barrier Blocks */
+.sam-prox-barriers__barrier {
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-blue);
+  margin-bottom: var(--sp-08);
+}
+.sam-prox-barriers__barrier:last-of-type {
+  margin-bottom: 0;
+}
+.sam-prox-barriers__barrier-header {
+  padding: var(--sp-07);
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-05);
+  border-bottom: 1px solid var(--sam-border-light);
+  background: var(--sam-seashell);
+}
+.sam-prox-barriers__barrier-number {
+  font-family: var(--sam-mono);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--sam-blue);
+  letter-spacing: 0.05em;
+}
+.sam-prox-barriers__barrier-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-prox-barriers__barrier-body {
+  padding: var(--sp-07);
+}
+.sam-prox-barriers__barrier-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  max-width: 75ch;
+  margin: 0 0 var(--sp-08) 0;
+}
+
+/* Example Cards */
+.sam-prox-barriers__examples {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-prox-barriers__example {
+  padding: var(--sp-06);
+  border: 1px solid var(--sam-border-light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-03);
+}
+.sam-prox-barriers__example-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-prox-barriers__example-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+.sam-prox-barriers__example-industry {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+  margin-top: auto;
+  padding-top: var(--sp-03);
+}
+
+/* Cost Breakdown (Barrier 2) */
+.sam-prox-barriers__cost-breakdown {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-07);
+  padding: var(--sp-07);
+  background: var(--sam-seashell);
+  border: 1px solid var(--sam-border-light);
+  margin-bottom: var(--sp-08);
+}
+.sam-prox-barriers__cost-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+}
+.sam-prox-barriers__cost-label {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+}
+.sam-prox-barriers__cost-value {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--sam-space-cadet);
+}
+.sam-prox-barriers__cost-item--total .sam-prox-barriers__cost-value {
+  color: var(--sam-orange-dark);
+}
+.sam-prox-barriers__cost-arrow {
+  color: var(--sam-comet);
+  flex-shrink: 0;
+}
+
+/* Cost Factors (Barrier 2) */
+.sam-prox-barriers__cost-factors {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-prox-barriers__cost-factor {
+  padding: var(--sp-06);
+  border: 1px solid var(--sam-border-light);
+}
+.sam-prox-barriers__cost-factor-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-03) 0;
+}
+.sam-prox-barriers__cost-factor-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+
+/* ============================================================
+   3. THE STRUCTURAL REFRAME
+   ============================================================ */
+
+.sam-prox-reframe {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-prox-reframe__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-prox-reframe__inner .overline {
+  color: var(--sam-teal-dark);
+}
+.sam-prox-reframe__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 28ch;
+}
+.sam-prox-reframe__lead {
+  margin-bottom: var(--sp-07);
+}
+.sam-prox-reframe__body {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  max-width: 75ch;
+  margin: 0 0 var(--sp-06) 0;
+}
+
+/* Bridge to ESA */
+.sam-prox-reframe__bridge {
+  display: flex;
+  gap: var(--sp-07);
+  align-items: flex-start;
+  padding: var(--sp-08);
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-left: 4px solid var(--sam-blue);
+  margin-top: var(--sp-09);
+}
+.sam-prox-reframe__bridge-icon {
+  flex-shrink: 0;
+  color: var(--sam-blue);
+}
+.sam-prox-reframe__bridge-heading {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-05) 0;
+}
+.sam-prox-reframe__bridge-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  max-width: 65ch;
+  margin: 0 0 var(--sp-06) 0;
+}
+
+
+/* ============================================================
+   4. CUSTOMER QUOTE
+   ============================================================ */
+.sam-quote--proximity {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-quote--proximity .sam-quote__inner {
+  max-width: 800px; margin: 0 auto; text-align: center;
+}
+.sam-quote--proximity .sam-quote__blockquote { margin: 0; padding: 0; }
+.sam-quote--proximity .sam-quote__text {
+  font-family: var(--sam-font); font-size: 1.5rem; font-weight: 400;
+  line-height: 1.5; color: var(--sam-space-cadet); font-style: italic;
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-quote--proximity .sam-quote__attribution {
+  display: flex; flex-direction: column; gap: var(--sp-02);
+}
+.sam-quote--proximity .sam-quote__name {
+  font-family: var(--sam-font); font-size: 1rem; font-weight: 600; color: var(--sam-space-cadet);
+}
+.sam-quote--proximity .sam-quote__title {
+  font-family: var(--sam-font); font-size: 0.875rem; color: var(--sam-comet);
+}
+
+/* ============================================================
+   4. CTA BLOCK
+   ============================================================ */
+
+.sam-cta-block--proximity {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-cta-block__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  text-align: center;
+}
+.sam-cta-block__heading {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-cta-block__sub {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 56ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sam-cta-block__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-05);
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   FOCUS STYLES
+   ============================================================ */
+
+.sam-text-link:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .sam-btn,
+  .sam-text-link {
+    transition: none !important;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet (max-width: 1055px) */
+@media (max-width: 1055px) {
+
+  .sam-hero--proximity {
+    padding: var(--sp-10) 0;
+    min-height: auto;
+  }
+  .sam-hero__h1 {
+    font-size: 3rem;
+    max-width: none;
+  }
+  .sam-hero__h1 br {
+    display: none;
+  }
+
+  .sam-prox-barriers__inner h2 {
+    font-size: 2.5rem;
+  }
+  .sam-prox-barriers__examples {
+    grid-template-columns: 1fr;
+  }
+  .sam-prox-barriers__cost-factors {
+    grid-template-columns: 1fr;
+  }
+  .sam-prox-barriers__cost-breakdown {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-05);
+  }
+  .sam-prox-barriers__cost-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+
+  .sam-prox-reframe__inner h2 {
+    font-size: 2.5rem;
+    max-width: none;
+  }
+  .sam-prox-reframe__bridge {
+    flex-direction: column;
+    padding: var(--sp-07);
+  }
+}
+
+/* Mobile (max-width: 671px) */
+@media (max-width: 671px) {
+
+  .sam-hero--proximity {
+    padding: var(--sp-09) 0;
+  }
+  .sam-hero__inner {
+    padding: 0 16px;
+  }
+  .sam-hero__h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .sam-hero__lead {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .sam-prox-barriers {
+    padding: var(--sp-10) 0;
+  }
+  .sam-prox-barriers__inner {
+    padding: 0 16px;
+  }
+  .sam-prox-barriers__inner h2 {
+    font-size: 2rem;
+  }
+  .sam-prox-barriers__barrier-header {
+    flex-direction: column;
+    gap: var(--sp-03);
+  }
+  .sam-prox-barriers__barrier-body {
+    padding: var(--sp-06);
+  }
+  .sam-prox-barriers__barrier-desc {
+    font-size: 1rem;
+  }
+
+  .sam-prox-reframe {
+    padding: var(--sp-10) 0;
+  }
+  .sam-prox-reframe__inner {
+    padding: 0 16px;
+  }
+  .sam-prox-reframe__inner h2 {
+    font-size: 2rem;
+  }
+  .sam-prox-reframe__body {
+    font-size: 1rem;
+  }
+  .sam-prox-reframe__bridge {
+    padding: var(--sp-06);
+  }
+  .sam-prox-reframe__bridge-heading {
+    font-size: 1.25rem;
+  }
+  .sam-prox-reframe__bridge-desc {
+    font-size: 1rem;
+  }
+
+  .sam-quote--proximity { padding: var(--sp-10) var(--sp-06); }
+  .sam-quote--proximity { padding: var(--sp-09) var(--sp-05); }
+  .sam-quote--proximity .sam-quote__text { font-size: 1.25rem; }
+  .sam-cta-block--proximity {
+    padding: var(--sp-10) 0;
+  }
+  .sam-cta-block__inner {
+    padding: 0 16px;
+  }
+  .sam-cta-block__heading {
+    font-size: 2rem;
+  }
+  .sam-cta-block__actions {
+    flex-direction: column;
+  }
+  .sam-cta-block__actions .sam-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+}

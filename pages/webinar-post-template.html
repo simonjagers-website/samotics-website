@@ -1,0 +1,194 @@
+<!-- ============================================================
+     SAMOTICS WEBINAR POST TEMPLATE — Bricks Template (Single)
+     Use as a Single Post template in Bricks → condition: Category = Webinars
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  webinar-post-template.css
+       3. JavaScript   →  webinar-post-template.js
+     ============================================================ -->
+
+<?php
+// Get post data
+$post_id       = get_the_ID();
+$date_iso      = get_the_date('c');
+$date_display  = get_the_date('j F Y');
+
+// Custom fields (set via ACF or standard custom fields)
+$video_url     = get_post_meta($post_id, 'webinar_video_url', true);     // YouTube / Vimeo embed URL
+$duration      = get_post_meta($post_id, 'webinar_duration', true);      // e.g. "45 min"
+$speakers      = get_post_meta($post_id, 'webinar_speakers', true);      // e.g. "John Doe, VP Engineering"
+$is_upcoming   = get_post_meta($post_id, 'webinar_upcoming', true);      // "1" if upcoming
+$register_url  = get_post_meta($post_id, 'webinar_register_url', true);  // Registration link
+
+// Fallbacks
+if (!$duration)  $duration = '';
+if (!$speakers)  $speakers = '';
+
+// Related webinars
+$related_args = array(
+  'post_type'      => 'post',
+  'posts_per_page' => 3,
+  'post__not_in'   => array($post_id),
+  'category_name'  => 'webinars',
+  'orderby'        => 'date',
+  'order'          => 'DESC',
+);
+$related = new WP_Query($related_args);
+?>
+
+<main id="main-content" class="sam-webinar-post">
+
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-webinar-hero">
+    <div class="sam-webinar-hero__inner">
+      <nav class="sam-breadcrumb sam-breadcrumb--light" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/resources/webinars/">Webinars</a></li>
+          <li aria-current="page"><?php echo wp_trim_words(get_the_title(), 6, '&hellip;'); ?></li>
+        </ol>
+      </nav>
+
+      <div class="sam-webinar-hero__meta">
+        <?php if ($is_upcoming) : ?>
+          <span class="sam-webinar-hero__badge sam-webinar-hero__badge--live">Upcoming</span>
+        <?php else : ?>
+          <span class="sam-webinar-hero__badge">On-demand</span>
+        <?php endif; ?>
+        <time datetime="<?php echo esc_attr($date_iso); ?>"><?php echo esc_html($date_display); ?></time>
+        <?php if ($duration) : ?>
+          <span class="sam-webinar-hero__duration"><?php echo esc_html($duration); ?></span>
+        <?php endif; ?>
+      </div>
+
+      <h1 class="sam-webinar-hero__title"><?php the_title(); ?></h1>
+
+      <?php if (has_excerpt()) : ?>
+        <p class="sam-webinar-hero__excerpt"><?php echo get_the_excerpt(); ?></p>
+      <?php endif; ?>
+
+      <?php if ($speakers) : ?>
+        <p class="sam-webinar-hero__speakers">
+          <strong>Speakers:</strong> <?php echo esc_html($speakers); ?>
+        </p>
+      <?php endif; ?>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. VIDEO / REGISTRATION ─── -->
+  <section class="sam-webinar-media">
+    <div class="sam-webinar-media__inner">
+
+      <?php if ($is_upcoming && $register_url) : ?>
+        <!-- Upcoming webinar: show registration CTA -->
+        <div class="sam-webinar-media__register">
+          <div class="sam-webinar-media__register-card">
+            <svg class="sam-webinar-media__icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <h2>Register for this webinar</h2>
+            <p>Save your spot. We'll send you a reminder and the recording afterwards.</p>
+            <time datetime="<?php echo esc_attr($date_iso); ?>"><?php echo esc_html($date_display); ?></time>
+            <?php if ($duration) : ?>
+              <span class="sam-webinar-media__dur"><?php echo esc_html($duration); ?></span>
+            <?php endif; ?>
+            <a href="<?php echo esc_url($register_url); ?>" class="sam-btn sam-btn--primary" target="_blank" rel="noopener">Register Now</a>
+          </div>
+        </div>
+
+      <?php elseif ($video_url) : ?>
+        <!-- Past webinar with recording -->
+        <div class="sam-webinar-media__video">
+          <div class="sam-webinar-media__embed">
+            <iframe src="<?php echo esc_url($video_url); ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+
+      <?php elseif (has_post_thumbnail()) : ?>
+        <!-- Fallback: featured image -->
+        <div class="sam-webinar-media__thumb">
+          <?php the_post_thumbnail('large', array('class' => 'sam-webinar-media__img')); ?>
+        </div>
+
+      <?php endif; ?>
+
+    </div>
+  </section>
+
+
+  <!-- ─── 3. BODY CONTENT ─── -->
+  <article class="sam-webinar-body">
+    <div class="sam-webinar-body__inner">
+      <div class="sam-webinar-body__content">
+        <?php the_content(); ?>
+      </div>
+    </div>
+  </article>
+
+
+  <!-- ─── 4. SHARE / TAGS ─── -->
+  <section class="sam-webinar-footer">
+    <div class="sam-webinar-footer__inner">
+      <?php
+      $tags = get_the_tags();
+      if ($tags) : ?>
+        <div class="sam-webinar-footer__tags">
+          <?php foreach ($tags as $tag) : ?>
+            <span class="sam-webinar-footer__tag"><?php echo esc_html($tag->name); ?></span>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <div class="sam-webinar-footer__share">
+        <span class="sam-webinar-footer__share-label">Share:</span>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode(get_permalink()); ?>&title=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener" class="sam-webinar-footer__share-link" aria-label="Share on LinkedIn">LinkedIn</a>
+        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener" class="sam-webinar-footer__share-link" aria-label="Share on X">X</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. RELATED WEBINARS ─── -->
+  <?php if ($related->have_posts()) : ?>
+  <section class="sam-webinar-related">
+    <div class="sam-webinar-related__inner">
+      <h2>More webinars</h2>
+      <div class="sam-webinar-related__grid">
+        <?php while ($related->have_posts()) : $related->the_post();
+          $rel_upcoming = get_post_meta(get_the_ID(), 'webinar_upcoming', true);
+          $rel_duration = get_post_meta(get_the_ID(), 'webinar_duration', true);
+        ?>
+          <a href="<?php the_permalink(); ?>" class="sam-webinar-related__card">
+            <div class="sam-webinar-related__card-meta">
+              <?php if ($rel_upcoming) : ?>
+                <span class="sam-webinar-related__badge sam-webinar-related__badge--live">Upcoming</span>
+              <?php else : ?>
+                <span class="sam-webinar-related__badge">On-demand</span>
+              <?php endif; ?>
+              <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('j M Y'); ?></time>
+            </div>
+            <h3><?php the_title(); ?></h3>
+            <?php if ($rel_duration) : ?>
+              <span class="sam-webinar-related__duration"><?php echo esc_html($rel_duration); ?></span>
+            <?php endif; ?>
+            <span class="sam-webinar-related__link">Watch now &rarr;</span>
+          </a>
+        <?php endwhile; wp_reset_postdata(); ?>
+      </div>
+    </div>
+  </section>
+  <?php endif; ?>
+
+
+  <!-- ─── 6. CTA ─── -->
+  <section class="sam-cta-block">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">Learn how SAM4 protects your assets</h2>
+      <p class="sam-cta-block__sub">See our ESA-based condition monitoring in action.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/resources/webinars/" class="sam-btn sam-btn--secondary">All Webinars</a>
+      </div>
+    </div>
+  </section>
+
+</main>

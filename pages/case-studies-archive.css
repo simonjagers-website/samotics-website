@@ -1,0 +1,355 @@
+/* ============================================================
+   SAMOTICS CASE STUDIES ARCHIVE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  /* Core Palette */
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #5A6A80;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+  --sam-gold:            #FAC91F;
+
+  /* Fonts */
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Spacing */
+  --sp-01: 2px;
+  --sp-02: 4px;
+  --sp-03: 8px;
+  --sp-04: 12px;
+  --sp-05: 16px;
+  --sp-06: 24px;
+  --sp-07: 32px;
+  --sp-08: 48px;
+  --sp-09: 64px;
+  --sp-10: 96px;
+  --sp-11: 128px;
+  --sp-12: 160px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-lg:  0 12px 32px rgba(31,31,51,0.14);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Transitions */
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset for main ── */
+.sam-case-studies {
+  overflow-x: hidden;
+}
+
+/* ── Shared: Overline ── */
+.overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 var(--sp-06) 0;
+}
+
+/* ── Shared: Lead ── */
+.lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-space-cadet);
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* ── Shared: Buttons ── */
+.sam-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font: 600 1rem/1 var(--sam-font);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
+  white-space: nowrap;
+}
+.sam-btn:focus-visible {
+  outline: 3px solid var(--sam-orange);
+  outline-offset: 2px;
+}
+
+/* Primary: Orange */
+.sam-btn--primary {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-btn--primary:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+  box-shadow: var(--shadow-cta);
+}
+.sam-btn--primary:active {
+  background: var(--sam-orange-deep);
+  color: var(--sam-white);
+}
+
+/* ────────────────────────────────────────────────────────
+   HERO SECTION
+   ──────────────────────────────────────────────────────── */
+.sam-case-studies__hero {
+  padding: var(--sp-10) var(--sp-06);
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sam-case-studies__hero-content {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sam-case-studies__hero-title {
+  font-family: var(--sam-font);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--sam-space-cadet);
+  margin: var(--sp-06) 0 var(--sp-06) 0;
+}
+
+/* ────────────────────────────────────────────────────────
+   CONTAINER & SHARED STYLES
+   ──────────────────────────────────────────────────────── */
+.sam-case-studies__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--sp-06);
+}
+
+/* ────────────────────────────────────────────────────────
+   CONTENT SECTION
+   ──────────────────────────────────────────────────────── */
+.sam-case-studies__content {
+  padding: var(--sp-10) var(--sp-06);
+}
+
+/* ────────────────────────────────────────────────────────
+   FILTERS
+   ──────────────────────────────────────────────────────── */
+.sam-case-studies__filters {
+  display: flex;
+  gap: var(--sp-04);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-10);
+  justify-content: center;
+}
+
+.sam-case-studies__filter-chip {
+  font-family: var(--sam-font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: 2px solid var(--sam-border-light);
+  background: var(--sam-white);
+  color: var(--sam-space-cadet);
+  text-decoration: none;
+  transition: all var(--ease);
+  cursor: pointer;
+}
+
+.sam-case-studies__filter-chip:hover {
+  border-color: var(--sam-orange);
+  color: var(--sam-orange);
+}
+
+.sam-case-studies__filter-chip--active {
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  border-color: var(--sam-orange);
+}
+
+/* ────────────────────────────────────────────────────────
+   CASE STUDY GRID
+   ──────────────────────────────────────────────────────── */
+.sam-case-studies__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-08);
+  margin-bottom: var(--sp-10);
+}
+
+.sam-case-studies__card {
+  background: var(--sam-white);
+  padding: var(--sp-08);
+  border-radius: 8px;
+  border: 2px solid var(--sam-border-light);
+  transition: all var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.sam-case-studies__card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--sam-orange);
+}
+
+.sam-case-studies__card-tag {
+  display: inline-block;
+  font-family: var(--sam-font);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  width: fit-content;
+  margin-bottom: var(--sp-06);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sam-case-studies__card-title {
+  font-family: var(--sam-font);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-04) 0;
+  line-height: 1.4;
+}
+
+.sam-case-studies__card-excerpt {
+  font-family: var(--sam-font);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--sam-comet);
+  margin: 0;
+  flex-grow: 1;
+  margin-bottom: var(--sp-06);
+}
+
+.sam-case-studies__card-link {
+  font-family: var(--sam-font);
+  color: var(--sam-orange);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color var(--ease);
+}
+
+.sam-case-studies__card-link:hover {
+  color: var(--sam-orange-dark);
+}
+
+/* ────────────────────────────────────────────────────────
+   PAGINATION
+   ──────────────────────────────────────────────────────── */
+.sam-case-studies__pagination-link {
+  transition: all var(--ease);
+}
+
+.sam-case-studies__pagination-link:hover {
+  background: var(--sam-orange) !important;
+  color: var(--sam-white) !important;
+}
+
+/* ────────────────────────────────────────────────────────
+   CTA BANNER
+   ──────────────────────────────────────────────────────── */
+.sam-case-studies__cta-banner h2 {
+  font-family: var(--sam-font);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.sam-case-studies__cta-banner p {
+  font-family: var(--sam-font);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ────────────────────────────────────────────────────────
+   RESPONSIVE
+   ──────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .sam-case-studies__hero-title {
+    font-size: 2.2rem;
+  }
+
+  .sam-case-studies__hero {
+    min-height: 250px;
+    padding: var(--sp-09) var(--sp-06);
+  }
+
+  .sam-case-studies__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-06);
+  }
+
+  .sam-case-studies__content {
+    padding: var(--sp-09) var(--sp-06);
+  }
+}
+
+@media (max-width: 600px) {
+  .sam-case-studies__hero-title {
+    font-size: 1.75rem;
+  }
+
+  .sam-case-studies__hero {
+    min-height: 200px;
+    padding: var(--sp-08) var(--sp-05);
+  }
+
+  .sam-case-studies__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-06);
+  }
+
+  .sam-case-studies__filters {
+    gap: var(--sp-03);
+    margin-bottom: var(--sp-08);
+  }
+
+  .sam-case-studies__filter-chip {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+
+  .sam-case-studies__cta-banner h2 {
+    font-size: 1.5rem;
+  }
+
+  .sam-case-studies__content,
+  .sam-case-studies__cta-banner {
+    padding: var(--sp-08) var(--sp-05);
+  }
+
+  .sam-case-studies__container {
+    padding: 0 var(--sp-05);
+  }
+}

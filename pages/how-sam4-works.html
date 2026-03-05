@@ -1,0 +1,365 @@
+<!-- ============================================================
+     SAMOTICS — HOW SAM4 WORKS (Technical Depth)
+     Bricks Code Element
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  how-sam4-works.css
+       3. JavaScript   →  (none required)
+     ============================================================ -->
+
+
+<!-- ===================== PHP & HTML ===================== -->
+
+<main id="main-content" class="sam-tech">
+
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-hero sam-hero--tech" style="background-image: url('https://samoticstestpage.com/wp-content/uploads/2026/02/maintenance-professionals-in-a-control-tower.png');">
+    <div class="sam-hero__overlay"></div>
+    <div class="sam-hero__inner">
+      <div class="sam-hero__content">
+        <p class="sam-hero__overline">Technical deep dive</p>
+        <h1 class="sam-hero__h1">From electrical signal<br>to validated diagnostic</h1>
+        <p class="sam-hero__lead">SAM4 turns raw current and voltage waveforms into confirmed fault diagnostics — continuously, for your entire fleet. This page walks through the full pipeline: how signals are captured, how AI models detect anomalies, how engineers validate every alert, and how results reach your team.</p>
+        <p class="sam-hero__proof-callout">This pipeline runs across <strong class="kpi-value">10,000+</strong> assets today, delivering a <strong class="kpi-value">&gt;90%</strong> detection rate with a false positive rate below <strong class="kpi-value">5%</strong>.</p>
+        <nav class="sam-hero__jump-nav" aria-label="Page sections">
+          <a href="#signal-acquisition" class="sam-hero__jump-link">Signal acquisition</a>
+          <a href="#signal-processing" class="sam-hero__jump-link">Signal processing</a>
+          <a href="#ai-engine" class="sam-hero__jump-link">AI engine</a>
+          <a href="#expert-validation" class="sam-hero__jump-link">Expert validation</a>
+          <a href="#delivery" class="sam-hero__jump-link">Delivery &amp; integration</a>
+          <a href="#performance" class="sam-hero__jump-link">Performance</a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. SIGNAL ACQUISITION ─── -->
+  <section id="signal-acquisition" class="sam-tech-section sam-tech-section--white">
+    <div class="sam-tech-section__inner">
+      <div class="sam-tech-section__text">
+        <p class="overline">Step 1</p>
+        <h2>Signal acquisition at the MCC</h2>
+        <p class="lead">Every AC motor draws current and voltage in patterns that reflect the mechanical condition of the full drivetrain. SAM4 captures those patterns at the motor control cabinet — not on the asset.</p>
+      </div>
+
+      <div class="sam-tech-detail">
+        <div class="sam-tech-detail__grid">
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Hardware</h3>
+            <p class="sam-tech-detail__body">Split-core current transformers (CTs) and voltage taps (VTs) clamp around the motor supply cables inside the MCC. No process shutdown. No mechanical modification. Installation takes under 30 minutes per asset.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Sampling</h3>
+            <p class="sam-tech-detail__body">The SAM4 data acquisition unit samples current and voltage at high frequency — capturing the harmonic content needed to detect mechanical faults reflected in the electrical signature. Sampling parameters are tuned per motor type and application.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Edge processing</h3>
+            <p class="sam-tech-detail__body">Raw waveforms are pre-processed on the edge device before transmission. This includes windowing, basic quality checks, and compression. Only diagnostic-relevant data is sent to the cloud — reducing bandwidth by an order of magnitude while retaining full spectral information.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Connectivity</h3>
+            <p class="sam-tech-detail__body">Data transmits over standard industrial protocols (4G, Ethernet, Wi-Fi) to Samotics' cloud infrastructure. The edge device handles intermittent connectivity gracefully — buffering locally and syncing when reconnected. No IT infrastructure changes required.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sam-tech-callout">
+        <h3 class="sam-tech-callout__title">Why the MCC, not the asset?</h3>
+        <p class="sam-tech-callout__body">Conventional vibration sensors need physical mounting on the machine — which means physical access, permits, wiring runs, and per-asset installation costs. For submerged pumps, sealed blowers, ATEX zones, or remote sites, that's often impossible. The motor control cabinet is always accessible, always in a safe environment, and serves every motor on the feeder. One installation point. Full drivetrain visibility.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 3. SIGNAL PROCESSING ─── -->
+  <section id="signal-processing" class="sam-tech-section sam-tech-section--seashell">
+    <div class="sam-tech-section__inner">
+      <div class="sam-tech-section__text">
+        <p class="overline">Step 2</p>
+        <h2>Signal processing and feature extraction</h2>
+        <p class="lead">Raw electrical waveforms contain thousands of data points per second. The signal processing layer transforms this into a structured set of diagnostic features — the fingerprint of each asset's condition.</p>
+      </div>
+
+      <div class="sam-tech-pipeline-visual">
+        <div class="sam-tech-pipeline-visual__step">
+          <div class="sam-tech-pipeline-visual__icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <path d="M4 20 L8 14 L12 24 L16 18 L20 26 L24 16 L28 22 L32 18 L36 20" stroke="#1F1F33" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="8" cy="14" r="1" fill="#FF5429"/>
+              <circle cx="20" cy="26" r="1" fill="#FF5429"/>
+              <circle cx="32" cy="18" r="1" fill="#FF5429"/>
+            </svg>
+          </div>
+          <span class="sam-tech-pipeline-visual__label">Raw waveform</span>
+        </div>
+        <div class="sam-tech-pipeline-visual__arrow" aria-hidden="true">
+          <svg width="32" height="24" viewBox="0 0 32 24"><path d="M4,12 L24,12 M20,6 L28,12 L20,18" fill="none" stroke="#5A6A80" stroke-width="2"/></svg>
+        </div>
+        <div class="sam-tech-pipeline-visual__step">
+          <div class="sam-tech-pipeline-visual__icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <rect x="6" y="6" width="28" height="28" stroke="#1F1F33" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="6" y1="20" x2="34" y2="20" stroke="#6B6B7F" stroke-width="1"/>
+              <line x1="20" y1="6" x2="20" y2="34" stroke="#6B6B7F" stroke-width="1"/>
+              <rect x="10" y="14" width="3" height="8" fill="#0098AC" opacity="0.4"/>
+              <rect x="15" y="10" width="3" height="12" fill="#0098AC" opacity="0.6"/>
+              <rect x="22" y="16" width="3" height="6" fill="#0098AC" opacity="0.4"/>
+              <rect x="27" y="18" width="3" height="4" fill="#0098AC" opacity="0.3"/>
+            </svg>
+          </div>
+          <span class="sam-tech-pipeline-visual__label">Spectral analysis</span>
+        </div>
+        <div class="sam-tech-pipeline-visual__arrow" aria-hidden="true">
+          <svg width="32" height="24" viewBox="0 0 32 24"><path d="M4,12 L24,12 M20,6 L28,12 L20,18" fill="none" stroke="#5A6A80" stroke-width="2"/></svg>
+        </div>
+        <div class="sam-tech-pipeline-visual__step">
+          <div class="sam-tech-pipeline-visual__icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="5" stroke="#1F1F33" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="28" cy="12" r="5" stroke="#1F1F33" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="20" cy="28" r="5" stroke="#1F1F33" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="16" y1="16" x2="18" y2="24" stroke="#0098AC" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="24" y1="16" x2="22" y2="24" stroke="#0098AC" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="18" y1="12" x2="22" y2="12" stroke="#6B6B7F" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="sam-tech-pipeline-visual__label">Feature vectors</span>
+        </div>
+      </div>
+
+      <div class="sam-tech-detail">
+        <div class="sam-tech-detail__grid sam-tech-detail__grid--two">
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Spectral decomposition</h3>
+            <p class="sam-tech-detail__body">Time-domain signals are transformed into the frequency domain using FFT and advanced spectral techniques. This reveals harmonic patterns invisible in the raw waveform — sideband frequencies around the supply frequency that correspond to specific mechanical fault signatures (bearing defect frequencies, gear mesh patterns, rotor bar faults).</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Feature extraction</h3>
+            <p class="sam-tech-detail__body">From each processed signal, SAM4 extracts hundreds of diagnostic features: spectral amplitudes at fault-specific frequencies, envelope statistics, current signature symmetry, power factor trends, and load-normalised indicators. These features form a high-dimensional fingerprint that characterises the asset's condition at each measurement point.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Operating state classification</h3>
+            <p class="sam-tech-detail__body">Motors operate across different loads, speeds, and duty cycles. SAM4 classifies each measurement's operating state before comparing it to baseline — ensuring that a change in load isn't misread as a developing fault. This is critical for assets with variable frequency drives (VFDs) or intermittent duty.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Baseline learning</h3>
+            <p class="sam-tech-detail__body">During the initial monitoring period, SAM4 builds a statistical baseline for each asset across its observed operating states. Future measurements are compared against this asset-specific baseline — not generic thresholds. This means every motor is evaluated relative to its own normal behaviour, reducing false positives and catching subtle degradation early.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 4. AI DETECTION ENGINE ─── -->
+  <section id="ai-engine" class="sam-tech-section sam-tech-section--white">
+    <div class="sam-tech-section__inner">
+      <div class="sam-tech-section__text">
+        <p class="overline">Step 3</p>
+        <h2>AI-driven anomaly detection</h2>
+        <p class="lead">The detection engine compares each asset's current condition against its learned baseline and a library of known fault patterns — trained on data from over 10,000 industrial assets across 80+ customers.</p>
+      </div>
+
+      <div class="sam-tech-detail">
+        <div class="sam-tech-detail__grid sam-tech-detail__grid--three">
+          <div class="sam-tech-detail__card sam-tech-detail__card--accent-teal">
+            <h3 class="sam-tech-detail__title">Anomaly scoring</h3>
+            <p class="sam-tech-detail__body">Each feature vector is scored against the asset's baseline using statistical distance metrics. Features that deviate beyond learned thresholds are flagged. The system tracks trend direction and rate of change — distinguishing between a stable anomaly and one that's accelerating toward failure.</p>
+          </div>
+          <div class="sam-tech-detail__card sam-tech-detail__card--accent-blue">
+            <h3 class="sam-tech-detail__title">Fault classification</h3>
+            <p class="sam-tech-detail__body">When an anomaly is detected, classification models map the pattern of deviating features to known fault types: bearing degradation, misalignment, imbalance, electrical faults, cavitation, and more. The models are trained on labelled fault data from confirmed failures across the installed base — giving them real-world ground truth, not just lab data.</p>
+          </div>
+          <div class="sam-tech-detail__card sam-tech-detail__card--accent-orange">
+            <h3 class="sam-tech-detail__title">Severity estimation</h3>
+            <p class="sam-tech-detail__body">Beyond detecting *that* a fault exists, the engine estimates *how far* the degradation has progressed. This combines the magnitude of spectral deviation, the rate of trend progression, and fault-type-specific degradation models — giving engineers a severity assessment to prioritise interventions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sam-tech-callout">
+        <h3 class="sam-tech-callout__title">How the models improve</h3>
+        <p class="sam-tech-callout__body">Every validated alert feeds back into the training pipeline. When a Samotics engineer confirms a fault type and the customer validates the finding during maintenance, that data pair strengthens the models. With 80+ customers generating continuous feedback, the detection engine compounds in accuracy over time — an advantage that grows with scale.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. EXPERT VALIDATION ─── -->
+  <section id="expert-validation" class="sam-tech-section sam-tech-section--dark">
+    <div class="sam-tech-section__inner">
+      <div class="sam-tech-section__text">
+        <p class="overline overline--light">Step 4</p>
+        <h2 class="sam-tech-section__h2--light">Every alert reviewed by a reliability engineer</h2>
+        <p class="lead lead--light">AI flags the anomaly. A human confirms it. Every alert that reaches your team has been reviewed by a Samotics reliability engineer — no unfiltered machine output, no alert fatigue.</p>
+      </div>
+
+      <div class="sam-tech-validation">
+        <div class="sam-tech-validation__step">
+          <span class="sam-tech-validation__num kpi-value">1</span>
+          <div class="sam-tech-validation__content">
+            <h3 class="sam-tech-validation__title">AI flags anomaly</h3>
+            <p class="sam-tech-validation__desc">The detection engine identifies a statistically significant deviation and generates a preliminary classification with confidence score.</p>
+          </div>
+        </div>
+        <div class="sam-tech-validation__step">
+          <span class="sam-tech-validation__num kpi-value">2</span>
+          <div class="sam-tech-validation__content">
+            <h3 class="sam-tech-validation__title">Engineer reviews</h3>
+            <p class="sam-tech-validation__desc">A Samotics reliability engineer examines the spectral data, reviews the asset's operating context, and confirms or refines the fault classification. They assess severity and write a specific maintenance recommendation.</p>
+          </div>
+        </div>
+        <div class="sam-tech-validation__step">
+          <span class="sam-tech-validation__num kpi-value">3</span>
+          <div class="sam-tech-validation__content">
+            <h3 class="sam-tech-validation__title">Critical escalation</h3>
+            <p class="sam-tech-validation__desc">Time-critical alerts — rapidly progressing faults, risk of imminent failure — are escalated immediately via direct notification. Your team gets a phone call, not just a dashboard update.</p>
+          </div>
+        </div>
+        <div class="sam-tech-validation__step">
+          <span class="sam-tech-validation__num kpi-value">4</span>
+          <div class="sam-tech-validation__content">
+            <h3 class="sam-tech-validation__title">Alert delivered</h3>
+            <p class="sam-tech-validation__desc">Validated diagnostics are published to the SAM4 dashboard with full supporting data: spectral plots, trend history, fault classification, severity, and recommended action. Every diagnostic is transparent — your team can see the evidence behind every conclusion.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sam-tech-callout sam-tech-callout--dark">
+        <h3 class="sam-tech-callout__title">Why human-in-the-loop matters</h3>
+        <p class="sam-tech-callout__body">Fully automated systems generate alert fatigue. Teams stop trusting them. SAM4's hybrid approach means every alert carries an engineer's judgement — which is why customers act on SAM4 alerts. The human review also catches edge cases that pure ML would miss: unusual operating conditions, maintenance activities that mimic faults, or asset configurations the models haven't seen before.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 6. DELIVERY & INTEGRATION ─── -->
+  <section id="delivery" class="sam-tech-section sam-tech-section--white">
+    <div class="sam-tech-section__inner">
+      <div class="sam-tech-section__text">
+        <p class="overline">Step 5</p>
+        <h2>Alert delivery and system integration</h2>
+        <p class="lead">Validated diagnostics reach your team through the SAM4 dashboard and push directly into your existing maintenance systems — fitting into the workflow your team already uses.</p>
+      </div>
+
+      <div class="sam-tech-detail">
+        <div class="sam-tech-detail__grid sam-tech-detail__grid--three">
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">SAM4 dashboard</h3>
+            <p class="sam-tech-detail__body">Fleet-level overview with drill-down to individual assets. Each diagnostic includes: fault classification, severity rating, trend history, spectral evidence, and recommended action. Designed for maintenance planners, not data scientists.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">CMMS integration</h3>
+            <p class="sam-tech-detail__body">SAM4 pushes validated alerts directly into your CMMS (SAP PM, Maximo, Ultimo, and others) as work orders or notifications. No manual re-entry. Alerts carry the fault type, severity, asset identifier, and recommended action — ready for your planning process.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">API access</h3>
+            <p class="sam-tech-detail__body">For teams building custom dashboards or integrating into existing data platforms, SAM4 provides a REST API. Pull asset health data, alert history, and trend metrics into your own systems. Full documentation available during onboarding.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sam-tech-detail">
+        <div class="sam-tech-detail__grid sam-tech-detail__grid--two">
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Alert taxonomy</h3>
+            <p class="sam-tech-detail__body">SAM4 alerts use a structured severity scale: Watch (early-stage deviation, monitor), Warning (confirmed fault, plan intervention), and Critical (imminent failure risk, act now). Each level has a defined SLA for engineering review and customer notification — so your team knows exactly what each alert means and how quickly to respond.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Reporting</h3>
+            <p class="sam-tech-detail__body">Monthly fleet health reports summarise asset condition, open diagnostics, resolved findings, and fleet-level trends. Quarterly business reviews map SAM4 findings to maintenance outcomes — confirmed saves, avoided downtime, and energy efficiency gains. All data available for export.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 7. PERFORMANCE ─── -->
+  <section id="performance" class="sam-tech-section sam-tech-section--seashell">
+    <div class="sam-tech-section__inner">
+      <div class="sam-tech-section__text">
+        <p class="overline">Performance</p>
+        <h2>Detection accuracy across 10,000+ assets</h2>
+        <p class="lead">These metrics are measured across confirmed failures in the installed base — not lab conditions. Definitions and methodology are available on request.</p>
+      </div>
+
+      <div class="sam-tech-stats">
+        <div class="sam-tech-stats__item">
+          <span class="sam-tech-stats__value kpi-value">&gt;90%</span>
+          <span class="sam-tech-stats__label">Detection rate</span>
+          <span class="sam-tech-stats__note">Proportion of confirmed failures that SAM4 detected before failure occurred</span>
+        </div>
+        <div class="sam-tech-stats__item">
+          <span class="sam-tech-stats__value kpi-value">&lt;5%</span>
+          <span class="sam-tech-stats__label">False positive rate</span>
+          <span class="sam-tech-stats__note">Proportion of alerts that did not correspond to a confirmed fault after investigation</span>
+        </div>
+        <div class="sam-tech-stats__item">
+          <span class="sam-tech-stats__value kpi-value">Weeks&ndash;months</span>
+          <span class="sam-tech-stats__label">Lead time before failure</span>
+          <span class="sam-tech-stats__note">Typical advance warning — varies by fault type, asset type, and operating conditions</span>
+        </div>
+        <div class="sam-tech-stats__item">
+          <span class="sam-tech-stats__value kpi-value">24/7</span>
+          <span class="sam-tech-stats__label">Continuous monitoring</span>
+          <span class="sam-tech-stats__note">No scheduled visits, no measurement campaigns — every asset monitored around the clock</span>
+        </div>
+      </div>
+
+      <div class="sam-tech-callout">
+        <h3 class="sam-tech-callout__title">A note on metrics</h3>
+        <p class="sam-tech-callout__body">Detection rate and false positive rate are measured differently across the industry — and some vendors report lab results rather than field performance. SAM4's metrics reflect real-world performance across the installed base. We define detection rate as the proportion of confirmed failures (validated by the customer during maintenance) where SAM4 had raised an alert before failure occurred. We publish these metrics because enterprise buyers deserve auditable claims. <a href="/contact?intent=methodology" class="sam-text-link">Request full methodology &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 8. SECURITY & DATA ─── -->
+  <section class="sam-tech-section sam-tech-section--white">
+    <div class="sam-tech-section__inner">
+      <div class="sam-tech-section__text">
+        <p class="overline">Security &amp; data</p>
+        <h2>Enterprise-grade data handling</h2>
+      </div>
+
+      <div class="sam-tech-detail">
+        <div class="sam-tech-detail__grid sam-tech-detail__grid--three">
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Data ownership</h3>
+            <p class="sam-tech-detail__body">Your data remains yours. Samotics processes electrical signatures to deliver diagnostics. Raw data and diagnostic results are available for export at any time. Data retention policies are contractually defined.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Cloud infrastructure</h3>
+            <p class="sam-tech-detail__body">SAM4 runs on enterprise-grade cloud infrastructure with encryption at rest and in transit, role-based access control, and SOC 2–aligned security practices. Architecture details are available during technical due diligence.</p>
+          </div>
+          <div class="sam-tech-detail__card">
+            <h3 class="sam-tech-detail__title">Network requirements</h3>
+            <p class="sam-tech-detail__body">The edge device requires outbound-only connectivity — no inbound ports, no VPN tunnels, no changes to your firewall rules. It works over 4G, Ethernet, or Wi-Fi. Bandwidth requirements are minimal after edge compression.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 9. CTA BLOCK ─── -->
+  <section class="sam-cta-block sam-cta-block--tech">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">Go deeper or get started</h2>
+      <p class="sam-cta-block__sub">Whether you're evaluating the technology or ready to see it on your assets.</p>
+      <div class="sam-cta-block__mid-links">
+        <a href="/resources/technical-guide/" class="sam-cta-block__mid-link sam-cta-block__mid-link--light">Download Technical Guide</a>
+        <span class="sam-cta-block__mid-sep sam-cta-block__mid-sep--light" aria-hidden="true">&middot;</span>
+        <a href="/resources/sample-report/" class="sam-cta-block__mid-link sam-cta-block__mid-link--light">See a Sample Report</a>
+        <span class="sam-cta-block__mid-sep sam-cta-block__mid-sep--light" aria-hidden="true">&middot;</span>
+        <a href="/technology/esa" class="sam-cta-block__mid-link sam-cta-block__mid-link--light">Explore ESA Technology</a>
+      </div>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/contact?intent=audit" class="sam-btn sam-btn--secondary">Book an Asset Audit</a>
+      </div>
+    </div>
+  </section>
+
+</main>

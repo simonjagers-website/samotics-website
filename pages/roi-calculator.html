@@ -1,0 +1,150 @@
+<!--
+  ROI Calculator Page
+  Paste this into the Bricks Code element HTML tab
+  Interactive calculator with inputs, results, and email gate
+-->
+
+<section class="sam-roi-calculator">
+  <!-- Hero Section -->
+  <div class="sam-roi-calculator__hero">
+    <div class="sam-roi-calculator__hero-inner">
+      <p class="overline">Tools</p>
+      <h1>Calculate your ROI with SAM4</h1>
+      <p class="sam-roi-calculator__lead">Input your fleet data to see estimated annual savings, payback period, and return on investment from predictive maintenance with ESA.</p>
+    </div>
+  </div>
+
+  <!-- Calculator Section -->
+  <div class="sam-roi-calculator__content">
+    <div class="sam-roi-calculator__inner">
+      <div class="sam-roi-calculator__grid">
+
+        <!-- Left Column: Inputs -->
+        <div class="sam-roi-calculator__inputs">
+          <h2>Your Fleet Details</h2>
+
+          <div class="sam-roi-calculator__form-group">
+            <label for="assets-input">Number of rotating assets</label>
+            <input type="number" id="assets-input" class="sam-roi-calculator__input" value="100" min="1" max="10000">
+          </div>
+
+          <div class="sam-roi-calculator__form-group">
+            <label for="downtime-cost-input">Average downtime cost per hour (EUR)</label>
+            <input type="number" id="downtime-cost-input" class="sam-roi-calculator__input" value="5000" min="100">
+          </div>
+
+          <div class="sam-roi-calculator__form-group">
+            <label for="downtime-hours-input">Current annual unplanned downtime hours</label>
+            <input type="number" id="downtime-hours-input" class="sam-roi-calculator__input" value="200" min="0">
+          </div>
+
+          <div class="sam-roi-calculator__form-group">
+            <label for="maintenance-spend-input">Current annual maintenance spend (EUR)</label>
+            <input type="number" id="maintenance-spend-input" class="sam-roi-calculator__input" value="500000" min="0">
+          </div>
+
+          <div class="sam-roi-calculator__form-group">
+            <label for="industry-select">Industry</label>
+            <select id="industry-select" class="sam-roi-calculator__select">
+              <option value="">Select an industry</option>
+              <option value="water">Water & Wastewater</option>
+              <option value="oil">Oil & Gas</option>
+              <option value="mining">Metals & Mining</option>
+              <option value="chemicals">Chemicals</option>
+              <option value="pulp">Pulp & Paper</option>
+              <option value="airports">Airports</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <button id="calculate-btn" class="sam-roi-calculator__button">Calculate ROI</button>
+        </div>
+
+        <!-- Right Column: Results -->
+        <div class="sam-roi-calculator__results" id="results-panel">
+          <h2>Your Savings Potential</h2>
+
+          <div class="sam-roi-calculator__kpi-grid">
+            <div class="sam-roi-calculator__kpi-card">
+              <p class="sam-roi-calculator__kpi-label">Estimated Annual Savings</p>
+              <p class="sam-roi-calculator__kpi-value" id="savings-value">€0</p>
+            </div>
+
+            <div class="sam-roi-calculator__kpi-card">
+              <p class="sam-roi-calculator__kpi-label">SAM4 Annual Cost</p>
+              <p class="sam-roi-calculator__kpi-value" id="sam4-cost-value">€0</p>
+            </div>
+
+            <div class="sam-roi-calculator__kpi-card">
+              <p class="sam-roi-calculator__kpi-label">Net ROI</p>
+              <p class="sam-roi-calculator__kpi-value" id="roi-value">0%</p>
+            </div>
+
+            <div class="sam-roi-calculator__kpi-card">
+              <p class="sam-roi-calculator__kpi-label">Payback Period</p>
+              <p class="sam-roi-calculator__kpi-value" id="payback-value">0 mo</p>
+            </div>
+          </div>
+
+          <!-- Chart Section -->
+          <div class="sam-roi-calculator__chart">
+            <h3>Cost Comparison</h3>
+            <div class="sam-roi-calculator__chart-bars">
+              <div class="sam-roi-calculator__chart-group">
+                <div class="sam-roi-calculator__chart-bar">
+                  <div class="sam-roi-calculator__chart-bar-fill" id="current-bar" style="width: 100%;"></div>
+                </div>
+                <p class="sam-roi-calculator__chart-label">Current Annual Costs</p>
+              </div>
+              <div class="sam-roi-calculator__chart-group">
+                <div class="sam-roi-calculator__chart-bar">
+                  <div class="sam-roi-calculator__chart-bar-fill sam-roi-calculator__chart-bar-fill--savings" id="with-sam-bar" style="width: 50%;"></div>
+                </div>
+                <p class="sam-roi-calculator__chart-label">With SAM4</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="sam-roi-calculator__disclaimer">Estimates based on industry averages. Actual results vary. Contact us for a custom assessment.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Email Gate Section -->
+  <div class="sam-roi-calculator__gate">
+    <div class="sam-roi-calculator__inner">
+      <h2>Get Your Full ROI Report</h2>
+      <p>Receive detailed analysis and recommendations delivered to your inbox.</p>
+
+      <form class="sam-roi-calculator__gate-form" id="gate-form">
+        <div class="sam-roi-calculator__form-group">
+          <input type="text" id="gate-name" class="sam-roi-calculator__input" placeholder="Your name" required>
+        </div>
+
+        <div class="sam-roi-calculator__form-group">
+          <input type="email" id="gate-email" class="sam-roi-calculator__input" placeholder="Work email" required>
+        </div>
+
+        <div class="sam-roi-calculator__form-group">
+          <input type="text" id="gate-company" class="sam-roi-calculator__input" placeholder="Company name" required>
+        </div>
+
+        <button type="submit" class="sam-roi-calculator__button">Send Report</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CTA Banner -->
+  <div class="sam-roi-calculator__cta">
+    <div class="sam-roi-calculator__inner">
+      <h2>Ready for a real assessment?</h2>
+      <div class="sam-roi-calculator__cta-links">
+        <a href="/asset-audit/" class="sam-roi-calculator__cta-link">Asset Audit</a>
+        <a href="/demo/" class="sam-roi-calculator__cta-link">Request a Demo</a>
+      </div>
+    </div>
+  </div>
+
+</section>

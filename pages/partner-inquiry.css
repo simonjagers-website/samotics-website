@@ -1,0 +1,241 @@
+/* ============================================================
+   SAMOTICS PARTNER INQUIRY PAGE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  --sp-01: 2px; --sp-02: 4px; --sp-03: 8px; --sp-04: 12px; --sp-05: 16px;
+  --sp-06: 24px; --sp-07: 32px; --sp-08: 48px; --sp-09: 64px; --sp-10: 96px;
+  --sp-11: 128px; --sp-12: 160px;
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset ── */
+.sam-pinquiry { overflow-x: hidden; }
+
+/* ── Shared ── */
+.overline { font-family: var(--sam-font); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 var(--sp-04) 0; }
+.lead { font-family: var(--sam-font); font-size: 1.25rem; line-height: 1.55; margin: 0 0 var(--sp-07) 0; }
+.kpi-value { font-family: var(--sam-mono); font-weight: 700; }
+.sam-text-link { font-family: var(--sam-font); font-weight: 500; color: var(--sam-blue); text-decoration: none; transition: color var(--ease); }
+.sam-text-link:hover { color: var(--sam-blue-dark); }
+.sam-btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--sam-font); font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: 6px; cursor: pointer; padding: 14px 32px; border: none; transition: background var(--ease), box-shadow var(--ease); }
+.sam-btn--primary { background: var(--sam-orange); color: var(--sam-white); }
+.sam-btn--primary:hover { background: var(--sam-orange-dark); box-shadow: var(--shadow-cta); }
+.sam-btn--primary:active { background: var(--sam-orange-deep); }
+.sam-btn--primary:disabled { opacity: 0.6; cursor: not-allowed; }
+.sam-btn:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+.sam-hero--pinquiry {
+  position: relative; min-height: 440px; display: flex; align-items: center;
+  background-color: var(--sam-space-cadet);
+  background-size: cover; background-position: center; padding: var(--sp-11) var(--sp-06);
+}
+.sam-hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.75) 45%, rgba(31,31,51,0.35) 100%);
+  z-index: 1;
+}
+.sam-hero__inner { position: relative; z-index: 2; max-width: 1120px; width: 100%; margin: 0 auto; }
+.sam-hero__content { max-width: 640px; }
+.sam-hero__overline { font-family: var(--sam-font); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sam-orange); margin: 0 0 var(--sp-04) 0; }
+.sam-hero__h1 { font-family: var(--sam-font); font-size: 2.75rem; font-weight: 700; line-height: 1.15; color: var(--sam-white); margin: 0 0 var(--sp-06) 0; }
+.sam-hero__lead { font-family: var(--sam-font); font-size: 1.125rem; line-height: 1.6; color: var(--sam-muted-dark); margin: 0; }
+
+
+/* ============================================================
+   2. FORM SECTION
+   ============================================================ */
+.sam-pinquiry-form-section { background: var(--sam-white); padding: var(--sp-11) var(--sp-06); }
+.sam-pinquiry-form-section__inner { max-width: 800px; margin: 0 auto; }
+.sam-pinquiry-form-section__heading {
+  font-family: var(--sam-font); font-size: 1.75rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet); margin: 0 0 var(--sp-04) 0;
+}
+.sam-pinquiry-form-section__expectation {
+  font-family: var(--sam-font); font-size: 1rem; font-weight: 500;
+  color: var(--sam-teal-dark); background: rgba(0, 152, 172, 0.06);
+  border-left: 3px solid var(--sam-teal-dark);
+  padding: var(--sp-05) var(--sp-06); margin: 0 0 var(--sp-08) 0;
+}
+
+/* Form fields — mirror contact/asset-audit patterns */
+.sam-pinquiry-form__fields {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--sp-05); margin-bottom: var(--sp-06);
+}
+.sam-pinquiry-form__field { display: flex; flex-direction: column; gap: var(--sp-02); }
+.sam-pinquiry-form__field--full { grid-column: 1 / -1; }
+.sam-pinquiry-form__field label {
+  font-family: var(--sam-font); font-weight: 500; font-size: 0.875rem; color: var(--sam-space-cadet);
+}
+.sam-pinquiry-form__field input[type="text"],
+.sam-pinquiry-form__field input[type="email"],
+.sam-pinquiry-form__field select,
+.sam-pinquiry-form__field textarea {
+  font-family: var(--sam-font); font-size: 1rem;
+  padding: var(--sp-04) var(--sp-05);
+  border: 1px solid var(--sam-border-light);
+  border-radius: 0; color: var(--sam-black); background: var(--sam-white);
+  transition: border-color var(--ease);
+}
+.sam-pinquiry-form__field input:focus,
+.sam-pinquiry-form__field select:focus,
+.sam-pinquiry-form__field textarea:focus {
+  outline: none; border-color: var(--sam-blue);
+  box-shadow: 0 0 0 3px rgba(0, 92, 186, 0.15);
+}
+.sam-pinquiry-form__field textarea { resize: vertical; min-height: 80px; }
+.sam-pinquiry-form__field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236B6B7F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--sp-05) center;
+  padding-right: var(--sp-08);
+}
+
+/* Multi-select fieldset */
+.sam-pinquiry-form__fieldset {
+  border: none; padding: 0; margin: 0;
+}
+.sam-pinquiry-form__legend {
+  font-family: var(--sam-font); font-weight: 500; font-size: 0.875rem;
+  color: var(--sam-space-cadet); margin-bottom: var(--sp-03);
+}
+.sam-pinquiry-form__checks {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-03);
+}
+.sam-pinquiry-form__check-label {
+  font-family: var(--sam-font); font-size: 0.9375rem; color: var(--sam-black);
+  display: flex; align-items: center; gap: var(--sp-03); cursor: pointer;
+}
+.sam-pinquiry-form__check-label input[type="checkbox"] {
+  width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--sam-blue);
+}
+
+/* Validation */
+.sam-pinquiry-form__field--error input,
+.sam-pinquiry-form__field--error select,
+.sam-pinquiry-form__field--error textarea { border-color: #C4314B; }
+.sam-pinquiry-form__field-error {
+  font-family: var(--sam-font); font-size: 0.8125rem; color: #C4314B; display: none;
+}
+.sam-pinquiry-form__field--error .sam-pinquiry-form__field-error { display: block; }
+
+/* Hint */
+.sam-pinquiry-form__hint { font-family: var(--sam-font); font-size: 0.8125rem; color: var(--sam-orange-dark); }
+
+/* Honeypot */
+.sam-pinquiry-form__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Consent */
+.sam-pinquiry-form__consent { margin-bottom: var(--sp-06); padding-top: var(--sp-05); border-top: 1px solid var(--sam-border-light); }
+.sam-pinquiry-form__checkbox {
+  font-family: var(--sam-font); font-size: 0.8125rem; line-height: 1.5;
+  color: var(--sam-comet); display: flex; align-items: flex-start; gap: var(--sp-03); cursor: pointer;
+}
+.sam-pinquiry-form__checkbox input[type="checkbox"] {
+  width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--sam-blue);
+}
+
+/* Submit */
+.sam-pinquiry-form__submit { width: auto; }
+
+/* Confirmation */
+.sam-pinquiry-confirmation { text-align: center; padding: var(--sp-09) 0; }
+.sam-pinquiry-confirmation__icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(0, 108, 108, 0.1); color: var(--sam-teal-dark);
+  font-size: 2rem; margin-bottom: var(--sp-06);
+}
+.sam-pinquiry-confirmation__heading {
+  font-family: var(--sam-font); font-size: 1.75rem; font-weight: 700;
+  color: var(--sam-space-cadet); margin: 0 0 var(--sp-05) 0;
+}
+.sam-pinquiry-confirmation__body {
+  font-family: var(--sam-font); font-size: 1rem; line-height: 1.6;
+  color: var(--sam-black); margin: 0 0 var(--sp-06) 0; max-width: 560px; margin-left: auto; margin-right: auto;
+}
+.sam-pinquiry-confirmation__link {
+  font-family: var(--sam-font); font-size: 1rem; font-weight: 600;
+  color: var(--sam-orange-dark); text-decoration: none; transition: color var(--ease);
+}
+.sam-pinquiry-confirmation__link:hover { color: var(--sam-orange-deep); }
+
+
+/* ============================================================
+   3. SOCIAL PROOF
+   ============================================================ */
+.sam-pinquiry-proof { background: var(--sam-seashell); padding: var(--sp-09) var(--sp-06); }
+.sam-pinquiry-proof__inner { max-width: 800px; margin: 0 auto; }
+.sam-pinquiry-proof .overline { color: var(--sam-space-cadet); margin-bottom: var(--sp-05); }
+.sam-pinquiry-proof__callout {
+  background: var(--sam-white); border-left: 4px solid var(--sam-teal-dark);
+  border-radius: 4px; padding: var(--sp-06);
+}
+.sam-pinquiry-proof__callout-text {
+  font-family: var(--sam-font); font-size: 1rem; line-height: 1.6;
+  color: var(--sam-black); margin: 0 0 var(--sp-05) 0;
+}
+.sam-pinquiry-proof__callout-link {
+  font-family: var(--sam-font); font-size: 0.9375rem; font-weight: 600;
+  color: var(--sam-orange-dark); text-decoration: none; transition: color var(--ease);
+}
+.sam-pinquiry-proof__callout-link:hover { color: var(--sam-orange-deep); }
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1055px) {
+  .sam-hero--pinquiry { min-height: 380px; padding: var(--sp-10) var(--sp-06); }
+  .sam-hero__h1 { font-size: 2.25rem; }
+  .sam-pinquiry-form-section { padding: var(--sp-10) var(--sp-06); }
+  .sam-pinquiry-proof { padding: var(--sp-08) var(--sp-06); }
+  .sam-pinquiry-form__checks { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 671px) {
+  .sam-hero--pinquiry { min-height: 320px; padding: var(--sp-09) var(--sp-05); }
+  .sam-hero__h1 { font-size: 1.75rem; }
+  .sam-hero__lead { font-size: 1rem; }
+  .sam-hero__overlay {
+    background: linear-gradient(to bottom, rgba(31,31,51,0.92) 0%, rgba(31,31,51,0.7) 100%);
+  }
+  .sam-hero__content { max-width: 100%; }
+
+  .sam-pinquiry-form-section { padding: var(--sp-09) var(--sp-05); }
+  .sam-pinquiry-form-section__heading { font-size: 1.5rem; }
+  .sam-pinquiry-form__fields { grid-template-columns: 1fr; }
+  .sam-pinquiry-form__checks { grid-template-columns: 1fr; }
+  .sam-btn { width: 100%; min-height: 48px; font-size: 1rem; }
+
+  .sam-pinquiry-proof { padding: var(--sp-07) var(--sp-05); }
+}

@@ -1,0 +1,139 @@
+<!-- ============================================================
+     SAMOTICS PARTNER INQUIRY PAGE — Bricks Code Element
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  partner-inquiry.css
+       3. JavaScript   →  partner-inquiry.js
+     ============================================================ -->
+
+
+<!-- ===================== PHP & HTML ===================== -->
+
+<main id="main-content" class="sam-pinquiry">
+
+  <!-- ─── 1. HERO ─── -->
+  <!-- HERO IMAGE: Replace background-image URL when asset is available -->
+  <section class="sam-hero sam-hero--pinquiry" style="background-image: url('');">
+    <div class="sam-hero__overlay"></div>
+    <div class="sam-hero__inner">
+      <div class="sam-hero__content">
+        <p class="sam-hero__overline">Partnership Inquiry</p>
+        <h1 class="sam-hero__h1">Tell us about your business. We'll explore the fit together.</h1>
+        <p class="sam-hero__lead">Our partnerships team — not sales — will reach out within 2 business days to discuss commercial model, technical enablement, territory, and go-to-market support.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. FORM SECTION ─── -->
+  <section class="sam-pinquiry-form-section">
+    <div class="sam-pinquiry-form-section__inner">
+      <h2 class="sam-pinquiry-form-section__heading">Discuss a partnership</h2>
+      <p class="sam-pinquiry-form-section__expectation">Our partnerships team will reach out within 2 business days.</p>
+
+      <form class="sam-pinquiry-form" id="partner-form" novalidate>
+        <div class="sam-pinquiry-form__fields">
+          <div class="sam-pinquiry-form__field">
+            <label for="pi-fname">First name *</label>
+            <input type="text" id="pi-fname" name="first_name" required autocomplete="given-name">
+          </div>
+          <div class="sam-pinquiry-form__field">
+            <label for="pi-lname">Last name *</label>
+            <input type="text" id="pi-lname" name="last_name" required autocomplete="family-name">
+          </div>
+          <div class="sam-pinquiry-form__field">
+            <label for="pi-email">Work email *</label>
+            <input type="email" id="pi-email" name="email" required autocomplete="email">
+            <span class="sam-pinquiry-form__hint" hidden>Company email preferred</span>
+          </div>
+          <div class="sam-pinquiry-form__field">
+            <label for="pi-company">Company *</label>
+            <input type="text" id="pi-company" name="company" required autocomplete="organization">
+          </div>
+          <div class="sam-pinquiry-form__field">
+            <label for="pi-title">Job title *</label>
+            <input type="text" id="pi-title" name="job_title" required autocomplete="organization-title">
+          </div>
+          <div class="sam-pinquiry-form__field">
+            <label for="pi-type">Company type *</label>
+            <select id="pi-type" name="company_type" required>
+              <option value="">Select type</option>
+              <option value="integrator">System Integrator</option>
+              <option value="oem">OEM</option>
+              <option value="service">Service Provider</option>
+              <option value="distributor">Distributor</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Multi-select: Industries you serve -->
+          <fieldset class="sam-pinquiry-form__field sam-pinquiry-form__field--full sam-pinquiry-form__fieldset">
+            <legend class="sam-pinquiry-form__legend">Industries you serve *</legend>
+            <div class="sam-pinquiry-form__checks">
+              <label class="sam-pinquiry-form__check-label">
+                <input type="checkbox" name="industries" value="water"> Water &amp; Wastewater
+              </label>
+              <label class="sam-pinquiry-form__check-label">
+                <input type="checkbox" name="industries" value="oil-gas"> Oil &amp; Gas
+              </label>
+              <label class="sam-pinquiry-form__check-label">
+                <input type="checkbox" name="industries" value="metals"> Metals &amp; Mining
+              </label>
+              <label class="sam-pinquiry-form__check-label">
+                <input type="checkbox" name="industries" value="chemicals"> Chemicals
+              </label>
+              <label class="sam-pinquiry-form__check-label">
+                <input type="checkbox" name="industries" value="pulp-paper"> Pulp &amp; Paper
+              </label>
+              <label class="sam-pinquiry-form__check-label">
+                <input type="checkbox" name="industries" value="other"> Other
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="sam-pinquiry-form__field sam-pinquiry-form__field--full">
+            <label for="pi-message">What interests you about partnering?</label>
+            <textarea id="pi-message" name="message" maxlength="500" rows="3"></textarea>
+          </div>
+        </div>
+
+        <!-- Honeypot -->
+        <div class="sam-pinquiry-form__hp" aria-hidden="true">
+          <label for="pi-website">Website</label>
+          <input type="text" id="pi-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- GDPR Consent -->
+        <div class="sam-pinquiry-form__consent">
+          <label class="sam-pinquiry-form__checkbox">
+            <input type="checkbox" name="gdpr_consent" required>
+            I agree to receive communications from Samotics. View our <a href="/privacy" class="sam-text-link">Privacy Policy</a>.
+          </label>
+        </div>
+
+        <button type="submit" class="sam-btn sam-btn--primary sam-pinquiry-form__submit">Discuss Partnership</button>
+      </form>
+
+      <!-- Confirmation (hidden until submission) -->
+      <div class="sam-pinquiry-confirmation" id="partner-confirmation" hidden>
+        <div class="sam-pinquiry-confirmation__icon" aria-hidden="true">&#10003;</div>
+        <h2 class="sam-pinquiry-confirmation__heading" id="confirmation-heading">Thanks! Our partnerships team will be in touch.</h2>
+        <p class="sam-pinquiry-confirmation__body">We'll reach out within 2 business days to explore fit. In the meantime, see how the ABB partnership model works.</p>
+        <a href="/partners/abb" class="sam-pinquiry-confirmation__link">Read the ABB partnership story &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 3. SOCIAL PROOF ─── -->
+  <section class="sam-pinquiry-proof">
+    <div class="sam-pinquiry-proof__inner">
+      <p class="overline">ABB is our flagship partner</p>
+      <div class="sam-pinquiry-proof__callout">
+        <p class="sam-pinquiry-proof__callout-text">ABB evaluated every condition monitoring option in the market — then took a 10% equity stake in Samotics and integrated SAM4 ESA into their flagship ACS880 drives.</p>
+        <a href="/partners/abb" class="sam-pinquiry-proof__callout-link">See how the ABB model works &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</main>

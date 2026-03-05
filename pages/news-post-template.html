@@ -1,0 +1,136 @@
+<!-- ============================================================
+     SAMOTICS NEWS POST TEMPLATE — Bricks Template (Single)
+     Use as a Single Post template in Bricks → condition: Category = News
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  news-post-template.css
+       3. JavaScript   →  (none needed)
+     ============================================================ -->
+
+<?php
+// Get post data
+$post_id       = get_the_ID();
+$categories    = get_the_category();
+$cat_name      = !empty($categories) ? $categories[0]->name : 'News';
+$date_iso      = get_the_date('c');
+$date_display  = get_the_date('j F Y');
+$read_time     = max(1, round(str_word_count(strip_tags(get_the_content())) / 250));
+
+// Related posts (same category)
+$related_args = array(
+  'post_type'      => 'post',
+  'posts_per_page' => 3,
+  'post__not_in'   => array($post_id),
+  'category_name'  => 'news',
+  'orderby'        => 'date',
+  'order'          => 'DESC',
+);
+$related = new WP_Query($related_args);
+?>
+
+<main id="main-content" class="sam-news-post">
+
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-news-hero">
+    <div class="sam-news-hero__inner">
+      <nav class="sam-breadcrumb sam-breadcrumb--dark" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/resources/news/">News</a></li>
+          <li aria-current="page"><?php echo wp_trim_words(get_the_title(), 6, '&hellip;'); ?></li>
+        </ol>
+      </nav>
+      <div class="sam-news-hero__meta">
+        <span class="sam-news-hero__badge">News &amp; Press</span>
+        <time class="sam-news-hero__date" datetime="<?php echo esc_attr($date_iso); ?>"><?php echo esc_html($date_display); ?></time>
+        <span class="sam-news-hero__read-time"><?php echo $read_time; ?> min read</span>
+      </div>
+      <h1 class="sam-news-hero__title"><?php the_title(); ?></h1>
+      <?php if (has_excerpt()) : ?>
+        <p class="sam-news-hero__excerpt"><?php echo get_the_excerpt(); ?></p>
+      <?php endif; ?>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. FEATURED IMAGE ─── -->
+  <?php if (has_post_thumbnail()) : ?>
+  <section class="sam-news-image">
+    <div class="sam-news-image__inner">
+      <?php the_post_thumbnail('large', array('class' => 'sam-news-image__img')); ?>
+    </div>
+  </section>
+  <?php endif; ?>
+
+
+  <!-- ─── 3. ARTICLE BODY ─── -->
+  <article class="sam-news-body">
+    <div class="sam-news-body__inner">
+      <div class="sam-news-body__content">
+        <?php the_content(); ?>
+      </div>
+    </div>
+  </article>
+
+
+  <!-- ─── 4. SHARE / TAGS ─── -->
+  <section class="sam-news-footer">
+    <div class="sam-news-footer__inner">
+      <?php
+      $tags = get_the_tags();
+      if ($tags) : ?>
+        <div class="sam-news-footer__tags">
+          <?php foreach ($tags as $tag) : ?>
+            <span class="sam-news-footer__tag"><?php echo esc_html($tag->name); ?></span>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <div class="sam-news-footer__share">
+        <span class="sam-news-footer__share-label">Share:</span>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode(get_permalink()); ?>&title=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener" class="sam-news-footer__share-link" aria-label="Share on LinkedIn">LinkedIn</a>
+        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener" class="sam-news-footer__share-link" aria-label="Share on X">X</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. RELATED NEWS ─── -->
+  <?php if ($related->have_posts()) : ?>
+  <section class="sam-news-related">
+    <div class="sam-news-related__inner">
+      <h2>More news</h2>
+      <div class="sam-news-related__grid">
+        <?php while ($related->have_posts()) : $related->the_post(); ?>
+          <a href="<?php the_permalink(); ?>" class="sam-news-related__card">
+            <?php if (has_post_thumbnail()) : ?>
+              <div class="sam-news-related__card-image">
+                <?php the_post_thumbnail('medium', array('class' => 'sam-news-related__img')); ?>
+              </div>
+            <?php endif; ?>
+            <div class="sam-news-related__card-body">
+              <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('j M Y'); ?></time>
+              <h3><?php the_title(); ?></h3>
+              <span class="sam-news-related__link">Read more &rarr;</span>
+            </div>
+          </a>
+        <?php endwhile; wp_reset_postdata(); ?>
+      </div>
+    </div>
+  </section>
+  <?php endif; ?>
+
+
+  <!-- ─── 6. CTA ─── -->
+  <section class="sam-cta-block">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">Stay up to date with Samotics</h2>
+      <p class="sam-cta-block__sub">Get the latest news on ESA technology, product updates, and customer success stories.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/resources/news/" class="sam-btn sam-btn--secondary">All News</a>
+      </div>
+    </div>
+  </section>
+
+</main>

@@ -1,0 +1,306 @@
+<!-- ============================================================
+     SAMOTICS ESA VS VIBRATION PAGE — Bricks Code Element
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  esa-vs-vibration.css
+       3. JavaScript   →  esa-vs-vibration.js
+     ============================================================ -->
+
+
+<!-- ===================== PHP & HTML ===================== -->
+
+<main id="main-content" class="sam-versus">
+
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-hero sam-hero--versus" style="background-image: url('https://samoticstestpage.com/wp-content/uploads/2026/02/hot-strip-mill-steel-finishing-mills-2-scaled.jpg');">
+    <div class="sam-hero__overlay"></div>
+    <div class="sam-hero__inner">
+      <div class="sam-hero__content">
+        <p class="sam-hero__overline">ESA &amp; Vibration Monitoring</p>
+        <h1 class="sam-hero__h1">Not a replacement.<br>An extension.</h1>
+        <p class="sam-hero__lead">Vibration monitoring requires a sensor on the machine. ESA doesn't. It reads the electrical signature at the MCC, which means it covers every connected AC motor regardless of location. Sometimes they work together. Sometimes apart. Having access to both means more choice &mdash; and better coverage.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. COMPARISON TABLE ─── -->
+  <section id="comparison" class="sam-vs-table">
+    <div class="sam-vs-table__inner">
+      <p class="overline">Side by side</p>
+      <h2>What each method covers and where it stops</h2>
+      <p class="lead sam-vs-table__lead">The difference between ESA and vibration isn't which is better. It's where the sensor sits, what it can reach, and what it costs to deploy across a fleet.</p>
+
+      <div class="sam-vs-table__wrapper" role="region" aria-label="ESA versus vibration comparison table" tabindex="0">
+        <table class="sam-vs-table__table">
+          <thead>
+            <tr>
+              <th class="sam-vs-table__th sam-vs-table__th--criteria">Criteria</th>
+              <th class="sam-vs-table__th sam-vs-table__th--esa">ESA (SAM4)</th>
+              <th class="sam-vs-table__th sam-vs-table__th--vib">Vibration monitoring</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Sensor location</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa">Motor control cabinet (MCC)</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib">On or near the asset</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Physical access to asset</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa">Not required</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib">Required</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Installation time</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa">&lt;30 minutes per machine</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib">Hours to days (varies by access)</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Production shutdown</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa">None</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib">Often required for mounting</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Monitoring mode</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa">Continuous (24/7)</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib">Continuous or periodic (route-based)</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Submerged assets</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa sam-vs-table__td--yes">&#10003; Monitored from MCC</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib sam-vs-table__td--no">&#10007; Cannot mount sensor</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">ATEX / hazardous zones</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa sam-vs-table__td--yes">&#10003; No ATEX cert needed</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib sam-vs-table__td--caution">Requires ATEX-rated equipment</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Enclosed / sealed assets</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa sam-vs-table__td--yes">&#10003; No disassembly needed</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib sam-vs-table__td--no">&#10007; Requires access to housing</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Bearing fault detection</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa sam-vs-table__td--yes">&#10003; Detected</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib sam-vs-table__td--yes">&#10003; High resolution</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Misalignment / imbalance</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa sam-vs-table__td--yes">&#10003; Detected</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib sam-vs-table__td--yes">&#10003; High resolution</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Electrical faults</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa sam-vs-table__td--yes">&#10003; Primary strength</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib sam-vs-table__td--no">&#10007; Not detectable</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Process deviations</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa sam-vs-table__td--yes">&#10003; Cavitation, clogging, efficiency</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib sam-vs-table__td--partial">Limited (indirect indicators)</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Mechanical fault resolution</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa sam-vs-table__td--partial">Good &mdash; AI-enhanced detection</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib sam-vs-table__td--yes">&#10003; Excellent on accessible assets</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Cost per monitoring point</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa">Lower (MCC install)</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib">Higher for hard-to-reach assets</td>
+            </tr>
+            <tr>
+              <td class="sam-vs-table__td sam-vs-table__td--criteria">Fleet scalability</td>
+              <td class="sam-vs-table__td sam-vs-table__td--esa sam-vs-table__td--yes">&#10003; Rapid deployment (1,000+ assets)</td>
+              <td class="sam-vs-table__td sam-vs-table__td--vib sam-vs-table__td--partial">Slower &mdash; per-asset installation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 3. BEYOND VIBRATION'S REACH ─── -->
+  <section id="esa-wins" class="sam-vs-esa">
+    <div class="sam-vs-esa__inner">
+      <p class="overline">Beyond vibration's reach</p>
+      <h2>The assets vibration can't reach</h2>
+      <p class="lead sam-vs-esa__lead">ESA's defining advantage is reach. These are the scenarios where it adds coverage that vibration can't.</p>
+
+      <div class="sam-vs-esa__grid">
+        <div class="sam-vs-esa__card">
+          <h3 class="sam-vs-esa__card-title">Submerged and enclosed assets</h3>
+          <p class="sam-vs-esa__card-desc">Submersible pumps, wet-well pumps, sealed blowers, and enclosed drives. These assets have no accessible mounting point for a vibration sensor. ESA monitors them from the cabinet &mdash; continuously, without site visits.</p>
+        </div>
+        <div class="sam-vs-esa__card">
+          <h3 class="sam-vs-esa__card-title">Hazardous and regulated zones</h3>
+          <p class="sam-vs-esa__card-desc">ATEX-classified areas, confined spaces, and high-temperature environments. ESA installation happens at the MCC, in a safe zone. No explosion-proof certification, no confined space entry, no hot work permits.</p>
+        </div>
+        <div class="sam-vs-esa__card">
+          <h3 class="sam-vs-esa__card-title">Remote and unmanned sites</h3>
+          <p class="sam-vs-esa__card-desc">Water pumping stations, pipeline compressors, and rural substations that are visited quarterly at best. ESA provides continuous 24/7 monitoring with cellular connectivity &mdash; no site visit needed to check asset health.</p>
+        </div>
+        <div class="sam-vs-esa__card">
+          <h3 class="sam-vs-esa__card-title">Electrical fault detection</h3>
+          <p class="sam-vs-esa__card-desc">Stator winding degradation, rotor bar defects, power supply asymmetry, and insulation breakdown. These faults are invisible to vibration sensors but show clearly in the electrical signature.</p>
+        </div>
+        <div class="sam-vs-esa__card">
+          <h3 class="sam-vs-esa__card-title">Between vibration rounds</h3>
+          <p class="sam-vs-esa__card-desc">Many facilities run vibration routes monthly or quarterly. ESA fills the gap with continuous monitoring, catching faults that develop between scheduled rounds &mdash; before the next walk-around arrives too late.</p>
+        </div>
+        <div class="sam-vs-esa__card">
+          <h3 class="sam-vs-esa__card-title">Fleet-scale deployment speed</h3>
+          <p class="sam-vs-esa__card-desc">Deploying vibration sensors across 1,000 assets takes months. SAM4 installation at the MCC takes less than 30 minutes per machine. Yorkshire Water deployed across 1,300 assets in a fraction of the time traditional monitoring would have required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 4. VIBRATION'S STRENGTHS ─── -->
+  <section id="vibration-wins" class="sam-vs-vib">
+    <div class="sam-vs-vib__inner">
+      <p class="overline">Vibration's strengths</p>
+      <h2>We're not going to pretend otherwise</h2>
+      <p class="lead sam-vs-vib__lead">Vibration monitoring has 100+ years of field validation. For certain faults on accessible assets, it provides resolution and detail that ESA doesn't match.</p>
+
+      <div class="sam-vs-vib__grid">
+        <div class="sam-vs-vib__card">
+          <h3 class="sam-vs-vib__card-title">High-resolution mechanical diagnostics</h3>
+          <p class="sam-vs-vib__card-desc">For specific bearing defect frequencies, gear mesh patterns, and resonance analysis on accessible assets, vibration sensors mounted directly on the machine provide higher spectral resolution. If the asset is accessible and the fault is purely mechanical, vibration gives you more diagnostic detail.</p>
+        </div>
+        <div class="sam-vs-vib__card">
+          <h3 class="sam-vs-vib__card-title">Established practice and standards</h3>
+          <p class="sam-vs-vib__card-desc">ISO 10816/20816 defines vibration severity thresholds that reliability teams have used for decades. The knowledge base, training programmes, and industry standards for vibration analysis are deeply established. Your team likely already knows how to interpret vibration data.</p>
+        </div>
+      </div>
+
+      <p class="sam-vs-vib__caveat">These advantages apply to accessible assets. For the 30&ndash;40% of your fleet that sits beyond physical reach, vibration isn&rsquo;t an option &mdash; which is where ESA takes over.</p>
+
+      <div class="sam-vs-vib__limits">
+        <h3 class="sam-vs-vib__limits-title">ESA detection constraints</h3>
+        <p class="sam-vs-vib__limits-desc">ESA detection depends on drive topology, sampling rate, load variation, and fault class. Some purely mechanical faults may not be observable electrically until they progress enough to affect the motor&rsquo;s current or voltage signature. Detection lead time varies by fault type and operating conditions. We state these constraints because they matter when you&rsquo;re designing a monitoring programme &mdash; not to undersell the technology.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. BETTER TOGETHER ─── -->
+  <section id="complementary" class="sam-vs-together">
+    <div class="sam-vs-together__inner">
+      <p class="overline">Better together</p>
+      <h2>100% of your fleet. Not 60&ndash;70%.</h2>
+      <p class="lead sam-vs-together__lead">Vibration provides depth on accessible assets. ESA extends coverage to everything else. Combined, they close more of the monitoring gap than either method alone.</p>
+
+      <div class="sam-vs-together__split">
+        <div class="sam-vs-together__panel sam-vs-together__panel--vibration">
+          <h3 class="sam-vs-together__panel-title">Vibration</h3>
+          <p class="sam-vs-together__panel-desc">Deep diagnostics on accessible, high-value assets where your team can mount and maintain sensors.</p>
+          <span class="sam-vs-together__panel-pct kpi-value">60&ndash;70%</span>
+          <span class="sam-vs-together__panel-label">of your fleet (accessible)</span>
+        </div>
+        <div class="sam-vs-together__divider" aria-hidden="true">
+          <span class="sam-vs-together__divider-plus">+</span>
+        </div>
+        <div class="sam-vs-together__panel sam-vs-together__panel--esa">
+          <h3 class="sam-vs-together__panel-title">ESA (SAM4)</h3>
+          <p class="sam-vs-together__panel-desc">Continuous monitoring from the MCC for every asset your vibration programme can't reach.</p>
+          <span class="sam-vs-together__panel-pct kpi-value">30&ndash;40%</span>
+          <span class="sam-vs-together__panel-label">of your fleet (previously invisible)</span>
+        </div>
+      </div>
+
+      <p class="sam-vs-together__complement">Your vibration analysts bring years of spectral analysis experience. Our diagnosticians bring years of electrical signature expertise. When both signal types feed into the same reliability programme, your team makes better decisions — with more data, more fault coverage, and earlier detection. SAM4 doesn't replace that expertise. It gives it a wider reach.</p>
+
+      <!-- Proof: Schiphol -->
+      <div class="sam-vs-together__proof">
+        <div class="sam-vs-together__proof-content">
+          <span class="sam-vs-together__proof-label">Real-world proof</span>
+          <h3 class="sam-vs-together__proof-heading">Schiphol Airport: ESA caught what vibration missed</h3>
+          <p class="sam-vs-together__proof-desc">At Amsterdam Schiphol Airport, SAM4 detected bearing damage in a baggage handling motor that was also covered by vibration monitoring. The vibration system had not flagged the fault. SAM4 caught it through electrical signature anomalies weeks before the bearing would have failed &mdash; achieving a 100% detection rate across all 9 faults identified during the pilot.</p>
+          <div class="sam-vs-together__proof-stat">
+            <span class="sam-vs-together__proof-stat-value kpi-value">9/9</span>
+            <span class="sam-vs-together__proof-stat-label">faults detected &mdash; 100% detection rate</span>
+          </div>
+          <a href="/proof/schiphol" class="sam-text-link">Read the full Schiphol case study &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 6. CUSTOMER QUOTE ─── -->
+  <section class="sam-quote sam-quote--versus">
+    <div class="sam-quote__inner">
+      <blockquote class="sam-quote__blockquote">
+        <p class="sam-quote__text">&ldquo;You don't know what you don't know. If you're not looking continuously, you're exposed.&rdquo;</p>
+        <footer class="sam-quote__attribution">
+          <span class="sam-quote__name">John McCrystal</span>
+          <span class="sam-quote__title">Reliability &amp; Maintenance Specialist, DuPont</span>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ─── 7. FAQ ─── -->
+  <section id="faq" class="sam-vs-faq">
+    <div class="sam-vs-faq__inner">
+      <p class="overline">Frequently asked</p>
+      <h2>Common questions from reliability teams</h2>
+
+      <div class="sam-vs-faq__list">
+
+        <details class="sam-vs-faq__item" open>
+          <summary class="sam-vs-faq__question">Does SAM4 replace my vibration sensors?</summary>
+          <div class="sam-vs-faq__answer">
+            <p>No. SAM4 extends your monitoring programme to assets that vibration sensors can't reach &mdash; submerged pumps, sealed blowers, ATEX zones, and remote sites. Where vibration is already installed and delivering value, keep it. SAM4 covers the 30&ndash;40% of your fleet that currently has zero visibility.</p>
+            <p>Many customers run both side by side. Vibration gives depth on accessible assets. ESA gives breadth across the fleet. Together they close more of the monitoring gap than either method alone.</p>
+          </div>
+        </details>
+
+        <details class="sam-vs-faq__item">
+          <summary class="sam-vs-faq__question">Can ESA detect everything vibration detects?</summary>
+          <div class="sam-vs-faq__answer">
+            <p>Not everything. For high-resolution mechanical diagnostics on accessible assets &mdash; specific bearing defect frequencies, gear mesh patterns, resonance analysis &mdash; vibration sensors mounted on the machine provide finer spectral detail. ESA detects the same fault categories (bearings, misalignment, imbalance) but through electrical signatures rather than mechanical vibration. Where ESA adds capability is electrical faults (stator winding, rotor bar, insulation) and process deviations (cavitation, clogging, efficiency loss) that vibration doesn't see.</p>
+          </div>
+        </details>
+
+        <details class="sam-vs-faq__item">
+          <summary class="sam-vs-faq__question">What if I already have a mature vibration programme?</summary>
+          <div class="sam-vs-faq__answer">
+            <p>Good &mdash; that means 60&ndash;70% of your fleet is covered. SAM4 targets the remaining 30&ndash;40% your vibration programme physically can't reach. It also adds continuous monitoring between vibration routes on accessible assets, catching faults that develop between scheduled rounds. Your vibration analysts keep doing what they do best. SAM4 fills the gap in their coverage map — and gives them a second signal type to cross-reference when both methods cover the same asset.</p>
+          </div>
+        </details>
+
+        <details class="sam-vs-faq__item">
+          <summary class="sam-vs-faq__question">How does SAM4 handle false positives?</summary>
+          <div class="sam-vs-faq__answer">
+            <p>Every alert is reviewed by a Samotics reliability engineer before it reaches your team. The AI flags anomalies; a human validates the fault type, assesses severity, and writes a specific recommended action. Your maintenance team gets expert-validated insights, not raw alerts to triage. This is a core part of the service model &mdash; not an optional add-on.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 8. CTA BLOCK ─── -->
+  <section class="sam-cta-block sam-cta-block--versus">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">See what ESA detects on your assets</h2>
+      <p class="sam-cta-block__sub">A live demo shows SAM4 running on real industrial assets &mdash; the same faults, the same diagnostics, the same dashboard your team would use. No slides. Real data.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/proof" class="sam-btn sam-btn--secondary">See Detection Results</a>
+      </div>
+      <div class="sam-cta-block__secondary">
+        <a href="/downloads/sam4-datasheet.pdf" class="sam-text-link">Download SAM4 Datasheet &rarr;</a>
+        <a href="/downloads/sam4-sample-report.pdf" class="sam-text-link">See a Sample Report &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</main>

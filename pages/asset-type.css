@@ -1,0 +1,861 @@
+/* ============================================================
+   SAMOTICS ASSET TYPE PAGE TEMPLATE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  --sp-01: 2px; --sp-02: 4px; --sp-03: 8px; --sp-04: 12px; --sp-05: 16px;
+  --sp-06: 24px; --sp-07: 32px; --sp-08: 48px; --sp-09: 64px; --sp-10: 96px;
+  --sp-11: 128px; --sp-12: 160px;
+
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset ── */
+.sam-asset { overflow-x: hidden; }
+
+/* ── Shared ── */
+.overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin: 0 0 var(--sp-06) 0;
+}
+.lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-space-cadet);
+  max-width: 60ch;
+  margin: 0;
+}
+.sam-text-link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--sam-blue);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-text-link:hover { color: var(--sam-blue-dark); }
+.kpi-value {
+  font-family: var(--sam-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ── Buttons ── */
+.sam-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font: 600 1rem/1 var(--sam-font);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
+  white-space: nowrap;
+}
+.sam-btn:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+.sam-btn--primary { background: var(--sam-orange); color: var(--sam-black); }
+.sam-btn--primary:hover { background: var(--sam-orange-dark); color: var(--sam-white); box-shadow: var(--shadow-cta); }
+.sam-btn--outline { background: transparent; color: var(--sam-white); border: 2px solid var(--sam-white); }
+.sam-btn--outline:hover { background: rgba(255,255,255,0.12); }
+.sam-btn--secondary-light { background: transparent; color: var(--sam-white); border: 2px solid rgba(255,255,255,0.5); }
+.sam-btn--secondary-light:hover { background: rgba(255,255,255,0.10); border-color: var(--sam-white); }
+
+
+/* ============================================================
+   1. HERO
+   Background: dark
+   ============================================================ */
+
+.sam-hero--asset {
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: var(--sp-12) 0 var(--sp-11) 0;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sam-hero--asset .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(31,31,51,0.90) 0%, rgba(31,31,51,0.78) 45%, rgba(31,31,51,0.40) 100%);
+  z-index: 0;
+}
+.sam-hero--asset .sam-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--sp-09);
+}
+.sam-hero__content {
+  max-width: 680px;
+}
+
+/* Breadcrumb */
+.sam-hero__breadcrumb {
+  font-family: var(--sam-font);
+  font-size: 0.875rem;
+  color: var(--sam-muted-dark);
+  margin-bottom: var(--sp-06);
+  display: flex;
+  gap: var(--sp-03);
+  align-items: center;
+}
+.sam-hero__breadcrumb a {
+  color: var(--sam-muted-dark);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-hero__breadcrumb a:hover { color: var(--sam-white); }
+.sam-hero__breadcrumb span:last-child { color: var(--sam-white); }
+
+.sam-hero__h1 {
+  font-family: var(--sam-font);
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-07) 0;
+  max-width: 20ch;
+}
+.sam-hero__lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 56ch;
+}
+.sam-hero__ctas {
+  display: flex;
+  gap: var(--sp-05);
+  flex-wrap: wrap;
+}
+
+/* Hero stat strip */
+.sam-hero__stats {
+  display: flex;
+  gap: var(--sp-07);
+  flex-shrink: 0;
+}
+.sam-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+  padding: var(--sp-06);
+  background: var(--sam-dark-elevated);
+  border: 1px solid rgba(255,255,255,0.08);
+  min-width: 140px;
+}
+.sam-hero__stat-value {
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--sam-orange);
+}
+.sam-hero__stat-label {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--sam-muted-dark);
+}
+
+
+/* ============================================================
+   2. SUB-TYPES
+   Background: white
+   ============================================================ */
+
+.sam-asset-subtypes {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-subtypes__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-subtypes__inner .overline { color: var(--sam-teal-dark); }
+.sam-asset-subtypes__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 25ch;
+}
+.sam-asset-subtypes__lead { margin-bottom: var(--sp-09); }
+
+.sam-asset-subtypes__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-subtypes__card {
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-teal-dark);
+  padding: var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+}
+.sam-asset-subtypes__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-asset-subtypes__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex: 1;
+}
+.sam-asset-subtypes__card-industry {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--sam-comet);
+  padding-top: var(--sp-04);
+  border-top: 1px solid var(--sam-border-light);
+  margin-top: auto;
+}
+
+
+/* ============================================================
+   3. FAULT COVERAGE
+   Background: seashell
+   ============================================================ */
+
+.sam-asset-faults {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-faults__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-faults__inner .overline { color: var(--sam-orange-dark); }
+.sam-asset-faults__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 30ch;
+}
+.sam-asset-faults__lead { margin-bottom: var(--sp-09); }
+
+.sam-asset-faults__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-faults__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+}
+.sam-asset-faults__card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,108,108,0.06);
+  border-radius: 8px;
+}
+.sam-asset-faults__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-asset-faults__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex: 1;
+}
+.sam-asset-faults__card-confidence {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sam-teal-dark);
+  padding-top: var(--sp-04);
+  border-top: 1px solid var(--sam-border-light);
+  margin-top: auto;
+}
+
+
+/* ============================================================
+   4. HOW IT WORKS (asset-specific)
+   Background: white
+   ============================================================ */
+
+.sam-asset-how {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-how__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-how__inner .overline { color: var(--sam-space-cadet); }
+.sam-asset-how__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-asset-how__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-07);
+  margin-bottom: var(--sp-08);
+}
+.sam-asset-how__step {
+  position: relative;
+  padding-left: var(--sp-07);
+  border-left: 3px solid var(--sam-orange);
+}
+.sam-asset-how__step-num {
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--sam-orange);
+  display: block;
+  margin-bottom: var(--sp-04);
+}
+.sam-asset-how__step-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-asset-how__step-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+.sam-asset-how__links {
+  display: flex;
+  gap: var(--sp-07);
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   5. DETECTION STORIES
+   Background: seashell
+   ============================================================ */
+
+.sam-asset-stories {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-stories__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-stories__inner .overline { color: var(--sam-space-cadet); }
+.sam-asset-stories__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 30ch;
+}
+.sam-asset-stories__lead { margin-bottom: var(--sp-09); }
+
+.sam-asset-stories__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+  margin-bottom: var(--sp-08);
+}
+.sam-asset-stories__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-asset-stories__card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--sam-teal-dark);
+}
+.sam-asset-stories__card:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-asset-stories__card-tag {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sam-teal-dark);
+  background: rgba(0,108,108,0.08);
+  padding: var(--sp-01) var(--sp-03);
+  align-self: flex-start;
+}
+.sam-asset-stories__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-asset-stories__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex: 1;
+}
+.sam-asset-stories__card-industry {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--sam-comet);
+  padding-top: var(--sp-04);
+  border-top: 1px solid var(--sam-border-light);
+  margin-top: auto;
+}
+
+
+/* ============================================================
+   6. CUSTOMER PROOF
+   Background: white
+   ============================================================ */
+
+.sam-asset-proof {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-proof__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-proof__inner .overline { color: var(--sam-orange-dark); }
+.sam-asset-proof__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-asset-proof__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-proof__card {
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-orange);
+  padding: var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+}
+.sam-asset-proof__card-name {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-asset-proof__card-stat {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--sam-orange-dark);
+  margin: 0;
+}
+.sam-asset-proof__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex: 1;
+}
+
+
+/* ============================================================
+   7. INDUSTRIES
+   Background: seashell
+   ============================================================ */
+
+.sam-asset-industries {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-industries__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-industries__inner .overline { color: var(--sam-space-cadet); }
+.sam-asset-industries__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-asset-industries__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-industries__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-teal-dark);
+  padding: var(--sp-06);
+  text-decoration: none;
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-asset-industries__card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--sam-teal-dark);
+}
+.sam-asset-industries__card:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-asset-industries__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-03) 0;
+}
+.sam-asset-industries__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--sam-comet);
+  margin: 0;
+}
+
+
+/* ============================================================
+   8. RELATED ASSETS
+   Background: white
+   ============================================================ */
+
+.sam-asset-related {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-related__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-related__inner .overline { color: var(--sam-comet); }
+.sam-asset-related__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-asset-related__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-related__card {
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-06);
+  text-decoration: none;
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-asset-related__card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--sam-comet);
+}
+.sam-asset-related__card:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-asset-related__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-03) 0;
+}
+.sam-asset-related__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--sam-comet);
+  margin: 0;
+}
+
+
+/* ============================================================
+   9. CTA BLOCK
+   Background: dark
+   ============================================================ */
+
+.sam-cta-block--asset {
+  background: var(--sam-space-cadet);
+  padding: var(--sp-11) 0;
+}
+.sam-cta-block--asset .sam-cta-block__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  text-align: center;
+}
+.sam-cta-block--asset .sam-cta-block__heading {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-cta-block--asset .sam-cta-block__sub {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--sam-muted-dark);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 56ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sam-cta-block--asset .sam-cta-block__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-05);
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   FOCUS & REDUCED MOTION
+   ============================================================ */
+
+.sam-text-link:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sam-btn, .sam-text-link,
+  .sam-asset-stories__card,
+  .sam-asset-industries__card,
+  .sam-asset-related__card { transition: none !important; }
+
+  .sam-asset-subtypes,
+  .sam-asset-faults,
+  .sam-asset-how,
+  .sam-asset-stories,
+  .sam-asset-proof,
+  .sam-asset-industries,
+  .sam-asset-related,
+  .sam-cta-block--asset {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet (max-width: 1055px) */
+@media (max-width: 1055px) {
+
+  .sam-hero--asset {
+    padding: var(--sp-10) 0;
+    min-height: auto;
+  }
+  .sam-hero--asset .sam-hero__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-08);
+  }
+  .sam-hero__h1 {
+    font-size: 3rem;
+    max-width: none;
+  }
+  .sam-hero__stats {
+    width: 100%;
+  }
+
+  .sam-asset-subtypes__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-asset-faults__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-asset-how__steps { grid-template-columns: 1fr; gap: var(--sp-08); }
+  .sam-asset-stories__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-asset-proof__grid { grid-template-columns: 1fr; }
+  .sam-asset-industries__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-asset-related__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile (max-width: 671px) */
+@media (max-width: 671px) {
+
+  .sam-hero--asset { padding: var(--sp-09) 0; }
+  .sam-hero--asset .sam-hero__inner { padding: 0 16px; }
+  .sam-hero__h1 { font-size: 2.5rem; line-height: 1.2; }
+  .sam-hero__lead { font-size: 1.125rem; }
+  .sam-hero__ctas { flex-direction: column; }
+  .sam-hero__ctas .sam-btn { width: 100%; min-height: 48px; }
+  .sam-hero__stats { flex-direction: column; gap: var(--sp-05); }
+  .sam-hero__stat { flex-direction: row; align-items: center; gap: var(--sp-05); min-width: auto; }
+  .sam-hero__stat-value { font-size: 1.5rem; }
+
+  .sam-asset-subtypes { padding: var(--sp-10) 0; }
+  .sam-asset-subtypes__inner { padding: 0 16px; }
+  .sam-asset-subtypes__inner h2 { font-size: 2rem; }
+  .sam-asset-subtypes__grid { grid-template-columns: 1fr; }
+
+  .sam-asset-faults { padding: var(--sp-10) 0; }
+  .sam-asset-faults__inner { padding: 0 16px; }
+  .sam-asset-faults__inner h2 { font-size: 2rem; }
+  .sam-asset-faults__grid { grid-template-columns: 1fr; }
+
+  .sam-asset-how { padding: var(--sp-10) 0; }
+  .sam-asset-how__inner { padding: 0 16px; }
+  .sam-asset-how__inner h2 { font-size: 2rem; }
+
+  .sam-asset-stories { padding: var(--sp-10) 0; }
+  .sam-asset-stories__inner { padding: 0 16px; }
+  .sam-asset-stories__inner h2 { font-size: 2rem; }
+  .sam-asset-stories__grid { grid-template-columns: 1fr; }
+
+  .sam-asset-proof { padding: var(--sp-10) 0; }
+  .sam-asset-proof__inner { padding: 0 16px; }
+  .sam-asset-proof__inner h2 { font-size: 2rem; }
+
+  .sam-asset-industries { padding: var(--sp-10) 0; }
+  .sam-asset-industries__inner { padding: 0 16px; }
+  .sam-asset-industries__inner h2 { font-size: 2rem; }
+  .sam-asset-industries__grid { grid-template-columns: 1fr; }
+
+  .sam-asset-related { padding: var(--sp-10) 0; }
+  .sam-asset-related__inner { padding: 0 16px; }
+  .sam-asset-related__inner h2 { font-size: 2rem; }
+  .sam-asset-related__grid { grid-template-columns: 1fr; }
+
+  .sam-cta-block--asset { padding: var(--sp-10) 0; }
+  .sam-cta-block--asset .sam-cta-block__inner { padding: 0 16px; }
+  .sam-cta-block--asset .sam-cta-block__heading { font-size: 2rem; }
+  .sam-cta-block--asset .sam-cta-block__actions { flex-direction: column; }
+  .sam-cta-block--asset .sam-cta-block__actions .sam-btn { width: 100%; min-height: 48px; }
+}

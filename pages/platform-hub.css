@@ -1,0 +1,528 @@
+/* ============================================================
+   SAMOTICS PLATFORM HUB — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  /* Core Palette */
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #5A6A80;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+  --sam-gold:            #FAC91F;
+
+  /* Fonts */
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Spacing */
+  --sp-01: 2px;
+  --sp-02: 4px;
+  --sp-03: 8px;
+  --sp-04: 12px;
+  --sp-05: 16px;
+  --sp-06: 24px;
+  --sp-07: 32px;
+  --sp-08: 48px;
+  --sp-09: 64px;
+  --sp-10: 96px;
+  --sp-11: 128px;
+  --sp-12: 160px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-lg:  0 12px 32px rgba(31,31,51,0.14);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Transitions */
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset for main ── */
+.sam-platform {
+  overflow-x: hidden;
+}
+
+/* ── Shared: Overline ── */
+.overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 var(--sp-06) 0;
+}
+
+/* ── Shared: Lead ── */
+.lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-space-cadet);
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* ── Shared: Buttons ── */
+.sam-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font: 600 1rem/1 var(--sam-font);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
+  white-space: nowrap;
+}
+.sam-btn:focus-visible {
+  outline: 3px solid var(--sam-orange);
+  outline-offset: 2px;
+}
+
+/* Primary: Orange */
+.sam-btn--primary {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-btn--primary:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+  box-shadow: var(--shadow-cta);
+}
+.sam-btn--primary:active {
+  background: var(--sam-orange-deep);
+  color: var(--sam-white);
+}
+
+/* Ghost: on dark */
+.sam-btn--ghost {
+  background: transparent;
+  color: var(--sam-white);
+  border: 2px solid rgba(255,255,255,0.4);
+}
+.sam-btn--ghost:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.8);
+}
+.sam-btn--ghost:active {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--sam-white);
+}
+.sam-btn--ghost:focus-visible {
+  outline-color: var(--sam-orange);
+}
+
+/* ────────────────────────────────────────────────────────
+   HERO SECTION
+   ──────────────────────────────────────────────────────── */
+.sam-platform__hero {
+  padding: var(--sp-10) var(--sp-06);
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sam-platform__hero-content {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sam-platform__hero-title {
+  font-family: var(--sam-font);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--sam-white);
+  margin: var(--sp-06) 0 var(--sp-06) 0;
+}
+
+.sam-platform__hero-nav {
+  display: flex;
+  gap: var(--sp-06);
+  flex-wrap: wrap;
+  margin-top: var(--sp-08);
+}
+
+/* ────────────────────────────────────────────────────────
+   CONTAINER & SHARED STYLES
+   ──────────────────────────────────────────────────────── */
+.sam-platform__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--sp-06);
+}
+
+/* ────────────────────────────────────────────────────────
+   PILLARS SECTION
+   ──────────────────────────────────────────────────────── */
+.sam-platform__pillars {
+  padding: var(--sp-10) var(--sp-06);
+}
+
+.sam-platform__pillars h2 {
+  font-family: var(--sam-font);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+
+.sam-platform__pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-08);
+}
+
+.sam-platform__pillar-card {
+  background: var(--sam-seashell);
+  padding: var(--sp-08);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  text-decoration: none;
+  transition: all var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.sam-platform__pillar-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-top-color: var(--sam-orange);
+}
+
+.sam-platform__pillar-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-06);
+}
+
+.sam-platform__pillar-title {
+  font-family: var(--sam-font);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-04) 0;
+}
+
+.sam-platform__pillar-desc {
+  font-family: var(--sam-font);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--sam-comet);
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* ────────────────────────────────────────────────────────
+   FLOW SECTION
+   ──────────────────────────────────────────────────────── */
+.sam-platform__flow {
+  padding: var(--sp-10) var(--sp-06);
+}
+
+.sam-platform__flow h2 {
+  font-family: var(--sam-font);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+
+.sam-platform__flow-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-06);
+  align-items: start;
+  position: relative;
+}
+
+.sam-platform__flow-step {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.sam-platform__flow-number {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto var(--sp-04);
+  font-family: var(--sam-font);
+}
+
+.sam-platform__flow-step h3 {
+  font-family: var(--sam-font);
+}
+
+.sam-platform__flow-step p {
+  font-family: var(--sam-font);
+}
+
+.sam-platform__flow-connector {
+  position: absolute;
+  top: 32px;
+  height: 4px;
+  width: 100%;
+  z-index: 0;
+}
+
+.sam-platform__flow-steps .sam-platform__flow-connector:nth-of-type(2) {
+  left: 25%;
+}
+
+.sam-platform__flow-steps .sam-platform__flow-connector:nth-of-type(4) {
+  left: 50%;
+}
+
+.sam-platform__flow-steps .sam-platform__flow-connector:nth-of-type(6) {
+  left: 75%;
+}
+
+/* ────────────────────────────────────────────────────────
+   CAPABILITIES SECTION
+   ──────────────────────────────────────────────────────── */
+.sam-platform__capabilities {
+  padding: var(--sp-10) var(--sp-06);
+}
+
+.sam-platform__capabilities h2 {
+  font-family: var(--sam-font);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+
+.sam-platform__capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+
+.sam-platform__capability-card {
+  background: var(--sam-seashell);
+  padding: var(--sp-06);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.sam-platform__capability-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-04);
+}
+
+.sam-platform__capability-card h3 {
+  font-family: var(--sam-font);
+}
+
+.sam-platform__capability-card p {
+  font-family: var(--sam-font);
+}
+
+/* ────────────────────────────────────────────────────────
+   SUBNAV SECTION
+   ──────────────────────────────────────────────────────── */
+.sam-platform__subnav {
+  padding: var(--sp-10) var(--sp-06);
+}
+
+.sam-platform__subnav h2 {
+  font-family: var(--sam-font);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+
+.sam-platform__subnav-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--sp-06);
+}
+
+.sam-platform__subnav-card {
+  background: var(--sam-white);
+  padding: var(--sp-06);
+  border-radius: 8px;
+  border: 2px solid var(--sam-border-light);
+  text-decoration: none;
+  transition: all var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.sam-platform__subnav-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--sam-orange);
+}
+
+.sam-platform__subnav-card h3 {
+  font-family: var(--sam-font);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 var(--sp-03) 0;
+}
+
+.sam-platform__subnav-card p {
+  font-family: var(--sam-font);
+  flex-grow: 1;
+  margin-bottom: var(--sp-04);
+}
+
+/* ────────────────────────────────────────────────────────
+   CTA BANNER
+   ──────────────────────────────────────────────────────── */
+.sam-platform__cta-banner h2 {
+  font-family: var(--sam-font);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.sam-platform__cta-banner p {
+  font-family: var(--sam-font);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ────────────────────────────────────────────────────────
+   RESPONSIVE
+   ──────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .sam-platform__hero-title {
+    font-size: 2.5rem;
+  }
+
+  .sam-platform__hero {
+    min-height: 450px;
+    padding: var(--sp-09) var(--sp-06);
+  }
+
+  .sam-platform__pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-06);
+  }
+
+  .sam-platform__flow-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sam-platform__flow-connector {
+    display: none;
+  }
+
+  .sam-platform__capabilities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sam-platform__subnav-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sam-platform__pillars,
+  .sam-platform__flow,
+  .sam-platform__capabilities,
+  .sam-platform__subnav {
+    padding: var(--sp-09) var(--sp-06);
+  }
+}
+
+@media (max-width: 600px) {
+  .sam-platform__hero-title {
+    font-size: 2rem;
+  }
+
+  .sam-platform__hero {
+    min-height: 350px;
+    padding: var(--sp-08) var(--sp-05);
+  }
+
+  .sam-platform__hero-nav {
+    flex-direction: column;
+  }
+
+  .sam-platform__hero-nav .sam-btn {
+    width: 100%;
+  }
+
+  .sam-platform__pillars-grid,
+  .sam-platform__flow-steps,
+  .sam-platform__capabilities-grid,
+  .sam-platform__subnav-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-06);
+  }
+
+  .sam-platform__pillars h2,
+  .sam-platform__flow h2,
+  .sam-platform__capabilities h2,
+  .sam-platform__subnav h2,
+  .sam-platform__cta-banner h2 {
+    font-size: 1.5rem;
+  }
+
+  .sam-platform__pillars,
+  .sam-platform__flow,
+  .sam-platform__capabilities,
+  .sam-platform__subnav,
+  .sam-platform__cta-banner {
+    padding: var(--sp-08) var(--sp-05);
+  }
+
+  .sam-platform__container {
+    padding: 0 var(--sp-05);
+  }
+
+  .sam-platform__cta-banner {
+    text-align: center;
+  }
+
+  .sam-platform__cta-banner > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sam-platform__cta-banner .sam-btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,414 @@
+<!-- ============================================================
+     SAMOTICS SPECIFIC ASSET PAGE TEMPLATE — Bricks Code Element
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  specific-asset.css
+       3. JavaScript   →  specific-asset.js
+
+     USAGE: Duplicate this template for each specific asset type.
+     Reference implementation: Centrifugal pumps.
+     URL pattern: /assets/centrifugal-pumps
+     ============================================================ -->
+
+
+<!-- ===================== PHP & HTML ===================== -->
+
+<main id="main-content" class="sam-spec">
+
+  <!-- ─── 1. HERO ─── dark background -->
+  <section class="sam-hero sam-hero--spec" style="background-image: url(''); background-color: var(--sam-space-cadet);">
+    <div class="sam-hero__overlay"></div>
+    <div class="sam-hero__inner">
+
+      <!-- Breadcrumb -->
+      <nav class="sam-spec-breadcrumb" aria-label="Breadcrumb">
+        <a href="/platform/what-we-monitor">What We Monitor</a>
+        <span aria-hidden="true">/</span>
+        <a href="/assets/pumps">Pumps</a>
+        <span aria-hidden="true">/</span>
+        <span>Centrifugal Pumps</span>
+      </nav>
+
+      <div class="sam-hero__split">
+        <!-- Left: copy -->
+        <div class="sam-hero__copy">
+          <p class="sam-hero__overline">Asset type</p>
+          <h1 class="sam-hero__h1">Centrifugal pump monitoring</h1>
+          <p class="sam-hero__lead">SAM4 monitors centrifugal pumps from the motor control cabinet — detecting bearing degradation, cavitation, imbalance, seal wear, and efficiency loss weeks before failure. No sensor on the pump. No site visit for installation.</p>
+          <div class="sam-hero__ctas">
+            <a href="/contact?intent=demo&asset=centrifugal-pumps" class="sam-btn sam-btn--primary">Request a Demo</a>
+            <a href="#faults" class="sam-btn sam-btn--outline">See What We Detect</a>
+          </div>
+        </div>
+
+        <!-- Right: at-a-glance card -->
+        <div class="sam-spec-glance">
+          <h2 class="sam-spec-glance__title">At a glance</h2>
+          <dl class="sam-spec-glance__list">
+            <div class="sam-spec-glance__row">
+              <dt>Monitoring method</dt>
+              <dd>Electrical Signature Analysis (ESA)</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Sensor location</dt>
+              <dd>Motor control cabinet (MCC)</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Voltage range</dt>
+              <dd>Low and medium voltage</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Drive type</dt>
+              <dd>DOL, soft starter, VFD</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Faults detected</dt>
+              <dd>7 fault types</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Typical lead time</dt>
+              <dd>4–12 weeks before failure</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─── 2. WHY MONITOR THIS ASSET ─── white background -->
+  <section class="sam-spec-why">
+    <div class="sam-spec-why__inner">
+      <p class="overline">Why monitor centrifugal pumps</p>
+      <h2>The most common rotating asset in industry — and the most likely to fail undetected</h2>
+      <p class="lead sam-spec-why__lead">Centrifugal pumps account for the majority of rotating equipment in water utilities, chemical plants, and refineries. They run continuously, degrade gradually, and often fail without warning — because most don't have condition monitoring.</p>
+
+      <div class="sam-spec-why__grid">
+        <div class="sam-spec-why__card">
+          <span class="sam-spec-why__card-stat kpi-value">30–40%</span>
+          <p class="sam-spec-why__card-desc">of centrifugal pumps in a typical plant have no condition monitoring. They run until they fail.</p>
+        </div>
+        <div class="sam-spec-why__card">
+          <span class="sam-spec-why__card-stat kpi-value">€15–50K</span>
+          <p class="sam-spec-why__card-desc">typical cost of an unplanned centrifugal pump failure — including repair, production loss, and emergency response.</p>
+        </div>
+        <div class="sam-spec-why__card">
+          <span class="sam-spec-why__card-stat kpi-value">8–15%</span>
+          <p class="sam-spec-why__card-desc">energy wasted by pumps operating below their best efficiency point — recoverable with the right data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 3. FAULT COVERAGE ─── seashell background -->
+  <section id="faults" class="sam-spec-faults">
+    <div class="sam-spec-faults__inner">
+      <p class="overline">What SAM4 detects on centrifugal pumps</p>
+      <h2>Seven fault types from one sensor location</h2>
+
+      <div class="sam-spec-faults__table-wrap">
+        <table class="sam-spec-faults__table">
+          <thead>
+            <tr>
+              <th class="sam-spec-faults__th">Fault type</th>
+              <th class="sam-spec-faults__th">What's happening</th>
+              <th class="sam-spec-faults__th">How SAM4 detects it</th>
+              <th class="sam-spec-faults__th">Typical lead time</th>
+              <th class="sam-spec-faults__th">Confidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
+              <td class="sam-spec-faults__td">Inner/outer race defects, rolling element wear, lubrication breakdown</td>
+              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies appear in the motor current spectrum</td>
+              <td class="sam-spec-faults__td">4–12 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Cavitation</td>
+              <td class="sam-spec-faults__td">Vapour bubble collapse at the impeller, caused by low NPSH or throttled suction</td>
+              <td class="sam-spec-faults__td">Broadband noise increase in the electrical signature above baseline</td>
+              <td class="sam-spec-faults__td">Days–weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Blockage / clogging</td>
+              <td class="sam-spec-faults__td">Rag, debris, or sediment buildup restricting flow or loading the impeller</td>
+              <td class="sam-spec-faults__td">Load signature shift — torque pattern changes relative to healthy baseline</td>
+              <td class="sam-spec-faults__td">Hours–days</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Imbalance</td>
+              <td class="sam-spec-faults__td">Impeller erosion, deposit buildup, or broken vanes causing rotational imbalance</td>
+              <td class="sam-spec-faults__td">1× running speed component increase in the current spectrum</td>
+              <td class="sam-spec-faults__td">2–8 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Seal wear</td>
+              <td class="sam-spec-faults__td">Mechanical seal degradation leading to leakage, contamination, or motor ingress</td>
+              <td class="sam-spec-faults__td">Progressive load profile change as friction and flow characteristics shift</td>
+              <td class="sam-spec-faults__td">4–10 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Misalignment</td>
+              <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and pump</td>
+              <td class="sam-spec-faults__td">2× running speed component in current spectrum, progressive increase over time</td>
+              <td class="sam-spec-faults__td">2–6 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Efficiency loss</td>
+              <td class="sam-spec-faults__td">Pump operating below BEP due to wear, oversizing, or process changes</td>
+              <td class="sam-spec-faults__td">Power consumption vs. output deviation tracked continuously</td>
+              <td class="sam-spec-faults__td">Continuous</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="sam-spec-faults__note">Detection capability depends on drive topology, sampling rate, load variation, and operating conditions. <a href="/technology/esa-vs-vibration#limits" class="sam-text-link">See ESA detection constraints.</a></p>
+    </div>
+  </section>
+
+
+  <!-- ─── 4. DETECTION STORIES ─── white background -->
+  <section class="sam-spec-stories">
+    <div class="sam-spec-stories__inner">
+      <p class="overline">Centrifugal pump detections</p>
+      <h2>Real faults caught on centrifugal pumps</h2>
+
+      <div class="sam-spec-stories__grid">
+
+        <a href="/proof/detect-cavitation-centrifugal-pump" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Cavitation</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Cavitation onset detected in centrifugal pump</h3>
+          <p class="sam-spec-stories__card-desc">Broadband noise in the electrical signature flagged cavitation before impeller erosion progressed. Suction conditions corrected during planned maintenance.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/proof/detect-cavitation-anolyte-pump" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Cavitation</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Anolyte pump cavitation detected remotely</h3>
+          <p class="sam-spec-stories__card-desc">Cavitation in a chlor-alkali process pump identified through current signature analysis. Process adjustment prevented impeller damage.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/proof/detect-gearbox-misalignment-circulator-pump" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Misalignment</span>
+            <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Gearbox misalignment on circulator pump</h3>
+          <p class="sam-spec-stories__card-desc">2× running speed component flagged coupling misalignment. Corrected before bearing damage progressed to failure.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/proof/detect-missing-bolt-cooling-pump" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Mechanical</span>
+            <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Missing mounting bolt on cooling pump</h3>
+          <p class="sam-spec-stories__card-desc">Loose bolt caused vibration visible in the electrical signature. Fixed before secondary bearing damage.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/proof/detect-three-faults-oil-transfer-pump" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Multiple faults</span>
+            <span class="sam-spec-stories__card-industry">Oil &amp; Gas</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Three faults on oil transfer pump</h3>
+          <p class="sam-spec-stories__card-desc">Bearing wear, misalignment, and seal degradation identified simultaneously on a critical transfer pump.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/proof/detect-clogging-wastewater-pump" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Blockage</span>
+            <span class="sam-spec-stories__card-industry">Water &amp; Wastewater</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Clogging detected in wastewater pump</h3>
+          <p class="sam-spec-stories__card-desc">Progressive rag buildup identified through load signature changes. Maintenance scheduled before overflow event.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+      </div>
+
+      <a href="/proof" class="sam-text-link">See all detection stories &rarr;</a>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. HOW SAM4 INSTALLS ─── seashell background -->
+  <section class="sam-spec-install">
+    <div class="sam-spec-install__inner">
+      <p class="overline">Installation on centrifugal pumps</p>
+      <h2>30 minutes. No access to the pump required.</h2>
+
+      <div class="sam-spec-install__split">
+
+        <div class="sam-spec-install__steps">
+          <div class="sam-spec-install__step">
+            <span class="sam-spec-install__step-num kpi-value">1</span>
+            <div class="sam-spec-install__step-body">
+              <h3 class="sam-spec-install__step-title">Open the motor control cabinet</h3>
+              <p class="sam-spec-install__step-desc">SAM4 installs at the MCC — the same panel your electricians already access. No confined space entry, no scaffolding, no process shutdown.</p>
+            </div>
+          </div>
+          <div class="sam-spec-install__step">
+            <span class="sam-spec-install__step-num kpi-value">2</span>
+            <div class="sam-spec-install__step-body">
+              <h3 class="sam-spec-install__step-title">Clip sensor onto motor supply cables</h3>
+              <p class="sam-spec-install__step-desc">Current and voltage sensors clip directly onto the existing cabling. No wiring changes. No interruption to the pump's operation.</p>
+            </div>
+          </div>
+          <div class="sam-spec-install__step">
+            <span class="sam-spec-install__step-num kpi-value">3</span>
+            <div class="sam-spec-install__step-body">
+              <h3 class="sam-spec-install__step-title">Connect and commission</h3>
+              <p class="sam-spec-install__step-desc">The SAM4 gateway connects via cellular (4G/LTE) — no dependency on your IT network. Monitoring starts immediately. First diagnostic results within 48 hours.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image placeholder -->
+        <div class="sam-spec-install__image">
+          <div class="sam-spec-install__image-placeholder" aria-hidden="true">
+            <span>Installation photo: SAM4 sensor clipped onto motor supply cables inside an MCC panel</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sam-spec-install__links">
+        <a href="/platform/how-it-installs" class="sam-text-link">Full installation guide &rarr;</a>
+        <a href="/platform/security" class="sam-text-link">Security &amp; network architecture &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 6. ENERGY (optional — show if asset type has energy monitoring) ─── white background -->
+  <section class="sam-spec-energy">
+    <div class="sam-spec-energy__inner">
+      <p class="overline">Energy monitoring</p>
+      <h2>Not just fault detection. Energy optimisation too.</h2>
+
+      <div class="sam-spec-energy__split">
+        <div class="sam-spec-energy__copy">
+          <p class="lead">Centrifugal pumps are often the largest energy consumers in a facility. SAM4 continuously tracks power consumption against output — identifying pumps running below their best efficiency point, oversized motors, and degradation-driven efficiency losses.</p>
+          <div class="sam-spec-energy__metrics">
+            <div class="sam-spec-energy__metric">
+              <span class="sam-spec-energy__metric-value kpi-value">7.1%</span>
+              <span class="sam-spec-energy__metric-label">energy efficiency gain at Vitens using SAM4 pump curve data</span>
+            </div>
+            <div class="sam-spec-energy__metric">
+              <span class="sam-spec-energy__metric-value kpi-value">€99K/yr</span>
+              <span class="sam-spec-energy__metric-label">saved by hydraulically rerating a single booster station</span>
+            </div>
+          </div>
+        </div>
+        <div class="sam-spec-energy__features">
+          <div class="sam-spec-energy__feature">
+            <h3 class="sam-spec-energy__feature-title">Real-time pump curve</h3>
+            <p class="sam-spec-energy__feature-desc">SAM4 calculates the operating point on the pump curve continuously — showing where the pump runs relative to BEP and how that changes over time.</p>
+          </div>
+          <div class="sam-spec-energy__feature">
+            <h3 class="sam-spec-energy__feature-title">BEP deviation alerts</h3>
+            <p class="sam-spec-energy__feature-desc">Automatic alerts when a pump operates consistently outside its efficient range. Quantifies the energy waste in kWh and currency.</p>
+          </div>
+          <div class="sam-spec-energy__feature">
+            <h3 class="sam-spec-energy__feature-title">Rightsizing recommendations</h3>
+            <p class="sam-spec-energy__feature-desc">Data to support pump replacement or impeller trimming decisions — backed by months of continuous operating data, not a single-point measurement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 7. INDUSTRIES ─── seashell background -->
+  <section class="sam-spec-industries">
+    <div class="sam-spec-industries__inner">
+      <p class="overline">Where centrifugal pumps are monitored</p>
+      <h2>Industries using SAM4 on centrifugal pumps</h2>
+
+      <div class="sam-spec-industries__grid">
+        <a href="/industries/water" class="sam-spec-industries__card">
+          <h3 class="sam-spec-industries__card-title">Water &amp; Wastewater</h3>
+          <p class="sam-spec-industries__card-desc">Booster pumps, distribution pumps, raw water intake pumps. Blockage and efficiency monitoring across the network.</p>
+        </a>
+        <a href="/industries/chemicals" class="sam-spec-industries__card">
+          <h3 class="sam-spec-industries__card-title">Chemicals</h3>
+          <p class="sam-spec-industries__card-desc">Process pumps, transfer pumps, circulation pumps. Monitoring in hazardous zones without physical access.</p>
+        </a>
+        <a href="/industries/oil-gas" class="sam-spec-industries__card">
+          <h3 class="sam-spec-industries__card-title">Oil &amp; Gas</h3>
+          <p class="sam-spec-industries__card-desc">Transfer pumps, injection pumps, cooling water pumps. ATEX-compatible monitoring from the MCC.</p>
+        </a>
+        <a href="/industries/metals-mining" class="sam-spec-industries__card">
+          <h3 class="sam-spec-industries__card-title">Metals &amp; Mining</h3>
+          <p class="sam-spec-industries__card-desc">Cooling pumps, slurry pumps, dewatering pumps. Harsh environments where pump access is restricted.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 8. RELATED ASSETS ─── white background -->
+  <section class="sam-spec-related">
+    <div class="sam-spec-related__inner">
+      <p class="overline">Related asset types</p>
+      <h2>Other pump types SAM4 monitors</h2>
+
+      <div class="sam-spec-related__grid">
+        <a href="/assets/submersible-pumps" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">Submersible pumps</h3>
+          <p class="sam-spec-related__card-desc">Underwater pumps in wet wells, boreholes, and intake stations</p>
+        </a>
+        <a href="/assets/booster-pumps" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">Booster pumps</h3>
+          <p class="sam-spec-related__card-desc">Pressure maintenance across distribution networks</p>
+        </a>
+        <a href="/assets/borehole-pumps" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">Borehole pumps</h3>
+          <p class="sam-spec-related__card-desc">Deep well pumps in remote abstraction locations</p>
+        </a>
+        <a href="/assets/esps" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">ESPs</h3>
+          <p class="sam-spec-related__card-desc">Electrical submersible pumps in oil &amp; gas production</p>
+        </a>
+      </div>
+
+      <a href="/platform/what-we-monitor" class="sam-text-link">See all asset types &rarr;</a>
+    </div>
+  </section>
+
+
+  <!-- ─── 9. CTA ─── dark background -->
+  <section class="sam-cta-block sam-cta-block--spec">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">See SAM4 monitoring centrifugal pumps</h2>
+      <p class="sam-cta-block__sub">A 30-minute demo shows SAM4 running on centrifugal pumps like yours — with real fault data, real diagnostics, and real energy insights.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo&asset=centrifugal-pumps" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary-light">Start Your Asset Audit</a>
+      </div>
+    </div>
+  </section>
+
+</main>

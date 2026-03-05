@@ -1,0 +1,122 @@
+<!-- ============================================================
+     SAMOTICS CASE STUDIES ARCHIVE — HTML
+     Paste into Bricks Page → Add Code Element → HTML tab
+     Then add case-studies-archive.css to CSS tab
+     Then add case-studies-archive.js to Custom Code (footer)
+
+     NOTE: This page uses WordPress WP_Query to fetch case study posts
+     Use the filter chips to filter by category (?cat= parameter)
+     ============================================================ -->
+
+<main class="sam-case-studies">
+  <!-- ──────────────────────────────────────────────────────
+       SECTION 1: HERO
+       ────────────────────────────────────────────────────── -->
+  <section class="sam-case-studies__hero" style="background: #F5F6F8;">
+    <div class="sam-case-studies__hero-content">
+      <p class="overline" style="color: #FF5429;">Case Studies</p>
+      <h1 class="sam-case-studies__hero-title">Every detection. Documented.</h1>
+      <p class="lead" style="color: #1F1F33; max-width: 70ch;">Browse 35+ real-world fault detections across industries, asset types, and outcomes.</p>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────────────
+       SECTION 2: FILTER & GRID
+       ────────────────────────────────────────────────────── -->
+  <section class="sam-case-studies__content" style="background: #FFFFFF;">
+    <div class="sam-case-studies__container">
+      <!-- Filter Chips -->
+      <div class="sam-case-studies__filters">
+        <a href="/proof/case-studies/" class="sam-case-studies__filter-chip sam-case-studies__filter-chip--active" data-filter="all">
+          All
+        </a>
+        <a href="/proof/case-studies/?cat=water" class="sam-case-studies__filter-chip" data-filter="water">
+          Water
+        </a>
+        <a href="/proof/case-studies/?cat=oil-gas" class="sam-case-studies__filter-chip" data-filter="oil-gas">
+          Oil & Gas
+        </a>
+        <a href="/proof/case-studies/?cat=metals-mining" class="sam-case-studies__filter-chip" data-filter="metals-mining">
+          Metals & Mining
+        </a>
+        <a href="/proof/case-studies/?cat=chemicals" class="sam-case-studies__filter-chip" data-filter="chemicals">
+          Chemicals
+        </a>
+        <a href="/proof/case-studies/?cat=infrastructure" class="sam-case-studies__filter-chip" data-filter="infrastructure">
+          Infrastructure
+        </a>
+      </div>
+
+      <!-- Case Study Cards Grid -->
+      <div class="sam-case-studies__grid">
+        <!-- Example card 1 -->
+        <article class="sam-case-studies__card">
+          <div class="sam-case-studies__card-tag" style="background: #D6F5F1; color: #0098AC;">Water & Wastewater</div>
+          <h3 class="sam-case-studies__card-title">Detecting Bearing Failure in Municipal Pump Before Catastrophic Collapse</h3>
+          <p class="sam-case-studies__card-excerpt">A water treatment authority deployed SAM4 on their primary circulation pump and detected progressive bearing wear 6 weeks before failure was imminent.</p>
+          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
+        </article>
+
+        <!-- Example card 2 -->
+        <article class="sam-case-studies__card">
+          <div class="sam-case-studies__card-tag" style="background: #FFE8D6; color: #FF5429;">Oil & Gas</div>
+          <h3 class="sam-case-studies__card-title">Predictive Detection of Cavitation in Offshore Transfer Pump</h3>
+          <p class="sam-case-studies__card-excerpt">Real-time electrical signatures revealed cavitation damage in an offshore platform pump, preventing an estimated $2M in unplanned maintenance costs.</p>
+          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
+        </article>
+
+        <!-- Example card 3 -->
+        <article class="sam-case-studies__card">
+          <div class="sam-case-studies__card-tag" style="background: #E8D6F5; color: #7B2CBF;">Metals & Mining</div>
+          <h3 class="sam-case-studies__card-title">Detecting Misalignment in Crusher Motor Before Gearbox Failure</h3>
+          <p class="sam-case-studies__card-excerpt">SAM4 identified angular misalignment in a crusher drive system's coupling. Preventive realignment avoided a projected 5-day production shutdown.</p>
+          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
+        </article>
+
+        <!-- Example card 4 -->
+        <article class="sam-case-studies__card">
+          <div class="sam-case-studies__card-tag" style="background: #E8F4FF; color: #005CBA;">Chemicals</div>
+          <h3 class="sam-case-studies__card-title">Real-Time Detection of Multi-Fault Condition in Reactor Feed Pump</h3>
+          <p class="sam-case-studies__card-excerpt">Three simultaneous faults detected in a critical process pump: bearing wear, belt slippage, and cavitation—each at different stages of development.</p>
+          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
+        </article>
+
+        <!-- Example card 5 -->
+        <article class="sam-case-studies__card">
+          <div class="sam-case-studies__card-tag" style="background: #D6F5F1; color: #0098AC;">Water & Wastewater</div>
+          <h3 class="sam-case-studies__card-title">Preventive Detection of Blockage in Sewage Treatment Submersible</h3>
+          <p class="sam-case-studies__card-excerpt">ESA identified inlet blockage in a submersible pump before it stalled completely, enabling scheduled maintenance rather than emergency replacement.</p>
+          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
+        </article>
+
+        <!-- Example card 6 -->
+        <article class="sam-case-studies__card">
+          <div class="sam-case-studies__card-tag" style="background: #FFE8D6; color: #FF5429;">Oil & Gas</div>
+          <h3 class="sam-case-studies__card-title">Monitoring Thermal Stress in High-Speed Compressor Motor</h3>
+          <p class="sam-case-studies__card-excerpt">Continuous electrical signature analysis revealed motor winding degradation that had been missed by traditional temperature monitoring.</p>
+          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
+        </article>
+      </div>
+
+      <!-- Pagination (if using WordPress) -->
+      <div class="sam-case-studies__pagination" style="text-align: center; margin-top: var(--sp-10); padding-top: var(--sp-08); border-top: 1px solid var(--sam-border-light);">
+        <nav style="display: flex; gap: var(--sp-04); justify-content: center; align-items: center; flex-wrap: wrap;">
+          <a href="#" class="sam-case-studies__pagination-link" style="color: #5A6A80; text-decoration: none; padding: 8px 12px; border: 1px solid var(--sam-border-light); border-radius: 4px; font-family: var(--sam-font);">← Previous</a>
+          <span style="color: #1F1F33; font-family: var(--sam-font); font-weight: 600;">Page 1 of 3</span>
+          <a href="#" class="sam-case-studies__pagination-link" style="color: var(--sam-orange); text-decoration: none; padding: 8px 12px; border: 1px solid var(--sam-orange); border-radius: 4px; font-family: var(--sam-font); font-weight: 600;">Next →</a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────────────
+       SECTION 3: CTA BANNER
+       ────────────────────────────────────────────────────── -->
+  <section class="sam-case-studies__cta-banner" style="background: #1F1F33; padding: var(--sp-10) var(--sp-06);">
+    <div class="sam-case-studies__container" style="text-align: center;">
+      <h2 style="color: #FFFFFF; margin: 0 0 var(--sp-06) 0;">Want to add your name to this list?</h2>
+      <p style="color: #E2E4E8; font-size: 1rem; margin: 0 0 var(--sp-08) 0; max-width: 60ch; margin-left: auto; margin-right: auto;">See how SAM4 can prevent failures and optimize operations at your facility.</p>
+      <a href="/contact/" class="sam-btn sam-btn--primary" style="background: #FF5429; color: #111111;">Request Demo</a>
+    </div>
+  </section>
+</main>

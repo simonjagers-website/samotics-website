@@ -1,0 +1,631 @@
+/* ============================================================
+   SAMOTICS INDUSTRY PAGE TEMPLATE — CSS
+   Paste into Bricks Code Element → CSS tab
+   Extends homepage tokens (loaded via header)
+   ============================================================ */
+
+
+/* ── Breadcrumb ── */
+.sam-breadcrumb ol {
+  list-style: none;
+  margin: 0 0 var(--sp-06) 0;
+  padding: 0;
+  display: flex;
+  gap: var(--sp-03);
+  font-family: var(--sam-font);
+  font-size: 0.875rem;
+}
+.sam-breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-03);
+}
+.sam-breadcrumb li + li::before {
+  content: "/";
+  color: rgba(255,255,255,0.4);
+}
+.sam-breadcrumb a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-breadcrumb a:hover {
+  color: var(--sam-white);
+}
+.sam-breadcrumb [aria-current="page"] {
+  color: var(--sam-white);
+  font-weight: 500;
+}
+
+
+/* ── Hero (inherits from homepage hero) ── */
+.sam-hero--ind {
+  min-height: 520px;
+}
+
+/* Hero Proof Callout */
+.sam-hero__proof-callout {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 56ch;
+  padding: var(--sp-04) var(--sp-05);
+  border-left: 3px solid var(--sam-orange);
+  background: rgba(255,255,255,0.06);
+}
+.sam-hero__proof-callout .kpi-value {
+  color: var(--sam-orange);
+  font-size: 1.25rem;
+}
+.sam-hero__proof-link {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: color var(--ease);
+}
+.sam-hero__proof-link:hover {
+  color: var(--sam-white);
+}
+
+
+/* ── Trust Bar ── */
+.sam-ind-trust {
+  background: var(--sam-white);
+  padding: var(--sp-08) 0;
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-ind-trust__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-08);
+}
+.sam-ind-trust__label {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  margin: 0;
+}
+.sam-ind-trust__logos {
+  display: flex;
+  gap: var(--sp-07);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sam-ind-trust__logo {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--sam-space-cadet);
+  padding: var(--sp-04) var(--sp-06);
+  border: 1px solid var(--sam-border-light);
+  background: var(--sam-seashell);
+}
+
+
+/* ── Challenges (white bg → navy accent) ── */
+.sam-ind-challenges {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-ind-challenges__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-ind-challenges__inner .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-ind-challenges__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 30ch;
+}
+.sam-ind-challenges__inner .lead {
+  margin-bottom: var(--sp-09);
+}
+.sam-ind-challenges__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-ind-challenges__card {
+  padding: var(--sp-07);
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-space-cadet);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+}
+.sam-ind-challenges__icon {
+  color: var(--sam-space-cadet);
+}
+.sam-ind-challenges__card h3 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-ind-challenges__card p {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+
+/* ── Assets Monitored (seashell bg → orange accent) ── */
+.sam-ind-assets {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-ind-assets__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-ind-assets__inner .overline {
+  color: var(--sam-orange);
+}
+.sam-ind-assets__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 30ch;
+}
+.sam-ind-assets__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-ind-assets__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+.sam-ind-assets__card:hover {
+  border-color: var(--sam-orange);
+  box-shadow: var(--shadow-md);
+}
+.sam-ind-assets__card h3 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-ind-assets__card p {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex-grow: 1;
+}
+.sam-ind-assets__link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-orange);
+  transition: color var(--ease);
+}
+.sam-ind-assets__card:hover .sam-ind-assets__link {
+  color: var(--sam-orange-dark);
+}
+
+
+/* ── Results / Stats (white bg → navy accent) ── */
+.sam-ind-results {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-ind-results__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  text-align: center;
+}
+.sam-ind-results__inner .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-ind-results__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+}
+.sam-ind-results__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-07);
+}
+.sam-ind-results__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-03);
+}
+.sam-ind-results__stat-value {
+  font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+}
+.sam-ind-results__stat-label {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--sam-comet);
+}
+
+
+/* ── Case Studies (seashell bg → orange accent) ── */
+.sam-ind-cases {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-ind-cases__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-ind-cases__inner .overline {
+  color: var(--sam-orange);
+}
+.sam-ind-cases__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-ind-cases__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-ind-cases__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-05);
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+.sam-ind-cases__card:hover {
+  border-color: var(--sam-orange);
+  box-shadow: var(--shadow-md);
+}
+.sam-ind-cases__card-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-01);
+}
+.sam-ind-cases__card-kpi .kpi-value {
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--sam-orange);
+}
+.sam-ind-cases__card-kpi-label {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: var(--sam-comet);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sam-ind-cases__card h3 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-ind-cases__card p {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex-grow: 1;
+}
+.sam-ind-cases__link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-orange);
+  transition: color var(--ease);
+}
+.sam-ind-cases__card:hover .sam-ind-cases__link {
+  color: var(--sam-orange-dark);
+}
+
+
+/* ── How It Works / Install (white bg → navy accent) ── */
+.sam-ind-install {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-ind-install__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-09);
+  align-items: center;
+}
+.sam-ind-install__text .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-ind-install__text h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-ind-install__text .lead {
+  margin-bottom: var(--sp-07);
+}
+.sam-ind-install__steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0 0 var(--sp-07) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-06);
+}
+.sam-ind-install__steps li {
+  counter-increment: step;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+  padding-left: var(--sp-08);
+  position: relative;
+}
+.sam-ind-install__steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--sam-mono);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--sam-space-cadet);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--sam-space-cadet);
+  border-radius: 50%;
+  font-variant-numeric: tabular-nums;
+}
+.sam-ind-install__steps li strong {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--sam-space-cadet);
+}
+.sam-ind-install__steps li span {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--sam-comet);
+}
+.sam-ind-install__placeholder {
+  background: var(--sam-seashell);
+  border: 1px solid var(--sam-border-light);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sam-font);
+  color: var(--sam-comet);
+  font-size: 0.875rem;
+}
+
+
+/* ── CTA (seashell bg → orange accent, inherits from homepage) ── */
+/* Uses .sam-cta-block from homepage.css */
+
+/* Mid-funnel links row */
+.sam-cta-block__mid-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-04);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-07);
+}
+.sam-cta-block__mid-link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--sam-teal-dark);
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid transparent;
+  transition: color 150ms ease-out, border-color 150ms ease-out;
+}
+.sam-cta-block__mid-link:hover {
+  color: var(--sam-space-cadet);
+  border-bottom-color: var(--sam-orange);
+}
+.sam-cta-block__mid-sep {
+  color: var(--sam-border-light);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+
+/* ── Shared overline / lead / text-link / buttons from homepage.css ── */
+
+
+/* ── Focus Styles ── */
+.sam-ind-assets__card:focus-visible,
+.sam-ind-cases__card:focus-visible {
+  outline: 3px solid var(--sam-orange);
+  outline-offset: 2px;
+}
+
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .sam-ind-assets__card,
+  .sam-ind-cases__card {
+    transition: none !important;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1055px) {
+  .sam-hero--ind {
+    min-height: 420px;
+  }
+  .sam-ind-trust__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-05);
+  }
+  .sam-ind-challenges__grid {
+    grid-template-columns: 1fr;
+  }
+  .sam-ind-assets__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sam-ind-results__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-08);
+  }
+  .sam-ind-cases__grid {
+    grid-template-columns: 1fr;
+  }
+  .sam-ind-install__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 671px) {
+  .sam-ind-trust {
+    padding: var(--sp-06) 0;
+  }
+  .sam-ind-trust__inner {
+    padding: 0 16px;
+  }
+  .sam-ind-trust__logos {
+    gap: var(--sp-05);
+  }
+
+  .sam-ind-challenges {
+    padding: var(--sp-10) 0;
+  }
+  .sam-ind-challenges__inner {
+    padding: 0 16px;
+  }
+  .sam-ind-challenges__inner h2 {
+    font-size: 2rem;
+  }
+
+  .sam-ind-assets {
+    padding: var(--sp-10) 0;
+  }
+  .sam-ind-assets__inner {
+    padding: 0 16px;
+  }
+  .sam-ind-assets__inner h2 {
+    font-size: 2rem;
+  }
+  .sam-ind-assets__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sam-ind-results {
+    padding: var(--sp-10) 0;
+  }
+  .sam-ind-results__inner {
+    padding: 0 16px;
+  }
+  .sam-ind-results__inner h2 {
+    font-size: 2rem;
+  }
+  .sam-ind-results__stat-value {
+    font-size: 2rem;
+  }
+
+  .sam-ind-cases {
+    padding: var(--sp-10) 0;
+  }
+  .sam-ind-cases__inner {
+    padding: 0 16px;
+  }
+  .sam-ind-cases__inner h2 {
+    font-size: 2rem;
+  }
+
+  .sam-ind-install {
+    padding: var(--sp-10) 0;
+  }
+  .sam-ind-install__inner {
+    padding: 0 16px;
+  }
+  .sam-ind-install__text h2 {
+    font-size: 2rem;
+  }
+
+  .sam-cta-block__mid-links {
+    flex-direction: column;
+    gap: var(--sp-03);
+  }
+  .sam-cta-block__mid-sep {
+    display: none;
+  }
+}

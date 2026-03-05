@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buyer Journey Audit — 6 Industry Pages</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sam-space-cadet: #1F1F33;
+    --sam-orange: #FF5429;
+    --sam-white: #FFFFFF;
+    --sam-seashell: #F5F6F8;
+    --sam-comet: #5A6A80;
+    --sam-border-light: #E2E4E8;
+    --sam-teal: #0098AC;
+    --sam-font: 'IBM Plex Sans', -apple-system, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font: 400 15px/1.7 var(--sam-font); color: var(--sam-space-cadet); background: #f0f1f3; }
+
+  .header { background: var(--sam-space-cadet); color: white; padding: 40px; text-align: center; }
+  .header h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+  .header p { font-size: 14px; color: rgba(255,255,255,.55); max-width: 600px; margin: 0 auto; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Section blocks */
+  .section { margin-bottom: 32px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 24px;
+    background: white;
+    border: 1px solid var(--sam-border-light);
+    border-radius: 8px 8px 0 0;
+    border-bottom: 2px solid var(--sam-orange);
+  }
+  .section-header h2 { font: 700 17px/1.2 var(--sam-font); }
+  .section-header .grade {
+    margin-left: auto;
+    font: 700 14px/1 var(--sam-font);
+    padding: 4px 12px;
+    border-radius: 12px;
+  }
+  .grade--strong { background: #E8F5E9; color: #2E7D32; }
+  .grade--ok { background: #FFF8E1; color: #F57F17; }
+  .grade--weak { background: #FFEBEE; color: #C62828; }
+
+  .section-body {
+    background: white;
+    border: 1px solid var(--sam-border-light);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 24px;
+  }
+
+  /* Journey steps */
+  .journey { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+  .step {
+    display: flex; gap: 16px; padding: 12px 0;
+    border-bottom: 1px solid #f0f1f3;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-label {
+    flex-shrink: 0; width: 120px;
+    font: 500 12px/1.4 var(--sam-font);
+    color: var(--sam-comet);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    padding-top: 2px;
+  }
+  .step-content { flex: 1; font-size: 14px; line-height: 1.6; }
+  .step-verdict {
+    flex-shrink: 0; width: 28px; height: 28px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .v-pass { background: #E8F5E9; }
+  .v-warn { background: #FFF8E1; }
+  .v-fail { background: #FFEBEE; }
+
+  /* Issues */
+  .issues { margin-top: 16px; }
+  .issue {
+    padding: 12px 16px;
+    border-left: 3px solid var(--sam-orange);
+    background: #FFF8F6;
+    margin-bottom: 8px;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .issue strong { font-weight: 600; }
+
+  /* Cross-page section */
+  .cross-page {
+    background: white;
+    border: 2px solid var(--sam-orange);
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 32px;
+  }
+  .cross-page h2 {
+    font: 700 18px/1.3 var(--sam-font);
+    margin-bottom: 16px;
+    color: var(--sam-orange);
+  }
+  .cross-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f1f3;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .cross-item:last-child { border-bottom: none; }
+  .cross-item strong { font-weight: 600; }
+  .priority-tag {
+    display: inline-block;
+    font: 600 10px/1 var(--sam-font);
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .priority-tag--p1 { background: #FFEBEE; color: #C62828; }
+  .priority-tag--p2 { background: #FFF8E1; color: #F57F17; }
+  .priority-tag--p3 { background: #E3F2FD; color: #1565C0; }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .summary-card {
+    background: white;
+    border: 1px solid var(--sam-border-light);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+  }
+  .summary-card__value { font: 700 32px/1 var(--sam-font); color: var(--sam-orange); display: block; }
+  .summary-card__label { font: 400 12px/1.3 var(--sam-font); color: var(--sam-comet); margin-top: 6px; display: block; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Buyer Journey Audit</h1>
+  <p>6 industry pages simulated as a buyer — entry to exit. What works, what drops, what to fix.</p>
+</div>
+
+<div class="container">
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <span class="summary-card__value">6</span>
+    <span class="summary-card__label">Journeys simulated</span>
+  </div>
+  <div class="summary-card">
+    <span class="summary-card__value">14</span>
+    <span class="summary-card__label">Issues found</span>
+  </div>
+  <div class="summary-card">
+    <span class="summary-card__value">5</span>
+    <span class="summary-card__label">Cross-page patterns</span>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- CROSS-PAGE ISSUES -->
+<!-- ============================== -->
+<div class="cross-page">
+  <h2>Cross-page issues (affect all or most journeys)</h2>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p1">P1</span>
+    <strong>"How it works" section is word-for-word identical on all 6 pages.</strong> A buyer who visits two pages will notice the copy-paste. The 3-step install flow is universal, but the lead sentence and step descriptions could reference industry-specific context (e.g. "no confined-space entry in wastewater pits" vs "no nacelle access required").
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p1">P1</span>
+    <strong>Trust bar and proof callout name different companies.</strong> Chemicals mentions Kuraray and Nobian in the proof callout — but neither is in the trust bar (Simon removed them). Metals mentions ArcelorMittal in the proof callout and case studies — but ArcelorMittal isn't in the trust bar. This creates a credibility gap: "you cite them as proof, but won't put their logo up?"
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p2">P2</span>
+    <strong>No objection handling anywhere.</strong> Zero pages address the two questions every buyer asks: (1) "How is this different from vibration monitoring?" and (2) "We already have SCADA — what's new?" A short ESA-vs-vibration comparison block (even 2 sentences) would prevent drop-off at the "sounds too good to be true" moment.
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p2">P2</span>
+    <strong>No customer quotes or testimonials.</strong> Case studies exist, but there isn't a single direct quote from a customer on any page. One quote per page — from a named person at a named company — would massively increase trust.
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p3">P3</span>
+    <strong>CTA block and pre-footer feel redundant.</strong> Two conversion sections back-to-back at the bottom of every page. On Water, they have the identical heading. Consider: make the CTA block the primary conversion point (mid-links + CTAs), and strip the pre-footer down to just the ROI calculator link — or remove it entirely.
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- WATER -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-header">
+    <h2>1. Water & Wastewater</h2>
+    <span class="grade grade--strong">Strongest page</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:14px;color:var(--sam-comet);margin-bottom:16px;"><strong>Buyer persona:</strong> Asset performance manager at a UK water utility. Landed from a Google search for "pump condition monitoring water."</p>
+
+    <div class="journey">
+      <div class="step">
+        <span class="step-label">Hero</span>
+        <span class="step-content">Strong headline, specific lead. Proof callout is excellent: "£9.8M in documented benefits across 6 UK water companies" — named companies, big number. Buyer thinks: <em>this is for me.</em></span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Trust bar</span>
+        <span class="step-content">5 water utilities. Buyer recognises peers. Builds confidence.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Featured proof</span>
+        <span class="step-content">Deep-dive on Southern Water with 4 KPIs. This section exists ONLY on Water — it's the secret weapon. Buyer thinks: <em>this actually works.</em></span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Challenges</span>
+        <span class="step-content">3 cards, all relevant (blockages, submerged access, ageing infrastructure). Buyer nods: <em>these are my problems.</em></span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Results</span>
+        <span class="step-content">8 industry-specific stats with named companies and £ values. Strongest results section across all pages.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Case studies</span>
+        <span class="step-content">3 named customers (Southern Water, Yorkshire Water, Vitens). Each with a specific KPI. Buyer has enough to build an internal business case.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">CTA → Exit</span>
+        <span class="step-content">CTA block heading "Ready to protect your water assets?" is identical to pre-footer heading. Feels repetitive.</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+    </div>
+
+    <div class="issues">
+      <div class="issue"><strong>Duplicate heading:</strong> CTA block and pre-footer both say "Ready to protect your water assets?" — change one or collapse into a single conversion section.</div>
+      <div class="issue"><strong>Featured proof pattern not replicated:</strong> The Southern Water deep-dive is the strongest element on any page. Consider adding a similar "hero case study" block to Metals (ArcelorMittal) and Airports (Schiphol) — they have the data.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- ENERGY PRODUCTION -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-header">
+    <h2>2. Energy Production</h2>
+    <span class="grade grade--ok">Needs work</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:14px;color:var(--sam-comet);margin-bottom:16px;"><strong>Buyer persona:</strong> Reliability engineer at an oil major or wind farm operator. Landed from LinkedIn or a direct referral.</p>
+
+    <div class="journey">
+      <div class="step">
+        <span class="step-label">Hero</span>
+        <span class="step-content">"Monitor the assets that keep energy flowing" — generic. A Shell reliability engineer doesn't think about "keeping energy flowing." They think about compressor uptime or ESP run life. The lead text covers too many sub-sectors in one breath (oil rigs, gas compressors, wind turbines, thermal plants).</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Proof callout</span>
+        <span class="step-content">"95% detection rate measured across the full SAM4 fleet" — not energy-specific. Honest, but doesn't give the buyer a reason to believe this works in <em>their</em> world.</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Challenges</span>
+        <span class="step-content">6 cards — most of any page. Good breadth (ATEX, ESP, wind, thermal, downtime, seawater). Two have SPE paper links. But 6 cards may overwhelm — the buyer's eye has to work harder.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Results</span>
+        <span class="step-content">All fleet-wide numbers. Zero energy-specific KPIs. The disclaimer note admits this. A buyer reads: <em>they haven't proven this in my industry yet.</em></span>
+        <span class="step-verdict v-fail">✗</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Case studies</span>
+        <span class="step-content">Only 2 (after Sabesp removal). One ESP, one oil transfer pump. No wind, no thermal, no compressor case. Thinnest proof section of all pages.</span>
+        <span class="step-verdict v-fail">✗</span>
+      </div>
+      <div class="step">
+        <span class="step-label">CTA → Exit</span>
+        <span class="step-content">SAM4-X validation offer is good — a low-commitment entry point for a sceptical buyer. But the journey to get there feels thin on proof.</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+    </div>
+
+    <div class="issues">
+      <div class="issue"><strong>Only 2 case studies:</strong> All other pages have 3. Consider adding a generic "condition monitoring on offshore pumps" or similar to fill the gap, or restructure as 2 cards at larger size.</div>
+      <div class="issue"><strong>Hero headline is generic:</strong> Tighten to hit a specific pain. E.g. "Detect faults in the assets your sensors can't reach" — which is what the lead text already says better.</div>
+      <div class="issue"><strong>Results section has no energy-specific data:</strong> Even "2 ESP failures detected" would be better than fleet-wide stats. If data exists from Jira, consider surfacing it.</div>
+      <div class="issue"><strong>Pre-footer sub still says "motor fleet":</strong> Should match the industry-specific pattern used on other pages.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- CHEMICALS -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-header">
+    <h2>3. Chemicals</h2>
+    <span class="grade grade--ok">Solid but disconnected</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:14px;color:var(--sam-comet);margin-bottom:16px;"><strong>Buyer persona:</strong> Plant reliability engineer at a speciality chemicals company. Landed from an industry event follow-up.</p>
+
+    <div class="journey">
+      <div class="step">
+        <span class="step-label">Hero</span>
+        <span class="step-content">"Monitor equipment in ATEX zones — without entering them" — strongest hero headline across all pages. Specific, short, hits the exact pain. Buyer thinks: <em>that's exactly my problem.</em></span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Proof callout</span>
+        <span class="step-content">References Kuraray and Nobian by name with specific $ values. Good data. But...</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Trust bar</span>
+        <span class="step-content">Shows DuPont, DSM-Firmenich, OCI Nitrogen, Yara, Sitech. But the proof callout just named Kuraray and Nobian — who aren't here. Buyer thinks: <em>wait, are those real customers or not?</em></span>
+        <span class="step-verdict v-fail">✗</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Challenges</span>
+        <span class="step-content">3 focused cards (ATEX, continuous process, energy waste). Clean. Buyer nods.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Results</span>
+        <span class="step-content">$90k and €121k/yr from named pilots. Mixed currencies ($ and €) looks sloppy. Results note again names Kuraray and Nobian.</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Case studies</span>
+        <span class="step-content">3 good case studies. "Heated godet roll" = very specific (Kuraray). Buyer can see real outcomes.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+    </div>
+
+    <div class="issues">
+      <div class="issue"><strong>Trust bar / proof callout disconnect:</strong> The proof callout mentions Kuraray and Nobian, the results note names them too — but neither appears in the trust bar. Either add them back to the trust bar, or rewrite the proof callout to reference the trust bar companies instead.</div>
+      <div class="issue"><strong>Mixed currencies:</strong> Proof callout uses $90k and €121k/yr in the same sentence. Pick one currency or normalise.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- METALS & MINING -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-header">
+    <h2>4. Metals & Mining</h2>
+    <span class="grade grade--ok">Strong proof, wrong trust bar</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:14px;color:var(--sam-comet);margin-bottom:16px;"><strong>Buyer persona:</strong> Maintenance manager at a European steel mill. Landed from a case study link shared by a colleague.</p>
+
+    <div class="journey">
+      <div class="step">
+        <span class="step-label">Hero</span>
+        <span class="step-content">"Keep your mills running and your mines dewatered" — direct, hits both sub-verticals. Strong.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Proof callout</span>
+        <span class="step-content">"27 failures detected at ArcelorMittal, 800% ROI at Nyrstar" — named companies, concrete numbers. Very strong.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Trust bar</span>
+        <span class="step-content">Shows Pfleiderer, Nyrstar, Nucor, Stelco, Salzgitter AG, Sappi. Problem: Pfleiderer and Sappi are pulp & paper companies, not metals. ArcelorMittal — cited in the proof callout — is missing from the trust bar. A steel mill buyer will spot this.</span>
+        <span class="step-verdict v-fail">✗</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Case studies</span>
+        <span class="step-content">3 strong entries: ArcelorMittal (27 failures), Nyrstar (800% ROI), hot strip mill (€650k saved). All directly relevant.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Results</span>
+        <span class="step-content">Industry-specific stats with named companies. Note mentions thyssenkrupp too (also not in trust bar). Good data density.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+    </div>
+
+    <div class="issues">
+      <div class="issue"><strong>Trust bar contains paper companies:</strong> Pfleiderer and Sappi are pulp & paper, not metals. Remove them and add ArcelorMittal if referenceable — it's already named in the proof callout and case studies.</div>
+      <div class="issue"><strong>thyssenkrupp named in results note but not in trust bar.</strong> Either add or remove the name reference to stay consistent.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- AIRPORTS -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-header">
+    <h2>5. Airports</h2>
+    <span class="grade grade--ok">Best proof, missing sections</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:14px;color:var(--sam-comet);margin-bottom:16px;"><strong>Buyer persona:</strong> Head of engineering at a mid-size European airport. Landed from the Schiphol case study shared at an IATA event.</p>
+
+    <div class="journey">
+      <div class="step">
+        <span class="step-label">Hero</span>
+        <span class="step-content">"Keep baggage handling systems running — every flight, every day." Direct, urgent. Proof callout: "9 of 9 developing faults detected at Schiphol with zero unplanned disruptions." Perfect score — hugely credible.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Challenges</span>
+        <span class="step-content">3 cards (zero-tolerance, narrow windows, scale). Tight. Buyer recognises every problem.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Results</span>
+        <span class="step-content">4 stats, all airport-specific: 9/9 faults, 3 critical incidents, 5+ days warning, 0 disruptions. Cleanest results section.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Case studies</span>
+        <span class="step-content">Schiphol and Stansted by name. Third is generic ("belt-driven equipment"). 2 of 3 are strong.</span>
+        <span class="step-verdict v-pass">✓</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Scaling</span>
+        <span class="step-content">MISSING. All other pages have a scaling callout. An airport buyer with 400+ conveyor motors needs to understand scaling economics.</span>
+        <span class="step-verdict v-fail">✗</span>
+      </div>
+      <div class="step">
+        <span class="step-label">SAM4-X</span>
+        <span class="step-content">MISSING. No validation/trial section. All other pages offer SAM4-X as a low-risk entry point. This is critical for airports — a risk-averse buyer needs a way to test before committing.</span>
+        <span class="step-verdict v-fail">✗</span>
+      </div>
+      <div class="step">
+        <span class="step-label">CTA block</span>
+        <span class="step-content">Only 2 CTAs, no mid-links (Download Technical Guide, Sample Report, ROI Calculator). Every other page has these. The airport buyer who isn't ready to talk to sales has no middle path.</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+    </div>
+
+    <div class="issues">
+      <div class="issue"><strong>Missing scaling section:</strong> Add "From one terminal to every motor across the airport" scaling callout to match other pages.</div>
+      <div class="issue"><strong>Missing SAM4-X validation section:</strong> Add "Not sure yet? Start with a paid validation" to give risk-averse airport buyers a low-commitment entry.</div>
+      <div class="issue"><strong>CTA block missing mid-links:</strong> Add "Download Technical Guide · See a Sample Report · Calculate Your ROI" to give the not-yet-ready buyer somewhere to go.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- PULP & PAPER -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-header">
+    <h2>6. Pulp & Paper</h2>
+    <span class="grade grade--weak">Thinnest journey</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:14px;color:var(--sam-comet);margin-bottom:16px;"><strong>Buyer persona:</strong> Mill maintenance lead at a European paper manufacturer. Landed from a Google search for "paper mill predictive maintenance."</p>
+
+    <div class="journey">
+      <div class="step">
+        <span class="step-label">Hero</span>
+        <span class="step-content">"Keep your paper mills running efficiently" — "efficiently" is vague and weak. Compare to Metals ("Keep your mills running and your mines dewatered") which is concrete. The buyer doesn't feel urgency.</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Proof callout</span>
+        <span class="step-content">"€96k in downtime costs saved at Pfleiderer" — decent, specific. But only one data point.</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Trust bar</span>
+        <span class="step-content">Only 2 logos: Pfleiderer and Sappi. Looks thin. A competitor page with 6 logos wins the visual trust test.</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Results</span>
+        <span class="step-content">All fleet-wide stats (95% detection, 5 months, 5-35% energy waste, 20 min install). Zero pulp & paper-specific numbers. Buyer thinks: <em>this is the same page as everyone else.</em></span>
+        <span class="step-verdict v-fail">✗</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Case studies</span>
+        <span class="step-content">Only 1 of 3 is named (Pfleiderer fans). The other two ("belt-driven equipment", "centrifugal pump") are generic. A paper mill buyer wants to see <em>paper mill</em> proof.</span>
+        <span class="step-verdict v-warn">!</span>
+      </div>
+    </div>
+
+    <div class="issues">
+      <div class="issue"><strong>Hero headline needs urgency:</strong> Replace "efficiently" with something concrete. E.g. "Detect faults before they stop the paper machine" or "Keep your paper machines running — no sensors in the mill."</div>
+      <div class="issue"><strong>Results section has zero industry-specific data:</strong> If Pfleiderer data exists (€96k, 6 fans, X weeks warning), surface it as named stats.</div>
+      <div class="issue"><strong>2 of 3 case studies are generic:</strong> Consider whether the generic ones help or hurt. A page with 1 strong named case study might be better than 3 where 2 are filler.</div>
+      <div class="issue"><strong>Trust bar looks thin with 2 logos:</strong> Consider removing it entirely and using a hero proof callout pattern instead (like Airports). Or add more if names become available.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- PRIORITY MATRIX -->
+<!-- ============================== -->
+<div class="cross-page" style="border-color: var(--sam-space-cadet);">
+  <h2 style="color: var(--sam-space-cadet);">Recommended action order</h2>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p1">Now</span>
+    <strong>Fix trust bar / proof callout mismatches</strong> on Chemicals and Metals. These actively undermine credibility mid-journey. Either align the names or rewrite the proof callouts.
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p1">Now</span>
+    <strong>Add missing sections to Airports:</strong> scaling callout, SAM4-X validation, and CTA mid-links. The page is structurally incomplete compared to every other page.
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p2">Next</span>
+    <strong>Add a featured proof block</strong> (Water's pattern) to Metals (ArcelorMittal) and Airports (Schiphol). They have the data. This is the single highest-impact improvement per page.
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p2">Next</span>
+    <strong>Differentiate "How it works" per page.</strong> Swap in one industry-specific detail per step. This is low effort, high signal.
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p2">Next</span>
+    <strong>Strengthen Pulp & Paper:</strong> Rewrite hero headline, surface Pfleiderer stats in results, decide whether 2-logo trust bar helps or hurts.
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p3">Later</span>
+    <strong>Add one customer quote per page.</strong> Doesn't need to be long. "SAM4 paid for itself in 3 months." — Name, Title, Company. Massive trust signal.
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p3">Later</span>
+    <strong>Add an ESA-vs-vibration comparison block.</strong> Even a 3-line table (access, cost, coverage) answers the #1 buyer objection before it kills the deal.
+  </div>
+
+  <div class="cross-item">
+    <span class="priority-tag priority-tag--p3">Later</span>
+    <strong>Collapse CTA block + pre-footer into one section.</strong> Two conversion sections back-to-back wastes space and dilutes urgency.
+  </div>
+</div>
+
+</div>
+</body>
+</html>

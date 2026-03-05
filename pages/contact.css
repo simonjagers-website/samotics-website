@@ -1,0 +1,515 @@
+/* ============================================================
+   SAMOTICS CONTACT PAGE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  /* Core Palette */
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+
+  /* Fonts */
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Spacing */
+  --sp-01: 2px;
+  --sp-02: 4px;
+  --sp-03: 8px;
+  --sp-04: 12px;
+  --sp-05: 16px;
+  --sp-06: 24px;
+  --sp-07: 32px;
+  --sp-08: 48px;
+  --sp-09: 64px;
+  --sp-10: 96px;
+  --sp-11: 128px;
+  --sp-12: 160px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Transitions */
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset ── */
+.sam-contact {
+  overflow-x: hidden;
+}
+
+/* ── Shared: Text Link ── */
+.sam-text-link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--sam-blue);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-text-link:hover {
+  color: var(--sam-blue-dark);
+}
+
+/* ── Shared: Buttons ── */
+.sam-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font: 600 1rem/1 var(--sam-font);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
+  white-space: nowrap;
+}
+.sam-btn:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-btn--primary {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-btn--primary:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+  box-shadow: var(--shadow-cta);
+}
+.sam-btn--primary:active {
+  background: var(--sam-orange-deep);
+  color: var(--sam-white);
+}
+.sam-btn--primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── KPI Value ── */
+.kpi-value {
+  font-family: var(--sam-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+
+.sam-hero--contact {
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: var(--sp-12) 0 var(--sp-11) 0;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sam-hero--contact .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.75) 45%, rgba(31,31,51,0.35) 100%);
+  z-index: 0;
+}
+.sam-hero--contact .sam-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+.sam-hero__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  width: 100%;
+}
+.sam-hero__overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-hero__h1 {
+  font-family: var(--sam-font);
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-07) 0;
+  max-width: 22ch;
+}
+.sam-hero__lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-white);
+  margin: 0;
+  max-width: 60ch;
+}
+
+
+/* ============================================================
+   2. INTENT ROUTER + FORM
+   ============================================================ */
+
+.sam-contact-form-section {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-contact-form-section__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* Intent Selector */
+.sam-contact-intent__prompt {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  text-align: center;
+}
+.sam-contact-intent__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+  margin-bottom: var(--sp-08);
+}
+.sam-contact-intent__btn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+  padding: var(--sp-05) var(--sp-06);
+  background: var(--sam-white);
+  border: 2px solid var(--sam-border-light);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--ease), background-color var(--ease);
+}
+.sam-contact-intent__btn:hover {
+  border-color: var(--sam-space-cadet);
+}
+.sam-contact-intent__btn:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-contact-intent__btn--active {
+  border-color: var(--sam-space-cadet);
+  background: var(--sam-seashell);
+}
+.sam-contact-intent__btn-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+}
+.sam-contact-intent__btn-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--sam-comet);
+}
+
+/* Expectation Line */
+.sam-contact-expectation {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--sam-teal-dark);
+  background: rgba(0, 152, 172, 0.06);
+  border-left: 3px solid var(--sam-teal-dark);
+  padding: var(--sp-05) var(--sp-06);
+  margin: 0 0 var(--sp-08) 0;
+}
+
+
+/* ── Form Styles ── */
+
+.sam-contact-form__heading {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-07) 0;
+}
+
+.sam-contact-form__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-05);
+  margin-bottom: var(--sp-06);
+}
+
+.sam-contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+}
+.sam-contact-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.sam-contact-form__field label {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-space-cadet);
+}
+
+.sam-contact-form__field input[type="text"],
+.sam-contact-form__field input[type="email"],
+.sam-contact-form__field select,
+.sam-contact-form__field textarea {
+  font-family: var(--sam-font);
+  font-size: 1rem;
+  padding: var(--sp-04) var(--sp-05);
+  border: 1px solid var(--sam-border-light);
+  color: var(--sam-black);
+  background: var(--sam-white);
+  transition: border-color var(--ease);
+}
+.sam-contact-form__field input:focus,
+.sam-contact-form__field select:focus,
+.sam-contact-form__field textarea:focus {
+  outline: none;
+  border-color: var(--sam-blue);
+  box-shadow: 0 0 0 3px rgba(0, 92, 186, 0.15);
+}
+.sam-contact-form__field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.sam-contact-form__field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236B6B7F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--sp-05) center;
+  padding-right: var(--sp-08);
+}
+
+/* Validation states */
+.sam-contact-form__field--error input,
+.sam-contact-form__field--error select,
+.sam-contact-form__field--error textarea {
+  border-color: #C4314B;
+}
+.sam-contact-form__field-error {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  color: #C4314B;
+  display: none;
+}
+.sam-contact-form__field--error .sam-contact-form__field-error {
+  display: block;
+}
+
+/* Hint (free email warning) */
+.sam-contact-form__hint {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  color: var(--sam-orange-dark);
+}
+
+/* Honeypot — visually hidden */
+.sam-contact-form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Consent */
+.sam-contact-form__consent {
+  margin-bottom: var(--sp-06);
+  padding-top: var(--sp-05);
+  border-top: 1px solid var(--sam-border-light);
+}
+.sam-contact-form__checkbox {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--sam-comet);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-03);
+  cursor: pointer;
+}
+.sam-contact-form__checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: var(--sam-blue);
+}
+
+/* Submit Button */
+.sam-contact-form__submit {
+  width: auto;
+}
+
+
+/* ============================================================
+   3. SOCIAL PROOF
+   ============================================================ */
+
+.sam-contact-proof {
+  background: var(--sam-seashell);
+  padding: var(--sp-09) 0;
+  border-top: 1px solid var(--sam-border-light);
+}
+.sam-contact-proof__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-contact-proof__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-07);
+  text-align: center;
+}
+.sam-contact-proof__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+}
+.sam-contact-proof__stat-number {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--sam-space-cadet);
+}
+.sam-contact-proof__stat-label {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+/* ============================================================
+   FOCUS & REDUCED MOTION
+   ============================================================ */
+
+.sam-text-link:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sam-btn,
+  .sam-text-link,
+  .sam-contact-intent__btn,
+  .sam-contact-form__field input,
+  .sam-contact-form__field select,
+  .sam-contact-form__field textarea {
+    transition: none !important;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet (max-width: 1055px) */
+@media (max-width: 1055px) {
+
+  .sam-hero--contact {
+    padding: var(--sp-10) 0;
+    min-height: auto;
+  }
+  .sam-hero__h1 {
+    font-size: 3rem;
+    max-width: none;
+  }
+
+  .sam-contact-proof__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-06);
+  }
+}
+
+/* Mobile (max-width: 671px) */
+@media (max-width: 671px) {
+
+  .sam-hero--contact {
+    padding: var(--sp-09) 0;
+  }
+  .sam-hero__inner {
+    padding: 0 16px;
+  }
+  .sam-hero__h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .sam-hero__lead {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .sam-contact-form-section {
+    padding: var(--sp-10) 0;
+  }
+  .sam-contact-form-section__inner {
+    padding: 0 16px;
+  }
+
+  .sam-contact-form__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .sam-contact-form__submit {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .sam-contact-proof {
+    padding: var(--sp-08) 0;
+  }
+  .sam-contact-proof__inner {
+    padding: 0 16px;
+  }
+  .sam-contact-proof__stat-number {
+    font-size: 2rem;
+  }
+}

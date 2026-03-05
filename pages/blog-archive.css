@@ -1,0 +1,288 @@
+/* ============================================================
+   BLOG ARCHIVE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (shared) ── */
+:root {
+  --sam-space-cadet: #1F1F33;
+  --sam-orange: #FF5429;
+  --sam-orange-dark: #D7411B;
+  --sam-white: #FFFFFF;
+  --sam-seashell: #F5F6F8;
+  --sam-black: #111111;
+  --sam-comet: #5A6A80;
+  --sam-border-light: #E2E4E8;
+  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ── Archive Section ── */
+.sam-blog-archive {
+  background: var(--sam-white);
+  padding: 64px 0 96px;
+}
+.sam-blog-archive__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* ── Header ── */
+.sam-blog-archive__header {
+  margin-bottom: 40px;
+}
+.sam-blog-archive__header .overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 16px 0;
+}
+.sam-blog-archive__title {
+  font-family: var(--sam-font);
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 16px 0;
+}
+.sam-blog-archive__lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-comet);
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ── Category Filter ── */
+.sam-blog-archive__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  font: 500 14px/1 var(--sam-font);
+  color: var(--sam-comet);
+  background: var(--sam-seashell);
+  border: 1px solid var(--sam-border-light);
+  text-decoration: none;
+  transition: all 150ms ease-out;
+  cursor: pointer;
+}
+.sam-filter-chip:hover {
+  color: var(--sam-space-cadet);
+  border-color: var(--sam-space-cadet);
+}
+.sam-filter-chip.is-active {
+  color: var(--sam-white);
+  background: var(--sam-space-cadet);
+  border-color: var(--sam-space-cadet);
+}
+
+/* ── Post Grid ── */
+.sam-blog-archive__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* ── Blog Card ── */
+.sam-blog-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  border: 1px solid var(--sam-border-light);
+  background: var(--sam-white);
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+  overflow: hidden;
+}
+.sam-blog-card:hover {
+  border-color: var(--sam-space-cadet);
+  box-shadow: 0 4px 16px rgba(31, 31, 51, 0.08);
+}
+
+/* Card Image */
+.sam-blog-card__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--sam-seashell);
+}
+.sam-blog-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease-out;
+}
+.sam-blog-card:hover .sam-blog-card__image img {
+  transform: scale(1.03);
+}
+.sam-blog-card__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--sam-border-light);
+}
+
+/* Card Body */
+.sam-blog-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  flex-grow: 1;
+}
+
+/* Category Tag */
+.sam-blog-card__category {
+  font: 600 12px/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sam-orange);
+  margin-bottom: 12px;
+}
+
+/* Title */
+.sam-blog-card__title {
+  font: 600 1.125rem/1.35 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Excerpt */
+.sam-blog-card__excerpt {
+  font: 400 0.9375rem/1.5 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Meta */
+.sam-blog-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 400 13px/1 var(--sam-font);
+  color: var(--sam-comet);
+  margin-top: auto;
+}
+.sam-blog-card__dot {
+  font-size: 10px;
+}
+
+/* ── Pagination ── */
+.sam-blog-archive__pagination {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+}
+.sam-blog-archive__pagination .page-numbers {
+  list-style: none;
+  display: flex;
+  gap: 4px;
+  padding: 0;
+  margin: 0;
+}
+.sam-blog-archive__pagination .page-numbers li {
+  display: inline-flex;
+}
+.sam-blog-archive__pagination .page-numbers li a,
+.sam-blog-archive__pagination .page-numbers li span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  font: 500 14px/1 var(--sam-font);
+  color: var(--sam-comet);
+  text-decoration: none;
+  border: 1px solid var(--sam-border-light);
+  transition: all 150ms ease-out;
+}
+.sam-blog-archive__pagination .page-numbers li a:hover {
+  color: var(--sam-space-cadet);
+  border-color: var(--sam-space-cadet);
+}
+.sam-blog-archive__pagination .page-numbers li span.current {
+  color: var(--sam-white);
+  background: var(--sam-space-cadet);
+  border-color: var(--sam-space-cadet);
+}
+.sam-blog-archive__pagination .page-numbers li .prev,
+.sam-blog-archive__pagination .page-numbers li .next {
+  font-weight: 600;
+  padding: 0 16px;
+}
+
+/* ── Empty State ── */
+.sam-blog-archive__empty {
+  text-align: center;
+  padding: 96px 0;
+}
+.sam-blog-archive__empty p {
+  font: 400 1.125rem/1.6 var(--sam-font);
+  color: var(--sam-comet);
+}
+
+/* ── Responsive ── */
+
+/* Tablet */
+@media (max-width: 1055px) {
+  .sam-blog-archive__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .sam-blog-archive__title {
+    font-size: 2.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 671px) {
+  .sam-blog-archive {
+    padding: 48px 0 64px;
+  }
+  .sam-blog-archive__inner {
+    padding: 0 16px;
+  }
+  .sam-blog-archive__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .sam-blog-archive__title {
+    font-size: 2rem;
+  }
+  .sam-blog-archive__filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+  }
+  .sam-filter-chip {
+    flex-shrink: 0;
+  }
+}

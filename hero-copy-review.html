@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero Copy Review — Before/After + Journey Impact</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sam-space-cadet: #1F1F33;
+    --sam-orange: #FF5429;
+    --sam-white: #FFFFFF;
+    --sam-seashell: #F5F6F8;
+    --sam-comet: #5A6A80;
+    --sam-border-light: #E2E4E8;
+    --sam-blue: #005CBA;
+    --sam-teal: #0098AC;
+    --sam-font: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font: 400 15px/1.7 var(--sam-font); color: var(--sam-space-cadet); background: #f0f1f3; }
+
+  .header { background: var(--sam-space-cadet); color: white; padding: 40px; text-align: center; }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .header p { font-size: 14px; color: rgba(255,255,255,.55); max-width: 640px; margin: 0 auto; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+
+  .section { margin-bottom: 40px; }
+  .section h2 { font: 700 18px/1.3 var(--sam-font); margin-bottom: 16px; }
+  .section h3 { font: 600 15px/1.3 var(--sam-font); margin-bottom: 10px; color: var(--sam-comet); }
+
+  .card {
+    background: white;
+    border: 1px solid var(--sam-border-light);
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+
+  .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 700px) { .comparison { grid-template-columns: 1fr; } }
+
+  .comp-card {
+    padding: 24px;
+    border-radius: 8px;
+  }
+  .comp-card--before {
+    background: #FFF8F6;
+    border: 1px solid #FFCDD2;
+  }
+  .comp-card--after {
+    background: #F1F8E9;
+    border: 2px solid #66BB6A;
+  }
+  .comp-label {
+    font: 600 11px/1 var(--sam-font);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .comp-label--before { color: #C62828; }
+  .comp-label--after { color: #2E7D32; }
+
+  .hero-overline { font: 500 12px/1 var(--sam-font); color: var(--sam-teal); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .hero-h1 { font: 700 28px/1.15 var(--sam-font); color: var(--sam-space-cadet); margin-bottom: 12px; }
+  .hero-h1 span { color: var(--sam-orange); }
+  .hero-lead { font: 400 15px/1.6 var(--sam-font); color: var(--sam-comet); margin-bottom: 16px; }
+  .hero-strip { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero-strip-item {
+    font: 500 12px/1 var(--sam-font);
+    background: rgba(0,92,186,0.08);
+    color: var(--sam-blue);
+    padding: 6px 12px;
+    border-radius: 4px;
+  }
+
+  .verdict {
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .verdict--pass { background: #E8F5E9; border-left: 4px solid #43A047; }
+  .verdict--warn { background: #FFF8E1; border-left: 4px solid #FFA000; }
+  .verdict--fail { background: #FFEBEE; border-left: 4px solid #E53935; }
+  .verdict strong { font-weight: 600; }
+
+  .test-grid { display: flex; flex-direction: column; gap: 12px; }
+  .test-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 16px;
+    background: white;
+    border: 1px solid var(--sam-border-light);
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .test-label { flex-shrink: 0; width: 120px; font: 600 12px/1.4 var(--sam-font); color: var(--sam-comet); text-transform: uppercase; letter-spacing: 0.3px; padding-top: 2px; }
+  .test-content { flex: 1; }
+  .test-score { flex-shrink: 0; font: 700 14px/1 var(--sam-font); padding: 4px 10px; border-radius: 12px; }
+  .score-pass { background: #E8F5E9; color: #2E7D32; }
+  .score-warn { background: #FFF8E1; color: #F57F17; }
+  .score-fail { background: #FFEBEE; color: #C62828; }
+
+  .callout {
+    background: var(--sam-space-cadet);
+    color: white;
+    padding: 28px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+  .callout h3 { color: var(--sam-orange); margin-bottom: 12px; }
+  .callout p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.75); }
+
+  .final-hero {
+    background: var(--sam-space-cadet);
+    border-radius: 12px;
+    padding: 48px 40px;
+    color: white;
+    margin-bottom: 16px;
+  }
+  .final-hero .hero-overline { color: var(--sam-teal); }
+  .final-hero .hero-h1 { color: white; font-size: 32px; }
+  .final-hero .hero-h1 span { color: var(--sam-orange); }
+  .final-hero .hero-lead { color: rgba(255,255,255,.7); }
+  .final-hero .hero-strip-item { background: rgba(255,255,255,.1); color: rgba(255,255,255,.85); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Homepage Hero — Copy Review</h1>
+  <p>Does the proposed hero improve journeys? Does it serve the site's four audiences? Honest assessment.</p>
+</div>
+
+<div class="container">
+
+<!-- ============================================ -->
+<!-- SECTION 1: CURRENT VS PROPOSED -->
+<!-- ============================================ -->
+<div class="section">
+  <h2>Current hero vs. proposed direction</h2>
+
+  <div class="comparison">
+    <div class="comp-card comp-card--before">
+      <span class="comp-label comp-label--before">Current</span>
+      <div class="hero-overline">Complete fleet monitoring</div>
+      <div class="hero-h1">Monitor your entire fleet.<br><span>Not just the critical 10%.</span></div>
+      <div class="hero-lead">Conventional sensors need physical access, dedicated wiring, and thousands per asset to install. For hard-to-reach, hazardous, or submerged equipment, that means no monitoring at all — leaving 30–40% of rotating assets invisible. SAM4 reads the electrical signature at the motor control cabinet, making full fleet coverage viable for the first time.</div>
+    </div>
+    <div class="comp-card comp-card--after">
+      <span class="comp-label comp-label--after">Proposed (V1 + V2 blend)</span>
+      <div class="hero-overline">Condition monitoring from the MCC</div>
+      <div class="hero-h1">Eliminate blind spots in critical rotating equipment</div>
+      <div class="hero-lead">SAM4 uses Electrical Signature Analysis to detect developing faults in motors, pumps, and drivetrains — including submerged, hazardous, and inaccessible assets. No sensors on the machine. Weeks to months of advance warning.</div>
+      <div class="hero-strip">
+        <span class="hero-strip-item">90%+ detection accuracy</span>
+        <span class="hero-strip-item">300–800% ROI in water utilities</span>
+        <span class="hero-strip-item">20 min install per asset</span>
+        <span class="hero-strip-item">10,000+ assets monitored</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 2: WHAT IMPROVES -->
+<!-- ============================================ -->
+<div class="section">
+  <h2>What improves</h2>
+
+  <div class="verdict verdict--pass">
+    <strong>Problem clarity (3-second test).</strong> "Blind spots in critical rotating equipment" is instantly understood. The current "Not just the critical 10%" requires the reader to do maths. "Blind spots" is a problem every plant manager recognises without needing context.
+  </div>
+
+  <div class="verdict verdict--pass">
+    <strong>Mechanism credibility (6-second test).</strong> Naming "Electrical Signature Analysis" gives the engineer something concrete. The current lead explains the problem at length (3 sentences before getting to the solution). The proposed version leads with the mechanism in sentence one.
+  </div>
+
+  <div class="verdict verdict--pass">
+    <strong>Impact strip replaces proof bar.</strong> The current proof bar (10,000+ assets, 5,300+ findings, €80M+, 80+ customers) is all about Samotics. The proposed strip mixes what-you-get with scale signals: detection accuracy, ROI, install speed, fleet size. More useful to a buyer deciding whether to click deeper.
+  </div>
+
+  <div class="verdict verdict--pass">
+    <strong>Subheadline is shorter.</strong> 2 sentences vs. 3. Gets to "no sensors on the machine" and "weeks to months of advance warning" faster.
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 3: WHAT DOESN'T IMPROVE (OR GETS WORSE) -->
+<!-- ============================================ -->
+<div class="section">
+  <h2>What doesn't improve — or gets worse</h2>
+
+  <div class="verdict verdict--warn">
+    <strong>The "fleet coverage" angle disappears.</strong> The current hero has a strong positioning claim: you're only monitoring 10% of your assets. That's a provocative number. The proposed version trades it for a safer "blind spots" frame. Both work, but "10%" creates urgency that "blind spots" doesn't. Consider keeping the 10% stat somewhere — maybe the value stack or the impact strip.
+  </div>
+
+  <div class="verdict verdict--warn">
+    <strong>"Eliminate" is strong but risky.</strong> You can't eliminate all blind spots. A reliability engineer will think: "really, all of them?" Consider "Close the blind spots" or "See the assets your sensors can't reach" — still strong, but defensible.
+  </div>
+
+  <div class="verdict verdict--warn">
+    <strong>The proof bar numbers are strong and shouldn't be lost.</strong> €80M+ detection value and 5,300+ validated findings are powerful scale signals. If you move to an impact strip, these either go into the strip or into the social proof section lower on the page. Don't delete them — relocate them.
+  </div>
+
+  <div class="verdict verdict--fail">
+    <strong>"300–800% ROI in water utilities" in the impact strip is too narrow for a homepage.</strong> A metals buyer reads that and thinks: "this is a water product." Either generalise to "300–800% ROI across industrial deployments" or drop the vertical reference entirely. Save water-specific numbers for the water page.
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 4: JOURNEY IMPACT -->
+<!-- ============================================ -->
+<div class="section">
+  <h2>Impact on the 6 buyer journeys</h2>
+
+  <div class="test-grid">
+    <div class="test-row">
+      <span class="test-label">Water buyer</span>
+      <span class="test-content"><strong>Improves.</strong> "Submerged, hazardous, and inaccessible" directly describes their world. Current hero doesn't name these environments. The ESA mention gives the technical buyer something to validate.</span>
+      <span class="test-score score-pass">+</span>
+    </div>
+    <div class="test-row">
+      <span class="test-label">Energy buyer</span>
+      <span class="test-content"><strong>Improves.</strong> "Hazardous" and "inaccessible" cover ATEX and offshore. The current hero's "fleet coverage" framing is less relevant — energy buyers often have few assets but high-value ones. Blind spots framing fits better.</span>
+      <span class="test-score score-pass">+</span>
+    </div>
+    <div class="test-row">
+      <span class="test-label">Metals buyer</span>
+      <span class="test-content"><strong>Neutral to positive.</strong> "Critical rotating equipment" covers mills and crushers. But "blind spots" is less urgent than the current "invisible assets" language. The 6-card challenge section on the metals page does the heavy lifting anyway.</span>
+      <span class="test-score score-pass">~</span>
+    </div>
+    <div class="test-row">
+      <span class="test-label">Chemicals buyer</span>
+      <span class="test-content"><strong>Improves.</strong> "Hazardous" hits ATEX directly. ESA naming gives credibility. The chemicals page hero is already strong — this homepage hero sets up the handoff well.</span>
+      <span class="test-score score-pass">+</span>
+    </div>
+    <div class="test-row">
+      <span class="test-label">Airport buyer</span>
+      <span class="test-content"><strong>Neutral.</strong> "Rotating equipment" is correct but airports think "conveyors" and "baggage handling." The homepage hero can't serve everyone perfectly — the industry routing section handles the handoff. No regression.</span>
+      <span class="test-score score-pass">~</span>
+    </div>
+    <div class="test-row">
+      <span class="test-label">Investor</span>
+      <span class="test-content"><strong>Improves.</strong> ESA naming signals defensible IP. Impact strip with detection accuracy + ROI + scale is exactly what a due diligence reader scans for. The current proof bar's raw numbers are good but don't show what the product does — the proposed strip does both.</span>
+      <span class="test-score score-pass">+</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 5: TIGHTENED PRODUCTION COPY -->
+<!-- ============================================ -->
+<div class="section">
+  <h2>Tightened production-ready hero</h2>
+
+  <div class="final-hero">
+    <div class="hero-overline">Condition monitoring from the MCC</div>
+    <div class="hero-h1">See the assets<br><span>your sensors can't reach</span></div>
+    <div class="hero-lead">SAM4 detects developing faults in motors, pumps, and drivetrains using Electrical Signature Analysis — installed at the motor control cabinet in 20 minutes. No sensors on the machine. Weeks to months of advance warning.</div>
+    <div class="hero-strip">
+      <span class="hero-strip-item">10,000+ assets monitored</span>
+      <span class="hero-strip-item">90%+ detection accuracy</span>
+      <span class="hero-strip-item">300–800% proven ROI</span>
+      <span class="hero-strip-item">80+ customers, 5 continents</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Why this version over the V1 proposal</h3>
+    <div class="test-grid">
+      <div class="test-row">
+        <span class="test-label">Headline</span>
+        <span class="test-content"><strong>"See the assets your sensors can't reach"</strong> — describes the outcome, not the category. "Eliminate blind spots" felt like a category label. This version makes you picture the specific assets you're missing. It's also the actual tagline thread running through every industry page ("where sensors can't go").</span>
+      </div>
+      <div class="test-row">
+        <span class="test-label">Lead</span>
+        <span class="test-content">Starts with what SAM4 does (detects faults), names the method (ESA), names the install point (MCC), gives the time (20 min), gives the outcome (weeks to months). Five facts in two sentences. No philosophy.</span>
+      </div>
+      <div class="test-row">
+        <span class="test-label">Impact strip</span>
+        <span class="test-content">Dropped "in water utilities" from the ROI claim. Now says "300–800% proven ROI" — defensible across verticals. Kept 10,000+ and 80+ as scale anchors. Added "90%+ detection accuracy" as the technical credibility signal.</span>
+      </div>
+      <div class="test-row">
+        <span class="test-label">What moved</span>
+        <span class="test-content">€80M detection value and 5,300+ findings move to the Social Proof section (section 5 on the homepage). They're scale stats, not hero stats. The hero should sell the outcome, not the company's track record.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 6: SITE-WIDE COHERENCE -->
+<!-- ============================================ -->
+<div class="section">
+  <h2>Does this improve the site as a whole?</h2>
+
+  <div class="callout">
+    <h3>The thread that connects everything</h3>
+    <p>Homepage: "See the assets your sensors can't reach"<br>
+    → Water: "Protect water infrastructure without the guesswork"<br>
+    → Energy: "Monitor the assets that keep energy flowing"<br>
+    → Chemicals: "Monitor equipment in ATEX zones — without entering them"<br>
+    → Metals: "Keep your mills running and your mines dewatered"<br>
+    → Airports: "Keep baggage handling systems running — every flight, every day"<br>
+    → Pulp & Paper: "Detect faults before they stop the paper machine"</p>
+  </div>
+
+  <div class="verdict verdict--pass">
+    <strong>The homepage hero now sets up the industry pages.</strong> "See the assets your sensors can't reach" is the universal promise. Each industry page answers: "here's what that means for your specific assets." The current hero ("Monitor your entire fleet") is about coverage volume. The proposed hero is about coverage access — which is what the industry pages actually argue.
+  </div>
+
+  <div class="verdict verdict--warn">
+    <strong>One inconsistency to fix:</strong> The Energy Production hero ("Monitor the assets that keep energy flowing") is the weakest link. It doesn't continue the "can't reach" thread. Consider tightening it to something like "Detect faults in the assets your sensors can't reach — offshore, underground, and in ATEX zones" to maintain the thread. This was flagged in the buyer journey audit too.
+  </div>
+
+  <div class="verdict verdict--pass">
+    <strong>The footer tagline already says it:</strong> "Monitoring the assets your sensors can't reach." The proposed hero headline aligns the top and bottom of every page. Right now the hero and the footer are saying different things.</strong>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 7: DECISION -->
+<!-- ============================================ -->
+<div class="section">
+  <h2>Recommendation</h2>
+
+  <div class="card" style="border: 2px solid var(--sam-orange);">
+    <h3 style="color: var(--sam-orange); margin-bottom: 12px;">Implement the tightened version</h3>
+    <p style="font-size: 14px; line-height: 1.6; color: var(--sam-comet);">
+      <strong>Headline:</strong> "See the assets your sensors can't reach"<br>
+      <strong>Overline:</strong> "Condition monitoring from the MCC"<br>
+      <strong>Lead:</strong> SAM4 detects developing faults in motors, pumps, and drivetrains using Electrical Signature Analysis — installed at the motor control cabinet in 20 minutes. No sensors on the machine. Weeks to months of advance warning.<br>
+      <strong>Impact strip:</strong> 10,000+ assets | 90%+ accuracy | 300–800% ROI | 80+ customers, 5 continents<br>
+      <strong>CTAs:</strong> "See How It Works" + "Talk to an engineer" (unchanged)<br>
+      <strong>Logos:</strong> Keep existing logos (unchanged)
+    </p>
+    <p style="font-size: 13px; margin-top: 12px; color: var(--sam-comet);">
+      <strong>Also:</strong> Move €80M and 5,300+ findings to the Social Proof section below. Fix Energy Production hero to continue the thread.
+    </p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

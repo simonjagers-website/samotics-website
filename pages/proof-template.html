@@ -1,0 +1,203 @@
+<!-- ============================================================
+     SAMOTICS PROOF / CUSTOMER STORY PAGE — Bricks Code Element
+     For pages like /proof/yorkshire-water/, /proof/vitens/, etc.
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  proof-template.css
+       3. JavaScript   →  proof-template.js
+     ============================================================ -->
+
+
+<main id="main-content" class="sam-proof-story">
+
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-hero sam-hero--proof" style="background-image: url('{{HERO_IMAGE}}'); background-color: var(--sam-space-cadet);">
+    <div class="sam-hero__overlay"></div>
+    <div class="sam-hero__inner">
+      <div class="sam-hero__content">
+        <nav class="sam-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/proof/">Proof</a></li>
+            <li aria-current="page">{{CUSTOMER_NAME}}</li>
+          </ol>
+        </nav>
+        <p class="sam-hero__overline">Customer story</p>
+        <h1 class="sam-hero__h1">{{HERO_HEADLINE}}</h1>
+        <p class="sam-hero__lead">{{HERO_LEAD}}</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. KPI STRIP ─── -->
+  <section class="sam-proof-kpis">
+    <div class="sam-proof-kpis__inner">
+      <div class="sam-proof-kpis__item">
+        <span class="sam-proof-kpis__value kpi-value">{{KPI_1_VALUE}}</span>
+        <span class="sam-proof-kpis__label">{{KPI_1_LABEL}}</span>
+      </div>
+      <div class="sam-proof-kpis__item">
+        <span class="sam-proof-kpis__value kpi-value">{{KPI_2_VALUE}}</span>
+        <span class="sam-proof-kpis__label">{{KPI_2_LABEL}}</span>
+      </div>
+      <div class="sam-proof-kpis__item">
+        <span class="sam-proof-kpis__value kpi-value">{{KPI_3_VALUE}}</span>
+        <span class="sam-proof-kpis__label">{{KPI_3_LABEL}}</span>
+      </div>
+      <div class="sam-proof-kpis__item">
+        <span class="sam-proof-kpis__value kpi-value">{{KPI_4_VALUE}}</span>
+        <span class="sam-proof-kpis__label">{{KPI_4_LABEL}}</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 3. CUSTOMER OVERVIEW ─── -->
+  <section class="sam-proof-overview">
+    <div class="sam-proof-overview__inner">
+      <div class="sam-proof-overview__sidebar">
+        <div class="sam-proof-overview__logo">
+          <!-- Customer logo placeholder -->
+          <span>{{CUSTOMER_NAME}}</span>
+        </div>
+        <dl class="sam-proof-overview__meta">
+          <dt>Industry</dt>
+          <dd>{{INDUSTRY}}</dd>
+          <dt>Location</dt>
+          <dd>{{LOCATION}}</dd>
+          <dt>Assets monitored</dt>
+          <dd>{{ASSETS_COUNT}}</dd>
+          <dt>Solution</dt>
+          <dd>{{SOLUTION}}</dd>
+          <dt>Since</dt>
+          <dd>{{SINCE_YEAR}}</dd>
+        </dl>
+      </div>
+      <div class="sam-proof-overview__body">
+        <p class="overline">Overview</p>
+        <h2>{{OVERVIEW_HEADLINE}}</h2>
+        <p>{{OVERVIEW_BODY}}</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 4. CHALLENGE ─── -->
+  <section class="sam-proof-challenge">
+    <div class="sam-proof-challenge__inner">
+      <p class="overline">The challenge</p>
+      <h2>{{CHALLENGE_HEADLINE}}</h2>
+      <div class="sam-proof-challenge__content">
+        <p>{{CHALLENGE_PARA_1}}</p>
+        <p>{{CHALLENGE_PARA_2}}</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. SOLUTION ─── -->
+  <section class="sam-proof-solution">
+    <div class="sam-proof-solution__inner">
+      <div class="sam-proof-solution__text">
+        <p class="overline">The solution</p>
+        <h2>{{SOLUTION_HEADLINE}}</h2>
+        <p>{{SOLUTION_PARA_1}}</p>
+        <p>{{SOLUTION_PARA_2}}</p>
+      </div>
+      <div class="sam-proof-solution__image">
+        <div class="sam-proof-solution__placeholder">
+          <span>Solution image / dashboard screenshot</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 6. RESULTS ─── -->
+  <section class="sam-proof-results">
+    <div class="sam-proof-results__inner">
+      <p class="overline">The results</p>
+      <h2>{{RESULTS_HEADLINE}}</h2>
+
+      <div class="sam-proof-results__grid">
+
+        <div class="sam-proof-results__card">
+          <span class="sam-proof-results__card-value kpi-value">{{RESULT_1_VALUE}}</span>
+          <h3>{{RESULT_1_TITLE}}</h3>
+          <p>{{RESULT_1_DESC}}</p>
+        </div>
+
+        <div class="sam-proof-results__card">
+          <span class="sam-proof-results__card-value kpi-value">{{RESULT_2_VALUE}}</span>
+          <h3>{{RESULT_2_TITLE}}</h3>
+          <p>{{RESULT_2_DESC}}</p>
+        </div>
+
+        <div class="sam-proof-results__card">
+          <span class="sam-proof-results__card-value kpi-value">{{RESULT_3_VALUE}}</span>
+          <h3>{{RESULT_3_TITLE}}</h3>
+          <p>{{RESULT_3_DESC}}</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 7. QUOTE ─── -->
+  <section class="sam-proof-quote">
+    <div class="sam-proof-quote__inner">
+      <blockquote>
+        <p>&ldquo;{{QUOTE_TEXT}}&rdquo;</p>
+        <footer>
+          <strong>{{QUOTE_AUTHOR}}</strong>
+          <span>{{QUOTE_ROLE}}, {{CUSTOMER_NAME}}</span>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+
+  <!-- ─── 8. RELATED CASE STUDIES ─── -->
+  <section class="sam-proof-related">
+    <div class="sam-proof-related__inner">
+      <h2>More from {{INDUSTRY}}</h2>
+      <div class="sam-proof-related__grid">
+
+        <a href="{{RELATED_1_URL}}" class="sam-proof-related__card">
+          <span class="sam-proof-related__card-kpi kpi-value">{{RELATED_1_KPI}}</span>
+          <h3>{{RELATED_1_TITLE}}</h3>
+          <span class="sam-proof-related__link">Read story &rarr;</span>
+        </a>
+
+        <a href="{{RELATED_2_URL}}" class="sam-proof-related__card">
+          <span class="sam-proof-related__card-kpi kpi-value">{{RELATED_2_KPI}}</span>
+          <h3>{{RELATED_2_TITLE}}</h3>
+          <span class="sam-proof-related__link">Read story &rarr;</span>
+        </a>
+
+        <a href="{{RELATED_3_URL}}" class="sam-proof-related__card">
+          <span class="sam-proof-related__card-kpi kpi-value">{{RELATED_3_KPI}}</span>
+          <h3>{{RELATED_3_TITLE}}</h3>
+          <span class="sam-proof-related__link">Read story &rarr;</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 9. CTA ─── -->
+  <section class="sam-cta-block">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">See results like {{CUSTOMER_NAME}}</h2>
+      <p class="sam-cta-block__sub">Find out how SAM4 can protect your assets and cut costs.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/proof/" class="sam-btn sam-btn--secondary">See More Proof</a>
+      </div>
+    </div>
+  </section>
+
+</main>

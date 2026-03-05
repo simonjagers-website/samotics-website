@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Industry Pages — Fixes Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sam-space-cadet: #1F1F33;
+    --sam-orange: #FF5429;
+    --sam-white: #FFFFFF;
+    --sam-seashell: #F5F6F8;
+    --sam-comet: #5A6A80;
+    --sam-border-light: #E2E4E8;
+    --sam-font: 'IBM Plex Sans', -apple-system, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font: 400 15px/1.6 var(--sam-font); color: var(--sam-space-cadet); background: #f0f1f3; }
+
+  .preview-header {
+    background: var(--sam-space-cadet);
+    color: white;
+    padding: 32px 40px;
+    text-align: center;
+  }
+  .preview-header h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .preview-header p { font-size: 14px; color: rgba(255,255,255,.6); }
+
+  .stats-bar {
+    max-width: 1000px;
+    margin: 24px auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 16px;
+  }
+  .stat-card {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--sam-border-light);
+    border-radius: 8px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .stat-card__value { font: 700 28px/1 var(--sam-font); color: var(--sam-orange); display: block; }
+  .stat-card__label { font: 400 12px/1.3 var(--sam-font); color: var(--sam-comet); margin-top: 4px; display: block; }
+
+  .page-section { max-width: 1000px; margin: 0 auto 32px; padding: 0 24px; }
+  .page-section__header {
+    background: var(--sam-space-cadet);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 8px 8px 0 0;
+    font: 600 15px/1 var(--sam-font);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .page-section__badge {
+    background: var(--sam-orange);
+    color: white;
+    font: 600 11px/1 var(--sam-font);
+    padding: 3px 8px;
+    border-radius: 10px;
+  }
+  .page-section__body {
+    background: white;
+    border: 1px solid var(--sam-border-light);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 0;
+  }
+
+  .fix-row {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--sam-border-light);
+  }
+  .fix-row:last-child { border-bottom: none; }
+  .fix-row__label {
+    font: 600 13px/1 var(--sam-font);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fix-tag {
+    font: 500 10px/1 var(--sam-font);
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .fix-tag--lead { background: #E3F2FD; color: #1565C0; }
+  .fix-tag--prefooter { background: #E8F5E9; color: #2E7D32; }
+  .fix-tag--cleanup { background: #FFF3E0; color: #E65100; }
+  .fix-tag--copy { background: #F3E5F5; color: #7B1FA2; }
+
+  .diff { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; }
+  .diff-before, .diff-after {
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .diff-before { background: #FFF0F0; border-left: 3px solid #E53935; }
+  .diff-after { background: #F0FFF0; border-left: 3px solid #43A047; }
+  .diff-label { font: 600 10px/1 var(--sam-font); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; display: block; }
+  .diff-label--before { color: #C62828; }
+  .diff-label--after { color: #2E7D32; }
+</style>
+</head>
+<body>
+
+<div class="preview-header">
+  <h1>Industry Pages — Ruleset Fixes</h1>
+  <p>Applied Energy Production template rules across all 6 pages</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-card">
+    <span class="stat-card__value">6</span>
+    <span class="stat-card__label">Pages updated</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-card__value">16</span>
+    <span class="stat-card__label">Total fixes</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-card__value">5</span>
+    <span class="stat-card__label">Lead texts trimmed</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-card__value">6</span>
+    <span class="stat-card__label">Pre-footers fixed</span>
+  </div>
+</div>
+
+<!-- ENERGY PRODUCTION -->
+<div class="page-section">
+  <div class="page-section__header">
+    Energy Production
+    <span class="page-section__badge">5 fixes</span>
+  </div>
+  <div class="page-section__body">
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--cleanup">Cleanup</span> Removed duplicate empty scaling section</div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--lead">Lead</span> Challenge lead trimmed to 2 sentences</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before (4 sentences)</span>
+        <div class="diff-before">ATEX zones on rigs, nacelles 100 metres in the air, and turbine halls with restricted access. Vibration sensors can't reach these assets. ESPs sit kilometres underground. SAM4 monitors from the motor control cabinet — wherever it sits.</div>
+        <span class="diff-label diff-label--after">After (2 sentences)</span>
+        <div class="diff-after">ATEX zones, nacelles 100 metres up, ESPs kilometres underground — vibration sensors can't reach these assets. SAM4 monitors from the motor control cabinet.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--copy">Copy</span> CTA heading: "oil &amp; gas" → "energy production"</div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--prefooter">Pre-footer</span> Added heading + industry-specific subtitle</div>
+      <div class="diff">
+        <span class="diff-label diff-label--after">Added</span>
+        <div class="diff-after">&lt;h2&gt;Ready to protect your energy assets?&lt;/h2&gt;
+See what condition monitoring could save across your…</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--cleanup">Cleanup</span> Removed Sabesp case study (water utility, not energy)</div>
+    </div>
+  </div>
+</div>
+
+<!-- WATER -->
+<div class="page-section">
+  <div class="page-section__header">
+    Water &amp; Wastewater
+    <span class="page-section__badge">1 fix</span>
+  </div>
+  <div class="page-section__body">
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--prefooter">Pre-footer</span> Added heading + industry-specific subtitle</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before</span>
+        <div class="diff-before">See what condition monitoring could save across your motor fleet.</div>
+        <span class="diff-label diff-label--after">After</span>
+        <div class="diff-after">&lt;h2&gt;Ready to protect your water assets?&lt;/h2&gt;
+See what condition monitoring could save across your pumping stations and treatment plants.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHEMICALS -->
+<div class="page-section">
+  <div class="page-section__header">
+    Chemicals
+    <span class="page-section__badge">3 fixes</span>
+  </div>
+  <div class="page-section__body">
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--cleanup">Cleanup</span> Removed duplicate empty scaling section</div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--lead">Lead</span> Challenge lead trimmed to 2 sentences</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before (3 sentences)</span>
+        <div class="diff-before">Chemical plants run 24/7 with tight safety margins. Equipment in explosive atmospheres can't be easily instrumented. When a compressor or reactor pump fails without warning, the cost is measured in lost batches and safety incidents.</div>
+        <span class="diff-label diff-label--after">After (2 sentences)</span>
+        <div class="diff-after">Chemical plants run 24/7 in explosive atmospheres where equipment can't be easily instrumented. When a compressor or reactor pump fails, the cost is lost batches and safety incidents.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--prefooter">Pre-footer</span> Added heading + industry-specific subtitle</div>
+      <div class="diff">
+        <span class="diff-label diff-label--after">Added</span>
+        <div class="diff-after">&lt;h2&gt;Ready to protect your chemical plant assets?&lt;/h2&gt;
+See what condition monitoring could save across your reactors, compressors, and sealed pumps.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- METALS & MINING -->
+<div class="page-section">
+  <div class="page-section__header">
+    Metals &amp; Mining
+    <span class="page-section__badge">2 fixes</span>
+  </div>
+  <div class="page-section__body">
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--lead">Lead</span> Challenge lead trimmed to 2 sentences</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before (3 sentences)</span>
+        <div class="diff-before">Steel mills run 24/7. Mines can't stop dewatering. When a roller bearing fails on a hot strip mill or a borehole pump seizes underground, you're looking at hours of lost production and emergency repair costs.</div>
+        <span class="diff-label diff-label--after">After (2 sentences)</span>
+        <div class="diff-after">Steel mills run 24/7 and mines can't stop dewatering. When a roller bearing fails or a borehole pump seizes, you face hours of lost production and emergency costs.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--prefooter">Pre-footer</span> Added heading + industry-specific subtitle</div>
+      <div class="diff">
+        <span class="diff-label diff-label--after">Added</span>
+        <div class="diff-after">&lt;h2&gt;Ready to protect your production assets?&lt;/h2&gt;
+See what condition monitoring could save across your mills, smelters, and mine sites.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AIRPORTS -->
+<div class="page-section">
+  <div class="page-section__header">
+    Airports
+    <span class="page-section__badge">2 fixes</span>
+  </div>
+  <div class="page-section__body">
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--lead">Lead</span> Challenge lead trimmed to 2 sentences</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before (3 sentences)</span>
+        <div class="diff-before">Airport conveyor systems run thousands of hours per year under constant load. A single motor failure on a baggage line can delay flights, strand luggage, and damage passenger trust. Maintenance windows are narrow.</div>
+        <span class="diff-label diff-label--after">After (2 sentences)</span>
+        <div class="diff-after">Airport conveyor systems run thousands of hours per year under constant load. A single motor failure can delay flights, strand luggage, and damage passenger trust.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--prefooter">Pre-footer</span> Added heading + industry-specific subtitle</div>
+      <div class="diff">
+        <span class="diff-label diff-label--after">Added</span>
+        <div class="diff-after">&lt;h2&gt;Ready to protect your airport operations?&lt;/h2&gt;
+See what condition monitoring could save across your baggage handling and HVAC systems.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PULP & PAPER -->
+<div class="page-section">
+  <div class="page-section__header">
+    Pulp &amp; Paper
+    <span class="page-section__badge">2 fixes</span>
+  </div>
+  <div class="page-section__body">
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--lead">Lead</span> Challenge lead trimmed to 2 sentences</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before (3 sentences)</span>
+        <div class="diff-before">Paper mills are hot, dusty, and chemical-heavy environments that degrade equipment fast. Unplanned stops on a paper machine cost tens of thousands per hour. Traditional sensors struggle in these conditions.</div>
+        <span class="diff-label diff-label--after">After (2 sentences)</span>
+        <div class="diff-after">Paper mills are hot, dusty, and chemical-heavy — conditions that degrade equipment fast. Unplanned stops on a paper machine cost tens of thousands per hour.</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--prefooter">Pre-footer</span> Added heading + industry-specific subtitle</div>
+      <div class="diff">
+        <span class="diff-label diff-label--after">Added</span>
+        <div class="diff-after">&lt;h2&gt;Ready to protect your mill assets?&lt;/h2&gt;
+See what condition monitoring could save across your paper machines, refiners, and stock prep systems.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

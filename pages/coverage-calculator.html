@@ -1,0 +1,199 @@
+<!-- ============================================================
+     SAMOTICS COVERAGE CALCULATOR PAGE — Bricks Code Element
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  coverage-calculator.css
+       3. JavaScript   →  coverage-calculator.js
+     ============================================================ -->
+
+
+<!-- ===================== PHP & HTML ===================== -->
+
+<main id="main-content" class="sam-calc">
+
+  <!-- ─── 1. HERO (compact, no photo) ─── -->
+  <section class="sam-calc-hero">
+    <div class="sam-calc-hero__inner">
+      <p class="overline">Coverage Calculator</p>
+      <h1 class="sam-calc-hero__h1">How much of your motor fleet is unmonitored?</h1>
+      <p class="lead sam-calc-hero__lead">Answer four questions. Get your coverage gap percentage, estimated annual risk exposure, and a benchmark comparison — in under 60 seconds.</p>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. CALCULATOR ─── -->
+  <section class="sam-calc-tool" id="calculator">
+    <div class="sam-calc-tool__inner">
+
+      <form class="sam-calc-form" id="calcForm" novalidate>
+        <div class="sam-calc-form__grid">
+
+          <!-- Total assets -->
+          <div class="sam-calc-form__group">
+            <label for="calc-total" class="sam-calc-form__label">Total rotating assets</label>
+            <input type="number" id="calc-total" name="total_assets" class="sam-calc-form__input" placeholder="e.g. 500" min="1" required>
+            <span class="sam-calc-form__hint">Motors, pumps, fans, compressors — everything in your fleet.</span>
+          </div>
+
+          <!-- Monitored assets -->
+          <div class="sam-calc-form__group">
+            <label for="calc-monitored" class="sam-calc-form__label">Currently monitored assets</label>
+            <input type="number" id="calc-monitored" name="monitored_assets" class="sam-calc-form__input" placeholder="e.g. 150" min="0" required>
+            <span class="sam-calc-form__hint">Assets with any form of condition monitoring (vibration, ESA, online).</span>
+          </div>
+
+          <!-- Average downtime cost -->
+          <div class="sam-calc-form__group">
+            <label for="calc-cost" class="sam-calc-form__label">Average cost of unplanned downtime</label>
+            <div class="sam-calc-form__input-wrap">
+              <select id="calc-currency" class="sam-calc-form__currency" aria-label="Currency">
+                <option value="€">€</option>
+                <option value="£">£</option>
+                <option value="$">$</option>
+              </select>
+              <input type="number" id="calc-cost" name="downtime_cost" class="sam-calc-form__input sam-calc-form__input--currency" placeholder="e.g. 25000" min="0" required>
+            </div>
+            <span class="sam-calc-form__hint">Per event — including repair, production loss, and consequential costs.</span>
+          </div>
+
+          <!-- Estimated failures per year -->
+          <div class="sam-calc-form__group">
+            <label for="calc-failures" class="sam-calc-form__label">Estimated failure events per year</label>
+            <input type="number" id="calc-failures" name="failure_events" class="sam-calc-form__input" placeholder="e.g. 12" min="0" required>
+            <span class="sam-calc-form__hint">On unmonitored assets only. Best estimate is fine.</span>
+          </div>
+
+        </div>
+
+        <div class="sam-calc-form__actions">
+          <button type="submit" class="sam-btn sam-btn--primary sam-calc-form__submit">Calculate Your Coverage Gap</button>
+        </div>
+      </form>
+
+    </div>
+  </section>
+
+
+  <!-- ─── 3. RESULTS (hidden until calculation) ─── -->
+  <section class="sam-calc-results" id="calcResults" hidden>
+    <div class="sam-calc-results__inner">
+
+      <div class="sam-calc-results__cards">
+        <!-- Coverage Gap -->
+        <div class="sam-calc-results__card sam-calc-results__card--gap">
+          <span class="sam-calc-results__card-label">Your coverage gap</span>
+          <span class="sam-calc-results__card-value kpi-value" id="resultGap">—</span>
+          <span class="sam-calc-results__card-sub" id="resultGapDetail"></span>
+        </div>
+
+        <!-- Annual Risk -->
+        <div class="sam-calc-results__card sam-calc-results__card--risk">
+          <span class="sam-calc-results__card-label">Estimated annual risk</span>
+          <span class="sam-calc-results__card-value kpi-value" id="resultRisk">—</span>
+          <span class="sam-calc-results__card-sub" id="resultRiskDetail"></span>
+        </div>
+
+        <!-- Benchmark -->
+        <div class="sam-calc-results__card sam-calc-results__card--benchmark">
+          <span class="sam-calc-results__card-label">Your benchmark</span>
+          <span class="sam-calc-results__card-value kpi-value" id="resultBenchmark">—</span>
+          <span class="sam-calc-results__card-sub" id="resultBenchmarkDetail"></span>
+        </div>
+      </div>
+
+      <!-- Recommendation -->
+      <div class="sam-calc-results__recommendation" id="resultRecommendation"></div>
+
+      <!-- Recalculate -->
+      <div class="sam-calc-results__actions">
+        <button type="button" class="sam-btn sam-btn--outline sam-calc-results__recalc" id="recalcBtn">Recalculate</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 4. LEAD CAPTURE ─── -->
+  <section class="sam-calc-capture" id="calcCapture">
+    <div class="sam-calc-capture__inner">
+      <h2>Get a detailed analysis</h2>
+      <p class="lead sam-calc-capture__lead">We'll review your numbers, identify which assets to prioritise, and send you a site-specific coverage assessment — free, no obligation.</p>
+
+      <form class="sam-calc-capture__form" id="captureForm" novalidate>
+        <!-- Honeypot -->
+        <div style="position:absolute;left:-9999px;" aria-hidden="true">
+          <label for="capture-website">Website</label>
+          <input type="text" id="capture-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="sam-calc-capture__fields">
+          <div class="sam-calc-capture__group">
+            <label for="capture-fname" class="sam-calc-capture__label">First name <span aria-hidden="true">*</span></label>
+            <input type="text" id="capture-fname" name="first_name" class="sam-calc-capture__input" required>
+          </div>
+          <div class="sam-calc-capture__group">
+            <label for="capture-email" class="sam-calc-capture__label">Work email <span aria-hidden="true">*</span></label>
+            <input type="email" id="capture-email" name="email" class="sam-calc-capture__input" required>
+          </div>
+          <div class="sam-calc-capture__group">
+            <label for="capture-company" class="sam-calc-capture__label">Company <span aria-hidden="true">*</span></label>
+            <input type="text" id="capture-company" name="company" class="sam-calc-capture__input" required>
+          </div>
+        </div>
+
+        <div class="sam-calc-capture__consent">
+          <label class="sam-calc-capture__consent-label">
+            <input type="checkbox" id="capture-gdpr" name="gdpr_consent" class="sam-calc-capture__checkbox" required>
+            <span>I agree to Samotics processing my data per the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>. <span aria-hidden="true">*</span></span>
+          </label>
+        </div>
+
+        <div class="sam-calc-capture__actions">
+          <button type="submit" class="sam-btn sam-btn--primary sam-calc-capture__submit">Get Your Detailed Analysis</button>
+        </div>
+      </form>
+
+      <!-- Confirmation -->
+      <div class="sam-calc-capture__confirmation" id="captureConfirmation" hidden>
+        <div class="sam-calc-capture__confirmation-icon" aria-hidden="true">&#10003;</div>
+        <p class="sam-calc-capture__confirmation-msg" id="captureConfMsg"></p>
+        <p class="sam-calc-capture__confirmation-next">We'll send your personalised coverage assessment within 2 business days.</p>
+        <a href="/contact?intent=audit" class="sam-text-link">Or start your asset audit now &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. SOCIAL PROOF STRIP ─── -->
+  <section class="sam-calc-social">
+    <div class="sam-calc-social__inner">
+      <div class="sam-calc-social__stats">
+        <div class="sam-calc-social__stat">
+          <span class="sam-calc-social__stat-value kpi-value">10,000+</span>
+          <span class="sam-calc-social__stat-label">assets monitored</span>
+        </div>
+        <div class="sam-calc-social__stat">
+          <span class="sam-calc-social__stat-value kpi-value">80+</span>
+          <span class="sam-calc-social__stat-label">customers worldwide</span>
+        </div>
+        <div class="sam-calc-social__stat">
+          <span class="sam-calc-social__stat-value kpi-value">5</span>
+          <span class="sam-calc-social__stat-label">continents</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 6. CTA BLOCK ─── -->
+  <section class="sam-cta-block sam-cta-block--calc">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">Ready to close your coverage gap?</h2>
+      <p class="sam-cta-block__sub">An asset audit identifies exactly which assets to prioritise and builds the business case for your team.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=audit" class="sam-btn sam-btn--primary">Start Your Asset Audit</a>
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--outline">Request a Demo</a>
+      </div>
+    </div>
+  </section>
+
+</main>

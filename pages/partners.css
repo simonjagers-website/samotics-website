@@ -1,0 +1,181 @@
+/* ============================================================
+   SAMOTICS PARTNERS HUB PAGE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  --sp-01: 2px; --sp-02: 4px; --sp-03: 8px; --sp-04: 12px; --sp-05: 16px;
+  --sp-06: 24px; --sp-07: 32px; --sp-08: 48px; --sp-09: 64px; --sp-10: 96px;
+  --sp-11: 128px; --sp-12: 160px;
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset ── */
+.sam-partners { overflow-x: hidden; }
+
+/* ── Shared ── */
+.overline { font-family: var(--sam-font); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 var(--sp-04) 0; }
+.lead { font-family: var(--sam-font); font-size: 1.25rem; line-height: 1.55; margin: 0 0 var(--sp-07) 0; }
+.kpi-value { font-family: var(--sam-mono); font-weight: 700; }
+.sam-btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--sam-font); font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: 6px; cursor: pointer; padding: 14px 32px; transition: background var(--ease), box-shadow var(--ease), border-color var(--ease); }
+.sam-btn--primary { background: var(--sam-orange); color: var(--sam-white); border: none; }
+.sam-btn--primary:hover { background: var(--sam-orange-dark); box-shadow: var(--shadow-cta); }
+.sam-btn--outline { background: transparent; color: var(--sam-space-cadet); border: 2px solid var(--sam-space-cadet); }
+.sam-btn--outline:hover { background: var(--sam-seashell); }
+
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+.sam-hero--partners {
+  position: relative; min-height: 520px; display: flex; align-items: center;
+  background-color: var(--sam-space-cadet);
+  background-size: cover; background-position: center; padding: var(--sp-11) var(--sp-06);
+}
+.sam-hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.75) 45%, rgba(31,31,51,0.35) 100%);
+  z-index: 1;
+}
+.sam-hero__inner { position: relative; z-index: 2; max-width: 1120px; width: 100%; margin: 0 auto; }
+.sam-hero__content { max-width: 640px; }
+.sam-hero__overline { font-family: var(--sam-font); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sam-orange); margin: 0 0 var(--sp-04) 0; }
+.sam-hero__h1 { font-family: var(--sam-font); font-size: 2.75rem; font-weight: 700; line-height: 1.15; color: var(--sam-white); margin: 0 0 var(--sp-06) 0; }
+.sam-hero__lead { font-family: var(--sam-font); font-size: 1.125rem; line-height: 1.6; color: var(--sam-muted-dark); margin: 0 0 var(--sp-07) 0; }
+.sam-hero__actions { display: flex; gap: var(--sp-05); flex-wrap: wrap; }
+
+
+/* ============================================================
+   2. STATS STRIP
+   ============================================================ */
+.sam-partners-stats { background: var(--sam-white); padding: var(--sp-09) var(--sp-06); border-bottom: 1px solid var(--sam-border-light); }
+.sam-partners-stats__inner { max-width: 1120px; margin: 0 auto; }
+.sam-partners-stats__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-07); text-align: center; }
+.sam-partners-stats__item { display: flex; flex-direction: column; gap: var(--sp-03); }
+.sam-partners-stats__number { font-size: 2rem; color: var(--sam-space-cadet); }
+.sam-partners-stats__label { font-family: var(--sam-font); font-size: 0.875rem; color: var(--sam-comet); line-height: 1.4; }
+
+
+/* ============================================================
+   3. ABB AS PROOF OF MODEL
+   ============================================================ */
+.sam-partners-abb { background: var(--sam-seashell); padding: var(--sp-11) var(--sp-06); }
+.sam-partners-abb__inner { max-width: 1120px; margin: 0 auto; }
+.sam-partners-abb .overline { color: var(--sam-space-cadet); }
+.sam-partners-abb h2 { font-family: var(--sam-font); font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--sam-space-cadet); margin: 0 0 var(--sp-06) 0; }
+.sam-partners-abb__lead { color: var(--sam-black); max-width: 780px; }
+.sam-partners-abb__body { font-family: var(--sam-font); font-size: 1rem; line-height: 1.7; color: var(--sam-black); max-width: 780px; margin: 0 0 var(--sp-06) 0; }
+.sam-partners-abb__link { font-family: var(--sam-font); font-size: 1rem; font-weight: 600; color: var(--sam-orange-dark); text-decoration: none; transition: color var(--ease); }
+.sam-partners-abb__link:hover { color: var(--sam-orange-deep); }
+
+
+/* ============================================================
+   4. PARTNER TYPES
+   ============================================================ */
+.sam-partners-types { background: var(--sam-white); padding: var(--sp-11) var(--sp-06); }
+.sam-partners-types__inner { max-width: 1120px; margin: 0 auto; }
+.sam-partners-types .overline { color: var(--sam-space-cadet); }
+.sam-partners-types h2 { font-family: var(--sam-font); font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--sam-space-cadet); margin: 0 0 var(--sp-06) 0; }
+.sam-partners-types__lead { color: var(--sam-black); max-width: 780px; }
+
+.sam-partners-types__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-07); }
+.sam-partners-types__card {
+  background: var(--sam-seashell); border-top: 4px solid var(--sam-teal-dark);
+  border-radius: 8px; padding: var(--sp-07) var(--sp-06);
+}
+.sam-partners-types__card-title { font-family: var(--sam-font); font-size: 1.125rem; font-weight: 600; color: var(--sam-space-cadet); margin: 0 0 var(--sp-04) 0; }
+.sam-partners-types__card-desc { font-family: var(--sam-font); font-size: 0.9375rem; line-height: 1.6; color: var(--sam-black); margin: 0; }
+
+
+/* ============================================================
+   5. WHAT SAMOTICS PROVIDES
+   ============================================================ */
+.sam-partners-support { background: var(--sam-seashell); padding: var(--sp-11) var(--sp-06); }
+.sam-partners-support__inner { max-width: 1120px; margin: 0 auto; }
+.sam-partners-support .overline { color: var(--sam-space-cadet); }
+.sam-partners-support h2 { font-family: var(--sam-font); font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--sam-space-cadet); margin: 0 0 var(--sp-08) 0; }
+
+.sam-partners-support__items { display: flex; flex-direction: column; gap: var(--sp-06); }
+.sam-partners-support__item {
+  background: var(--sam-white); border-left: 4px solid var(--sam-blue-dark);
+  border-radius: 4px; padding: var(--sp-06);
+}
+.sam-partners-support__item-title { font-family: var(--sam-font); font-size: 1.125rem; font-weight: 600; color: var(--sam-space-cadet); margin: 0 0 var(--sp-03) 0; }
+.sam-partners-support__item-desc { font-family: var(--sam-font); font-size: 0.9375rem; line-height: 1.6; color: var(--sam-black); margin: 0; max-width: 720px; }
+
+
+/* ============================================================
+   6. CTA BLOCK
+   ============================================================ */
+.sam-partners-cta { background: var(--sam-white); padding: var(--sp-11) var(--sp-06); text-align: center; }
+.sam-partners-cta__inner { max-width: 720px; margin: 0 auto; }
+.sam-partners-cta h2 { font-family: var(--sam-font); font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--sam-space-cadet); margin: 0 0 var(--sp-06) 0; }
+.sam-partners-cta__lead { color: var(--sam-black); margin-bottom: var(--sp-08); }
+.sam-partners-cta__actions { display: flex; align-items: center; justify-content: center; gap: var(--sp-05); flex-wrap: wrap; }
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1055px) {
+  .sam-hero--partners { min-height: 440px; padding: var(--sp-10) var(--sp-06); }
+  .sam-hero__h1 { font-size: 2.25rem; }
+
+  .sam-partners-stats { padding: var(--sp-08) var(--sp-06); }
+  .sam-partners-abb { padding: var(--sp-10) var(--sp-06); }
+  .sam-partners-types { padding: var(--sp-10) var(--sp-06); }
+  .sam-partners-types__grid { grid-template-columns: 1fr; }
+  .sam-partners-support { padding: var(--sp-10) var(--sp-06); }
+  .sam-partners-cta { padding: var(--sp-10) var(--sp-06); }
+}
+
+@media (max-width: 671px) {
+  .sam-hero--partners { min-height: 380px; padding: var(--sp-09) var(--sp-05); }
+  .sam-hero__h1 { font-size: 1.75rem; }
+  .sam-hero__lead { font-size: 1rem; }
+  .sam-hero__overlay {
+    background: linear-gradient(to bottom, rgba(31,31,51,0.92) 0%, rgba(31,31,51,0.7) 100%);
+  }
+  .sam-hero__content { max-width: 100%; }
+
+  .sam-partners-stats { padding: var(--sp-07) var(--sp-05); }
+  .sam-partners-stats__grid { grid-template-columns: 1fr; gap: var(--sp-06); }
+  .sam-partners-stats__number { font-size: 1.75rem; }
+
+  .sam-partners-abb { padding: var(--sp-09) var(--sp-05); }
+  .sam-partners-abb h2 { font-size: 1.5rem; }
+
+  .sam-partners-types { padding: var(--sp-09) var(--sp-05); }
+  .sam-partners-types h2 { font-size: 1.5rem; }
+
+  .sam-partners-support { padding: var(--sp-09) var(--sp-05); }
+  .sam-partners-support h2 { font-size: 1.5rem; }
+
+  .sam-partners-cta { padding: var(--sp-09) var(--sp-05); }
+  .sam-partners-cta h2 { font-size: 1.5rem; }
+  .sam-partners-cta__actions { flex-direction: column; }
+  .sam-btn { width: 100%; min-height: 48px; font-size: 1rem; }
+  .lead { font-size: 1.0625rem; }
+}

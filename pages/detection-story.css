@@ -1,0 +1,334 @@
+/* ============================================================
+   SAMOTICS DETECTION STORY — CSS
+   Lighter template for individual fault detection stories.
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F5F6F8;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E2E4E8;
+  --sam-dark-elevated:   #2A2A42;
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  --sp-01: 2px; --sp-02: 4px; --sp-03: 8px; --sp-04: 12px; --sp-05: 16px;
+  --sp-06: 24px; --sp-07: 32px; --sp-08: 48px; --sp-09: 64px; --sp-10: 96px;
+  --sp-11: 128px; --sp-12: 160px;
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset ── */
+.sam-detect { overflow-x: hidden; }
+
+/* ── Shared ── */
+.overline { font-family: var(--sam-font); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 var(--sp-04) 0; }
+.lead { font-family: var(--sam-font); font-size: 1.25rem; line-height: 1.55; margin: 0 0 var(--sp-07) 0; }
+.kpi-value { font-family: var(--sam-mono); font-weight: 700; }
+.sam-btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--sam-font); font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: 6px; cursor: pointer; padding: 14px 32px; transition: background var(--ease), box-shadow var(--ease), border-color var(--ease); }
+.sam-btn--primary { background: var(--sam-orange); color: var(--sam-white); border: none; }
+.sam-btn--primary:hover { background: var(--sam-orange-dark); box-shadow: var(--shadow-cta); }
+.sam-btn--outline { background: transparent; color: var(--sam-space-cadet); border: 2px solid var(--sam-space-cadet); }
+.sam-btn--outline:hover { background: var(--sam-seashell); }
+
+
+/* ============================================================
+   §1  HERO (compact dark banner — no background image)
+   Background: Space Cadet dark
+   ============================================================ */
+.sam-hero--detect {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  background: var(--sam-space-cadet);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-hero--detect .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,108,108,0.15) 0%, transparent 60%);
+  z-index: 1;
+}
+.sam-hero--detect .sam-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+.sam-hero--detect .sam-hero__content { max-width: 720px; }
+.sam-hero--detect .sam-hero__overline {
+  font-family: var(--sam-font); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--sam-teal);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-hero--detect .sam-hero__h1 {
+  font-family: var(--sam-font); font-size: 2.5rem; font-weight: 700;
+  line-height: 1.18; color: var(--sam-white);
+  margin: 0;
+}
+
+
+/* ============================================================
+   §2  DETECTION SUMMARY BAR
+   Background: White
+   ============================================================ */
+.sam-detect-summary {
+  background: var(--sam-white);
+  padding: var(--sp-08) var(--sp-06);
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-detect-summary__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.sam-detect-summary__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-06);
+}
+.sam-detect-summary__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+  padding: var(--sp-05) var(--sp-06);
+  border-left: 3px solid var(--sam-border-light);
+}
+.sam-detect-summary__item--highlight {
+  border-left-color: var(--sam-teal-dark);
+}
+.sam-detect-summary__label {
+  font-family: var(--sam-font); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sam-comet);  /* Comet on white = 4.9:1 ✓ */
+}
+.sam-detect-summary__value {
+  font-family: var(--sam-font); font-size: 1rem; font-weight: 500;
+  color: var(--sam-space-cadet); line-height: 1.4;
+}
+.sam-detect-summary__item--highlight .sam-detect-summary__value {
+  font-size: 1.125rem;
+  color: var(--sam-teal-dark);
+}
+
+
+/* ============================================================
+   §3  THE STORY
+   Background: Seashell
+   Three narrative blocks: situation, detection, outcome
+   ============================================================ */
+.sam-detect-story {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-detect-story__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-10);
+}
+.sam-detect-story__block { max-width: 780px; }
+.sam-detect-story .overline {
+  color: var(--sam-teal-dark);  /* Teal-dark on seashell = 5.1:1 ✓ */
+}
+.sam-detect-story h2 {
+  font-family: var(--sam-font); font-size: 1.75rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-detect-story__text {
+  font-family: var(--sam-font); font-size: 1.0625rem; line-height: 1.7;
+  color: var(--sam-black); margin: 0;
+}
+
+
+/* ============================================================
+   §4  QUOTE (optional)
+   Background: White
+   ============================================================ */
+.sam-detect-quote {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-detect-quote__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.sam-detect-quote__blockquote { margin: 0; padding: 0; }
+.sam-detect-quote__text {
+  font-family: var(--sam-font); font-size: 1.375rem; font-weight: 400;
+  line-height: 1.5; color: var(--sam-space-cadet); font-style: italic;
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-detect-quote__attribution {
+  display: flex; flex-direction: column; gap: var(--sp-02);
+}
+.sam-detect-quote__name {
+  font-family: var(--sam-font); font-size: 1rem; font-weight: 600;
+  color: var(--sam-space-cadet);
+}
+.sam-detect-quote__company {
+  font-family: var(--sam-font); font-size: 0.875rem;
+  color: var(--sam-comet);  /* Comet on white = 4.9:1 ✓ */
+}
+
+
+/* ============================================================
+   §5  CTA BLOCK
+   Default: White (for pages WITHOUT quote — story seashell → CTA white)
+   With quote: override to seashell (quote white → CTA seashell)
+   ============================================================ */
+.sam-cta-block--detect {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+  text-align: center;
+}
+/* When a quote section precedes the CTA, the CTA goes seashell */
+.sam-cta-block--detect-alt {
+  background: var(--sam-seashell);
+}
+.sam-cta-block__inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.sam-cta-block__heading {
+  font-family: var(--sam-font); font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-cta-block__sub {
+  font-family: var(--sam-font); font-size: 1.125rem; line-height: 1.55;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-cta-block__actions {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--sp-05); flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   §6  RELATED DETECTION STORIES
+   Default: Seashell (for pages WITHOUT quote — CTA white → related seashell)
+   With quote: override to white (CTA seashell → related white)
+   ============================================================ */
+.sam-detect-related {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-detect-related__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+/* When a quote section is present, related goes white */
+.sam-detect-related--alt {
+  background: var(--sam-white);
+}
+.sam-detect-related .overline {
+  color: var(--sam-space-cadet);  /* Space Cadet on seashell/white = 11.3:1+ ✓ */
+}
+.sam-detect-related h2 {
+  font-family: var(--sam-font); font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-detect-related__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-07);
+}
+.sam-detect-related__card {
+  display: flex; flex-direction: column; gap: var(--sp-04);
+  background: var(--sam-white); border-radius: 8px;
+  padding: var(--sp-07) var(--sp-06);
+  text-decoration: none; color: inherit;
+  border: 1px solid var(--sam-border-light);
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-detect-related__card:hover {
+  box-shadow: var(--shadow-md); border-color: var(--sam-space-cadet);
+}
+.sam-detect-related__card-industry {
+  font-family: var(--sam-font); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sam-teal-dark);
+}
+.sam-detect-related__card-title {
+  font-family: var(--sam-font); font-size: 1.125rem; font-weight: 700;
+  color: var(--sam-space-cadet); margin: 0;
+}
+.sam-detect-related__card-outcome {
+  font-size: 0.9375rem;
+  color: var(--sam-space-cadet);  /* Space Cadet on white = 11.9:1 ✓ */
+  margin: 0;
+}
+.sam-detect-related__card-link {
+  font-family: var(--sam-font); font-size: 0.9375rem; font-weight: 600;
+  color: var(--sam-orange-dark); margin-top: auto;
+}
+
+
+/* ============================================================
+   RESPONSIVE — Tablet (≤ 1055px)
+   ============================================================ */
+@media (max-width: 1055px) {
+  .sam-hero--detect { min-height: 280px; padding: var(--sp-10) var(--sp-06); }
+  .sam-hero--detect .sam-hero__h1 { font-size: 2rem; }
+
+  .sam-detect-summary { padding: var(--sp-07) var(--sp-06); }
+  .sam-detect-summary__grid { grid-template-columns: repeat(2, 1fr); }
+
+  .sam-detect-story { padding: var(--sp-10) var(--sp-06); }
+  .sam-detect-story__inner { gap: var(--sp-09); }
+
+  .sam-detect-quote { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-cta-block--detect { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-detect-related { padding: var(--sp-10) var(--sp-06); }
+  .sam-detect-related__grid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   RESPONSIVE — Mobile (≤ 671px)
+   ============================================================ */
+@media (max-width: 671px) {
+  .sam-hero--detect { min-height: 240px; padding: var(--sp-09) var(--sp-05); }
+  .sam-hero--detect .sam-hero__h1 { font-size: 1.5rem; }
+
+  .sam-detect-summary { padding: var(--sp-06) var(--sp-05); }
+  .sam-detect-summary__grid { grid-template-columns: 1fr; }
+
+  .sam-detect-story { padding: var(--sp-09) var(--sp-05); }
+  .sam-detect-story__inner { gap: var(--sp-08); }
+  .sam-detect-story h2 { font-size: 1.375rem; }
+
+  .sam-detect-quote { padding: var(--sp-09) var(--sp-05); }
+  .sam-detect-quote__text { font-size: 1.125rem; }
+
+  .sam-cta-block--detect { padding: var(--sp-09) var(--sp-05); }
+  .sam-cta-block__heading { font-size: 1.5rem; }
+  .sam-cta-block__actions { flex-direction: column; }
+  .sam-btn { width: 100%; min-height: 48px; }
+
+  .sam-detect-related { padding: var(--sp-09) var(--sp-05); }
+  .sam-detect-related h2 { font-size: 1.5rem; }
+}

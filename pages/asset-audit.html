@@ -1,0 +1,192 @@
+<!-- ============================================================
+     SAMOTICS ASSET AUDIT PAGE — Bricks Code Element
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  asset-audit.css
+       3. JavaScript   →  asset-audit.js
+     ============================================================ -->
+
+
+<!-- ===================== PHP & HTML ===================== -->
+
+<main id="main-content" class="sam-audit">
+
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-hero sam-hero--audit" style="background-image: url('https://samoticstestpage.com/wp-content/uploads/2026/02/AdobeStock_507667338-1-scaled.jpeg');">
+    <div class="sam-hero__overlay"></div>
+    <div class="sam-hero__inner">
+      <div class="sam-hero__content">
+        <p class="sam-hero__overline">Asset Audit</p>
+        <h1 class="sam-hero__h1">Start with clarity. Know exactly where your monitoring gaps are.</h1>
+        <p class="sam-hero__lead">An asset audit quantifies your coverage gap, prioritises your assets by risk, and gives you the data for an internal business case. No commitment beyond the conversation.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. WHAT YOU GET ─── -->
+  <section class="sam-audit-value">
+    <div class="sam-audit-value__inner">
+      <p class="overline">What an asset audit delivers</p>
+      <h2>Four outputs. One conversation.</h2>
+      <p class="lead sam-audit-value__lead">A 30–60 minute conversation about your fleet, your sites, and your current monitoring coverage. We do the analysis. You get the data you need to make a decision.</p>
+
+      <div class="sam-audit-value__grid">
+        <div class="sam-audit-value__card">
+          <span class="sam-audit-value__card-number kpi-value">01</span>
+          <h3 class="sam-audit-value__card-title">Coverage gap quantification</h3>
+          <p class="sam-audit-value__card-desc">How many of your rotating assets have condition monitoring today? How many don't? We map the gap across your fleet.</p>
+        </div>
+        <div class="sam-audit-value__card">
+          <span class="sam-audit-value__card-number kpi-value">02</span>
+          <h3 class="sam-audit-value__card-title">Prioritised asset list</h3>
+          <p class="sam-audit-value__card-desc">Not every asset needs monitoring equally. We rank your assets by criticality, failure risk, and monitoring feasibility.</p>
+        </div>
+        <div class="sam-audit-value__card">
+          <span class="sam-audit-value__card-number kpi-value">03</span>
+          <h3 class="sam-audit-value__card-title">ROI estimate</h3>
+          <p class="sam-audit-value__card-desc">Based on your fleet size, asset types, and industry benchmarks — a first-pass business case for condition monitoring.</p>
+        </div>
+        <div class="sam-audit-value__card">
+          <span class="sam-audit-value__card-number kpi-value">04</span>
+          <h3 class="sam-audit-value__card-title">Deployment recommendation</h3>
+          <p class="sam-audit-value__card-desc">Where to start, how to phase the rollout, and what resources you need. A concrete plan, not a sales deck.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 3. FORM SECTION ─── -->
+  <section class="sam-audit-form-section">
+    <div class="sam-audit-form-section__inner">
+      <h2 class="sam-audit-form-section__heading">Request your asset audit</h2>
+      <p class="sam-audit-form-section__expectation">We'll prepare your audit scope and reach out within 2 business days.</p>
+
+      <form class="sam-audit-form" id="audit-form" novalidate>
+        <div class="sam-audit-form__fields">
+          <div class="sam-audit-form__field">
+            <label for="aa-fname">First name *</label>
+            <input type="text" id="aa-fname" name="first_name" required autocomplete="given-name">
+          </div>
+          <div class="sam-audit-form__field">
+            <label for="aa-lname">Last name *</label>
+            <input type="text" id="aa-lname" name="last_name" required autocomplete="family-name">
+          </div>
+          <div class="sam-audit-form__field">
+            <label for="aa-email">Work email *</label>
+            <input type="email" id="aa-email" name="email" required autocomplete="email">
+            <span class="sam-audit-form__hint" hidden>Company email preferred</span>
+          </div>
+          <div class="sam-audit-form__field">
+            <label for="aa-company">Company *</label>
+            <input type="text" id="aa-company" name="company" required autocomplete="organization">
+          </div>
+          <div class="sam-audit-form__field">
+            <label for="aa-title">Job title *</label>
+            <input type="text" id="aa-title" name="job_title" required autocomplete="organization-title">
+          </div>
+          <div class="sam-audit-form__field">
+            <label for="aa-industry">Industry *</label>
+            <select id="aa-industry" name="industry" required>
+              <option value="">Select your industry</option>
+              <option value="water">Water &amp; Wastewater</option>
+              <option value="oil-gas">Oil &amp; Gas</option>
+              <option value="metals">Metals &amp; Mining</option>
+              <option value="chemicals">Chemicals</option>
+              <option value="pulp-paper">Pulp &amp; Paper</option>
+              <option value="pharma">Pharma &amp; Life Sciences</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="sam-audit-form__field">
+            <label for="aa-sites">Number of sites *</label>
+            <select id="aa-sites" name="site_count" required>
+              <option value="">Select range</option>
+              <option value="1">1</option>
+              <option value="2-5">2–5</option>
+              <option value="6-20">6–20</option>
+              <option value="20+">20+</option>
+            </select>
+          </div>
+          <div class="sam-audit-form__field">
+            <label for="aa-rotating">Estimated rotating assets *</label>
+            <select id="aa-rotating" name="rotating_assets" required>
+              <option value="">Select range</option>
+              <option value="<100">&lt;100</option>
+              <option value="100-500">100–500</option>
+              <option value="500-2000">500–2,000</option>
+              <option value="2000+">2,000+</option>
+            </select>
+          </div>
+          <div class="sam-audit-form__field">
+            <label for="aa-coverage">Current monitoring coverage</label>
+            <select id="aa-coverage" name="coverage">
+              <option value="">Select range</option>
+              <option value="<25%">&lt;25%</option>
+              <option value="25-50%">25–50%</option>
+              <option value="50-75%">50–75%</option>
+              <option value=">75%">&gt;75%</option>
+              <option value="unknown">Don't know</option>
+            </select>
+          </div>
+          <div class="sam-audit-form__field sam-audit-form__field--full">
+            <label for="aa-message">What prompted your interest?</label>
+            <textarea id="aa-message" name="message" maxlength="500" rows="3"></textarea>
+          </div>
+        </div>
+
+        <!-- Honeypot -->
+        <div class="sam-audit-form__hp" aria-hidden="true">
+          <label for="aa-website">Website</label>
+          <input type="text" id="aa-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- GDPR Consent -->
+        <div class="sam-audit-form__consent">
+          <label class="sam-audit-form__checkbox">
+            <input type="checkbox" name="gdpr_consent" required>
+            I agree to receive communications from Samotics. View our <a href="/privacy" class="sam-text-link">Privacy Policy</a>.
+          </label>
+        </div>
+
+        <button type="submit" class="sam-btn sam-btn--primary sam-audit-form__submit">Request Your Asset Audit</button>
+      </form>
+
+      <!-- Confirmation (hidden until submission) -->
+      <div class="sam-audit-confirmation" id="audit-confirmation" hidden>
+        <div class="sam-audit-confirmation__icon" aria-hidden="true">&#10003;</div>
+        <h2 class="sam-audit-confirmation__heading" id="confirmation-heading">Thanks! We'll prepare your asset audit scope.</h2>
+        <p class="sam-audit-confirmation__body">We'll reach out within 2 business days with a proposed audit scope. In the meantime, see how Yorkshire Water used SAM4 to monitor 1,300 assets across their entire network.</p>
+        <a href="/proof/yorkshire-water" class="sam-audit-confirmation__link">Read the Yorkshire Water case study &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 4. SOCIAL PROOF ─── -->
+  <section class="sam-audit-proof">
+    <div class="sam-audit-proof__inner">
+      <p class="overline">Trusted by operations teams worldwide</p>
+      <div class="sam-audit-proof__stats">
+        <div class="sam-audit-proof__stat">
+          <span class="sam-audit-proof__stat-number kpi-value">10,000+</span>
+          <span class="sam-audit-proof__stat-label">assets monitored</span>
+        </div>
+        <div class="sam-audit-proof__stat">
+          <span class="sam-audit-proof__stat-number kpi-value">80+</span>
+          <span class="sam-audit-proof__stat-label">customers worldwide</span>
+        </div>
+        <div class="sam-audit-proof__stat">
+          <span class="sam-audit-proof__stat-number kpi-value">5</span>
+          <span class="sam-audit-proof__stat-label">continents</span>
+        </div>
+        <div class="sam-audit-proof__stat">
+          <span class="sam-audit-proof__stat-number kpi-value">&gt;90%</span>
+          <span class="sam-audit-proof__stat-label">detection rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>

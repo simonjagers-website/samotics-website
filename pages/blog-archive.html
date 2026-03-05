@@ -1,0 +1,143 @@
+<!-- ============================================================
+     BLOG ARCHIVE — Bricks Code Element
+     Paste into the Blog page (/resources/blog/)
+       1. PHP & HTML tab  →  the markup below
+       2. CSS tab          →  blog-archive.css
+     ============================================================ -->
+
+<?php
+// ── Query blog posts ──
+$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+$args = array(
+  'post_type'      => 'post',
+  'post_status'    => 'publish',
+  'posts_per_page' => 12,
+  'paged'          => $paged,
+  'orderby'        => 'date',
+  'order'          => 'DESC',
+);
+
+// Optional: filter by category if defined
+if ( isset($_GET['cat']) && !empty($_GET['cat']) ) {
+  $args['category_name'] = sanitize_text_field($_GET['cat']);
+}
+
+$blog_query = new WP_Query($args);
+
+// Get all categories for the filter bar
+$categories = get_categories(array(
+  'orderby' => 'name',
+  'order'   => 'ASC',
+  'hide_empty' => true,
+));
+?>
+
+<section class="sam-blog-archive">
+  <div class="sam-blog-archive__inner">
+
+    <!-- Header -->
+    <div class="sam-blog-archive__header">
+      <p class="overline">Resources</p>
+      <h1 class="sam-blog-archive__title">Blog</h1>
+      <p class="sam-blog-archive__lead">Insights on condition monitoring, ESA technology, and industrial asset management.</p>
+    </div>
+
+    <!-- Category Filter -->
+    <?php if ( !empty($categories) ) : ?>
+    <div class="sam-blog-archive__filters">
+      <a href="<?php echo get_permalink(); ?>"
+         class="sam-filter-chip <?php echo empty($_GET['cat']) ? 'is-active' : ''; ?>">All</a>
+      <?php foreach ($categories as $cat) : ?>
+        <a href="<?php echo add_query_arg('cat', $cat->slug, get_permalink()); ?>"
+           class="sam-filter-chip <?php echo (isset($_GET['cat']) && $_GET['cat'] === $cat->slug) ? 'is-active' : ''; ?>">
+          <?php echo esc_html($cat->name); ?>
+        </a>
+      <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
+    <!-- Post Grid -->
+    <?php if ( $blog_query->have_posts() ) : ?>
+    <div class="sam-blog-archive__grid">
+
+      <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
+      <?php
+        // Calculate read time
+        $content = get_the_content();
+        $word_count = str_word_count(strip_tags($content));
+        $read_time = max(1, ceil($word_count / 250));
+
+        // Get categories
+        $post_cats = get_the_category();
+        $cat_name = !empty($post_cats) ? $post_cats[0]->name : '';
+        $cat_slug = !empty($post_cats) ? $post_cats[0]->slug : '';
+      ?>
+
+      <a href="<?php the_permalink(); ?>" class="sam-blog-card">
+        <!-- Thumbnail -->
+        <div class="sam-blog-card__image">
+          <?php if ( has_post_thumbnail() ) : ?>
+            <?php the_post_thumbnail('medium_large', array('loading' => 'lazy', 'alt' => get_the_title())); ?>
+          <?php else : ?>
+            <div class="sam-blog-card__placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+            </div>
+          <?php endif; ?>
+        </div>
+
+        <!-- Content -->
+        <div class="sam-blog-card__body">
+          <?php if ($cat_name) : ?>
+            <span class="sam-blog-card__category"><?php echo esc_html($cat_name); ?></span>
+          <?php endif; ?>
+
+          <h2 class="sam-blog-card__title"><?php the_title(); ?></h2>
+
+          <p class="sam-blog-card__excerpt">
+            <?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?>
+          </p>
+
+          <div class="sam-blog-card__meta">
+            <time datetime="<?php echo get_the_date('Y-m-d'); ?>">
+              <?php echo get_the_date('M j, Y'); ?>
+            </time>
+            <span class="sam-blog-card__dot">&middot;</span>
+            <span><?php echo $read_time; ?> min read</span>
+          </div>
+        </div>
+      </a>
+
+      <?php endwhile; ?>
+
+    </div>
+
+    <!-- Pagination -->
+    <?php if ( $blog_query->max_num_pages > 1 ) : ?>
+    <nav class="sam-blog-archive__pagination" aria-label="Blog pagination">
+      <?php
+        echo paginate_links(array(
+          'total'     => $blog_query->max_num_pages,
+          'current'   => $paged,
+          'prev_text' => '&larr; Previous',
+          'next_text' => 'Next &rarr;',
+          'type'      => 'list',
+        ));
+      ?>
+    </nav>
+    <?php endif; ?>
+
+    <?php wp_reset_postdata(); ?>
+
+    <?php else : ?>
+    <!-- No posts -->
+    <div class="sam-blog-archive__empty">
+      <p>No articles found. Check back soon.</p>
+    </div>
+    <?php endif; ?>
+
+  </div>
+</section>

@@ -1,0 +1,554 @@
+<!-- ============================================================
+     SAMOTICS PROOF HUB PAGE — Bricks Code Element
+     Paste each section into the matching tab:
+       1. PHP & HTML  →  the markup below
+       2. CSS          →  proof.css
+       3. JavaScript   →  proof.js
+     ============================================================ -->
+
+
+<!-- ===================== PHP & HTML ===================== -->
+
+<main id="main-content" class="sam-proof">
+
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-hero sam-hero--proof" style="background-image: url('https://samoticstestpage.com/wp-content/uploads/2026/02/image00302-scaled.jpeg');">
+    <div class="sam-hero__overlay"></div>
+    <div class="sam-hero__inner">
+      <div class="sam-hero__content">
+        <p class="sam-hero__overline">Customer Results</p>
+        <h1 class="sam-hero__h1">Real results from real customers.</h1>
+        <p class="sam-hero__lead">Filter by industry, asset type, or outcome to find proof that matters to your operation. Every result below is documented, quantified, and downloadable.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 2. AGGREGATE STATS ─── -->
+  <section class="sam-proof-stats">
+    <div class="sam-proof-stats__inner">
+      <div class="sam-proof-stats__grid">
+        <div class="sam-proof-stats__item">
+          <span class="sam-proof-stats__number kpi-value">10,000+</span>
+          <span class="sam-proof-stats__label">assets monitored</span>
+        </div>
+        <div class="sam-proof-stats__item">
+          <span class="sam-proof-stats__number kpi-value">80+</span>
+          <span class="sam-proof-stats__label">customers worldwide</span>
+        </div>
+        <div class="sam-proof-stats__item">
+          <span class="sam-proof-stats__number kpi-value">5</span>
+          <span class="sam-proof-stats__label">continents</span>
+        </div>
+        <div class="sam-proof-stats__item">
+          <span class="sam-proof-stats__number kpi-value">&gt;90%</span>
+          <span class="sam-proof-stats__label">detection rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 3. FILTERABLE GRID ─── -->
+  <section id="results" class="sam-proof-grid">
+    <div class="sam-proof-grid__inner">
+      <p class="overline">Case studies</p>
+      <h2>Find the proof that matches your operation</h2>
+
+      <!-- Filter Controls -->
+      <div class="sam-proof-grid__filters" role="toolbar" aria-label="Filter case studies">
+        <div class="sam-proof-grid__filter-group">
+          <span class="sam-proof-grid__filter-label">Industry:</span>
+          <button class="sam-proof-grid__filter-btn sam-proof-grid__filter-btn--active" data-filter="industry" data-value="all">All</button>
+          <button class="sam-proof-grid__filter-btn" data-filter="industry" data-value="water">Water</button>
+          <button class="sam-proof-grid__filter-btn" data-filter="industry" data-value="metals">Metals &amp; Mining</button>
+          <button class="sam-proof-grid__filter-btn" data-filter="industry" data-value="chemicals">Chemicals</button>
+          <button class="sam-proof-grid__filter-btn" data-filter="industry" data-value="manufacturing">Manufacturing</button>
+          <button class="sam-proof-grid__filter-btn" data-filter="industry" data-value="infrastructure">Infrastructure</button>
+        </div>
+        <div class="sam-proof-grid__filter-group">
+          <span class="sam-proof-grid__filter-label">Outcome:</span>
+          <button class="sam-proof-grid__filter-btn sam-proof-grid__filter-btn--active" data-filter="outcome" data-value="all">All</button>
+          <button class="sam-proof-grid__filter-btn" data-filter="outcome" data-value="roi">ROI</button>
+          <button class="sam-proof-grid__filter-btn" data-filter="outcome" data-value="detection">Detection</button>
+          <button class="sam-proof-grid__filter-btn" data-filter="outcome" data-value="energy">Energy</button>
+          <button class="sam-proof-grid__filter-btn" data-filter="outcome" data-value="scale">Scale</button>
+        </div>
+      </div>
+
+      <!-- Case Study Cards -->
+      <div class="sam-proof-grid__cards" id="proof-cards">
+
+        <!-- Yorkshire Water -->
+        <article class="sam-proof-card" data-industry="water" data-outcome="scale roi">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Water &amp; Wastewater</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Yorkshire Water</h3>
+          <p class="sam-proof-card__headline kpi-value">&pound;9.8M in benefits</p>
+          <p class="sam-proof-card__summary">1,300 assets monitored across hundreds of pumping stations. 70,000 manual inspections replaced. Fleet-scale coverage that transformed how Yorkshire Water manages pump health.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Scale</span>
+            <span class="sam-proof-card__tag">ROI</span>
+            <span class="sam-proof-card__tag">Pumps</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/yorkshire-water" class="sam-proof-card__link">Read case study &rarr;</a>
+            <a href="/proof/yorkshire-water/download" class="sam-proof-card__download" aria-label="Download Yorkshire Water case study PDF">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5"/><line x1="3" y1="17" x2="17" y2="17"/>
+              </svg>
+              PDF
+            </a>
+          </div>
+        </article>
+
+        <!-- Southern Water -->
+        <article class="sam-proof-card" data-industry="water" data-outcome="detection roi">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Water &amp; Wastewater</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Southern Water</h3>
+          <p class="sam-proof-card__headline kpi-value">63 failures caught</p>
+          <p class="sam-proof-card__summary">&pound;748K annual savings from early fault detection. Submersible pumps monitored 24/7 from the MCC — preventing pollution events and unplanned callouts across the network.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Detection</span>
+            <span class="sam-proof-card__tag">ROI</span>
+            <span class="sam-proof-card__tag">Pumps</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/southern-water" class="sam-proof-card__link">Read case study &rarr;</a>
+            <a href="/proof/southern-water/download" class="sam-proof-card__download" aria-label="Download Southern Water case study PDF">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5"/><line x1="3" y1="17" x2="17" y2="17"/>
+              </svg>
+              PDF
+            </a>
+          </div>
+        </article>
+
+        <!-- Schiphol -->
+        <article class="sam-proof-card" data-industry="infrastructure" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Infrastructure</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Schiphol Airport</h3>
+          <p class="sam-proof-card__headline kpi-value">9/9 faults detected</p>
+          <p class="sam-proof-card__summary">100% detection rate. ESA caught bearing damage that the existing vibration monitoring programme missed. The definitive proof that ESA and vibration are complementary technologies.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Detection</span>
+            <span class="sam-proof-card__tag">Fans</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/schiphol" class="sam-proof-card__link">Read case study &rarr;</a>
+            <a href="/proof/schiphol/download" class="sam-proof-card__download" aria-label="Download Schiphol case study PDF">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5"/><line x1="3" y1="17" x2="17" y2="17"/>
+              </svg>
+              PDF
+            </a>
+          </div>
+        </article>
+
+        <!-- thyssenkrupp -->
+        <article class="sam-proof-card" data-industry="metals" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Metals &amp; Mining</span>
+          </div>
+          <h3 class="sam-proof-card__customer">thyssenkrupp</h3>
+          <p class="sam-proof-card__headline kpi-value">Bearing fault in extreme environment</p>
+          <p class="sam-proof-card__summary">SAM4 detected bearing degradation on a critical motor in a high-temperature, high-vibration steel environment — conditions where traditional sensors struggle to survive.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Detection</span>
+            <span class="sam-proof-card__tag">Harsh environment</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/thyssenkrupp" class="sam-proof-card__link">Read case study &rarr;</a>
+            <a href="/proof/thyssenkrupp/download" class="sam-proof-card__download" aria-label="Download thyssenkrupp case study PDF">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5"/><line x1="3" y1="17" x2="17" y2="17"/>
+              </svg>
+              PDF
+            </a>
+          </div>
+        </article>
+
+        <!-- Nyrstar -->
+        <article class="sam-proof-card" data-industry="metals" data-outcome="roi">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Metals &amp; Mining</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Nyrstar</h3>
+          <p class="sam-proof-card__headline kpi-value">800% ROI in 11 months</p>
+          <p class="sam-proof-card__summary">Zinc smelting operation. SAM4 detected faults that would have caused unplanned shutdowns costing tens of thousands per hour. Payback in under a year.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">ROI</span>
+            <span class="sam-proof-card__tag">Compressors</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/nyrstar" class="sam-proof-card__link">Read case study &rarr;</a>
+            <a href="/proof/nyrstar/download" class="sam-proof-card__download" aria-label="Download Nyrstar case study PDF">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5"/><line x1="3" y1="17" x2="17" y2="17"/>
+              </svg>
+              PDF
+            </a>
+          </div>
+        </article>
+
+        <!-- Vitens -->
+        <article class="sam-proof-card" data-industry="water" data-outcome="energy">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Water &amp; Wastewater</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Vitens</h3>
+          <p class="sam-proof-card__headline kpi-value">7.1% energy efficiency gain</p>
+          <p class="sam-proof-card__summary">Drinking water utility. SAM4 identified pumps operating below best efficiency point — enabling targeted energy optimisation across the fleet without capital expenditure.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Energy</span>
+            <span class="sam-proof-card__tag">Pumps</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/vitens" class="sam-proof-card__link">Read case study &rarr;</a>
+            <a href="/proof/vitens/download" class="sam-proof-card__download" aria-label="Download Vitens case study PDF">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5"/><line x1="3" y1="17" x2="17" y2="17"/>
+              </svg>
+              PDF
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Empty state (hidden by default, shown by JS when filters match nothing) -->
+      <p class="sam-proof-grid__empty" id="proof-empty" hidden>No case studies match the current filters. <button class="sam-proof-grid__reset" id="proof-reset">Reset filters</button></p>
+    </div>
+  </section>
+
+
+  <!-- ─── 4. DETECTION STORIES ─── -->
+  <section id="detections" class="sam-proof-detect">
+    <div class="sam-proof-detect__inner">
+      <p class="overline">Detection stories</p>
+      <h2>Individual fault detections from the field</h2>
+      <p class="lead sam-proof-detect__lead">Each card below is a documented detection — a specific fault that SAM4 caught before it caused failure. Filter by industry to find detections relevant to your operation.</p>
+
+      <div class="sam-proof-grid__cards" id="detect-cards">
+
+        <!-- Inlet screw monitoring -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="water" data-outcome="detection scale">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Water &amp; Wastewater</span>
+            <span class="sam-proof-card__type">Use case</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Inlet screw monitoring</h3>
+          <p class="sam-proof-card__headline kpi-value">Up to 5 months advance warning</p>
+          <p class="sam-proof-card__summary">Belt, gearbox and bearing faults detected remotely on wastewater inlet screws — up to five months before failure.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Belt</span>
+            <span class="sam-proof-card__tag">Gearbox</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/inlet-screw-monitoring" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Belt degradation circulation pump -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="chemicals" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Chemicals</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Belt degradation in circulation pump</h3>
+          <p class="sam-proof-card__headline kpi-value">Downtime avoided</p>
+          <p class="sam-proof-card__summary">Rising belt frequency energy flagged at a chlor-alkali plant. Belt replaced during planned stop — no production losses.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Belt</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/belt-degradation-circulation-pump" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Cavitation anolyte pump -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="chemicals" data-outcome="roi detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Chemicals</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Cavitation in 45 kW anolyte pump</h3>
+          <p class="sam-proof-card__headline kpi-value">&euro;15,000 saved</p>
+          <p class="sam-proof-card__summary">Mechanical seal damage caught before catastrophic pump failure. Minor repair instead of full replacement.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Cavitation</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/cavitation-anolyte-pump" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Clogging wastewater pump -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="water" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Water &amp; Wastewater</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Clogging in wastewater collection pump</h3>
+          <p class="sam-proof-card__headline kpi-value">Timely action taken</p>
+          <p class="sam-proof-card__summary">Debris clogging detected through sustained cavitation signature. Customer removed blockage before permanent damage.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Clogging</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/clogging-wastewater-pump" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Missing bolt cooling pump -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="manufacturing" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Manufacturing</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Missing bolt in 90 kW cooling pump</h3>
+          <p class="sam-proof-card__headline kpi-value">3-week detection window</p>
+          <p class="sam-proof-card__summary">Missing coupling bolt causing misalignment detected weeks before damage. One bolt replaced — no downtime.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Misalignment</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/missing-bolt-cooling-pump" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Cardan shaft coupling roller -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="metals" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Metals &amp; Mining</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Failing cardan shaft coupling in roller</h3>
+          <p class="sam-proof-card__headline kpi-value">100% detection accuracy</p>
+          <p class="sam-proof-card__summary">Fatigued coupling detected in hot strip mill roller. SAM4 has caught every coupling failure on these assets — zero false positives.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Rolls</span>
+            <span class="sam-proof-card__tag">Coupling</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/cardan-shaft-coupling-roller" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Synthetic fiber production -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="manufacturing" data-outcome="roi detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Manufacturing</span>
+            <span class="sam-proof-card__type">Use case</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Synthetic fibre production</h3>
+          <p class="sam-proof-card__headline kpi-value">$90,000 saved per detection</p>
+          <p class="sam-proof-card__summary">Motor overloading on heated godet roll detected and resolved within 30 minutes. $70K lost production + $20K corrective maintenance avoided.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Rolls</span>
+            <span class="sam-proof-card__tag">Motor</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/synthetic-fiber-production" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Loose cardan joint roll -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="metals" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Metals &amp; Mining</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Loose cardan joint in roll</h3>
+          <p class="sam-proof-card__headline kpi-value">Same-day detection</p>
+          <p class="sam-proof-card__summary">Diagnosed within hours of SAM4 installation — thanks to 2.5 years of baseline data from identical rolls.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Rolls</span>
+            <span class="sam-proof-card__tag">Coupling</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/loose-cardan-joint-roll" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Three faults oil transfer pump -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="manufacturing" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Manufacturing</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Three faults in 30 kW oil transfer pump</h3>
+          <p class="sam-proof-card__headline kpi-value">3 faults found</p>
+          <p class="sam-proof-card__summary">Worn coupling spider, stuck vanes, and loose foundation — all three detected from a single alert. Complete failure prevented.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Multiple faults</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/three-faults-oil-transfer-pump" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Clogging borehole pump -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="water" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Water &amp; Wastewater</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Clogging in borehole pump</h3>
+          <p class="sam-proof-card__headline kpi-value">~1 year advance warning</p>
+          <p class="sam-proof-card__summary">Iron buildup at submerged pump inlet detected through decreasing power and cavitation patterns — nearly a year before failure.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Clogging</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/clogging-borehole-pump" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Gearbox-motor misalignment -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="manufacturing" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Manufacturing</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Gearbox-motor misalignment in 160 kW pump</h3>
+          <p class="sam-proof-card__headline kpi-value">7 months advance warning</p>
+          <p class="sam-proof-card__summary">Misalignment wearing out coupling blocks detected and tracked for 7 months. Confirmed at scheduled preventive maintenance.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Misalignment</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/gearbox-misalignment-circulator-pump" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Borehole pump detections -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="water" data-outcome="detection scale">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Water &amp; Wastewater</span>
+            <span class="sam-proof-card__type">Multi-detection</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Borehole pump fault detections</h3>
+          <p class="sam-proof-card__headline kpi-value">Up to 200 m deep</p>
+          <p class="sam-proof-card__summary">Clogging, VFD issues, and mechanical degradation detected on submerged pumps — impossible to reach with traditional sensors.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Submerged</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/borehole-pump-detections" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Loose belt guard shot blasting -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="manufacturing" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Manufacturing</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Loose belt guard in shot blasting machine</h3>
+          <p class="sam-proof-card__headline kpi-value">2 machines, 1 fix</p>
+          <p class="sam-proof-card__summary">Loose guard in one blast wheel disturbed its neighbour. Both returned to normal after a single repair.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Machines</span>
+            <span class="sam-proof-card__tag">Belt</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/loose-belt-guard-shot-blasting" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Bearing failure motor roll -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="metals" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Metals &amp; Mining</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Bearing failure in motor driving roll</h3>
+          <p class="sam-proof-card__headline kpi-value">7 months of tracking</p>
+          <p class="sam-proof-card__summary">Bearing degradation tracked from early detection to scheduled replacement. 26+ faults detected for this customer.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Rolls</span>
+            <span class="sam-proof-card__tag">Bearing</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/bearing-failure-motor-roll" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Clogging Yorkshire Water sewage -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="water" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Water &amp; Wastewater</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Yorkshire Water sewage pump clogging</h3>
+          <p class="sam-proof-card__headline kpi-value">Pollution prevented</p>
+          <p class="sam-proof-card__summary">Both co-located pumps completely blocked. SAM4 was the only system that detected it — telemetry had failed. Boots, tyres, and debris cleared in time.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Clogging</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/clogging-yorkshire-water-sewage" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Belt-driven assets detection -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="chemicals" data-outcome="detection roi">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Chemicals</span>
+            <span class="sam-proof-card__type">Multi-detection</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Belt-driven asset fault detections</h3>
+          <p class="sam-proof-card__headline kpi-value">Hundreds of thousands saved</p>
+          <p class="sam-proof-card__summary">Belt, bearing, and pulley faults across pumps, fans, and conveyors in ATEX zones. Sensors install in the MCC — no access to hazardous areas.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Fans</span>
+            <span class="sam-proof-card__tag">ATEX</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/belt-driven-assets-detection" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Cavitation centrifugal pump -->
+        <article class="sam-proof-card sam-proof-card--detect" data-industry="chemicals" data-outcome="detection">
+          <div class="sam-proof-card__header">
+            <span class="sam-proof-card__industry">Chemicals</span>
+          </div>
+          <h3 class="sam-proof-card__customer">Cavitation in 200 kW centrifugal pump</h3>
+          <p class="sam-proof-card__headline kpi-value">Root cause fixed</p>
+          <p class="sam-proof-card__summary">Severe cavitation from suboptimal startup procedure identified. Operating procedure changed — recurring impeller and seal damage eliminated.</p>
+          <div class="sam-proof-card__tags">
+            <span class="sam-proof-card__tag">Pumps</span>
+            <span class="sam-proof-card__tag">Cavitation</span>
+          </div>
+          <div class="sam-proof-card__actions">
+            <a href="/proof/cavitation-centrifugal-pump" class="sam-proof-card__link">Read story &rarr;</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Empty state for detection stories (hidden by default) -->
+      <p class="sam-proof-grid__empty" id="detect-empty" hidden>No detection stories match the current filters. <button class="sam-proof-grid__reset" id="detect-reset">Reset filters</button></p>
+    </div>
+  </section>
+
+
+  <!-- ─── 5. CTA BLOCK ─── -->
+  <section class="sam-cta-block sam-cta-block--proof">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">See what SAM4 can do for your operation</h2>
+      <p class="sam-cta-block__sub">The results above are from operations like yours. A demo shows how SAM4 works on your asset types, in your industry, at your scale.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary">Start Your Asset Audit</a>
+      </div>
+    </div>
+  </section>
+
+</main>

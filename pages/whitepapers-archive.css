@@ -1,0 +1,280 @@
+/* ============================================================
+   WHITEPAPERS HUB — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+:root {
+  --sam-space-cadet: #1F1F33;
+  --sam-orange: #FF5429;
+  --sam-orange-dark: #D7411B;
+  --sam-white: #FFFFFF;
+  --sam-seashell: #F5F6F8;
+  --sam-black: #111111;
+  --sam-comet: #5A6A80;
+  --sam-border-light: #E2E4E8;
+  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ── Archive Section ── */
+.sam-wp-archive {
+  background: var(--sam-white);
+  padding: 64px 0 96px;
+}
+.sam-wp-archive__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* ── Header ── */
+.sam-wp-archive__header {
+  margin-bottom: 48px;
+}
+.sam-wp-archive__header .overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 16px 0;
+}
+.sam-wp-archive__title {
+  font: 700 3rem/1.15 var(--sam-font);
+  letter-spacing: -0.02em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 16px 0;
+}
+.sam-wp-archive__lead {
+  font: 400 1.25rem/1.6 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ── Card Grid ── */
+.sam-wp-archive__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* ── Whitepaper Card ── */
+.sam-wp-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--sam-border-light);
+  background: var(--sam-white);
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+  overflow: hidden;
+}
+.sam-wp-card:hover {
+  border-color: var(--sam-space-cadet);
+  box-shadow: 0 4px 16px rgba(31, 31, 51, 0.08);
+}
+
+/* Card Image / Thumbnail */
+.sam-wp-card__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--sam-seashell);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sam-wp-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sam-wp-card__placeholder {
+  color: var(--sam-border-light);
+}
+.sam-wp-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font: 600 11px/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sam-white);
+  background: var(--sam-space-cadet);
+  padding: 5px 10px;
+}
+
+/* Card Body */
+.sam-wp-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  flex-grow: 1;
+}
+.sam-wp-card__title {
+  font: 600 1.25rem/1.35 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 0 0 12px 0;
+}
+.sam-wp-card__desc {
+  font: 400 0.9375rem/1.55 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+.sam-wp-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 400 13px/1 var(--sam-font);
+  color: var(--sam-comet);
+  margin-bottom: 20px;
+}
+.sam-wp-card__dot {
+  font-size: 10px;
+}
+
+/* Download CTA */
+.sam-wp-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font: 600 14px/1 var(--sam-font);
+  color: var(--sam-white);
+  background: var(--sam-orange);
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms ease-out;
+  text-decoration: none;
+}
+.sam-wp-card__cta:hover {
+  background: var(--sam-orange-dark);
+}
+
+/* ── Email Gate Modal ── */
+.sam-wp-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+.sam-wp-modal[aria-hidden="false"] {
+  display: flex;
+}
+.sam-wp-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.sam-wp-modal__panel {
+  position: relative;
+  background: var(--sam-white);
+  padding: 40px;
+  max-width: 440px;
+  width: 90%;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  animation: samModalIn 200ms ease-out;
+}
+@keyframes samModalIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.sam-wp-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--sam-comet);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+.sam-wp-modal__close:hover {
+  color: var(--sam-black);
+}
+.sam-wp-modal__title {
+  font: 600 1.5rem/1.3 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 0 0 8px 0;
+}
+.sam-wp-modal__desc {
+  font: 400 1rem/1.5 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 0 24px 0;
+}
+
+/* Form */
+.sam-wp-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sam-wp-modal__input {
+  width: 100%;
+  padding: 12px 16px;
+  font: 400 15px/1 var(--sam-font);
+  color: var(--sam-black);
+  border: 1px solid var(--sam-border-light);
+  background: var(--sam-white);
+  outline: none;
+  transition: border-color 150ms ease-out;
+}
+.sam-wp-modal__input:focus {
+  border-color: var(--sam-space-cadet);
+}
+.sam-wp-modal__input::placeholder {
+  color: var(--sam-comet);
+}
+.sam-wp-modal__submit {
+  padding: 14px 24px;
+  font: 600 15px/1 var(--sam-font);
+  color: var(--sam-white);
+  background: var(--sam-orange);
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms ease-out;
+  margin-top: 4px;
+}
+.sam-wp-modal__submit:hover {
+  background: var(--sam-orange-dark);
+}
+.sam-wp-modal__privacy {
+  font: 400 12px/1.4 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 12px 0 0 0;
+  text-align: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1055px) {
+  .sam-wp-archive__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .sam-wp-archive__title {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 671px) {
+  .sam-wp-archive {
+    padding: 48px 0 64px;
+  }
+  .sam-wp-archive__inner {
+    padding: 0 16px;
+  }
+  .sam-wp-archive__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .sam-wp-archive__title {
+    font-size: 2rem;
+  }
+  .sam-wp-modal__panel {
+    padding: 24px;
+  }
+}

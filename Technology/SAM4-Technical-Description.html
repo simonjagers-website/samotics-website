@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAM4 — Comprehensive Technical Description</title>
+<style>
+  :root {
+    --primary: #0B1D3A;
+    --accent: #00A5E0;
+    --accent-dark: #0080B0;
+    --text: #2C3E50;
+    --text-light: #5A6A7A;
+    --bg: #FFFFFF;
+    --bg-alt: #F4F7FA;
+    --border: #DDE3EA;
+    --success: #27AE60;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+    background: var(--bg);
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Header */
+  .doc-header {
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+  }
+
+  .doc-header h1 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .doc-header .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  .doc-header .meta {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+
+  /* Sections */
+  section {
+    margin-bottom: 48px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--bg-alt);
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 1rem;
+    color: var(--accent-dark);
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin-bottom: 14px;
+  }
+
+  /* Callout box */
+  .callout {
+    background: var(--bg-alt);
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    margin: 24px 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .callout p:last-child { margin-bottom: 0; }
+
+  .callout.highlight {
+    border-left-color: var(--success);
+    background: #F0FAF4;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.92rem;
+  }
+
+  th {
+    background: var(--primary);
+    color: #fff;
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 600;
+  }
+
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tr:nth-child(even) td {
+    background: var(--bg-alt);
+  }
+
+  /* Lists */
+  ul, ol {
+    margin: 12px 0 16px 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  /* Spec grid */
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .spec-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 20px;
+  }
+
+  .spec-card .label {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  .spec-card .value {
+    font-size: 1.05rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+
+  .toc h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .toc li {
+    margin-bottom: 4px;
+  }
+
+  .toc a {
+    color: var(--accent-dark);
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    text-decoration: underline;
+  }
+
+  strong { font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .spec-grid { grid-template-columns: 1fr; }
+    .container { padding: 24px 16px; }
+    .doc-header h1 { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="doc-header">
+  <h1>SAM4 — Technical Product Description</h1>
+  <div class="subtitle">AI-Powered Condition Monitoring for Electric Motor–Driven Equipment</div>
+  <div class="meta">Samotics B.V. &nbsp;|&nbsp; Source document for website content &nbsp;|&nbsp; February 2026</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<nav class="toc">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#overview">Product Overview</a></li>
+    <li><a href="#technology">Technology Foundation — Electrical Signature Analysis</a></li>
+    <li><a href="#hardware">Hardware &amp; Edge Architecture</a></li>
+    <li><a href="#features">Product Features</a></li>
+    <li><a href="#faults">Detectable Faults &amp; Diagnostic Coverage</a></li>
+    <li><a href="#comparison">SAM4 vs. Traditional Vibration Monitoring</a></li>
+    <li><a href="#deployment">Installation &amp; Deployment</a></li>
+    <li><a href="#service">Service Delivery Model</a></li>
+    <li><a href="#value">Value Proposition</a></li>
+    <li><a href="#applications">Target Applications &amp; Industries</a></li>
+    <li><a href="#specs">Technical Specifications</a></li>
+  </ol>
+</nav>
+
+<!-- 1. OVERVIEW -->
+<section id="overview">
+  <h2>1. Product Overview</h2>
+  <p>SAM4 is Samotics' AI-powered condition monitoring solution for electric motor–driven equipment. It detects developing mechanical and electrical faults months before failure — without placing any sensor on the asset itself.</p>
+  <p>The system works by analysing the electrical signature of current and voltage drawn by a motor. These signals are captured at the Motor Control Centre (MCC) or switchgear — away from the asset — using current and voltage transformers connected to a purpose-built edge computing device. Advanced signal processing and machine learning models then extract fault indicators from the electrical data, covering the full drivetrain from power supply through motor, coupling, and driven load.</p>
+
+  <div class="callout">
+    <p><strong>Core principle:</strong> Every mechanical and electrical change in a motor-driven system leaves a fingerprint in the electrical supply signal. SAM4 reads that fingerprint continuously, applies AI-based diagnostics, and delivers expert-validated alerts before faults escalate into failures.</p>
+  </div>
+
+  <p>SAM4 is delivered as a managed SaaS service. Samotics handles hardware installation, data ingestion, AI-driven diagnostics, expert validation of every alert, and ongoing reporting through a cloud-based platform. Customers get actionable maintenance intelligence — not raw data.</p>
+</section>
+
+<!-- 2. TECHNOLOGY -->
+<section id="technology">
+  <h2>2. Technology Foundation — Electrical Signature Analysis</h2>
+
+  <h3>How ESA Works</h3>
+  <p>Electrical Signature Analysis (ESA) uses the motor as a transducer. Mechanical events in the drivetrain — bearing defects, imbalance, cavitation, clogging, coupling wear — modulate the load on the motor. These load modulations appear as characteristic frequency patterns in the motor's current and voltage waveforms.</p>
+  <p>SAM4 captures high-resolution, three-phase current and voltage waveforms at the MCC. It then applies Fast Fourier Transform (FFT) spectral analysis to decompose these signals into their frequency components. Fault-specific patterns — sidebands around the supply frequency, harmonics, torque oscillations — are identified, tracked over time, and correlated against physics-based fault models and adaptive AI baselines.</p>
+
+  <h3>Why the Electrical Signal?</h3>
+  <p>The motor's electrical supply signal carries information about the entire drivetrain. Because the motor converts electrical energy into mechanical motion, any change in mechanical load produces a corresponding change in the electrical domain. This means a single measurement point at the MCC can monitor the motor, coupling, gearbox, and driven equipment (pump, fan, compressor, conveyor) simultaneously.</p>
+  <p>Unlike vibration, which attenuates across mechanical boundaries (bearings, couplings, fluid interfaces), electrical signals reflect the aggregate load condition. This gives ESA inherent sensitivity to faults deep in the drivetrain — such as pump impeller cavitation or conveyor belt slip — that vibration sensors on the motor frame may not detect.</p>
+
+  <h3>AI &amp; Adaptive Diagnostics</h3>
+  <p>SAM4's diagnostic engine goes beyond static threshold monitoring. Each monitored asset builds an adaptive baseline from its own operating history. The system learns what normal looks like for that specific asset under varying load, speed, and process conditions. Deviations from baseline trigger diagnostic routines that classify the probable fault type, estimate severity, and track progression.</p>
+  <p>Machine learning models are trained on Samotics' growing dataset across thousands of monitored assets, covering a wide range of equipment types, fault modes, and operating environments. This fleet-level learning continuously improves diagnostic accuracy while the asset-specific baseline ensures sensitivity to local anomalies.</p>
+
+  <h3>VFD Compatibility</h3>
+  <p>SAM4 is fully compatible with Variable Frequency Drive (VFD) controlled motors. The system's algorithms are designed to handle the non-sinusoidal, variable-speed waveforms produced by VFDs — a major limitation for many traditional monitoring approaches. SAM4 automatically adjusts frequency analysis to the actual operating speed and supply frequency, maintaining diagnostic accuracy across the full speed range.</p>
+</section>
+
+<!-- 3. HARDWARE -->
+<section id="hardware">
+  <h2>3. Hardware &amp; Edge Architecture</h2>
+
+  <h3>SAM4 Edge Device</h3>
+  <p>The SAM4 Edge is a ruggedised, industrial-grade computing device installed inside or adjacent to the MCC. It serves as the data acquisition front-end, signal processing engine, and secure communication gateway.</p>
+
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="label">Sampling</div>
+      <div class="value">High-resolution 3-phase current &amp; voltage</div>
+    </div>
+    <div class="spec-card">
+      <div class="label">Channels</div>
+      <div class="value">Up to 5 assets per Edge device</div>
+    </div>
+    <div class="spec-card">
+      <div class="label">Local Buffering</div>
+      <div class="value">72+ hours on-device storage</div>
+    </div>
+    <div class="spec-card">
+      <div class="label">Connectivity</div>
+      <div class="value">Ethernet (PoE) / 4G cellular</div>
+    </div>
+    <div class="spec-card">
+      <div class="label">Low Voltage Range</div>
+      <div class="value">Up to 690 V AC</div>
+    </div>
+    <div class="spec-card">
+      <div class="label">Medium Voltage Range</div>
+      <div class="value">Up to 36 kV (with MV transformers)</div>
+    </div>
+    <div class="spec-card">
+      <div class="label">Protection Rating</div>
+      <div class="value">IP20 (panel-mount)</div>
+    </div>
+    <div class="spec-card">
+      <div class="label">Certifications</div>
+      <div class="value">CE marked, IEC/EN compliant</div>
+    </div>
+  </div>
+
+  <h3>Sensors</h3>
+  <p>SAM4 uses split-core Current Transformers (CTs) and Voltage Transformers (VTs) to measure three-phase electrical signals. Split-core CTs clamp around existing cables without breaking the circuit — enabling installation on live equipment without process interruption. For medium-voltage applications (above 690 V), dedicated MV voltage and current transformers are used, connecting at the switchgear level.</p>
+
+  <h3>Edge Computing</h3>
+  <p>The Edge device performs local signal conditioning, spectral decomposition, and feature extraction before transmitting compressed diagnostic data to the Samotics cloud. This edge-first architecture minimises bandwidth requirements and ensures data resilience — if connectivity is interrupted, the device buffers data locally and synchronises automatically once the connection is restored.</p>
+
+  <h3>Security</h3>
+  <p>All communication between the Edge device and the cloud is encrypted via TLS. The device operates as an outbound-only data source — it initiates connections to the Samotics cloud but does not accept inbound connections, minimising the attack surface within the customer's OT network. Data flows are designed to comply with typical industrial cybersecurity requirements.</p>
+</section>
+
+<!-- 4. FEATURES -->
+<section id="features">
+  <h2>4. Product Features</h2>
+
+  <h3>SAM4 Health — Condition Monitoring</h3>
+  <p>SAM4 Health is the core diagnostic capability. It continuously monitors the mechanical and electrical condition of each motor-driven asset. The system detects developing faults, classifies fault type, estimates severity on a four-level scale (healthy, advisory, warning, critical), and tracks degradation trends over time.</p>
+  <p>Health assessments are delivered through the SAM4 cloud platform as structured asset health reports. Every alert is reviewed and validated by Samotics' condition monitoring experts before being delivered to the customer. This human-in-the-loop validation eliminates false positives and ensures that alerts are actionable.</p>
+
+  <h4>Health Severity Levels</h4>
+  <table>
+    <tr><th>Level</th><th>Meaning</th><th>Typical Action</th></tr>
+    <tr><td><strong>Healthy</strong></td><td>No significant anomalies detected</td><td>Continue normal operation</td></tr>
+    <tr><td><strong>Advisory</strong></td><td>Early-stage deviation from baseline</td><td>Plan inspection at next opportunity</td></tr>
+    <tr><td><strong>Warning</strong></td><td>Confirmed developing fault, progressing</td><td>Schedule maintenance within weeks</td></tr>
+    <tr><td><strong>Critical</strong></td><td>Severe degradation, failure risk is high</td><td>Immediate intervention recommended</td></tr>
+  </table>
+
+  <h3>SAM4 Edge Analytics — Energy &amp; Power Quality</h3>
+  <p>Beyond fault detection, every SAM4 Edge device captures real-time operational data that feeds two additional capabilities:</p>
+
+  <h4>Energy Efficiency Monitoring</h4>
+  <p>SAM4 calculates real-time active power consumption (kW), energy use (kWh), and power factor for each monitored asset. This data enables operators to track energy performance over time, identify equipment operating outside optimal efficiency bands, and quantify the energy impact of mechanical degradation. An asset with progressive cavitation, for example, draws more power to deliver the same output — SAM4 makes this visible.</p>
+
+  <h4>Power Quality Monitoring</h4>
+  <p>The system analyses supply-side quality including voltage and current harmonics (THD), voltage imbalance, and supply frequency stability. Poor power quality accelerates motor degradation — voltage imbalance causes excess heating, harmonic distortion increases losses. SAM4 identifies these conditions and flags assets at elevated risk due to supply issues.</p>
+
+  <h3>Real-Time Pump Curve</h3>
+  <p>For pump applications, SAM4 can derive a real-time performance curve using electrical data alone — no flow meters or pressure transmitters required. By correlating electrical power and current signatures with physics-based pump models, the system estimates operating point position on the pump curve and detects drift from the Best Efficiency Point (BEP).</p>
+  <p>This feature makes it possible to identify pumps running in damaging low-flow or high-flow regimes, detect progressive system resistance changes (clogging, valve issues), and track hydraulic efficiency degradation — all from the electrical measurement at the MCC.</p>
+
+  <h3>Clogging Detection</h3>
+  <p>SAM4 includes a dedicated clogging detection capability, particularly valuable for wastewater and slurry pump applications. The system identifies progressive blockage by detecting characteristic load signature changes — torque fluctuations, increased power draw at reduced flow — and distinguishes clogging from other mechanical faults. Alerts are delivered with trend data showing blockage progression, enabling proactive cleaning before complete blockage or pump damage occurs.</p>
+</section>
+
+<!-- 5. DETECTABLE FAULTS -->
+<section id="faults">
+  <h2>5. Detectable Faults &amp; Diagnostic Coverage</h2>
+  <p>SAM4 detects a broad range of mechanical and electrical fault modes across the full drivetrain. The table below summarises the primary fault categories, their location in the system, and typical detection lead time before functional failure.</p>
+
+  <h3>Mechanical Faults</h3>
+  <table>
+    <tr><th>Fault Type</th><th>Component</th><th>Detection Capability</th></tr>
+    <tr><td>Bearing damage</td><td>Motor / driven equipment bearings</td><td>Detects inner race, outer race, ball/roller, and cage defects from early-stage pitting through advanced spalling</td></tr>
+    <tr><td>Imbalance</td><td>Rotating components</td><td>Mass imbalance in impellers, rotors, and other rotating parts</td></tr>
+    <tr><td>Misalignment</td><td>Shaft / coupling</td><td>Angular and parallel misalignment between motor and driven equipment</td></tr>
+    <tr><td>Coupling faults</td><td>Coupling</td><td>Wear, looseness, and degradation of flexible coupling elements</td></tr>
+    <tr><td>Cavitation</td><td>Pump hydraulics</td><td>Detects onset and progression of cavitation through characteristic load instability</td></tr>
+    <tr><td>Clogging / blockage</td><td>Pump / process</td><td>Progressive blockage detection through load pattern analysis</td></tr>
+    <tr><td>Belt faults</td><td>Belt drive</td><td>Belt slip, wear, and tension issues</td></tr>
+    <tr><td>Gearbox faults</td><td>Gearbox</td><td>Gear tooth wear, meshing faults</td></tr>
+    <tr><td>Mechanical looseness</td><td>Structure / foundation</td><td>Structural looseness and foundation degradation</td></tr>
+    <tr><td>Seal wear</td><td>Pump / compressor seals</td><td>Progressive seal degradation affecting load profile</td></tr>
+  </table>
+
+  <h3>Electrical Faults</h3>
+  <table>
+    <tr><th>Fault Type</th><th>Component</th><th>Detection Capability</th></tr>
+    <tr><td>Broken rotor bars</td><td>Motor rotor</td><td>Detects cracked or broken rotor bars through characteristic sideband patterns around supply frequency</td></tr>
+    <tr><td>Stator winding faults</td><td>Motor stator</td><td>Turn-to-turn shorts, phase imbalance from winding degradation</td></tr>
+    <tr><td>Insulation degradation</td><td>Motor windings</td><td>Progressive winding insulation breakdown</td></tr>
+    <tr><td>Supply imbalance</td><td>Power supply</td><td>Voltage and current imbalance in supply phases</td></tr>
+    <tr><td>Harmonic distortion</td><td>Power supply / VFD</td><td>Excessive current and voltage harmonics affecting motor health</td></tr>
+    <tr><td>Power factor deviation</td><td>Motor / system</td><td>Changes indicating increased reactive power demand</td></tr>
+  </table>
+
+  <div class="callout highlight">
+    <p><strong>Detection lead time:</strong> SAM4 typically provides weeks to months of advance warning before functional failure. For progressive mechanical faults such as bearing degradation, detection can occur up to 5 months before failure — providing ample time for planned maintenance.</p>
+  </div>
+</section>
+
+<!-- 6. COMPARISON -->
+<section id="comparison">
+  <h2>6. SAM4 vs. Traditional Vibration Monitoring</h2>
+  <p>Vibration analysis is the established standard for rotating equipment monitoring. SAM4 complements and, for many asset populations, replaces vibration monitoring by addressing its key limitations.</p>
+
+  <table>
+    <tr><th>Criterion</th><th>SAM4 (ESA-Based)</th><th>Vibration Monitoring</th></tr>
+    <tr><td><strong>Sensor placement</strong></td><td>At the MCC — no sensor on the asset</td><td>Accelerometer mounted on asset bearing housing</td></tr>
+    <tr><td><strong>Inaccessible assets</strong></td><td>Fully supports submerged, enclosed, ATEX, or remote assets</td><td>Requires physical access for sensor mounting</td></tr>
+    <tr><td><strong>Electrical fault detection</strong></td><td>Native detection of rotor bar, stator, insulation, and supply faults</td><td>Limited — primarily detects mechanical effects of electrical faults</td></tr>
+    <tr><td><strong>VFD compatibility</strong></td><td>Full compatibility with variable-speed drives</td><td>VFDs introduce noise that complicates vibration analysis</td></tr>
+    <tr><td><strong>Load awareness</strong></td><td>Inherent — electrical signals directly reflect load and speed</td><td>Requires separate process instrumentation for context</td></tr>
+    <tr><td><strong>Process insight</strong></td><td>Detects cavitation, clogging, pump curve drift</td><td>Limited process visibility</td></tr>
+    <tr><td><strong>Scalability</strong></td><td>One Edge device covers up to 5 assets; no per-asset field work</td><td>Each asset requires individual sensor installation and wiring</td></tr>
+    <tr><td><strong>Installation downtime</strong></td><td>None — installed on live equipment at the MCC</td><td>Often requires shutdown for sensor mounting and commissioning</td></tr>
+    <tr><td><strong>Maintenance of sensors</strong></td><td>Minimal — CTs/VTs are passive, Edge device is panel-mounted</td><td>Accelerometers and cabling exposed to field conditions, require upkeep</td></tr>
+    <tr><td><strong>Energy &amp; power quality</strong></td><td>Built-in energy and power quality monitoring</td><td>Separate systems required</td></tr>
+  </table>
+
+  <div class="callout">
+    <p><strong>Complementary approach:</strong> For critical high-value assets, SAM4 and vibration monitoring can operate side by side — ESA providing electrical fault coverage and process insight while vibration provides granular bearing-frequency analysis. For the long tail of standard assets, SAM4 offers a scalable, cost-effective alternative that eliminates the access and installation barriers of vibration-based systems.</p>
+  </div>
+</section>
+
+<!-- 7. DEPLOYMENT -->
+<section id="deployment">
+  <h2>7. Installation &amp; Deployment</h2>
+
+  <h3>Installation Process</h3>
+  <p>SAM4 installation is non-intrusive and does not require equipment shutdown. The typical installation sequence takes under 60 minutes per asset and follows these steps:</p>
+  <ol>
+    <li><strong>Site survey</strong> — Samotics engineers assess the MCC layout, identify cable routes, and confirm electrical parameters (voltage, current, motor nameplate data).</li>
+    <li><strong>CT/VT installation</strong> — Split-core current transformers are clamped around the motor supply cables. Voltage connections are made at the MCC bus or terminal block. For medium-voltage installations, dedicated MV transformers are mounted at the switchgear.</li>
+    <li><strong>Edge device mounting</strong> — The SAM4 Edge is mounted inside the MCC panel or in an adjacent enclosure. Power is supplied via PoE or local AC supply.</li>
+    <li><strong>Network connection</strong> — The Edge device connects to the Samotics cloud via Ethernet (preferred) or integrated 4G cellular modem.</li>
+    <li><strong>Commissioning</strong> — Samotics validates data quality, confirms asset identification, and initiates the baseline learning period.</li>
+  </ol>
+
+  <h3>Baseline Learning</h3>
+  <p>After installation, SAM4 enters a baseline learning period during which it observes the asset's normal operating patterns across varying load and speed conditions. Once a robust baseline is established, the system transitions to active diagnostic monitoring. During the baseline period, energy and power quality analytics are available immediately.</p>
+
+  <h3>Medium Voltage Assets</h3>
+  <p>For motors above 690 V (up to 36 kV), SAM4 uses dedicated medium-voltage current and voltage transformers. These are installed at the switchgear level, often utilising existing protection CTs where available. The same SAM4 Edge device processes MV data — no separate hardware is needed. MV installations follow the same non-intrusive principles, though site-specific safety protocols for high-voltage work apply.</p>
+</section>
+
+<!-- 8. SERVICE -->
+<section id="service">
+  <h2>8. Service Delivery Model</h2>
+  <p>SAM4 is delivered as a fully managed service — not simply a monitoring tool. This managed approach is core to the product's value proposition, ensuring that customers receive validated, actionable intelligence rather than raw data and alarms.</p>
+
+  <h3>Service Components</h3>
+
+  <h4>1. Hardware &amp; Installation</h4>
+  <p>Samotics supplies, installs, and maintains all monitoring hardware (Edge devices, CTs, VTs, network components). Hardware is included in the service subscription — there is no upfront capital expenditure for monitoring equipment.</p>
+
+  <h4>2. Continuous Data Acquisition</h4>
+  <p>The SAM4 Edge device collects high-resolution electrical data 24/7. Data is transmitted to the Samotics cloud platform in near real-time, with local buffering ensuring no data loss during connectivity interruptions.</p>
+
+  <h4>3. AI-Driven Diagnostics</h4>
+  <p>Incoming data is processed through Samotics' diagnostic engine, which applies spectral analysis, adaptive baseline comparison, and fault classification algorithms. The system identifies anomalies, classifies probable fault modes, and tracks degradation trajectories automatically.</p>
+
+  <h4>4. Expert Validation (Human-in-the-Loop)</h4>
+  <p>Every diagnostic alert generated by the AI is reviewed by Samotics' team of condition monitoring analysts before delivery to the customer. Analysts assess diagnostic confidence, correlate findings across fleet data, consider operational context, and — where needed — request additional information from the customer. This expert review step is the critical differentiator: it eliminates false positives and ensures that each alert includes a clear fault description, severity assessment, and recommended action.</p>
+
+  <h4>5. Cloud Platform &amp; Reporting</h4>
+  <p>Customers access their fleet data through the SAM4 cloud platform, which provides asset health dashboards, trend visualisations, energy analytics, and downloadable reports. The platform supports fleet-level prioritisation — sorting assets by health severity to focus maintenance resources on the most urgent cases.</p>
+
+  <h4>6. CMMS Integration</h4>
+  <p>SAM4 integrates with existing Computerised Maintenance Management Systems (CMMS) to push alerts and work order recommendations directly into the customer's maintenance workflow. This eliminates the gap between diagnostic insight and maintenance action.</p>
+
+  <h4>7. Ongoing Support &amp; Review</h4>
+  <p>Samotics provides regular service reviews with customers — assessing fleet health trends, reviewing alert history, refining monitoring scope, and identifying opportunities for expanded coverage. Technical support is available for operational questions, alarm interpretation, and installation changes.</p>
+
+  <div class="callout">
+    <p><strong>Subscription model:</strong> SAM4 is priced as a recurring subscription per monitored asset. This includes all hardware, software, data analytics, expert review, and support — a single predictable cost with no hidden fees for sensors, data storage, or analyst time.</p>
+  </div>
+</section>
+
+<!-- 9. VALUE -->
+<section id="value">
+  <h2>9. Value Proposition</h2>
+
+  <h3>Prevent Unplanned Downtime</h3>
+  <p>Unplanned failure of motor-driven equipment causes production loss, emergency repair costs, and safety risk. SAM4 detects developing faults weeks to months before failure, converting unplanned breakdowns into scheduled maintenance events. The typical detection lead time of 2–5 months gives maintenance teams ample runway to plan parts, resources, and intervention windows.</p>
+
+  <h3>Extend Asset Life</h3>
+  <p>By catching faults early — before secondary damage cascades — SAM4 helps extend the operational life of motors and driven equipment. A bearing fault caught at advisory stage can be addressed with a planned bearing replacement. The same fault caught after failure may require full motor rewind or replacement, plus repair of the driven equipment.</p>
+
+  <h3>Monitor the Unreachable</h3>
+  <p>Many critical assets are difficult or impossible to instrument with traditional sensors. Submersible pumps, equipment in explosive atmospheres (ATEX/IECEx zones), enclosed or buried installations, and assets in remote locations all present physical access challenges. SAM4 monitors these assets from the safety and accessibility of the MCC, closing the monitoring gap for equipment that would otherwise run to failure.</p>
+
+  <h3>Scale Condition Monitoring Economically</h3>
+  <p>Traditional vibration monitoring programs are often limited to a plant's most critical assets due to the per-asset cost of sensors, installation, wiring, and analyst time. SAM4's MCC-based architecture — where one Edge device covers up to five assets — dramatically reduces the per-asset cost, making condition monitoring economically viable for the broader population of standard, general-purpose motors that collectively represent significant operational risk.</p>
+
+  <h3>Reduce Energy Waste</h3>
+  <p>Mechanical degradation increases energy consumption. A pump with worn impellers or progressive cavitation draws more power to deliver less output. SAM4's energy monitoring quantifies this waste, enabling targeted intervention to restore efficiency. Across a large motor fleet, the cumulative energy savings can be substantial.</p>
+
+  <h3>Improve Sustainability</h3>
+  <p>By extending equipment life, preventing catastrophic failures (and their environmental consequences — such as wastewater overflows from pump failures), and reducing energy waste, SAM4 contributes directly to operational sustainability goals. The system also supports ESG reporting by providing verifiable energy consumption data at the individual asset level.</p>
+</section>
+
+<!-- 10. APPLICATIONS -->
+<section id="applications">
+  <h2>10. Target Applications &amp; Industries</h2>
+
+  <h3>Equipment Types</h3>
+  <p>SAM4 monitors any AC induction motor–driven equipment, including:</p>
+  <ul>
+    <li>Centrifugal and positive displacement pumps (including submersible)</li>
+    <li>Fans, blowers, and compressors</li>
+    <li>Mixers and agitators</li>
+    <li>Conveyors and material handling equipment</li>
+    <li>Screw presses and other process equipment</li>
+    <li>Cooling towers and HVAC systems</li>
+  </ul>
+  <p>The system supports motors from fractional kW up to multi-MW, across both low-voltage (up to 690 V) and medium-voltage (up to 36 kV) applications, including VFD-controlled drives.</p>
+
+  <h3>Industries</h3>
+
+  <h4>Water &amp; Wastewater</h4>
+  <p>Particularly strong fit due to the prevalence of submersible pumps, wet wells, and aggressive environments that limit sensor access. SAM4's clogging detection is especially valuable for wastewater applications where rag and debris blockage is a persistent operational challenge.</p>
+
+  <h4>Oil &amp; Gas / Petrochemical</h4>
+  <p>ATEX-rated environments, remote locations, and the high cost of unplanned shutdowns make ESA-based monitoring attractive. SAM4 avoids the need for hazardous-area sensor certifications and field installation in classified zones.</p>
+
+  <h4>Mining &amp; Minerals</h4>
+  <p>Harsh environments, large motor populations, and the critical role of pumps, conveyors, and crushers in production continuity. SAM4 scales across large fleets without extensive field instrumentation.</p>
+
+  <h4>Chemical &amp; Pharmaceutical</h4>
+  <p>Process continuity, safety-critical equipment, and cleanroom/hygienic constraints that restrict physical sensor placement.</p>
+
+  <h4>Food &amp; Beverage</h4>
+  <p>Hygiene requirements limit sensor mounting options. MCC-based monitoring avoids contamination risk while providing full drivetrain coverage.</p>
+
+  <h4>Power Generation &amp; Utilities</h4>
+  <p>Balance of plant equipment — cooling water pumps, draft fans, coal handling — benefits from scalable, cost-effective monitoring.</p>
+
+  <h4>General Manufacturing</h4>
+  <p>Any facility with a significant population of electric motor–driven equipment can benefit from SAM4 to extend asset life, reduce downtime, and improve energy efficiency.</p>
+</section>
+
+<!-- 11. SPECS -->
+<section id="specs">
+  <h2>11. Technical Specifications</h2>
+
+  <table>
+    <tr><th>Parameter</th><th>Specification</th></tr>
+    <tr><td>Motor type</td><td>AC induction motors (DOL, soft-start, and VFD controlled)</td></tr>
+    <tr><td>Voltage range (LV)</td><td>Up to 690 V AC</td></tr>
+    <tr><td>Voltage range (MV)</td><td>Up to 36 kV AC (with MV transformer kit)</td></tr>
+    <tr><td>Motor power range</td><td>Fractional kW to multi-MW</td></tr>
+    <tr><td>Measurement</td><td>3-phase current &amp; 3-phase voltage, high-resolution sampling</td></tr>
+    <tr><td>Current sensors</td><td>Split-core CTs (various ratios available)</td></tr>
+    <tr><td>Voltage sensors</td><td>Direct connection (LV) or VTs (MV)</td></tr>
+    <tr><td>Assets per Edge device</td><td>Up to 5</td></tr>
+    <tr><td>Edge local storage</td><td>72+ hours data buffering</td></tr>
+    <tr><td>Connectivity</td><td>Ethernet (10/100 Mbps, PoE) or 4G/LTE cellular</td></tr>
+    <tr><td>Communication protocol</td><td>TLS-encrypted outbound HTTPS/MQTT</td></tr>
+    <tr><td>Power supply</td><td>PoE (IEEE 802.3af/at) or 100–240 V AC</td></tr>
+    <tr><td>Enclosure rating</td><td>IP20 (designed for MCC panel mounting)</td></tr>
+    <tr><td>Operating temperature</td><td>0°C to +55°C</td></tr>
+    <tr><td>Certifications</td><td>CE, IEC/EN safety and EMC standards</td></tr>
+    <tr><td>Cloud platform</td><td>Browser-based SaaS (no client software required)</td></tr>
+    <tr><td>Integration</td><td>CMMS integration via API; supports standard formats</td></tr>
+    <tr><td>Installation time</td><td>&lt;60 minutes per asset (typical)</td></tr>
+    <tr><td>Downtime required</td><td>None — live installation</td></tr>
+  </table>
+</section>
+
+</div>
+</body>
+</html>

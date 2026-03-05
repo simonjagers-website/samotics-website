@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P1 Fixes Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sam-space-cadet: #1F1F33;
+    --sam-orange: #FF5429;
+    --sam-white: #FFFFFF;
+    --sam-seashell: #F5F6F8;
+    --sam-comet: #5A6A80;
+    --sam-border-light: #E2E4E8;
+    --sam-font: 'IBM Plex Sans', -apple-system, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font: 400 15px/1.7 var(--sam-font); color: var(--sam-space-cadet); background: #f0f1f3; }
+
+  .header { background: var(--sam-space-cadet); color: white; padding: 32px 40px; text-align: center; }
+  .header h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .header p { font-size: 14px; color: rgba(255,255,255,.6); }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+
+  .page-block { margin-bottom: 28px; }
+  .page-block__header {
+    background: var(--sam-space-cadet);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 8px 8px 0 0;
+    font: 600 15px/1 var(--sam-font);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .page-block__badge {
+    background: var(--sam-orange); color: white;
+    font: 600 11px/1 var(--sam-font);
+    padding: 3px 8px; border-radius: 10px;
+  }
+  .page-block__body {
+    background: white;
+    border: 1px solid var(--sam-border-light);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 0;
+  }
+  .fix-row {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--sam-border-light);
+    font-size: 14px; line-height: 1.6;
+  }
+  .fix-row:last-child { border-bottom: none; }
+  .fix-row__label { font: 600 13px/1 var(--sam-font); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+  .fix-tag {
+    font: 500 10px/1 var(--sam-font);
+    padding: 3px 8px; border-radius: 10px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .fix-tag--trust { background: #FFEBEE; color: #C62828; }
+  .fix-tag--structure { background: #E3F2FD; color: #1565C0; }
+  .fix-tag--copy { background: #F3E5F5; color: #7B1FA2; }
+
+  .diff { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; }
+  .diff-before, .diff-after {
+    padding: 10px 14px; border-radius: 4px; margin-bottom: 6px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .diff-before { background: #FFF0F0; border-left: 3px solid #E53935; }
+  .diff-after { background: #F0FFF0; border-left: 3px solid #43A047; }
+  .diff-label { font: 600 10px/1 var(--sam-font); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; display: block; }
+  .diff-label--before { color: #C62828; }
+  .diff-label--after { color: #2E7D32; }
+
+  .note { margin-top: 8px; font-size: 13px; color: var(--sam-comet); }
+
+  .stats-row {
+    display: flex; gap: 16px; margin-bottom: 28px;
+  }
+  .stat-card {
+    flex: 1; background: white; border: 1px solid var(--sam-border-light);
+    border-radius: 8px; padding: 16px; text-align: center;
+  }
+  .stat-card__value { font: 700 28px/1 var(--sam-font); color: var(--sam-orange); display: block; }
+  .stat-card__label { font: 400 12px/1.3 var(--sam-font); color: var(--sam-comet); margin-top: 4px; display: block; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>P1 Fixes — Applied</h1>
+  <p>Trust bar mismatches fixed. Airports structurally complete. Ready for review.</p>
+</div>
+
+<div class="container">
+
+<div class="stats-row">
+  <div class="stat-card">
+    <span class="stat-card__value">3</span>
+    <span class="stat-card__label">Pages changed</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-card__value">7</span>
+    <span class="stat-card__label">Fixes applied</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-card__value">0</span>
+    <span class="stat-card__label">Trust mismatches remaining</span>
+  </div>
+</div>
+
+<!-- CHEMICALS -->
+<div class="page-block">
+  <div class="page-block__header">
+    Chemicals
+    <span class="page-block__badge">2 fixes</span>
+  </div>
+  <div class="page-block__body">
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--trust">Trust</span> Proof callout now references trust bar companies</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before</span>
+        <div class="diff-before">Early results: $90k in production loss prevented at Kuraray, €121k/yr in energy savings at Nobian. SAM4 deployments in chemicals are growing — these are real outcomes from initial pilots.</div>
+        <span class="diff-label diff-label--after">After</span>
+        <div class="diff-after">Deployed at DuPont, DSM-Firmenich, OCI Nitrogen, and more. €121k/yr in energy savings and €90k in production loss prevented from initial pilots.</div>
+      </div>
+      <p class="note">Names now match the trust bar. Currency normalised to €. Removed "growing" hedging language — the trust bar speaks for itself.</p>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--trust">Trust</span> Results note: removed Kuraray/Nobian names</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before</span>
+        <div class="diff-before">These figures come from initial chemical industry deployments at Kuraray and Nobian.</div>
+        <span class="diff-label diff-label--after">After</span>
+        <div class="diff-after">These figures come from initial chemical industry deployments.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- METALS & MINING -->
+<div class="page-block">
+  <div class="page-block__header">
+    Metals &amp; Mining
+    <span class="page-block__badge">2 fixes</span>
+  </div>
+  <div class="page-block__body">
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--trust">Trust</span> Removed Pfleiderer and Sappi from trust bar</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before (6 logos)</span>
+        <div class="diff-before">Pfleiderer, Nyrstar, Nucor, Stelco, Salzgitter AG, Sappi</div>
+        <span class="diff-label diff-label--after">After (4 logos)</span>
+        <div class="diff-after">Nyrstar, Nucor, Stelco, Salzgitter AG</div>
+      </div>
+      <p class="note">Pfleiderer and Sappi are pulp &amp; paper companies. A steel mill buyer would notice.</p>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--trust">Trust</span> Results note: removed thyssenkrupp reference</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before</span>
+        <div class="diff-before">These results are from deployments at ArcelorMittal, thyssenkrupp, and Nyrstar.</div>
+        <span class="diff-label diff-label--after">After</span>
+        <div class="diff-after">These results are from deployments at ArcelorMittal and Nyrstar.</div>
+      </div>
+      <p class="note">thyssenkrupp isn't in the trust bar or case studies. Naming them without other proof creates questions.</p>
+    </div>
+  </div>
+</div>
+
+<!-- AIRPORTS -->
+<div class="page-block">
+  <div class="page-block__header">
+    Airports
+    <span class="page-block__badge">3 fixes</span>
+  </div>
+  <div class="page-block__body">
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--structure">Structure</span> Added scaling callout section</div>
+      <div class="diff">
+        <span class="diff-label diff-label--after">Added</span>
+        <div class="diff-after">&lt;h2&gt;From one terminal to every motor across the airport&lt;/h2&gt;
+Start with the baggage handling conveyors that can't fail. SAM4 installs at the MCC — scaling to HVAC, escalators, and auxiliary systems takes minutes, not months.
+[See How It Scales →]</div>
+      </div>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--structure">Structure</span> Added SAM4-X validation section</div>
+      <div class="diff">
+        <span class="diff-label diff-label--after">Added</span>
+        <div class="diff-after">&lt;p class="overline"&gt;Not sure yet?&lt;/p&gt;
+&lt;h2&gt;Start with a paid validation&lt;/h2&gt;
+SAM4-X lets you prove the technology on your assets before committing to a fleet-wide contract. Fixed scope. Fixed price. Real results on your equipment — not a generic demo.
+[Learn About SAM4-X →]</div>
+      </div>
+      <p class="note">Every other industry page has this section. Critical for risk-averse airport buyers who need a low-commitment entry point.</p>
+    </div>
+    <div class="fix-row">
+      <div class="fix-row__label"><span class="fix-tag fix-tag--structure">Structure</span> CTA block: added mid-links + renamed heading</div>
+      <div class="diff">
+        <span class="diff-label diff-label--before">Before</span>
+        <div class="diff-before">"Ready to protect your airport assets?"
+[Talk to an engineer] [Coverage Calculator]</div>
+        <span class="diff-label diff-label--after">After</span>
+        <div class="diff-after">"Explore SAM4 for airports"
+Download Technical Guide · See a Sample Report · Calculate Your ROI
+[Talk to an engineer] [Book an Asset Audit]</div>
+      </div>
+      <p class="note">Mid-links give the not-yet-ready buyer somewhere to go. Heading no longer duplicates pre-footer. CTAs aligned with other pages.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

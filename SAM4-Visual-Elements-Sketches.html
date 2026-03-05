@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAM4 Explainer — Visual Element Sketches</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Calibri, sans-serif;
+    background: #F8F5F2;
+    color: #1F1F33;
+    padding: 40px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #6B6B7F; margin-bottom: 40px; }
+  .scene-block { margin-bottom: 48px; }
+  .scene-header {
+    display: flex; align-items: baseline; gap: 12px;
+    border-bottom: 2px solid #1F1F33;
+    padding-bottom: 8px; margin-bottom: 20px;
+  }
+  .scene-num {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    color: #0098AC; letter-spacing: 2px;
+  }
+  .scene-title { font-size: 18px; font-weight: 600; }
+  .scene-time { font-size: 13px; color: #6B6B7F; margin-left: auto; }
+  .elements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .element-card {
+    background: #fff;
+    border: 1px solid #E8E4E0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .element-card:hover { border-color: #0098AC; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .sketch-area {
+    width: 100%; height: 180px;
+    background: #FAFAF8;
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid #E8E4E0;
+  }
+  .sketch-area svg { width: 90%; height: 90%; }
+  .element-info { padding: 10px 12px; }
+  .element-name { font-size: 12px; font-weight: 600; line-height: 1.35; margin-bottom: 2px; }
+  .element-cat {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; color: #006C6C;
+  }
+  .element-num { font-size: 10px; color: #6B6B7F; float: right; }
+  .reuse-tag {
+    display: inline-block; font-size: 9px; background: #E0F7FA; color: #006C6C;
+    padding: 1px 6px; border-radius: 3px; margin-top: 4px;
+  }
+
+  /* sketch styles */
+  .sk-line { stroke: #1F1F33; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .sk-line-thin { stroke: #1F1F33; stroke-width: 1; fill: none; stroke-linecap: round; }
+  .sk-fill-light { fill: #E8E4E0; stroke: #1F1F33; stroke-width: 1.2; }
+  .sk-fill-orange { fill: #FF5429; stroke: none; opacity: 0.85; }
+  .sk-fill-teal { fill: #0098AC; stroke: none; opacity: 0.7; }
+  .sk-fill-green { fill: #4CAF50; stroke: none; opacity: 0.7; }
+  .sk-fill-red { fill: #E53935; stroke: none; opacity: 0.7; }
+  .sk-text { font-family: 'Consolas', monospace; font-size: 9px; fill: #1F1F33; }
+  .sk-text-sm { font-family: 'Consolas', monospace; font-size: 7px; fill: #6B6B7F; }
+  .sk-text-label { font-family: 'Segoe UI', sans-serif; font-size: 8px; fill: #1F1F33; font-weight: 600; }
+  .sk-dashed { stroke-dasharray: 4 3; }
+  .sk-grey { fill: #B0B0C8; stroke: #6B6B7F; stroke-width: 1; opacity: 0.6; }
+</style>
+</head>
+<body>
+
+<h1>SAM4 Explainer — Visual Element Sketches</h1>
+<p class="subtitle">50 elements across 11 scenes · Rough line-art reference for the motion designer · Samotics · Feb 2026</p>
+
+<!-- ======================== SCENE 1 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 1</span>
+    <span class="scene-title">The reliability blind spot</span>
+    <span class="scene-time">0–8s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 1. Industrial landscape -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- sky line -->
+          <rect x="0" y="80" width="200" height="60" fill="#E8E4E0" opacity="0.3"/>
+          <!-- buildings -->
+          <rect x="10" y="50" width="16" height="40" class="sk-fill-light"/>
+          <rect x="30" y="35" width="12" height="55" class="sk-fill-light"/>
+          <rect x="46" y="55" width="20" height="35" class="sk-fill-light"/>
+          <rect x="70" y="40" width="14" height="50" class="sk-fill-light"/>
+          <!-- chimney -->
+          <rect x="92" y="30" width="6" height="60" class="sk-fill-light"/>
+          <line x1="95" y1="30" x2="95" y2="18" class="sk-line-thin sk-dashed"/>
+          <!-- tower -->
+          <polygon points="115,25 125,25 127,90 113,90" class="sk-fill-light"/>
+          <rect x="135" y="45" width="22" height="45" class="sk-fill-light"/>
+          <rect x="162" y="55" width="18" height="35" class="sk-fill-light"/>
+          <rect x="184" y="60" width="14" height="30" class="sk-fill-light"/>
+          <!-- ground line -->
+          <line x1="0" y1="90" x2="200" y2="90" class="sk-line"/>
+          <!-- horizon haze -->
+          <text x="100" y="110" text-anchor="middle" class="sk-text-sm">industrial skyline — muted palette</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#1</span>
+        <div class="element-name">Industrial landscape / skyline silhouette</div>
+        <div class="element-cat">Environment</div>
+        <span class="reuse-tag">↺ Reused in Scene 11</span>
+      </div>
+    </div>
+
+    <!-- 2. Submersible pump -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- water -->
+          <rect x="0" y="50" width="200" height="90" fill="#0098AC" opacity="0.1"/>
+          <path d="M0,50 Q25,45 50,50 Q75,55 100,50 Q125,45 150,50 Q175,55 200,50" class="sk-line-thin" stroke="#0098AC"/>
+          <!-- pump body -->
+          <rect x="70" y="70" width="60" height="40" rx="4" class="sk-fill-light"/>
+          <!-- motor top -->
+          <rect x="85" y="58" width="30" height="16" rx="2" class="sk-fill-light"/>
+          <!-- pipe out -->
+          <line x1="130" y1="85" x2="170" y2="85" class="sk-line"/>
+          <line x1="130" y1="92" x2="170" y2="92" class="sk-line"/>
+          <!-- cable up -->
+          <line x1="100" y1="58" x2="100" y2="30" class="sk-line sk-dashed"/>
+          <!-- impeller hint -->
+          <circle cx="100" cy="90" r="12" class="sk-line-thin"/>
+          <line x1="100" y1="78" x2="100" y2="102" class="sk-line-thin"/>
+          <line x1="88" y1="90" x2="112" y2="90" class="sk-line-thin"/>
+          <!-- label -->
+          <text x="100" y="128" text-anchor="middle" class="sk-text-sm">submersible pump (underwater)</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#2</span>
+        <div class="element-name">Submersible pump icon (underwater)</div>
+        <div class="element-cat">Assets</div>
+        <span class="reuse-tag">↺ Reused in Scene 11</span>
+      </div>
+    </div>
+
+    <!-- 3. Motor in ATEX zone -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- hazard triangle -->
+          <polygon points="100,10 130,55 70,55" fill="none" stroke="#FF5429" stroke-width="2"/>
+          <text x="100" y="46" text-anchor="middle" font-size="16" fill="#FF5429" font-weight="bold">!</text>
+          <text x="100" y="68" text-anchor="middle" class="sk-text" fill="#FF5429">Ex</text>
+          <!-- motor body -->
+          <rect x="60" y="78" width="80" height="36" rx="6" class="sk-fill-light"/>
+          <!-- shaft -->
+          <line x1="140" y1="96" x2="165" y2="96" class="sk-line"/>
+          <!-- fins -->
+          <line x1="65" y1="78" x2="65" y2="114" class="sk-line-thin"/>
+          <line x1="75" y1="78" x2="75" y2="114" class="sk-line-thin"/>
+          <line x1="85" y1="78" x2="85" y2="114" class="sk-line-thin"/>
+          <!-- junction box -->
+          <rect x="80" y="70" width="20" height="10" rx="2" class="sk-fill-light"/>
+          <!-- feet -->
+          <rect x="68" y="114" width="16" height="4" class="sk-fill-light"/>
+          <rect x="116" y="114" width="16" height="4" class="sk-fill-light"/>
+          <!-- hazard stripe -->
+          <line x1="40" y1="118" x2="160" y2="118" stroke="#FF5429" stroke-width="2" stroke-dasharray="8 4"/>
+          <text x="100" y="132" text-anchor="middle" class="sk-text-sm">ATEX zone — hazard markings</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#3</span>
+        <div class="element-name">Motor in ATEX zone (hazard markings)</div>
+        <div class="element-cat">Assets</div>
+        <span class="reuse-tag">↺ Reused in Scene 11</span>
+      </div>
+    </div>
+
+    <!-- 4. Remote fan -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- distance indicator -->
+          <line x1="10" y1="100" x2="80" y2="100" class="sk-line-thin sk-dashed" stroke="#6B6B7F"/>
+          <text x="45" y="112" text-anchor="middle" class="sk-text-sm">distance</text>
+          <!-- fan housing -->
+          <circle cx="140" cy="65" r="30" class="sk-fill-light"/>
+          <!-- blades -->
+          <line x1="140" y1="35" x2="140" y2="45" class="sk-line" stroke-width="3"/>
+          <line x1="140" y1="85" x2="140" y2="95" class="sk-line" stroke-width="3"/>
+          <line x1="110" y1="65" x2="120" y2="65" class="sk-line" stroke-width="3"/>
+          <line x1="160" y1="65" x2="170" y2="65" class="sk-line" stroke-width="3"/>
+          <!-- hub -->
+          <circle cx="140" cy="65" r="6" fill="#1F1F33"/>
+          <!-- rotation arc -->
+          <path d="M155,48 A20,20 0 0,1 158,65" fill="none" stroke="#6B6B7F" stroke-width="1"/>
+          <polygon points="158,63 158,67 162,65" fill="#6B6B7F"/>
+          <!-- stand -->
+          <line x1="140" y1="95" x2="140" y2="115" class="sk-line"/>
+          <line x1="125" y1="115" x2="155" y2="115" class="sk-line"/>
+          <text x="140" y="130" text-anchor="middle" class="sk-text-sm">remote / isolated fan</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#4</span>
+        <div class="element-name">Remote fan (distant / isolated)</div>
+        <div class="element-cat">Assets</div>
+        <span class="reuse-tag">↺ Reused in Scene 11</span>
+      </div>
+    </div>
+
+    <!-- 5. NO DATA label -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- faded asset box -->
+          <rect x="50" y="35" width="100" height="60" rx="4" fill="#B0B0C8" opacity="0.25" stroke="#B0B0C8" stroke-width="1"/>
+          <!-- NO DATA label -->
+          <rect x="55" y="55" width="90" height="26" rx="3" fill="#1F1F33" opacity="0.85"/>
+          <text x="100" y="73" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#FF5429" font-weight="bold">NO DATA</text>
+          <!-- fade arrows -->
+          <text x="100" y="118" text-anchor="middle" class="sk-text-sm">overlay on greyed-out asset</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#5</span>
+        <div class="element-name">'NO DATA' label overlay</div>
+        <div class="element-cat">Signals &amp; Data</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 2 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 2</span>
+    <span class="scene-title">Why traditional monitoring stops</span>
+    <span class="scene-time">8–16s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 6. Vibration sensor -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- sensor body -->
+          <rect x="75" y="30" width="50" height="24" rx="4" class="sk-fill-light"/>
+          <!-- probe tip -->
+          <rect x="95" y="54" width="10" height="20" rx="2" class="sk-fill-light"/>
+          <circle cx="100" cy="76" r="3" fill="#1F1F33"/>
+          <!-- magnet base -->
+          <rect x="88" y="76" width="24" height="6" rx="2" fill="#6B6B7F"/>
+          <!-- cable -->
+          <path d="M125,42 Q140,42 145,35 Q150,28 160,28" class="sk-line-thin"/>
+          <!-- signal waves -->
+          <path d="M80,36 Q77,42 80,48" class="sk-line-thin" stroke="#0098AC"/>
+          <path d="M74,33 Q70,42 74,51" class="sk-line-thin" stroke="#0098AC"/>
+          <!-- label -->
+          <text x="100" y="100" text-anchor="middle" class="sk-text">vibration sensor</text>
+          <text x="100" y="112" text-anchor="middle" class="sk-text-sm">handheld / stick-on type</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#6</span>
+        <div class="element-name">Vibration sensor (handheld / stick-on)</div>
+        <div class="element-cat">Assets</div>
+      </div>
+    </div>
+
+    <!-- 7. Water barrier -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- water waves -->
+          <path d="M20,55 Q40,45 60,55 Q80,65 100,55 Q120,45 140,55 Q160,65 180,55" fill="none" stroke="#0098AC" stroke-width="2"/>
+          <path d="M20,70 Q40,60 60,70 Q80,80 100,70 Q120,60 140,70 Q160,80 180,70" fill="none" stroke="#0098AC" stroke-width="1.5" opacity="0.6"/>
+          <path d="M20,82 Q40,75 60,82 Q80,89 100,82 Q120,75 140,82 Q160,89 180,82" fill="none" stroke="#0098AC" stroke-width="1" opacity="0.3"/>
+          <!-- block symbol -->
+          <circle cx="100" cy="105" r="14" fill="none" stroke="#E53935" stroke-width="2"/>
+          <line x1="90" y1="95" x2="110" y2="115" stroke="#E53935" stroke-width="2"/>
+          <text x="100" y="132" text-anchor="middle" class="sk-text-sm">water prevents sensor access</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#7</span>
+        <div class="element-name">Water barrier icon</div>
+        <div class="element-cat">Barriers</div>
+      </div>
+    </div>
+
+    <!-- 8. ATEX barrier -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- hazard triangle large -->
+          <polygon points="100,15 145,80 55,80" fill="#FFF3E0" stroke="#FF5429" stroke-width="2"/>
+          <text x="100" y="65" text-anchor="middle" font-size="28" fill="#FF5429" font-weight="bold">⚡</text>
+          <!-- ATEX text -->
+          <text x="100" y="98" text-anchor="middle" font-family="Consolas" font-size="14" fill="#FF5429" font-weight="bold">ATEX</text>
+          <!-- barrier line -->
+          <line x1="30" y1="108" x2="170" y2="108" stroke="#FF5429" stroke-width="2" stroke-dasharray="10 5"/>
+          <text x="100" y="128" text-anchor="middle" class="sk-text-sm">explosive atmosphere zone</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#8</span>
+        <div class="element-name">ATEX zone barrier / hazard symbol</div>
+        <div class="element-cat">Barriers</div>
+      </div>
+    </div>
+
+    <!-- 9. Physical wall / distance -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- wall -->
+          <rect x="90" y="20" width="20" height="90" fill="#E8E4E0" stroke="#1F1F33" stroke-width="1.5"/>
+          <!-- bricks -->
+          <line x1="90" y1="35" x2="110" y2="35" class="sk-line-thin"/>
+          <line x1="90" y1="50" x2="110" y2="50" class="sk-line-thin"/>
+          <line x1="90" y1="65" x2="110" y2="65" class="sk-line-thin"/>
+          <line x1="90" y1="80" x2="110" y2="80" class="sk-line-thin"/>
+          <line x1="90" y1="95" x2="110" y2="95" class="sk-line-thin"/>
+          <line x1="100" y1="20" x2="100" y2="35" class="sk-line-thin"/>
+          <line x1="100" y1="50" x2="100" y2="65" class="sk-line-thin"/>
+          <line x1="100" y1="80" x2="100" y2="95" class="sk-line-thin"/>
+          <!-- sensor on left -->
+          <rect x="40" y="50" width="20" height="14" rx="2" class="sk-fill-light"/>
+          <!-- arrow blocked -->
+          <line x1="60" y1="57" x2="85" y2="57" class="sk-line-thin"/>
+          <polygon points="85,54 85,60 90,57" fill="#1F1F33"/>
+          <!-- X -->
+          <line x1="82" y1="48" x2="92" y2="66" stroke="#E53935" stroke-width="2"/>
+          <line x1="92" y1="48" x2="82" y2="66" stroke="#E53935" stroke-width="2"/>
+          <!-- asset on right -->
+          <circle cx="155" cy="57" r="18" class="sk-fill-light"/>
+          <text x="100" y="128" text-anchor="middle" class="sk-text-sm">physical wall / distance</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#9</span>
+        <div class="element-name">Physical wall / distance barrier</div>
+        <div class="element-cat">Barriers</div>
+      </div>
+    </div>
+
+    <!-- 10. Red X / block -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <circle cx="100" cy="65" r="35" fill="none" stroke="#E53935" stroke-width="3"/>
+          <line x1="75" y1="40" x2="125" y2="90" stroke="#E53935" stroke-width="3" stroke-linecap="round"/>
+          <line x1="125" y1="40" x2="75" y2="90" stroke="#E53935" stroke-width="3" stroke-linecap="round"/>
+          <text x="100" y="120" text-anchor="middle" class="sk-text-sm">blocked — access denied</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#10</span>
+        <div class="element-name">Red 'X' or block icon</div>
+        <div class="element-cat">Barriers</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 3 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 3</span>
+    <span class="scene-title">The architectural shift</span>
+    <span class="scene-time">16–26s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 11. Power cable -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- asset -->
+          <rect x="10" y="50" width="40" height="30" rx="4" class="sk-fill-light"/>
+          <text x="30" y="68" text-anchor="middle" class="sk-text-sm">ASSET</text>
+          <!-- cable -->
+          <line x1="50" y1="65" x2="150" y2="65" stroke="#1F1F33" stroke-width="3" stroke-linecap="round"/>
+          <!-- cable pattern -->
+          <line x1="60" y1="62" x2="65" y2="68" class="sk-line-thin"/>
+          <line x1="80" y1="62" x2="85" y2="68" class="sk-line-thin"/>
+          <line x1="100" y1="62" x2="105" y2="68" class="sk-line-thin"/>
+          <line x1="120" y1="62" x2="125" y2="68" class="sk-line-thin"/>
+          <line x1="140" y1="62" x2="145" y2="68" class="sk-line-thin"/>
+          <!-- MCC -->
+          <rect x="150" y="40" width="40" height="50" rx="2" class="sk-fill-light"/>
+          <text x="170" y="68" text-anchor="middle" class="sk-text-sm">MCC</text>
+          <!-- arrow -->
+          <polygon points="148,62 148,68 152,65" fill="#0098AC"/>
+          <text x="100" y="110" text-anchor="middle" class="sk-text-sm">power cable — asset to MCC</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#11</span>
+        <div class="element-name">Power cable (running from asset to MCC)</div>
+        <div class="element-cat">SAM4 Hardware</div>
+      </div>
+    </div>
+
+    <!-- 12. MCC cabinet exterior -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- cabinet body -->
+          <rect x="50" y="15" width="70" height="100" rx="2" class="sk-fill-light"/>
+          <!-- door (open) -->
+          <path d="M120,15 L155,25 L155,105 L120,115" fill="#F8F5F2" stroke="#1F1F33" stroke-width="1.2"/>
+          <!-- handle -->
+          <circle cx="148" cy="65" r="3" class="sk-line-thin"/>
+          <!-- interior lines (visible) -->
+          <line x1="60" y1="35" x2="115" y2="35" class="sk-line-thin" stroke="#6B6B7F"/>
+          <line x1="60" y1="55" x2="115" y2="55" class="sk-line-thin" stroke="#6B6B7F"/>
+          <line x1="60" y1="75" x2="115" y2="75" class="sk-line-thin" stroke="#6B6B7F"/>
+          <line x1="60" y1="95" x2="115" y2="95" class="sk-line-thin" stroke="#6B6B7F"/>
+          <!-- door arrow -->
+          <path d="M130,40 Q145,40 150,35" fill="none" stroke="#6B6B7F" stroke-width="1"/>
+          <text x="100" y="130" text-anchor="middle" class="sk-text-sm">MCC cabinet — door opening</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#12</span>
+        <div class="element-name">MCC cabinet exterior (door opening)</div>
+        <div class="element-cat">SAM4 Hardware</div>
+        <span class="reuse-tag">Also Scene 4</span>
+      </div>
+    </div>
+
+    <!-- 13. SAM4 hardware inside MCC -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- cabinet interior frame -->
+          <rect x="40" y="15" width="120" height="100" rx="2" fill="#FAFAF8" stroke="#1F1F33" stroke-width="1.5"/>
+          <!-- DIN rail -->
+          <rect x="50" y="35" width="100" height="6" fill="#E8E4E0" stroke="#6B6B7F" stroke-width="1"/>
+          <!-- SAM4 device -->
+          <rect x="60" y="20" width="30" height="22" rx="2" fill="#0098AC" opacity="0.3" stroke="#006C6C" stroke-width="1.5"/>
+          <text x="75" y="34" text-anchor="middle" font-size="7" fill="#006C6C" font-weight="bold">SAM4</text>
+          <!-- current clamps -->
+          <circle cx="110" y="58" r="10" fill="none" stroke="#FF5429" stroke-width="2"/>
+          <circle cx="135" y="58" r="10" fill="none" stroke="#FF5429" stroke-width="2"/>
+          <line x1="105" y1="58" x2="115" y2="58" class="sk-line-thin"/>
+          <line x1="130" y1="58" x2="140" y2="58" class="sk-line-thin"/>
+          <!-- wires -->
+          <path d="M75,42 L75,55 Q75,60 80,60 L98,60" class="sk-line-thin" stroke="#006C6C"/>
+          <!-- cables running through -->
+          <line x1="50" y1="80" x2="150" y2="80" stroke="#1F1F33" stroke-width="2"/>
+          <line x1="50" y1="88" x2="150" y2="88" stroke="#1F1F33" stroke-width="2"/>
+          <line x1="50" y1="96" x2="150" y2="96" stroke="#1F1F33" stroke-width="2"/>
+          <text x="100" y="128" text-anchor="middle" class="sk-text-sm">SAM4 hardware + clamps inside MCC</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#13</span>
+        <div class="element-name">SAM4 hardware inside MCC (close-up)</div>
+        <div class="element-cat">SAM4 Hardware</div>
+        <span class="reuse-tag">Also Scene 4</span>
+      </div>
+    </div>
+
+    <!-- 14. Electrical signal flow -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- cable -->
+          <line x1="20" y1="70" x2="180" y2="70" stroke="#1F1F33" stroke-width="3"/>
+          <!-- signal pulses -->
+          <circle cx="50" cy="70" r="5" class="sk-fill-teal"/>
+          <circle cx="80" cy="70" r="5" class="sk-fill-teal" opacity="0.8"/>
+          <circle cx="110" cy="70" r="5" class="sk-fill-teal" opacity="0.6"/>
+          <circle cx="140" cy="70" r="5" class="sk-fill-teal" opacity="0.4"/>
+          <!-- direction arrow -->
+          <polygon points="170,65 170,75 180,70" fill="#0098AC"/>
+          <!-- wave overlay -->
+          <path d="M30,50 Q45,35 60,50 Q75,65 90,50 Q105,35 120,50 Q135,65 150,50 Q165,35 175,50" fill="none" stroke="#0098AC" stroke-width="1.2" opacity="0.5"/>
+          <text x="100" y="110" text-anchor="middle" class="sk-text-sm">electrical signal flow along cable</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#14</span>
+        <div class="element-name">Electrical signal flow animation</div>
+        <div class="element-cat">Signals &amp; Data</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 4 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 4</span>
+    <span class="scene-title">Cabinet-based deployment</span>
+    <span class="scene-time">26–32s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 15. Current clamps being installed -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- hands outline -->
+          <path d="M50,80 Q55,60 70,55 Q80,52 85,60 L85,75" fill="none" stroke="#1F1F33" stroke-width="1.5"/>
+          <path d="M150,80 Q145,60 130,55 Q120,52 115,60 L115,75" fill="none" stroke="#1F1F33" stroke-width="1.5"/>
+          <!-- clamp -->
+          <path d="M85,65 Q90,50 100,50 Q110,50 115,65" fill="none" stroke="#FF5429" stroke-width="2.5"/>
+          <line x1="85" y1="65" x2="85" y2="80" stroke="#FF5429" stroke-width="2"/>
+          <line x1="115" y1="65" x2="115" y2="80" stroke="#FF5429" stroke-width="2"/>
+          <!-- cable being clamped -->
+          <line x1="60" y1="72" x2="140" y2="72" stroke="#1F1F33" stroke-width="4"/>
+          <!-- action arrows -->
+          <path d="M95,45 L100,38 L105,45" fill="none" stroke="#6B6B7F" stroke-width="1"/>
+          <text x="100" y="105" text-anchor="middle" class="sk-text">installing current clamps</text>
+          <text x="100" y="118" text-anchor="middle" class="sk-text-sm">hands in cabinet close-up</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#15</span>
+        <div class="element-name">Current clamps being installed</div>
+        <div class="element-cat">SAM4 Hardware</div>
+      </div>
+    </div>
+
+    <!-- 16. Running asset in background -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- blurred asset -->
+          <rect x="60" y="35" width="80" height="50" rx="6" fill="#B0B0C8" opacity="0.3" stroke="#B0B0C8" stroke-width="1"/>
+          <rect x="65" y="40" width="70" height="40" rx="4" fill="#B0B0C8" opacity="0.15"/>
+          <!-- motion lines -->
+          <line x1="45" y1="50" x2="55" y2="50" stroke="#B0B0C8" stroke-width="1"/>
+          <line x1="40" y1="60" x2="55" y2="60" stroke="#B0B0C8" stroke-width="1"/>
+          <line x1="45" y1="70" x2="55" y2="70" stroke="#B0B0C8" stroke-width="1"/>
+          <!-- spinning indicator -->
+          <circle cx="100" cy="60" r="15" fill="none" stroke="#6B6B7F" stroke-width="1" stroke-dasharray="5 5"/>
+          <path d="M108,47 A15,15 0 0,1 113,55" fill="none" stroke="#6B6B7F" stroke-width="1.5"/>
+          <polygon points="113,53 113,58 117,55" fill="#6B6B7F"/>
+          <text x="100" y="105" text-anchor="middle" class="sk-text">asset running undisturbed</text>
+          <text x="100" y="118" text-anchor="middle" class="sk-text-sm">motion blur in background</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#16</span>
+        <div class="element-name">Running asset in background</div>
+        <div class="element-cat">Assets</div>
+      </div>
+    </div>
+
+    <!-- 17. Clock <30 min -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- clock circle -->
+          <circle cx="100" cy="60" r="35" fill="none" stroke="#1F1F33" stroke-width="2"/>
+          <!-- hour marks -->
+          <line x1="100" y1="28" x2="100" y2="33" class="sk-line-thin"/>
+          <line x1="100" y1="87" x2="100" y2="92" class="sk-line-thin"/>
+          <line x1="68" y1="60" x2="73" y2="60" class="sk-line-thin"/>
+          <line x1="127" y1="60" x2="132" y2="60" class="sk-line-thin"/>
+          <!-- hands -->
+          <line x1="100" y1="60" x2="100" y2="38" stroke="#1F1F33" stroke-width="2" stroke-linecap="round"/>
+          <line x1="100" y1="60" x2="118" y2="52" stroke="#1F1F33" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- center dot -->
+          <circle cx="100" cy="60" r="3" fill="#1F1F33"/>
+          <!-- label -->
+          <text x="100" y="112" text-anchor="middle" font-family="Consolas" font-size="16" fill="#0098AC" font-weight="bold">&lt;30 min</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#17</span>
+        <div class="element-name">Clock icon with '&lt;30 min'</div>
+        <div class="element-cat">Scale &amp; Flow</div>
+      </div>
+    </div>
+
+    <!-- 18. Three check marks -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- Check 1 -->
+          <circle cx="45" cy="45" r="16" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
+          <polyline points="36,45 42,52 55,38" fill="none" stroke="#4CAF50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="45" y="78" text-anchor="middle" class="sk-text-sm">No</text>
+          <text x="45" y="88" text-anchor="middle" class="sk-text-sm">shutdown</text>
+
+          <!-- Check 2 -->
+          <circle cx="100" cy="45" r="16" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
+          <polyline points="91,45 97,52 110,38" fill="none" stroke="#4CAF50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="100" y="78" text-anchor="middle" class="sk-text-sm">No</text>
+          <text x="100" y="88" text-anchor="middle" class="sk-text-sm">sensors</text>
+
+          <!-- Check 3 -->
+          <circle cx="155" cy="45" r="16" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
+          <polyline points="146,45 152,52 165,38" fill="none" stroke="#4CAF50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="155" y="78" text-anchor="middle" class="sk-text-sm">No</text>
+          <text x="155" y="88" text-anchor="middle" class="sk-text-sm">cabling</text>
+
+          <text x="100" y="115" text-anchor="middle" class="sk-text-sm">zero disruption to process</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#18</span>
+        <div class="element-name">Check marks: No shutdown / No sensors / No cabling</div>
+        <div class="element-cat">Scale &amp; Flow</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 5 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 5</span>
+    <span class="scene-title">What SAM4 measures</span>
+    <span class="scene-time">32–44s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 19. Voltage sine wave -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <line x1="20" y1="70" x2="180" y2="70" class="sk-line-thin" stroke="#6B6B7F"/>
+          <path d="M20,70 Q35,25 50,70 Q65,115 80,70 Q95,25 110,70 Q125,115 140,70 Q155,25 170,70" fill="none" stroke="#0098AC" stroke-width="2"/>
+          <text x="15" y="30" class="sk-text" fill="#0098AC" font-weight="bold">V</text>
+          <text x="100" y="120" text-anchor="middle" class="sk-text-sm">clean voltage sine wave</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#19</span>
+        <div class="element-name">Voltage sine wave (clean)</div>
+        <div class="element-cat">Signals &amp; Data</div>
+        <span class="reuse-tag">Distorted in Scene 6</span>
+      </div>
+    </div>
+
+    <!-- 20. Current sine wave -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <line x1="20" y1="70" x2="180" y2="70" class="sk-line-thin" stroke="#6B6B7F"/>
+          <path d="M20,70 Q35,30 50,70 Q65,110 80,70 Q95,30 110,70 Q125,110 140,70 Q155,30 170,70" fill="none" stroke="#FF5429" stroke-width="2"/>
+          <text x="15" y="30" class="sk-text" fill="#FF5429" font-weight="bold">I</text>
+          <text x="100" y="120" text-anchor="middle" class="sk-text-sm">clean current sine wave</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#20</span>
+        <div class="element-name">Current sine wave (clean)</div>
+        <div class="element-cat">Signals &amp; Data</div>
+        <span class="reuse-tag">Distorted in Scene 6</span>
+      </div>
+    </div>
+
+    <!-- 21. Motor cross-section -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- outer housing -->
+          <ellipse cx="100" cy="65" rx="60" ry="50" class="sk-fill-light"/>
+          <!-- stator -->
+          <ellipse cx="100" cy="65" rx="48" ry="40" fill="none" stroke="#6B6B7F" stroke-width="1"/>
+          <!-- rotor -->
+          <ellipse cx="100" cy="65" rx="25" ry="20" fill="#E8E4E0" stroke="#1F1F33" stroke-width="1.5"/>
+          <!-- shaft -->
+          <rect x="95" y="55" width="10" height="20" rx="2" fill="#6B6B7F"/>
+          <!-- bearings -->
+          <circle cx="80" cy="65" r="6" fill="none" stroke="#FF5429" stroke-width="1.5"/>
+          <circle cx="120" cy="65" r="6" fill="none" stroke="#FF5429" stroke-width="1.5"/>
+          <!-- labels -->
+          <line x1="80" y1="58" x2="65" y2="32" class="sk-line-thin" stroke="#6B6B7F"/>
+          <text x="55" y="28" class="sk-text-sm">bearing</text>
+          <line x1="100" y1="50" x2="100" y2="28" class="sk-line-thin" stroke="#6B6B7F"/>
+          <text x="100" y="24" text-anchor="middle" class="sk-text-sm">coupling</text>
+          <line x1="120" y1="58" x2="145" y2="32" class="sk-line-thin" stroke="#6B6B7F"/>
+          <text x="148" y="28" class="sk-text-sm">load</text>
+          <text x="100" y="130" text-anchor="middle" class="sk-text-sm">motor cross-section</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#21</span>
+        <div class="element-name">Motor cross-section (bearing, coupling, load)</div>
+        <div class="element-cat">Assets</div>
+      </div>
+    </div>
+
+    <!-- 22. Developing fault indicator -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- bearing circle -->
+          <circle cx="100" cy="60" r="30" fill="#E8E4E0" stroke="#1F1F33" stroke-width="1.5"/>
+          <circle cx="100" cy="60" r="20" fill="#F8F5F2" stroke="#6B6B7F" stroke-width="1"/>
+          <circle cx="100" cy="60" r="8" fill="#6B6B7F"/>
+          <!-- fault crack -->
+          <path d="M115,48 L118,45 L116,50 L120,47 L117,53" fill="none" stroke="#FF5429" stroke-width="2"/>
+          <!-- pulse rings -->
+          <circle cx="118" cy="47" r="8" fill="none" stroke="#FF5429" stroke-width="1" opacity="0.6"/>
+          <circle cx="118" cy="47" r="14" fill="none" stroke="#FF5429" stroke-width="0.7" opacity="0.3"/>
+          <!-- label -->
+          <text x="100" y="110" text-anchor="middle" class="sk-text" fill="#FF5429">developing fault</text>
+          <text x="100" y="124" text-anchor="middle" class="sk-text-sm">early-stage bearing wear</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#22</span>
+        <div class="element-name">Developing fault indicator in bearing</div>
+        <div class="element-cat">Signals &amp; Data</div>
+      </div>
+    </div>
+
+    <!-- 23. Modulated waveform -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <line x1="20" y1="70" x2="180" y2="70" class="sk-line-thin" stroke="#6B6B7F"/>
+          <!-- distorted wave -->
+          <path d="M20,70 Q30,25 42,70 Q50,105 58,70 Q66,30 78,65 Q82,80 90,70 Q98,20 108,70 Q115,120 125,68 Q130,55 138,70 Q148,25 158,70 Q165,110 175,70" fill="none" stroke="#FF5429" stroke-width="2"/>
+          <!-- modulation envelope -->
+          <path d="M20,40 Q60,20 100,40 Q140,60 180,40" fill="none" stroke="#FF5429" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5"/>
+          <path d="M20,100 Q60,120 100,100 Q140,80 180,100" fill="none" stroke="#FF5429" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5"/>
+          <text x="100" y="130" text-anchor="middle" class="sk-text-sm">modulated / distorted waveform</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#23</span>
+        <div class="element-name">Modulated / distorted waveform</div>
+        <div class="element-cat">Signals &amp; Data</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 6 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 6</span>
+    <span class="scene-title">Fault physics — credibility moment</span>
+    <span class="scene-time">44–56s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 24. FFT transformation -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- time domain (small, top left) -->
+          <rect x="10" y="10" width="70" height="40" fill="none" stroke="#6B6B7F" stroke-width="0.8"/>
+          <path d="M15,30 Q22,15 29,30 Q36,45 43,30 Q50,15 57,30 Q64,45 71,30" fill="none" stroke="#0098AC" stroke-width="1.2"/>
+          <text x="45" y="57" text-anchor="middle" class="sk-text-sm">time domain</text>
+          <!-- arrow -->
+          <line x1="85" y1="30" x2="115" y2="30" class="sk-line-thin"/>
+          <polygon points="115,27 115,33 120,30" fill="#1F1F33"/>
+          <text x="102" y="24" text-anchor="middle" class="sk-text-sm">FFT</text>
+          <!-- frequency domain (larger, right) -->
+          <rect x="120" y="10" width="75" height="50" fill="none" stroke="#6B6B7F" stroke-width="0.8"/>
+          <!-- spectrum bars -->
+          <rect x="130" y="40" width="4" height="16" fill="#6B6B7F" opacity="0.4"/>
+          <rect x="138" y="32" width="4" height="24" fill="#6B6B7F" opacity="0.4"/>
+          <rect x="146" y="36" width="4" height="20" fill="#6B6B7F" opacity="0.4"/>
+          <rect x="154" y="22" width="4" height="34" fill="#FF5429"/>
+          <rect x="162" y="40" width="4" height="16" fill="#6B6B7F" opacity="0.4"/>
+          <rect x="170" y="44" width="4" height="12" fill="#6B6B7F" opacity="0.4"/>
+          <rect x="178" y="48" width="4" height="8" fill="#6B6B7F" opacity="0.4"/>
+          <text x="157" y="18" text-anchor="middle" class="sk-text-sm" fill="#FF5429">fault</text>
+          <text x="157" y="75" text-anchor="middle" class="sk-text-sm">frequency domain</text>
+          <!-- animation arrow -->
+          <path d="M60,65 Q90,80 120,65" fill="none" stroke="#6B6B7F" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="90" y="95" text-anchor="middle" class="sk-text-sm">animated transformation</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#24</span>
+        <div class="element-name">FFT transformation animation</div>
+        <div class="element-cat">Signals &amp; Data</div>
+      </div>
+    </div>
+
+    <!-- 25. Frequency spectrum with fault peak -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- axes -->
+          <line x1="30" y1="100" x2="185" y2="100" class="sk-line-thin"/>
+          <line x1="30" y1="100" x2="30" y2="15" class="sk-line-thin"/>
+          <text x="180" y="115" text-anchor="end" class="sk-text-sm">freq →</text>
+          <!-- baseline spectrum -->
+          <path d="M35,95 L50,88 L65,92 L80,85 L95,90 L110,80 L125,92 L140,94 L155,96 L170,97" fill="none" stroke="#6B6B7F" stroke-width="1.2" opacity="0.5"/>
+          <!-- fault peak -->
+          <path d="M35,93 L50,86 L65,90 L80,82 L95,88 L105,75 L110,30 L115,75 L125,90 L140,92 L155,95 L170,96" fill="none" stroke="#FF5429" stroke-width="2"/>
+          <!-- peak highlight -->
+          <line x1="110" y1="30" x2="110" y2="100" stroke="#FF5429" stroke-width="0.5" stroke-dasharray="3 2"/>
+          <circle cx="110" cy="30" r="4" class="sk-fill-orange"/>
+          <text x="110" y="22" text-anchor="middle" class="sk-text-sm" fill="#FF5429">fault peak</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#25</span>
+        <div class="element-name">Frequency spectrum with fault peak</div>
+        <div class="element-cat">Signals &amp; Data</div>
+      </div>
+    </div>
+
+    <!-- 26. Normal baseline overlay -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- axes -->
+          <line x1="30" y1="95" x2="180" y2="95" class="sk-line-thin"/>
+          <line x1="30" y1="95" x2="30" y2="20" class="sk-line-thin"/>
+          <!-- healthy baseline (ghost) -->
+          <path d="M35,88 L55,82 L75,85 L95,78 L115,84 L135,87 L155,90 L175,92" fill="none" stroke="#4CAF50" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+          <!-- fault spectrum -->
+          <path d="M35,86 L55,80 L75,83 L95,75 L105,65 L115,35 L125,70 L135,85 L155,88 L175,91" fill="none" stroke="#FF5429" stroke-width="2"/>
+          <!-- legend -->
+          <line x1="40" y1="115" x2="55" y2="115" stroke="#4CAF50" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="60" y="118" class="sk-text-sm">healthy baseline</text>
+          <line x1="110" y1="115" x2="125" y2="115" stroke="#FF5429" stroke-width="2"/>
+          <text x="130" y="118" class="sk-text-sm">current (fault)</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#26</span>
+        <div class="element-name">Normal baseline overlay</div>
+        <div class="element-cat">Signals &amp; Data</div>
+      </div>
+    </div>
+
+    <!-- 27. Timeline bar -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- timeline bar -->
+          <rect x="25" y="55" width="150" height="8" rx="4" fill="#E8E4E0" stroke="#6B6B7F" stroke-width="1"/>
+          <!-- filled portion (early detection window) -->
+          <rect x="25" y="55" width="110" height="8" rx="4" fill="#0098AC" opacity="0.4"/>
+          <!-- detection marker -->
+          <circle cx="25" cy="59" r="6" fill="#0098AC"/>
+          <text x="25" y="48" text-anchor="middle" class="sk-text-sm" fill="#006C6C">detection</text>
+          <!-- failure marker -->
+          <circle cx="175" cy="59" r="6" fill="#E53935"/>
+          <text x="175" y="48" text-anchor="middle" class="sk-text-sm" fill="#E53935">failure</text>
+          <!-- arrow span -->
+          <line x1="35" y1="80" x2="165" y2="80" class="sk-line-thin" stroke="#6B6B7F"/>
+          <polygon points="35,77 35,83 30,80" fill="#6B6B7F"/>
+          <polygon points="165,77 165,83 170,80" fill="#6B6B7F"/>
+          <text x="100" y="95" text-anchor="middle" class="sk-text" fill="#006C6C">months before failure</text>
+          <text x="100" y="120" text-anchor="middle" class="sk-text-sm">early warning window</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#27</span>
+        <div class="element-name">Timeline bar: detection → failure</div>
+        <div class="element-cat">Scale &amp; Flow</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 7 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 7</span>
+    <span class="scene-title">Continuous monitoring at scale</span>
+    <span class="scene-time">56–66s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 28. Single MCC → cloud -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- MCC -->
+          <rect x="25" y="45" width="35" height="50" rx="2" class="sk-fill-light"/>
+          <text x="42" y="74" text-anchor="middle" class="sk-text-sm">MCC</text>
+          <!-- data stream -->
+          <line x1="65" y1="70" x2="120" y2="70" stroke="#0098AC" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <polygon points="120,67 120,73 125,70" fill="#0098AC"/>
+          <!-- cloud -->
+          <path d="M135,55 Q130,40 145,38 Q155,30 168,38 Q180,35 182,48 Q190,50 188,60 Q190,72 178,72 L140,72 Q128,72 130,60 Q128,55 135,55Z" fill="#E0F7FA" stroke="#0098AC" stroke-width="1.5"/>
+          <text x="160" y="60" text-anchor="middle" class="sk-text-sm" fill="#006C6C">cloud</text>
+          <text x="100" y="115" text-anchor="middle" class="sk-text-sm">single MCC to cloud data flow</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#28</span>
+        <div class="element-name">Single MCC → cloud data flow</div>
+        <div class="element-cat">Scale &amp; Flow</div>
+      </div>
+    </div>
+
+    <!-- 29. Plant-level view -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- plant boundary -->
+          <rect x="20" y="25" width="160" height="80" rx="4" fill="none" stroke="#6B6B7F" stroke-width="1" stroke-dasharray="6 3"/>
+          <text x="100" y="20" text-anchor="middle" class="sk-text-sm">PLANT</text>
+          <!-- multiple MCCs -->
+          <rect x="30" y="40" width="25" height="30" rx="2" class="sk-fill-light"/>
+          <text x="42" y="58" text-anchor="middle" font-size="6" fill="#6B6B7F">MCC</text>
+          <rect x="65" y="40" width="25" height="30" rx="2" class="sk-fill-light"/>
+          <text x="77" y="58" text-anchor="middle" font-size="6" fill="#6B6B7F">MCC</text>
+          <rect x="100" y="40" width="25" height="30" rx="2" class="sk-fill-light"/>
+          <text x="112" y="58" text-anchor="middle" font-size="6" fill="#6B6B7F">MCC</text>
+          <rect x="135" y="40" width="25" height="30" rx="2" class="sk-fill-light"/>
+          <text x="147" y="58" text-anchor="middle" font-size="6" fill="#6B6B7F">MCC</text>
+          <!-- connecting lines -->
+          <line x1="42" y1="70" x2="42" y2="85" stroke="#0098AC" stroke-width="1"/>
+          <line x1="77" y1="70" x2="77" y2="85" stroke="#0098AC" stroke-width="1"/>
+          <line x1="112" y1="70" x2="112" y2="85" stroke="#0098AC" stroke-width="1"/>
+          <line x1="147" y1="70" x2="147" y2="85" stroke="#0098AC" stroke-width="1"/>
+          <line x1="42" y1="85" x2="147" y2="85" stroke="#0098AC" stroke-width="1"/>
+          <line x1="95" y1="85" x2="95" y2="95" stroke="#0098AC" stroke-width="1.5"/>
+          <polygon points="92,95 98,95 95,100" fill="#0098AC"/>
+          <text x="100" y="120" text-anchor="middle" class="sk-text-sm">plant-level — multiple MCCs</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#29</span>
+        <div class="element-name">Plant-level view (multiple MCCs)</div>
+        <div class="element-cat">Scale &amp; Flow</div>
+      </div>
+    </div>
+
+    <!-- 30. Global map -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- simplified globe -->
+          <circle cx="100" cy="65" r="45" fill="#E0F7FA" stroke="#0098AC" stroke-width="1.2"/>
+          <!-- meridians -->
+          <ellipse cx="100" cy="65" rx="20" ry="45" fill="none" stroke="#0098AC" stroke-width="0.5" opacity="0.3"/>
+          <line x1="55" y1="65" x2="145" y2="65" stroke="#0098AC" stroke-width="0.5" opacity="0.3"/>
+          <!-- plant dots -->
+          <circle cx="78" cy="48" r="4" fill="#FF5429"/>
+          <circle cx="108" cy="55" r="4" fill="#FF5429"/>
+          <circle cx="125" cy="72" r="4" fill="#FF5429"/>
+          <circle cx="88" cy="78" r="4" fill="#FF5429"/>
+          <!-- labels -->
+          <text x="68" y="44" class="sk-text-sm" fill="#FF5429">NL</text>
+          <text x="112" y="52" class="sk-text-sm" fill="#FF5429">UAE</text>
+          <text x="132" y="70" class="sk-text-sm" fill="#FF5429">AU</text>
+          <text x="76" y="90" class="sk-text-sm" fill="#FF5429">US</text>
+          <text x="100" y="125" text-anchor="middle" class="sk-text-sm">global fleet — multiple plants</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#30</span>
+        <div class="element-name">Global map with multiple plants</div>
+        <div class="element-cat">Scale &amp; Flow</div>
+      </div>
+    </div>
+
+    <!-- 31. Data stream lines -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- source dots -->
+          <circle cx="30" cy="40" r="5" fill="#0098AC" opacity="0.7"/>
+          <circle cx="30" cy="70" r="5" fill="#0098AC" opacity="0.7"/>
+          <circle cx="30" cy="100" r="5" fill="#0098AC" opacity="0.7"/>
+          <!-- stream lines (curved) -->
+          <path d="M35,40 Q80,40 120,55 Q150,65 170,60" fill="none" stroke="#0098AC" stroke-width="1.2" opacity="0.7"/>
+          <path d="M35,70 Q80,70 120,63 Q150,58 170,60" fill="none" stroke="#0098AC" stroke-width="1.2" opacity="0.7"/>
+          <path d="M35,100 Q80,95 120,75 Q150,65 170,60" fill="none" stroke="#0098AC" stroke-width="1.2" opacity="0.7"/>
+          <!-- animated dots on lines -->
+          <circle cx="70" cy="42" r="2.5" fill="#FF5429"/>
+          <circle cx="90" cy="68" r="2.5" fill="#FF5429"/>
+          <circle cx="110" cy="78" r="2.5" fill="#FF5429"/>
+          <!-- cloud destination -->
+          <circle cx="170" cy="60" r="12" fill="#E0F7FA" stroke="#0098AC" stroke-width="1.5"/>
+          <text x="170" y="63" text-anchor="middle" font-size="7" fill="#006C6C">☁</text>
+          <text x="100" y="128" text-anchor="middle" class="sk-text-sm">data streams converging to cloud</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#31</span>
+        <div class="element-name">Data stream lines connecting all points</div>
+        <div class="element-cat">Scale &amp; Flow</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 8 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 8</span>
+    <span class="scene-title">AI detection + reliability expertise</span>
+    <span class="scene-time">66–82s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 32. AI detection engine -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- NOT a brain — pattern matching visual -->
+          <rect x="40" y="20" width="120" height="55" rx="4" fill="#F3E5F5" stroke="#6B6B7F" stroke-width="1"/>
+          <!-- grid pattern -->
+          <line x1="50" y1="30" x2="50" y2="65" class="sk-line-thin" stroke="#B0B0C8"/>
+          <line x1="70" y1="30" x2="70" y2="65" class="sk-line-thin" stroke="#B0B0C8"/>
+          <line x1="90" y1="30" x2="90" y2="65" class="sk-line-thin" stroke="#B0B0C8"/>
+          <line x1="110" y1="30" x2="110" y2="65" class="sk-line-thin" stroke="#B0B0C8"/>
+          <line x1="130" y1="30" x2="130" y2="65" class="sk-line-thin" stroke="#B0B0C8"/>
+          <line x1="150" y1="30" x2="150" y2="65" class="sk-line-thin" stroke="#B0B0C8"/>
+          <line x1="50" y1="40" x2="150" y2="40" class="sk-line-thin" stroke="#B0B0C8"/>
+          <line x1="50" y1="52" x2="150" y2="52" class="sk-line-thin" stroke="#B0B0C8"/>
+          <!-- highlighted pattern cells -->
+          <rect x="90" y="30" width="20" height="10" fill="#FF5429" opacity="0.3"/>
+          <rect x="110" y="40" width="20" height="12" fill="#FF5429" opacity="0.3"/>
+          <rect x="90" y="52" width="20" height="13" fill="#FF5429" opacity="0.3"/>
+          <!-- label -->
+          <text x="100" y="17" text-anchor="middle" class="sk-text-label">AI DETECTION ENGINE</text>
+          <text x="100" y="90" text-anchor="middle" class="sk-text-sm">pattern matching — NOT a brain icon</text>
+          <text x="100" y="102" text-anchor="middle" class="sk-text-sm">algorithmic, data-driven visual</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#32</span>
+        <div class="element-name">AI detection engine visual</div>
+        <div class="element-cat">Service Layer</div>
+      </div>
+    </div>
+
+    <!-- 33. Anomaly flag -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- flag pole -->
+          <line x1="80" y1="25" x2="80" y2="105" stroke="#1F1F33" stroke-width="2"/>
+          <!-- flag -->
+          <path d="M80,25 L140,35 L80,50Z" fill="#FF5429" opacity="0.85"/>
+          <!-- exclamation -->
+          <text x="105" y="42" font-size="14" fill="#FFF" font-weight="bold">!</text>
+          <!-- pulse -->
+          <circle cx="110" cy="37" r="15" fill="none" stroke="#FF5429" stroke-width="1" opacity="0.4"/>
+          <circle cx="110" cy="37" r="22" fill="none" stroke="#FF5429" stroke-width="0.7" opacity="0.2"/>
+          <text x="100" y="122" text-anchor="middle" class="sk-text-sm">anomaly detected — alert flag</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#33</span>
+        <div class="element-name">Anomaly flag icon</div>
+        <div class="element-cat">Service Layer</div>
+      </div>
+    </div>
+
+    <!-- 34. Reliability engineer -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- desk -->
+          <rect x="35" y="80" width="130" height="6" rx="2" fill="#E8E4E0" stroke="#6B6B7F" stroke-width="1"/>
+          <!-- monitor -->
+          <rect x="90" y="45" width="55" height="35" rx="2" class="sk-fill-light"/>
+          <rect x="112" y="80" x2="122" y2="86" width="10" height="6" fill="#6B6B7F"/>
+          <!-- screen content -->
+          <line x1="95" y1="55" x2="140" y2="55" stroke="#0098AC" stroke-width="1"/>
+          <line x1="95" y1="62" x2="130" y2="62" stroke="#6B6B7F" stroke-width="0.8"/>
+          <line x1="95" y1="68" x2="135" y2="68" stroke="#6B6B7F" stroke-width="0.8"/>
+          <!-- person silhouette -->
+          <circle cx="65" cy="42" r="10" fill="none" stroke="#1F1F33" stroke-width="1.5"/>
+          <path d="M55,55 Q55,75 65,78 Q75,75 75,55" fill="none" stroke="#1F1F33" stroke-width="1.5"/>
+          <!-- arm reaching to screen -->
+          <path d="M72,65 Q80,60 88,58" fill="none" stroke="#1F1F33" stroke-width="1.2"/>
+          <text x="100" y="105" text-anchor="middle" class="sk-text">reliability engineer</text>
+          <text x="100" y="118" text-anchor="middle" class="sk-text-sm">reviewing + validating</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#34</span>
+        <div class="element-name">Reliability engineer at desk</div>
+        <div class="element-cat">Service Layer</div>
+      </div>
+    </div>
+
+    <!-- 35. Arrow flow: AI → engineer → output -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- AI box -->
+          <rect x="15" y="40" width="45" height="30" rx="4" fill="#F3E5F5" stroke="#6B6B7F" stroke-width="1"/>
+          <text x="37" y="58" text-anchor="middle" class="sk-text-sm">AI detect</text>
+          <!-- arrow 1 -->
+          <line x1="62" y1="55" x2="73" y2="55" stroke="#1F1F33" stroke-width="1.5"/>
+          <polygon points="73,52 73,58 78,55" fill="#1F1F33"/>
+          <!-- Engineer box -->
+          <rect x="78" y="40" width="45" height="30" rx="4" fill="#E0F7FA" stroke="#006C6C" stroke-width="1"/>
+          <text x="100" y="58" text-anchor="middle" class="sk-text-sm">engineer</text>
+          <!-- arrow 2 -->
+          <line x1="125" y1="55" x2="136" y2="55" stroke="#1F1F33" stroke-width="1.5"/>
+          <polygon points="136,52 136,58 141,55" fill="#1F1F33"/>
+          <!-- Output box -->
+          <rect x="141" y="40" width="45" height="30" rx="4" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+          <text x="163" y="58" text-anchor="middle" class="sk-text-sm">output</text>
+          <!-- vertical flow label -->
+          <text x="100" y="95" text-anchor="middle" class="sk-text">AI → validate → diagnose</text>
+          <text x="100" y="110" text-anchor="middle" class="sk-text-sm">combined human + machine output</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#35</span>
+        <div class="element-name">Arrow: AI → engineer → output</div>
+        <div class="element-cat">Service Layer</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 9 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 9</span>
+    <span class="scene-title">The output that matters</span>
+    <span class="scene-time">82–98s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 36. Structured report card -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <rect x="35" y="10" width="130" height="120" rx="4" fill="#FFF" stroke="#1F1F33" stroke-width="1.5"/>
+          <!-- header bar -->
+          <rect x="35" y="10" width="130" height="20" rx="4" fill="#1F1F33"/>
+          <text x="100" y="24" text-anchor="middle" font-size="9" fill="#FFF" font-weight="bold">DIAGNOSTIC REPORT</text>
+          <!-- fields -->
+          <line x1="45" y1="50" x2="155" y2="50" stroke="#E8E4E0" stroke-width="0.8"/>
+          <line x1="45" y1="72" x2="155" y2="72" stroke="#E8E4E0" stroke-width="0.8"/>
+          <line x1="45" y1="94" x2="155" y2="94" stroke="#E8E4E0" stroke-width="0.8"/>
+          <text x="50" y="44" class="sk-text-sm" fill="#6B6B7F">Fault type</text>
+          <text x="50" y="66" class="sk-text-sm" fill="#6B6B7F">Severity</text>
+          <text x="50" y="88" class="sk-text-sm" fill="#6B6B7F">Time to failure</text>
+          <text x="50" y="110" class="sk-text-sm" fill="#6B6B7F">Action</text>
+          <text x="120" y="44" class="sk-text-sm">bearing wear</text>
+          <rect x="120" y="58" width="30" height="6" fill="#FF5429" rx="2"/>
+          <text x="120" y="88" class="sk-text-sm">~8 weeks</text>
+          <text x="120" y="110" class="sk-text-sm">plan replace</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#36</span>
+        <div class="element-name">Structured report / notification card</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+    <!-- 37-40: Individual fields (combined into one card for economy) -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- 4 field rows appearing sequentially -->
+          <!-- Field 1 -->
+          <rect x="15" y="12" width="170" height="24" rx="3" fill="#FFF" stroke="#E8E4E0" stroke-width="1"/>
+          <text x="22" y="22" class="sk-text-sm" fill="#6B6B7F">1</text>
+          <text x="38" y="22" class="sk-text-label">Fault type</text>
+          <text x="115" y="28" class="sk-text-sm">bearing inner race</text>
+          <!-- Field 2 -->
+          <rect x="15" y="42" width="170" height="24" rx="3" fill="#FFF" stroke="#E8E4E0" stroke-width="1"/>
+          <text x="22" y="52" class="sk-text-sm" fill="#6B6B7F">2</text>
+          <text x="38" y="52" class="sk-text-label">Severity</text>
+          <rect x="115" y="50" width="12" height="8" fill="#4CAF50" rx="1"/>
+          <rect x="130" y="50" width="12" height="8" fill="#FF5429" rx="1"/>
+          <rect x="145" y="50" width="12" height="8" fill="#E8E4E0" rx="1"/>
+          <!-- Field 3 -->
+          <rect x="15" y="72" width="170" height="24" rx="3" fill="#FFF" stroke="#E8E4E0" stroke-width="1"/>
+          <text x="22" y="82" class="sk-text-sm" fill="#6B6B7F">3</text>
+          <text x="38" y="82" class="sk-text-label">Time to failure</text>
+          <text x="115" y="88" class="sk-text-sm">~8 weeks</text>
+          <!-- Field 4 -->
+          <rect x="15" y="102" width="170" height="24" rx="3" fill="#FFF" stroke="#E8E4E0" stroke-width="1"/>
+          <text x="22" y="112" class="sk-text-sm" fill="#6B6B7F">4</text>
+          <text x="38" y="112" class="sk-text-label">Action</text>
+          <text x="115" y="118" class="sk-text-sm">plan replacement</text>
+          <!-- sequential arrows -->
+          <text x="8" y="28" class="sk-text-sm" fill="#0098AC">→</text>
+          <text x="8" y="58" class="sk-text-sm" fill="#0098AC">→</text>
+          <text x="8" y="88" class="sk-text-sm" fill="#0098AC">→</text>
+          <text x="8" y="118" class="sk-text-sm" fill="#0098AC">→</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#37–40</span>
+        <div class="element-name">Four fields: Fault / Severity / Time / Action</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+    <!-- 41. Work order icon -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- clipboard -->
+          <rect x="60" y="25" width="80" height="95" rx="4" class="sk-fill-light"/>
+          <!-- clip -->
+          <rect x="85" y="18" width="30" height="14" rx="3" fill="#6B6B7F"/>
+          <!-- checkbox lines -->
+          <rect x="72" y="45" width="10" height="10" fill="none" stroke="#1F1F33" stroke-width="1"/>
+          <polyline points="74,50 77,53 81,47" fill="none" stroke="#4CAF50" stroke-width="1.5"/>
+          <line x1="88" y1="50" x2="128" y2="50" class="sk-line-thin" stroke="#6B6B7F"/>
+
+          <rect x="72" y="62" width="10" height="10" fill="none" stroke="#1F1F33" stroke-width="1"/>
+          <line x1="88" y1="67" x2="128" y2="67" class="sk-line-thin" stroke="#6B6B7F"/>
+
+          <rect x="72" y="79" width="10" height="10" fill="none" stroke="#1F1F33" stroke-width="1"/>
+          <line x1="88" y1="84" x2="120" y2="84" class="sk-line-thin" stroke="#6B6B7F"/>
+
+          <!-- wrench icon -->
+          <text x="125" y="100" font-size="14" fill="#6B6B7F">🔧</text>
+
+          <text x="100" y="132" text-anchor="middle" class="sk-text-sm">work order (optional)</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#41</span>
+        <div class="element-name">Work order icon (optional)</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 10 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 10</span>
+    <span class="scene-title">Operational impact</span>
+    <span class="scene-time">98–112s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 42. Timeline Path A (green) -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- path line -->
+          <line x1="15" y1="60" x2="185" y2="60" stroke="#4CAF50" stroke-width="2"/>
+          <!-- nodes -->
+          <circle cx="30" cy="60" r="8" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
+          <text x="30" y="63" text-anchor="middle" font-size="7" fill="#4CAF50">D</text>
+          <circle cx="75" cy="60" r="8" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
+          <text x="75" y="63" text-anchor="middle" font-size="7" fill="#4CAF50">P</text>
+          <circle cx="125" cy="60" r="8" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
+          <text x="125" y="63" text-anchor="middle" font-size="7" fill="#4CAF50">F</text>
+          <circle cx="170" cy="60" r="8" fill="#4CAF50" stroke="#4CAF50" stroke-width="1.5"/>
+          <text x="170" y="63" text-anchor="middle" font-size="7" fill="#FFF">✓</text>
+          <!-- labels -->
+          <text x="30" y="82" text-anchor="middle" class="sk-text-sm">Detect</text>
+          <text x="75" y="82" text-anchor="middle" class="sk-text-sm">Plan</text>
+          <text x="125" y="82" text-anchor="middle" class="sk-text-sm">Fix</text>
+          <text x="170" y="82" text-anchor="middle" class="sk-text-sm">Running</text>
+          <!-- arrows -->
+          <polygon points="48,57 48,63 53,60" fill="#4CAF50"/>
+          <polygon points="98,57 98,63 103,60" fill="#4CAF50"/>
+          <polygon points="148,57 148,63 153,60" fill="#4CAF50"/>
+          <text x="100" y="105" text-anchor="middle" class="sk-text" fill="#4CAF50">Path A — planned maintenance</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#42</span>
+        <div class="element-name">Timeline Path A: detect → plan → fix → running</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+    <!-- 43. Timeline Path B (red) -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- path line -->
+          <line x1="15" y1="60" x2="185" y2="60" stroke="#E53935" stroke-width="2"/>
+          <!-- nodes -->
+          <circle cx="30" cy="60" r="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+          <text x="30" y="63" text-anchor="middle" font-size="7" fill="#E53935">?</text>
+          <circle cx="85" cy="60" r="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+          <text x="85" y="63" text-anchor="middle" font-size="7" fill="#E53935">!</text>
+          <circle cx="145" cy="60" r="8" fill="#E53935" stroke="#E53935" stroke-width="1.5"/>
+          <text x="145" y="63" text-anchor="middle" font-size="7" fill="#FFF">✗</text>
+          <!-- labels -->
+          <text x="30" y="82" text-anchor="middle" class="sk-text-sm">???</text>
+          <text x="85" y="82" text-anchor="middle" class="sk-text-sm">FAIL</text>
+          <text x="145" y="82" text-anchor="middle" class="sk-text-sm">Emergency</text>
+          <!-- arrows -->
+          <polygon points="55,57 55,63 60,60" fill="#E53935"/>
+          <polygon points="115,57 115,63 120,60" fill="#E53935"/>
+          <text x="100" y="105" text-anchor="middle" class="sk-text" fill="#E53935">Path B — unplanned failure</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#43</span>
+        <div class="element-name">Timeline Path B: ??? → fail → emergency</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+    <!-- 44. Path B fade/strikethrough -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- faded path B -->
+          <line x1="25" y1="60" x2="175" y2="60" stroke="#E53935" stroke-width="2" opacity="0.2"/>
+          <circle cx="40" cy="60" r="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1" opacity="0.3"/>
+          <circle cx="100" cy="60" r="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1" opacity="0.3"/>
+          <circle cx="160" cy="60" r="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1" opacity="0.3"/>
+          <!-- strikethrough -->
+          <line x1="20" y1="45" x2="180" y2="75" stroke="#E53935" stroke-width="3" stroke-linecap="round"/>
+          <line x1="20" y1="75" x2="180" y2="45" stroke="#E53935" stroke-width="3" stroke-linecap="round"/>
+          <text x="100" y="105" text-anchor="middle" class="sk-text-sm">Path B fades + crossed out</text>
+          <text x="100" y="118" text-anchor="middle" class="sk-text-sm">animation: opacity → 0</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#44</span>
+        <div class="element-name">Path B fade-out / strikethrough</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+    <!-- 45. From reactive to planned label -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- label box -->
+          <rect x="20" y="40" width="160" height="45" rx="6" fill="#1F1F33"/>
+          <text x="100" y="57" text-anchor="middle" font-family="Calibri, sans-serif" font-size="10" fill="#6B6B7F">FROM</text>
+          <text x="65" y="74" text-anchor="middle" font-family="Calibri, sans-serif" font-size="13" fill="#E53935" font-weight="bold" text-decoration="line-through">reactive</text>
+          <text x="105" y="74" text-anchor="middle" font-family="Calibri, sans-serif" font-size="10" fill="#6B6B7F">TO</text>
+          <text x="148" y="74" text-anchor="middle" font-family="Calibri, sans-serif" font-size="13" fill="#4CAF50" font-weight="bold">planned</text>
+          <text x="100" y="110" text-anchor="middle" class="sk-text-sm">key message reinforcement</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#45</span>
+        <div class="element-name">'From reactive to planned' label</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SCENE 11 ======================== -->
+<div class="scene-block">
+  <div class="scene-header">
+    <span class="scene-num">Scene 11</span>
+    <span class="scene-title">Category lock — closing</span>
+    <span class="scene-time">112–120s</span>
+  </div>
+  <div class="elements-grid">
+
+    <!-- 46. Same 3 assets now with colour -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- landscape (bright) -->
+          <rect x="0" y="80" width="200" height="60" fill="#E8E4E0" opacity="0.2"/>
+          <!-- pump (lit up) -->
+          <rect x="15" y="45" width="35" height="25" rx="3" fill="#E0F7FA" stroke="#0098AC" stroke-width="1.5"/>
+          <circle cx="32" cy="42" r="5" fill="#4CAF50"/>
+          <text x="32" y="80" text-anchor="middle" class="sk-text-sm" fill="#006C6C">Pump ✓</text>
+          <!-- motor (lit up) -->
+          <rect x="80" y="45" width="40" height="25" rx="3" fill="#E0F7FA" stroke="#0098AC" stroke-width="1.5"/>
+          <circle cx="100" cy="42" r="5" fill="#4CAF50"/>
+          <text x="100" y="80" text-anchor="middle" class="sk-text-sm" fill="#006C6C">Motor ✓</text>
+          <!-- fan (lit up) -->
+          <circle cx="165" cy="52" r="18" fill="#E0F7FA" stroke="#0098AC" stroke-width="1.5"/>
+          <circle cx="165" cy="42" r="5" fill="#4CAF50"/>
+          <text x="165" y="80" text-anchor="middle" class="sk-text-sm" fill="#006C6C">Fan ✓</text>
+          <!-- data flowing lines -->
+          <path d="M32,90 Q32,100 60,105 Q100,110 100,105" stroke="#0098AC" stroke-width="0.8" fill="none" stroke-dasharray="3 2"/>
+          <path d="M100,90 L100,105" stroke="#0098AC" stroke-width="0.8" stroke-dasharray="3 2"/>
+          <path d="M165,90 Q165,100 140,105 Q100,110 100,105" stroke="#0098AC" stroke-width="0.8" fill="none" stroke-dasharray="3 2"/>
+          <text x="100" y="120" text-anchor="middle" class="sk-text-sm">Scene 1 callback — now monitored</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#46</span>
+        <div class="element-name">Same 3 assets — now with colour + live status</div>
+        <div class="element-cat">Assets</div>
+        <span class="reuse-tag">↺ From Scene 1</span>
+      </div>
+    </div>
+
+    <!-- 47. Health indicators -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <!-- three health badges -->
+          <circle cx="50" cy="55" r="18" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+          <polyline points="42,55 48,62 60,48" fill="none" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="100" cy="55" r="18" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+          <polyline points="92,55 98,62 110,48" fill="none" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="150" cy="55" r="18" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+          <polyline points="142,55 148,62 160,48" fill="none" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- pulse lines -->
+          <circle cx="50" cy="55" r="24" fill="none" stroke="#4CAF50" stroke-width="0.8" opacity="0.3"/>
+          <circle cx="100" cy="55" r="24" fill="none" stroke="#4CAF50" stroke-width="0.8" opacity="0.3"/>
+          <circle cx="150" cy="55" r="24" fill="none" stroke="#4CAF50" stroke-width="0.8" opacity="0.3"/>
+          <text x="100" y="100" text-anchor="middle" class="sk-text" fill="#4CAF50">healthy · monitored · live</text>
+          <text x="100" y="118" text-anchor="middle" class="sk-text-sm">green health indicator icons</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#47</span>
+        <div class="element-name">Health indicator icons (green)</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+    <!-- 48. SAM4 logo -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <rect x="30" y="30" width="140" height="70" rx="6" fill="#1F1F33"/>
+          <text x="100" y="72" text-anchor="middle" font-family="Calibri, sans-serif" font-size="36" fill="#FFFFFF" font-weight="700" letter-spacing="4">SAM4</text>
+          <text x="100" y="118" text-anchor="middle" class="sk-text-sm">end frame — centred logo</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#48</span>
+        <div class="element-name">SAM4 logo (end frame)</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+    <!-- 49. Tagline -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <rect x="15" y="35" width="170" height="55" rx="4" fill="#1F1F33"/>
+          <text x="100" y="55" text-anchor="middle" font-family="Calibri, sans-serif" font-size="9" fill="#0098AC" letter-spacing="3" font-weight="bold">CONTINUOUS RELIABILITY</text>
+          <text x="100" y="72" text-anchor="middle" font-family="Calibri, sans-serif" font-size="9" fill="#B0B0C8">for inaccessible assets</text>
+          <text x="100" y="115" text-anchor="middle" class="sk-text-sm">tagline text — below logo</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#49</span>
+        <div class="element-name">Tagline text</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+    <!-- 50. Stats strip -->
+    <div class="element-card">
+      <div class="sketch-area">
+        <svg viewBox="0 0 200 140">
+          <rect x="10" y="40" width="180" height="50" rx="4" fill="#1F1F33"/>
+          <!-- stat 1 -->
+          <text x="45" y="60" text-anchor="middle" font-family="Calibri, sans-serif" font-size="16" fill="#FF5429" font-weight="bold">10,000+</text>
+          <text x="45" y="76" text-anchor="middle" font-size="8" fill="#B0B0C8">assets</text>
+          <!-- divider -->
+          <line x1="80" y1="48" x2="80" y2="82" stroke="#6B6B7F" stroke-width="0.5"/>
+          <!-- stat 2 -->
+          <text x="110" y="60" text-anchor="middle" font-family="Calibri, sans-serif" font-size="16" fill="#FF5429" font-weight="bold">100+</text>
+          <text x="110" y="76" text-anchor="middle" font-size="8" fill="#B0B0C8">sites</text>
+          <!-- divider -->
+          <line x1="140" y1="48" x2="140" y2="82" stroke="#6B6B7F" stroke-width="0.5"/>
+          <!-- stat 3 -->
+          <text x="165" y="60" text-anchor="middle" font-family="Calibri, sans-serif" font-size="14" fill="#FF5429" font-weight="bold">Global</text>
+          <text x="165" y="76" text-anchor="middle" font-size="8" fill="#B0B0C8">reach</text>
+          <text x="100" y="115" text-anchor="middle" class="sk-text-sm">optional stats strip — end frame</text>
+        </svg>
+      </div>
+      <div class="element-info">
+        <span class="element-num">#50</span>
+        <div class="element-name">Stats strip (10,000+ / 100+ / Global)</div>
+        <div class="element-cat">Output &amp; Impact</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

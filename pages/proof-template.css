@@ -1,0 +1,511 @@
+/* ============================================================
+   SAMOTICS PROOF / CUSTOMER STORY PAGE — CSS
+   Paste into Bricks Code Element → CSS tab
+   Extends homepage tokens (loaded via header)
+   ============================================================ */
+
+
+/* ── Breadcrumb (same as industry template) ── */
+.sam-breadcrumb ol {
+  list-style: none;
+  margin: 0 0 var(--sp-06) 0;
+  padding: 0;
+  display: flex;
+  gap: var(--sp-03);
+  font-family: var(--sam-font);
+  font-size: 0.875rem;
+}
+.sam-breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-03);
+}
+.sam-breadcrumb li + li::before {
+  content: "/";
+  color: rgba(255,255,255,0.4);
+}
+.sam-breadcrumb a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-breadcrumb a:hover {
+  color: var(--sam-white);
+}
+.sam-breadcrumb [aria-current="page"] {
+  color: var(--sam-white);
+  font-weight: 500;
+}
+
+
+/* ── Hero ── */
+.sam-hero--proof {
+  min-height: 480px;
+}
+
+
+/* ── KPI Strip (navy bg → white text, orange KPI values) ── */
+.sam-proof-kpis {
+  background: var(--sam-space-cadet);
+  padding: var(--sp-08) 0;
+}
+.sam-proof-kpis__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-07);
+  text-align: center;
+}
+.sam-proof-kpis__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+}
+.sam-proof-kpis__value {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--sam-orange);
+}
+.sam-proof-kpis__label {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+
+/* ── Customer Overview (white bg → navy accent) ── */
+.sam-proof-overview {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-proof-overview__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--sp-09);
+}
+.sam-proof-overview__logo {
+  background: var(--sam-seashell);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sam-font);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--sam-space-cadet);
+  min-height: 120px;
+  margin-bottom: var(--sp-06);
+}
+.sam-proof-overview__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-03) var(--sp-05);
+  font-family: var(--sam-font);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+.sam-proof-overview__meta dt {
+  font-weight: 600;
+  color: var(--sam-space-cadet);
+}
+.sam-proof-overview__meta dd {
+  margin: 0;
+  color: var(--sam-comet);
+}
+.sam-proof-overview__body .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-proof-overview__body h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-proof-overview__body p {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-05) 0;
+  max-width: 65ch;
+}
+
+
+/* ── Challenge (seashell bg → orange accent) ── */
+.sam-proof-challenge {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-proof-challenge__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-proof-challenge__inner .overline {
+  color: var(--sam-orange);
+}
+.sam-proof-challenge__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-07) 0;
+  max-width: 30ch;
+}
+.sam-proof-challenge__content {
+  max-width: 65ch;
+}
+.sam-proof-challenge__content p {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-05) 0;
+}
+
+
+/* ── Solution (white bg → navy accent) ── */
+.sam-proof-solution {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-proof-solution__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-09);
+  align-items: center;
+}
+.sam-proof-solution__text .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-proof-solution__text h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-proof-solution__text p {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-05) 0;
+  max-width: 55ch;
+}
+.sam-proof-solution__placeholder {
+  background: var(--sam-seashell);
+  border: 1px solid var(--sam-border-light);
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sam-font);
+  color: var(--sam-comet);
+  font-size: 0.875rem;
+}
+
+
+/* ── Results (seashell bg → orange accent) ── */
+.sam-proof-results {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-proof-results__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-proof-results__inner .overline {
+  color: var(--sam-orange);
+}
+.sam-proof-results__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-proof-results__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-proof-results__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-orange);
+  padding: var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+}
+.sam-proof-results__card-value {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--sam-orange);
+}
+.sam-proof-results__card h3 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-proof-results__card p {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+
+/* ── Quote (white bg → navy accent) ── */
+.sam-proof-quote {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-proof-quote__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-proof-quote__inner blockquote {
+  border-left: 3px solid var(--sam-space-cadet);
+  padding-left: var(--sp-07);
+  margin: 0;
+}
+.sam-proof-quote__inner blockquote p {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.375rem;
+  line-height: 1.6;
+  color: var(--sam-space-cadet);
+  font-style: italic;
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-proof-quote__inner blockquote footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-01);
+}
+.sam-proof-quote__inner blockquote footer strong {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--sam-space-cadet);
+}
+.sam-proof-quote__inner blockquote footer span {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+}
+
+
+/* ── Related Stories (seashell bg → orange accent) ── */
+.sam-proof-related {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-proof-related__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-proof-related__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-proof-related__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-proof-related__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+.sam-proof-related__card:hover {
+  border-color: var(--sam-orange);
+  box-shadow: var(--shadow-md);
+}
+.sam-proof-related__card-kpi {
+  font-size: 1.75rem;
+  line-height: 1.1;
+  color: var(--sam-orange);
+}
+.sam-proof-related__card h3 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+  flex-grow: 1;
+}
+.sam-proof-related__link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-orange);
+  transition: color var(--ease);
+}
+.sam-proof-related__card:hover .sam-proof-related__link {
+  color: var(--sam-orange-dark);
+}
+
+
+/* ── Focus Styles ── */
+.sam-proof-related__card:focus-visible {
+  outline: 3px solid var(--sam-orange);
+  outline-offset: 2px;
+}
+
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .sam-proof-related__card {
+    transition: none !important;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1055px) {
+  .sam-proof-kpis__inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-08);
+  }
+  .sam-proof-overview__inner {
+    grid-template-columns: 1fr;
+  }
+  .sam-proof-overview__logo {
+    max-width: 280px;
+  }
+  .sam-proof-solution__inner {
+    grid-template-columns: 1fr;
+  }
+  .sam-proof-results__grid {
+    grid-template-columns: 1fr;
+  }
+  .sam-proof-related__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 671px) {
+  .sam-proof-kpis {
+    padding: var(--sp-06) 0;
+  }
+  .sam-proof-kpis__inner {
+    padding: 0 16px;
+  }
+  .sam-proof-kpis__value {
+    font-size: 2rem;
+  }
+
+  .sam-proof-overview {
+    padding: var(--sp-10) 0;
+  }
+  .sam-proof-overview__inner {
+    padding: 0 16px;
+  }
+  .sam-proof-overview__body h2 {
+    font-size: 2rem;
+  }
+
+  .sam-proof-challenge {
+    padding: var(--sp-10) 0;
+  }
+  .sam-proof-challenge__inner {
+    padding: 0 16px;
+  }
+  .sam-proof-challenge__inner h2 {
+    font-size: 2rem;
+  }
+
+  .sam-proof-solution {
+    padding: var(--sp-10) 0;
+  }
+  .sam-proof-solution__inner {
+    padding: 0 16px;
+  }
+  .sam-proof-solution__text h2 {
+    font-size: 2rem;
+  }
+
+  .sam-proof-results {
+    padding: var(--sp-10) 0;
+  }
+  .sam-proof-results__inner {
+    padding: 0 16px;
+  }
+  .sam-proof-results__inner h2 {
+    font-size: 2rem;
+  }
+  .sam-proof-results__card-value {
+    font-size: 2rem;
+  }
+
+  .sam-proof-quote {
+    padding: var(--sp-10) 0;
+  }
+  .sam-proof-quote__inner {
+    padding: 0 16px;
+  }
+  .sam-proof-quote__inner blockquote p {
+    font-size: 1.125rem;
+  }
+
+  .sam-proof-related {
+    padding: var(--sp-10) 0;
+  }
+  .sam-proof-related__inner {
+    padding: 0 16px;
+  }
+  .sam-proof-related__inner h2 {
+    font-size: 2rem;
+  }
+}
