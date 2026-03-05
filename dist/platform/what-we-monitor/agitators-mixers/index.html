@@ -1,0 +1,3370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Agitator and mixer monitoring: SAM4 detects bearing wear, imbalance, and misalignment via ESA. Prevent product contamination and quality issues."><title>Agitator &amp; mixer monitoring | Samotics</title>
+  <link rel="canonical" href="https://samoticstestpage.com/platform/what-we-monitor/agitators-mixers/">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: italic;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: italic;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
+    }
+  </style>
+  <style>
+    /* Header CSS */
+    /* ============================================================
+   SAMOTICS HEADER — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens ── */
+:root {
+  --sam-space-cadet: #1F1F33;
+  --sam-orange: #FF5429;
+  --sam-orange-dark: #D7411B;
+  --sam-blue: #005CBA;
+  --sam-white: #FFFFFF;
+  --sam-seashell: #F8F5F2;
+  --sam-black: #111111;
+  --sam-comet: #6B6B7F;
+  --sam-border-light: #E8E4E0;
+  --sam-header-bg: #1F1F33;
+  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sam-header-h: 80px;
+  --sam-header-h-compact: 64px;
+  --sam-transition: 150ms ease-out;
+}
+
+/* ── Skip Link ── */
+.sam-skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10001;
+  padding: 8px 16px;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  font: 600 14px/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 0;
+}
+.sam-skip-link:focus {
+  top: 8px;
+}
+
+/* ── Header Shell ── */
+.sam-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: var(--sam-header-h);
+  background: var(--sam-header-bg);
+  transition: height var(--sam-transition),
+              box-shadow var(--sam-transition);
+}
+.sam-header.is-scrolled {
+  height: var(--sam-header-h-compact);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Inner Container ── */
+.sam-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Logo ── */
+.sam-header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.sam-logo {
+  height: auto;
+  transition: transform 200ms ease-out, filter 200ms ease-out;
+}
+/* Logo: white version on dark header */
+.sam-logo--white {
+  filter: brightness(0) invert(1);
+}
+.sam-logo--dark {
+  display: none;
+}
+.sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+
+/* ── Desktop Nav ── */
+.sam-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Nav Links — <a> tags so they're clickable AND hoverable */
+.sam-nav__link {
+  font: 500 15px/1 var(--sam-font);
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  transition: color var(--sam-transition);
+  white-space: nowrap;
+}
+.sam-nav__link:hover,
+.sam-nav__link:focus-visible {
+  color: var(--sam-white);
+}
+
+/* Active page indicator */
+.sam-nav__link[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--sam-orange);
+}
+
+/* Scrolled state */
+.sam-header.is-scrolled .sam-nav__link {
+  color: rgba(255, 255, 255, 0.85);
+}
+.sam-header.is-scrolled .sam-nav__link:hover,
+.sam-header.is-scrolled .sam-nav__link:focus-visible {
+  color: var(--sam-white);
+}
+
+/* Chevron */
+.sam-nav__chevron {
+  transition: transform var(--sam-transition);
+  flex-shrink: 0;
+}
+
+/* ── Dropdown Panels ── */
+.sam-nav__item {
+  position: relative;
+}
+.sam-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  min-width: 300px;
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-radius: 0;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--sam-transition),
+              visibility var(--sam-transition),
+              transform var(--sam-transition);
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Invisible bridge: closes the hover gap between trigger and dropdown */
+.sam-nav__item--has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+
+/* HOVER to open dropdowns */
+.sam-nav__item--has-dropdown:hover .sam-dropdown,
+.sam-nav__item--has-dropdown:focus-within .sam-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.sam-nav__item--has-dropdown:hover .sam-nav__chevron,
+.sam-nav__item--has-dropdown:focus-within .sam-nav__chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Items */
+.sam-dropdown__item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 24px;
+  text-decoration: none;
+  transition: background-color 100ms ease-out;
+}
+.sam-dropdown__item:hover,
+.sam-dropdown__item:focus-visible {
+  background: var(--sam-seashell);
+}
+.sam-dropdown__label {
+  font: 500 15px/1.3 var(--sam-font);
+  color: var(--sam-black);
+}
+.sam-dropdown__desc {
+  font: 400 13px/1.4 var(--sam-font);
+  color: var(--sam-comet);
+  margin-top: 2px;
+}
+.sam-dropdown__badge {
+  display: inline-block;
+  font: 600 10px/1 var(--sam-font);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sam-white); background: var(--sam-space-cadet);
+  padding: 3px 6px; border-radius: 3px;
+  margin-left: 6px; vertical-align: middle;
+}
+
+/* ── CTA Button ── */
+.sam-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: var(--sam-orange);
+  color: var(--sam-black);
+  font: 600 14px/1 var(--sam-font);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  white-space: nowrap;
+  transition: background-color var(--sam-transition);
+  cursor: pointer;
+}
+.sam-cta:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+}
+.sam-header.is-scrolled .sam-cta {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-header.is-scrolled .sam-cta:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+}
+
+/* ── Header Actions Wrapper ── */
+.sam-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* ── Hamburger (mobile only) ── */
+.sam-hamburger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.sam-hamburger__line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--sam-white);
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+  border-radius: 0;
+}
+/* Open state */
+.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Mobile Menu ── */
+.sam-mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--sam-header-h-compact);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--sam-white);
+  overflow-y: auto;
+  z-index: 999;
+  padding: 24px 16px;
+  flex-direction: column;
+}
+.sam-mobile-menu.is-open {
+  display: flex;
+  animation: samSlideIn 200ms ease-out;
+}
+
+@keyframes samSlideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Mobile Nav Links */
+.sam-mobile-nav__link {
+  display: block;
+  padding: 16px 0;
+  font: 500 16px/1 var(--sam-font);
+  color: var(--sam-black);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-mobile-nav__link:hover {
+  color: var(--sam-orange);
+}
+
+/* Mobile Accordion Groups */
+.sam-mobile-nav__group {
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-mobile-nav__toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+  font: 500 16px/1 var(--sam-font);
+  color: var(--sam-black);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sam-mobile-nav__arrow {
+  transition: transform 200ms ease-out;
+  flex-shrink: 0;
+}
+.sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow {
+  transform: rotate(180deg);
+}
+
+/* Sub-links (hidden by default) */
+.sam-mobile-nav__sub {
+  display: none;
+  flex-direction: column;
+  padding: 0 0 8px 16px;
+}
+.sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
+  display: flex;
+}
+.sam-mobile-nav__sub a {
+  display: block;
+  padding: 12px 0;
+  font: 400 15px/1 var(--sam-font);
+  color: var(--sam-black);
+  text-decoration: none;
+}
+.sam-mobile-nav__sub a:hover {
+  color: var(--sam-orange);
+}
+
+/* Mobile CTA */
+.sam-mobile-nav__cta-wrap {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--sam-border-light);
+}
+.sam-mobile-nav__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 0;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  font: 600 16px/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 0;
+  transition: background-color var(--sam-transition);
+}
+.sam-mobile-nav__cta:hover {
+  background: var(--sam-orange-dark);
+}
+
+/* ── Focus Styles ── */
+.sam-nav__link:focus-visible,
+.sam-dropdown__item:focus-visible,
+.sam-cta:focus-visible,
+.sam-hamburger:focus-visible,
+.sam-mobile-nav__toggle:focus-visible,
+.sam-mobile-nav__link:focus-visible,
+.sam-mobile-nav__sub a:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .sam-header,
+  .sam-dropdown,
+  .sam-nav__chevron,
+  .sam-hamburger__line,
+  .sam-mobile-nav__arrow,
+  .sam-logo {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .sam-header {
+    height: var(--sam-header-h-compact);
+  }
+  .sam-header__inner {
+    padding: 0 16px;
+  }
+  .sam-nav {
+    display: none;
+  }
+  .sam-hamburger {
+    display: flex;
+  }
+  .sam-cta {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+    /* Footer CSS */
+    /* ============================================================
+   SAMOTICS FOOTER — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Pre-footer CTA Section ── */
+.sam-prefooter {
+  background: var(--sam-seashell, #F8F5F2);
+  padding: 96px 0;
+}
+.sam-prefooter__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+.sam-prefooter__heading {
+  font: 600 48px/1.15 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: var(--sam-space-cadet, #1F1F33);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.sam-prefooter__sub {
+  font: 400 18px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: var(--sam-comet, #6B6B7F);
+  margin: 0;
+  max-width: 520px;
+}
+.sam-prefooter__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  background: var(--sam-orange, #FF5429);
+  color: #FFFFFF;
+  font: 600 16px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms ease-out;
+}
+.sam-prefooter__cta:hover {
+  background: var(--sam-orange-dark, #D7411B);
+}
+
+/* ── Footer Shell ── */
+.sam-footer {
+  background: var(--sam-space-cadet, #1F1F33);
+  padding-top: 96px;
+}
+.sam-footer__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Top: Logo + Tagline ── */
+.sam-footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 64px;
+}
+.sam-footer__logo {
+  display: inline-flex;
+  text-decoration: none;
+}
+.sam-footer__logo img {
+  width: 140px;
+  height: auto;
+}
+.sam-footer__tagline {
+  font: 400 16px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  max-width: 360px;
+}
+
+/* ── 5-Column Nav Grid ── */
+.sam-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+/* Column */
+.sam-footer__col-heading {
+  font: 600 14px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 16px 0;
+}
+.sam-footer__col-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sam-footer__col-links a {
+  font: 400 14px/1.4 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+.sam-footer__col-links a:hover,
+.sam-footer__col-links a:focus-visible {
+  color: #FFFFFF;
+}
+
+/* ── Divider ── */
+.sam-footer__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Bottom Bar ── */
+.sam-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+.sam-footer__bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.sam-footer__copyright {
+  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* LinkedIn */
+.sam-footer__social {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 150ms ease-out;
+}
+.sam-footer__social:hover {
+  color: #FFFFFF;
+}
+
+/* Legal Links */
+.sam-footer__legal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sam-footer__legal a {
+  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+.sam-footer__legal a:hover,
+.sam-footer__legal a:focus-visible {
+  color: #FFFFFF;
+}
+.sam-footer__legal-sep {
+  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Focus Styles ── */
+.sam-prefooter__cta:focus-visible,
+.sam-footer__col-links a:focus-visible,
+.sam-footer__social:focus-visible,
+.sam-footer__legal a:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .sam-prefooter__cta,
+  .sam-footer__col-links a,
+  .sam-footer__social,
+  .sam-footer__legal a {
+    transition: none !important;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .sam-prefooter {
+    padding: 64px 0;
+  }
+  .sam-prefooter__inner {
+    padding: 0 16px;
+  }
+  .sam-prefooter__heading {
+    font-size: 32px;
+  }
+
+  .sam-footer {
+    padding-top: 64px;
+  }
+  .sam-footer__inner {
+    padding: 0 16px;
+  }
+  .sam-footer__top {
+    margin-bottom: 48px;
+  }
+
+  /* Grid → single column accordion */
+  .sam-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+
+  .sam-footer__col {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0;
+  }
+  .sam-footer__col-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .sam-footer__col-heading::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+    transition: transform 200ms ease-out;
+    flex-shrink: 0;
+  }
+  .sam-footer__col.is-open .sam-footer__col-heading::after {
+    transform: rotate(-135deg);
+  }
+
+  .sam-footer__col-links {
+    display: none;
+    padding: 0 0 16px 0;
+  }
+  .sam-footer__col.is-open .sam-footer__col-links {
+    display: flex;
+  }
+
+  /* Bottom bar stacks */
+  .sam-footer__bottom {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+}
+    /* Page CSS */
+    /* ============================================================
+   SAMOTICS SPECIFIC ASSET PAGE TEMPLATE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens ── */
+:root {
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F8F5F2;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E8E4E0;
+  --sam-dark-elevated:   #2A2A42;
+
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  --sp-01: 2px; --sp-02: 4px; --sp-03: 8px; --sp-04: 12px; --sp-05: 16px;
+  --sp-06: 24px; --sp-07: 32px; --sp-08: 48px; --sp-09: 64px; --sp-10: 96px;
+  --sp-11: 128px; --sp-12: 160px;
+
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset ── */
+.sam-spec { overflow-x: hidden; }
+
+/* ── Shared ── */
+.overline { font-family: var(--sam-font); font-weight: 600; font-size: 1rem; line-height: 1; letter-spacing: 0.10em; text-transform: uppercase; margin: 0 0 var(--sp-06) 0; }
+.lead { font-family: var(--sam-font); font-weight: 400; font-size: 1.25rem; line-height: 1.6; color: var(--sam-space-cadet); max-width: 60ch; margin: 0; }
+.sam-text-link { font-family: var(--sam-font); font-weight: 500; font-size: 1rem; color: var(--sam-blue); text-decoration: none; transition: color var(--ease); }
+.sam-text-link:hover { color: var(--sam-blue-dark); }
+.kpi-value { font-family: var(--sam-mono); font-weight: 700; font-variant-numeric: tabular-nums lining-nums; }
+
+/* ── Buttons ── */
+.sam-btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; font: 600 1rem/1 var(--sam-font); letter-spacing: 0.02em; text-decoration: none; border: none; cursor: pointer; transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease); white-space: nowrap; }
+.sam-btn:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+.sam-btn--primary { background: var(--sam-orange); color: var(--sam-black); }
+.sam-btn--primary:hover { background: var(--sam-orange-dark); color: var(--sam-white); box-shadow: var(--shadow-cta); }
+.sam-btn--outline { background: transparent; color: var(--sam-white); border: 2px solid var(--sam-white); }
+.sam-btn--outline:hover { background: rgba(255,255,255,0.12); }
+.sam-btn--secondary-light { background: transparent; color: var(--sam-white); border: 2px solid rgba(255,255,255,0.5); }
+.sam-btn--secondary-light:hover { background: rgba(255,255,255,0.10); border-color: var(--sam-white); }
+
+/* ============================================================
+   1. HERO — dark
+   ============================================================ */
+
+.sam-hero--spec {
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: var(--sp-12) 0 var(--sp-11) 0;
+  min-height: 480px;
+}
+.sam-hero--spec .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(31,31,51,0.92) 0%, rgba(31,31,51,0.80) 50%, rgba(31,31,51,0.45) 100%);
+  z-index: 0;
+}
+.sam-hero--spec .sam-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  width: 100%;
+}
+
+/* Breadcrumb */
+.sam-spec-breadcrumb {
+  font-family: var(--sam-font);
+  font-size: 0.875rem;
+  color: var(--sam-muted-dark);
+  margin-bottom: var(--sp-07);
+  display: flex;
+  gap: var(--sp-03);
+  align-items: center;
+}
+.sam-spec-breadcrumb a { color: var(--sam-muted-dark); text-decoration: none; transition: color var(--ease); }
+.sam-spec-breadcrumb a:hover { color: var(--sam-white); }
+.sam-spec-breadcrumb > span:last-child { color: var(--sam-white); }
+
+/* Hero split: copy left, glance card right */
+.sam-hero__split {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--sp-09);
+  align-items: start;
+}
+
+.sam-hero__overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-hero__h1 {
+  font-family: var(--sam-font);
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-07) 0;
+  max-width: 18ch;
+}
+.sam-hero__lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 52ch;
+}
+.sam-hero__ctas { display: flex; gap: var(--sp-05); flex-wrap: wrap; }
+
+/* At-a-glance card */
+.sam-spec-glance {
+  background: var(--sam-dark-elevated);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: var(--sp-07);
+}
+.sam-spec-glance__title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-spec-glance__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.sam-spec-glance__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-05);
+  padding: var(--sp-04) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.sam-spec-glance__row:last-child { border-bottom: none; }
+.sam-spec-glance__row dt {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--sam-muted-dark);
+}
+.sam-spec-glance__row dd {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-white);
+  text-align: right;
+  margin: 0;
+}
+
+/* ============================================================
+   2. WHY MONITOR — white
+   ============================================================ */
+
+.sam-spec-why {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-spec-why__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-spec-why__inner .overline { color: var(--sam-teal-dark); }
+.sam-spec-why__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 32ch;
+}
+.sam-spec-why__lead { margin-bottom: var(--sp-09); }
+
+.sam-spec-why__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-spec-why__card {
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+}
+.sam-spec-why__card-stat {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--sam-orange-dark);
+}
+.sam-spec-why__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+/* ============================================================
+   3. FAULT COVERAGE — seashell
+   ============================================================ */
+
+.sam-spec-faults {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-spec-faults__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-spec-faults__inner .overline { color: var(--sam-orange-dark); }
+.sam-spec-faults__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+/* Fault table */
+.sam-spec-faults__table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: var(--sp-07);
+}
+.sam-spec-faults__table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+}
+.sam-spec-faults__th {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--sam-space-cadet);
+  text-align: left;
+  padding: var(--sp-05) var(--sp-06);
+  background: var(--sam-white);
+  border-bottom: 2px solid var(--sam-border-light);
+  white-space: nowrap;
+}
+.sam-spec-faults__td {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--sam-black);
+  padding: var(--sp-05) var(--sp-06);
+  border-bottom: 1px solid var(--sam-border-light);
+  vertical-align: top;
+}
+.sam-spec-faults__td--label {
+  font-weight: 600;
+  color: var(--sam-space-cadet);
+  white-space: nowrap;
+  min-width: 160px;
+}
+.sam-spec-faults__td--yes {
+  font-weight: 600;
+  color: var(--sam-teal-dark);
+}
+.sam-spec-faults__td--partial {
+  color: var(--sam-blue);
+}
+
+/* Constraints note */
+.sam-spec-faults__note {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--sam-comet);
+  padding: var(--sp-05) var(--sp-06);
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-left: 3px solid var(--sam-comet);
+}
+
+/* ============================================================
+   4. DETECTION STORIES — white
+   ============================================================ */
+
+.sam-spec-stories {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-spec-stories__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-spec-stories__inner .overline { color: var(--sam-space-cadet); }
+.sam-spec-stories__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-spec-stories__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+  margin-bottom: var(--sp-08);
+}
+.sam-spec-stories__card {
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-spec-stories__card:hover { box-shadow: var(--shadow-md); border-color: var(--sam-teal-dark); }
+.sam-spec-stories__card:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+
+.sam-spec-stories__card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-03);
+}
+.sam-spec-stories__card-tag {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sam-teal-dark);
+  background: rgba(0,108,108,0.08);
+  padding: var(--sp-01) var(--sp-03);
+}
+.sam-spec-stories__card-industry {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--sam-comet);
+}
+.sam-spec-stories__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-spec-stories__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex: 1;
+}
+.sam-spec-stories__card-link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-blue);
+  margin-top: auto;
+}
+
+/* ============================================================
+   5. INSTALLATION — seashell
+   ============================================================ */
+
+.sam-spec-install {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-spec-install__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-spec-install__inner .overline { color: var(--sam-space-cadet); }
+.sam-spec-install__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-spec-install__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-09);
+  margin-bottom: var(--sp-08);
+  align-items: start;
+}
+
+.sam-spec-install__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-07);
+}
+.sam-spec-install__step {
+  display: flex;
+  gap: var(--sp-06);
+  align-items: flex-start;
+}
+.sam-spec-install__step-num {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--sam-orange);
+  flex-shrink: 0;
+  width: 40px;
+}
+.sam-spec-install__step-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-03) 0;
+}
+.sam-spec-install__step-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+/* Image placeholder */
+.sam-spec-install__image-placeholder {
+  background: var(--sam-white);
+  border: 2px dashed var(--sam-border-light);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-07);
+}
+.sam-spec-install__image-placeholder span {
+  font-family: var(--sam-font);
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+  text-align: center;
+}
+.sam-spec-install__image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sam-spec-install__links {
+  display: flex;
+  gap: var(--sp-07);
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   6. ENERGY MONITORING — white
+   ============================================================ */
+
+.sam-spec-energy {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-spec-energy__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-spec-energy__inner .overline { color: var(--sam-teal-dark); }
+.sam-spec-energy__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-spec-energy__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-09);
+  align-items: start;
+}
+
+.sam-spec-energy__metrics {
+  display: flex;
+  gap: var(--sp-06);
+  margin-top: var(--sp-08);
+}
+.sam-spec-energy__metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+}
+.sam-spec-energy__metric-value {
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--sam-orange-dark);
+}
+.sam-spec-energy__metric-label {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--sam-comet);
+  max-width: 24ch;
+}
+
+.sam-spec-energy__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-06);
+}
+.sam-spec-energy__feature {
+  border-left: 3px solid var(--sam-teal-dark);
+  padding-left: var(--sp-06);
+}
+.sam-spec-energy__feature-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-03) 0;
+}
+.sam-spec-energy__feature-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+/* ============================================================
+   7. INDUSTRIES — seashell
+   ============================================================ */
+
+.sam-spec-industries {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-spec-industries__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-spec-industries__inner .overline { color: var(--sam-space-cadet); }
+.sam-spec-industries__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-spec-industries__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-06);
+}
+.sam-spec-industries__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-teal-dark);
+  padding: var(--sp-06);
+  text-decoration: none;
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-spec-industries__card:hover { box-shadow: var(--shadow-md); border-color: var(--sam-teal-dark); }
+.sam-spec-industries__card:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+.sam-spec-industries__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-03) 0;
+}
+.sam-spec-industries__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--sam-comet);
+  margin: 0;
+}
+
+/* ============================================================
+   8. RELATED ASSETS — white
+   ============================================================ */
+
+.sam-spec-related {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-spec-related__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-spec-related__inner .overline { color: var(--sam-comet); }
+.sam-spec-related__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-spec-related__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-06);
+  margin-bottom: var(--sp-08);
+}
+.sam-spec-related__card {
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-06);
+  text-decoration: none;
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-spec-related__card:hover { box-shadow: var(--shadow-md); border-color: var(--sam-comet); }
+.sam-spec-related__card:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+.sam-spec-related__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-03) 0;
+}
+.sam-spec-related__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--sam-comet);
+  margin: 0;
+}
+
+/* ============================================================
+   9. CTA — dark
+   ============================================================ */
+
+.sam-cta-block--spec {
+  background: var(--sam-space-cadet);
+  padding: var(--sp-11) 0;
+}
+.sam-cta-block--spec .sam-cta-block__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  text-align: center;
+}
+.sam-cta-block--spec .sam-cta-block__heading {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-cta-block--spec .sam-cta-block__sub {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--sam-muted-dark);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 56ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sam-cta-block--spec .sam-cta-block__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-05);
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   FOCUS & REDUCED MOTION
+   ============================================================ */
+
+.sam-text-link:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sam-btn, .sam-text-link,
+  .sam-spec-stories__card,
+  .sam-spec-industries__card,
+  .sam-spec-related__card { transition: none !important; }
+
+  .sam-spec-why,
+  .sam-spec-faults,
+  .sam-spec-stories,
+  .sam-spec-install,
+  .sam-spec-energy,
+  .sam-spec-industries,
+  .sam-spec-related,
+  .sam-cta-block--spec {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet (max-width: 1055px) */
+@media (max-width: 1055px) {
+  .sam-hero--spec { padding: var(--sp-10) 0; min-height: auto; }
+  .sam-hero__split { grid-template-columns: 1fr; gap: var(--sp-08); }
+  .sam-hero__h1 { font-size: 3rem; max-width: none; }
+  .sam-spec-glance { max-width: 480px; }
+
+  .sam-spec-why__grid { grid-template-columns: repeat(3, 1fr); }
+  .sam-spec-stories__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-spec-install__split { grid-template-columns: 1fr; gap: var(--sp-08); }
+  .sam-spec-energy__split { grid-template-columns: 1fr; gap: var(--sp-08); }
+  .sam-spec-industries__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-spec-related__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile (max-width: 671px) */
+@media (max-width: 671px) {
+  .sam-hero--spec { padding: var(--sp-09) 0; }
+  .sam-hero--spec .sam-hero__inner { padding: 0 16px; }
+  .sam-hero__h1 { font-size: 2.25rem; line-height: 1.15; }
+  .sam-hero__lead { font-size: 1rem; }
+  .sam-hero__ctas { flex-direction: column; }
+  .sam-hero__ctas .sam-btn { width: 100%; min-height: 48px; }
+
+  .sam-spec-why { padding: var(--sp-10) 0; }
+  .sam-spec-why__inner { padding: 0 16px; }
+  .sam-spec-why__inner h2 { font-size: 1.75rem; }
+  .sam-spec-why__grid { grid-template-columns: 1fr; }
+  .sam-spec-why__card-stat { font-size: 2rem; }
+
+  .sam-spec-faults { padding: var(--sp-10) 0; }
+  .sam-spec-faults__inner { padding: 0 16px; }
+  .sam-spec-faults__inner h2 { font-size: 1.75rem; }
+
+  .sam-spec-stories { padding: var(--sp-10) 0; }
+  .sam-spec-stories__inner { padding: 0 16px; }
+  .sam-spec-stories__inner h2 { font-size: 1.75rem; }
+  .sam-spec-stories__grid { grid-template-columns: 1fr; }
+
+  .sam-spec-install { padding: var(--sp-10) 0; }
+  .sam-spec-install__inner { padding: 0 16px; }
+  .sam-spec-install__inner h2 { font-size: 1.75rem; }
+
+  .sam-spec-energy { padding: var(--sp-10) 0; }
+  .sam-spec-energy__inner { padding: 0 16px; }
+  .sam-spec-energy__inner h2 { font-size: 1.75rem; }
+  .sam-spec-energy__metrics { flex-direction: column; }
+
+  .sam-spec-industries { padding: var(--sp-10) 0; }
+  .sam-spec-industries__inner { padding: 0 16px; }
+  .sam-spec-industries__inner h2 { font-size: 1.75rem; }
+  .sam-spec-industries__grid { grid-template-columns: 1fr; }
+
+  .sam-spec-related { padding: var(--sp-10) 0; }
+  .sam-spec-related__inner { padding: 0 16px; }
+  .sam-spec-related__inner h2 { font-size: 1.75rem; }
+  .sam-spec-related__grid { grid-template-columns: repeat(2, 1fr); }
+
+  .sam-cta-block--spec { padding: var(--sp-10) 0; }
+  .sam-cta-block--spec .sam-cta-block__inner { padding: 0 16px; }
+  .sam-cta-block--spec .sam-cta-block__heading { font-size: 1.75rem; }
+  .sam-cta-block--spec .sam-cta-block__actions { flex-direction: column; }
+  .sam-cta-block--spec .sam-cta-block__actions .sam-btn { width: 100%; min-height: 48px; }
+}
+
+/* ============================================================
+   SAMOTICS ASSET TYPE PAGE TEMPLATE — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens (extend header/footer tokens) ── */
+:root {
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F8F5F2;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E8E4E0;
+  --sam-dark-elevated:   #2A2A42;
+
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  --sp-01: 2px; --sp-02: 4px; --sp-03: 8px; --sp-04: 12px; --sp-05: 16px;
+  --sp-06: 24px; --sp-07: 32px; --sp-08: 48px; --sp-09: 64px; --sp-10: 96px;
+  --sp-11: 128px; --sp-12: 160px;
+
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+  --ease: 150ms ease-out;
+}
+
+/* ── Reset ── */
+.sam-asset { overflow-x: hidden; }
+
+/* ── Shared ── */
+.overline {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin: 0 0 var(--sp-06) 0;
+}
+.lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-space-cadet);
+  max-width: 60ch;
+  margin: 0;
+}
+.sam-text-link {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--sam-blue);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-text-link:hover { color: var(--sam-blue-dark); }
+.kpi-value {
+  font-family: var(--sam-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ── Buttons ── */
+.sam-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font: 600 1rem/1 var(--sam-font);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
+  white-space: nowrap;
+}
+.sam-btn:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+.sam-btn--primary { background: var(--sam-orange); color: var(--sam-black); }
+.sam-btn--primary:hover { background: var(--sam-orange-dark); color: var(--sam-white); box-shadow: var(--shadow-cta); }
+.sam-btn--outline { background: transparent; color: var(--sam-white); border: 2px solid var(--sam-white); }
+.sam-btn--outline:hover { background: rgba(255,255,255,0.12); }
+.sam-btn--secondary-light { background: transparent; color: var(--sam-white); border: 2px solid rgba(255,255,255,0.5); }
+.sam-btn--secondary-light:hover { background: rgba(255,255,255,0.10); border-color: var(--sam-white); }
+
+/* ============================================================
+   1. HERO
+   Background: dark
+   ============================================================ */
+
+.sam-hero--asset {
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: var(--sp-12) 0 var(--sp-11) 0;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sam-hero--asset .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(31,31,51,0.90) 0%, rgba(31,31,51,0.78) 45%, rgba(31,31,51,0.40) 100%);
+  z-index: 0;
+}
+.sam-hero--asset .sam-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--sp-09);
+}
+.sam-hero__content {
+  max-width: 680px;
+}
+
+/* Breadcrumb */
+.sam-hero__breadcrumb {
+  font-family: var(--sam-font);
+  font-size: 0.875rem;
+  color: var(--sam-muted-dark);
+  margin-bottom: var(--sp-06);
+  display: flex;
+  gap: var(--sp-03);
+  align-items: center;
+}
+.sam-hero__breadcrumb a {
+  color: var(--sam-muted-dark);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.sam-hero__breadcrumb a:hover { color: var(--sam-white); }
+.sam-hero__breadcrumb span:last-child { color: var(--sam-white); }
+
+.sam-hero__h1 {
+  font-family: var(--sam-font);
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-07) 0;
+  max-width: 20ch;
+}
+.sam-hero__lead {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 56ch;
+}
+.sam-hero__ctas {
+  display: flex;
+  gap: var(--sp-05);
+  flex-wrap: wrap;
+}
+
+/* Hero stat strip */
+.sam-hero__stats {
+  display: flex;
+  gap: var(--sp-07);
+  flex-shrink: 0;
+}
+.sam-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-02);
+  padding: var(--sp-06);
+  background: var(--sam-dark-elevated);
+  border: 1px solid rgba(255,255,255,0.08);
+  min-width: 140px;
+}
+.sam-hero__stat-value {
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--sam-orange);
+}
+.sam-hero__stat-label {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--sam-muted-dark);
+}
+
+/* ============================================================
+   2. SUB-TYPES
+   Background: white
+   ============================================================ */
+
+.sam-asset-subtypes {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-subtypes__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-subtypes__inner .overline { color: var(--sam-teal-dark); }
+.sam-asset-subtypes__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 25ch;
+}
+.sam-asset-subtypes__lead { margin-bottom: var(--sp-09); }
+
+.sam-asset-subtypes__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-subtypes__card {
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-teal-dark);
+  padding: var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+}
+.sam-asset-subtypes__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-asset-subtypes__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex: 1;
+}
+.sam-asset-subtypes__card-industry {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--sam-comet);
+  padding-top: var(--sp-04);
+  border-top: 1px solid var(--sam-border-light);
+  margin-top: auto;
+}
+
+/* ============================================================
+   3. FAULT COVERAGE
+   Background: seashell
+   ============================================================ */
+
+.sam-asset-faults {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-faults__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-faults__inner .overline { color: var(--sam-orange-dark); }
+.sam-asset-faults__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 30ch;
+}
+.sam-asset-faults__lead { margin-bottom: var(--sp-09); }
+
+.sam-asset-faults__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-faults__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+}
+.sam-asset-faults__card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,108,108,0.06);
+  border-radius: 8px;
+}
+.sam-asset-faults__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-asset-faults__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex: 1;
+}
+.sam-asset-faults__card-confidence {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sam-teal-dark);
+  padding-top: var(--sp-04);
+  border-top: 1px solid var(--sam-border-light);
+  margin-top: auto;
+}
+
+/* ============================================================
+   4. HOW IT WORKS (asset-specific)
+   Background: white
+   ============================================================ */
+
+.sam-asset-how {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-how__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-how__inner .overline { color: var(--sam-space-cadet); }
+.sam-asset-how__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-asset-how__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-07);
+  margin-bottom: var(--sp-08);
+}
+.sam-asset-how__step {
+  position: relative;
+  padding-left: var(--sp-07);
+  border-left: 3px solid var(--sam-orange);
+}
+.sam-asset-how__step-num {
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--sam-orange);
+  display: block;
+  margin-bottom: var(--sp-04);
+}
+.sam-asset-how__step-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-asset-how__step-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+.sam-asset-how__links {
+  display: flex;
+  gap: var(--sp-07);
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   5. DETECTION STORIES
+   Background: seashell
+   ============================================================ */
+
+.sam-asset-stories {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-stories__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-stories__inner .overline { color: var(--sam-space-cadet); }
+.sam-asset-stories__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 30ch;
+}
+.sam-asset-stories__lead { margin-bottom: var(--sp-09); }
+
+.sam-asset-stories__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+  margin-bottom: var(--sp-08);
+}
+.sam-asset-stories__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-07);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-asset-stories__card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--sam-teal-dark);
+}
+.sam-asset-stories__card:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-asset-stories__card-tag {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sam-teal-dark);
+  background: rgba(0,108,108,0.08);
+  padding: var(--sp-01) var(--sp-03);
+  align-self: flex-start;
+}
+.sam-asset-stories__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-asset-stories__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex: 1;
+}
+.sam-asset-stories__card-industry {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--sam-comet);
+  padding-top: var(--sp-04);
+  border-top: 1px solid var(--sam-border-light);
+  margin-top: auto;
+}
+
+/* ============================================================
+   6. CUSTOMER PROOF
+   Background: white
+   ============================================================ */
+
+.sam-asset-proof {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-proof__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-proof__inner .overline { color: var(--sam-orange-dark); }
+.sam-asset-proof__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-asset-proof__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-proof__card {
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-orange);
+  padding: var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-04);
+}
+.sam-asset-proof__card-name {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-asset-proof__card-stat {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--sam-orange-dark);
+  margin: 0;
+}
+.sam-asset-proof__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+  margin: 0;
+  flex: 1;
+}
+
+/* ============================================================
+   7. INDUSTRIES
+   Background: seashell
+   ============================================================ */
+
+.sam-asset-industries {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-industries__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-industries__inner .overline { color: var(--sam-space-cadet); }
+.sam-asset-industries__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-asset-industries__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-industries__card {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-teal-dark);
+  padding: var(--sp-06);
+  text-decoration: none;
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-asset-industries__card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--sam-teal-dark);
+}
+.sam-asset-industries__card:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-asset-industries__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-03) 0;
+}
+.sam-asset-industries__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--sam-comet);
+  margin: 0;
+}
+
+/* ============================================================
+   8. RELATED ASSETS
+   Background: white
+   ============================================================ */
+
+.sam-asset-related {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-asset-related__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-asset-related__inner .overline { color: var(--sam-comet); }
+.sam-asset-related__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-09) 0;
+  max-width: 30ch;
+}
+
+.sam-asset-related__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-asset-related__card {
+  border: 1px solid var(--sam-border-light);
+  padding: var(--sp-06);
+  text-decoration: none;
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-asset-related__card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--sam-comet);
+}
+.sam-asset-related__card:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+.sam-asset-related__card-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-03) 0;
+}
+.sam-asset-related__card-desc {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--sam-comet);
+  margin: 0;
+}
+
+/* ============================================================
+   9. CTA BLOCK
+   Background: dark
+   ============================================================ */
+
+.sam-cta-block--asset {
+  background: var(--sam-space-cadet);
+  padding: var(--sp-11) 0;
+}
+.sam-cta-block--asset .sam-cta-block__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+  text-align: center;
+}
+.sam-cta-block--asset .sam-cta-block__heading {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-white);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-cta-block--asset .sam-cta-block__sub {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--sam-muted-dark);
+  margin: 0 0 var(--sp-08) 0;
+  max-width: 56ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sam-cta-block--asset .sam-cta-block__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-05);
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   FOCUS & REDUCED MOTION
+   ============================================================ */
+
+.sam-text-link:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sam-btn, .sam-text-link,
+  .sam-asset-stories__card,
+  .sam-asset-industries__card,
+  .sam-asset-related__card { transition: none !important; }
+
+  .sam-asset-subtypes,
+  .sam-asset-faults,
+  .sam-asset-how,
+  .sam-asset-stories,
+  .sam-asset-proof,
+  .sam-asset-industries,
+  .sam-asset-related,
+  .sam-cta-block--asset {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet (max-width: 1055px) */
+@media (max-width: 1055px) {
+
+  .sam-hero--asset {
+    padding: var(--sp-10) 0;
+    min-height: auto;
+  }
+  .sam-hero--asset .sam-hero__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-08);
+  }
+  .sam-hero__h1 {
+    font-size: 3rem;
+    max-width: none;
+  }
+  .sam-hero__stats {
+    width: 100%;
+  }
+
+  .sam-asset-subtypes__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-asset-faults__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-asset-how__steps { grid-template-columns: 1fr; gap: var(--sp-08); }
+  .sam-asset-stories__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-asset-proof__grid { grid-template-columns: 1fr; }
+  .sam-asset-industries__grid { grid-template-columns: repeat(2, 1fr); }
+  .sam-asset-related__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile (max-width: 671px) */
+@media (max-width: 671px) {
+
+  .sam-hero--asset { padding: var(--sp-09) 0; }
+  .sam-hero--asset .sam-hero__inner { padding: 0 16px; }
+  .sam-hero__h1 { font-size: 2.5rem; line-height: 1.2; }
+  .sam-hero__lead { font-size: 1.125rem; }
+  .sam-hero__ctas { flex-direction: column; }
+  .sam-hero__ctas .sam-btn { width: 100%; min-height: 48px; }
+  .sam-hero__stats { flex-direction: column; gap: var(--sp-05); }
+  .sam-hero__stat { flex-direction: row; align-items: center; gap: var(--sp-05); min-width: auto; }
+  .sam-hero__stat-value { font-size: 1.5rem; }
+
+  .sam-asset-subtypes { padding: var(--sp-10) 0; }
+  .sam-asset-subtypes__inner { padding: 0 16px; }
+  .sam-asset-subtypes__inner h2 { font-size: 2rem; }
+  .sam-asset-subtypes__grid { grid-template-columns: 1fr; }
+
+  .sam-asset-faults { padding: var(--sp-10) 0; }
+  .sam-asset-faults__inner { padding: 0 16px; }
+  .sam-asset-faults__inner h2 { font-size: 2rem; }
+  .sam-asset-faults__grid { grid-template-columns: 1fr; }
+
+  .sam-asset-how { padding: var(--sp-10) 0; }
+  .sam-asset-how__inner { padding: 0 16px; }
+  .sam-asset-how__inner h2 { font-size: 2rem; }
+
+  .sam-asset-stories { padding: var(--sp-10) 0; }
+  .sam-asset-stories__inner { padding: 0 16px; }
+  .sam-asset-stories__inner h2 { font-size: 2rem; }
+  .sam-asset-stories__grid { grid-template-columns: 1fr; }
+
+  .sam-asset-proof { padding: var(--sp-10) 0; }
+  .sam-asset-proof__inner { padding: 0 16px; }
+  .sam-asset-proof__inner h2 { font-size: 2rem; }
+
+  .sam-asset-industries { padding: var(--sp-10) 0; }
+  .sam-asset-industries__inner { padding: 0 16px; }
+  .sam-asset-industries__inner h2 { font-size: 2rem; }
+  .sam-asset-industries__grid { grid-template-columns: 1fr; }
+
+  .sam-asset-related { padding: var(--sp-10) 0; }
+  .sam-asset-related__inner { padding: 0 16px; }
+  .sam-asset-related__inner h2 { font-size: 2rem; }
+  .sam-asset-related__grid { grid-template-columns: 1fr; }
+
+  .sam-cta-block--asset { padding: var(--sp-10) 0; }
+  .sam-cta-block--asset .sam-cta-block__inner { padding: 0 16px; }
+  .sam-cta-block--asset .sam-cta-block__heading { font-size: 2rem; }
+  .sam-cta-block--asset .sam-cta-block__actions { flex-direction: column; }
+  .sam-cta-block--asset .sam-cta-block__actions .sam-btn { width: 100%; min-height: 48px; }
+}
+
+  </style>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Agitator &amp; mixer monitoring | Samotics">
+  <meta property="og:description" content="Agitator and mixer monitoring: SAM4 detects bearing wear, imbalance, and misalignment via ESA. Prevent product contamination and quality issues.">
+  <meta property="og:url" content="https://samoticstestpage.com/platform/what-we-monitor/agitators-mixers/">
+  <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
+  <meta property="og:site_name" content="Samotics">
+</head>
+<body>
+  <!-- ===================== PHP & HTML ===================== -->
+
+<header class="sam-header" role="navigation" aria-label="Main navigation">
+  <a href="#main-content" class="sam-skip-link">Skip to content</a>
+  <div class="sam-header__inner">
+
+    <!-- Logo -->
+    <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--dark" width="140" height="32">
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="sam-nav" role="menubar" aria-label="Primary">
+
+      <!-- Problem -->
+      <a href="/problem/" class="sam-nav__link" role="menuitem">Problem</a>
+
+      <!-- Technology ▾ -->
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/technology/"
+           class="sam-nav__link sam-nav__link--dropdown"
+           role="menuitem"
+           aria-haspopup="true"
+           aria-expanded="false">
+          Technology
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="sam-dropdown" role="menu" aria-label="Technology submenu">
+          <a href="/technology/esa/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Electrical Signature Analysis</span>
+            <span class="sam-dropdown__desc">The science behind SAM4</span>
+          </a>
+          <a href="/technology/how-it-works/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">How It Works</span>
+            <span class="sam-dropdown__desc">From sensor to insight</span>
+          </a>
+          <a href="/technology/how-sam4-works/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Technical Deep Dive</span>
+            <span class="sam-dropdown__desc">Full SAM4 architecture and performance</span>
+          </a>
+          <a href="/technology/esa-vs-vibration/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">ESA vs Vibration</span>
+            <span class="sam-dropdown__desc">How ESA complements traditional monitoring</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform ▾ -->
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/platform/"
+           class="sam-nav__link sam-nav__link--dropdown"
+           role="menuitem"
+           aria-haspopup="true"
+           aria-expanded="false">
+          Platform
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="sam-dropdown" role="menu" aria-label="Platform submenu">
+          <a href="/platform/sam4/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">SAM4 Platform</span>
+            <span class="sam-dropdown__desc">Dashboard, diagnostics, and service model</span>
+          </a>
+          <a href="/platform/service-model/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Service Model</span>
+            <span class="sam-dropdown__desc">Diagnostics team, CSM, and quarterly reviews</span>
+          </a>
+          <a href="/platform/what-we-monitor/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">What We Monitor</span>
+            <span class="sam-dropdown__desc">Asset types, capabilities, and detection depth</span>
+          </a>
+          <a href="/platform/how-it-installs/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">How It Installs</span>
+            <span class="sam-dropdown__desc">Less than 30 minutes, no downtime</span>
+          </a>
+          <a href="/platform/security/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Trust &amp; Security</span>
+            <span class="sam-dropdown__desc">SOC 2, ISO 27001, NIS2, cellular architecture</span>
+          </a>
+          <a href="/platform/integrations/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Integrations</span>
+            <span class="sam-dropdown__desc">CMMS, SCADA, and API connectivity</span>
+          </a>
+          <a href="/platform/scaling/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Scaling</span>
+            <span class="sam-dropdown__desc">From first asset to full fleet</span>
+          </a>
+          <a href="/platform/sam4-x/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">SAM4-X</span><span class="sam-dropdown__desc">Paid validation programme</span></a>
+
+        </div>
+      </div>
+
+      <!-- Industries ▾ -->
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/industries/"
+           class="sam-nav__link sam-nav__link--dropdown"
+           role="menuitem"
+           aria-haspopup="true"
+           aria-expanded="false">
+          Industries
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="sam-dropdown" role="menu" aria-label="Industries submenu">
+          <a href="/industries/water/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Water &amp; Wastewater</span>
+          </a>
+          <a href="/industries/oil-gas/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Energy Production</span>
+          </a>
+          <a href="/industries/metals-mining/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Metals &amp; Mining</span>
+          </a>
+          <a href="/industries/chemicals/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Chemicals</span>
+          </a>
+          <a href="/industries/pulp-paper/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Pulp &amp; Paper</span>
+          </a>
+          <a href="/industries/airports/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Airports</span>
+          </a>
+          <a href="/industries/energy-efficiency/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Energy Efficiency</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Proof -->
+      <a href="/resources/case-studies/" class="sam-nav__link" role="menuitem">Proof</a>
+
+      <!-- Resources ▾ -->
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/resources/"
+           class="sam-nav__link sam-nav__link--dropdown"
+           role="menuitem"
+           aria-haspopup="true"
+           aria-expanded="false">
+          Resources
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="sam-dropdown" role="menu" aria-label="Resources submenu">
+          <a href="/resources/blog/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Blog</span>
+            <span class="sam-dropdown__desc">Insights on condition monitoring and ESA</span>
+          </a>
+          <a href="/resources/case-studies/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Case Studies</span>
+            <span class="sam-dropdown__desc">Real-world results and ROI</span>
+          </a>
+          <a href="/resources/knowledge-base/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Knowledge Base</span>
+            <span class="sam-dropdown__desc">Technical deep-dives on ESA and SAM4</span>
+          </a>
+          <a href="/resources/whitepapers/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Whitepapers &amp; Guides</span>
+            <span class="sam-dropdown__desc">Technical deep-dives and business case frameworks</span>
+          </a>
+          <a href="/resources/news/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">News &amp; Press</span>
+            <span class="sam-dropdown__desc">Company announcements and partnerships</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- About -->
+      <a href="/about/" class="sam-nav__link" role="menuitem">About</a>
+
+    </nav>
+
+    <!-- Actions: CTA + Hamburger -->
+    <div class="sam-header__actions">
+      <a href="/contact/" class="sam-cta">Talk to an engineer</a>
+
+      <button class="sam-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="sam-mobile-menu">
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="sam-mobile-menu" id="sam-mobile-menu" aria-hidden="true">
+    <nav class="sam-mobile-nav" aria-label="Mobile navigation">
+
+      <a href="/problem/" class="sam-mobile-nav__link">Problem</a>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Technology
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/technology/">Overview</a>
+          <a href="/technology/esa/">Electrical Signature Analysis</a>
+          <a href="/technology/how-it-works/">How It Works</a>
+          <a href="/technology/how-sam4-works/">Technical Deep Dive</a>
+          <a href="/technology/esa-vs-vibration/">ESA vs Vibration</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Platform
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/">Overview</a>
+          <a href="/platform/sam4/">SAM4 Platform</a>
+          <a href="/platform/service-model/">Service Model</a>
+          <a href="/platform/what-we-monitor/">What We Monitor</a>
+          <a href="/platform/how-it-installs/">How It Installs</a>
+          <a href="/platform/security/">Trust &amp; Security</a>
+          <a href="/platform/integrations/">Integrations</a>
+          <a href="/platform/scaling/">Scaling</a>
+          <a href="/platform/sam4-x/">SAM4-X</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Industries
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/industries/">All Industries</a>
+          <a href="/industries/water/">Water &amp; Wastewater</a>
+          <a href="/industries/oil-gas/">Energy Production</a>
+          <a href="/industries/metals-mining/">Metals &amp; Mining</a>
+          <a href="/industries/chemicals/">Chemicals</a>
+          <a href="/industries/pulp-paper/">Pulp &amp; Paper</a>
+          <a href="/industries/airports/">Airports</a>
+          <a href="/industries/energy-efficiency/">Energy Efficiency</a>
+</div>
+      </div>
+
+      <a href="/resources/case-studies/" class="sam-mobile-nav__link">Proof</a>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Resources
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/resources/">All Resources</a>
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/whitepapers/">Whitepapers &amp; Guides</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+
+      <a href="/about/" class="sam-mobile-nav__link">About</a>
+
+      <div class="sam-mobile-nav__cta-wrap">
+        <a href="/contact/" class="sam-mobile-nav__cta">Talk to an engineer</a>
+      </div>
+
+    </nav>
+  </div>
+
+</header>
+  <!-- ===================== PHP & HTML ===================== -->
+
+<main id="main-content" class="sam-spec">
+
+  <!-- ─── 1. HERO ─── dark background -->
+  <section class="sam-hero sam-hero--spec" style="background-image: url(''); background-color: var(--sam-space-cadet);">
+    <div class="sam-hero__overlay"></div>
+    <div class="sam-hero__inner">
+
+      <!-- Breadcrumb -->
+      <nav class="sam-spec-breadcrumb" aria-label="Breadcrumb">
+        <a href="/platform/what-we-monitor">What We Monitor</a>
+        <span aria-hidden="true">/</span>
+        <span>Agitators &amp; Mixers</span>
+      </nav>
+
+      <div class="sam-hero__split">
+        <!-- Left: copy -->
+        <div class="sam-hero__copy">
+          <p class="sam-hero__overline">Asset type</p>
+          <h1 class="sam-hero__h1">Agitator &amp; mixer monitoring</h1>
+          <p class="sam-hero__lead">SAM4 monitors chemical reactors, blending vessels, and mixing tanks from the motor control cabinet — detecting bearing degradation, seal failure indicators, imbalance, and gearbox issues without opening the vessel or entering the process area.</p>
+          <div class="sam-hero__ctas">
+            <a href="/contact?intent=demo&asset=agitators-mixers" class="sam-btn sam-btn--primary">Talk to an engineer</a>
+            <a href="#faults" class="sam-btn sam-btn--outline">See What We Detect</a>
+          </div>
+        </div>
+
+        <!-- Right: at-a-glance card -->
+        <div class="sam-spec-glance">
+          <h2 class="sam-spec-glance__title">At a glance</h2>
+          <dl class="sam-spec-glance__list">
+            <div class="sam-spec-glance__row">
+              <dt>Monitoring method</dt>
+              <dd>Electrical Signature Analysis (ESA)</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Sensor location</dt>
+              <dd>Motor control cabinet (MCC)</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Voltage range</dt>
+              <dd>Low and medium voltage</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Drive type</dt>
+              <dd>DOL, soft starter, VFD</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Equipment types</dt>
+              <dd>Reactor agitators, blenders, top-entry mixers, side-entry mixers</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Faults detected</dt>
+              <dd>4 fault types</dd>
+            </div>
+            <div class="sam-spec-glance__row">
+              <dt>Typical lead time</dt>
+              <dd>3–10 weeks before failure</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 2. WHY MONITOR THIS ASSET ─── white background -->
+  <section class="sam-spec-why">
+    <div class="sam-spec-why__inner">
+      <p class="overline">Why monitor agitators and mixers</p>
+      <h2>Inside a sealed vessel — invisible to inspection, critical to production</h2>
+      <p class="lead sam-spec-why__lead">Agitators operate inside sealed, pressurised, or hazardous vessels. Physical inspection requires vessel isolation, draining, and confined space entry. Most agitators run without any condition monitoring — failures are discovered only when product quality drops or the seal leaks.</p>
+
+      <div class="sam-spec-why__grid">
+        <div class="sam-spec-why__card">
+          <span class="sam-spec-why__card-stat kpi-value">€30–150K</span>
+          <p class="sam-spec-why__card-desc">typical cost of an unplanned agitator failure — including vessel isolation, cleaning, repair, and production loss.</p>
+        </div>
+        <div class="sam-spec-why__card">
+          <span class="sam-spec-why__card-stat kpi-value">3–7 days</span>
+          <p class="sam-spec-why__card-desc">average downtime for an agitator failure in a chemical plant, including vessel decontamination and recommissioning.</p>
+        </div>
+        <div class="sam-spec-why__card">
+          <span class="sam-spec-why__card-stat kpi-value">0%</span>
+          <p class="sam-spec-why__card-desc">of agitators in a typical chemical plant have continuous condition monitoring before SAM4.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 3. FAULT COVERAGE ─── seashell background -->
+  <section id="faults" class="sam-spec-faults">
+    <div class="sam-spec-faults__inner">
+      <p class="overline">What SAM4 detects on agitators and mixers</p>
+      <h2>Four fault types from one sensor location</h2>
+
+      <div class="sam-spec-faults__table-wrap">
+        <table class="sam-spec-faults__table">
+          <thead>
+            <tr>
+              <th class="sam-spec-faults__th">Fault type</th>
+              <th class="sam-spec-faults__th">What's happening</th>
+              <th class="sam-spec-faults__th">How SAM4 detects it</th>
+              <th class="sam-spec-faults__th">Typical lead time</th>
+              <th class="sam-spec-faults__th">Confidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
+              <td class="sam-spec-faults__td">Motor bearing and gearbox bearing wear, lubrication breakdown</td>
+              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies in the motor current spectrum</td>
+              <td class="sam-spec-faults__td">4–12 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Seal wear</td>
+              <td class="sam-spec-faults__td">Mechanical seal degradation leading to leakage risk, shaft wear</td>
+              <td class="sam-spec-faults__td">Progressive load profile change as friction characteristics shift</td>
+              <td class="sam-spec-faults__td">3–8 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Imbalance</td>
+              <td class="sam-spec-faults__td">Product buildup on impeller blades, erosion, or damaged impeller</td>
+              <td class="sam-spec-faults__td">1× running speed component increase in the current spectrum</td>
+              <td class="sam-spec-faults__td">2–8 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Gearbox faults</td>
+              <td class="sam-spec-faults__td">Gear tooth wear, bearing degradation within the gearbox assembly</td>
+              <td class="sam-spec-faults__td">Gear mesh frequencies and bearing fault frequencies in current spectrum</td>
+              <td class="sam-spec-faults__td">3–10 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="sam-spec-faults__note">Detection capability depends on drive topology, sampling rate, load variation, and operating conditions. <a href="/technology/esa-vs-vibration#limits" class="sam-text-link">See ESA detection constraints.</a></p>
+    </div>
+  </section>
+
+  <!-- ─── 4. DETECTION STORIES ─── white background -->
+  <section class="sam-spec-stories">
+    <div class="sam-spec-stories__inner">
+      <p class="overline">Agitator and mixer detections</p>
+      <h2>Real faults caught on agitators and mixers</h2>
+
+      <div class="sam-spec-stories__grid">
+
+        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Bearing</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Bearing fault on reactor agitator</h3>
+          <p class="sam-spec-stories__card-desc">Progressive bearing degradation detected on a batch reactor agitator. Replaced during scheduled vessel turnaround — avoided emergency isolation.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Seal wear</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Seal deterioration on mixing vessel</h3>
+          <p class="sam-spec-stories__card-desc">Load profile change flagged developing mechanical seal issue. Seal replaced before leakage into process area.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Imbalance</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Product buildup on blending agitator</h3>
+          <p class="sam-spec-stories__card-desc">Imbalance from product accumulation on impeller blades detected. Vessel cleaned during next batch changeover.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Gearbox</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Gearbox wear on top-entry agitator</h3>
+          <p class="sam-spec-stories__card-desc">Gear mesh frequency changes flagged developing gear tooth wear. Gearbox scheduled for overhaul before tooth breakage.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Bearing</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Bearing degradation on side-entry mixer</h3>
+          <p class="sam-spec-stories__card-desc">Storage tank mixer bearing fault identified remotely. Replaced without draining the vessel.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Process</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Viscosity change detected via agitator load</h3>
+          <p class="sam-spec-stories__card-desc">Load signature shift revealed unexpected viscosity change in batch reactor. Process team alerted before product quality deviation.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+      </div>
+
+      <a href="/resources/case-studies/" class="sam-text-link">See all detection stories &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ─── 5. HOW SAM4 INSTALLS ─── seashell background -->
+  <section class="sam-spec-install">
+    <div class="sam-spec-install__inner">
+      <p class="overline">Installation on agitators and mixers</p>
+      <h2>30 minutes. No access to the vessel required.</h2>
+
+      <div class="sam-spec-install__split">
+
+        <div class="sam-spec-install__steps">
+          <div class="sam-spec-install__step">
+            <span class="sam-spec-install__step-num kpi-value">1</span>
+            <div class="sam-spec-install__step-body">
+              <h3 class="sam-spec-install__step-title">Open the motor control cabinet</h3>
+              <p class="sam-spec-install__step-desc">SAM4 installs at the MCC — the same panel your electricians already access. No confined space entry, no scaffolding, no process shutdown.</p>
+            </div>
+          </div>
+          <div class="sam-spec-install__step">
+            <span class="sam-spec-install__step-num kpi-value">2</span>
+            <div class="sam-spec-install__step-body">
+              <h3 class="sam-spec-install__step-title">Clip sensor onto motor supply cables</h3>
+              <p class="sam-spec-install__step-desc">Current and voltage sensors clip directly onto the existing cabling. No wiring changes. No interruption to the asset's operation.</p>
+            </div>
+          </div>
+          <div class="sam-spec-install__step">
+            <span class="sam-spec-install__step-num kpi-value">3</span>
+            <div class="sam-spec-install__step-body">
+              <h3 class="sam-spec-install__step-title">Connect and commission</h3>
+              <p class="sam-spec-install__step-desc">The SAM4 gateway connects via cellular (4G/LTE) — no dependency on your IT network. Monitoring starts immediately. First diagnostic results within 48 hours.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image placeholder -->
+        <div class="sam-spec-install__image">
+          <div class="sam-spec-install__image-placeholder" aria-hidden="true">
+            <span>Installation photo: SAM4 sensor clipped onto agitator motor supply cables in an MCC</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sam-spec-install__links">
+        <a href="/platform/how-it-installs" class="sam-text-link">Full installation guide &rarr;</a>
+        <a href="/platform/security" class="sam-text-link">Security &amp; network architecture &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 7. INDUSTRIES ─── seashell background -->
+  <section class="sam-spec-industries">
+    <div class="sam-spec-industries__inner">
+      <p class="overline">Where agitators and mixers are monitored</p>
+      <h2>Industries using SAM4 on agitators and mixers</h2>
+
+      <div class="sam-spec-industries__grid">
+        <a href="/industries/chemicals" class="sam-spec-industries__card">
+          <h3 class="sam-spec-industries__card-title">Chemicals</h3>
+          <p class="sam-spec-industries__card-desc">Reactor agitators, blenders, mixing vessels. Monitoring inside sealed and hazardous process environments.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 8. RELATED ASSETS ─── white background -->
+  <section class="sam-spec-related">
+    <div class="sam-spec-related__inner">
+      <p class="overline">Related asset types</p>
+      <h2>Other asset types SAM4 monitors</h2>
+
+      <div class="sam-spec-related__grid">
+        <a href="/platform/what-we-monitor/pumps" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">Pumps</h3>
+          <p class="sam-spec-related__card-desc">Process pumps, transfer pumps, circulation pumps</p>
+        </a>
+        <a href="/platform/what-we-monitor/compressors" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">Compressors</h3>
+          <p class="sam-spec-related__card-desc">Process air and refrigeration compressors</p>
+        </a>
+        <a href="/platform/what-we-monitor/fans-blowers" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">Fans &amp; Blowers</h3>
+          <p class="sam-spec-related__card-desc">Cooling tower fans, ventilation systems</p>
+        </a>
+        <a href="/platform/what-we-monitor/transmissions" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">Transmissions</h3>
+          <p class="sam-spec-related__card-desc">Gearboxes, couplings, belt drives, chain drives</p>
+        </a>
+      </div>
+
+      <a href="/platform/what-we-monitor" class="sam-text-link">See all asset types &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ─── 9. CTA ─── dark background -->
+  <section class="sam-cta-block sam-cta-block--spec">
+    <div class="sam-cta-block__inner">
+      <h2 class="sam-cta-block__heading">See SAM4 monitoring agitators and mixers</h2>
+      <p class="sam-cta-block__sub">A 30-minute demo shows SAM4 running on agitators and mixers like yours — with real fault data and real diagnostics from chemical process operations.</p>
+      <div class="sam-cta-block__actions">
+        <a href="/contact?intent=demo&asset=agitators-mixers" class="sam-btn sam-btn--primary">Talk to an engineer</a>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary-light">Start Your Asset Audit</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+  <!-- ===================== PHP & HTML ===================== -->
+
+<!-- Pre-footer CTA -->
+<section class="sam-prefooter">
+  <div class="sam-prefooter__inner">
+    
+    <p class="sam-prefooter__sub">See how SAM4 monitors the assets your sensors can't reach.</p>
+    <a href="/contact" class="sam-prefooter__cta">Talk to an engineer</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <div class="sam-footer__inner">
+
+    <!-- Top: Logo + Tagline -->
+    <div class="sam-footer__top">
+      <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
+        <img src="/assets/samotics-logo-white.svg"
+             alt="Samotics" width="140" height="32">
+      </a>
+      <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
+    </div>
+
+    <!-- Nav Grid: 5 columns -->
+    <div class="sam-footer__grid">
+
+      <!-- Technology -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Technology</h3>
+        <div class="sam-footer__col-links">
+          <a href="/technology/esa">ESA Technology</a>
+          <a href="/technology/how-it-works">How It Works</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Platform</h3>
+        <div class="sam-footer__col-links">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/service-model">Service Model</a>
+          <a href="/platform/what-we-monitor">What We Monitor</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Trust & Security</a>
+          <a href="/platform/integrations">Integrations</a>
+          <a href="/platform/scaling">Scaling</a>
+          <a href="/platform/sam4-x">SAM4-X</a>
+        </div>
+      </div>
+
+      <!-- Industries -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Industries</h3>
+        <div class="sam-footer__col-links">
+          <a href="/industries/water">Water & Wastewater</a>
+          <a href="/industries/oil-gas">Energy Production</a>
+          <a href="/industries/metals-mining">Metals & Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
+          <a href="/industries/energy-efficiency">Energy Efficiency</a>
+          <a href="/industries/all">All Industries</a>
+              </div>
+      </div>
+
+      <!-- Proof -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Resources</h3>
+        <div class="sam-footer__col-links">
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Company</h3>
+        <div class="sam-footer__col-links">
+          <a href="/about">About</a>
+          <!-- Phase 2: <a href="/partners">Partners</a> -->
+          <a href="/resources">Blog</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="sam-footer__divider"></div>
+
+    <!-- Bottom Bar -->
+    <div class="sam-footer__bottom">
+
+      <div class="sam-footer__bottom-left">
+        <span class="sam-footer__copyright">&copy; 2026 Samotics</span>
+
+        <a href="https://www.linkedin.com/company/samotics/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="sam-footer__social"
+           aria-label="Samotics on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sam-footer__legal">
+        <a href="/privacy">Privacy</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/terms">Terms</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/cookies">Cookies</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+  <script>
+    /* ============================================================
+   SAMOTICS HEADER — JavaScript
+   Paste into Bricks Code Element → JavaScript tab
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var header = document.querySelector('.sam-header');
+  if (!header) return;
+
+  /* ── Scroll: toggle .is-scrolled ── */
+  var scrollThreshold = 20;
+
+  function onScroll() {
+    if (window.scrollY > scrollThreshold) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // initial check
+
+  /* ── Mobile Menu Toggle ── */
+  var hamburger = header.querySelector('.sam-hamburger');
+  var mobileMenu = document.getElementById('sam-mobile-menu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+      var isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+      mobileMenu.classList.toggle('is-open');
+      mobileMenu.setAttribute('aria-hidden', String(isOpen));
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+  }
+
+  /* ── Mobile Accordion Toggles ── */
+  var toggles = header.querySelectorAll('.sam-mobile-nav__toggle');
+  toggles.forEach(function (toggle) {
+    toggle.addEventListener('click', function () {
+      var group = this.closest('.sam-mobile-nav__group');
+      var isOpen = group.classList.contains('is-open');
+
+      // Close all others
+      header.querySelectorAll('.sam-mobile-nav__group.is-open').forEach(function (g) {
+        if (g !== group) {
+          g.classList.remove('is-open');
+          g.querySelector('.sam-mobile-nav__toggle').setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle current
+      group.classList.toggle('is-open');
+      this.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  /* ── Desktop Dropdown Keyboard Navigation ── */
+  var dropdownTriggers = header.querySelectorAll('.sam-nav__link--dropdown');
+  dropdownTriggers.forEach(function (trigger) {
+    var parent = trigger.closest('.sam-nav__item--has-dropdown');
+    var dropdown = parent.querySelector('.sam-dropdown');
+    var items = dropdown ? dropdown.querySelectorAll('.sam-dropdown__item') : [];
+
+    trigger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        var expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', String(!expanded));
+
+        if (!expanded && items.length) {
+          items[0].focus();
+        }
+      }
+
+      if (e.key === 'ArrowDown' && items.length) {
+        e.preventDefault();
+        trigger.setAttribute('aria-expanded', 'true');
+        items[0].focus();
+      }
+
+      if (e.key === 'Escape') {
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.focus();
+      }
+    });
+
+    // Arrow navigation within dropdown
+    items.forEach(function (item, index) {
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (index < items.length - 1) items[index + 1].focus();
+        }
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (index > 0) {
+            items[index - 1].focus();
+          } else {
+            trigger.focus();
+          }
+        }
+        if (e.key === 'Escape') {
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+        }
+        if (e.key === 'Tab' && !e.shiftKey && index === items.length - 1) {
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  });
+
+  /* ── Close mobile menu on resize to desktop ── */
+  var mql = window.matchMedia('(min-width: 992px)');
+  function handleResize(e) {
+    if (e.matches && mobileMenu && mobileMenu.classList.contains('is-open')) {
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
+      mobileMenu.classList.remove('is-open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+  if (mql.addEventListener) {
+    mql.addEventListener('change', handleResize);
+  } else {
+    mql.addListener(handleResize);
+  }
+
+  /* ── Close dropdown on outside click (desktop) ── */
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.sam-nav__item--has-dropdown')) {
+      dropdownTriggers.forEach(function (t) {
+        t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+})();
+  </script>
+  <script>
+    /* ============================================================
+   SAMOTICS FOOTER — JavaScript
+   Paste into Bricks Code Element → JavaScript tab
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  /* ── Footer Accordion (mobile only) ── */
+  var cols = document.querySelectorAll('[data-footer-accordion]');
+  if (!cols.length) return;
+
+  function isMobile() {
+    return window.innerWidth <= 991;
+  }
+
+  cols.forEach(function (col) {
+    var heading = col.querySelector('.sam-footer__col-heading');
+    if (!heading) return;
+
+    heading.addEventListener('click', function () {
+      if (!isMobile()) return;
+
+      var isOpen = col.classList.contains('is-open');
+
+      // Close all other columns
+      cols.forEach(function (c) {
+        if (c !== col) c.classList.remove('is-open');
+      });
+
+      // Toggle current
+      col.classList.toggle('is-open');
+    });
+  });
+
+  /* ── Reset accordion state on resize to desktop ── */
+  var mql = window.matchMedia('(min-width: 992px)');
+
+  function handleResize(e) {
+    if (e.matches) {
+      cols.forEach(function (col) {
+        col.classList.remove('is-open');
+      });
+    }
+  }
+
+  if (mql.addEventListener) {
+    mql.addEventListener('change', handleResize);
+  } else {
+    mql.addListener(handleResize);
+  }
+
+})();
+  </script>
+  <script>
+    
+  </script>
+</body>
+</html>

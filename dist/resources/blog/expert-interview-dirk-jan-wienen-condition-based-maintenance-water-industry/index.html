@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Expert interview: Dirk-Jan Wienen talks about condition-based maintenance in the water industry">
+  <title>CBM in Water: Dirk-Jan Wienen | Samotics</title>
+  <link rel="canonical" href="https://samoticstestpage.com/resources/blog/expert-interview-dirk-jan-wienen-condition-based-maintenance-water-industry/">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: italic;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: italic;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
+    }
+  </style>
+  <style>
+:root {
+  /* Core Palette */
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F8F5F2;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E8E4E0;
+  --sam-dark-elevated:   #2A2A42;
+  --sam-gold:            #FAC91F;
+
+  /* Fonts */
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Spacing */
+  --sp-01: 2px;
+  --sp-02: 4px;
+  --sp-03: 8px;
+  --sp-04: 12px;
+  --sp-05: 16px;
+  --sp-06: 24px;
+  --sp-07: 32px;
+  --sp-08: 48px;
+  --sp-09: 64px;
+  --sp-10: 96px;
+  --sp-11: 128px;
+  --sp-12: 160px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-lg:  0 12px 32px rgba(31,31,51,0.14);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Transitions */
+  --ease: 150ms ease-out;
+}
+
+:root {
+  --sam-space-cadet: #1F1F33;
+  --sam-orange: #FF5429;
+  --sam-orange-dark: #D7411B;
+  --sam-blue: #005CBA;
+  --sam-teal: #0098AC;
+  --sam-white: #FFFFFF;
+  --sam-seashell: #F8F5F2;
+  --sam-black: #111111;
+  --sam-comet: #6B6B7F;
+  --sam-border-light: #E8E4E0;
+  --sam-header-bg: #1F1F33;
+  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sam-header-h: 80px;
+  --sam-header-h-compact: 64px;
+  --sam-transition: 150ms ease-out;
+}
+
+/* ── Skip Link ── */
+.sam-skip-link {
+  position: absolute; top: -100%; left: 16px; z-index: 10001;
+  padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white);
+  font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 0;
+}
+.sam-skip-link:focus { top: 8px; }
+
+/* ── Header ── */
+.sam-header {
+  position: sticky; top: 0; z-index: 1000; width: 100%;
+  height: var(--sam-header-h); background: var(--sam-header-bg);
+  transition: height var(--sam-transition), box-shadow var(--sam-transition);
+}
+.sam-header.is-scrolled {
+  height: var(--sam-header-h-compact);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.sam-header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px;
+}
+.sam-header__logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+.sam-logo { height: auto; transition: transform 200ms ease-out; }
+.sam-logo--white { filter: brightness(0) invert(1); }
+.sam-logo--dark { display: none; }
+.sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+
+/* ── Desktop Nav ── */
+.sam-nav {
+  display: flex; align-items: center; gap: 4px; margin-left: auto;
+}
+.sam-nav__link {
+  display: flex; align-items: center; gap: 4px;
+  padding: 8px 14px; font: 500 14px/1 var(--sam-font);
+  color: rgba(255,255,255,0.85); text-decoration: none;
+  border-radius: 6px; transition: background var(--sam-transition), color var(--sam-transition);
+}
+.sam-nav__link:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.sam-nav__chevron { transition: transform 200ms ease-out; }
+.sam-nav__item--has-dropdown { position: relative; }
+.sam-dropdown {
+  display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  min-width: 280px; background: var(--sam-white); border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12); padding: 8px; z-index: 100;
+}
+.sam-nav__item--has-dropdown:hover .sam-dropdown { display: block; }
+.sam-nav__item--has-dropdown:hover .sam-nav__chevron { transform: rotate(180deg); }
+.sam-dropdown__item {
+  display: block; padding: 10px 14px; border-radius: 8px; text-decoration: none;
+  transition: background 120ms ease-out;
+}
+.sam-dropdown__item:hover { background: var(--sam-seashell); }
+.sam-dropdown__label { display: block; font: 500 14px/1.3 var(--sam-font); color: var(--sam-space-cadet); }
+.sam-dropdown__desc { display: block; font: 400 12px/1.3 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
+
+/* ── CTA Button ── */
+.sam-header__cta {
+  margin-left: 16px; padding: 10px 22px;
+  background: var(--sam-orange); color: var(--sam-white);
+  font: 600 14px/1 var(--sam-font); text-decoration: none;
+  border-radius: 6px; transition: background 150ms ease-out;
+}
+.sam-header__cta:hover { background: var(--sam-orange-dark); }
+
+/* ── Hamburger ── */
+.sam-hamburger {
+  display: none; background: none; border: none; padding: 8px;
+  cursor: pointer; color: #fff;
+}
+.sam-hamburger svg { display: block; }
+@media (max-width: 991px) {
+  .sam-nav, .sam-header__cta { display: none; }
+  .sam-hamburger { display: flex; }
+}
+
+/* ── Mobile Nav ── */
+.sam-mobile-nav {
+  display: none; position: fixed; top: var(--sam-header-h); left: 0; right: 0; bottom: 0;
+  background: var(--sam-header-bg); z-index: 999; overflow-y: auto; padding: 16px;
+}
+.sam-mobile-nav.is-open { display: block; }
+.sam-mobile-nav__link {
+  display: block; padding: 14px 0; font: 500 16px/1 var(--sam-font);
+  color: rgba(255,255,255,0.85); text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.sam-mobile-nav__group { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sam-mobile-nav__toggle {
+  display: flex; justify-content: space-between; align-items: center; width: 100%;
+  padding: 14px 0; background: none; border: none; cursor: pointer;
+  font: 500 16px/1 var(--sam-font); color: rgba(255,255,255,0.85);
+}
+.sam-mobile-nav__arrow { transition: transform 200ms; }
+.sam-mobile-nav__group.is-open .sam-mobile-nav__arrow { transform: rotate(180deg); }
+.sam-mobile-nav__sub {
+  display: none; padding: 0 0 8px 16px;
+}
+.sam-mobile-nav__group.is-open .sam-mobile-nav__sub { display: block; }
+.sam-mobile-nav__sub a {
+  display: block; padding: 10px 0; font: 400 14px/1.4 var(--sam-font);
+  color: rgba(255,255,255,0.6); text-decoration: none;
+}
+.sam-mobile-nav__cta-wrap { padding: 24px 0; }
+.sam-mobile-nav__cta {
+  display: block; text-align: center; padding: 14px;
+  background: var(--sam-orange); color: var(--sam-white);
+  font: 600 15px/1 var(--sam-font); text-decoration: none; border-radius: 8px;
+}
+
+/* ═══════════════════════════════════════════════
+   BLOG POST STYLES
+   ═══════════════════════════════════════════════ */
+.sam-post { padding: 0 0 96px; }
+.sam-post__hero {
+  background: var(--sam-seashell);
+  padding: 96px 32px 64px;
+}
+.sam-post__hero-inner {
+  max-width: 800px; margin: 0 auto;
+}
+.sam-post__breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font: 400 13px/1 var(--sam-font); margin-bottom: 24px;
+}
+.sam-post__breadcrumb a {
+  color: var(--sam-comet); text-decoration: none;
+}
+.sam-post__breadcrumb a:hover { color: var(--sam-space-cadet); }
+.sam-post__breadcrumb-sep { color: var(--sam-border-light); }
+.sam-post__category {
+  display: inline-block;
+  font: 600 12px/1 var(--sam-font);
+  color: #005CBA;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.sam-post__title {
+  font: 600 2.5rem/1.15 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 0 0 20px;
+}
+.sam-post__meta {
+  display: flex; align-items: center; gap: 16px;
+  font: 400 14px/1 var(--sam-font); color: var(--sam-comet);
+}
+.sam-post__meta-dot {
+  width: 3px; height: 3px; border-radius: 50%; background: var(--sam-border-light);
+}
+
+/* ── Post Content ── */
+.sam-post__content {
+  max-width: 800px; margin: 0 auto;
+  padding: 48px 32px 0;
+}
+.sam-post__content h2 {
+  font: 600 1.5rem/1.25 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 48px 0 16px;
+}
+.sam-post__content h3 {
+  font: 600 1.2rem/1.3 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 36px 0 12px;
+}
+.sam-post__content p {
+  font: 400 1.0625rem/1.7 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 0 20px;
+}
+.sam-post__content ul, .sam-post__content ol {
+  font: 400 1.0625rem/1.7 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 0 20px;
+  padding-left: 24px;
+}
+.sam-post__content li {
+  margin-bottom: 8px;
+}
+.sam-post__content strong {
+  font-weight: 600;
+  color: var(--sam-space-cadet);
+}
+.sam-post__content a {
+  color: var(--sam-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sam-post__content a:hover {
+  color: var(--sam-orange);
+}
+.sam-post__content blockquote {
+  border-left: 3px solid var(--sam-orange);
+  margin: 24px 0;
+  padding: 16px 24px;
+  background: var(--sam-seashell);
+  border-radius: 0 8px 8px 0;
+}
+.sam-post__content blockquote p {
+  margin: 0;
+  color: var(--sam-comet);
+  font-style: italic;
+}
+.sam-post__content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font: 400 0.9375rem/1.5 var(--sam-font);
+}
+.sam-post__content th {
+  background: var(--sam-seashell);
+  font-weight: 600;
+  color: var(--sam-space-cadet);
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--sam-border-light);
+}
+.sam-post__content td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--sam-border-light);
+  color: var(--sam-comet);
+}
+
+/* ── Image Placeholder ── */
+.sam-post__image-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; background: var(--sam-seashell); border: 2px dashed var(--sam-border-light);
+  border-radius: 8px; padding: 48px 24px; margin: 24px 0;
+}
+.sam-post__image-placeholder svg {
+  width: 48px; height: 48px; color: var(--sam-comet); opacity: 0.4;
+}
+.sam-post__image-placeholder span {
+  font: 400 12px/1.4 var(--sam-font); color: var(--sam-comet); opacity: 0.5;
+  text-align: center; max-width: 300px;
+}
+
+/* ── Post Footer ── */
+.sam-post__footer {
+  max-width: 800px; margin: 48px auto 0;
+  padding: 32px 32px 0;
+  border-top: 1px solid var(--sam-border-light);
+}
+.sam-post__cta-banner {
+  background: var(--sam-space-cadet);
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+}
+.sam-post__cta-title {
+  font: 600 1.5rem/1.25 var(--sam-font);
+  color: var(--sam-white);
+  margin: 0 0 12px;
+}
+.sam-post__cta-text {
+  font: 400 1rem/1.6 var(--sam-font);
+  color: rgba(255,255,255,0.7);
+  margin: 0 0 24px;
+  max-width: 480px;
+  margin-left: auto; margin-right: auto;
+}
+.sam-post__cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  font: 600 15px/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 150ms ease-out;
+}
+.sam-post__cta-btn:hover {
+  background: var(--sam-orange-dark);
+}
+
+/* ── Prefooter ── */
+.sam-prefooter {
+  background: var(--sam-seashell); padding: 80px 0; text-align: center;
+}
+.sam-prefooter__inner {
+  max-width: 1584px; margin: 0 auto; padding: 0 32px;
+}
+.sam-prefooter__sub {
+  font: 400 1.125rem/1.6 var(--sam-font); color: var(--sam-comet); margin: 0 0 32px;
+}
+.sam-prefooter__cta {
+  display: inline-block; padding: 16px 36px;
+  background: var(--sam-orange); color: var(--sam-white);
+  font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 8px;
+  transition: background 150ms ease-out;
+}
+.sam-prefooter__cta:hover { background: var(--sam-orange-dark); }
+
+/* ── Footer ── */
+.sam-footer { background: var(--sam-space-cadet); padding-top: 96px; }
+.sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; }
+.sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
+.sam-footer__logo { display: inline-flex; text-decoration: none; }
+.sam-footer__logo img { width: 140px; height: auto; }
+.sam-footer__tagline { font: 400 16px/1.6 var(--sam-font); color: rgba(255,255,255,0.6); margin: 0; max-width: 360px; }
+.sam-footer__grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 32px; margin-bottom: 64px; }
+.sam-footer__col-heading { font: 600 14px/1 var(--sam-font); color: #fff; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px; }
+.sam-footer__col-links { display: flex; flex-direction: column; gap: 12px; }
+.sam-footer__col-links a { font: 400 14px/1.4 var(--sam-font); color: rgba(255,255,255,0.6); text-decoration: none; transition: color 150ms ease-out; }
+.sam-footer__col-links a:hover { color: #fff; }
+.sam-footer__divider { height: 1px; background: rgba(255,255,255,0.15); }
+.sam-footer__bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+.sam-footer__bottom-left { display: flex; align-items: center; gap: 24px; }
+.sam-footer__copyright { font: 400 13px/1 var(--sam-font); color: rgba(255,255,255,0.4); }
+.sam-footer__social { display: inline-flex; align-items: center; color: rgba(255,255,255,0.4); transition: color 150ms ease-out; }
+.sam-footer__social:hover { color: #fff; }
+.sam-footer__legal { display: flex; align-items: center; gap: 8px; }
+.sam-footer__legal a { font: 400 13px/1 var(--sam-font); color: rgba(255,255,255,0.4); text-decoration: none; transition: color 150ms ease-out; }
+.sam-footer__legal a:hover { color: #fff; }
+.sam-footer__legal-sep { font: 400 13px/1 var(--sam-font); color: rgba(255,255,255,0.2); }
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .sam-post__hero { padding: 80px 16px 48px; }
+  .sam-post__title { font-size: 2rem; }
+  .sam-post__content { padding: 32px 16px 0; }
+  .sam-post__footer { padding: 24px 16px 0; }
+  .sam-post__cta-banner { padding: 32px 24px; }
+  .sam-prefooter { padding: 64px 0; }
+  .sam-footer { padding-top: 64px; }
+  .sam-footer__inner { padding: 0 16px; }
+  .sam-footer__grid { grid-template-columns: 1fr; gap: 0; }
+  .sam-footer__col { border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .sam-footer__col-heading {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0; margin: 0; cursor: pointer;
+  }
+  .sam-footer__col-heading::after {
+    content: ''; width: 10px; height: 10px;
+    border-right: 2px solid rgba(255,255,255,0.4);
+    border-bottom: 2px solid rgba(255,255,255,0.4);
+    transform: rotate(45deg); transition: transform 200ms ease-out;
+  }
+  .sam-footer__col.is-open .sam-footer__col-heading::after { transform: rotate(-135deg); }
+  .sam-footer__col-links { display: none; padding: 0 0 16px; }
+  .sam-footer__col.is-open .sam-footer__col-links { display: flex; }
+  .sam-footer__bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+@media (max-width: 671px) {
+  .sam-post__hero { padding: 64px 16px 40px; }
+  .sam-post__title { font-size: 1.6rem; }
+  .sam-post__meta { flex-wrap: wrap; gap: 8px; }
+}
+  
+.sam-post__hero-image { max-width: 800px; margin: -32px auto 0; padding: 0 32px; }
+.sam-post__hero-image img { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+@media (max-width: 671px) { .sam-post__hero-image { padding: 0 16px; margin-top: -24px; } }
+</style>
+  <style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "CBM in Water: Dirk-Jan Wienen", "description": "Expert interview: Dirk-Jan Wienen talks about condition-based maintenance in the water industry", "url": "https://samoticstestpage.com/resources/blog/expert-interview-dirk-jan-wienen-condition-based-maintenance-water-industry/", "publisher": {"@type": "Organization", "name": "Samotics", "url": "https://samoticstestpage.com"}, "author": {"@type": "Organization", "name": "Samotics"}}</script>
+  </style>
+</head>
+<body>
+
+<header class="sam-header" role="navigation" aria-label="Main navigation">
+  <a href="#main-content" class="sam-skip-link">Skip to content</a>
+  <div class="sam-header__inner">
+    <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
+      <img src="/assets/samotics-logo-white.svg" alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+    </a>
+    <nav class="sam-nav" role="menubar" aria-label="Primary">
+      <a href="/problem/" class="sam-nav__link" role="menuitem">Problem</a>
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/technology/" class="sam-nav__link sam-nav__link--dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false">Technology<svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="sam-dropdown" role="menu" aria-label="Technology submenu">
+          <a href="/technology/esa/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Electrical Signature Analysis</span><span class="sam-dropdown__desc">The science behind SAM4</span></a>
+          <a href="/technology/how-it-works/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How It Works</span><span class="sam-dropdown__desc">From sensor to insight</span></a>
+          <a href="/technology/how-sam4-works/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Technical Deep Dive</span>
+            <span class="sam-dropdown__desc">Full SAM4 architecture and performance</span>
+          </a>
+          <a href="/technology/esa-vs-vibration/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">ESA vs Vibration</span><span class="sam-dropdown__desc">How ESA complements traditional monitoring</span></a>
+        </div>
+      </div>
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/platform/" class="sam-nav__link sam-nav__link--dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false">Platform<svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="sam-dropdown" role="menu" aria-label="Platform submenu">
+          <a href="/platform/sam4/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">SAM4 Platform</span><span class="sam-dropdown__desc">Dashboard, diagnostics, and service model</span></a>
+          <a href="/platform/service-model/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Service Model</span>
+            <span class="sam-dropdown__desc">Diagnostics team, CSM, and quarterly reviews</span>
+          </a>
+          <a href="/platform/what-we-monitor/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">What We Monitor</span><span class="sam-dropdown__desc">Asset types, capabilities, and detection depth</span></a>
+          <a href="/platform/how-it-installs/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How It Installs</span><span class="sam-dropdown__desc">Less than 30 minutes, no downtime</span></a>
+          <a href="/platform/security/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Trust &amp; Security</span><span class="sam-dropdown__desc">SOC 2, ISO 27001, NIS2, cellular architecture</span></a>
+          <a href="/platform/integrations/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Integrations</span><span class="sam-dropdown__desc">CMMS, SCADA, and API connectivity</span></a>
+          <a href="/platform/scaling/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Scaling</span><span class="sam-dropdown__desc">From first asset to full fleet</span></a>
+          <a href="/platform/sam4-x/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">SAM4-X</span><span class="sam-dropdown__desc">Paid validation programme</span></a>
+        </div>
+      </div>
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/industries/" class="sam-nav__link sam-nav__link--dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false">Industries<svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="sam-dropdown" role="menu" aria-label="Industries submenu">
+          <a href="/industries/water/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Water &amp; Wastewater</span></a>
+          <a href="/industries/oil-gas/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Energy Production</span></a>
+          <a href="/industries/metals-mining/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Metals &amp; Mining</span></a>
+          <a href="/industries/chemicals/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Chemicals</span></a>
+          <a href="/industries/pulp-paper/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Pulp &amp; Paper</span></a>
+          <a href="/industries/airports/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Airports</span></a>
+          <a href="/industries/energy-efficiency/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Energy Efficiency</span></a>
+        </div>
+      </div>
+      <a href="/resources/case-studies/" class="sam-nav__link" role="menuitem">Proof</a>
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/resources/" class="sam-nav__link sam-nav__link--dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false">Resources<svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="sam-dropdown" role="menu" aria-label="Resources submenu">
+          <a href="/resources/blog/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Blog</span><span class="sam-dropdown__desc">Insights on condition monitoring and ESA</span></a>
+          <a href="/resources/case-studies/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Case Studies</span><span class="sam-dropdown__desc">Real-world results and ROI</span></a>
+          <a href="/resources/knowledge-base/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Knowledge Base</span><span class="sam-dropdown__desc">Technical deep-dives on ESA and SAM4</span></a>
+          <a href="/resources/news/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">News &amp; Press</span><span class="sam-dropdown__desc">Company announcements and partnerships</span></a>
+        </div>
+      </div>
+      <a href="/about/" class="sam-nav__link" role="menuitem">About</a>
+    </nav>
+    <a href="/contact/" class="sam-header__cta">Talk to an engineer</a>
+    <button class="sam-hamburger" aria-expanded="false" aria-controls="sam-mobile-menu" aria-label="Open menu">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <nav id="sam-mobile-menu" class="sam-mobile-nav" aria-hidden="true">
+    <a href="/problem/" class="sam-mobile-nav__link">Problem</a>
+    <div class="sam-mobile-nav__group">
+      <button class="sam-mobile-nav__toggle" aria-expanded="false">Technology<svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="sam-mobile-nav__sub">
+        <a href="/technology/">Overview</a>
+        <a href="/technology/esa/">Electrical Signature Analysis</a>
+        <a href="/technology/how-it-works/">How It Works</a>
+        <a href="/technology/how-sam4-works/">Technical Deep Dive</a>
+        <a href="/technology/esa-vs-vibration/">ESA vs Vibration</a>
+      </div>
+    </div>
+    <div class="sam-mobile-nav__group">
+      <button class="sam-mobile-nav__toggle" aria-expanded="false">Platform<svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="sam-mobile-nav__sub">
+        <a href="/platform/">Overview</a>
+        <a href="/platform/sam4/">SAM4 Platform</a>
+        <a href="/platform/service-model/">Service Model</a>
+        <a href="/platform/what-we-monitor/">What We Monitor</a>
+        <a href="/platform/how-it-installs/">How It Installs</a>
+        <a href="/platform/security/">Trust &amp; Security</a>
+        <a href="/platform/integrations/">Integrations</a>
+        <a href="/platform/scaling/">Scaling</a>
+        <a href="/platform/sam4-x/">SAM4-X</a>
+      </div>
+    </div>
+    <div class="sam-mobile-nav__group">
+      <button class="sam-mobile-nav__toggle" aria-expanded="false">Industries<svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="sam-mobile-nav__sub">
+        <a href="/industries/">All Industries</a>
+        <a href="/industries/water/">Water &amp; Wastewater</a>
+        <a href="/industries/oil-gas/">Energy Production</a>
+        <a href="/industries/metals-mining/">Metals &amp; Mining</a>
+        <a href="/industries/chemicals/">Chemicals</a><a href="/industries/pulp-paper/">Pulp &amp; Paper</a><a href="/industries/airports/">Airports</a><a href="/industries/energy-efficiency/">Energy Efficiency</a>
+          <a href="/industries/all/">All Industries</a>
+</div>
+    </div>
+    <a href="/resources/case-studies/" class="sam-mobile-nav__link">Proof</a>
+    <div class="sam-mobile-nav__group">
+      <button class="sam-mobile-nav__toggle" aria-expanded="false">Resources<svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="sam-mobile-nav__sub">
+        <a href="/resources/">All Resources</a>
+        <a href="/resources/blog/">Blog</a>
+        <a href="/resources/case-studies/">Case Studies</a>
+        <a href="/resources/knowledge-base/">Knowledge Base</a>
+        <a href="/resources/news/">News &amp; Press</a>
+      </div>
+    </div>
+    <a href="/about/" class="sam-mobile-nav__link">About</a>
+    <div class="sam-mobile-nav__cta-wrap">
+      <a href="/contact/" class="sam-mobile-nav__cta">Talk to an engineer</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main-content" class="sam-post">
+  <section class="sam-post__hero">
+    <div class="sam-post__hero-inner">
+      <div class="sam-post__breadcrumb">
+        <a href="/">Home</a>
+        <span class="sam-post__breadcrumb-sep">/</span>
+        <a href="/resources/blog/">Blog</a>
+        <span class="sam-post__breadcrumb-sep">/</span>
+        <span style="color:var(--sam-space-cadet)">Expert interview: Dirk-Jan Wienen talks about condition-based maintenance in the water industry</span>
+      </div>
+      <span class="sam-post__category">Blog</span>
+      <h1 class="sam-post__title">Expert interview: Dirk-Jan Wienen talks about condition-based maintenance in the water industry</h1>
+      <div class="sam-post__meta">
+        <span>May 16, 2023</span>
+        <span class="sam-post__meta-dot"></span>
+        <span>8 min read</span>
+      </div>
+    </div>
+  </section>
+  <div class="sam-post__hero-image">
+    <img src="/assets/images/blog/expert-interview-dirk-jan-wienen-condition-based-maintenance-water-industry-hero.jpeg" alt="Expert Interview Dirk Jan Wienen Condition Based Maintenance Water Industry" loading="eager">
+  </div>
+
+  <article class="sam-post__content">
+<p>We recently sat down with Dirk-Jan Wienen, one of our customer success managers, to learn some best practices to follow and stumbling blocks to avoid for companies looking to integrate AI-based asset health monitoring and energy intelligence into their existing systems. Dirk-Jan shared his experience from working with some of the world’s largest water and wastewater companies to implement condition-based maintenance at scale.</p>
+<h2>Thanks for taking time out to chat with us, Dirk-Jan! What’s the number-one piece of advice you would give to companies that are starting to explore today’s digital condition monitoring technologies?</h2>
+<p>The most important thing you can do is to know where you want to end up. It will save you immense frustration and wasted time if you start with the end in mind. That’s not to say you can’t get there unless you plan the whole thing in advance, but it does get you there much faster, and the result is generally much better.</p>
+<h2>Can you give us an example of what you mean?</h2>
+<p>Sure. Suppose one of your maintenance teams has identified a new condition monitoring system they want to try. They’ve been using manual inspections with handheld vibration forever, and they’ve worked out that an automated version with permanently installed wireless sensors will save them a huge amount of time. So they start up a pilot with an AI-based vibration system that handles all the analysis on its own platform and sends alerts when it sees a developing problem. Since it’s a pilot, they’re just testing it out to see how it works, so they install it on maybe ten critical assets. The trial ends, the system worked great, they’ve been able to totally abandon scheduled routine visits to those ten machines. A lot of time saved. So they roll out the system to all of their assets, maybe five hundred different pieces of equipment. And suddenly they’re drowning in notifications. They didn’t think about how the system would scale, and now the bottleneck is that they only assigned one engineer to process and prioritize alerts. So machines are still failing unexpectedly, even though the condition monitoring system is working perfectly. If they’d considered what full-scale implementation would look like from the beginning, they’d have been able to plan for the workload.</p>
+<p><strong>RELATED READING: </strong><a href="/resources/blog/condition-based-maintenance-pilot-to-implementation-at-scale-part-1-plan"><strong>Condition-based maintenance: from technology pilot to implementation at scale</strong></a></p>
+<h2>What are some other stumbling blocks you’ve seen companies trip over?</h2>
+<p>Forgetting to consider how your intended outcomes overlap and impact wider business results and incentives. Condition monitoring pilots generally focus on improving the company’s maintenance strategy, preventing failures and eliminating routine inspections. But you also have to consider what other processes you’ve got running in your organization that touch or intersect your condition-based maintenance processes at certain points in time. Not just internal constraints, but external ones, too. For example, Ofwat, the regulatory body for water utilities in the UK, works with a regulatory framework where companies are rewarded or penalized based on their expenditure throughout the year versus any improved results they’re showing. However, additional OPEX has a negative impact on a utility’s score compared to additional CAPEX, which has water companies preferring CAPEX solutions. That incentivizes water companies to run their assets to failure, because the cost of proactively repairing a pump based on a CBM alert comes from OPEX, whereas replacing a pump that’s died comes from CAPEX. If you don’t address this misguided incentive, you’ll lose out on much of the value of the new condition monitoring technology and you won’t ever truly be able to adopt a proactive, condition-based maintenance strategy.</p>
+<p>The same holds true for digital energy intelligence systems. For example, UK water companies operate in a way that makes it much more important for them to keep their assets running than to actually have them running in the most efficient way possible. At our UK water customers, we routinely see pumps that are wildly inefficient, where they could save literally six figures a year by optimizing the way the pumps operate or even replacing them with a more efficient version. But the team that would reap the benefits of a pump that’s run more healthily and efficiently in the long run is not the team that’s actually in charge of making the changes required to get those results. And those teams only get judged on whether their pumps are doing what they’re supposed to be doing — whether they’re doing it well or poorly doesn’t matter. They know that what they’re currently doing is keeping the pumps running, and for them, operational changes are nothing but a risk.</p>
+<h2>How can companies avoid this pitfall?</h2>
+<p>They need to be aware that if they really want to maximize the benefits that (for example) their energy optimization teams can bring them, then they have to give them the mandate to make certain changes and as a company accept the risk. There needs to be someone higher up in the organization who takes on the responsibility for the risk that when you make these changes to optimize pumps, you can never rule out a temporary interruption to operations. So my actionable tip would be to find the highest-up person you can and get them enthused about the project.</p>
+<h2>What are some other ways companies can broaden their scope?</h2>
+<p>It’s important to make sure the new CBM system can work with all the tooling used by all the teams that are involved in the relevant processes. You have to take all these people on the change journey you’re going on. Not in the same way as you’ll be doing with the maintenance teams who will be working much more directly with the new system, of course, but for example the teams planning the asset replacement cycles need to be aware there’s a CBM tool somewhere that may very well help them plan their own work in a better way, as additional input. Similarly, the teams working on your drought response plan (if you supply drinking water) need to be included, because they know better than anyone which risks need to be managed to avoid interruptions to supply when every drop of water has become essential.</p>
+<p><strong>RELATED READING: </strong><a href="/resources/blog/secure-water-supply-drought-season-condition-monitoring-borehole-pumps"><strong>Securing water supply in drought season: remote condition monitoring on borehole pumps</strong></a></p>
+<p>If you really start thinking ahead, then implementing CBM at scale also opens up new opportunities. If you’re in a situation where at any given point in time you know the condition of each of your assets and you know that the quality of that condition data is good enough to trust and operate on that basis, then you can start considering things like integrating the CBM tool with your control systems. For example, every time the condition monitoring system sends out a red alert on a pump, the pump is automatically deprioritized in the duty cycle to make sure it doesn’t break down completely from continuing to run in this severely degraded state. That will give you more time to sort out a preventive replacement. But that level of integration with your other systems requires you to start talking to the teams in charge of process automation and IT security.</p>
+<h2>You talked about bringing people along on the change journey. Can you say a little more about that?</h2>
+<p>It’s actually really simple: it boils down to the fact that everyone wants their work to be rewarding. So all you have to do, at bottom, is tell people how this change will improve their day-to-day job.</p>
+<p>One mistake companies can make is to focus exclusively on things that are only motivating to management. Money saved, high ROI, fewer hours of downtime, and so on. These things are motivating to management because these are their day-to-day job! But abstract numbers have very little to do with most people’s daily work. So you have to make the effort to see people’s jobs through their own eyes, and talk to them about their frustrations and what they’d like to change.</p>
+<p>For example, when one of our wastewater customers first started using our system, they were in a transition phase where they couldn’t prioritize a fix based on our alerts yet. So they sent someone to the site every day to check that things weren’t getting worse. That made the system’s value very concrete: if they can rely on its alerts to prioritize their maintenance, then no one needs to spend mindless hours traveling to check on things just in case. Not just this one guy in this one situation, but the tens of thousands of check-see visits they make each year to pumping stations. For the site manager, too, the benefit was clear: if he can rely on our alerts, he’ll rarely have to call his team out of bed for a midnight emergency to get a replacement asset up and running. The money saved is a good thing, yes, but for the people doing the work, the reduction in hassle is a hundred times more compelling.</p>
+<h2>What advice do you have for companies when they’re assessing new CBM technologies?</h2>
+<p>First of all, understand that there is no catch-all condition monitoring solution. In a pilot it’s easy to focus on the one technology you’re trialing, but you will need multiple, complementary systems to catch everything and do really well-rounded CBM.</p>
+<p>Given that, you need to pick CBM systems that will integrate with your existing systems. You can’t force the entire organization to start using five separate dashboards in addition to the one they’re already familiar with. One of our customers started thinking about the design of the condition monitoring notifications from the start. They have hundreds of sites and each team has localized workflows for getting data in and out of the company’s central system. The corporate innovation team at headquarters knew that the new condition monitoring technology was going to have to integrate into that existing central system, not enforce the use of its own standalone dashboard. They took that requirement as a filter when considering which technology vendor to choose for the pilot.</p>
+<p><strong>RELATED READING: </strong><a href="/resources/blog/predictive-maintenance-quick-start-guide"><strong>The quick-start guide to predictive maintenance: 6 concrete steps to take your program from idea to launch</strong></a></p>
+<p>Always consider the supplier behind the technology. If they try to convince you they’re the only solution you need, walk away. You also ideally want a supplier with a track record of successful implementations in your industry. An experienced supplier can provide you with useful guidance. This is actually one of the things I like best about my work as a customer success manager. Companies in a given sector share a set of industry-specific problems they need to solve, which means they gravitate toward similar best practices, similar asset types, and so on. We’ve been doing this long enough to know what stumbling blocks they tend to face. We’re not going to come in and explain wastewater maintenance processes to someone working in wastewater maintenance, but if we know that the project manager at water company A has worked on a really good CBM implementation, then when the project manager at water company B is looking for the best way to move forward, we can put them in touch with each other directly. Our experience helps us act as a liaison to move the whole industry forward.</p>
+  </article>
+
+  <div class="sam-post__footer">
+    <div class="sam-post__cta-banner">
+      <h2 class="sam-post__cta-title">See SAM4 in action</h2>
+      <p class="sam-post__cta-text">Discover how real-time asset health monitoring can protect your operations.</p>
+      <a href="/contact/" class="sam-post__cta-btn">Talk to an engineer</a>
+    </div>
+  </div>
+</main>
+
+<section class="sam-prefooter">
+  <div class="sam-prefooter__inner">
+    <p class="sam-prefooter__sub">See how SAM4 monitors the assets your sensors can't reach.</p>
+    <a href="/contact/" class="sam-prefooter__cta">Talk to an engineer</a>
+  </div>
+</section>
+
+<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <div class="sam-footer__inner">
+    <div class="sam-footer__top">
+      <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
+        <img src="/assets/samotics-logo-white.svg" alt="Samotics" width="140" height="32">
+      </a>
+      <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
+    </div>
+    <div class="sam-footer__grid">
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Technology</h3>
+        <div class="sam-footer__col-links">
+          <a href="/technology/esa/">ESA Technology</a>
+          <a href="/technology/how-it-works/">How It Works</a>
+          <a href="/technology/how-sam4-works/">Technical Deep Dive</a>
+          <a href="/technology/esa-vs-vibration/">ESA &amp; Vibration</a>
+        </div>
+      </div>
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Platform</h3>
+        <div class="sam-footer__col-links">
+          <a href="/platform/sam4/">SAM4 Platform</a>
+          <a href="/platform/service-model">Service Model</a>
+          <a href="/platform/what-we-monitor">What We Monitor</a>
+          <a href="/platform/how-it-installs/">How It Installs</a>
+          <a href="/platform/security/">Trust &amp; Security</a>
+          <a href="/platform/integrations/">Integrations</a>
+          <a href="/platform/scaling/">Scaling</a>
+          <a href="/platform/sam4-x/">SAM4-X</a>
+        </div>
+      </div>
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Industries</h3>
+        <div class="sam-footer__col-links">
+          <a href="/industries/water/">Water &amp; Wastewater</a>
+          <a href="/industries/oil-gas/">Energy Production</a>
+          <a href="/industries/metals-mining/">Metals &amp; Mining</a>
+          <a href="/industries/chemicals/">Chemicals</a><a href="/industries/pulp-paper/">Pulp &amp; Paper</a><a href="/industries/airports/">Airports</a><a href="/industries/energy-efficiency/">Energy Efficiency</a>
+          <a href="/industries/all/">All Industries</a>
+</div>
+      </div>
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Resources</h3>
+        <div class="sam-footer__col-links">
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Company</h3>
+        <div class="sam-footer__col-links">
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="sam-footer__divider"></div>
+    <div class="sam-footer__bottom">
+      <div class="sam-footer__bottom-left">
+        <span class="sam-footer__copyright">&copy; 2026 Samotics</span>
+        <a href="https://www.linkedin.com/company/samotics/" target="_blank" rel="noopener noreferrer" class="sam-footer__social" aria-label="Samotics on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+      <div class="sam-footer__legal">
+        <a href="/privacy/">Privacy</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/terms/">Terms</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/cookies/">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var h=document.querySelector('.sam-header');if(!h)return;
+  window.addEventListener('scroll',function(){h.classList.toggle('is-scrolled',window.scrollY>20);},{passive:true});
+  var hb=h.querySelector('.sam-hamburger'),mm=document.getElementById('sam-mobile-menu');
+  if(hb&&mm)hb.addEventListener('click',function(){
+    var o=hb.getAttribute('aria-expanded')==='true';
+    hb.setAttribute('aria-expanded',String(!o));mm.classList.toggle('is-open');
+    mm.setAttribute('aria-hidden',String(o));document.body.style.overflow=o?'':'hidden';
+  });
+  h.querySelectorAll('.sam-mobile-nav__toggle').forEach(function(t){
+    t.addEventListener('click',function(){
+      var g=this.closest('.sam-mobile-nav__group'),o=g.classList.contains('is-open');
+      h.querySelectorAll('.sam-mobile-nav__group.is-open').forEach(function(x){if(x!==g)x.classList.remove('is-open');});
+      g.classList.toggle('is-open');this.setAttribute('aria-expanded',String(!o));
+    });
+  });
+  document.querySelectorAll('[data-footer-accordion]').forEach(function(col){
+    var hd=col.querySelector('.sam-footer__col-heading');if(!hd)return;
+    hd.addEventListener('click',function(){
+      if(window.innerWidth>991)return;
+      document.querySelectorAll('[data-footer-accordion]').forEach(function(c){if(c!==col)c.classList.remove('is-open');});
+      col.classList.toggle('is-open');
+    });
+  });
+})();
+</script>
+</body>
+</html>

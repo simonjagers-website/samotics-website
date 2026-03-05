@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ROI calculator: estimate downtime savings with SAM4 predictive maintenance. Real numbers based on 10,000+ monitored assets and proven detections."><title>Calculate your ROI with SAM4 | Samotics</title>
+  <link rel="canonical" href="https://samoticstestpage.com/resources/roi-calculator/">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: italic;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: italic;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
+    }
+  </style>
+  <style>
+:root {
+  /* Core Palette */
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F8F5F2;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E8E4E0;
+  --sam-dark-elevated:   #2A2A42;
+  --sam-gold:            #FAC91F;
+
+  /* Fonts */
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Spacing */
+  --sp-01: 2px;
+  --sp-02: 4px;
+  --sp-03: 8px;
+  --sp-04: 12px;
+  --sp-05: 16px;
+  --sp-06: 24px;
+  --sp-07: 32px;
+  --sp-08: 48px;
+  --sp-09: 64px;
+  --sp-10: 96px;
+  --sp-11: 128px;
+  --sp-12: 160px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-lg:  0 12px 32px rgba(31,31,51,0.14);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Transitions */
+  --ease: 150ms ease-out;
+}
+
+    /* Header CSS */
+    /* ============================================================
+   SAMOTICS HEADER — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Tokens ── */
+:root {
+  --sam-space-cadet: #1F1F33;
+  --sam-orange: #FF5429;
+  --sam-orange-dark: #D7411B;
+  --sam-blue: #005CBA;
+  --sam-white: #FFFFFF;
+  --sam-seashell: #F8F5F2;
+  --sam-black: #111111;
+  --sam-comet: #6B6B7F;
+  --sam-border-light: #E8E4E0;
+  --sam-header-bg: #1F1F33;
+  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sam-header-h: 80px;
+  --sam-header-h-compact: 64px;
+  --sam-transition: 150ms ease-out;
+}
+
+/* ── Skip Link ── */
+.sam-skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10001;
+  padding: 8px 16px;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  font: 600 14px/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 0;
+}
+.sam-skip-link:focus {
+  top: 8px;
+}
+
+/* ── Header Shell ── */
+.sam-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: var(--sam-header-h);
+  background: var(--sam-header-bg);
+  transition: height var(--sam-transition),
+              box-shadow var(--sam-transition);
+}
+.sam-header.is-scrolled {
+  height: var(--sam-header-h-compact);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Inner Container ── */
+.sam-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Logo ── */
+.sam-header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.sam-logo {
+  height: auto;
+  transition: transform 200ms ease-out, filter 200ms ease-out;
+}
+/* Logo: white version on dark header */
+.sam-logo--white {
+  filter: brightness(0) invert(1);
+}
+.sam-logo--dark {
+  display: none;
+}
+.sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+
+/* ── Desktop Nav ── */
+.sam-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Nav Links — <a> tags so they're clickable AND hoverable */
+.sam-nav__link {
+  font: 500 15px/1 var(--sam-font);
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  transition: color var(--sam-transition);
+  white-space: nowrap;
+}
+.sam-nav__link:hover,
+.sam-nav__link:focus-visible {
+  color: var(--sam-white);
+}
+
+/* Active page indicator */
+.sam-nav__link[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--sam-orange);
+}
+
+/* Scrolled state */
+.sam-header.is-scrolled .sam-nav__link {
+  color: rgba(255, 255, 255, 0.85);
+}
+.sam-header.is-scrolled .sam-nav__link:hover,
+.sam-header.is-scrolled .sam-nav__link:focus-visible {
+  color: var(--sam-white);
+}
+
+/* Chevron */
+.sam-nav__chevron {
+  transition: transform var(--sam-transition);
+  flex-shrink: 0;
+}
+
+/* ── Dropdown Panels ── */
+.sam-nav__item {
+  position: relative;
+}
+.sam-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  min-width: 300px;
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-radius: 0;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--sam-transition),
+              visibility var(--sam-transition),
+              transform var(--sam-transition);
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Invisible bridge: closes the hover gap between trigger and dropdown */
+.sam-nav__item--has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+
+/* HOVER to open dropdowns */
+.sam-nav__item--has-dropdown:hover .sam-dropdown,
+.sam-nav__item--has-dropdown:focus-within .sam-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.sam-nav__item--has-dropdown:hover .sam-nav__chevron,
+.sam-nav__item--has-dropdown:focus-within .sam-nav__chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Items */
+.sam-dropdown__item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 24px;
+  text-decoration: none;
+  transition: background-color 100ms ease-out;
+}
+.sam-dropdown__item:hover,
+.sam-dropdown__item:focus-visible {
+  background: var(--sam-seashell);
+}
+.sam-dropdown__label {
+  font: 500 15px/1.3 var(--sam-font);
+  color: var(--sam-black);
+}
+.sam-dropdown__desc {
+  font: 400 13px/1.4 var(--sam-font);
+  color: var(--sam-comet);
+  margin-top: 2px;
+}
+.sam-dropdown__badge {
+  display: inline-block;
+  font: 600 10px/1 var(--sam-font);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sam-white); background: var(--sam-space-cadet);
+  padding: 3px 6px; border-radius: 3px;
+  margin-left: 6px; vertical-align: middle;
+}
+
+/* ── CTA Button ── */
+.sam-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: var(--sam-orange);
+  color: var(--sam-black);
+  font: 600 14px/1 var(--sam-font);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  white-space: nowrap;
+  transition: background-color var(--sam-transition);
+  cursor: pointer;
+}
+.sam-cta:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+}
+.sam-header.is-scrolled .sam-cta {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-header.is-scrolled .sam-cta:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+}
+
+/* ── Header Actions Wrapper ── */
+.sam-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* ── Hamburger (mobile only) ── */
+.sam-hamburger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.sam-hamburger__line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--sam-white);
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+  border-radius: 0;
+}
+/* Open state */
+.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Mobile Menu ── */
+.sam-mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--sam-header-h-compact);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--sam-white);
+  overflow-y: auto;
+  z-index: 999;
+  padding: 24px 16px;
+  flex-direction: column;
+}
+.sam-mobile-menu.is-open {
+  display: flex;
+  animation: samSlideIn 200ms ease-out;
+}
+
+@keyframes samSlideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Mobile Nav Links */
+.sam-mobile-nav__link {
+  display: block;
+  padding: 16px 0;
+  font: 500 16px/1 var(--sam-font);
+  color: var(--sam-black);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-mobile-nav__link:hover {
+  color: var(--sam-orange);
+}
+
+/* Mobile Accordion Groups */
+.sam-mobile-nav__group {
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-mobile-nav__toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+  font: 500 16px/1 var(--sam-font);
+  color: var(--sam-black);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sam-mobile-nav__arrow {
+  transition: transform 200ms ease-out;
+  flex-shrink: 0;
+}
+.sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow {
+  transform: rotate(180deg);
+}
+
+/* Sub-links (hidden by default) */
+.sam-mobile-nav__sub {
+  display: none;
+  flex-direction: column;
+  padding: 0 0 8px 16px;
+}
+.sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
+  display: flex;
+}
+.sam-mobile-nav__sub a {
+  display: block;
+  padding: 12px 0;
+  font: 400 15px/1 var(--sam-font);
+  color: var(--sam-black);
+  text-decoration: none;
+}
+.sam-mobile-nav__sub a:hover {
+  color: var(--sam-orange);
+}
+
+/* Mobile CTA */
+.sam-mobile-nav__cta-wrap {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--sam-border-light);
+}
+.sam-mobile-nav__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 0;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  font: 600 16px/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 0;
+  transition: background-color var(--sam-transition);
+}
+.sam-mobile-nav__cta:hover {
+  background: var(--sam-orange-dark);
+}
+
+/* ── Focus Styles ── */
+.sam-nav__link:focus-visible,
+.sam-dropdown__item:focus-visible,
+.sam-cta:focus-visible,
+.sam-hamburger:focus-visible,
+.sam-mobile-nav__toggle:focus-visible,
+.sam-mobile-nav__link:focus-visible,
+.sam-mobile-nav__sub a:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .sam-header,
+  .sam-dropdown,
+  .sam-nav__chevron,
+  .sam-hamburger__line,
+  .sam-mobile-nav__arrow,
+  .sam-logo {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .sam-header {
+    height: var(--sam-header-h-compact);
+  }
+  .sam-header__inner {
+    padding: 0 16px;
+  }
+  .sam-nav {
+    display: none;
+  }
+  .sam-hamburger {
+    display: flex;
+  }
+  .sam-cta {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+    /* Footer CSS */
+    /* ============================================================
+   SAMOTICS FOOTER — CSS
+   Paste into Bricks Code Element → CSS tab
+   ============================================================ */
+
+/* ── Pre-footer CTA Section ── */
+.sam-prefooter {
+  background: var(--sam-seashell, #F8F5F2);
+  padding: 96px 0;
+}
+.sam-prefooter__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+.sam-prefooter__heading {
+  font: 600 48px/1.15 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: var(--sam-space-cadet, #1F1F33);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.sam-prefooter__sub {
+  font: 400 18px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: var(--sam-comet, #6B6B7F);
+  margin: 0;
+  max-width: 520px;
+}
+.sam-prefooter__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  background: var(--sam-orange, #FF5429);
+  color: #FFFFFF;
+  font: 600 16px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms ease-out;
+}
+.sam-prefooter__cta:hover {
+  background: var(--sam-orange-dark, #D7411B);
+}
+
+/* ── Footer Shell ── */
+.sam-footer {
+  background: var(--sam-space-cadet, #1F1F33);
+  padding-top: 96px;
+}
+.sam-footer__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Top: Logo + Tagline ── */
+.sam-footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 64px;
+}
+.sam-footer__logo {
+  display: inline-flex;
+  text-decoration: none;
+}
+.sam-footer__logo img {
+  width: 140px;
+  height: auto;
+}
+.sam-footer__tagline {
+  font: 400 16px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  max-width: 360px;
+}
+
+/* ── 5-Column Nav Grid ── */
+.sam-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+/* Column */
+.sam-footer__col-heading {
+  font: 600 14px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 16px 0;
+}
+.sam-footer__col-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sam-footer__col-links a {
+  font: 400 14px/1.4 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+.sam-footer__col-links a:hover,
+.sam-footer__col-links a:focus-visible {
+  color: #FFFFFF;
+}
+
+/* ── Divider ── */
+.sam-footer__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Bottom Bar ── */
+.sam-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+.sam-footer__bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.sam-footer__copyright {
+  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* LinkedIn */
+.sam-footer__social {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 150ms ease-out;
+}
+.sam-footer__social:hover {
+  color: #FFFFFF;
+}
+
+/* Legal Links */
+.sam-footer__legal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sam-footer__legal a {
+  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+.sam-footer__legal a:hover,
+.sam-footer__legal a:focus-visible {
+  color: #FFFFFF;
+}
+.sam-footer__legal-sep {
+  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Focus Styles ── */
+.sam-prefooter__cta:focus-visible,
+.sam-footer__col-links a:focus-visible,
+.sam-footer__social:focus-visible,
+.sam-footer__legal a:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .sam-prefooter__cta,
+  .sam-footer__col-links a,
+  .sam-footer__social,
+  .sam-footer__legal a {
+    transition: none !important;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .sam-prefooter {
+    padding: 64px 0;
+  }
+  .sam-prefooter__inner {
+    padding: 0 16px;
+  }
+  .sam-prefooter__heading {
+    font-size: 32px;
+  }
+
+  .sam-footer {
+    padding-top: 64px;
+  }
+  .sam-footer__inner {
+    padding: 0 16px;
+  }
+  .sam-footer__top {
+    margin-bottom: 48px;
+  }
+
+  /* Grid → single column accordion */
+  .sam-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+
+  .sam-footer__col {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0;
+  }
+  .sam-footer__col-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .sam-footer__col-heading::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+    transition: transform 200ms ease-out;
+    flex-shrink: 0;
+  }
+  .sam-footer__col.is-open .sam-footer__col-heading::after {
+    transform: rotate(-135deg);
+  }
+
+  .sam-footer__col-links {
+    display: none;
+    padding: 0 0 16px 0;
+  }
+  .sam-footer__col.is-open .sam-footer__col-links {
+    display: flex;
+  }
+
+  /* Bottom bar stacks */
+  .sam-footer__bottom {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+}
+    /* Page CSS */
+    /*
+  ROI Calculator Styles
+  Updated with benchmark-driven calculations and improved layout
+*/
+
+.sam-roi {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--sam-black);
+}
+
+.sam-roi__hero {
+  background: linear-gradient(135deg, var(--sam-space-cadet) 0%, #2A2E4F 100%);
+  color: var(--sam-white);
+  padding: 96px 16px;
+  text-align: center;
+}
+
+.sam-roi__hero .overline {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+  margin: 0 0 16px;
+}
+
+.sam-roi__hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  line-height: 1.2;
+}
+
+.sam-roi__lead {
+  font-size: 18px;
+  opacity: 0.9;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sam-roi__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.sam-roi__content {
+  background: var(--sam-white);
+  padding: 96px 16px;
+}
+
+.sam-roi__grid {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sam-roi__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.sam-roi__inputs h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--sam-black);
+  margin: 0 0 12px;
+}
+
+.sam-roi__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sam-roi__form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sam-black);
+}
+
+.sam-roi__input,
+.sam-roi__select {
+  padding: 12px 16px;
+  border: 1px solid var(--sam-border-light);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--sam-black);
+  background: var(--sam-white);
+  transition: all 150ms ease-out;
+}
+
+.sam-roi__input:focus,
+.sam-roi__select:focus {
+  outline: none;
+  border-color: var(--sam-blue);
+  box-shadow: 0 0 0 3px rgba(0, 92, 186, 0.1);
+}
+
+.sam-roi__btn {
+  padding: 12px 24px;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease-out;
+  margin-top: 16px;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.sam-roi__btn:hover {
+  background: var(--sam-orange-dark);
+}
+
+.sam-roi__btn--gate {
+  width: 100%;
+}
+
+.sam-roi__benchmark-note {
+  font-size: 13px;
+  color: var(--sam-comet);
+  margin: 16px 0;
+  padding: 12px;
+  background: var(--sam-seashell);
+  border-radius: 4px;
+}
+
+.sam-roi__results {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms ease-out, visibility 300ms ease-out;
+}
+
+.sam-roi__results.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sam-roi__results h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--sam-black);
+  margin: 0;
+}
+
+.sam-roi__kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.sam-roi__kpi-card {
+  padding: 24px;
+  border: 1px solid var(--sam-border-light);
+  border-radius: 8px;
+  background: var(--sam-white);
+}
+
+.sam-roi__kpi-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--sam-comet);
+  margin: 0 0 12px;
+  letter-spacing: 0.5px;
+}
+
+.sam-roi__kpi-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+
+.sam-roi__breakdown {
+  margin: 24px 0;
+}
+
+.sam-roi__breakdown h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 24px;
+  color: var(--sam-black);
+}
+
+.sam-roi__breakdown-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 120px;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sam-roi__breakdown-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sam-black);
+}
+
+.sam-roi__breakdown-bar-track {
+  height: 32px;
+  background: var(--sam-seashell);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sam-roi__breakdown-bar {
+  height: 100%;
+  transition: width 800ms ease-out;
+}
+
+.sam-roi__breakdown-bar--downtime {
+  background: var(--sam-teal);
+}
+
+.sam-roi__breakdown-bar--maint {
+  background: var(--sam-blue);
+}
+
+.sam-roi__breakdown-value {
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sam-space-cadet);
+}
+
+.sam-roi__chart {
+  margin: 32px 0;
+}
+
+.sam-roi__chart h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 24px;
+  color: var(--sam-black);
+}
+
+.sam-roi__chart-container {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: flex-end;
+  min-height: 280px;
+}
+
+.sam-roi__chart-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sam-roi__chart-bars {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  height: 200px;
+}
+
+.sam-roi__chart-bar {
+  flex: 1;
+  background: var(--sam-seashell);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  min-height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.sam-roi__chart-bar-fill {
+  background: var(--sam-space-cadet);
+  width: 100%;
+  transition: height 800ms ease-out;
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--sam-white);
+  padding-top: 4px;
+}
+
+.sam-roi__chart-bar-fill--savings {
+  background: var(--sam-teal);
+}
+
+.sam-roi__chart-bar-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sam-comet);
+  text-align: center;
+  margin-top: 12px;
+}
+
+.sam-roi__chart-legend {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.sam-roi__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--sam-black);
+}
+
+.sam-roi__legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.sam-roi__legend-swatch--savings {
+  background: var(--sam-teal);
+}
+
+.sam-roi__legend-swatch--cost {
+  background: var(--sam-space-cadet);
+}
+
+.sam-roi__methodology {
+  margin-top: 32px;
+  padding: 24px;
+  background: var(--sam-seashell);
+  border-radius: 8px;
+}
+
+.sam-roi__methodology > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--sam-black);
+  font-size: 14px;
+  user-select: none;
+}
+
+.sam-roi__methodology > summary:hover {
+  color: var(--sam-blue);
+}
+
+.sam-roi__methodology-body {
+  margin-top: 16px;
+}
+
+.sam-roi__methodology-body p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--sam-comet);
+  margin: 0 0 12px;
+}
+
+.sam-roi__methodology-body p:last-child {
+  margin-bottom: 0;
+}
+
+.sam-roi__methodology-note {
+  font-size: 12px !important;
+  margin-top: 16px !important;
+  padding-top: 16px;
+  border-top: 1px solid var(--sam-border-light);
+}
+
+.sam-text-link {
+  color: var(--sam-blue);
+  text-decoration: none;
+}
+
+.sam-text-link:hover {
+  text-decoration: underline;
+}
+
+.sam-roi__gate {
+  background: var(--sam-seashell);
+  padding: 96px 16px;
+  text-align: center;
+}
+
+.sam-roi__gate h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: var(--sam-black);
+}
+
+.sam-roi__gate > div > p {
+  font-size: 18px;
+  margin: 0 0 48px;
+  color: var(--sam-comet);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sam-roi__gate-form {
+  display: flex;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sam-roi__gate-form .sam-roi__form-group {
+  flex: 1;
+  min-width: 180px;
+}
+
+.sam-roi__cta {
+  background: linear-gradient(135deg, var(--sam-space-cadet) 0%, #2A2E4F 100%);
+  color: var(--sam-white);
+  padding: 96px 16px;
+  text-align: center;
+}
+
+.sam-roi__cta h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.sam-roi__cta > div > p {
+  font-size: 18px;
+  margin: 0 0 48px;
+  opacity: 0.9;
+}
+
+.sam-roi__cta-links {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sam-roi__cta-link {
+  display: inline-block;
+  padding: 12px 32px;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background 150ms ease-out;
+}
+
+.sam-roi__cta-link:hover {
+  background: var(--sam-orange-dark);
+}
+
+.sam-roi__cta-link--ghost {
+  background: transparent;
+  border: 2px solid var(--sam-white);
+}
+
+.sam-roi__cta-link--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 900px) {
+  .sam-roi__hero h1 {
+    font-size: 36px;
+  }
+
+  .sam-roi__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .sam-roi__inputs {
+    position: static;
+    max-height: none;
+  }
+
+  .sam-roi__breakdown-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .sam-roi__breakdown-value {
+    text-align: left;
+  }
+
+  .sam-roi__chart-container {
+    gap: 12px;
+  }
+
+  .sam-roi__cta-links {
+    flex-direction: column;
+  }
+
+  .sam-roi__cta-links .sam-roi__cta-link {
+    width: 100%;
+  }
+}
+  </style>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Calculate your ROI with SAM4 | Samotics">
+  <meta property="og:description" content="ROI calculator: estimate downtime savings with SAM4 predictive maintenance. Real numbers based on 10,000+ monitored assets and proven detections.">
+  <meta property="og:url" content="https://samoticstestpage.com/resources/roi-calculator/">
+  <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
+  <meta property="og:site_name" content="Samotics">
+</head>
+<body>
+  <!-- ===================== PHP & HTML ===================== -->
+
+<header class="sam-header" role="navigation" aria-label="Main navigation">
+  <a href="#main-content" class="sam-skip-link">Skip to content</a>
+  <div class="sam-header__inner">
+
+    <!-- Logo -->
+    <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--dark" width="140" height="32">
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="sam-nav" role="menubar" aria-label="Primary">
+
+      <!-- Problem -->
+      <a href="/problem/" class="sam-nav__link" role="menuitem">Problem</a>
+
+      <!-- Technology ▾ -->
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/technology/"
+           class="sam-nav__link sam-nav__link--dropdown"
+           role="menuitem"
+           aria-haspopup="true"
+           aria-expanded="false">
+          Technology
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="sam-dropdown" role="menu" aria-label="Technology submenu">
+          <a href="/technology/esa/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Electrical Signature Analysis</span>
+            <span class="sam-dropdown__desc">The science behind SAM4</span>
+          </a>
+          <a href="/technology/how-it-works/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">How It Works</span>
+            <span class="sam-dropdown__desc">From sensor to insight</span>
+          </a>
+          <a href="/technology/how-sam4-works/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Technical Deep Dive</span>
+            <span class="sam-dropdown__desc">Full SAM4 architecture and performance</span>
+          </a>
+          <a href="/technology/esa-vs-vibration/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">ESA vs Vibration</span>
+            <span class="sam-dropdown__desc">How ESA complements traditional monitoring</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform ▾ -->
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/platform/"
+           class="sam-nav__link sam-nav__link--dropdown"
+           role="menuitem"
+           aria-haspopup="true"
+           aria-expanded="false">
+          Platform
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="sam-dropdown" role="menu" aria-label="Platform submenu">
+          <a href="/platform/sam4/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">SAM4 Platform</span>
+            <span class="sam-dropdown__desc">Dashboard, diagnostics, and service model</span>
+          </a>
+          <a href="/platform/service-model/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Service Model</span>
+            <span class="sam-dropdown__desc">Diagnostics team, CSM, and quarterly reviews</span>
+          </a>
+          <a href="/platform/what-we-monitor/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">What We Monitor</span>
+            <span class="sam-dropdown__desc">Asset types, capabilities, and detection depth</span>
+          </a>
+          <a href="/platform/how-it-installs/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">How It Installs</span>
+            <span class="sam-dropdown__desc">Less than 30 minutes, no downtime</span>
+          </a>
+          <a href="/platform/security/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Trust &amp; Security</span>
+            <span class="sam-dropdown__desc">SOC 2, ISO 27001, NIS2, cellular architecture</span>
+          </a>
+          <a href="/platform/integrations/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Integrations</span>
+            <span class="sam-dropdown__desc">CMMS, SCADA, and API connectivity</span>
+          </a>
+          <a href="/platform/scaling/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Scaling</span>
+            <span class="sam-dropdown__desc">From first asset to full fleet</span>
+          </a>
+          <a href="/platform/sam4-x/" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">SAM4-X</span><span class="sam-dropdown__desc">Paid validation programme</span></a>
+
+        </div>
+      </div>
+
+      <!-- Industries ▾ -->
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/industries/"
+           class="sam-nav__link sam-nav__link--dropdown"
+           role="menuitem"
+           aria-haspopup="true"
+           aria-expanded="false">
+          Industries
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="sam-dropdown" role="menu" aria-label="Industries submenu">
+          <a href="/industries/water/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Water &amp; Wastewater</span>
+          </a>
+          <a href="/industries/oil-gas/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Energy Production</span>
+          </a>
+          <a href="/industries/metals-mining/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Metals &amp; Mining</span>
+          </a>
+          <a href="/industries/chemicals/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Chemicals</span>
+          </a>
+          <a href="/industries/pulp-paper/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Pulp &amp; Paper</span>
+          </a>
+          <a href="/industries/airports/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Airports</span>
+          </a>
+          <a href="/industries/energy-efficiency/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Energy Efficiency</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Proof -->
+      <a href="/resources/case-studies/" class="sam-nav__link" role="menuitem">Proof</a>
+
+      <!-- Resources ▾ -->
+      <div class="sam-nav__item sam-nav__item--has-dropdown" role="none">
+        <a href="/resources/"
+           class="sam-nav__link sam-nav__link--dropdown"
+           role="menuitem"
+           aria-haspopup="true"
+           aria-expanded="false">
+          Resources
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="sam-dropdown" role="menu" aria-label="Resources submenu">
+          <a href="/resources/blog/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Blog</span>
+            <span class="sam-dropdown__desc">Insights on condition monitoring and ESA</span>
+          </a>
+          <a href="/resources/case-studies/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Case Studies</span>
+            <span class="sam-dropdown__desc">Real-world results and ROI</span>
+          </a>
+          <a href="/resources/knowledge-base/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Knowledge Base</span>
+            <span class="sam-dropdown__desc">Technical deep-dives on ESA and SAM4</span>
+          </a>
+          <a href="/resources/whitepapers/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Whitepapers &amp; Guides</span>
+            <span class="sam-dropdown__desc">Technical deep-dives and business case frameworks</span>
+          </a>
+          <a href="/resources/news/" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">News &amp; Press</span>
+            <span class="sam-dropdown__desc">Company announcements and partnerships</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- About -->
+      <a href="/about/" class="sam-nav__link" role="menuitem">About</a>
+
+    </nav>
+
+    <!-- Actions: CTA + Hamburger -->
+    <div class="sam-header__actions">
+      <a href="/contact/" class="sam-cta">Talk to an engineer</a>
+
+      <button class="sam-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="sam-mobile-menu">
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="sam-mobile-menu" id="sam-mobile-menu" aria-hidden="true">
+    <nav class="sam-mobile-nav" aria-label="Mobile navigation">
+
+      <a href="/problem/" class="sam-mobile-nav__link">Problem</a>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Technology
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/technology/">Overview</a>
+          <a href="/technology/esa/">Electrical Signature Analysis</a>
+          <a href="/technology/how-it-works/">How It Works</a>
+          <a href="/technology/how-sam4-works/">Technical Deep Dive</a>
+          <a href="/technology/esa-vs-vibration/">ESA vs Vibration</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Platform
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/">Overview</a>
+          <a href="/platform/sam4/">SAM4 Platform</a>
+          <a href="/platform/service-model/">Service Model</a>
+          <a href="/platform/what-we-monitor/">What We Monitor</a>
+          <a href="/platform/how-it-installs/">How It Installs</a>
+          <a href="/platform/security/">Trust &amp; Security</a>
+          <a href="/platform/integrations/">Integrations</a>
+          <a href="/platform/scaling/">Scaling</a>
+          <a href="/platform/sam4-x/">SAM4-X</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Industries
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/industries/">All Industries</a>
+          <a href="/industries/water/">Water &amp; Wastewater</a>
+          <a href="/industries/oil-gas/">Energy Production</a>
+          <a href="/industries/metals-mining/">Metals &amp; Mining</a>
+          <a href="/industries/chemicals/">Chemicals</a>
+          <a href="/industries/pulp-paper/">Pulp &amp; Paper</a>
+          <a href="/industries/airports/">Airports</a>
+          <a href="/industries/energy-efficiency/">Energy Efficiency</a>
+</div>
+      </div>
+
+      <a href="/resources/case-studies/" class="sam-mobile-nav__link">Proof</a>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Resources
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/resources/">All Resources</a>
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/whitepapers/">Whitepapers &amp; Guides</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+
+      <a href="/about/" class="sam-mobile-nav__link">About</a>
+
+      <div class="sam-mobile-nav__cta-wrap">
+        <a href="/contact/" class="sam-mobile-nav__cta">Talk to an engineer</a>
+      </div>
+
+    </nav>
+  </div>
+
+</header>
+  <!--
+  ROI Calculator Page
+  Interactive calculator with inputs, results, and email gate
+-->
+
+<main id="main-content" class="sam-roi">
+
+<!-- Hero -->
+<section class="sam-roi__hero">
+  <div class="sam-roi__inner">
+    <p class="overline">ROI Calculator</p>
+    <h1>Model your SAM4 business case</h1>
+    <p class="sam-roi__lead">Select your industry and region to see benchmarked defaults. Override any input with your own numbers. All assumptions are transparent and sourced.</p>
+  </div>
+</section>
+
+<!-- Calculator -->
+<section class="sam-roi__content">
+  <div class="sam-roi__inner">
+    <div class="sam-roi__grid">
+
+      <!-- INPUTS -->
+      <div class="sam-roi__inputs">
+        <h2>Your fleet profile</h2>
+
+        <!-- Region -->
+        <div class="sam-roi__form-group">
+          <label for="roi-region">Region</label>
+          <select id="roi-region" class="sam-roi__select">
+            <option value="eu" selected>Europe (EU) — €</option>
+            <option value="uk">United Kingdom — £</option>
+            <option value="me">Middle East — $</option>
+            <option value="am">Americas — $</option>
+            <option value="apac">Asia-Pacific — $</option>
+          </select>
+        </div>
+
+        <!-- Industry -->
+        <div class="sam-roi__form-group">
+          <label for="roi-industry">Industry</label>
+          <select id="roi-industry" class="sam-roi__select">
+            <option value="" disabled selected>Select your industry</option>
+            <option value="water">Water & Wastewater</option>
+            <option value="oil">Energy Production</option>
+            <option value="mining">Metals & Mining</option>
+            <option value="chemicals">Chemicals</option>
+            <option value="pulp">Pulp & Paper</option>
+            <option value="airports">Airports (HVAC / Baggage)</option>
+            <option value="other">Other / General</option>
+          </select>
+        </div>
+
+        <!-- Benchmark note -->
+        <p class="sam-roi__benchmark-note" id="benchmark-note" style="display:none;">
+          Defaults based on <span id="benchmark-source"></span> industry benchmarks, adjusted for <span id="benchmark-region"></span>. Override any field below.
+        </p>
+
+        <!-- Assets -->
+        <div class="sam-roi__form-group">
+          <label for="roi-assets">Number of rotating assets</label>
+          <input type="number" id="roi-assets" class="sam-roi__input" value="100" min="1" max="50000">
+        </div>
+
+        <!-- Downtime cost -->
+        <div class="sam-roi__form-group">
+          <label for="roi-downtime-cost">Average downtime cost per hour (<span id="currency-label">€</span>)</label>
+          <input type="number" id="roi-downtime-cost" class="sam-roi__input" value="5000" min="0">
+        </div>
+
+        <!-- Downtime hours -->
+        <div class="sam-roi__form-group">
+          <label for="roi-downtime-hrs">Annual unplanned downtime hours</label>
+          <input type="number" id="roi-downtime-hrs" class="sam-roi__input" value="150" min="0">
+        </div>
+
+        <!-- Maintenance spend -->
+        <div class="sam-roi__form-group">
+          <label for="roi-maint-spend">Annual maintenance spend (<span id="currency-label-2">€</span>)</label>
+          <input type="number" id="roi-maint-spend" class="sam-roi__input" value="500000" min="0">
+        </div>
+
+        <button id="roi-calculate" class="sam-roi__btn">Calculate ROI</button>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="sam-roi__results" id="results-panel">
+        <h2>Your SAM4 business case</h2>
+
+        <div class="sam-roi__kpi-grid">
+          <div class="sam-roi__kpi-card">
+            <p class="sam-roi__kpi-label">Estimated Annual Savings</p>
+            <p class="sam-roi__kpi-value" id="kpi-savings">—</p>
+          </div>
+          <div class="sam-roi__kpi-card">
+            <p class="sam-roi__kpi-label">SAM4 Annual Cost</p>
+            <p class="sam-roi__kpi-value" id="kpi-cost">—</p>
+          </div>
+          <div class="sam-roi__kpi-card">
+            <p class="sam-roi__kpi-label">Net ROI</p>
+            <p class="sam-roi__kpi-value" id="kpi-roi">—</p>
+          </div>
+          <div class="sam-roi__kpi-card">
+            <p class="sam-roi__kpi-label">Payback Period</p>
+            <p class="sam-roi__kpi-value" id="kpi-payback">—</p>
+          </div>
+        </div>
+
+        <!-- Savings breakdown -->
+        <div class="sam-roi__breakdown">
+          <h3>Savings breakdown</h3>
+          <div class="sam-roi__breakdown-row">
+            <span class="sam-roi__breakdown-label">Downtime reduction</span>
+            <div class="sam-roi__breakdown-bar-track">
+              <div class="sam-roi__breakdown-bar sam-roi__breakdown-bar--downtime" id="bar-downtime"></div>
+            </div>
+            <span class="sam-roi__breakdown-value" id="val-downtime">—</span>
+          </div>
+          <div class="sam-roi__breakdown-row">
+            <span class="sam-roi__breakdown-label">Maintenance savings</span>
+            <div class="sam-roi__breakdown-bar-track">
+              <div class="sam-roi__breakdown-bar sam-roi__breakdown-bar--maint" id="bar-maint"></div>
+            </div>
+            <span class="sam-roi__breakdown-value" id="val-maint">—</span>
+          </div>
+        </div>
+
+        <!-- 5-Year Projection -->
+        <div class="sam-roi__chart">
+          <h3>5-year projection</h3>
+          <div class="sam-roi__chart-container" id="projection-chart">
+            <!-- JS renders 5 bar groups here -->
+          </div>
+          <div class="sam-roi__chart-legend">
+            <span class="sam-roi__legend-item"><span class="sam-roi__legend-swatch sam-roi__legend-swatch--savings"></span> Cumulative savings</span>
+            <span class="sam-roi__legend-item"><span class="sam-roi__legend-swatch sam-roi__legend-swatch--cost"></span> Cumulative SAM4 cost</span>
+          </div>
+        </div>
+
+        <!-- Methodology -->
+        <details class="sam-roi__methodology">
+          <summary>How we calculated this</summary>
+          <div class="sam-roi__methodology-body">
+            <p><strong>Downtime reduction:</strong> <span id="method-downtime-pct"></span> of current unplanned downtime hours, based on industry benchmarks for predictive maintenance programmes (sources: ARC Advisory Group, McKinsey &amp; Company industrial operations research). This represents the mid-range of documented outcomes.</p>
+            <p><strong>Maintenance savings:</strong> <span id="method-maint-pct"></span> reduction in total maintenance spend through shift from reactive to condition-based maintenance. Conservative estimate — excludes energy savings and extended asset life.</p>
+            <p><strong>SAM4 cost:</strong> <span id="method-sam4-cost"></span> per asset per year. Includes hardware, cloud platform, AI diagnostics, and analyst-reviewed findings. Volume discounts apply above 500 assets.</p>
+            <p><strong>What this excludes:</strong> Energy efficiency gains (typically 2-5% for pump/fan optimization), insurance premium reductions, safety incident avoidance, and carbon footprint reduction. Actual ROI is likely higher than shown.</p>
+            <p class="sam-roi__methodology-note">These are estimates based on industry averages. Your actual results will depend on asset condition, operating environment, and maintenance maturity. <a href="/contact?intent=roi" class="sam-text-link">Request a custom assessment →</a></p>
+          </div>
+        </details>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Email gate -->
+<section class="sam-roi__gate">
+  <div class="sam-roi__inner">
+    <h2>Get your full ROI report</h2>
+    <p>Receive a detailed breakdown with your inputs, assumptions, and recommendations — delivered to your inbox.</p>
+    <form class="sam-roi__gate-form" id="gate-form">
+      <div class="sam-roi__form-group">
+        <input type="text" id="gate-name" class="sam-roi__input" placeholder="Your name" required>
+      </div>
+
+      <div class="sam-roi__form-group">
+        <input type="email" id="gate-email" class="sam-roi__input" placeholder="Work email" required>
+      </div>
+
+      <div class="sam-roi__form-group">
+        <input type="text" id="gate-company" class="sam-roi__input" placeholder="Company name" required>
+      </div>
+
+      <button type="submit" class="sam-roi__btn sam-roi__btn--gate">Send Report</button>
+    </form>
+  </div>
+</section>
+
+<!-- CTA banner -->
+<section class="sam-roi__cta">
+  <div class="sam-roi__inner">
+    <h2>Ready for a real assessment?</h2>
+    <p>Our team can model your actual fleet with real asset data — not estimates.</p>
+    <div class="sam-roi__cta-links">
+      <a href="/contact/asset-audit/" class="sam-roi__cta-link">Asset Audit</a>
+      <a href="/contact/" class="sam-roi__cta-link sam-roi__cta-link--ghost">Talk to an engineer</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<!-- Pre-footer CTA -->
+<section class="sam-prefooter">
+  <div class="sam-prefooter__inner">
+    
+    <p class="sam-prefooter__sub">See how SAM4 monitors the assets your sensors can't reach.</p>
+    <a href="/contact" class="sam-prefooter__cta">Talk to an engineer</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <div class="sam-footer__inner">
+
+    <!-- Top: Logo + Tagline -->
+    <div class="sam-footer__top">
+      <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
+        <img src="/assets/samotics-logo-white.svg"
+             alt="Samotics" width="140" height="32">
+      </a>
+      <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
+    </div>
+
+    <!-- Nav Grid: 5 columns -->
+    <div class="sam-footer__grid">
+
+      <!-- Technology -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Technology</h3>
+        <div class="sam-footer__col-links">
+          <a href="/technology/esa">ESA Technology</a>
+          <a href="/technology/how-it-works">How It Works</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Platform</h3>
+        <div class="sam-footer__col-links">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/service-model">Service Model</a>
+          <a href="/platform/what-we-monitor">What We Monitor</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Trust & Security</a>
+          <a href="/platform/integrations">Integrations</a>
+          <a href="/platform/scaling">Scaling</a>
+          <a href="/platform/sam4-x">SAM4-X</a>
+        </div>
+      </div>
+
+      <!-- Industries -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Industries</h3>
+        <div class="sam-footer__col-links">
+          <a href="/industries/water">Water & Wastewater</a>
+          <a href="/industries/oil-gas">Energy Production</a>
+          <a href="/industries/metals-mining">Metals & Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
+          <a href="/industries/energy-efficiency">Energy Efficiency</a>
+          <a href="/industries/all">All Industries</a>
+              </div>
+      </div>
+
+      <!-- Proof -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Resources</h3>
+        <div class="sam-footer__col-links">
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Company</h3>
+        <div class="sam-footer__col-links">
+          <a href="/about">About</a>
+          <!-- Phase 2: <a href="/partners">Partners</a> -->
+          <a href="/resources">Blog</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="sam-footer__divider"></div>
+
+    <!-- Bottom Bar -->
+    <div class="sam-footer__bottom">
+
+      <div class="sam-footer__bottom-left">
+        <span class="sam-footer__copyright">&copy; 2026 Samotics</span>
+
+        <a href="https://www.linkedin.com/company/samotics/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="sam-footer__social"
+           aria-label="Samotics on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sam-footer__legal">
+        <a href="/privacy">Privacy</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/terms">Terms</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/cookies">Cookies</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+  <script>
+/* ============================================================
+   SAMOTICS HEADER — JavaScript
+   Paste into Bricks Code Element → JavaScript tab
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var header = document.querySelector('.sam-header');
+  if (!header) return;
+
+  /* ── Scroll: toggle .is-scrolled ── */
+  var scrollThreshold = 20;
+
+  function onScroll() {
+    if (window.scrollY > scrollThreshold) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // initial check
+
+  /* ── Mobile Menu Toggle ── */
+  var hamburger = header.querySelector('.sam-hamburger');
+  var mobileMenu = document.getElementById('sam-mobile-menu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+      var isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+      mobileMenu.classList.toggle('is-open');
+      mobileMenu.setAttribute('aria-hidden', String(isOpen));
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+  }
+
+  /* ── Mobile Accordion Toggles ── */
+  var toggles = header.querySelectorAll('.sam-mobile-nav__toggle');
+  toggles.forEach(function (toggle) {
+    toggle.addEventListener('click', function () {
+      var group = this.closest('.sam-mobile-nav__group');
+      var isOpen = group.classList.contains('is-open');
+
+      // Close all others
+      header.querySelectorAll('.sam-mobile-nav__group.is-open').forEach(function (g) {
+        if (g !== group) {
+          g.classList.remove('is-open');
+          g.querySelector('.sam-mobile-nav__toggle').setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle current
+      group.classList.toggle('is-open');
+      this.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  /* ── Desktop Dropdown Keyboard Navigation ── */
+  var dropdownTriggers = header.querySelectorAll('.sam-nav__link--dropdown');
+  dropdownTriggers.forEach(function (trigger) {
+    var parent = trigger.closest('.sam-nav__item--has-dropdown');
+    var dropdown = parent.querySelector('.sam-dropdown');
+    var items = dropdown ? dropdown.querySelectorAll('.sam-dropdown__item') : [];
+
+    trigger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        var expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', String(!expanded));
+
+        if (!expanded && items.length) {
+          items[0].focus();
+        }
+      }
+
+      if (e.key === 'ArrowDown' && items.length) {
+        e.preventDefault();
+        trigger.setAttribute('aria-expanded', 'true');
+        items[0].focus();
+      }
+
+      if (e.key === 'Escape') {
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.focus();
+      }
+    });
+
+    // Arrow navigation within dropdown
+    items.forEach(function (item, index) {
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (index < items.length - 1) items[index + 1].focus();
+        }
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (index > 0) {
+            items[index - 1].focus();
+          } else {
+            trigger.focus();
+          }
+        }
+        if (e.key === 'Escape') {
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+        }
+        if (e.key === 'Tab' && !e.shiftKey && index === items.length - 1) {
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  });
+
+  /* ── Close mobile menu on resize to desktop ── */
+  var mql = window.matchMedia('(min-width: 992px)');
+  function handleResize(e) {
+    if (e.matches && mobileMenu && mobileMenu.classList.contains('is-open')) {
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
+      mobileMenu.classList.remove('is-open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+  if (mql.addEventListener) {
+    mql.addEventListener('change', handleResize);
+  } else {
+    mql.addListener(handleResize);
+  }
+
+  /* ── Close dropdown on outside click (desktop) ── */
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.sam-nav__item--has-dropdown')) {
+      dropdownTriggers.forEach(function (t) {
+        t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+})();
+  </script>
+  <script>
+/* ============================================================
+   SAMOTICS FOOTER — JavaScript
+   Paste into Bricks Code Element → JavaScript tab
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  /* ── Footer Accordion (mobile only) ── */
+  var cols = document.querySelectorAll('[data-footer-accordion]');
+  if (!cols.length) return;
+
+  function isMobile() {
+    return window.innerWidth <= 991;
+  }
+
+  cols.forEach(function (col) {
+    var heading = col.querySelector('.sam-footer__col-heading');
+    if (!heading) return;
+
+    heading.addEventListener('click', function () {
+      if (!isMobile()) return;
+
+      var isOpen = col.classList.contains('is-open');
+
+      // Close all other columns
+      cols.forEach(function (c) {
+        if (c !== col) c.classList.remove('is-open');
+      });
+
+      // Toggle current
+      col.classList.toggle('is-open');
+    });
+  });
+
+  /* ── Reset accordion state on resize to desktop ── */
+  var mql = window.matchMedia('(min-width: 992px)');
+
+  function handleResize(e) {
+    if (e.matches) {
+      cols.forEach(function (col) {
+        col.classList.remove('is-open');
+      });
+    }
+  }
+
+  if (mql.addEventListener) {
+    mql.addEventListener('change', handleResize);
+  } else {
+    mql.addListener(handleResize);
+  }
+
+})();
+  </script>
+  <script>
+    /*
+  ROI Calculator JavaScript
+  Interactive calculator with benchmark-driven inputs and 5-year projections
+*/
+
+const BENCHMARKS = {
+  water:     { downtimeCost: 2500, downtimeHrs: 150, maintPerAsset: 3500, downtimeReduction: 0.30, maintReduction: 0.15, label: 'Water & Wastewater' },
+  oil:       { downtimeCost: 25000, downtimeHrs: 120, maintPerAsset: 12000, downtimeReduction: 0.25, maintReduction: 0.125, label: 'Oil & Gas' },
+  mining:    { downtimeCost: 15000, downtimeHrs: 200, maintPerAsset: 8000, downtimeReduction: 0.30, maintReduction: 0.15, label: 'Metals & Mining' },
+  chemicals: { downtimeCost: 20000, downtimeHrs: 100, maintPerAsset: 10000, downtimeReduction: 0.25, maintReduction: 0.125, label: 'Chemicals' },
+  pulp:      { downtimeCost: 10000, downtimeHrs: 180, maintPerAsset: 6000, downtimeReduction: 0.30, maintReduction: 0.15, label: 'Pulp & Paper' },
+  airports:  { downtimeCost: 8000, downtimeHrs: 80, maintPerAsset: 5000, downtimeReduction: 0.25, maintReduction: 0.125, label: 'Airports' },
+  other:     { downtimeCost: 10000, downtimeHrs: 150, maintPerAsset: 6000, downtimeReduction: 0.25, maintReduction: 0.125, label: 'General' }
+};
+
+const REGIONS = {
+  eu:   { currency: '€', symbol: '€', locale: 'de-DE', labourMult: 1.0, downtimeMult: 1.0, sam4Cost: 500, label: 'Europe (EU)' },
+  uk:   { currency: '£', symbol: '£', locale: 'en-GB', labourMult: 1.05, downtimeMult: 1.1, sam4Cost: 450, label: 'United Kingdom' },
+  me:   { currency: '$', symbol: '$', locale: 'en-US', labourMult: 0.85, downtimeMult: 1.2, sam4Cost: 550, label: 'Middle East' },
+  am:   { currency: '$', symbol: '$', locale: 'en-US', labourMult: 1.1, downtimeMult: 1.15, sam4Cost: 550, label: 'Americas' },
+  apac: { currency: '$', symbol: '$', locale: 'en-US', labourMult: 0.7, downtimeMult: 0.8, sam4Cost: 400, label: 'Asia-Pacific' }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Form elements
+  const regionSelect = document.getElementById('roi-region');
+  const industrySelect = document.getElementById('roi-industry');
+  const assetsInput = document.getElementById('roi-assets');
+  const downtimeCostInput = document.getElementById('roi-downtime-cost');
+  const downtimeHrsInput = document.getElementById('roi-downtime-hrs');
+  const maintSpendInput = document.getElementById('roi-maint-spend');
+  const calculateBtn = document.getElementById('roi-calculate');
+  const resultsPanel = document.getElementById('results-panel');
+  const benchmarkNote = document.getElementById('benchmark-note');
+  const gateForm = document.getElementById('gate-form');
+
+  // Result elements
+  const kpiSavings = document.getElementById('kpi-savings');
+  const kpiCost = document.getElementById('kpi-cost');
+  const kpiRoi = document.getElementById('kpi-roi');
+  const kpiPayback = document.getElementById('kpi-payback');
+  const barDowntime = document.getElementById('bar-downtime');
+  const barMaint = document.getElementById('bar-maint');
+  const valDowntime = document.getElementById('val-downtime');
+  const valMaint = document.getElementById('val-maint');
+  const projectionChart = document.getElementById('projection-chart');
+
+  let currentBenchmark = null;
+  let currentRegion = REGIONS.eu;
+
+  function formatCurrency(value, locale = currentRegion.locale, symbol = currentRegion.symbol) {
+    const formatted = value.toLocaleString(locale, {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+    return symbol + formatted;
+  }
+
+  function updateBenchmarks() {
+    const industry = industrySelect.value;
+    const region = regionSelect.value;
+    currentRegion = REGIONS[region];
+    currentBenchmark = BENCHMARKS[industry];
+
+    // Update currency labels
+    document.getElementById('currency-label').textContent = currentRegion.currency;
+    document.getElementById('currency-label-2').textContent = currentRegion.currency;
+
+    if (!currentBenchmark) {
+      benchmarkNote.style.display = 'none';
+      return;
+    }
+
+    // Auto-populate fields with benchmarks
+    const adjustedDowntimeCost = Math.round(currentBenchmark.downtimeCost * currentRegion.downtimeMult);
+    const adjustedMaintPerAsset = currentBenchmark.maintPerAsset * currentRegion.labourMult;
+    const assets = parseInt(assetsInput.value) || 100;
+    const adjustedMaintSpend = Math.round(assets * adjustedMaintPerAsset);
+
+    downtimeCostInput.value = adjustedDowntimeCost;
+    downtimeHrsInput.value = currentBenchmark.downtimeHrs;
+    maintSpendInput.value = adjustedMaintSpend;
+
+    // Show benchmark note
+    document.getElementById('benchmark-source').textContent = currentBenchmark.label;
+    document.getElementById('benchmark-region').textContent = currentRegion.label;
+    benchmarkNote.style.display = 'block';
+
+    // Hide results panel to force recalculation
+    resultsPanel.classList.remove('is-active');
+  }
+
+  function animateValue(element, targetValue, format) {
+    const startValue = 0;
+    const duration = 800;
+    const startTime = Date.now();
+
+    function update() {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+      const currentValue = startValue + (targetValue - startValue) * easeOut;
+
+      if (format === 'currency') {
+        element.textContent = formatCurrency(Math.round(currentValue));
+      } else if (format === 'percent') {
+        element.textContent = Math.round(currentValue) + '%';
+      } else if (format === 'months') {
+        element.textContent = (Math.round(currentValue * 10) / 10).toFixed(1) + ' mo';
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    update();
+  }
+
+  function renderChart(data) {
+    projectionChart.innerHTML = '';
+    const maxValue = Math.max(data.savings[4], data.sam4Cost[4]);
+
+    for (let year = 0; year < 5; year++) {
+      const group = document.createElement('div');
+      group.className = 'sam-roi__chart-group';
+
+      const bars = document.createElement('div');
+      bars.className = 'sam-roi__chart-bars';
+
+      // Savings bar
+      const savingsBar = document.createElement('div');
+      savingsBar.className = 'sam-roi__chart-bar';
+      const savingsPercent = (data.savings[year] / maxValue) * 100;
+      const savingsFill = document.createElement('div');
+      savingsFill.className = 'sam-roi__chart-bar-fill sam-roi__chart-bar-fill--savings';
+      savingsFill.textContent = formatCurrency(data.savings[year]);
+      savingsFill.style.height = savingsPercent + '%';
+      savingsBar.appendChild(savingsFill);
+      bars.appendChild(savingsBar);
+
+      // Cost bar
+      const costBar = document.createElement('div');
+      costBar.className = 'sam-roi__chart-bar';
+      const costPercent = (data.sam4Cost[year] / maxValue) * 100;
+      const costFill = document.createElement('div');
+      costFill.className = 'sam-roi__chart-bar-fill';
+      costFill.textContent = formatCurrency(data.sam4Cost[year]);
+      costFill.style.height = costPercent + '%';
+      costBar.appendChild(costFill);
+      bars.appendChild(costBar);
+
+      group.appendChild(bars);
+
+      const label = document.createElement('p');
+      label.className = 'sam-roi__chart-bar-label';
+      label.textContent = 'Year ' + (year + 1);
+      group.appendChild(label);
+
+      projectionChart.appendChild(group);
+    }
+  }
+
+  function calculateROI() {
+    const assets = Math.max(1, parseInt(assetsInput.value) || 100);
+    const downtimeCost = Math.max(0, parseInt(downtimeCostInput.value) || 0);
+    const downtimeHrs = Math.max(0, parseInt(downtimeHrsInput.value) || 0);
+    const maintSpend = Math.max(0, parseInt(maintSpendInput.value) || 0);
+
+    if (downtimeCost <= 0 || !currentBenchmark) {
+      alert('Please select an industry and enter valid downtime cost.');
+      return;
+    }
+
+    // Use industry-specific reduction rates
+    const downtimeReduction = currentBenchmark.downtimeReduction;
+    const maintReduction = currentBenchmark.maintReduction;
+
+    // Calculate savings
+    const downtimeSavings = downtimeCost * downtimeHrs * downtimeReduction;
+    const maintenanceSavings = maintSpend * maintReduction;
+    const totalSavings = downtimeSavings + maintenanceSavings;
+
+    // Calculate SAM4 cost
+    const sam4AnnualCost = assets * currentRegion.sam4Cost;
+
+    // Calculate ROI metrics
+    const netBenefit = totalSavings - sam4AnnualCost;
+    const roi = sam4AnnualCost > 0 ? (netBenefit / sam4AnnualCost) * 100 : 0;
+    const paybackMonths = totalSavings > 0 ? (sam4AnnualCost / totalSavings) * 12 : 0;
+
+    // Calculate 5-year projection
+    const projectionData = { savings: [], sam4Cost: [] };
+    for (let year = 0; year < 5; year++) {
+      projectionData.savings.push(totalSavings * (year + 1));
+      projectionData.sam4Cost.push(sam4AnnualCost * (year + 1));
+    }
+
+    // Update KPI cards with animation
+    animateValue(kpiSavings, totalSavings, 'currency');
+    animateValue(kpiCost, sam4AnnualCost, 'currency');
+    animateValue(kpiRoi, roi, 'percent');
+    animateValue(kpiPayback, paybackMonths, 'months');
+
+    // Update breakdown bars
+    const maxSavings = Math.max(downtimeSavings, maintenanceSavings);
+    barDowntime.style.width = (downtimeSavings / maxSavings) * 100 + '%';
+    barMaint.style.width = (maintenanceSavings / maxSavings) * 100 + '%';
+    valDowntime.textContent = formatCurrency(downtimeSavings);
+    valMaint.textContent = formatCurrency(maintenanceSavings);
+
+    // Render 5-year chart
+    renderChart(projectionData);
+
+    // Update methodology
+    document.getElementById('method-downtime-pct').textContent = Math.round(downtimeReduction * 100) + '%';
+    document.getElementById('method-maint-pct').textContent = Math.round(maintReduction * 100) + '%';
+    document.getElementById('method-sam4-cost').textContent = formatCurrency(currentRegion.sam4Cost);
+
+    // Show results with animation
+    resultsPanel.classList.add('is-active');
+  }
+
+  // Event listeners
+  regionSelect.addEventListener('change', updateBenchmarks);
+  industrySelect.addEventListener('change', updateBenchmarks);
+  calculateBtn.addEventListener('click', calculateROI);
+
+  // Allow Enter key in inputs
+  [assetsInput, downtimeCostInput, downtimeHrsInput, maintSpendInput].forEach(input => {
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') calculateROI();
+    });
+    input.addEventListener('input', function() {
+      if (this.value < 0) this.value = 0;
+    });
+  });
+
+  // Gate form submission
+  gateForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('gate-name').value.trim();
+    const email = document.getElementById('gate-email').value.trim();
+    const company = document.getElementById('gate-company').value.trim();
+
+    if (!name || !email || !company) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    console.log({
+      name: name,
+      email: email,
+      company: company,
+      assets: assetsInput.value,
+      downtimeCost: downtimeCostInput.value,
+      downtimeHrs: downtimeHrsInput.value,
+      maintSpend: maintSpendInput.value,
+      industry: industrySelect.value,
+      region: regionSelect.value
+    });
+
+    alert('Thank you! Your ROI report will be sent to ' + email);
+    gateForm.reset();
+  });
+
+  // Initialize with default region
+  updateBenchmarks();
+});
+  </script>
+</body>
+</html>
