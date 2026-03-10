@@ -54,7 +54,7 @@
   --sam-black: #111111;
   --sam-comet: #6B6B7F;
   --sam-border-light: #E8E4E0;
-  --sam-header-bg: #1F1F33;
+  --sam-header-bg: #FF5429;
   --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --sam-header-h: 80px;
   --sam-header-h-compact: 64px;
@@ -91,7 +91,7 @@
 }
 .sam-header.is-scrolled {
   height: var(--sam-header-h-compact);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 8px rgba(255, 84, 41, 0.15);
 }
 
 /* ── Inner Container ── */
@@ -161,7 +161,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--sam-orange);
+  background: var(--sam-white);
 }
 
 /* Scrolled state */
@@ -261,27 +261,27 @@
   align-items: center;
   justify-content: center;
   padding: 10px 24px;
-  background: var(--sam-orange);
-  color: var(--sam-black);
+  background: var(--sam-space-cadet);
+  color: var(--sam-white);
   font: 600 14px/1 var(--sam-font);
   letter-spacing: 0.01em;
   text-decoration: none;
   border-radius: 0;
   border: none;
   white-space: nowrap;
-  transition: background-color var(--sam-transition);
+  transition: background-color var(--sam-transition), color var(--sam-transition);
   cursor: pointer;
 }
 .sam-cta:hover {
-  background: var(--sam-orange-dark);
+  background: var(--sam-dark-elevated, #2A2A42);
   color: var(--sam-white);
 }
 .sam-header.is-scrolled .sam-cta {
-  background: var(--sam-orange);
-  color: var(--sam-black);
+  background: var(--sam-space-cadet);
+  color: var(--sam-white);
 }
 .sam-header.is-scrolled .sam-cta:hover {
-  background: var(--sam-orange-dark);
+  background: var(--sam-dark-elevated, #2A2A42);
   color: var(--sam-white);
 }
 
@@ -420,14 +420,15 @@
   width: 100%;
   padding: 14px 0;
   background: var(--sam-orange);
-  color: var(--sam-white);
+  color: var(--sam-black);
   font: 600 16px/1 var(--sam-font);
   text-decoration: none;
   border-radius: 0;
-  transition: background-color var(--sam-transition);
+  transition: background-color var(--sam-transition), color var(--sam-transition);
 }
 .sam-mobile-nav__cta:hover {
   background: var(--sam-orange-dark);
+  color: var(--sam-white);
 }
 
 /* ── Focus Styles ── */
@@ -504,7 +505,7 @@
 }
 .sam-prefooter__sub {
   font: 400 18px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: var(--sam-comet, #6B6B7F);
+  color: var(--sam-black, #111111);
   margin: 0;
   max-width: 520px;
 }
@@ -514,17 +515,18 @@
   justify-content: center;
   padding: 14px 32px;
   background: var(--sam-orange, #FF5429);
-  color: #FFFFFF;
+  color: var(--sam-black, #111111);
   font: 600 16px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
   letter-spacing: 0.01em;
   text-decoration: none;
   border-radius: 0;
   border: none;
   cursor: pointer;
-  transition: background-color 150ms ease-out;
+  transition: background-color 150ms ease-out, color 150ms ease-out;
 }
 .sam-prefooter__cta:hover {
   background: var(--sam-orange-dark, #D7411B);
+  color: var(--sam-white, #FFFFFF);
 }
 
 /* ── Footer Shell ── */
@@ -555,7 +557,7 @@
 }
 .sam-footer__tagline {
   font: 400 16px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--sam-muted-dark, #B0B0C8);
   margin: 0;
   max-width: 360px;
 }
@@ -583,7 +585,7 @@
 }
 .sam-footer__col-links a {
   font: 400 14px/1.4 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--sam-muted-dark, #B0B0C8);
   text-decoration: none;
   transition: color 150ms ease-out;
 }
@@ -594,6 +596,7 @@
 
 /* ── Divider ── */
 .sam-footer__divider {
+  border: none;
   height: 1px;
   background: rgba(255, 255, 255, 0.15);
 }
@@ -612,14 +615,14 @@
 }
 .sam-footer__copyright {
   font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--sam-muted-dark, #B0B0C8);
 }
 
 /* LinkedIn */
 .sam-footer__social {
   display: inline-flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--sam-muted-dark, #B0B0C8);
   transition: color 150ms ease-out;
 }
 .sam-footer__social:hover {
@@ -634,7 +637,7 @@
 }
 .sam-footer__legal a {
   font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--sam-text-link-on-dark, #B3DAFF);
   text-decoration: none;
   transition: color 150ms ease-out;
 }
@@ -644,15 +647,18 @@
 }
 .sam-footer__legal-sep {
   font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.15);
 }
 
 /* ── Focus Styles ── */
-.sam-prefooter__cta:focus-visible,
+.sam-prefooter__cta:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
 .sam-footer__col-links a:focus-visible,
 .sam-footer__social:focus-visible,
 .sam-footer__legal a:focus-visible {
-  outline: 3px solid var(--sam-blue);
+  outline: 3px solid var(--sam-border-focus-on-dark, #B3DAFF);
   outline-offset: 2px;
 }
 
@@ -711,8 +717,8 @@
     content: '';
     width: 10px;
     height: 10px;
-    border-right: 2px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    border-right: 2px solid var(--sam-muted-dark, #B0B0C8);
+    border-bottom: 2px solid var(--sam-muted-dark, #B0B0C8);
     transform: rotate(45deg);
     transition: transform 200ms ease-out;
     flex-shrink: 0;
@@ -753,15 +759,29 @@
   --sam-blue-dark:       #004179;
   --sam-blue-light:      #B3DAFF;
   --sam-teal:            #0098AC;
+  --sam-teal-safe:       #218291;
   --sam-teal-dark:       #006C6C;
+  --sam-teal-light:      #BAFFFF;
   --sam-white:           #FFFFFF;
   --sam-seashell:        #F8F5F2;
   --sam-black:           #111111;
   --sam-comet:           #6B6B7F;
+  --sam-tertiary:        #9A9AAE;
   --sam-muted-dark:      #B0B0C8;
   --sam-border-light:    #E8E4E0;
+  --sam-border-medium:   #C4C4D0;
+  --sam-border-strong:   #6B6B7F;
   --sam-dark-elevated:   #2A2A42;
   --sam-gold:            #FAC91F;
+
+  /* Text */
+  --sam-text-lead:       #1F1F33;
+  --sam-text-link-on-dark: #B3DAFF;
+  --sam-border-focus-on-dark: #B3DAFF;
+
+  /* Disabled */
+  --sam-disabled-bg:     #E0D8D4;
+  --sam-disabled-text:   #9A9AAE;
 
   /* Fonts */
   --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -781,11 +801,15 @@
   --sp-11: 128px;
   --sp-12: 160px;
 
-  /* Shadows */
+  /* Shadows (Space Cadet base, never pure black) */
   --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
   --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
   --shadow-lg:  0 12px 32px rgba(31,31,51,0.14);
   --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Gradients */
+  --gradient-section-fade: linear-gradient(180deg, #FFFFFF 0%, #F8F5F2 100%);
+  --gradient-cta:          linear-gradient(135deg, #FF5429 0%, #D7411B 100%);
 
   /* Transitions */
   --ease: 150ms ease-out;
@@ -794,6 +818,17 @@
 /* ── Reset for main ── */
 .sam-problem {
   overflow-x: hidden;
+}
+
+/* ── Section Fade Transition ── */
+.sam-cost::before,
+.sam-shift::before {
+  content: '';
+  display: block;
+  height: 64px;
+  margin-top: -64px;
+  background: var(--gradient-section-fade, linear-gradient(180deg, #FFFFFF 0%, #F8F5F2 100%));
+  pointer-events: none;
 }
 
 /* ── Shared: Overline ── */
@@ -2170,8 +2205,9 @@
 <!-- Pre-footer CTA -->
 <section class="sam-prefooter">
   <div class="sam-prefooter__inner">
-    
+    <h2 class="sam-prefooter__heading">See what your motors are telling you</h2>
     <p class="sam-prefooter__sub">See how SAM4 monitors assets conventional sensors can't reach.</p>
+    <a href="/contact?intent=demo" class="sam-prefooter__cta">Request a demo</a>
   </div>
 </section>
 
