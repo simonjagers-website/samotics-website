@@ -13,6 +13,9 @@
       font-weight: 100 700;
       font-display: swap;
       src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
     }
     @font-face {
       font-family: 'IBM Plex Sans';
@@ -20,6 +23,9 @@
       font-weight: 100 700;
       font-display: swap;
       src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
     }
     @font-face {
       font-family: 'JetBrains Mono';
@@ -27,6 +33,9 @@
       font-weight: 100 800;
       font-display: swap;
       src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
     }
     @font-face {
       font-family: 'JetBrains Mono';
@@ -34,6 +43,9 @@
       font-weight: 100 800;
       font-display: swap;
       src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
     }
   </style>
   <style>
@@ -848,7 +860,7 @@
   font-weight: 400;
   font-size: 1.25rem;
   line-height: 1.6;
-  color: var(--sam-space-cadet);
+  color: var(--sam-text-lead, #1F1F33);
   max-width: 60ch;
   margin: 0;
 }
@@ -1073,7 +1085,7 @@
   border: 1px solid var(--sam-border-light);
 }
 .sam-scale__stat-value {
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--sam-space-cadet);
@@ -1588,6 +1600,19 @@
   .sam-scale__stats {
     grid-template-columns: 1fr;
     gap: var(--sp-05);
+  }
+  .sam-scale__stat-value {
+    font-size: 1.5rem;
+  }
+
+  /* Mobile typography overrides per spec */
+  .overline {
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+  }
+  .lead {
+    font-size: 1.125rem;
+    line-height: 1.5;
   }
 
   .sam-cost {
