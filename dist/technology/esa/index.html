@@ -1197,11 +1197,29 @@
   border-bottom: 1px solid var(--sam-border-light);
   vertical-align: top;
 }
-.sam-detection__table tbody tr:nth-child(even) {
+.sam-detection__table tbody tr:nth-child(even):not(.sam-detection__category) {
   background: var(--sam-seashell);
 }
 .sam-detection__table tbody tr:hover {
   background: rgba(255, 84, 41, 0.04);
+}
+.sam-detection__category td {
+  font: 600 0.8125rem/1 var(--sam-font);
+  color: var(--sam-comet);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 20px 16px 10px 16px;
+  border-bottom: 2px solid var(--sam-space-cadet);
+  background: var(--sam-white) !important;
+}
+.sam-detection__category:hover {
+  background: var(--sam-white) !important;
+}
+.sam-detection__note {
+  font: 400 0.875rem/1.6 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 20px 0 0 0;
+  max-width: 720px;
 }
 .sam-detection__lead-time {
   font-family: var(--sam-mono);
@@ -1855,6 +1873,8 @@
             </tr>
           </thead>
           <tbody>
+            <!-- ── Mechanical faults ── -->
+            <tr class="sam-detection__category"><td colspan="4">Mechanical faults</td></tr>
             <tr>
               <td>Bearing degradation</td>
               <td>Motor, gearbox, driven load</td>
@@ -1874,6 +1894,54 @@
               <td><span class="sam-detection__lead-time">4 to 12 weeks</span></td>
             </tr>
             <tr>
+              <td>Coupling wear</td>
+              <td>Coupling</td>
+              <td>Changes in torsional vibration signature</td>
+              <td><span class="sam-detection__lead-time">4 to 12 weeks</span></td>
+            </tr>
+            <tr>
+              <td>Impeller damage</td>
+              <td>Pump, fan, compressor</td>
+              <td>Blade pass frequency shifts, broadband spectral changes</td>
+              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
+            </tr>
+            <tr>
+              <td>Rotor eccentricity</td>
+              <td>Motor, ESP</td>
+              <td>Elevated slip-frequency sidebands around supply frequency</td>
+              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
+            </tr>
+            <tr>
+              <td>Belt / drive slip</td>
+              <td>Belt drive, VFD-driven load</td>
+              <td>Loss of expected load transfer, speed-torque mismatch</td>
+              <td><span class="sam-detection__lead-time">Days to weeks</span></td>
+            </tr>
+
+            <!-- ── Electrical faults ── -->
+            <tr class="sam-detection__category"><td colspan="4">Electrical faults</td></tr>
+            <tr>
+              <td>Winding insulation breakdown</td>
+              <td>Stator</td>
+              <td>Current unbalance, negative sequence component analysis</td>
+              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
+            </tr>
+            <tr>
+              <td>Broken rotor bars</td>
+              <td>Rotor</td>
+              <td>Sideband frequencies around supply frequency</td>
+              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
+            </tr>
+            <tr>
+              <td>Supply power quality</td>
+              <td>Electrical supply, VFD</td>
+              <td>Voltage/current unbalance, harmonic distortion, overcurrent events</td>
+              <td><span class="sam-detection__lead-time">Real-time</span></td>
+            </tr>
+
+            <!-- ── Process & operational ── -->
+            <tr class="sam-detection__category"><td colspan="4">Process & operational</td></tr>
+            <tr>
               <td>Cavitation</td>
               <td>Pump impeller</td>
               <td>Broadband noise increase, load instability patterns</td>
@@ -1892,22 +1960,10 @@
               <td><span class="sam-detection__lead-time">Days to weeks</span></td>
             </tr>
             <tr>
-              <td>Winding insulation breakdown</td>
-              <td>Stator</td>
-              <td>Current unbalance, negative sequence component analysis</td>
-              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
-            </tr>
-            <tr>
-              <td>Broken rotor bars</td>
-              <td>Rotor</td>
-              <td>Sideband frequencies around supply frequency</td>
-              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
-            </tr>
-            <tr>
-              <td>Coupling wear</td>
-              <td>Coupling</td>
-              <td>Changes in torsional vibration signature</td>
-              <td><span class="sam-detection__lead-time">4 to 12 weeks</span></td>
+              <td>Dry running</td>
+              <td>Pump</td>
+              <td>Sudden load drop, current signature collapse below normal operating range</td>
+              <td><span class="sam-detection__lead-time">Near-instant</span></td>
             </tr>
             <tr>
               <td>Process deviations</td>
@@ -1918,6 +1974,8 @@
           </tbody>
         </table>
       </div>
+
+      <p class="sam-detection__note">This table covers the most common fault types. ESA detects additional conditions depending on equipment type, operating context, and load profile.</p>
     </div>
   </section>
 
