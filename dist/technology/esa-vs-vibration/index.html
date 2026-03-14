@@ -711,14 +711,18 @@
 .sam-jump-nav {
   background: var(--sam-seashell);
   border-bottom: 1px solid var(--sam-border-light);
-  position: sticky;
+  position: fixed;
   top: var(--sam-header-h);
-  z-index: 100;
+  left: 0;
+  width: 100%;
+  z-index: 999;
   transition: top var(--sam-transition);
 }
 .sam-jump-nav.is-compact {
   top: var(--sam-header-h-compact);
 }
+/* Offset main content so fixed jump nav doesn't overlap */
+.sam-compare { padding-top: 50px; }
 .sam-jump-nav__inner {
   max-width: 1280px;
   margin: 0 auto;
@@ -1455,6 +1459,19 @@
 
 </header>
 
+<!-- Jump Navigation (fixed below header) -->
+<nav class="sam-jump-nav" aria-label="Page sections">
+  <div class="sam-jump-nav__inner">
+    <a href="#comparison" class="sam-jump-nav__link">Comparison</a>
+    <a href="#esa-strengths" class="sam-jump-nav__link">ESA Strengths</a>
+    <a href="#vibration-strengths" class="sam-jump-nav__link">Vibration Strengths</a>
+    <a href="#detection-matrix" class="sam-jump-nav__link">Detection Matrix</a>
+    <a href="#complementary" class="sam-jump-nav__link">Better Together</a>
+    <a href="#evidence" class="sam-jump-nav__link">Evidence</a>
+    <a href="#faq" class="sam-jump-nav__link">FAQ</a>
+  </div>
+</nav>
+
 <!-- Main Content -->
 <main id="main-content" class="sam-compare">
 
@@ -1474,18 +1491,6 @@
     </div>
   </section>
 
-  <!-- Jump Navigation -->
-  <nav class="sam-jump-nav" aria-label="Page sections">
-    <div class="sam-jump-nav__inner">
-      <a href="#comparison" class="sam-jump-nav__link">Comparison</a>
-      <a href="#esa-strengths" class="sam-jump-nav__link">ESA Strengths</a>
-      <a href="#vibration-strengths" class="sam-jump-nav__link">Vibration Strengths</a>
-      <a href="#detection-matrix" class="sam-jump-nav__link">Detection Matrix</a>
-      <a href="#complementary" class="sam-jump-nav__link">Better Together</a>
-      <a href="#evidence" class="sam-jump-nav__link">Evidence</a>
-      <a href="#faq" class="sam-jump-nav__link">FAQ</a>
-    </div>
-  </nav>
 
   <!-- 2. COMPARISON TABLE (White) -->
   <section class="sam-compare__section-white" id="comparison">

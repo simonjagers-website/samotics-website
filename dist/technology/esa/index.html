@@ -821,14 +821,18 @@
   background: var(--sam-white);
   border-bottom: 1px solid var(--sam-border-light);
   padding: 0;
-  position: sticky;
+  position: fixed;
   top: var(--sam-header-h);
-  z-index: 100;
+  left: 0;
+  width: 100%;
+  z-index: 999;
   transition: top var(--sam-transition);
 }
 .sam-jump-nav.is-compact {
   top: var(--sam-header-h-compact);
 }
+/* Offset body content so fixed jump nav doesn't overlap */
+.sam-esa { padding-top: 50px; }
 .sam-jump-nav__inner {
   max-width: 1280px;
   margin: 0 auto;
@@ -1685,6 +1689,19 @@
 
 </header>
 
+<!-- Jump Navigation (fixed below header) -->
+<nav class="sam-jump-nav" aria-label="Page sections">
+  <div class="sam-jump-nav__inner">
+    <a href="#mechanism" class="sam-jump-nav__link">The Physics</a>
+    <a href="#acquisition" class="sam-jump-nav__link">Data Acquisition</a>
+    <a href="#processing" class="sam-jump-nav__link">Signal Processing</a>
+    <a href="#diagnostics" class="sam-jump-nav__link">AI &amp; Diagnostics</a>
+    <a href="#detection" class="sam-jump-nav__link">Detection Capabilities</a>
+    <a href="#evidence" class="sam-jump-nav__link">Evidence</a>
+    <a href="#boundaries" class="sam-jump-nav__link">Boundaries</a>
+  </div>
+</nav>
+
 <!-- Breadcrumbs -->
 <nav class="sam-breadcrumb" aria-label="Breadcrumb">
   <div class="sam-breadcrumb__inner">
@@ -1716,18 +1733,6 @@
     </div>
   </section>
 
-  <!-- Jump Navigation -->
-  <nav class="sam-jump-nav" aria-label="Page sections">
-    <div class="sam-jump-nav__inner">
-      <a href="#mechanism" class="sam-jump-nav__link">The Physics</a>
-      <a href="#acquisition" class="sam-jump-nav__link">Data Acquisition</a>
-      <a href="#processing" class="sam-jump-nav__link">Signal Processing</a>
-      <a href="#diagnostics" class="sam-jump-nav__link">AI &amp; Diagnostics</a>
-      <a href="#detection" class="sam-jump-nav__link">Detection Capabilities</a>
-      <a href="#evidence" class="sam-jump-nav__link">Evidence</a>
-      <a href="#boundaries" class="sam-jump-nav__link">Boundaries</a>
-    </div>
-  </nav>
 
   <!-- ─── 2. THE MECHANISM (White) ─── -->
   <section class="sam-mechanism" id="mechanism">
