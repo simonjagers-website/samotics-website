@@ -712,17 +712,12 @@
   background: var(--sam-seashell);
   border-bottom: 1px solid var(--sam-border-light);
   position: sticky;
-  top: var(--sam-header-h-compact);
+  top: var(--sam-header-h);
   z-index: 100;
-  transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 250ms ease-out, opacity 250ms ease-out;
+  transition: top var(--sam-transition);
 }
-.sam-jump-nav.is-visible {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
+.sam-jump-nav.is-compact {
+  top: var(--sam-header-h-compact);
 }
 .sam-jump-nav__inner {
   max-width: 1280px;
@@ -2084,9 +2079,8 @@
     });
   });
 
-  /* Jump Nav: Show after hero, active state on scroll */
+  /* Jump Nav: Active state on scroll + compact top */
   var jumpNav = document.querySelector('.sam-jump-nav');
-  var heroEl = document.querySelector('.sam-hero');
   var jumpLinks = document.querySelectorAll('.sam-jump-nav__link');
   var sections = [];
   jumpLinks.forEach(function (link) {
@@ -2096,25 +2090,19 @@
   });
 
   function updateJumpNav() {
-    var heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight : 0;
-    var pastHero = window.scrollY + 160 > heroBottom;
-
-    /* Show/hide nav bar */
+    /* Sync jump nav top with header compact state */
     if (jumpNav) {
-      if (pastHero) { jumpNav.classList.add('is-visible'); }
-      else { jumpNav.classList.remove('is-visible'); }
+      if (window.scrollY > 10) { jumpNav.classList.add('is-compact'); }
+      else { jumpNav.classList.remove('is-compact'); }
     }
 
-    /* Active link — only after hero */
+    var scrollPos = window.scrollY + 200;
+    var active = null;
     jumpLinks.forEach(function (l) { l.classList.remove('is-active'); });
-    if (pastHero) {
-      var scrollPos = window.scrollY + 200;
-      var active = null;
-      sections.forEach(function (s) {
-        if (s.el.offsetTop <= scrollPos) { active = s; }
-      });
-      if (active) active.link.classList.add('is-active');
-    }
+    sections.forEach(function (s) {
+      if (s.el.offsetTop <= scrollPos) { active = s; }
+    });
+    if (active) active.link.classList.add('is-active');
   }
 
   if (sections.length) {
