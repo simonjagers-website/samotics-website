@@ -1855,6 +1855,505 @@
       }
     }
 
+
+    /* ════════════════════════════════════════════════════════════════════════
+    SIGNAL FLOW DIAGRAM SECTION
+    ════════════════════════════════════════════════════════════════════════ */
+    
+    .sam-plat-flow {
+      background: var(--sam-white);
+      padding: var(--sp-11) 0;
+    }
+    .sam-plat-flow__inner {
+      max-width: 1584px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+    .sam-plat-flow__inner .overline {
+      color: var(--sam-blue);
+    }
+    .sam-plat-flow__inner h2 {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 3rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--sam-space-cadet);
+      margin: 0 0 var(--sp-09) 0;
+      max-width: 30ch;
+    }
+    
+    .sam-plat-flow__diagram {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--sp-07);
+      align-items: start;
+    }
+    
+    .sam-plat-flow__step {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-05);
+    }
+    
+    .sam-plat-flow__step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      background: var(--sam-seashell);
+      border: 2px solid var(--sam-border-light);
+      border-radius: 4px;
+      font-size: 1.75rem;
+    }
+    
+    .sam-plat-flow__step-card {
+      background: var(--sam-white);
+      border: 1px solid var(--sam-border-light);
+      border-top: 4px solid var(--sam-space-cadet);
+      padding: var(--sp-06);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-03);
+    }
+    
+    .sam-plat-flow__step-title {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.3;
+      color: var(--sam-space-cadet);
+      margin: 0;
+    }
+    
+    .sam-plat-flow__step-desc {
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--sam-comet);
+      margin: 0;
+    }
+    
+    .sam-plat-flow__arrow {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: var(--sam-orange);
+      font-weight: 600;
+      font-size: 1.25rem;
+      height: 24px;
+    }
+    
+    @media (max-width: 991px) {
+      .sam-plat-flow__inner h2 {
+        font-size: 2rem;
+        margin-bottom: var(--sp-08);
+      }
+      .sam-plat-flow__diagram {
+        gap: var(--sp-06);
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════
+    DASHBOARD SECTION — COMPRESSED
+    ════════════════════════════════════════════════════════════════════════ */
+    
+    .sam-plat-dash {
+      background: var(--sam-seashell);
+      padding: var(--sp-11) 0;
+    }
+    .sam-plat-dash__inner {
+      max-width: 1584px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+    .sam-plat-dash__inner .overline {
+      color: var(--sam-blue);
+    }
+    .sam-plat-dash__inner h2 {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 3rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--sam-space-cadet);
+      margin: 0 0 var(--sp-08) 0;
+      max-width: 30ch;
+    }
+    
+    .sam-plat-dash__two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-09);
+      margin-bottom: var(--sp-09);
+    }
+    
+    .sam-plat-dash__column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-05);
+    }
+    
+    .sam-plat-dash__column-title {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 1.25rem;
+      line-height: 1.3;
+      color: var(--sam-space-cadet);
+      margin: 0;
+    }
+    
+    .sam-plat-dash__column-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-04);
+    }
+    
+    .sam-plat-dash__column-list li {
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--sam-comet);
+      padding-left: var(--sp-05);
+      position: relative;
+    }
+    
+    .sam-plat-dash__column-list li:before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--sam-orange);
+      font-weight: 600;
+    }
+    
+    .sam-plat-dash__screenshot-note {
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--sam-comet);
+      margin: 0;
+    }
+    
+    @media (max-width: 991px) {
+      .sam-plat-dash__two-column {
+        grid-template-columns: 1fr;
+        gap: var(--sp-08);
+      }
+      .sam-plat-dash__inner h2 {
+        font-size: 2rem;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════
+    ALERT VALIDATION SECTION — MERGED
+    ════════════════════════════════════════════════════════════════════════ */
+    
+    .sam-plat-validation {
+      background: var(--sam-seashell);
+      padding: var(--sp-11) 0;
+    }
+    .sam-plat-validation__inner {
+      max-width: 1584px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+    .sam-plat-validation__inner .overline {
+      color: var(--sam-blue);
+    }
+    .sam-plat-validation__inner h2 {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 3rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--sam-space-cadet);
+      margin: 0 0 var(--sp-08) 0;
+      max-width: 30ch;
+    }
+    
+    .sam-plat-validation__flow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--sp-05);
+      margin-bottom: var(--sp-10);
+      flex-wrap: wrap;
+    }
+    
+    .sam-plat-validation__flow-step {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+    }
+    
+    .sam-plat-validation__flow-label {
+      display: block;
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1.4;
+      color: var(--sam-space-cadet);
+      background: var(--sam-white);
+      border: 1px solid var(--sam-border-light);
+      padding: var(--sp-05);
+      border-radius: 4px;
+    }
+    
+    .sam-plat-validation__flow-arrow {
+      flex-shrink: 0;
+      color: var(--sam-orange);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .sam-plat-validation__cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-06);
+      margin-bottom: var(--sp-10);
+    }
+    
+    .sam-plat-validation__card {
+      background: var(--sam-white);
+      border: 1px solid var(--sam-border-light);
+      border-top: 4px solid var(--sam-space-cadet);
+      padding: var(--sp-06);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-04);
+    }
+    
+    .sam-plat-validation__card-title {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.3;
+      color: var(--sam-space-cadet);
+      margin: 0;
+    }
+    
+    .sam-plat-validation__card-desc {
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--sam-comet);
+      margin: 0;
+    }
+    
+    .sam-plat-validation__callout {
+      background: var(--sam-white);
+      border-left: 4px solid var(--sam-orange);
+      padding: var(--sp-07);
+      border-radius: 0;
+    }
+    
+    .sam-plat-validation__callout-title {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.3;
+      color: var(--sam-black);
+      margin: 0 0 var(--sp-03) 0;
+    }
+    
+    .sam-plat-validation__callout-desc {
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--sam-comet);
+      margin: 0;
+    }
+    
+    @media (max-width: 991px) {
+      .sam-plat-validation__cards {
+        grid-template-columns: 1fr;
+      }
+      .sam-plat-validation__inner h2 {
+        font-size: 2rem;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════
+    ALERT EXAMPLE SECTION
+    ════════════════════════════════════════════════════════════════════════ */
+    
+    .sam-plat-alert-example {
+      background: var(--sam-white);
+      padding: var(--sp-11) 0;
+    }
+    .sam-plat-alert-example__inner {
+      max-width: 1584px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+    .sam-plat-alert-example__inner .overline {
+      color: var(--sam-blue);
+    }
+    .sam-plat-alert-example__inner h2 {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 3rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--sam-space-cadet);
+      margin: 0 0 var(--sp-09) 0;
+      max-width: 30ch;
+    }
+    
+    .sam-plat-alert-example__card {
+      background: var(--sam-white);
+      border: 1px solid var(--sam-border-light);
+      border-left: 4px solid var(--sam-space-cadet);
+      border-radius: 0;
+      padding: var(--sp-08);
+      max-width: 520px;
+    }
+    
+    .sam-plat-alert-example__header {
+      margin-bottom: var(--sp-07);
+      padding-bottom: var(--sp-07);
+      border-bottom: 1px solid var(--sam-border-light);
+    }
+    
+    .sam-plat-alert-example__title {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 1.125rem;
+      line-height: 1.3;
+      color: var(--sam-space-cadet);
+      margin: 0;
+    }
+    
+    .sam-plat-alert-example__row {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--sp-04) 0;
+      border-bottom: 1px solid var(--sam-border-light);
+      gap: var(--sp-05);
+    }
+    
+    .sam-plat-alert-example__row--last {
+      border-bottom: none;
+    }
+    
+    .sam-plat-alert-example__label {
+      font-family: var(--sam-font);
+      font-weight: 500;
+      font-size: 0.875rem;
+      line-height: 1.4;
+      color: var(--sam-comet);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .sam-plat-alert-example__value {
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.4;
+      color: var(--sam-black);
+      text-align: right;
+    }
+    
+    .sam-plat-alert-example__footer {
+      margin-top: var(--sp-07);
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--sam-comet);
+      margin: 0;
+    }
+    
+    @media (max-width: 991px) {
+      .sam-plat-alert-example__inner h2 {
+        font-size: 2rem;
+      }
+      .sam-plat-alert-example__card {
+        padding: var(--sp-06);
+      }
+      .sam-plat-alert-example__row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .sam-plat-alert-example__value {
+        text-align: left;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════
+    QUOTE SECTION — ENHANCED
+    ════════════════════════════════════════════════════════════════════════ */
+    
+    .sam-quote--platform {
+      background: var(--sam-white);
+      padding: var(--sp-11) 0;
+    }
+    
+    .sam-quote__blockquote {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-06);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .sam-quote__text {
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 1.75rem;
+      line-height: 1.5;
+      color: var(--sam-space-cadet);
+      margin: 0;
+      padding-left: var(--sp-07);
+      border-left: 4px solid var(--sam-orange);
+    }
+    
+    .sam-quote__attribution {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-02);
+      margin: 0;
+    }
+    
+    .sam-quote__name {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.3;
+      color: var(--sam-black);
+      display: block;
+    }
+    
+    .sam-quote__title {
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--sam-comet);
+      display: block;
+    }
+    
+    @media (max-width: 991px) {
+      .sam-quote--platform {
+        padding: var(--sp-09) 0;
+      }
+      .sam-quote__text {
+        font-size: 1.25rem;
+        padding-left: var(--sp-05);
+      }
+    }
+
+
 </style>
   <meta property="og:type" content="website">
   <meta property="og:title" content="SAM4: Motor Fleet Monitoring | Samotics">
@@ -2061,23 +2560,90 @@
 <main id="main-content" class="sam-platform">
 
   <!-- ─── 1. HERO ─── -->
-  <section class="sam-hero sam-hero--platform" style="background-image: url('/assets/hero-sam4-mcc.jpg');">
+  <section class="sam-hero sam-hero--platform" style="background-image: url('/assets/images/heroes/hero-sam4-platform.jpg');">
     <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
       <div class="sam-hero__content">
         <p class="sam-hero__overline">SAM4 Platform</p>
-        <h1 class="sam-hero__h1">The complete monitoring system for your motor fleet.</h1>
-        <p class="sam-hero__lead">Hardware at the MCC. Signal processing and AI analytics in the cloud. A team of reliability engineers validating every alert. And a dashboard your entire organisation can use. SAM4 is the full stack — delivered as a managed service.</p>
+        <h1 class="sam-hero__h1">Monitoring from the electrical cabinet. Across your entire motor fleet.</h1>
+        <p class="sam-hero__lead">SAM4 captures electrical signals at the motor control cabinet, detects faults with AI, and validates every alert with reliability engineers. No sensors on the machine. No production downtime to install.</p>
       </div>
     </div>
   </section>
 
-  <!-- ─── 2. COMPONENTS ─── -->
+  <!-- ─── 2. SIGNAL FLOW ─── -->
+  <section id="signal-flow" class="sam-plat-flow">
+    <div class="sam-plat-flow__inner">
+      <p class="overline">How SAM4 works</p>
+      <h2>From electrical signal to maintenance action</h2>
+
+      <div class="sam-plat-flow__diagram">
+        <div class="sam-plat-flow__step">
+          <div class="sam-plat-flow__step-num">
+            <span class="kpi-value" style="color: var(--sam-orange);">1</span>
+          </div>
+          <div class="sam-plat-flow__step-card">
+            <h3 class="sam-plat-flow__step-title">Electrical signal</h3>
+            <p class="sam-plat-flow__step-desc">Current and voltage captured at the MCC via CT/VT clamps</p>
+          </div>
+        </div>
+
+        <div class="sam-plat-flow__arrow" aria-hidden="true"></div>
+
+        <div class="sam-plat-flow__step">
+          <div class="sam-plat-flow__step-num">
+            <span class="kpi-value" style="color: var(--sam-orange);">2</span>
+          </div>
+          <div class="sam-plat-flow__step-card">
+            <h3 class="sam-plat-flow__step-title">Edge processing</h3>
+            <p class="sam-plat-flow__step-desc">Signal digitised and compressed on-site</p>
+          </div>
+        </div>
+
+        <div class="sam-plat-flow__arrow" aria-hidden="true"></div>
+
+        <div class="sam-plat-flow__step">
+          <div class="sam-plat-flow__step-num">
+            <span class="kpi-value" style="color: var(--sam-orange);">3</span>
+          </div>
+          <div class="sam-plat-flow__step-card">
+            <h3 class="sam-plat-flow__step-title">AI detection</h3>
+            <p class="sam-plat-flow__step-desc">Cloud models identify anomalies across 15+ fault categories</p>
+          </div>
+        </div>
+
+        <div class="sam-plat-flow__arrow" aria-hidden="true"></div>
+
+        <div class="sam-plat-flow__step">
+          <div class="sam-plat-flow__step-num">
+            <span class="kpi-value" style="color: var(--sam-orange);">4</span>
+          </div>
+          <div class="sam-plat-flow__step-card">
+            <h3 class="sam-plat-flow__step-title">Engineer validation</h3>
+            <p class="sam-plat-flow__step-desc">Samotics diagnostician confirms fault type, severity, and action</p>
+          </div>
+        </div>
+
+        <div class="sam-plat-flow__arrow" aria-hidden="true"></div>
+
+        <div class="sam-plat-flow__step">
+          <div class="sam-plat-flow__step-num">
+            <span class="kpi-value" style="color: var(--sam-orange);">5</span>
+          </div>
+          <div class="sam-plat-flow__step-card">
+            <h3 class="sam-plat-flow__step-title">Maintenance action</h3>
+            <p class="sam-plat-flow__step-desc">Validated alert delivered to your team or CMMS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 3. COMPONENTS ─── -->
   <section id="components" class="sam-plat-components">
     <div class="sam-plat-components__inner">
       <p class="overline">What you get</p>
       <h2>Four components. One managed service.</h2>
-      <p class="lead sam-plat-components__lead">SAM4 is not a single product. It's four components working together — each one purpose-built for industrial motor monitoring, delivered and managed by Samotics.</p>
 
       <div class="sam-plat-components__grid">
         <div class="sam-plat-components__card">
@@ -2091,7 +2657,7 @@
             </svg>
           </div>
           <h3 class="sam-plat-components__card-title">Sensor + comms hardware</h3>
-          <p class="sam-plat-components__card-desc">Dedicated hardware installed at the MCC. Captures the electrical signature of every connected AC motor at up to 96 kHz and transmits data via cellular, with Ethernet or WiFi fallback where signal is limited. No sensors on the machine. No wiring to the asset.</p>
+          <p class="sam-plat-components__card-desc">Captures electrical signatures at the MCC. No sensors on machines.</p>
         </div>
         <div class="sam-plat-components__card">
           <div class="sam-plat-components__card-icon" aria-hidden="true">
@@ -2103,7 +2669,7 @@
             </svg>
           </div>
           <h3 class="sam-plat-components__card-title">Signal processing + AI analytics</h3>
-          <p class="sam-plat-components__card-desc">Proprietary algorithms extract mechanical and electrical features from the signal. Machine learning models — trained on thousands of industrial assets — detect anomalies, classify fault types, and track degradation over time.</p>
+          <p class="sam-plat-components__card-desc">ML models detect anomalies and classify fault types from electrical data.</p>
         </div>
         <div class="sam-plat-components__card">
           <div class="sam-plat-components__card-icon" aria-hidden="true">
@@ -2114,7 +2680,7 @@
             </svg>
           </div>
           <h3 class="sam-plat-components__card-title">Monitoring service</h3>
-          <p class="sam-plat-components__card-desc">Every AI-flagged anomaly is reviewed by a Samotics reliability engineer before an alert reaches your team. Fault type confirmed, severity assessed, recommended action written. No false positive noise. No alerts to triage. This is what makes SAM4 a managed service, not a self-serve tool.</p>
+          <p class="sam-plat-components__card-desc">Every alert reviewed by a reliability engineer before reaching your team.</p>
         </div>
         <div class="sam-plat-components__card">
           <div class="sam-plat-components__card-icon" aria-hidden="true">
@@ -2127,185 +2693,129 @@
             </svg>
           </div>
           <h3 class="sam-plat-components__card-title">Dashboard + API</h3>
-          <p class="sam-plat-components__card-desc">A fleet-wide interface for daily use and quarterly reporting. Asset health scores, active alerts, diagnostic history, and trend analysis — all in one view. Your engineers see everything we see. Role-based access for different teams. REST API for CMMS integration and automated workflows.</p>
+          <p class="sam-plat-components__card-desc">Fleet-wide interface for daily use and quarterly reporting.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 3. DASHBOARD ─── -->
+  <!-- ─── 4. DASHBOARD ─── -->
   <section id="dashboard" class="sam-plat-dash">
     <div class="sam-plat-dash__inner">
       <p class="overline">Dashboard</p>
       <h2>Built for daily checks and quarterly reviews</h2>
-      <p class="lead sam-plat-dash__lead">The dashboard is designed for two users: the Reliability Manager who checks it daily, and the Operations Director who opens it quarterly. Both get what they need in under 60 seconds.</p>
 
-      <div class="sam-plat-dash__features">
-        <div class="sam-plat-dash__feature">
-          <div class="sam-plat-dash__feature-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect x="4" y="4" width="24" height="24" rx="0" stroke="currentColor" stroke-width="2" fill="none"/>
-              <circle cx="12" cy="16" r="4" fill="#006C6C" opacity="0.3"/>
-              <circle cx="20" cy="12" r="3" fill="#FF5429" opacity="0.3"/>
-              <circle cx="22" cy="22" r="3" fill="#005CBA" opacity="0.3"/>
-            </svg>
-          </div>
-          <h3 class="sam-plat-dash__feature-title">Asset health overview</h3>
-          <p class="sam-plat-dash__feature-desc">Every asset displays a health score based on continuous electrical signature analysis. Green, amber, red — at a glance. Drill into any asset for full diagnostic history.</p>
+      <div class="sam-plat-dash__two-column">
+        <div class="sam-plat-dash__column">
+          <h3 class="sam-plat-dash__column-title">Daily monitoring</h3>
+          <ul class="sam-plat-dash__column-list">
+            <li>Automated alerts ranked by severity</li>
+            <li>Anomaly tracking across assets</li>
+            <li>Fleet health at a glance</li>
+          </ul>
         </div>
-        <div class="sam-plat-dash__feature">
-          <div class="sam-plat-dash__feature-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect x="4" y="4" width="24" height="24" rx="0" stroke="currentColor" stroke-width="2" fill="none"/>
-              <path d="M8 22L14 14L18 18L24 10" stroke="#FF5429" stroke-width="2" fill="none"/>
-              <circle cx="24" cy="10" r="2" fill="#FF5429"/>
-            </svg>
-          </div>
-          <h3 class="sam-plat-dash__feature-title">Alert feed</h3>
-          <p class="sam-plat-dash__feature-desc">Active alerts ranked by severity and urgency. Each alert includes fault type, affected asset, recommended action, and estimated time to failure. Every alert is validated before it reaches your team.</p>
-        </div>
-        <div class="sam-plat-dash__feature">
-          <div class="sam-plat-dash__feature-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M18 4L8 18H16L14 28L24 14H16L18 4Z" fill="#006C6C" opacity="0.3" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </div>
-          <h3 class="sam-plat-dash__feature-title">Energy insights</h3>
-          <p class="sam-plat-dash__feature-desc">Track energy efficiency across your fleet. Identify underperforming assets, detect process deviations that drive excess consumption, and see where optimisation matters most.</p>
-        </div>
-        <div class="sam-plat-dash__feature">
-          <div class="sam-plat-dash__feature-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M8 24L14 16L20 20L26 8" stroke="currentColor" stroke-width="2" fill="none"/>
-              <circle cx="14" cy="16" r="2" fill="#006C6C"/>
-              <circle cx="20" cy="20" r="2" fill="#006C6C"/>
-              <circle cx="26" cy="8" r="2" fill="#FF5429"/>
-            </svg>
-          </div>
-          <h3 class="sam-plat-dash__feature-title">Trend analysis</h3>
-          <p class="sam-plat-dash__feature-desc">Track how asset health evolves over weeks and months. Spot slow degradation before it triggers an alert. Compare performance across similar asset types to identify outliers.</p>
+        <div class="sam-plat-dash__column">
+          <h3 class="sam-plat-dash__column-title">Quarterly reviews</h3>
+          <ul class="sam-plat-dash__column-list">
+            <li>Trend analysis and fleet reports</li>
+            <li>ROI tracking and cost avoidance</li>
+            <li>Asset prioritisation recommendations</li>
+          </ul>
         </div>
       </div>
 
-      <p class="sam-plat-dash__screenshot-note"><!-- Placeholder: SAM4 dashboard screenshot --><em>Dashboard screenshot available on request — <a href="/contact?intent=demo" class="sam-text-link">request a live demo</a> to see it in action.</em></p>
+      <p class="sam-plat-dash__screenshot-note" style="margin-top: var(--sp-09);"><em>Dashboard screenshot available on request. <a href="/contact?intent=demo" class="sam-text-link">Request a live demo →</a></em></p>
 
-      <div class="sam-img-placeholder" style="position:relative;width:100%;padding-bottom:50.0%;background:#F8F5F2;border:1px solid #E8E4E0;border-radius:8px;overflow:hidden;">
+      <div class="sam-img-placeholder" style="position:relative;width:100%;padding-bottom:50.0%;background:#F8F5F2;border:1px solid #E8E4E0;border-radius:8px;overflow:hidden;margin-top:var(--sp-08);">
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 32px;text-align:center;gap:8px;">
           <span style="font:600 11px/1.2 'JetBrains Mono',monospace;color:#6B6B7F;text-transform:uppercase;letter-spacing:.1em;opacity:.5;">1200×600</span>
           <span style="font:600 14px/1.3 'IBM Plex Sans',sans-serif;color:#1F1F33;">SAM4 dashboard interface</span>
-          <span style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:#6B6B7F;max-width:640px;">Fleet overview dashboard. Dark header with SAM4 logo. Site selector, filters. 6 asset cards in 3×2 grid — each with status dot (green/orange/red), asset name, type, sparkline, timestamp. Summary bar: Total 247, Healthy 220, Warning 15, Critical 12.</span>
+          <span style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:#6B6B7F;max-width:640px;">Fleet overview. Dark header with SAM4 logo. 6 asset cards in grid. Each shows status, name, type, health spark, timestamp. Summary: Total 247, Healthy 220, Warning 15, Critical 12.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 4. ALERTS ─── -->
-  <section id="alerts" class="sam-plat-alerts">
-    <div class="sam-plat-alerts__inner">
-      <p class="overline">Alert logic</p>
+  <!-- ─── 5. ALERT VALIDATION ─── -->
+  <section id="validation" class="sam-plat-validation">
+    <div class="sam-plat-validation__inner">
+      <p class="overline">Alert validation</p>
       <h2>Every alert is validated before it reaches your team</h2>
-      <p class="lead sam-plat-alerts__lead">Reliability teams don't need more alerts. They need fewer, better ones. SAM4's three-stage pipeline ensures every alert that reaches your team has been validated by a reliability engineer.</p>
 
-      <div class="sam-plat-alerts__pipeline">
-        <div class="sam-plat-alerts__stage">
-          <span class="sam-plat-alerts__stage-num kpi-value">1</span>
-          <h3 class="sam-plat-alerts__stage-title">AI detection</h3>
-          <p class="sam-plat-alerts__stage-desc">Machine learning models identify anomalies in the electrical signature. The models are trained on thousands of industrial assets across fault types and equipment categories.</p>
+      <div class="sam-plat-validation__flow">
+        <div class="sam-plat-validation__flow-step">
+          <span class="sam-plat-validation__flow-label">Signal<br/>anomaly</span>
         </div>
-        <div class="sam-plat-alerts__stage">
-          <span class="sam-plat-alerts__stage-num kpi-value">2</span>
-          <h3 class="sam-plat-alerts__stage-title">Expert validation</h3>
-          <p class="sam-plat-alerts__stage-desc">Every anomaly flagged by the AI is reviewed by a Samotics diagnostician before an alert is sent. Human expertise confirms fault type, assesses severity, and writes a recommended action. No automated spam.</p>
+        <div class="sam-plat-validation__flow-arrow" aria-hidden="true">→</div>
+        <div class="sam-plat-validation__flow-step">
+          <span class="sam-plat-validation__flow-label">AI<br/>detection</span>
         </div>
-        <div class="sam-plat-alerts__stage">
-          <span class="sam-plat-alerts__stage-num kpi-value">3</span>
-          <h3 class="sam-plat-alerts__stage-title">Alert delivery</h3>
-          <p class="sam-plat-alerts__stage-desc">Validated alerts arrive in the SAM4 dashboard and push to your CMMS, email, or notification channel. Each alert includes: fault type, severity level, affected asset, recommended action, and estimated timeline.</p>
+        <div class="sam-plat-validation__flow-arrow" aria-hidden="true">→</div>
+        <div class="sam-plat-validation__flow-step">
+          <span class="sam-plat-validation__flow-label">Engineer<br/>validation</span>
+        </div>
+        <div class="sam-plat-validation__flow-arrow" aria-hidden="true">→</div>
+        <div class="sam-plat-validation__flow-step">
+          <span class="sam-plat-validation__flow-label">Maintenance<br/>recommendation</span>
         </div>
       </div>
 
-      <div class="sam-plat-alerts__severity">
-        <h3 class="sam-plat-alerts__severity-title">Severity levels</h3>
-        <div class="sam-plat-alerts__severity-grid">
-          <div class="sam-plat-alerts__severity-item sam-plat-alerts__severity-item--critical">
-            <span class="sam-plat-alerts__severity-badge">Critical</span>
-            <p class="sam-plat-alerts__severity-desc">Immediate action required. Failure likely within days to weeks. The alert includes specific remediation steps.</p>
-          </div>
-          <div class="sam-plat-alerts__severity-item sam-plat-alerts__severity-item--warning">
-            <span class="sam-plat-alerts__severity-badge">Warning</span>
-            <p class="sam-plat-alerts__severity-desc">Developing fault detected. Plan maintenance within the next scheduled window. Degradation trend visible but not yet urgent.</p>
-          </div>
-          <div class="sam-plat-alerts__severity-item sam-plat-alerts__severity-item--advisory">
-            <span class="sam-plat-alerts__severity-badge">Advisory</span>
-            <p class="sam-plat-alerts__severity-desc">Minor anomaly or process deviation. Monitor the trend. No immediate action, but the condition is now tracked.</p>
-          </div>
+      <div class="sam-plat-validation__cards">
+        <div class="sam-plat-validation__card">
+          <h3 class="sam-plat-validation__card-title">Diagnostics expertise</h3>
+          <p class="sam-plat-validation__card-desc">Reliability engineers with deep knowledge of pumps, compressors, fans, and motors. Every anomaly reviewed. Fault type confirmed.</p>
+        </div>
+        <div class="sam-plat-validation__card">
+          <h3 class="sam-plat-validation__card-title">Severity assessment</h3>
+          <p class="sam-plat-validation__card-desc">How far the fault has progressed. Degradation rate. Estimated time to failure. Not guesswork.</p>
+        </div>
+        <div class="sam-plat-validation__card">
+          <h3 class="sam-plat-validation__card-title">Recommended action</h3>
+          <p class="sam-plat-validation__card-desc">Specific maintenance steps written by the diagnostician. "Replace bearing within 4 weeks" not "something is wrong."</p>
         </div>
       </div>
-
-      
-    </div>
-  </section>
-
-  <!-- ─── 5. DIAGNOSTICS ─── -->
-  <section id="diagnostics" class="sam-plat-diag">
-    <div class="sam-plat-diag__inner">
-      <p class="overline">Diagnostic depth</p>
-      <h2>What your team receives with every alert</h2>
-      <p class="lead sam-plat-diag__lead">Every validated alert comes with a diagnostic report written by a Samotics reliability engineer. Fault type, severity, recommended action, and full historical context — ready to act on.</p>
-
-      <div class="sam-plat-diag__grid">
-        <div class="sam-plat-diag__item">
-          <h4 class="sam-plat-diag__item-label">Fault type</h4>
-          <p class="sam-plat-diag__item-desc">Bearing degradation, misalignment, imbalance, cavitation, clogging, rotor bar defects, winding degradation, power supply issues, or process deviations. Classified by the AI, confirmed by the diagnostician.</p>
-        </div>
-        <div class="sam-plat-diag__item">
-          <h4 class="sam-plat-diag__item-label">Severity assessment</h4>
-          <p class="sam-plat-diag__item-desc">How far the fault has progressed. Baseline comparison, degradation rate, and estimated time to functional failure. Not just "something is wrong" — how wrong, and how fast it's getting worse.</p>
-        </div>
-        <div class="sam-plat-diag__item">
-          <h4 class="sam-plat-diag__item-label">Recommended action</h4>
-          <p class="sam-plat-diag__item-desc">Specific maintenance recommendation written by the diagnostician. "Inspect bearing at next scheduled shutdown" or "Replace coupling within 4 weeks." Actionable, not generic.</p>
-        </div>
-        <div class="sam-plat-diag__item">
-          <h4 class="sam-plat-diag__item-label">Historical context</h4>
-          <p class="sam-plat-diag__item-desc">Full timeline: when the anomaly first appeared, how it has evolved, and how the asset compares to similar equipment across your fleet. Pattern recognition across thousands of assets informs every diagnosis.</p>
-        </div>
-      </div>
-
-      
-    </div>
-  </section>
-
-  <!-- ─── 6. SERVICE MODEL ─── -->
-  <section id="service" class="sam-plat-service">
-    <div class="sam-plat-service__inner">
-      <p class="overline">Service model</p>
-      <h2>Expert engineers behind every alert</h2>
-      <p class="lead sam-plat-service__lead">SAM4 isn't self-serve software. Behind the platform is a team that knows your fleet, your sites, and your maintenance priorities.</p>
 
       <!-- Not Self-Serve Callout -->
-      <div style="background: var(--sam-seashell); border-left: 4px solid var(--sam-orange); padding: 28px 32px; margin: 48px 0; border-radius: 0;">
-        <p style="font: 600 16px/1.3 var(--sam-font); color: var(--sam-black); margin: 0 0 8px 0;">SAM4 is a managed service. Not self-serve software.</p>
-        <p style="font: 400 14px/1.6 var(--sam-font); color: var(--sam-comet); margin: 0;">Behind the platform is a team that knows your fleet, your sites, and your maintenance priorities. Human-verified alerts. Actionable recommendations. Quarterly reviews. No raw data. No alert fatigue. No guesswork.</p>
+      <div class="sam-plat-validation__callout">
+        <p class="sam-plat-validation__callout-title">SAM4 is a managed service. Not self-serve software.</p>
+        <p class="sam-plat-validation__callout-desc">Behind the platform is a team that knows your fleet, your sites, and your maintenance priorities. Human-verified alerts. Actionable recommendations. No alert fatigue.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 6. ALERT EXAMPLE ─── -->
+  <section id="alert-example" class="sam-plat-alert-example">
+    <div class="sam-plat-alert-example__inner">
+      <p class="overline">Diagnostic depth</p>
+      <h2>What your team receives with every alert</h2>
+
+      <div class="sam-plat-alert-example__card">
+        <div class="sam-plat-alert-example__header">
+          <h3 class="sam-plat-alert-example__title">Real alert example</h3>
+        </div>
+        <div class="sam-plat-alert-example__row">
+          <span class="sam-plat-alert-example__label">Asset</span>
+          <span class="sam-plat-alert-example__value">Pump P-301A</span>
+        </div>
+        <div class="sam-plat-alert-example__row">
+          <span class="sam-plat-alert-example__label">Fault</span>
+          <span class="sam-plat-alert-example__value">Inner race bearing defect</span>
+        </div>
+        <div class="sam-plat-alert-example__row">
+          <span class="sam-plat-alert-example__label">Severity</span>
+          <span class="sam-plat-alert-example__value" style="color: var(--sam-orange); font-weight: 600;">High</span>
+        </div>
+        <div class="sam-plat-alert-example__row">
+          <span class="sam-plat-alert-example__label">Lead time</span>
+          <span class="sam-plat-alert-example__value">4–6 weeks</span>
+        </div>
+        <div class="sam-plat-alert-example__row sam-plat-alert-example__row--last">
+          <span class="sam-plat-alert-example__label">Action</span>
+          <span class="sam-plat-alert-example__value">Schedule bearing replacement at next planned outage</span>
+        </div>
       </div>
 
-
-      <div class="sam-plat-service__grid">
-        <div class="sam-plat-service__card">
-          <h3 class="sam-plat-service__card-title">Dedicated diagnostics team</h3>
-          <p class="sam-plat-service__card-desc">Reliability engineers with domain expertise across pumps, compressors, fans, and motors. They've analysed thousands of faults across dozens of industries. Every AI-flagged anomaly is reviewed: fault type confirmed, severity assessed, recommended action written, time-to-failure estimated. Your team receives validated insights — not raw alerts to triage.</p>
-        </div>
-        <div class="sam-plat-service__card">
-          <h3 class="sam-plat-service__card-title">Named customer success manager</h3>
-          <p class="sam-plat-service__card-desc">One person who knows your fleet, your sites, and your maintenance priorities. They coordinate onboarding, manage escalations, track detection outcomes, and ensure you're extracting full value from the platform. When you call, you speak to someone who already knows what's happening on your assets.</p>
-        </div>
-        <div class="sam-plat-service__card">
-          <h3 class="sam-plat-service__card-title">Quarterly business reviews</h3>
-          <p class="sam-plat-service__card-desc">Scheduled reviews covering detection outcomes, fleet health trends, asset prioritisation recommendations, and ROI tracking. Data formatted for leadership — including avoided downtime, energy savings, and maintenance cost impact. No reformatting required.</p>
-        </div>
-      </div>
-
-      
+      <p class="sam-plat-alert-example__footer"><em>Alert cards include spectral signatures and trend graphs for full diagnostic context.</em></p>
     </div>
   </section>
 
@@ -2313,29 +2823,28 @@
   <section id="journey" class="sam-plat-journey">
     <div class="sam-plat-journey__inner">
       <p class="overline">Getting started</p>
-      <h2>We guide every step</h2>
-      <p class="lead sam-plat-journey__lead">Deploying condition monitoring usually means months of planning. SAM4 is different. We guide you from asset selection through go-live and beyond — with a named contact at every stage.</p>
+      <h2>SAM4 deployment takes weeks, not months.</h2>
 
       <div class="sam-plat-journey__grid">
         <div class="sam-plat-journey__stage">
           <span class="sam-plat-journey__stage-num kpi-value">1</span>
           <h3 class="sam-plat-journey__stage-title">Asset selection</h3>
-          <p class="sam-plat-journey__stage-desc">We help you identify which assets to monitor first — based on criticality, failure history, and accessibility. Not every motor needs monitoring. We help you prioritise the ones where early detection has the highest impact.</p>
+          <p class="sam-plat-journey__stage-desc">Identify critical assets where early detection has the highest impact.</p>
         </div>
         <div class="sam-plat-journey__stage">
           <span class="sam-plat-journey__stage-num kpi-value">2</span>
           <h3 class="sam-plat-journey__stage-title">Installation + onboarding</h3>
-          <p class="sam-plat-journey__stage-desc">Hardware installs at the MCC in under 30 minutes per asset. Your fleet appears in the dashboard the same day. We handle configuration, baseline calibration, and initial health assessment.</p>
+          <p class="sam-plat-journey__stage-desc">Hardware installs at the MCC in under 30 minutes. Dashboard live same day.</p>
         </div>
         <div class="sam-plat-journey__stage">
           <span class="sam-plat-journey__stage-num kpi-value">3</span>
           <h3 class="sam-plat-journey__stage-title">Training</h3>
-          <p class="sam-plat-journey__stage-desc">Structured training for every user role. Your maintenance team learns to interpret alerts, act on recommendations, and track outcomes. Operations directors learn to use fleet-level views and reporting. We train to your workflow, not ours.</p>
+          <p class="sam-plat-journey__stage-desc">Structured training for every user role. Your workflow, not ours.</p>
         </div>
         <div class="sam-plat-journey__stage">
           <span class="sam-plat-journey__stage-num kpi-value">4</span>
           <h3 class="sam-plat-journey__stage-title">Ongoing support</h3>
-          <p class="sam-plat-journey__stage-desc">A named customer success manager for escalations, quarterly reviews, and continuous improvement. New assets can be added at any time. As your fleet grows, the service scales with it.</p>
+          <p class="sam-plat-journey__stage-desc">Named customer success manager. Quarterly reviews. Continuous improvement.</p>
         </div>
       </div>
     </div>
@@ -2457,20 +2966,19 @@
       </div>
 
       <div class="sam-plat-enterprise__links">
-        <a href="/platform/how-it-installs" class="sam-text-link">See how it installs &rarr;</a>
-        <a href="/platform/security" class="sam-text-link">Security &amp; compliance &rarr;</a>
-        <a href="#integrations" class="sam-text-link">Integration options &rarr;</a>
+        <a href="/platform/how-it-installs" class="sam-text-link">See how it installs →</a>
+        <a href="/platform/security" class="sam-text-link">Security &amp; compliance →</a>
+        <a href="#integrations" class="sam-text-link">Integration options →</a>
       </div>
     </div>
   </section>
 
-  <!-- ─── 10. SECURITY & COMPLIANCE ─── -->
+  <!-- ─── 10. TESTIMONIAL ─── -->
   <section class="sam-quote sam-quote--platform">
     <div class="sam-quote__inner">
       <blockquote class="sam-quote__blockquote">
         <p class="sam-quote__text">&ldquo;Samotics offers us an innovative perspective on our assets, unveiling insights into previously hidden situations. This newfound visibility lets us make informed, proactive decisions that significantly improve our maintenance efficiency.&rdquo;</p>
         <footer class="sam-quote__attribution">
-          
           <span class="sam-quote__name">Austin Phillips</span>
           <span class="sam-quote__title">Operational Capex Implementation Manager, Southern Water</span>
         </footer>
@@ -2491,8 +2999,6 @@
   </section>
 
 </main>
-  <!-- ===================== PHP & HTML ===================== -->
-
 <!-- Pre-footer CTA -->
 <section class="sam-prefooter">
         <div class="sam-prefooter__inner">
