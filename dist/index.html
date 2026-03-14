@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Monitor 10,000+ rotating equipment assets in real-time with ESA technology. Detect bearing wear, cavitation, misalignment from MCC—no sensors required."><title>Home | Samotics</title>
+  <meta name="description" content="SAM4 uses Electrical Signature Analysis to detect bearing wear, cavitation, and misalignment from the MCC. No sensors on the machine. 10,000+ assets monitored across 80+ customers."><title>Samotics | Monitor Every Motor From the Electrical Cabinet</title>
   <link rel="canonical" href="https://samoticstestpage.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>
@@ -1996,6 +1996,155 @@
 .sam-placeholder-logos__item svg{width:32px;height:32px;color:var(--sam-comet,#6B6B7F);opacity:.4}
 @media(max-width:900px){.sam-placeholder{min-height:180px;padding:32px 16px}.sam-placeholder--hero{min-height:240px}.sam-placeholder-logos{grid-template-columns:repeat(3,1fr)}}
 
+/* ── NEW SECTION STYLES ── */
+
+/* Stakes Section */
+.sam-stakes {
+  background-color: var(--sam-white);
+  padding: var(--sp-10) 0;
+}
+.sam-stakes__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.sam-stakes__heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: var(--sp-07);
+  color: var(--sam-black);
+}
+.sam-stakes__body {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: var(--sp-07);
+  color: var(--sam-comet);
+  max-width: 800px;
+}
+.sam-stakes__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-06);
+  margin-bottom: var(--sp-07);
+}
+.sam-stakes__stat {
+  text-align: center;
+  padding: var(--sp-05);
+}
+.sam-stakes__stat-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--sam-orange);
+  display: block;
+  margin-bottom: var(--sp-02);
+}
+.sam-stakes__stat-label {
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+  line-height: 1.4;
+}
+.sam-stakes__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Industries background to seashell */
+.sam-industries {
+  background-color: var(--sam-seashell);
+}
+
+/* Platform Preview (dark 2-col) */
+.sam-platform-preview {
+  background-color: var(--sam-space-cadet);
+  color: var(--sam-white);
+  padding: var(--sp-10) 0;
+}
+.sam-platform-preview__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-08);
+  align-items: center;
+}
+.sam-platform-preview__heading {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: var(--sp-06);
+  color: var(--sam-white);
+  grid-column: 1 / -1;
+}
+.sam-platform-preview__callouts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-05);
+}
+.sam-platform-preview__callout {
+  display: flex;
+  gap: var(--sp-04);
+  align-items: flex-start;
+}
+.sam-platform-preview__callout-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sam-orange);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.sam-platform-preview__callout-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--sam-white);
+}
+.sam-platform-preview__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sam-platform-preview__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.sam-platform-preview__link {
+  grid-column: 1 / -1;
+  margin-top: var(--sp-06);
+}
+
+/* CTA Block to dark background */
+.sam-cta-block {
+  background-color: var(--sam-space-cadet);
+  color: var(--sam-white);
+}
+
+/* Proof section white background */
+.sam-proof {
+  background-color: var(--sam-white);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .sam-stakes__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sam-stakes__stat-value {
+    font-size: 1.75rem;
+  }
+  .sam-platform-preview__inner {
+    grid-template-columns: 1fr;
+  }
+  .sam-platform-preview__heading {
+    font-size: 1.5rem;
+  }
+}
+
   </style>
   <style>
   <script type="application/ld+json">{
@@ -2299,431 +2448,222 @@
 <main id="main-content" class="sam-home">
 
   <!-- ─── 1. HERO ─── -->
-  <section class="sam-hero" style="background-image: url('/assets/images/heroes/hero-homepage.jpg');">
+  <section class="sam-hero" style="background-image: url('/assets/images/hero-dashboard.webp');">
     <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
       <div class="sam-hero__content">
         <p class="sam-hero__overline">Electrical Signature Analysis</p>
         <h1 class="sam-hero__h1">Every drivetrain fault leaves a trace in your electrical data.</h1>
-        <p class="sam-hero__lead">SAM4 reads that trace from the motor control cabinet to detect bearing wear, cavitation, winding defects, and misalignment, weeks to months before failure. No sensors on the machine. Every alert validated by a Samotics reliability engineer before it reaches your team.</p>
-
-        <!-- Impact strip — above the fold -->
-        <div class="sam-hero__proof">
-          <div class="sam-hero__proof-item">
-            <span class="sam-hero__proof-value kpi-value">10,000+</span>
-            <span class="sam-hero__proof-label">assets monitored</span>
-          </div>
-          <div class="sam-hero__proof-item">
-            <span class="sam-hero__proof-value kpi-value">90%+</span>
-            <span class="sam-hero__proof-label">detection accuracy</span>
-          </div>
-          <div class="sam-hero__proof-item">
-            <span class="sam-hero__proof-value kpi-value">1.6%</span>
-            <span class="sam-hero__proof-label">false alert rate</span>
-          </div>
-        </div>
+        <p class="sam-hero__lead">SAM4 reads that trace from the motor control cabinet. It detects bearing wear, cavitation, misalignment, and winding defects weeks to months before failure. No sensors on the machine.</p>
 
         <div class="sam-hero__ctas">
-          <a href="/technology/how-sam4-works" class="sam-btn sam-btn--primary">See How It Works</a>
-          <a href="/contact?intent=demo" class="sam-btn sam-btn--ghost">Talk to an engineer</a>
-        </div>
-
-        <!-- Customer logos — above the fold -->
-        <div class="sam-hero__logos">
-          <img src="/assets/images/logos/yorkshire-water.svg" alt="Yorkshire Water" class="sam-hero__logo-img">
-          <img src="/assets/images/logos/dupont.svg" alt="DuPont" class="sam-hero__logo-img">
-          <img src="/assets/images/logos/nucor.svg" alt="Nucor" class="sam-hero__logo-img">
-          <img src="/assets/images/logos/schiphol.svg" alt="Schiphol Airport" class="sam-hero__logo-img">
-          <img src="/assets/images/logos/nyrstar.svg" alt="Nyrstar" class="sam-hero__logo-img">
+          <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+          <a href="/technology/esa" class="sam-btn sam-btn--ghost">See How ESA Works</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 2. VALUE STACK ─── -->
-  <section class="sam-value-stack">
-    <div class="sam-value-stack__inner">
-      <h2 class="sr-only">Why SAM4</h2>
-      <div class="sam-value-stack__grid">
-        <!-- Card 1: Sensorless coverage -->
-        <div class="sam-value-stack__item">
-          <div class="sam-value-stack__icon" aria-hidden="true">
-            <svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <rect x="6" y="8" width="28" height="24" rx="0" stroke="#1F1F33" stroke-width="2" fill="none"/>
-              <circle cx="20" cy="20" r="6" stroke="#0098AC" stroke-width="1.5" fill="none"/>
-              <path d="M17,20 L20,17 L23,20 L20,23 Z" fill="#0098AC" opacity="0.3"/>
-              <line x1="14" y1="4" x2="14" y2="8" stroke="#6B6B7F" stroke-width="2"/>
-              <line x1="20" y1="2" x2="20" y2="8" stroke="#6B6B7F" stroke-width="2"/>
-              <line x1="26" y1="4" x2="26" y2="8" stroke="#6B6B7F" stroke-width="2"/>
-            </svg>
-          </div>
-          <h3 class="sam-value-stack__title">Covers the assets sensors can't reach</h3>
-          <p class="sam-value-stack__desc">Submersible pumps, sealed compressors, ATEX zones, remote sites. SAM4 monitors them all from the electrical cabinet. No sensors on the machine, no access permits, no site visits.</p>
-          <a href="/platform/what-we-monitor/" class="sam-text-link" style="display: inline-flex; align-items: center; gap: 8px; margin-top: var(--sp-06);">See what we monitor&nbsp;&rarr;</a>
+  <!-- ─── 2. STAKES ─── -->
+  <section class="sam-stakes">
+    <div class="sam-stakes__inner">
+      <h2 class="sam-stakes__heading">The cost of what you can't see</h2>
+
+      <div class="sam-stakes__stats">
+        <div class="sam-stakes__stat">
+          <span class="sam-stakes__stat-value">30-40%</span>
+          <span class="sam-stakes__stat-label">of critical rotating assets have no condition monitoring</span>
         </div>
-        <!-- Card 2: What we detect -->
-        <div class="sam-value-stack__item">
-          <div class="sam-value-stack__icon" aria-hidden="true">
-            <svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <path d="M6 28 L12 18 L18 22 L24 12 L30 16 L34 8" stroke="#0098AC" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="34" cy="8" r="3" stroke="#1F1F33" stroke-width="2" fill="none"/>
-              <line x1="6" y1="32" x2="34" y2="32" stroke="#6B6B7F" stroke-width="1.5"/>
-              <line x1="6" y1="8" x2="6" y2="32" stroke="#6B6B7F" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <h3 class="sam-value-stack__title">Detects the faults that cause unplanned downtime</h3>
-          <p class="sam-value-stack__desc">Bearing degradation, cavitation, misalignment, broken rotor bars, winding defects, and mechanical looseness. SAM4 identifies fault type and severity weeks to months before failure.</p>
-          <a href="/technology/esa/" class="sam-text-link" style="display: inline-flex; align-items: center; gap: 8px; margin-top: var(--sp-06);">How ESA detects faults&nbsp;&rarr;</a>
+        <div class="sam-stakes__stat">
+          <span class="sam-stakes__stat-value">£390K</span>
+          <span class="sam-stakes__stat-label">potential fines avoided from a single pump failure detection (Yorkshire Water)</span>
         </div>
-        <!-- Card 3: Managed service (was card 2) -->
-        <div class="sam-value-stack__item">
-          <div class="sam-value-stack__icon" aria-hidden="true">
-            <svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <circle cx="20" cy="16" r="8" stroke="#1F1F33" stroke-width="2" fill="none"/>
-              <path d="M14 16 L18 20 L26 12" stroke="#0098AC" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10 30 C10 26 14 24 20 24 C26 24 30 26 30 30" stroke="#6B6B7F" stroke-width="2" fill="none"/>
-            </svg>
-          </div>
-          <h3 class="sam-value-stack__title">Fully managed. Not self-serve.</h3>
-          <p class="sam-value-stack__desc">Every alert is validated by a reliability engineer before it reaches your team. Fault type confirmed, severity assessed, action recommended. No black box.</p>
-          <a href="/platform/service-model/" class="sam-text-link" style="display: inline-flex; align-items: center; gap: 8px; margin-top: var(--sp-06);">How our service works&nbsp;&rarr;</a>
+        <div class="sam-stakes__stat">
+          <span class="sam-stakes__stat-value">70,000</span>
+          <span class="sam-stakes__stat-label">manual inspection trips replaced per year</span>
+        </div>
+        <div class="sam-stakes__stat">
+          <span class="sam-stakes__stat-value">€50K+</span>
+          <span class="sam-stakes__stat-label">saved per avoided unplanned shutdown (ArcelorMittal)</span>
         </div>
       </div>
+
+      <p class="sam-stakes__body">Traditional condition monitoring forces a trade-off: expensive sensor installations or no monitoring at all. For submerged pumps, enclosed drives, and hazardous-zone motors, most teams choose nothing. The result is failures that no one saw coming.</p>
+
+      <a href="/problem" class="sam-text-link sam-stakes__link">Understand the monitoring blind spot →</a>
     </div>
   </section>
 
-  <!-- ─── 3. HOW IT WORKS (3-STEP PIPELINE) ─── -->
-  <section class="sam-pipeline">
-    <div class="sam-pipeline__inner">
-      <p class="overline">How it works</p>
-      <h2>Monitor from the MCC. Detect failures months in advance.</h2>
-      <p class="lead sam-pipeline__lead">SAM4 monitors rotating equipment from the motor control cabinet using Electrical Signature Analysis. Once connected, Samotics manages the full pipeline: signal capture, AI detection, engineer validation, and confirmed maintenance alerts.</p>
+  <!-- ─── 3. METHOD ─── -->
+  <section class="sam-method" style="background-color: var(--sam-white);">
+    <div class="sam-method__inner" style="max-width: 1200px; margin: 0 auto; padding: var(--sp-10) 16px;">
+      <h2 style="font-size: 1.75rem; margin-bottom: var(--sp-05);">Monitor from the electrical cabinet. Not the machine.</h2>
 
-      <div class="sam-pipeline__steps">
-        <div class="sam-pipeline__step">
-          <span class="sam-pipeline__step-num kpi-value">1</span>
-          <h3 class="sam-pipeline__step-title">Connect</h3>
-          <p class="sam-pipeline__step-desc">SAM4 hardware installs in the MCC or VFD cabinet and captures high-frequency electrical signatures from the motor supply. No sensors on the machine, no wiring to the asset, no work in hazardous or submerged areas. Every connected motor becomes continuously monitored.</p>
+      <p style="font-size: 1rem; line-height: 1.6; margin-bottom: var(--sp-07); color: var(--sam-comet); max-width: 800px;">SAM4 captures current and voltage signatures at the motor control cabinet. Those signatures reveal the condition of the entire drivetrain: motor, transmission, coupling, and driven load. Changes in spectral patterns identify developing faults weeks to months before failure.</p>
+
+      <p style="font-size: 1rem; line-height: 1.6; margin-bottom: var(--sp-07); color: var(--sam-comet); max-width: 800px;">Once connected, Samotics manages the full pipeline: signal capture, AI detection, engineer validation, and confirmed maintenance alerts.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-06); margin-bottom: var(--sp-07);">
+        <div style="padding: var(--sp-05); border: 1px solid var(--sam-border-light); border-radius: 8px;">
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--sp-03);">No sensors on the machine</h3>
+          <p style="font-size: 0.95rem; line-height: 1.5; color: var(--sam-comet);">Monitors from the MCC. Submerged pumps, sealed compressors, ATEX zones, remote sites. All reachable.</p>
         </div>
-        <div class="sam-pipeline__step">
-          <span class="sam-pipeline__step-num kpi-value">2</span>
-          <h3 class="sam-pipeline__step-title">Detect</h3>
-          <p class="sam-pipeline__step-desc">AI models analyse the electrical signal to identify deviations from normal operation across the full drivetrain. Every flagged anomaly is reviewed by a Samotics reliability engineer before an alert is issued. No raw alerts reach your team.</p>
+        <div style="padding: var(--sp-05); border: 1px solid var(--sam-border-light); border-radius: 8px;">
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--sp-03);">Install in under 30 minutes</h3>
+          <p style="font-size: 0.95rem; line-height: 1.5; color: var(--sam-comet);">Non-intrusive current clamps in the MCC. No shutdown, no scaffolding, no ATEX permits.</p>
         </div>
-        <div class="sam-pipeline__step">
-          <span class="sam-pipeline__step-num kpi-value">3</span>
-          <h3 class="sam-pipeline__step-title">Act</h3>
-          <p class="sam-pipeline__step-desc">Your team receives validated diagnostics: identified failure mode, severity assessment, recommended maintenance action, and suggested intervention window. Alerts appear in the SAM4 dashboard and integrate with your CMMS. Maintenance moves from reactive to planned.</p>
+        <div style="padding: var(--sp-05); border: 1px solid var(--sam-border-light); border-radius: 8px;">
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--sp-03);">Over 90% fault detection rate</h3>
+          <p style="font-size: 0.95rem; line-height: 1.5; color: var(--sam-comet);">Bearing wear, cavitation, misalignment, winding defects. Detected weeks to months before failure. Measured across 1,135 fault events over 12 months.</p>
         </div>
       </div>
 
-      <p class="sam-proof__methodology" style="text-align: center; margin-top: var(--sp-07);">Detection lead times typically range from 4 to 20 weeks before failure, depending on the fault type. Deployed on 10,000+ assets across 5 continents.</p>
-
-      <div style="margin-top:var(--sp-07); border-radius:8px; overflow:hidden;">
-        <img src="/assets/images/diagrams/diagram-process-flow.png" alt="SAM4 process flow: Motor/Pump → SAM4 at MCC → Cloud AI → Actionable alert" style="width:100%; height:auto; display:block; border-radius:8px;" loading="lazy">
-      </div>
-
-      <div class="sam-pipeline__links">
-        <a href="/technology/how-sam4-works" class="sam-text-link">See the full pipeline &rarr;</a>
-      </div>
+      <a href="/technology/esa" class="sam-text-link">How ESA works →</a>
     </div>
   </section>
 
-  <!-- ─── 3b. WHY ESA WORKS ─── -->
-  <section class="sam-esa">
-    <div class="sam-esa__inner">
-      <p class="overline">The science</p>
-      <h2>Mechanical faults leave electrical fingerprints</h2>
-      <p class="sam-esa__lead">A worn bearing, a blocked impeller, or a misaligned shaft changes the torque on the motor. That torque variation modulates current and voltage in ways that are invisible to vibration sensors but clearly visible in the electrical spectrum. SAM4 analyzes those spectral signatures from the motor control cabinet, identifying characteristic sideband frequencies that map directly to specific fault types.</p>
-
-      <div class="sam-esa__fault-groups">
-        <div class="sam-esa__fault-group">
-          <h3 class="sam-esa__group-label">Mechanical faults</h3>
-          <div class="sam-esa__faults">
-            <div class="sam-esa__fault">
-              <div class="sam-esa__fault-icon" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="10" stroke="#1F1F33" stroke-width="2" fill="none"/>
-                  <circle cx="16" cy="16" r="4" stroke="#0098AC" stroke-width="1.5" fill="none"/>
-                  <circle cx="16" cy="16" r="1.5" fill="#0098AC" opacity="0.35"/>
-                </svg>
-              </div>
-              <span class="sam-esa__fault-label">Bearing degradation</span>
-            </div>
-            <div class="sam-esa__fault">
-              <div class="sam-esa__fault-icon" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <line x1="6" y1="16" x2="26" y2="16" stroke="#1F1F33" stroke-width="2"/>
-                  <line x1="16" y1="6" x2="16" y2="26" stroke="#1F1F33" stroke-width="2"/>
-                  <path d="M12 12 L20 20" stroke="#0098AC" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 3"/>
-                </svg>
-              </div>
-              <span class="sam-esa__fault-label">Misalignment</span>
-            </div>
-            <div class="sam-esa__fault">
-              <div class="sam-esa__fault-icon" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="10" stroke="#1F1F33" stroke-width="2" fill="none"/>
-                  <path d="M10 16 Q13 10 16 16 Q19 22 22 16" stroke="#0098AC" stroke-width="1.5" fill="none"/>
-                </svg>
-              </div>
-              <span class="sam-esa__fault-label">Imbalance</span>
-            </div>
-            <div class="sam-esa__fault">
-              <div class="sam-esa__fault-icon" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <path d="M8 24 C8 24 12 8 16 16 C20 24 24 8 24 8" stroke="#1F1F33" stroke-width="2" fill="none" stroke-linecap="round"/>
-                  <circle cx="16" cy="16" r="3" stroke="#0098AC" stroke-width="1.5" fill="none"/>
-                </svg>
-              </div>
-              <span class="sam-esa__fault-label">Cavitation</span>
-            </div>
-          </div>
-        </div>
-        <div class="sam-esa__fault-group">
-          <h3 class="sam-esa__group-label">Electrical faults</h3>
-          <div class="sam-esa__faults">
-            <div class="sam-esa__fault">
-              <div class="sam-esa__fault-icon" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <rect x="6" y="10" width="20" height="12" rx="0" stroke="#1F1F33" stroke-width="2" fill="none"/>
-                  <line x1="10" y1="10" x2="10" y2="22" stroke="#0098AC" stroke-width="1.5"/>
-                  <line x1="16" y1="10" x2="16" y2="22" stroke="#0098AC" stroke-width="1.5"/>
-                  <line x1="22" y1="10" x2="22" y2="22" stroke="#0098AC" stroke-width="1.5"/>
-                  <path d="M14 14L18 18" stroke="#FF5429" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <span class="sam-esa__fault-label">Broken rotor bars</span>
-            </div>
-            <div class="sam-esa__fault">
-              <div class="sam-esa__fault-icon" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <rect x="6" y="8" width="20" height="16" rx="0" stroke="#1F1F33" stroke-width="2" fill="none"/>
-                  <path d="M10 16 L14 12 L18 18 L22 14" stroke="#0098AC" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="10" cy="16" r="1.5" fill="#0098AC" opacity="0.35"/>
-                </svg>
-              </div>
-              <span class="sam-esa__fault-label">Winding faults</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p class="sam-esa__connector">This is why SAM4 can monitor assets that sensors cannot reach.</p>
-      <a href="/technology/esa/" class="sam-text-link">See how ESA detects faults &rarr;</a>
-    </div>
-  </section>
-
-  <!-- ─── 4. SOCIAL PROOF ─── -->
-  <section class="sam-proof">
-    <div class="sam-proof__inner">
-      <p class="overline">Proof</p>
-      <h2>Proven across 10,000 monitored assets</h2>
-
-      <div class="sam-proof__stats">
-        <div class="sam-proof__stat">
-          <span class="sam-proof__stat-label">Detection rate</span>
-          <span class="sam-proof__stat-value kpi-value">95%</span>
-          <span class="sam-proof__stat-micro">Of confirmed faults flagged before failure</span>
-        </div>
-        <div class="sam-proof__stat">
-          <span class="sam-proof__stat-label">False positive rate</span>
-          <span class="sam-proof__stat-value kpi-value">1.8%</span>
-          <span class="sam-proof__stat-micro">After engineer validation of every alert</span>
-        </div>
-        <div class="sam-proof__stat">
-          <span class="sam-proof__stat-label">Validated findings</span>
-          <span class="sam-proof__stat-value kpi-value">5,300+</span>
-          <span class="sam-proof__stat-micro">Faults confirmed by on-site inspection</span>
-        </div>
-        <div class="sam-proof__stat">
-          <span class="sam-proof__stat-label">Detection value</span>
-          <span class="sam-proof__stat-value kpi-value">&euro;80M+</span>
-          <span class="sam-proof__stat-micro">Avoided downtime and repair costs</span>
-        </div>
-      </div>
-
-      <p class="sam-proof__scale">80+ customers across 5 continents. 10,000+ assets monitored.</p>
-
-      <!-- Quote -->
-      <blockquote class="sam-proof__quote">
-        <p>&ldquo;We&rsquo;ve chosen Samotics as our sole supplier for ESA technology for the coming years because they have shown strong performance in the water industry and are the only company able to deliver this technology at scale.&rdquo;</p>
-        <footer>
-          <cite>&mdash; Matt Armitage, Dynamic Maintenance Transformation Lead, Yorkshire Water</cite>
-        </footer>
-      </blockquote>
-
-      <p class="sam-proof__methodology">Metrics measured over the past 12 months across 1,135 fault events. <a href="/technology/how-sam4-works#measurement" class="sam-text-link">Full metric definitions &rarr;</a></p>
-
-      <!-- Featured case studies -->
-      <div class="sam-proof__cases">
-        <a href="/resources/case-studies/how-yorkshire-water-saved-390k-in-potential-fine-with-samotics/" class="sam-proof__case">
-          <span class="sam-proof__case-industry">Water</span>
-          <h4 class="sam-proof__case-title">Yorkshire Water avoided &pound;390k in regulatory fines by catching pump failures early</h4>
-          <span class="sam-proof__case-link">Read case study &rarr;</span>
-        </a>
-        <a href="/resources/case-studies/how-arcelormittal-prevented-31-hours-of-downtime-by-detecting-27-failures-ahead-of-time/" class="sam-proof__case">
-          <span class="sam-proof__case-industry">Steel</span>
-          <h4 class="sam-proof__case-title">ArcelorMittal prevented 31 hours of hot strip mill downtime across 27 detected faults</h4>
-          <span class="sam-proof__case-link">Read case study &rarr;</span>
-        </a>
-        <a href="/resources/case-studies/how-zinc-smelter-nyrstar-got-800-roi-in-11-months/" class="sam-proof__case">
-          <span class="sam-proof__case-industry">Mining &amp; Metals</span>
-          <h4 class="sam-proof__case-title">Nyrstar achieved 800% ROI in 11 months monitoring smelter drivetrains</h4>
-          <span class="sam-proof__case-link">Read case study &rarr;</span>
-        </a>
-      </div>
-
-      <a href="/resources/case-studies/" class="sam-text-link">Explore 35 documented customer results &rarr;</a>
-    </div>
-  </section>
-
-  <!-- ─── 5. INDUSTRY ROUTING ─── -->
+  <!-- ─── 4. INDUSTRY ROUTING ─── -->
   <section class="sam-industries">
     <div class="sam-industries__inner">
-      <p class="overline">Industries</p>
-      <h2>Built for industries with hard-to-reach equipment</h2>
-      <p class="lead sam-industries__sub">Many critical machines operate where sensors cannot be installed. Submerged pumps. Hazardous zones. Remote infrastructure. Sealed process equipment. SAM4 monitors these assets directly from the electrical cabinet.</p>
-      <p class="sam-industries__narrative">These industries share the same reliability blind spot: critical rotating equipment that cannot be monitored with traditional sensors.</p>
+      <h2 style="font-size: 1.75rem; margin-bottom: var(--sp-06);">Monitoring the assets your industry can't reach</h2>
 
       <div class="sam-industries__grid">
-
-        <a href="/industries/water" class="sam-industry-card">
-          <div class="sam-industry-card__icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-              <path d="M16 4C16 4 6 16 6 22C6 27.523 10.477 28 16 28C21.523 28 26 27.523 26 22C26 16 16 4 16 4Z" stroke="#1F1F33" stroke-width="2" fill="none"/>
-              <path d="M12 22C12 22 14 18 16 18C18 18 20 22 20 22" stroke="#0098AC" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 class="sam-industry-card__title">Water &amp; Wastewater</h3>
-          <p class="sam-industry-card__desc">Submersible pumps and remote pumping stations where vibration sensors cannot be installed. Monitor pump health directly from the MCC.</p>
-          <span class="sam-industry-card__link">See water case studies &rarr;</span>
+        <a href="/industries/water" class="sam-industry-card" style="text-decoration: none; padding: var(--sp-05); border-radius: 8px; border: 1px solid var(--sam-border-light); transition: all 0.2s ease;">
+          <h3 class="sam-industry-card__title">Water & Wastewater</h3>
+          <p style="font-size: 0.95rem; color: var(--sam-comet); margin-bottom: var(--sp-04);">Continuous pump health without a site visit</p>
+          <p style="font-size: 0.875rem; color: var(--sam-comet); opacity: 0.7;">5,000+ pumps monitored. £20M+ documented benefits.</p>
         </a>
 
-        <a href="/industries/oil-gas" class="sam-industry-card">
-          <div class="sam-industry-card__icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-              <path d="M8 28V14L16 4L24 14V28" stroke="#1F1F33" stroke-width="2" fill="none"/>
-              <line x1="8" y1="28" x2="24" y2="28" stroke="#6B6B7F" stroke-width="2"/>
-              <circle cx="16" cy="18" r="3" stroke="#0098AC" stroke-width="1.5" fill="none"/>
-            </svg>
-          </div>
-          <h3 class="sam-industry-card__title">Energy Production</h3>
-          <p class="sam-industry-card__desc">Motors operating in ATEX zones and offshore environments where field instrumentation is restricted. Monitor from the MCC without entering hazardous areas.</p>
-          <span class="sam-industry-card__link">See energy case studies &rarr;</span>
+        <a href="/industries/oil-gas" class="sam-industry-card" style="text-decoration: none; padding: var(--sp-05); border-radius: 8px; border: 1px solid var(--sam-border-light); transition: all 0.2s ease;">
+          <h3 class="sam-industry-card__title">Oil & Gas</h3>
+          <p style="font-size: 0.95rem; color: var(--sam-comet); margin-bottom: var(--sp-04);">Safe-zone monitoring for hazardous areas</p>
+          <p style="font-size: 0.875rem; color: var(--sam-comet); opacity: 0.7;">ATEX-compatible from the MCC. No field instrumentation.</p>
         </a>
 
-        <a href="/industries/metals-mining" class="sam-industry-card">
-          <div class="sam-industry-card__icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-              <rect x="4" y="12" width="24" height="16" rx="0" stroke="#1F1F33" stroke-width="2" fill="none"/>
-              <path d="M4 12L16 4L28 12" stroke="#6B6B7F" stroke-width="2" fill="none"/>
-              <rect x="10" y="18" width="4" height="10" stroke="#0098AC" stroke-width="1.5" fill="none"/>
-              <rect x="18" y="18" width="4" height="10" stroke="#0098AC" stroke-width="1.5" fill="none"/>
-            </svg>
-          </div>
-          <h3 class="sam-industry-card__title">Metals &amp; Mining</h3>
-          <p class="sam-industry-card__desc">Heavy-duty pumps, fans, and conveyors in harsh environments. Detect faults early without installing sensors on inaccessible equipment.</p>
-          <span class="sam-industry-card__link">See mining case studies &rarr;</span>
+        <a href="/industries/metals-mining" class="sam-industry-card" style="text-decoration: none; padding: var(--sp-05); border-radius: 8px; border: 1px solid var(--sam-border-light); transition: all 0.2s ease;">
+          <h3 class="sam-industry-card__title">Metals & Mining</h3>
+          <p style="font-size: 0.95rem; color: var(--sam-comet); margin-bottom: var(--sp-04);">Catch what your maintenance schedule misses</p>
+          <p style="font-size: 0.875rem; color: var(--sam-comet); opacity: 0.7;">Bearing faults detected 5 months early at ArcelorMittal.</p>
         </a>
 
-        <a href="/industries/chemicals" class="sam-industry-card">
-          <div class="sam-industry-card__icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-              <path d="M12 4V14L4 28H28L20 14V4" stroke="#1F1F33" stroke-width="2" fill="none"/>
-              <line x1="10" y1="4" x2="22" y2="4" stroke="#6B6B7F" stroke-width="2"/>
-              <circle cx="13" cy="22" r="2" fill="#0098AC" opacity="0.35"/>
-              <circle cx="19" cy="24" r="1.5" fill="#0098AC" opacity="0.35"/>
-            </svg>
-          </div>
+        <a href="/industries/chemicals" class="sam-industry-card" style="text-decoration: none; padding: var(--sp-05); border-radius: 8px; border: 1px solid var(--sam-border-light); transition: all 0.2s ease;">
           <h3 class="sam-industry-card__title">Chemicals</h3>
-          <p class="sam-industry-card__desc">Process-critical pumps and compressors in restricted-access areas. Continuous monitoring without shutdowns or ATEX sensor installation.</p>
-          <span class="sam-industry-card__link">See chemical case studies &rarr;</span>
+          <p style="font-size: 0.95rem; color: var(--sam-comet); margin-bottom: var(--sp-04);">Full fleet coverage in hours, not months</p>
+          <p style="font-size: 0.875rem; color: var(--sam-comet); opacity: 0.7;">40% reduction in equipment downtime at DuPont.</p>
         </a>
 
-        <a href="/industries/all/" class="sam-industry-card sam-industry-card--more">
-          <h3 class="sam-industry-card__title">Additional industries</h3>
-          <p class="sam-industry-card__desc">Airports, pulp &amp; paper, food &amp; beverage, and manufacturing. Plus co-development programmes for new applications.</p>
-          <span class="sam-industry-card__link">See all industries &rarr;</span>
+        <a href="/industries/pulp-paper" class="sam-industry-card" style="text-decoration: none; padding: var(--sp-05); border-radius: 8px; border: 1px solid var(--sam-border-light); transition: all 0.2s ease;">
+          <h3 class="sam-industry-card__title">Pulp & Paper</h3>
+          <p style="font-size: 0.95rem; color: var(--sam-comet); margin-bottom: var(--sp-04);">Reliability and energy efficiency in one platform</p>
+          <p style="font-size: 0.875rem; color: var(--sam-comet); opacity: 0.7;">7.1% pump efficiency improvement at Vitens.</p>
         </a>
-
       </div>
     </div>
   </section>
 
-  <!-- ─── 6. TRUST SIGNALS ─── -->
-  <section class="sam-trust">
-    <div class="sam-trust__inner">
-      <p class="overline">Trusted by</p>
-      <h2>Strategic partners. Institutional backing. 80+ industrial customers.</h2>
-
-      <!-- Customer logos first (peer adoption) -->
-      <div class="sam-trust__logos">
-        <p class="sam-trust__logos-label">Industrial customers across five continents</p>
-        <div class="sam-trust__customer-grid">
-          <span class="sam-trust__customer-name">Yorkshire Water</span>
-          <span class="sam-trust__customer-name">Southern Water</span>
-          <span class="sam-trust__customer-name">ArcelorMittal</span>
-          <span class="sam-trust__customer-name">Nyrstar</span>
-          <span class="sam-trust__customer-name">Aker BP</span>
-          <span class="sam-trust__customer-name">TAQA</span>
-          <span class="sam-trust__customer-name">Currenta</span>
-          <span class="sam-trust__customer-name">DuPont</span>
-          <span class="sam-trust__customer-name">Nucor</span>
-          <span class="sam-trust__customer-name">Schiphol</span>
+  <!-- ─── 5. SOCIAL PROOF ─── -->
+  <section class="sam-proof">
+    <div class="sam-proof__inner" style="max-width: 1200px; margin: 0 auto; padding: var(--sp-10) 16px;">
+      <div class="sam-proof__stats" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-06); text-align: center; margin-bottom: var(--sp-07);">
+        <div>
+          <span class="kpi-value" style="font-size: 2.25rem; color: var(--sam-orange); display: block; margin-bottom: var(--sp-02);">10,000+</span>
+          <span style="font-size: 0.9rem; color: var(--sam-comet);">assets monitored</span>
+        </div>
+        <div>
+          <span class="kpi-value" style="font-size: 2.25rem; color: var(--sam-orange); display: block; margin-bottom: var(--sp-02);">80+</span>
+          <span style="font-size: 0.9rem; color: var(--sam-comet);">customers</span>
+        </div>
+        <div>
+          <span class="kpi-value" style="font-size: 2.25rem; color: var(--sam-orange); display: block; margin-bottom: var(--sp-02);">5</span>
+          <span style="font-size: 0.9rem; color: var(--sam-comet);">continents</span>
+        </div>
+        <div>
+          <span class="kpi-value" style="font-size: 2.25rem; color: var(--sam-orange); display: block; margin-bottom: var(--sp-02);">90%+</span>
+          <span style="font-size: 0.9rem; color: var(--sam-comet);">detection rate</span>
+        </div>
+        <div>
+          <span class="kpi-value" style="font-size: 2.25rem; color: var(--sam-orange); display: block; margin-bottom: var(--sp-02);">8 months</span>
+          <span style="font-size: 0.9rem; color: var(--sam-comet);">average payback</span>
         </div>
       </div>
 
-      <!-- Strategic partners -->
-      <p class="sam-trust__partners-label">Strategic partners</p>
-      <div class="sam-trust__partners">
-        <div class="sam-trust__partner">
-          <span class="sam-trust__partner-name">ABB</span>
-          <span class="sam-trust__partner-role">Strategic investor and OEM partner</span>
-          <span class="sam-trust__partner-detail">ESA integrated into ABB ACS880 industrial drives, enabling monitoring directly inside the drive architecture.</span>
-        </div>
-        <div class="sam-trust__partner">
-          <span class="sam-trust__partner-name">European Investment Bank</span>
-          <span class="sam-trust__partner-role">Institutional backer</span>
-          <span class="sam-trust__partner-detail">&euro;20M financing backed by the InvestEU Future Tech programme, supporting large-scale deployment of SAM4.</span>
+      <!-- Customer logos -->
+      <div style="margin-bottom: var(--sp-07); text-align: center;">
+        <p style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sam-comet); margin-bottom: var(--sp-04);">Trusted by leading industrial operators</p>
+        <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: var(--sp-04); max-width: 100%;">
+          <div style="display: flex; align-items: center; justify-content: center; padding: var(--sp-03); border: 1px solid var(--sam-border-light); border-radius: 6px; min-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.2s ease;" class="logo-item">Yorkshire Water</div>
+          <div style="display: flex; align-items: center; justify-content: center; padding: var(--sp-03); border: 1px solid var(--sam-border-light); border-radius: 6px; min-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.2s ease;" class="logo-item">ArcelorMittal</div>
+          <div style="display: flex; align-items: center; justify-content: center; padding: var(--sp-03); border: 1px solid var(--sam-border-light); border-radius: 6px; min-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.2s ease;" class="logo-item">DuPont</div>
+          <div style="display: flex; align-items: center; justify-content: center; padding: var(--sp-03); border: 1px solid var(--sam-border-light); border-radius: 6px; min-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.2s ease;" class="logo-item">Schiphol</div>
+          <div style="display: flex; align-items: center; justify-content: center; padding: var(--sp-03); border: 1px solid var(--sam-border-light); border-radius: 6px; min-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.2s ease;" class="logo-item">Nyrstar</div>
+          <div style="display: flex; align-items: center; justify-content: center; padding: var(--sp-03); border: 1px solid var(--sam-border-light); border-radius: 6px; min-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.2s ease;" class="logo-item">Vitens</div>
+          <div style="display: flex; align-items: center; justify-content: center; padding: var(--sp-03); border: 1px solid var(--sam-border-light); border-radius: 6px; min-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.2s ease;" class="logo-item">ABB</div>
+          <div style="display: flex; align-items: center; justify-content: center; padding: var(--sp-03); border: 1px solid var(--sam-border-light); border-radius: 6px; min-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.2s ease;" class="logo-item">Nucor</div>
         </div>
       </div>
 
-      <p class="sam-trust__scale">SAM4 monitors more than 10,000 rotating assets worldwide.</p>
+      <!-- Featured quote -->
+      <blockquote style="padding: var(--sp-06); border-left: 4px solid var(--sam-orange); background: var(--sam-seashell); border-radius: 4px; margin-bottom: var(--sp-07);">
+        <p style="font-size: 1.125rem; line-height: 1.6; color: var(--sam-black); margin: 0 0 var(--sp-03) 0; font-style: italic;">"At first I was a bit sceptical about SAM4's ability to detect failures by analysing electrical waveforms, but the results speak for themselves: it just works."</p>
+        <footer style="font-size: 0.95rem; color: var(--sam-comet);">Philip Curran, DuPont</footer>
+      </blockquote>
 
-      <a href="/resources/case-studies/" class="sam-text-link">Explore customer results &rarr;</a>
+      <a href="/proof" class="sam-text-link">See all customer results →</a>
     </div>
   </section>
 
-  <!-- ─── 7. CTA BLOCK ─── -->
+  <!-- ─── 6. PLATFORM PREVIEW ─── -->
+  <section class="sam-platform-preview">
+    <div class="sam-platform-preview__inner">
+      <h2 class="sam-platform-preview__heading">One platform. Every motor. 24/7.</h2>
+
+      <div class="sam-platform-preview__callouts">
+        <div class="sam-platform-preview__callout">
+          <div class="sam-platform-preview__callout-icon">1</div>
+          <div class="sam-platform-preview__callout-text">Fleet-level asset health dashboard</div>
+        </div>
+        <div class="sam-platform-preview__callout">
+          <div class="sam-platform-preview__callout-icon">2</div>
+          <div class="sam-platform-preview__callout-text">AI-driven anomaly detection with engineer validation</div>
+        </div>
+        <div class="sam-platform-preview__callout">
+          <div class="sam-platform-preview__callout-icon">3</div>
+          <div class="sam-platform-preview__callout-text">Diagnostic reports with recommended actions</div>
+        </div>
+        <div class="sam-platform-preview__callout">
+          <div class="sam-platform-preview__callout-icon">4</div>
+          <div class="sam-platform-preview__callout-text">CMMS integration: SAP PM, IBM Maximo, Infor EAM</div>
+        </div>
+      </div>
+
+      <div class="sam-platform-preview__image">
+        <div class="sam-placeholder sam-placeholder--wide">
+          <svg class="sam-placeholder__icon" width="64" height="64" viewBox="0 0 64 64" fill="currentColor">
+            <rect x="4" y="4" width="56" height="56" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <rect x="8" y="8" width="48" height="12" fill="currentColor" opacity="0.3"/>
+            <circle cx="14" cy="28" r="3" fill="currentColor"/>
+            <circle cx="32" cy="28" r="3" fill="currentColor"/>
+            <circle cx="50" cy="28" r="3" fill="currentColor"/>
+            <line x1="8" y1="40" x2="56" y2="40" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+            <line x1="8" y1="48" x2="56" y2="48" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+          </svg>
+          <span class="sam-placeholder__label">SAM4 Dashboard Preview</span>
+        </div>
+      </div>
+
+      <a href="/platform/sam4" class="sam-text-link sam-platform-preview__link">Explore the SAM4 platform →</a>
+    </div>
+  </section>
+
+  <!-- ─── 7. TERMINAL CTA ─── -->
   <section class="sam-cta-block">
-    <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">Choose your next step</h2>
-      <p class="sam-cta-block__sub">Whether you&rsquo;re evaluating the technology or ready to discuss deployment, choose the next step below.</p>
-      <p class="sam-cta-block__lead-in">The fastest way to understand if SAM4 fits your assets is a short conversation with one of our reliability engineers.</p>
+    <div class="sam-cta-block__inner" style="max-width: 1200px; margin: 0 auto; padding: var(--sp-10) 16px; text-align: center;">
+      <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: var(--sp-05); color: var(--sam-white);">Stop reacting to failures you could have seen coming.</h2>
+      <p style="font-size: 1.125rem; line-height: 1.6; margin-bottom: var(--sp-07); color: var(--sam-white); max-width: 700px; margin-left: auto; margin-right: auto;">Request a demo and speak with one of our reliability engineers within 48 hours. No sales pitch. A technical conversation about your assets.</p>
 
-      <div class="sam-cta-block__tiers">
-        <!-- Mid-funnel: research mode -->
-        <div class="sam-cta-block__tier">
-          <h3 class="sam-cta-block__tier-heading">Explore the technology</h3>
-          <p class="sam-cta-block__tier-desc">Understand how SAM4 works and review real industrial results before speaking with us.</p>
-          <div class="sam-cta-block__tier-links">
-            <a href="/resources/" class="sam-text-link sam-text-link--primary">Download the SAM4 technical guide &rarr;</a>
-            <a href="/downloads/sam4-sample-report.pdf" class="sam-text-link">View a sample diagnostic report &rarr;</a>
-            <a href="/resources/roi-calculator" class="sam-text-link">Estimate ROI for your assets &rarr;</a>
-          </div>
-        </div>
-        <!-- Bottom-funnel: action mode -->
-        <div class="sam-cta-block__tier sam-cta-block__tier--primary">
-          <h3 class="sam-cta-block__tier-heading">Engage with an engineer</h3>
-          <p class="sam-cta-block__tier-desc">Discuss your assets with a Samotics reliability engineer and see SAM4 running on real industrial machines.</p>
-          <div class="sam-cta-block__tier-actions">
-            <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Speak with an engineer</a>
-            <p class="sam-cta-block__reassurance">No sales pitch. Talk directly with a reliability engineer.</p>
-            <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary">Start a free asset assessment</a>
-            <p class="sam-cta-block__audit-desc">Identify which assets benefit most from ESA monitoring.</p>
-          </div>
-        </div>
+      <div style="display: flex; gap: var(--sp-05); justify-content: center; flex-wrap: wrap;">
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--ghost">Start Your Asset Audit</a>
       </div>
     </div>
   </section>
@@ -3071,7 +3011,7 @@
 
   /* ── Fade-In on Scroll (IntersectionObserver) ── */
   var fadeEls = home.querySelectorAll(
-    '.sam-solution, .sam-industries, .sam-proof, .sam-platform, .sam-trust, .sam-cta-block'
+    '.sam-stakes, .sam-method, .sam-industries, .sam-proof, .sam-platform-preview, .sam-cta-block'
   );
 
   if ('IntersectionObserver' in window) {
