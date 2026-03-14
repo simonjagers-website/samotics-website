@@ -113,7 +113,7 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 32px;
 }
@@ -500,7 +500,7 @@
   padding: 96px 0;
 }
 .sam-prefooter__inner {
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 32px;
   display: flex;
@@ -546,7 +546,7 @@
   padding-top: 96px;
 }
 .sam-footer__inner {
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 32px;
 }
@@ -855,6 +855,7 @@
   text-decoration: none;
   border: none;
   cursor: pointer;
+  border-radius: 4px;
   transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
   white-space: nowrap;
 }
@@ -896,6 +897,25 @@
   outline-color: var(--sam-blue);
 }
 
+/* Outline: on light backgrounds */
+.sam-btn--outline {
+  background: transparent;
+  color: #1F1F33;
+  border: 2px solid #1F1F33;
+}
+.sam-btn--outline:hover {
+  background: #1F1F33;
+  color: var(--sam-white);
+}
+.sam-btn--outline:active {
+  background: #14142A;
+  color: var(--sam-white);
+  border-color: #14142A;
+}
+.sam-btn--outline:focus-visible {
+  outline-color: var(--sam-blue);
+}
+
 /* Secondary: Navy outline */
 .sam-btn--secondary {
   background: transparent;
@@ -926,7 +946,7 @@
 .sam-hero {
   position: relative;
   overflow: hidden;
-  padding: var(--sp-12) 0 var(--sp-12) 0;
+  padding: 80px 0 80px 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -948,7 +968,7 @@
 .sam-hero__inner {
   position: relative;
   z-index: 2;
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 5%;
   width: 100%;
@@ -1052,10 +1072,10 @@
 
 .sam-value-stack {
   background: var(--sam-white);
-  padding: var(--sp-11) 0;
+  padding: 64px 0;
 }
 .sam-value-stack__inner {
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 5%;
 }
@@ -1071,6 +1091,7 @@
   padding: var(--sp-07);
   border: 1px solid var(--sam-border-light);
   border-top: 3px solid var(--sam-space-cadet);
+  border-radius: 8px;
 }
 .sam-value-stack__icon {
   color: var(--sam-space-cadet);
@@ -1098,10 +1119,10 @@
 
 .sam-pipeline {
   background: var(--sam-seashell);
-  padding: var(--sp-11) 0;
+  padding: 64px 0;
 }
 .sam-pipeline__inner {
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 5%;
 }
@@ -1172,10 +1193,10 @@
 
 .sam-industries {
   background: var(--sam-white);
-  padding: var(--sp-11) 0;
+  padding: 64px 0;
 }
 .sam-industries__inner {
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 5%;
 }
@@ -1221,6 +1242,7 @@
 .sam-industry-card {
   background: var(--sam-seashell);
   border: 1px solid var(--sam-border-light);
+  border-radius: 8px;
   padding: var(--sp-07);
   text-decoration: none;
   display: flex;
@@ -1281,10 +1303,10 @@
 
 .sam-esa {
   background: var(--sam-white);
-  padding: var(--sp-11) 0;
+  padding: 64px 0;
 }
 .sam-esa__inner {
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 5%;
 }
@@ -1380,10 +1402,10 @@
 
 .sam-proof {
   background: var(--sam-seashell);
-  padding: var(--sp-11) 0;
+  padding: 64px 0;
 }
 .sam-proof__inner {
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 5%;
   text-align: center;
@@ -1494,6 +1516,7 @@
 .sam-proof__case {
   background: var(--sam-white);
   border: 1px solid var(--sam-border-light);
+  border-radius: 8px;
   padding: var(--sp-06);
   text-decoration: none;
   display: flex;
@@ -1567,10 +1590,10 @@
 
 .sam-trust {
   background: var(--sam-white);
-  padding: var(--sp-11) 0;
+  padding: 64px 0;
 }
 .sam-trust__inner {
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 5%;
 }
@@ -1647,6 +1670,7 @@
 .sam-trust__partner {
   background: var(--sam-seashell);
   border: 1px solid var(--sam-border-light);
+  border-radius: 8px;
   padding: var(--sp-06);
   display: flex;
   flex-direction: column;
@@ -1683,10 +1707,10 @@
 
 .sam-cta-block {
   background: var(--sam-seashell);
-  padding: var(--sp-11) 0;
+  padding: 64px 0;
 }
 .sam-cta-block__inner {
-  max-width: 1584px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 5%;
   text-align: center;
@@ -2050,19 +2074,29 @@
   gap: 8px;
 }
 
-/* Industries background to seashell */
+/* Industries background to white per design system */
 .sam-industries {
-  background-color: var(--sam-seashell);
+  background-color: #FFFFFF;
 }
 
-/* Platform Preview (dark 2-col) */
+/* Method background to seashell per design system */
+.sam-method {
+  background-color: #F8F5F2;
+}
+
+/* Proof background to seashell per design system */
+.sam-proof {
+  background-color: #F8F5F2;
+}
+
+/* Platform Preview (light background per design system) */
 .sam-platform-preview {
-  background-color: var(--sam-space-cadet);
-  color: var(--sam-white);
-  padding: var(--sp-10) 0;
+  background-color: #FFFFFF;
+  color: #1F1F33;
+  padding: 64px 0;
 }
 .sam-platform-preview__inner {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 16px;
   display: grid;
@@ -2074,7 +2108,7 @@
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: var(--sp-06);
-  color: var(--sam-white);
+  color: #1F1F33;
   grid-column: 1 / -1;
 }
 .sam-platform-preview__callouts {
@@ -2101,7 +2135,7 @@
 .sam-platform-preview__callout-text {
   font-size: 1rem;
   line-height: 1.5;
-  color: var(--sam-white);
+  color: #1F1F33;
 }
 .sam-platform-preview__image {
   display: flex;
@@ -2118,15 +2152,15 @@
   margin-top: var(--sp-06);
 }
 
-/* CTA Block to dark background */
+/* CTA Block to seashell background per design system */
 .sam-cta-block {
-  background-color: var(--sam-space-cadet);
-  color: var(--sam-white);
+  background-color: #F8F5F2;
+  color: #1F1F33;
 }
 
-/* Proof section white background */
+/* Proof section seashell background per alternation */
 .sam-proof {
-  background-color: var(--sam-white);
+  background-color: #F8F5F2;
 }
 
 /* Responsive adjustments */
@@ -2448,7 +2482,7 @@
 <main id="main-content" class="sam-home">
 
   <!-- ─── 1. HERO ─── -->
-  <section class="sam-hero" style="background-image: url('/assets/images/hero-dashboard.webp');">
+  <section class="sam-hero" style="background-image: url('/assets/images/heroes/hero-homepage.jpg');">
     <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
       <div class="sam-hero__content">
@@ -2658,12 +2692,12 @@
   <!-- ─── 7. TERMINAL CTA ─── -->
   <section class="sam-cta-block">
     <div class="sam-cta-block__inner" style="max-width: 1200px; margin: 0 auto; padding: var(--sp-10) 16px; text-align: center;">
-      <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: var(--sp-05); color: var(--sam-white);">Stop reacting to failures you could have seen coming.</h2>
-      <p style="font-size: 1.125rem; line-height: 1.6; margin-bottom: var(--sp-07); color: var(--sam-white); max-width: 700px; margin-left: auto; margin-right: auto;">Request a demo and speak with one of our reliability engineers within 48 hours. No sales pitch. A technical conversation about your assets.</p>
+      <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: var(--sp-05); color: #1F1F33;">Stop reacting to failures you could have seen coming.</h2>
+      <p style="font-size: 1.125rem; line-height: 1.6; margin-bottom: var(--sp-07); color: #6B6B7F; max-width: 700px; margin-left: auto; margin-right: auto;">Request a demo and speak with one of our reliability engineers within 48 hours. No sales pitch. A technical conversation about your assets.</p>
 
       <div style="display: flex; gap: var(--sp-05); justify-content: center; flex-wrap: wrap;">
         <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
-        <a href="/contact/asset-audit" class="sam-btn sam-btn--ghost">Start Your Asset Audit</a>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--outline">Start Your Asset Audit</a>
       </div>
     </div>
   </section>
@@ -3009,37 +3043,8 @@
   var home = document.querySelector('.sam-home');
   if (!home) return;
 
-  /* ── Fade-In on Scroll (IntersectionObserver) ── */
-  var fadeEls = home.querySelectorAll(
-    '.sam-stakes, .sam-method, .sam-industries, .sam-proof, .sam-platform-preview, .sam-cta-block'
-  );
-
-  if ('IntersectionObserver' in window) {
-    var fadeObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            fadeObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    fadeEls.forEach(function (el) {
-      el.classList.add('sam-fade-target');
-      fadeObserver.observe(el);
-    });
-
-    // Inject fade CSS once
-    var style = document.createElement('style');
-    style.textContent =
-      '.sam-fade-target { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }' +
-      '.sam-fade-target.is-visible { opacity: 1; transform: translateY(0); }' +
-      '@media (prefers-reduced-motion: reduce) { .sam-fade-target { opacity: 1 !important; transform: none !important; transition: none !important; } }';
-    document.head.appendChild(style);
-  }
+  /* ── Fade-In on Scroll removed per design system ── */
+  /* Content appears immediately without scroll-triggered animations */
 
   /* ── KPI Counter Animation ── */
   var kpiEls = home.querySelectorAll('.kpi-value[data-count]');
