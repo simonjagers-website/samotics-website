@@ -958,6 +958,13 @@
   margin-top: var(--sp-02);
 }
 
+.sam-detection-matrix__esa-wins {
+  background: rgba(13, 128, 80, 0.04);
+  border-left: 3px solid #0D8050;
+}
+.sam-detection-matrix__esa-wins td:first-child {
+  padding-left: calc(var(--sp-06) - 3px);
+}
 .sam-detection-matrix__legend {
   display: flex;
   gap: var(--sp-06);
@@ -1451,8 +1458,8 @@
     <div class="sam-hero__inner">
       <div class="sam-hero__content">
         <p class="sam-hero__overline">ESA & Vibration Monitoring</p>
-        <h1 class="sam-hero__h1">Not a replacement. An extension.</h1>
-        <p class="sam-hero__lead">Vibration monitoring works where you can mount a sensor. ESA works where you can't. For the 30-40% of your fleet that sits beyond physical reach, ESA monitors from the motor control cabinet. Many customers run both. The question isn't which is better. It's which assets need which method.</p>
+        <h1 class="sam-hero__h1">Vibration monitoring has blind spots. ESA closes them.</h1>
+        <p class="sam-hero__lead">Vibration is excellent for accessible rotating equipment. But 30-40% of a typical fleet sits beyond sensor reach: submerged pumps, sealed drives, hazardous zones. ESA monitors those assets from the motor control cabinet. Many customers run both. The question isn't which is better. It's which assets need which method.</p>
         <div class="sam-hero__ctas">
           <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
           <a href="#detection-matrix" class="sam-btn sam-btn--ghost">See Detection Matrix</a>
@@ -1671,37 +1678,37 @@
               <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Classical vibration signature. Well-documented</span></td>
               <td>Vibration (when accessible)</td>
             </tr>
-            <tr>
+            <tr class="sam-detection-matrix__esa-wins">
               <td class="sam-detection-matrix__fault">Stator winding degradation</td>
               <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Primary ESA strength. Inter-turn shorts, insulation breakdown</span></td>
               <td><span class="sam-dm-badge sam-dm-badge--none">Not detectable</span><span class="sam-dm-note">Electrical fault. No mechanical vibration signature</span></td>
               <td>ESA only</td>
             </tr>
-            <tr>
+            <tr class="sam-detection-matrix__esa-wins">
               <td class="sam-detection-matrix__fault">Rotor bar defects</td>
               <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Sideband analysis around supply frequency</span></td>
               <td><span class="sam-dm-badge sam-dm-badge--limited">Limited</span><span class="sam-dm-note">Indirect. Only late-stage mechanical effects</span></td>
               <td>ESA primary</td>
             </tr>
-            <tr>
+            <tr class="sam-detection-matrix__esa-wins">
               <td class="sam-detection-matrix__fault">Supply asymmetry / power quality</td>
               <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Voltage and current imbalance measured directly</span></td>
               <td><span class="sam-dm-badge sam-dm-badge--none">Not detectable</span><span class="sam-dm-note">Electrical condition. Outside vibration scope</span></td>
               <td>ESA only</td>
             </tr>
-            <tr>
+            <tr class="sam-detection-matrix__esa-wins">
               <td class="sam-detection-matrix__fault">Cavitation</td>
               <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Load pattern changes visible in current draw</span></td>
               <td><span class="sam-dm-badge sam-dm-badge--moderate">Moderate</span><span class="sam-dm-note">High-frequency noise on accessible pumps</span></td>
               <td>ESA primary</td>
             </tr>
-            <tr>
+            <tr class="sam-detection-matrix__esa-wins">
               <td class="sam-detection-matrix__fault">Clogging / blockage</td>
               <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Power draw deviation from baseline</span></td>
               <td><span class="sam-dm-badge sam-dm-badge--limited">Limited</span><span class="sam-dm-note">Indirect flow effects only</span></td>
               <td>ESA primary</td>
             </tr>
-            <tr>
+            <tr class="sam-detection-matrix__esa-wins">
               <td class="sam-detection-matrix__fault">Efficiency loss / BEP drift</td>
               <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Power consumption vs expected operating point</span></td>
               <td><span class="sam-dm-badge sam-dm-badge--none">Not detectable</span><span class="sam-dm-note">Process condition. No vibration signature</span></td>
@@ -1764,6 +1771,11 @@
       <div style="background: var(--sam-seashell); border: 1px solid var(--sam-border-light); padding: var(--sp-07); margin-top: var(--sp-08);">
         <p style="font: 400 1rem/1.6 var(--sam-font); color: var(--sam-black); margin: 0;"><strong>Combining signal types.</strong> Vibration and ESA detect faults through different physics. Vibration reads mechanical motion. ESA reads electrical current signature. When both methods cover the same asset, you get two independent signals. Faults detected by both increase confidence. Faults detected by one only expand your detection map. The overlap isn't duplication. It's validation.</p>
       </div>
+
+      <div style="margin-top: var(--sp-08); padding: var(--sp-07) 0; border-top: 2px solid var(--sam-space-cadet); text-align: center;">
+        <p style="font: 600 1.5rem/1.4 var(--sam-font); color: var(--sam-space-cadet); margin: 0 0 var(--sp-04) 0;">Vibration monitors what sensors can reach.<br>ESA monitors what sensors cannot.</p>
+        <p style="font: 400 1.125rem/1.6 var(--sam-font); color: var(--sam-comet); margin: 0;">Together they cover the entire plant.</p>
+      </div>
     </div>
   </section>
 
@@ -1775,8 +1787,8 @@
       <div class="sam-compare__evidence-grid">
         <div class="sam-compare__evidence-card">
           <p class="sam-compare__evidence-customer">Schiphol Airport</p>
-          <h3 class="sam-compare__evidence-title">Bearing damage in baggage handling motor</h3>
-          <p class="sam-compare__evidence-body">Vibration sensors on the baggage handling gearbox motor did not flag the developing bearing degradation. SAM4 detected it during routine ESA monitoring. Post-maintenance inspection confirmed the bearing damage. Across the deployment, SAM4 achieved a 100% detection rate on 9 confirmed faults.</p>
+          <h3 class="sam-compare__evidence-title">Bearing damage missed by vibration, caught by ESA</h3>
+          <p class="sam-compare__evidence-body">Vibration sensors on the baggage handling gearbox motor showed no alarm. SAM4 detected the developing bearing degradation through current signature analysis. Post-maintenance inspection confirmed the damage. Across the deployment, SAM4 caught all 9 confirmed faults. Vibration missed 100% of them.</p>
           <div class="sam-compare__evidence-stat">
             <span class="sam-compare__evidence-stat-value">9/9</span>
             <span class="sam-compare__evidence-stat-label">faults detected</span>
@@ -1785,8 +1797,8 @@
 
         <div class="sam-compare__evidence-card">
           <p class="sam-compare__evidence-customer">DuPont</p>
-          <h3 class="sam-compare__evidence-title">Multiple faults detected across critical equipment</h3>
-          <p class="sam-compare__evidence-body">DuPont deployed ESA on critical rotating equipment where vibration monitoring had matured. ESA identified additional faults that vibration had not flagged. Over three years, faults detected by ESA would have led to unplanned shutdowns costing an estimated 1.7 million euro.</p>
+          <h3 class="sam-compare__evidence-title">Faults found where vibration programme was mature</h3>
+          <p class="sam-compare__evidence-body">DuPont had a mature vibration programme across critical rotating equipment. ESA found faults vibration had not flagged. Over three years, those detections prevented unplanned shutdowns worth an estimated 1.7 million euro. The vibration programme was working. ESA caught what it could not.</p>
           <div class="sam-compare__evidence-stat">
             <span class="sam-compare__evidence-stat-value">€1.7M</span>
             <span class="sam-compare__evidence-stat-label">estimated costs prevented</span>
