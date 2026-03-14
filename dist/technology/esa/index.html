@@ -899,6 +899,53 @@
   font-weight: 600;
   color: var(--sam-space-cadet);
 }
+.sam-mechanism__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-06);
+  margin: 32px 0;
+}
+.sam-mechanism__step {
+  position: relative;
+  padding: var(--sp-06) var(--sp-07) var(--sp-06) var(--sp-07);
+  background: var(--sam-seashell);
+  border-top: 4px solid var(--sam-space-cadet);
+}
+.sam-mechanism__step-num {
+  font: 700 2rem/1 var(--sam-mono);
+  color: var(--sam-orange);
+  margin: 0 0 8px 0;
+}
+.sam-mechanism__step-title {
+  font: 600 1rem/1.3 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 0 0 8px 0;
+}
+.sam-mechanism__step-desc {
+  font: 400 0.9375rem/1.55 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0;
+}
+.sam-mechanism__step + .sam-mechanism__step::before {
+  content: '→';
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--sam-comet);
+}
+@media (max-width: 767px) {
+  .sam-mechanism__steps {
+    grid-template-columns: 1fr;
+  }
+  .sam-mechanism__step + .sam-mechanism__step::before {
+    content: '↓';
+    left: 50%;
+    top: -18px;
+    transform: translateX(-50%);
+  }
+}
 
 /* ── 3. Data Acquisition ── */
 .sam-acquisition {
@@ -1190,6 +1237,8 @@
   gap: var(--sp-06);
 }
 .sam-evidence__card {
+  display: flex;
+  flex-direction: column;
   background: var(--sam-white);
   border: 1px solid var(--sam-border-light);
   border-top: 4px solid var(--sam-space-cadet);
@@ -1214,16 +1263,21 @@
 }
 .sam-evidence__card-stat {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--sam-border-light);
 }
 .sam-evidence__card-stat-value {
-  font: 700 1.75rem/1 var(--sam-mono);
-  color: var(--sam-space-cadet);
+  font: 700 3rem/1 var(--sam-mono);
+  color: var(--sam-orange);
 }
 .sam-evidence__card-stat-label {
-  font: 400 0.875rem/1.3 var(--sam-font);
+  font: 500 0.875rem/1.3 var(--sam-font);
   color: var(--sam-comet);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 .sam-evidence__quote {
   background: var(--sam-white);
@@ -1270,29 +1324,71 @@
   margin: 0 0 32px 0;
   max-width: 720px;
 }
-.sam-boundaries__grid {
+.sam-boundaries__columns {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-06);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-08);
 }
-.sam-boundaries__item {
-  background: var(--sam-seashell);
-  border: 1px solid var(--sam-border-light);
-  padding: var(--sp-06) var(--sp-07);
+.sam-boundaries__col {
+  border-top: 4px solid var(--sam-space-cadet);
+  padding-top: var(--sp-06);
 }
-.sam-boundaries__item-title {
-  font: 600 1rem/1.3 var(--sam-font);
+.sam-boundaries__col--works {
+  border-top-color: #0D8050;
+}
+.sam-boundaries__col--limits {
+  border-top-color: var(--sam-orange);
+}
+.sam-boundaries__col-title {
+  font: 600 1.25rem/1.3 var(--sam-font);
   color: var(--sam-space-cadet);
-  margin: 0 0 8px 0;
+  margin: 0 0 20px 0;
 }
-.sam-boundaries__item-desc {
-  font: 400 0.9375rem/1.55 var(--sam-font);
-  color: var(--sam-black);
+.sam-boundaries__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-boundaries__row:last-child {
+  border-bottom: none;
+}
+.sam-boundaries__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font: 700 0.875rem/1 var(--sam-font);
+}
+.sam-boundaries__icon--check {
+  background: rgba(13, 128, 80, 0.10);
+  color: #0D8050;
+}
+.sam-boundaries__icon--cross {
+  background: rgba(255, 84, 41, 0.10);
+  color: var(--sam-orange);
+}
+.sam-boundaries__row-content {
+  flex: 1;
+}
+.sam-boundaries__row-title {
+  font: 600 0.9375rem/1.3 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 0 0 4px 0;
+}
+.sam-boundaries__row-desc {
+  font: 400 0.875rem/1.5 var(--sam-font);
+  color: var(--sam-comet);
   margin: 0;
 }
 @media (max-width: 767px) {
-  .sam-boundaries__grid {
+  .sam-boundaries__columns {
     grid-template-columns: 1fr;
+    gap: var(--sp-07);
   }
 }
 
@@ -1595,7 +1691,7 @@
       <a href="#diagnostics" class="sam-jump-nav__link">AI &amp; Diagnostics</a>
       <a href="#detection" class="sam-jump-nav__link">Detection Capabilities</a>
       <a href="#evidence" class="sam-jump-nav__link">Evidence</a>
-      <a href="#boundaries" class="sam-jump-nav__link">Honest Boundaries</a>
+      <a href="#boundaries" class="sam-jump-nav__link">Boundaries</a>
     </div>
   </nav>
 
@@ -1605,17 +1701,36 @@
       <p class="sam-mechanism__overline">The Physics</p>
       <h2 class="sam-mechanism__h2">Mechanical faults change the electrical signature of a motor.</h2>
 
-      <p class="sam-mechanism__body">Every AC induction motor draws current from the supply. That current creates a rotating magnetic field in the stator, which induces current in the rotor. The interaction between these fields produces torque.</p>
+      <p class="sam-mechanism__body">Every AC induction motor draws current from the supply. That current creates a rotating magnetic field in the stator, which induces current in the rotor. When something goes wrong mechanically, it shows up in the electrical signal. Here's how.</p>
 
-      <p class="sam-mechanism__body">When a mechanical fault develops in the drivetrain, it changes the load on the motor. A worn bearing increases friction. Misalignment creates cyclic load variation. Cavitation alters the hydraulic load profile. Each of these changes modulates the current and voltage waveforms in a characteristic way.</p>
-
-      <p class="sam-mechanism__body">The air gap between stator and rotor acts as a transducer. Mechanical changes in the drivetrain produce measurable electrical changes at the motor terminals. This is not a new discovery. The physics has been validated for over 40 years. What's new is the ability to read these signatures continuously, at scale, with AI models trained on thousands of assets.</p>
+      <div class="sam-mechanism__steps">
+        <div class="sam-mechanism__step">
+          <p class="sam-mechanism__step-num">01</p>
+          <h3 class="sam-mechanism__step-title">Motor draws current</h3>
+          <p class="sam-mechanism__step-desc">The motor draws AC current from the supply. The interaction between stator and rotor magnetic fields produces torque that drives the load.</p>
+        </div>
+        <div class="sam-mechanism__step">
+          <p class="sam-mechanism__step-num">02</p>
+          <h3 class="sam-mechanism__step-title">Fault changes torque</h3>
+          <p class="sam-mechanism__step-desc">A worn bearing increases friction. Misalignment creates cyclic load variation. Cavitation alters the hydraulic profile. Each fault changes the torque demand on the motor.</p>
+        </div>
+        <div class="sam-mechanism__step">
+          <p class="sam-mechanism__step-num">03</p>
+          <h3 class="sam-mechanism__step-title">Torque changes waveform</h3>
+          <p class="sam-mechanism__step-desc">The air gap between stator and rotor acts as a transducer. Mechanical changes produce measurable modulations in the current and voltage waveforms.</p>
+        </div>
+        <div class="sam-mechanism__step">
+          <p class="sam-mechanism__step-num">04</p>
+          <h3 class="sam-mechanism__step-title">ESA reads the pattern</h3>
+          <p class="sam-mechanism__step-desc">Each fault type creates a distinct spectral fingerprint. SAM4 reads those patterns continuously from the motor control cabinet. No sensor on the machine.</p>
+        </div>
+      </div>
 
       <div class="sam-mechanism__callout">
         <p><strong>The core principle:</strong> The electrical signature of a motor contains the mechanical condition of the entire drivetrain. You don't need a sensor on the machine. You need a sensor on the electrical supply.</p>
       </div>
 
-      <p class="sam-mechanism__body">This is Electrical Signature Analysis. SAM4 applies it at the motor control cabinet, where current clamps and voltage taps capture the raw waveforms. From there, signal processing and AI do the rest.</p>
+      <p class="sam-mechanism__body">The physics has been validated for over 40 years. What's new is the ability to read these signatures continuously, at scale, with AI models trained on thousands of assets. SAM4 applies it at the motor control cabinet, where current clamps and voltage taps capture the raw waveforms. From there, signal processing and AI do the rest.</p>
     </div>
   </section>
 
@@ -1797,7 +1912,7 @@
         <div class="sam-evidence__card">
           <p class="sam-evidence__card-customer">ArcelorMittal</p>
           <h3 class="sam-evidence__card-title">Bearing fault detected 5 months early</h3>
-          <p class="sam-evidence__card-body">SAM4 identified developing bearing degradation in a critical drive motor at an ArcelorMittal rolling mill. The fault was confirmed during a planned maintenance window. Without the early warning, the failure would have caused an unplanned production stop.</p>
+          <p class="sam-evidence__card-body">SAM4 identified developing bearing degradation in a critical drive motor at a rolling mill. The fault was confirmed during a planned maintenance window. Without the early warning, the failure would have caused an unplanned production stop.</p>
           <div class="sam-evidence__card-stat">
             <span class="sam-evidence__card-stat-value">5 months</span>
             <span class="sam-evidence__card-stat-label">advance warning before failure</span>
@@ -1813,6 +1928,26 @@
             <span class="sam-evidence__card-stat-label">faults detected (100% accuracy)</span>
           </div>
         </div>
+
+        <div class="sam-evidence__card">
+          <p class="sam-evidence__card-customer">Yorkshire Water</p>
+          <h3 class="sam-evidence__card-title">70,000 manual inspection trips eliminated per year</h3>
+          <p class="sam-evidence__card-body">Yorkshire Water deployed SAM4 across submersible pumps at remote pumping stations. ESA replaced physical inspection rounds with continuous remote monitoring, cutting site visits by 70,000 annually and catching a single fault that prevented a £390K pollution fine.</p>
+          <div class="sam-evidence__card-stat">
+            <span class="sam-evidence__card-stat-value">70,000</span>
+            <span class="sam-evidence__card-stat-label">inspection trips replaced per year</span>
+          </div>
+        </div>
+
+        <div class="sam-evidence__card">
+          <p class="sam-evidence__card-customer">DuPont</p>
+          <h3 class="sam-evidence__card-title">€1.7M in costs prevented over three years</h3>
+          <p class="sam-evidence__card-body">DuPont deployed SAM4 on critical rotating equipment across multiple sites. Over three years, the system identified faults that would have resulted in unplanned shutdowns. Total prevented cost: €1.7 million. Payback achieved within 8 months.</p>
+          <div class="sam-evidence__card-stat">
+            <span class="sam-evidence__card-stat-value">€1.7M</span>
+            <span class="sam-evidence__card-stat-label">costs prevented over 3 years</span>
+          </div>
+        </div>
       </div>
 
       <div class="sam-evidence__quote">
@@ -1826,32 +1961,95 @@
   <section class="sam-boundaries" id="boundaries">
     <div class="sam-boundaries__inner">
       <h2 class="sam-boundaries__h2">Where ESA works. And where it doesn't.</h2>
-      <p class="sam-boundaries__lead">No monitoring technology covers everything. Stating the boundaries builds trust. Here's what SAM4 requires and where it has limitations.</p>
+      <p class="sam-boundaries__lead">No monitoring technology covers everything. Stating the boundaries builds trust.</p>
 
-      <div class="sam-boundaries__grid">
-        <div class="sam-boundaries__item">
-          <h3 class="sam-boundaries__item-title">AC induction motors only</h3>
-          <p class="sam-boundaries__item-desc">ESA works on AC induction motors, both fixed-speed and VFD-driven. DC motors, stepper motors, and servo drives are not supported.</p>
+      <div class="sam-boundaries__columns">
+        <div class="sam-boundaries__col sam-boundaries__col--works">
+          <h3 class="sam-boundaries__col-title">Where ESA works</h3>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">AC induction motors</p>
+              <p class="sam-boundaries__row-desc">Fixed-speed and VFD-driven. Both fully supported.</p>
+            </div>
+          </div>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">5 Hz and above</p>
+              <p class="sam-boundaries__row-desc">Standard 50/60 Hz mains-fed and VFD output frequencies above 5 Hz.</p>
+            </div>
+          </div>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">Motor running under load</p>
+              <p class="sam-boundaries__row-desc">Intermittent duty cycles supported with minimum run-time thresholds.</p>
+            </div>
+          </div>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">Access to MCC cabinet</p>
+              <p class="sam-boundaries__row-desc">Current clamps install at the motor control cabinet. No access to the machine needed.</p>
+            </div>
+          </div>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">Complements existing vibration</p>
+              <p class="sam-boundaries__row-desc">Keep vibration where it's installed. ESA covers the assets vibration cannot reach.</p>
+            </div>
+          </div>
         </div>
-        <div class="sam-boundaries__item">
-          <h3 class="sam-boundaries__item-title">Minimum operating frequency: 5 Hz</h3>
-          <p class="sam-boundaries__item-desc">VFD-driven motors must operate above 5 Hz for reliable spectral analysis. Standard 50/60 Hz mains-fed motors are fully supported.</p>
-        </div>
-        <div class="sam-boundaries__item">
-          <h3 class="sam-boundaries__item-title">Calibration period: 2 to 4 weeks</h3>
-          <p class="sam-boundaries__item-desc">SAM4 needs a baseline period to learn the asset's normal operating profile. During this period, the system collects data but does not generate alerts.</p>
-        </div>
-        <div class="sam-boundaries__item">
-          <h3 class="sam-boundaries__item-title">Motor must be running under load</h3>
-          <p class="sam-boundaries__item-desc">ESA requires the motor to be energised and driving a load. Intermittent duty cycles are supported, but very short run times (under 10 seconds) limit analysis depth.</p>
-        </div>
-        <div class="sam-boundaries__item">
-          <h3 class="sam-boundaries__item-title">Not a replacement for vibration</h3>
-          <p class="sam-boundaries__item-desc">ESA complements vibration monitoring. For accessible, high-criticality assets where vibration sensors are already installed, keep them. ESA covers the assets vibration cannot reach.</p>
-        </div>
-        <div class="sam-boundaries__item">
-          <h3 class="sam-boundaries__item-title">Access to MCC required</h3>
-          <p class="sam-boundaries__item-desc">Current clamps install at the motor control cabinet. If the MCC is inaccessible or does not exist (e.g. direct bus-bar connections), installation may not be feasible.</p>
+
+        <div class="sam-boundaries__col sam-boundaries__col--limits">
+          <h3 class="sam-boundaries__col-title">Where ESA doesn't apply</h3>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">DC motors, steppers, servos</p>
+              <p class="sam-boundaries__row-desc">ESA requires AC induction motor physics. Other motor types are not supported.</p>
+            </div>
+          </div>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">VFD output below 5 Hz</p>
+              <p class="sam-boundaries__row-desc">Spectral analysis needs sufficient electrical frequency to resolve fault patterns.</p>
+            </div>
+          </div>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">Very short run times (&lt;10 seconds)</p>
+              <p class="sam-boundaries__row-desc">Intermittent duty is fine. But extremely short cycles limit analysis depth.</p>
+            </div>
+          </div>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">No MCC access</p>
+              <p class="sam-boundaries__row-desc">Direct bus-bar connections or inaccessible cabinets may prevent installation.</p>
+            </div>
+          </div>
+
+          <div class="sam-boundaries__row">
+            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
+            <div class="sam-boundaries__row-content">
+              <p class="sam-boundaries__row-title">Calibration period: 2–4 weeks</p>
+              <p class="sam-boundaries__row-desc">SAM4 needs a baseline to learn normal operation. No alerts during this period.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
