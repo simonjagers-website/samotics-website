@@ -1113,8 +1113,8 @@
    ============================================================ */
 
 .sam-approach {
-  background: var(--sam-white);
-  padding: 0 0 64px 0;
+  background: var(--sam-seashell);
+  padding: 64px 0;
 }
 .sam-approach__inner {
   max-width: 1280px;
@@ -1177,7 +1177,57 @@
 }
 
 /* ============================================================
-   8. CTA BLOCK — Seashell (C08)
+   6. ASSETS MOST AFFECTED — White (standalone)
+   ============================================================ */
+
+.sam-assets {
+  background: var(--sam-white);
+  padding: 64px 0;
+}
+.sam-assets__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-assets__heading {
+  font: 600 2rem/1.2 var(--sam-font);
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-05) 0;
+}
+.sam-assets__lead {
+  font: 400 1.05rem/1.6 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 0 var(--sp-07) 0;
+  max-width: 60ch;
+}
+.sam-assets__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-06);
+}
+.sam-assets__card {
+  background: var(--sam-seashell);
+  border: 1px solid var(--sam-border-light);
+  border-left: 4px solid var(--sam-orange);
+  padding: var(--sp-06) var(--sp-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-03);
+}
+.sam-assets__card-title {
+  font: 600 1rem/1.3 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 0;
+}
+.sam-assets__card-desc {
+  font: 400 0.9rem/1.5 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0;
+}
+
+/* ============================================================
+   9. CTA BLOCK — Seashell (C08)
    ============================================================ */
 
 .sam-cta-block {
@@ -1284,6 +1334,9 @@
   .sam-economics__heading {
     font-size: 2rem;
   }
+  .sam-assets__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .sam-fit__grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1304,6 +1357,9 @@
 
 @media (max-width: 575px) {
   .sam-stats-bar__grid {
+    grid-template-columns: 1fr;
+  }
+  .sam-assets__grid {
     grid-template-columns: 1fr;
   }
   .sam-fit__grid {
@@ -1575,112 +1631,33 @@
     </div>
   </section>
 
-  <!-- ─── 4. WHY CURRENT SOLUTIONS FAIL — The Proximity Penalty (White) ─── -->
+  <!-- ─── 4. WHY TRADITIONAL MONITORING FAILS — The Proximity Penalty (White) ─── -->
   <section class="sam-proximity">
     <div class="sam-proximity__inner">
 
       <div class="sam-proximity__content">
         <p class="sam-proximity__overline">The Proximity Penalty</p>
-        <h2 class="sam-proximity__heading">Traditional monitoring requires physical proximity to the machine.</h2>
-        <p class="sam-proximity__body">Every established condition monitoring method shares one constraint: the sensor must be mounted on or near the asset. Vibration accelerometers bolt to the bearing housing. Thermal cameras need line of sight. Ultrasound probes need physical contact.</p>
-        <p class="sam-proximity__body">This works for accessible machines on a plant floor. It does not work for the assets that account for the most expensive unplanned failures: submerged pumps in wet wells, sealed compressors in ATEX zones, motors enclosed inside process equipment, and drives at remote or unstaffed sites.</p>
-        <p class="sam-proximity__body">The result is a structural blind spot. The assets with the highest failure consequence are the ones with the least monitoring coverage. Not because of negligence. Because of physics.</p>
+        <h2 class="sam-proximity__heading">Every monitoring method requires proximity to the machine. That's the problem.</h2>
+        <p class="sam-proximity__body">Vibration accelerometers bolt to the bearing housing. Thermal cameras need line of sight. Ultrasound probes need physical contact. Every established approach shares one constraint: the sensor must be on or near the asset.</p>
+        <p class="sam-proximity__body">This works for accessible machines on a plant floor. It fails for the assets that drive the most expensive unplanned shutdowns: submerged pumps in wet wells, sealed compressors in ATEX zones, motors enclosed inside process equipment, and drives at remote sites.</p>
+        <p class="sam-proximity__body">The result is a structural blind spot. The assets with the highest failure consequence have the least monitoring coverage. Not because of negligence. Because of physics.</p>
       </div>
 
       <div class="sam-proximity__assets">
-        <h3 class="sam-proximity__assets-heading">Assets most affected</h3>
+        <h3 class="sam-proximity__assets-heading">The common constraint</h3>
         <ul class="sam-proximity__assets-list">
-          <li>Submerged pumps in wet wells and lift stations</li>
-          <li>Sealed compressors in ATEX/hazardous zones</li>
-          <li>Motors inside enclosed process equipment</li>
-          <li>Drives at remote or unstaffed locations</li>
-          <li>High-temperature or high-vibration environments where sensors fail</li>
-          <li>Large fleets where per-asset sensor costs don't scale</li>
+          <li>Vibration sensors need mounting on the bearing housing</li>
+          <li>Thermal imaging needs line of sight to the asset</li>
+          <li>Ultrasound needs physical contact with the surface</li>
+          <li>Oil analysis needs fluid extraction from the machine</li>
         </ul>
+        <p style="font: 500 0.875rem/1.5 var(--sam-font); color: var(--sam-orange); margin: var(--sp-04) 0 0 0;">All require physical access. All fail where access is impossible.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- ─── 5. THE ECONOMICS (Seashell) ─── -->
-  <section class="sam-economics">
-    <div class="sam-economics__inner">
-      <h2 class="sam-economics__heading">The economics of the blind spot</h2>
-      <p class="sam-economics__lead">Unmonitored assets don't just fail. They fail expensively. Here's what organisations report before and after closing the gap.</p>
-
-      <div class="sam-economics__comparison">
-
-        <div class="sam-economics__column sam-economics__column--problem">
-          <h3 class="sam-economics__column-title">Cost of doing nothing</h3>
-          <ul class="sam-economics__column-items">
-            <li>Unplanned downtime per incident <span>&euro;50K&ndash;170K</span></li>
-            <li>Emergency repair premium <span>3&ndash;5&times; planned cost</span></li>
-            <li>Regulatory fines (single event) <span>up to &pound;390K</span></li>
-            <li>Manual inspection trips/year <span>70,000+</span></li>
-            <li>Energy waste from undetected inefficiency <span>40&ndash;55%</span></li>
-          </ul>
-        </div>
-
-        <div class="sam-economics__column sam-economics__column--solution">
-          <h3 class="sam-economics__column-title">Documented outcomes with ESA</h3>
-          <ul class="sam-economics__column-items">
-            <li>Equipment downtime reduction <span>40%</span></li>
-            <li>Cost prevented over 3 years <span>&euro;1.7M</span></li>
-            <li>Average payback period <span>8 months</span></li>
-            <li>Pump efficiency improvement <span>7.1%</span></li>
-            <li>Pollution events prevented (single detection) <span>3</span></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="sam-economics__proof">
-        <blockquote>
-          &ldquo;SAM4 detected possible bearing damage to the gearbox motor, which we had not picked up through our vibration monitoring. Following the SAM4 alert, we found that the bearing had already degraded significantly.&rdquo;
-        </blockquote>
-        <footer>Schiphol Airport case study</footer>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── 6. FIT CRITERIA (White) ─── -->
-  <section class="sam-fit">
-    <div class="sam-fit__inner">
-      <h2 class="sam-fit__heading">Is your site a fit?</h2>
-      <p class="sam-fit__lead">ESA-based monitoring works for any motor-driven asset connected through an MCC. Here are the technical requirements.</p>
-
-      <div class="sam-fit__grid">
-
-        <div class="sam-fit__item">
-          <span class="sam-fit__item-icon" aria-hidden="true">&#9889;</span>
-          <h3 class="sam-fit__item-title">Motor type</h3>
-          <p class="sam-fit__item-desc">AC induction motors, including VFD-driven. Fixed-speed and variable-speed supported.</p>
-        </div>
-
-        <div class="sam-fit__item">
-          <span class="sam-fit__item-icon" aria-hidden="true">&#9881;</span>
-          <h3 class="sam-fit__item-title">Frequency range</h3>
-          <p class="sam-fit__item-desc">5 Hz and above. Covers standard 50/60 Hz mains-fed motors and VFD output frequencies.</p>
-        </div>
-
-        <div class="sam-fit__item">
-          <span class="sam-fit__item-icon" aria-hidden="true">&#128268;</span>
-          <h3 class="sam-fit__item-title">Load requirement</h3>
-          <p class="sam-fit__item-desc">Motor must run under load for meaningful analysis. Intermittent duty cycles supported with minimum run-time thresholds.</p>
-        </div>
-
-        <div class="sam-fit__item">
-          <span class="sam-fit__item-icon" aria-hidden="true">&#128274;</span>
-          <h3 class="sam-fit__item-title">MCC access</h3>
-          <p class="sam-fit__item-desc">Current clamps installed at the motor control cabinet. No access to the machine itself required. No shutdown needed.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 7. THE SAMOTICS APPROACH (White) ─── -->
+  <!-- ─── 5. THE SAMOTICS APPROACH — ESA solves the blind spot (Seashell) ─── -->
   <section class="sam-approach">
     <div class="sam-approach__inner">
 
@@ -1706,11 +1683,131 @@
     </div>
   </section>
 
-  <!-- ─── 8. CTA BLOCK (Seashell) ─── -->
+  <!-- ─── 6. ASSETS MOST AFFECTED (White) ─── -->
+  <section class="sam-assets">
+    <div class="sam-assets__inner">
+      <h2 class="sam-assets__heading">Does this apply to your plant?</h2>
+      <p class="sam-assets__lead">If you operate any of these asset types, you likely have a monitoring blind spot. ESA closes it from the MCC.</p>
+
+      <div class="sam-assets__grid">
+
+        <div class="sam-assets__card">
+          <h3 class="sam-assets__card-title">Submerged pumps</h3>
+          <p class="sam-assets__card-desc">Wet wells, lift stations, borehole pumps. No physical access to the asset. No sensor mounting point.</p>
+        </div>
+
+        <div class="sam-assets__card">
+          <h3 class="sam-assets__card-title">ATEX / hazardous zones</h3>
+          <p class="sam-assets__card-desc">Sealed compressors, Zone 1/2 motors. Sensor installation requires permits, shutdowns, or is prohibited entirely.</p>
+        </div>
+
+        <div class="sam-assets__card">
+          <h3 class="sam-assets__card-title">Enclosed process equipment</h3>
+          <p class="sam-assets__card-desc">Motors inside machines, integrated drives. The bearing housing is not accessible without disassembly.</p>
+        </div>
+
+        <div class="sam-assets__card">
+          <h3 class="sam-assets__card-title">Remote or unstaffed sites</h3>
+          <p class="sam-assets__card-desc">Pumping stations, compressor stations, booster sites. No on-site technician for walk-around rounds.</p>
+        </div>
+
+        <div class="sam-assets__card">
+          <h3 class="sam-assets__card-title">Harsh environments</h3>
+          <p class="sam-assets__card-desc">High temperature, high vibration, corrosive atmospheres. Sensors fail or deliver unreliable data.</p>
+        </div>
+
+        <div class="sam-assets__card">
+          <h3 class="sam-assets__card-title">Large motor fleets</h3>
+          <p class="sam-assets__card-desc">Hundreds of motors where per-asset sensor costs make full coverage uneconomic. ESA scales at a fraction of the cost.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 7. THE ECONOMICS (Seashell) ─── -->
+  <section class="sam-economics">
+    <div class="sam-economics__inner">
+      <h2 class="sam-economics__heading">The economics of the blind spot</h2>
+      <p class="sam-economics__lead">Unmonitored assets don't just fail. They fail expensively. Here's what organisations report before and after closing the gap.</p>
+
+      <div class="sam-economics__comparison">
+
+        <div class="sam-economics__column sam-economics__column--problem">
+          <h3 class="sam-economics__column-title">Without monitoring</h3>
+          <ul class="sam-economics__column-items">
+            <li>Unplanned downtime per incident <span>&euro;50K&ndash;170K</span></li>
+            <li>Emergency repair premium <span>3&ndash;5&times; planned cost</span></li>
+            <li>Regulatory fines (single event) <span>up to &pound;390K</span></li>
+            <li>Manual inspection trips/year <span>70,000+</span></li>
+            <li>Energy waste from undetected inefficiency <span>40&ndash;55%</span></li>
+          </ul>
+        </div>
+
+        <div class="sam-economics__column sam-economics__column--solution">
+          <h3 class="sam-economics__column-title">With ESA monitoring</h3>
+          <ul class="sam-economics__column-items">
+            <li>Equipment downtime reduction <span>40%</span></li>
+            <li>Cost prevented over 3 years <span>&euro;1.7M</span></li>
+            <li>Average payback period <span>8 months</span></li>
+            <li>Pump efficiency improvement <span>7.1%</span></li>
+            <li>Pollution events prevented (single detection) <span>3</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="sam-economics__proof">
+        <blockquote>
+          &ldquo;SAM4 detected possible bearing damage to the gearbox motor, which we had not picked up through our vibration monitoring.&rdquo;
+        </blockquote>
+        <footer>Schiphol Airport &mdash; fault missed by vibration, caught by ESA</footer>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 8. FIT CRITERIA (White) ─── -->
+  <section class="sam-fit">
+    <div class="sam-fit__inner">
+      <h2 class="sam-fit__heading">SAM4 works if your site has:</h2>
+      <p class="sam-fit__lead">Any motor-driven asset connected through a motor control cabinet is a candidate for ESA monitoring.</p>
+
+      <div class="sam-fit__grid">
+
+        <div class="sam-fit__item">
+          <span class="sam-fit__item-icon" aria-hidden="true">&#9889;</span>
+          <h3 class="sam-fit__item-title">AC induction motors</h3>
+          <p class="sam-fit__item-desc">Fixed-speed and variable-frequency drive (VFD) motors. Both supported.</p>
+        </div>
+
+        <div class="sam-fit__item">
+          <span class="sam-fit__item-icon" aria-hidden="true">&#9881;</span>
+          <h3 class="sam-fit__item-title">5 Hz and above</h3>
+          <p class="sam-fit__item-desc">Standard 50/60 Hz mains-fed and VFD output frequencies covered.</p>
+        </div>
+
+        <div class="sam-fit__item">
+          <span class="sam-fit__item-icon" aria-hidden="true">&#128268;</span>
+          <h3 class="sam-fit__item-title">Motor running under load</h3>
+          <p class="sam-fit__item-desc">Intermittent duty cycles supported with minimum run-time thresholds.</p>
+        </div>
+
+        <div class="sam-fit__item">
+          <span class="sam-fit__item-icon" aria-hidden="true">&#128274;</span>
+          <h3 class="sam-fit__item-title">Access to MCC cabinet</h3>
+          <p class="sam-fit__item-desc">Current clamps at the cabinet. No access to the machine. No shutdown needed.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 9. CTA BLOCK (Seashell) ─── -->
   <section class="sam-cta-block">
     <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">Find out which assets you're not monitoring.</h2>
-      <p class="sam-cta-block__sub">Our asset audit identifies the critical rotating equipment in your plant with no condition monitoring coverage. Takes 30 minutes. No commitment.</p>
+      <h2 class="sam-cta-block__heading">Identify the assets your monitoring can't reach.</h2>
+      <p class="sam-cta-block__sub">Our asset audit maps the critical rotating equipment in your plant with no condition monitoring. Takes 30 minutes. Reveals where failures are most likely.</p>
       <div class="sam-cta-block__actions">
         <a href="/contact/asset-audit" class="sam-btn sam-btn--primary">Start Your Asset Audit</a>
         <a href="/contact?intent=demo" class="sam-btn sam-btn--outline">Request a Demo</a>
