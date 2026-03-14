@@ -824,7 +824,15 @@
   position: sticky;
   top: var(--sam-header-h);
   z-index: 100;
-  transition: top var(--sam-transition);
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 250ms ease-out, opacity 250ms ease-out, top var(--sam-transition);
+}
+.sam-jump-nav.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 .sam-jump-nav__inner {
   max-width: 1280px;
@@ -2339,7 +2347,9 @@
     });
   });
 
-  /* ── Jump Nav: Active State on Scroll ── */
+  /* ── Jump Nav: Show after hero, active state on scroll ── */
+  var jumpNav = document.querySelector('.sam-jump-nav');
+  var heroEl = document.querySelector('.sam-hero');
   var jumpLinks = document.querySelectorAll('.sam-jump-nav__link');
   var sections = [];
   jumpLinks.forEach(function (link) {
@@ -2349,15 +2359,25 @@
   });
 
   function updateJumpNav() {
-    var scrollPos = window.scrollY + 200;
-    var active = null;
-    sections.forEach(function (s) {
-      if (s.el.offsetTop <= scrollPos) {
-        active = s;
-      }
-    });
+    var heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight : 0;
+    var pastHero = window.scrollY + 160 > heroBottom;
+
+    /* Show/hide nav bar */
+    if (jumpNav) {
+      if (pastHero) { jumpNav.classList.add('is-visible'); }
+      else { jumpNav.classList.remove('is-visible'); }
+    }
+
+    /* Active link — only after hero */
     jumpLinks.forEach(function (l) { l.classList.remove('is-active'); });
-    if (active) active.link.classList.add('is-active');
+    if (pastHero) {
+      var scrollPos = window.scrollY + 200;
+      var active = null;
+      sections.forEach(function (s) {
+        if (s.el.offsetTop <= scrollPos) { active = s; }
+      });
+      if (active) active.link.classList.add('is-active');
+    }
   }
 
   if (sections.length) {
