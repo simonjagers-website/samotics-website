@@ -2140,6 +2140,16 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.sam-method__card:hover {
+  border-color: #1F1F33;
+  box-shadow: 0 4px 12px rgba(31, 31, 51, 0.1);
+}
+.sam-method__card:focus-visible {
+  outline: 3px solid #1F1F33;
+  outline-offset: 2px;
 }
 .sam-method__card h3 {
   font-size: 1.25rem;
@@ -2156,9 +2166,16 @@
   margin: 0;
   flex: 1;
 }
-.sam-method__card .sam-text-link {
-  margin-top: auto;
+.sam-method__card-link {
   font-size: 0.875rem;
+  font-weight: 500;
+  color: #005CBA;
+  margin-top: auto;
+  padding-top: 8px;
+  transition: color 0.15s ease-out;
+}
+.sam-method__card:hover .sam-method__card-link {
+  color: #FF5429;
 }
 
 /* --- Industry Routing (Section 4) --- */
@@ -2830,21 +2847,21 @@
       <p class="sam-method__body">SAM4 captures current and voltage signatures at the motor control cabinet. Those signatures reveal the condition of the entire drivetrain: motor, transmission, coupling, and driven load. Changes in spectral patterns identify developing faults weeks to months before failure.</p>
       <p class="sam-method__body">Once connected, Samotics manages the full pipeline: signal capture, AI detection, engineer validation, and confirmed maintenance alerts.</p>
       <div class="sam-method__cards">
-        <div class="sam-method__card">
+        <a href="/problem" class="sam-method__card">
           <h3>No sensors on the machine</h3>
           <p>Monitors from the MCC. Submerged pumps, sealed compressors, ATEX zones, remote sites. All reachable.</p>
-          <a href="/problem" class="sam-text-link">See why this matters &rarr;</a>
-        </div>
-        <div class="sam-method__card">
+          <span class="sam-method__card-link">See why this matters &rarr;</span>
+        </a>
+        <a href="/platform/how-it-installs" class="sam-method__card">
           <h3>Install in under 30 minutes</h3>
           <p>Non-intrusive current clamps in the MCC. No shutdown, no scaffolding, no ATEX permits.</p>
-          <a href="/platform/how-it-installs" class="sam-text-link">See how it installs &rarr;</a>
-        </div>
-        <div class="sam-method__card">
+          <span class="sam-method__card-link">See how it installs &rarr;</span>
+        </a>
+        <a href="/proof/results" class="sam-method__card">
           <h3>Over 90% fault detection rate</h3>
           <p>Bearing wear, cavitation, misalignment, winding defects. Detected weeks to months before failure. Measured across 1,135 fault events over 12 months.</p>
-          <a href="/proof/results" class="sam-text-link">See the results &rarr;</a>
-        </div>
+          <span class="sam-method__card-link">See the results &rarr;</span>
+        </a>
       </div>
       <a href="/technology/esa" class="sam-text-link">How ESA works &rarr;</a>
     </div>
