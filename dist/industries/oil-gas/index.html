@@ -1561,7 +1561,7 @@
 
 /* ── Trust Bar ── */
 .sam-ind-trust {
-  background: var(--sam-white);
+  background: var(--sam-seashell);
   padding: var(--sp-08) 0;
   border-bottom: 1px solid var(--sam-border-light);
 }
@@ -2131,7 +2131,7 @@
 
 /* ── Scaling Callout ── */
 .sam-ind-scaling {
-  background: var(--sam-space-cadet);
+  background: var(--sam-seashell);
   padding: var(--sp-09) 0;
 }
 .sam-ind-scaling__inner {
@@ -2151,15 +2151,16 @@
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 1.3;
-  color: var(--sam-white);
+  color: var(--sam-space-cadet);
   margin: 0 0 var(--sp-04) 0;
+  /* Dark text works on seashell background */
 }
 .sam-ind-scaling__desc {
   font-family: var(--sam-font);
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.6;
-  color: #B0B0C8;
+  color: var(--sam-comet);
   margin: 0;
   max-width: 56ch;
 }
@@ -2176,8 +2177,15 @@
 
 /* ── SAM4-X Validation Section ── */
 .sam-ind-validate {
-  background-color: var(--sam-seashell);
+  background-color: var(--sam-white);
   padding: 64px 32px;
+  text-align: center;
+}
+
+/* ── CTA Block ── */
+.sam-cta-block {
+  background: var(--sam-seashell);
+  padding: var(--sp-10) 32px;
   text-align: center;
 }
 .sam-ind-validate__inner {
@@ -2461,6 +2469,18 @@
     
   </section>
 
+  <!-- TRUST BAR -->
+  <section class="sam-ind-trust">
+    <div class="sam-ind-trust__inner">
+      <p class="sam-ind-trust__label">Trusted by energy leaders</p>
+      <div class="sam-ind-trust__logos" style="display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;">
+        <img class="sam-ind-trust__logo" src="/assets/images/logos/logo-placeholder.png" alt="Energy company partner" height="48">
+        <img class="sam-ind-trust__logo" src="/assets/images/logos/logo-placeholder.png" alt="Energy company partner" height="48">
+        <img class="sam-ind-trust__logo" src="/assets/images/logos/logo-placeholder.png" alt="Energy company partner" height="48">
+      </div>
+    </div>
+  </section>
+
   <!-- 2. KEY CHALLENGES -->
   <section id="how-we-help" class="sam-ind-challenges">
     <div class="sam-ind-challenges__inner">
@@ -2536,11 +2556,6 @@
           <p>Injection, transfer, boiler feed, and cooling water pumps with cavitation detection, seal wear alerts, and efficiency monitoring.</p>
           <span class="sam-ind-assets__link">Learn more &rarr;</span>
         </a>
-
-        <div class="sam-ind-assets__card">
-          <h3>Wind turbine generators</h3>
-          <p>Generator bearing wear, winding insulation degradation, and gearbox faults — all detected from the base controller without nacelle access.</p>
-        </div>
 
         <a href="/platform/what-we-monitor/fans-blowers" class="sam-ind-assets__card">
           <h3>Fans & blowers</h3>
