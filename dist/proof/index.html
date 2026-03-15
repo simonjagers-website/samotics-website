@@ -393,17 +393,18 @@
 .sam-proof-listing { max-width: 1584px; margin: 0 auto; padding: 0 5%; }
 
 /* Hero */
-.sam-proof-hero { background: var(--sam-seashell); padding: 64px 24px 48px; }
-.sam-proof-hero__inner { max-width: 1584px; margin: 0 auto; padding: 0 5%; }
-.sam-proof-hero h1 { font-family: var(--sam-font); font-size: 2.8rem; font-weight: 700; color: var(--sam-space-cadet); margin: 0 0 16px; }
-.sam-proof-hero .lead { font-family: var(--sam-font); font-size: 1.1rem; color: var(--sam-comet); line-height: 1.6; max-width: 70ch; margin: 0; }
+.sam-proof-hero { background-size: cover; background-position: center; background-color: var(--sam-space-cadet); position: relative; padding: 0; }
+.sam-proof-hero__overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.35) 100%); }
+.sam-proof-hero__inner { max-width: 1584px; margin: 0 auto; padding: 80px 5%; position: relative; z-index: 1; }
+.sam-proof-hero h1 { font-family: var(--sam-font); font-size: 2.8rem; font-weight: 700; color: var(--sam-white); margin: 0 0 16px; }
+.sam-proof-hero .lead { font-family: var(--sam-font); font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.6; max-width: 70ch; margin: 0; }
 .overline { font-family: var(--sam-font); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 8px; }
 
 /* Stats bar */
 .sam-proof-stats { display: flex; gap: 48px; margin-top: 32px; }
 .sam-proof-stats__item { display: flex; flex-direction: column; }
-.sam-proof-stats__value { font-family: var(--sam-font); font-size: 2rem; font-weight: 700; color: var(--sam-space-cadet); }
-.sam-proof-stats__label { font-family: var(--sam-font); font-size: 0.85rem; color: var(--sam-comet); margin-top: 4px; }
+.sam-proof-stats__value { font-family: var(--sam-font); font-size: 2rem; font-weight: 700; color: var(--sam-white); }
+.sam-proof-stats__label { font-family: var(--sam-font); font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
 
 /* Filters */
 .sam-proof-filter { padding: 32px 0; }
@@ -541,7 +542,8 @@
 </header>
 
 <main>
-  <section class="sam-proof-hero">
+  <section class="sam-proof-hero" style="background-image: url('/assets/images/heroes/hero-proof.jpg');">
+    <div class="sam-proof-hero__overlay"></div>
     <div class="sam-proof-hero__inner">
       <p class="overline" style="color: var(--sam-orange);">Proof</p>
       <h1>Detection stories and case studies</h1>
