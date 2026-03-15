@@ -592,12 +592,13 @@
 
 /* ─── Why MCC Section ─── */
 .sam-install-why {
-  background: var(--sam-white);
-  padding: 80px 32px;
+  background: var(--sam-seashell);
+  padding: 96px 0;
 }
 .sam-install-why__inner {
-  max-width: 1200px;
+  max-width: 1584px;
   margin: 0 auto;
+  padding: 0 5%;
 }
 .sam-install-why__lead {
   font-size: 18px;
@@ -639,7 +640,7 @@
 
 @media (max-width: 991px) {
   .sam-install-why {
-    padding: 60px 24px;
+    padding: 64px 0;
   }
   .sam-install-why__grid {
     grid-template-columns: 1fr;
@@ -657,12 +658,13 @@
 
 /* ─── Installation Steps ─── */
 .sam-inst-steps {
-  background: var(--sam-seashell);
-  padding: 80px 32px;
+  background: var(--sam-white);
+  padding: 96px 0;
 }
 .sam-inst-steps__inner {
-  max-width: 1200px;
+  max-width: 1584px;
   margin: 0 auto;
+  padding: 0 5%;
 }
 .sam-inst-steps__lead {
   font-size: 18px;
@@ -732,12 +734,13 @@
 
 /* ─── What This Eliminates ─── */
 .sam-inst-elim {
-  background: var(--sam-white);
-  padding: 80px 32px;
+  background: var(--sam-seashell);
+  padding: 96px 0;
 }
 .sam-inst-elim__inner {
-  max-width: 1200px;
+  max-width: 1584px;
   margin: 0 auto;
+  padding: 0 5%;
 }
 .sam-inst-elim__lead {
   font-size: 18px;
@@ -795,12 +798,13 @@
 
 /* ─── Scaling Dynamics ─── */
 .sam-install-scale {
-  background: var(--sam-seashell);
-  padding: 80px 32px;
+  background: var(--sam-white);
+  padding: 96px 0;
 }
 .sam-install-scale__inner {
-  max-width: 1200px;
+  max-width: 1584px;
   margin: 0 auto;
+  padding: 0 5%;
 }
 .sam-install-scale__lead {
   font-size: 18px;
@@ -870,12 +874,13 @@
   text-align: left;
 }
 .sam-install-scale__stat-value {
-  font: 600 32px/1 'JetBrains Mono', monospace;
+  font: 600 56px/1 'JetBrains Mono', monospace;
   color: var(--sam-orange);
+  letter-spacing: -0.02em;
 }
 .sam-install-scale__stat-label {
-  font: 400 14px/1.4 var(--sam-font);
-  color: var(--sam-comet);
+  font: 500 16px/1.4 var(--sam-font);
+  color: var(--sam-space-cadet);
 }
 
 @media (max-width: 991px) {
@@ -902,12 +907,13 @@
 
 /* ─── Deployment Patterns (Scale grid) ─── */
 .sam-inst-scale {
-  background: var(--sam-white);
-  padding: 80px 32px;
+  background: var(--sam-seashell);
+  padding: 96px 0;
 }
 .sam-inst-scale__inner {
-  max-width: 1200px;
+  max-width: 1584px;
   margin: 0 auto;
+  padding: 0 5%;
 }
 .sam-inst-scale__lead {
   font-size: 18px;
@@ -965,11 +971,11 @@
 
 /* ─── Quote Section ─── */
 .sam-quote {
-  background: var(--sam-seashell);
-  padding: 80px 32px;
+  background: var(--sam-space-cadet);
+  padding: 96px 0;
 }
 .sam-quote--install {
-  background: var(--sam-seashell);
+  background: var(--sam-space-cadet);
 }
 .sam-quote__inner {
   max-width: 960px;
@@ -981,9 +987,11 @@
   gap: 24px;
 }
 .sam-quote__text {
-  font: 400 22px/1.7 var(--sam-font);
-  color: var(--sam-space-cadet);
+  font: 400 28px/1.6 var(--sam-font);
+  color: var(--sam-white);
   quotes: '"' '"';
+  border-left: 4px solid var(--sam-orange);
+  padding-left: 32px;
 }
 .sam-quote__attribution {
   display: flex;
@@ -993,11 +1001,11 @@
 }
 .sam-quote__name {
   font: 600 16px/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
+  color: var(--sam-white);
 }
 .sam-quote__title {
   font: 400 14px/1.4 var(--sam-font);
-  color: var(--sam-comet);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 @media (max-width: 991px) {
@@ -1088,8 +1096,9 @@
   border-top: 1px solid var(--sam-border-light);
 }
 .sam-prefooter__inner {
-  max-width: 1200px;
+  max-width: 1584px;
   margin: 0 auto;
+  padding: 0 5%;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -1260,6 +1269,316 @@
     align-items: flex-start;
   }
 }
+/* ─── Scroll Reveal Animations ─── */
+.sam-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.sam-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sam-reveal--delay-1 { transition-delay: 0.1s; }
+.sam-reveal--delay-2 { transition-delay: 0.2s; }
+.sam-reveal--delay-3 { transition-delay: 0.3s; }
+.sam-reveal--delay-4 { transition-delay: 0.4s; }
+
+/* Card hover effects */
+.sam-inst-steps__card,
+.sam-inst-elim__category,
+.sam-inst-scale__card,
+.sam-install-scale__stat {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.sam-inst-steps__card:hover,
+.sam-inst-scale__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(31, 31, 51, 0.08);
+}
+
+/* ─── Architecture Diagram ─── */
+.sam-arch {
+  background: var(--sam-white);
+  padding: 96px 0;
+}
+.sam-arch__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-arch__flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.sam-arch__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  min-width: 140px;
+  flex: 1;
+}
+.sam-arch__step-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--sam-seashell);
+  border: 2px solid var(--sam-border-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sam-space-cadet);
+}
+.sam-arch__step-label {
+  font: 600 14px/1.3 var(--sam-font);
+  color: var(--sam-space-cadet);
+}
+.sam-arch__step-sub {
+  font: 400 13px/1.4 var(--sam-font);
+  color: var(--sam-comet);
+}
+.sam-arch__arrow {
+  font: 600 24px/1 var(--sam-font);
+  color: var(--sam-orange);
+  flex-shrink: 0;
+  padding: 0 8px;
+}
+@media (max-width: 767px) {
+  .sam-arch__flow {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sam-arch__arrow {
+    transform: rotate(90deg);
+    padding: 4px 0;
+  }
+}
+
+/* ─── Grouped Barrier Categories ─── */
+.sam-inst-elim__categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.sam-inst-elim__category {
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-top: 3px solid var(--sam-blue);
+  padding: 32px;
+}
+.sam-inst-elim__category-title {
+  font: 600 18px/1.3 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin-bottom: 24px;
+}
+.sam-inst-elim__category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sam-inst-elim__category-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.sam-inst-elim__category-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--sam-orange);
+  margin-top: 2px;
+}
+.sam-inst-elim__category-text {
+  font: 400 15px/1.5 var(--sam-font);
+  color: var(--sam-comet);
+}
+.sam-inst-elim__category-text strong {
+  font-weight: 600;
+  color: var(--sam-space-cadet);
+  display: block;
+  margin-bottom: 2px;
+}
+@media (max-width: 991px) {
+  .sam-inst-elim__categories {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* ─── Deployment Progression ─── */
+.sam-inst-scale__progression {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  position: relative;
+}
+.sam-inst-scale__progression::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 16.66%;
+  right: 16.66%;
+  height: 3px;
+  background: var(--sam-orange);
+  z-index: 0;
+}
+.sam-inst-scale__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.sam-inst-scale__stage-dot {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 24px/1 'JetBrains Mono', monospace;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(255, 84, 41, 0.25);
+}
+.sam-inst-scale__stage-range {
+  font: 600 13px/1 'JetBrains Mono', monospace;
+  color: var(--sam-orange);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.sam-inst-scale__stage-title {
+  font: 600 20px/1.3 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin-bottom: 12px;
+}
+.sam-inst-scale__stage-desc {
+  font: 400 15px/1.6 var(--sam-font);
+  color: var(--sam-comet);
+  max-width: 300px;
+}
+@media (max-width: 767px) {
+  .sam-inst-scale__progression {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .sam-inst-scale__progression::before {
+    top: 0;
+    bottom: 0;
+    left: 36px;
+    right: auto;
+    width: 3px;
+    height: auto;
+  }
+  .sam-inst-scale__stage {
+    flex-direction: row;
+    text-align: left;
+    gap: 24px;
+  }
+  .sam-inst-scale__stage-dot {
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* ─── Time Callout ─── */
+.sam-inst-steps__time-callout {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--sam-space-cadet);
+  padding: 32px 40px;
+  margin-top: 48px;
+}
+.sam-inst-steps__time-value {
+  font: 700 48px/1 'JetBrains Mono', monospace;
+  color: var(--sam-orange);
+  white-space: nowrap;
+}
+.sam-inst-steps__time-label {
+  font: 500 18px/1.4 var(--sam-font);
+  color: var(--sam-white);
+}
+.sam-inst-steps__time-sub {
+  font: 400 14px/1.5 var(--sam-font);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4px;
+}
+@media (max-width: 767px) {
+  .sam-inst-steps__time-callout {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+  .sam-inst-steps__time-value {
+    font-size: 36px;
+  }
+}
+
+/* ─── Video Frame ─── */
+.sam-inst-steps__video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: var(--sam-space-cadet);
+  overflow: hidden;
+  margin-top: 48px;
+  cursor: pointer;
+}
+.sam-inst-steps__video-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.sam-inst-steps__video-play {
+  width: 72px;
+  height: 72px;
+  background: var(--sam-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.sam-inst-steps__video:hover .sam-inst-steps__video-play {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(255, 84, 41, 0.4);
+}
+.sam-inst-steps__video-label {
+  font: 600 16px/1 var(--sam-font);
+  color: var(--sam-white);
+}
+.sam-inst-steps__video-duration {
+  font: 400 14px/1 var(--sam-font);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ─── Chart axis labels ─── */
+.sam-install-scale__axis-label {
+  font: 600 12px/1.2 var(--sam-font);
+  color: var(--sam-comet);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+}
+.sam-install-scale__effort-label {
+  font: 500 13px/1.4 var(--sam-font);
+  color: var(--sam-comet);
+  font-style: italic;
+  margin-top: 8px;
+}
   </style>
 </head>
 <body>
@@ -1420,11 +1739,60 @@
     </div>
   </section>
 
+  <!-- ─── ARCHITECTURE DIAGRAM ─── -->
+  <section class="sam-arch">
+    <div class="sam-arch__inner">
+      <p class="overline" style="text-align:center;">How SAM4 connects</p>
+      <h2 style="text-align:center; margin-bottom:48px;">The installation explained in 5 seconds</h2>
+      <div class="sam-arch__flow sam-reveal">
+        <div class="sam-arch__step">
+          <div class="sam-arch__step-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2 2"/></svg>
+          </div>
+          <span class="sam-arch__step-label">Motor cable</span>
+          <span class="sam-arch__step-sub">Existing power supply</span>
+        </div>
+        <span class="sam-arch__arrow" aria-hidden="true">&rarr;</span>
+        <div class="sam-arch__step">
+          <div class="sam-arch__step-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          </div>
+          <span class="sam-arch__step-label">CT/VT clamps</span>
+          <span class="sam-arch__step-sub">Non-invasive sensors</span>
+        </div>
+        <span class="sam-arch__arrow" aria-hidden="true">&rarr;</span>
+        <div class="sam-arch__step">
+          <div class="sam-arch__step-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <span class="sam-arch__step-label">Edge device</span>
+          <span class="sam-arch__step-sub">Gateway in the MCC</span>
+        </div>
+        <span class="sam-arch__arrow" aria-hidden="true">&rarr;</span>
+        <div class="sam-arch__step">
+          <div class="sam-arch__step-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/></svg>
+          </div>
+          <span class="sam-arch__step-label">Cellular (4G/LTE)</span>
+          <span class="sam-arch__step-sub">No corporate network</span>
+        </div>
+        <span class="sam-arch__arrow" aria-hidden="true">&rarr;</span>
+        <div class="sam-arch__step">
+          <div class="sam-arch__step-icon" style="background:var(--sam-orange);border-color:var(--sam-orange);color:var(--sam-white);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          </div>
+          <span class="sam-arch__step-label">SAM4 Cloud</span>
+          <span class="sam-arch__step-sub">AI monitoring live</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── 2. WHY MCC ─── -->
   <section class="sam-install-why">
     <div class="sam-install-why__inner">
-      <p class="overline">The wedge</p>
-      <h2>Traditional monitoring needs sensors bolted to the machine. ESA doesn't.</h2>
+      <p class="overline sam-reveal">The wedge</p>
+      <h2 class="sam-reveal">Traditional monitoring needs sensors bolted to the machine. ESA doesn't.</h2>
       <p class="lead sam-install-why__lead">30–40% of critical rotating equipment sits beyond the reach of conventional monitoring: submerged pumps, sealed blowers, hazardous zones, remote sites. SAM4 starts exactly here, with the assets that keep reliability engineers awake at night.</p>
 
       <div class="sam-install-why__grid">
@@ -1449,8 +1817,8 @@
   <!-- ─── 3. INSTALLATION STEPS ─── -->
   <section id="steps" class="sam-inst-steps">
     <div class="sam-inst-steps__inner">
-      <p class="overline">Installation process</p>
-      <h2>Four steps. One shift. First data within hours.</h2>
+      <p class="overline sam-reveal">Installation process</p>
+      <h2 class="sam-reveal">Four steps. One shift. First data within hours.</h2>
       <p class="lead sam-inst-steps__lead">Every installation follows the same process, whether you're connecting 5 assets in a pilot or 1,000 across a fleet. No specialist contractor required.</p>
 
       <div class="sam-inst-steps__grid">
@@ -1480,11 +1848,23 @@
         </div>
       </div>
 
-      <div class="sam-img-placeholder" style="position:relative;width:100%;padding-bottom:41.7%;background:#F8F5F2;border:1px solid #E8E4E0;border-radius:8px;overflow:hidden;">
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 32px;text-align:center;gap:8px;">
-          <span style="font:600 11px/1.2 'JetBrains Mono',monospace;color:#6B6B7F;text-transform:uppercase;letter-spacing:.1em;opacity:.5;">1200×500</span>
-          <span style="font:600 14px/1.3 'IBM Plex Sans',sans-serif;color:#1F1F33;">Step-by-step installation photos</span>
-          <span style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:#6B6B7F;max-width:640px;">4 numbered panels: 01 Open MCC cabinet → 02 Clip SAM4 CT sensor onto cable (blue highlight) → 03 Connect cellular gateway (4G/LTE) → 04 First data live (dashboard, teal checkmark, '20 minutes'). Progress bar below: <30 min total.</span>
+      <!-- Time callout -->
+      <div class="sam-inst-steps__time-callout sam-reveal">
+        <span class="sam-inst-steps__time-value kpi-value">30–60 min</span>
+        <div>
+          <p class="sam-inst-steps__time-label">Typical installation time per motor control cabinet</p>
+          <p class="sam-inst-steps__time-sub">Your existing electrical maintenance team. No specialist contractors.</p>
+        </div>
+      </div>
+
+      <!-- Video frame -->
+      <div class="sam-inst-steps__video sam-reveal">
+        <div class="sam-inst-steps__video-inner">
+          <div class="sam-inst-steps__video-play" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="8,5 19,12 8,19"/></svg>
+          </div>
+          <span class="sam-inst-steps__video-label">Watch a real SAM4 installation</span>
+          <span class="sam-inst-steps__video-duration">3 minutes</span>
         </div>
       </div>
     </div>
@@ -1493,75 +1873,48 @@
   <!-- ─── 4. WHAT THIS ELIMINATES ─── -->
   <section id="eliminated" class="sam-inst-elim">
     <div class="sam-inst-elim__inner">
-      <p class="overline">What this eliminates</p>
-      <h2>Everything that makes traditional monitoring slow, expensive, or impossible</h2>
+      <p class="overline sam-reveal">What this eliminates</p>
+      <h2 class="sam-reveal">Everything that makes traditional monitoring slow, expensive, or impossible</h2>
       <p class="lead sam-inst-elim__lead">Every item below is a real deployment barrier that has killed or delayed condition monitoring projects. SAM4 removes all of them.</p>
 
-      <div class="sam-inst-elim__grid">
-        <div class="sam-inst-elim__item">
-          <div class="sam-inst-elim__item-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
-              <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
-            </svg>
-          </div>
-          <div>
-            <h4 class="sam-inst-elim__item-title">No sensors on the machine</h4>
-            <p class="sam-inst-elim__item-desc">No mounting brackets, no adhesive pads, no cable runs to the asset. Everything installs at the MCC, metres or kilometres from the rotating equipment.</p>
-          </div>
-        </div>
-        <div class="sam-inst-elim__item">
-          <div class="sam-inst-elim__item-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
-              <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
-            </svg>
-          </div>
-          <div>
-            <h4 class="sam-inst-elim__item-title">No production downtime</h4>
-            <p class="sam-inst-elim__item-desc">Installation happens while the motor runs. No shutdown, no isolation, no production impact. The clamps go on live cables inside the MCC.</p>
+      <div class="sam-inst-elim__categories">
+        <div class="sam-inst-elim__category sam-reveal">
+          <h3 class="sam-inst-elim__category-title">Installation barriers</h3>
+          <div class="sam-inst-elim__category-list">
+            <div class="sam-inst-elim__category-item">
+              <svg class="sam-inst-elim__category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+              <p class="sam-inst-elim__category-text"><strong>No sensors on machines</strong>No mounting brackets, adhesive pads, or cable runs to the asset.</p>
+            </div>
+            <div class="sam-inst-elim__category-item">
+              <svg class="sam-inst-elim__category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+              <p class="sam-inst-elim__category-text"><strong>No ATEX permits</strong>The MCC is in the safe zone. No hot work permits, no gas testing.</p>
+            </div>
           </div>
         </div>
-        <div class="sam-inst-elim__item">
-          <div class="sam-inst-elim__item-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
-              <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
-            </svg>
-          </div>
-          <div>
-            <h4 class="sam-inst-elim__item-title">No corporate network changes</h4>
-            <p class="sam-inst-elim__item-desc">Cellular connectivity bypasses your IT infrastructure entirely. No firewall rules, no VPN tunnels, no security reviews of network architecture. IT doesn't need to be involved.</p>
-          </div>
-        </div>
-        <div class="sam-inst-elim__item">
-          <div class="sam-inst-elim__item-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
-              <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
-            </svg>
-          </div>
-          <div>
-            <h4 class="sam-inst-elim__item-title">No specialist contractor</h4>
-            <p class="sam-inst-elim__item-desc">Your existing electrical maintenance team can install the hardware. No vibration analysis certification, no specialist tooling, no external contractor coordination.</p>
+        <div class="sam-inst-elim__category sam-reveal sam-reveal--delay-1">
+          <h3 class="sam-inst-elim__category-title">Infrastructure barriers</h3>
+          <div class="sam-inst-elim__category-list">
+            <div class="sam-inst-elim__category-item">
+              <svg class="sam-inst-elim__category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+              <p class="sam-inst-elim__category-text"><strong>No network changes</strong>Cellular connectivity bypasses IT infrastructure entirely.</p>
+            </div>
+            <div class="sam-inst-elim__category-item">
+              <svg class="sam-inst-elim__category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+              <p class="sam-inst-elim__category-text"><strong>No scaffolding or access</strong>No working at height. The MCC is always accessible.</p>
+            </div>
           </div>
         </div>
-        <div class="sam-inst-elim__item">
-          <div class="sam-inst-elim__item-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
-              <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
-            </svg>
-          </div>
-          <div>
-            <h4 class="sam-inst-elim__item-title">No ATEX permits or confined space entry</h4>
-            <p class="sam-inst-elim__item-desc">The MCC is in the safe zone. No hot work permits, no gas testing, no confined space procedures. This is what makes it possible to monitor assets in hazardous environments at all.</p>
-          </div>
-        </div>
-        <div class="sam-inst-elim__item">
-          <div class="sam-inst-elim__item-icon" aria-hidden="true">
-            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
-              <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
-            </svg>
-          </div>
-          <div>
-            <h4 class="sam-inst-elim__item-title">No scaffolding or site access complications</h4>
-            <p class="sam-inst-elim__item-desc">No working at height, no access to submerged or enclosed environments, no coordination with operations teams for asset access. The MCC is always accessible.</p>
+        <div class="sam-inst-elim__category sam-reveal sam-reveal--delay-2">
+          <h3 class="sam-inst-elim__category-title">Operational barriers</h3>
+          <div class="sam-inst-elim__category-list">
+            <div class="sam-inst-elim__category-item">
+              <svg class="sam-inst-elim__category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+              <p class="sam-inst-elim__category-text"><strong>No production downtime</strong>Clamps go on live cables. Motor keeps running.</p>
+            </div>
+            <div class="sam-inst-elim__category-item">
+              <svg class="sam-inst-elim__category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+              <p class="sam-inst-elim__category-text"><strong>No specialist contractor</strong>Your maintenance team installs. No external coordination.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1571,8 +1924,8 @@
   <!-- ─── 5. SCALING DYNAMICS ─── -->
   <section class="sam-install-scale">
     <div class="sam-install-scale__inner">
-      <p class="overline">The pivot</p>
-      <h2>Scale with near-zero friction</h2>
+      <p class="overline sam-reveal">The pivot</p>
+      <h2 class="sam-reveal">Scale with near-zero friction</h2>
       <p class="lead sam-install-scale__lead">Once SAM4 hardware is in the cabinet, scaling is fundamentally different from traditional monitoring. Adding the next asset means a configuration change, not a new sensor, new wiring, or a new integration project.</p>
 
       <!-- Friction comparison -->
@@ -1587,7 +1940,8 @@
             <div class="sam-install-scale__bar" style="--bar-h: 80%"><span>25</span></div>
             <div class="sam-install-scale__bar" style="--bar-h: 100%"><span>50</span></div>
           </div>
-          <p class="sam-install-scale__bar-label">Assets monitored →</p>
+          <p class="sam-install-scale__bar-label">Assets monitored &rarr;</p>
+          <p class="sam-install-scale__effort-label">Effort grows with every asset</p>
         </div>
         <div class="sam-install-scale__compare-col">
           <h3 class="sam-install-scale__compare-heading">ESA via SAM4</h3>
@@ -1599,7 +1953,8 @@
             <div class="sam-install-scale__bar sam-install-scale__bar--esa" style="--bar-h: 12%"><span>25</span></div>
             <div class="sam-install-scale__bar sam-install-scale__bar--esa" style="--bar-h: 8%"><span>50</span></div>
           </div>
-          <p class="sam-install-scale__bar-label">Assets monitored →</p>
+          <p class="sam-install-scale__bar-label">Assets monitored &rarr;</p>
+          <p class="sam-install-scale__effort-label">Effort stays nearly flat</p>
         </div>
       </div>
 
@@ -1624,29 +1979,38 @@
   <!-- ─── 6. DEPLOYMENT PATTERNS ─── -->
   <section id="scale" class="sam-inst-scale">
     <div class="sam-inst-scale__inner">
-      <p class="overline">Deployment scale</p>
-      <h2>Same process at every scale</h2>
+      <p class="overline sam-reveal">Deployment scale</p>
+      <h2 class="sam-reveal">Same process at every scale</h2>
       <p class="lead sam-inst-scale__lead">The installation process doesn't change between a 5-asset pilot and a 1,000-asset fleet rollout. Only the number of shifts changes.</p>
 
-      <div class="sam-inst-scale__grid">
-        <div class="sam-inst-scale__card">
-          <span class="sam-inst-scale__card-range kpi-value">5–20 assets</span>
-          <h3 class="sam-inst-scale__card-title">Pilot</h3>
-          <p class="sam-inst-scale__card-desc">Prove the technology on your most critical or most problematic assets. Typically completed in 1–2 days. Includes baseline configuration and first diagnostic review within 2 weeks.</p>
+      <div class="sam-inst-scale__progression">
+        <div class="sam-inst-scale__stage sam-reveal">
+          <div class="sam-inst-scale__stage-dot">1</div>
+          <div>
+            <span class="sam-inst-scale__stage-range kpi-value">10–50 assets</span>
+            <h3 class="sam-inst-scale__stage-title">Pilot</h3>
+            <p class="sam-inst-scale__stage-desc">Prove the technology on critical assets. 1–2 days. First diagnostics within 2 weeks.</p>
+          </div>
         </div>
-        <div class="sam-inst-scale__card">
-          <span class="sam-inst-scale__card-range kpi-value">50–200 assets</span>
-          <h3 class="sam-inst-scale__card-title">Site</h3>
-          <p class="sam-inst-scale__card-desc">Expand to full site coverage. Installation teams work through MCC rooms systematically. A 100-asset site typically completes in 1–2 weeks. No production disruption at any stage.</p>
+        <div class="sam-inst-scale__stage sam-reveal sam-reveal--delay-1">
+          <div class="sam-inst-scale__stage-dot">2</div>
+          <div>
+            <span class="sam-inst-scale__stage-range kpi-value">100–500 assets</span>
+            <h3 class="sam-inst-scale__stage-title">Site</h3>
+            <p class="sam-inst-scale__stage-desc">Full site coverage. Work through MCCs systematically. 1–2 weeks. Zero disruption.</p>
+          </div>
         </div>
-        <div class="sam-inst-scale__card">
-          <span class="sam-inst-scale__card-range kpi-value">1,000+ assets</span>
-          <h3 class="sam-inst-scale__card-title">Fleet</h3>
-          <p class="sam-inst-scale__card-desc">Multi-site, multi-region deployment. Yorkshire Water: 1,300 assets across hundreds of pumping stations. Same hardware, same process, same team. Fleet management in SAM4 from day one.</p>
+        <div class="sam-inst-scale__stage sam-reveal sam-reveal--delay-2">
+          <div class="sam-inst-scale__stage-dot">3</div>
+          <div>
+            <span class="sam-inst-scale__stage-range kpi-value">1,000+ assets</span>
+            <h3 class="sam-inst-scale__stage-title">Fleet</h3>
+            <p class="sam-inst-scale__stage-desc">Multi-site rollout. Same hardware, same process. Fleet management from day one.</p>
+          </div>
         </div>
       </div>
 
-      <p class="sam-inst-scale__proof"><a href="/proof/" class="sam-text-link">See deployment results →</a></p>
+      <p class="sam-inst-scale__proof" style="text-align:center;margin-top:48px;"><a href="/proof/" class="sam-text-link">See deployment results &rarr;</a></p>
     </div>
   </section>
 
@@ -1666,11 +2030,11 @@
   <!-- ─── 8. TERMINAL CTA ─── -->
   <section class="sam-cta-block sam-cta-block--install">
     <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">See the installation in a live demo</h2>
-      <p class="sam-cta-block__sub">We'll walk through the hardware, the installation process, and show you SAM4 running on real assets. From clamp to dashboard, the full picture.</p>
+      <h2 class="sam-cta-block__heading">See how SAM4 installs in your plant</h2>
+      <p class="sam-cta-block__sub">We'll scope your MCCs, your asset list, and your timeline. From clamp to dashboard in one conversation.</p>
       <div class="sam-cta-block__actions">
-        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
-        <a href="/contact?intent=demo" class="sam-btn sam-btn--secondary">Talk to an engineer</a>
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Schedule an installation walkthrough</a>
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--secondary" style="border-color:rgba(255,255,255,0.4);color:var(--sam-white);">Talk to an engineer</a>
       </div>
     </div>
   </section>
@@ -1804,6 +2168,34 @@
         }
       });
     });
+
+    // ──────────────────────────────────────────
+    // SCROLL REVEAL ANIMATIONS
+    // ──────────────────────────────────────────
+    const revealElements = document.querySelectorAll('.sam-reveal');
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealElements.forEach(function(el) {
+        revealObserver.observe(el);
+      });
+    } else {
+      // Fallback for old browsers
+      revealElements.forEach(function(el) {
+        el.classList.add('is-visible');
+      });
+    }
   </script>
 </body>
 </html>
