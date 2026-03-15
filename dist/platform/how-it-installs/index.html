@@ -1269,35 +1269,6 @@
     align-items: flex-start;
   }
 }
-/* ─── Scroll Reveal Animations ─── */
-.sam-reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.sam-reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.sam-reveal--delay-1 { transition-delay: 0.1s; }
-.sam-reveal--delay-2 { transition-delay: 0.2s; }
-.sam-reveal--delay-3 { transition-delay: 0.3s; }
-.sam-reveal--delay-4 { transition-delay: 0.4s; }
-
-/* Card hover effects */
-.sam-inst-steps__card,
-.sam-inst-elim__category,
-.sam-inst-scale__card,
-.sam-install-scale__stat {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-.sam-inst-steps__card:hover,
-.sam-inst-scale__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(31, 31, 51, 0.08);
-}
-
 /* ─── Architecture Diagram ─── */
 .sam-arch {
   background: var(--sam-white);
@@ -1550,11 +1521,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-.sam-inst-steps__video:hover .sam-inst-steps__video-play {
-  transform: scale(1.1);
-  box-shadow: 0 8px 32px rgba(255, 84, 41, 0.4);
 }
 .sam-inst-steps__video-label {
   font: 600 16px/1 var(--sam-font);
@@ -1744,7 +1710,7 @@
     <div class="sam-arch__inner">
       <p class="overline" style="text-align:center;">How SAM4 connects</p>
       <h2 style="text-align:center; margin-bottom:48px;">The installation explained in 5 seconds</h2>
-      <div class="sam-arch__flow sam-reveal">
+      <div class="sam-arch__flow">
         <div class="sam-arch__step">
           <div class="sam-arch__step-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2 2"/></svg>
@@ -1791,7 +1757,7 @@
   <!-- ─── 2. WHY MCC ─── -->
   <section class="sam-install-why">
     <div class="sam-install-why__inner">
-      <p class="overline sam-reveal">The wedge</p>
+      <p class="overline">The wedge</p>
       <h2 class="sam-reveal">Traditional monitoring needs sensors bolted to the machine. ESA doesn't.</h2>
       <p class="lead sam-install-why__lead">30–40% of critical rotating equipment sits beyond the reach of conventional monitoring: submerged pumps, sealed blowers, hazardous zones, remote sites. SAM4 starts exactly here, with the assets that keep reliability engineers awake at night.</p>
 
@@ -1817,7 +1783,7 @@
   <!-- ─── 3. INSTALLATION STEPS ─── -->
   <section id="steps" class="sam-inst-steps">
     <div class="sam-inst-steps__inner">
-      <p class="overline sam-reveal">Installation process</p>
+      <p class="overline">Installation process</p>
       <h2 class="sam-reveal">Four steps. One shift. First data within hours.</h2>
       <p class="lead sam-inst-steps__lead">Every installation follows the same process, whether you're connecting 5 assets in a pilot or 1,000 across a fleet. No specialist contractor required.</p>
 
@@ -1849,7 +1815,7 @@
       </div>
 
       <!-- Time callout -->
-      <div class="sam-inst-steps__time-callout sam-reveal">
+      <div class="sam-inst-steps__time-callout">
         <span class="sam-inst-steps__time-value kpi-value">30–60 min</span>
         <div>
           <p class="sam-inst-steps__time-label">Typical installation time per motor control cabinet</p>
@@ -1858,7 +1824,7 @@
       </div>
 
       <!-- Video frame -->
-      <div class="sam-inst-steps__video sam-reveal">
+      <div class="sam-inst-steps__video">
         <div class="sam-inst-steps__video-inner">
           <div class="sam-inst-steps__video-play" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="8,5 19,12 8,19"/></svg>
@@ -1873,12 +1839,12 @@
   <!-- ─── 4. WHAT THIS ELIMINATES ─── -->
   <section id="eliminated" class="sam-inst-elim">
     <div class="sam-inst-elim__inner">
-      <p class="overline sam-reveal">What this eliminates</p>
+      <p class="overline">What this eliminates</p>
       <h2 class="sam-reveal">Everything that makes traditional monitoring slow, expensive, or impossible</h2>
       <p class="lead sam-inst-elim__lead">Every item below is a real deployment barrier that has killed or delayed condition monitoring projects. SAM4 removes all of them.</p>
 
       <div class="sam-inst-elim__categories">
-        <div class="sam-inst-elim__category sam-reveal">
+        <div class="sam-inst-elim__category">
           <h3 class="sam-inst-elim__category-title">Installation barriers</h3>
           <div class="sam-inst-elim__category-list">
             <div class="sam-inst-elim__category-item">
@@ -1891,7 +1857,7 @@
             </div>
           </div>
         </div>
-        <div class="sam-inst-elim__category sam-reveal sam-reveal--delay-1">
+        <div class="sam-inst-elim__category">
           <h3 class="sam-inst-elim__category-title">Infrastructure barriers</h3>
           <div class="sam-inst-elim__category-list">
             <div class="sam-inst-elim__category-item">
@@ -1904,7 +1870,7 @@
             </div>
           </div>
         </div>
-        <div class="sam-inst-elim__category sam-reveal sam-reveal--delay-2">
+        <div class="sam-inst-elim__category">
           <h3 class="sam-inst-elim__category-title">Operational barriers</h3>
           <div class="sam-inst-elim__category-list">
             <div class="sam-inst-elim__category-item">
@@ -1924,7 +1890,7 @@
   <!-- ─── 5. SCALING DYNAMICS ─── -->
   <section class="sam-install-scale">
     <div class="sam-install-scale__inner">
-      <p class="overline sam-reveal">The pivot</p>
+      <p class="overline">The pivot</p>
       <h2 class="sam-reveal">Scale with near-zero friction</h2>
       <p class="lead sam-install-scale__lead">Once SAM4 hardware is in the cabinet, scaling is fundamentally different from traditional monitoring. Adding the next asset means a configuration change, not a new sensor, new wiring, or a new integration project.</p>
 
@@ -1979,12 +1945,12 @@
   <!-- ─── 6. DEPLOYMENT PATTERNS ─── -->
   <section id="scale" class="sam-inst-scale">
     <div class="sam-inst-scale__inner">
-      <p class="overline sam-reveal">Deployment scale</p>
+      <p class="overline">Deployment scale</p>
       <h2 class="sam-reveal">Same process at every scale</h2>
       <p class="lead sam-inst-scale__lead">The installation process doesn't change between a 5-asset pilot and a 1,000-asset fleet rollout. Only the number of shifts changes.</p>
 
       <div class="sam-inst-scale__progression">
-        <div class="sam-inst-scale__stage sam-reveal">
+        <div class="sam-inst-scale__stage">
           <div class="sam-inst-scale__stage-dot">1</div>
           <div>
             <span class="sam-inst-scale__stage-range kpi-value">10–50 assets</span>
@@ -1992,7 +1958,7 @@
             <p class="sam-inst-scale__stage-desc">Prove the technology on critical assets. 1–2 days. First diagnostics within 2 weeks.</p>
           </div>
         </div>
-        <div class="sam-inst-scale__stage sam-reveal sam-reveal--delay-1">
+        <div class="sam-inst-scale__stage">
           <div class="sam-inst-scale__stage-dot">2</div>
           <div>
             <span class="sam-inst-scale__stage-range kpi-value">100–500 assets</span>
@@ -2000,7 +1966,7 @@
             <p class="sam-inst-scale__stage-desc">Full site coverage. Work through MCCs systematically. 1–2 weeks. Zero disruption.</p>
           </div>
         </div>
-        <div class="sam-inst-scale__stage sam-reveal sam-reveal--delay-2">
+        <div class="sam-inst-scale__stage">
           <div class="sam-inst-scale__stage-dot">3</div>
           <div>
             <span class="sam-inst-scale__stage-range kpi-value">1,000+ assets</span>
@@ -2169,33 +2135,6 @@
       });
     });
 
-    // ──────────────────────────────────────────
-    // SCROLL REVEAL ANIMATIONS
-    // ──────────────────────────────────────────
-    const revealElements = document.querySelectorAll('.sam-reveal');
-
-    if ('IntersectionObserver' in window) {
-      const revealObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px'
-      });
-
-      revealElements.forEach(function(el) {
-        revealObserver.observe(el);
-      });
-    } else {
-      // Fallback for old browsers
-      revealElements.forEach(function(el) {
-        el.classList.add('is-visible');
-      });
-    }
   </script>
 </body>
 </html>
