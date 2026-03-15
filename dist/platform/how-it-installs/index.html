@@ -1554,9 +1554,10 @@
   <header class="sam-header" role="banner">
     <div class="sam-header__inner">
       <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
-        <svg class="sam-logo sam-logo--white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 32" width="140" height="32">
-          <path fill="currentColor" d="M8 14v4h2v-4H8m0-4v2h2V10H8m4 8h2v-2h-2v2m0-4h2v-2h-2v2m-4-4h2V8h-2v2m8 12h8v-2h-8v2m0-8h8v-2h-8v2m16 8h6l-3-8 3-8h-6l-3 8 3 8m-24-4h2v-2h-2v2m0-4h2v-2h-2v2"/>
-        </svg>
+        <img src="/assets/samotics-logo-white.svg"
+             alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+        <img src="/assets/samotics-logo-white.svg"
+             alt="Samotics" class="sam-logo sam-logo--dark" width="140" height="32">
       </a>
 
       <nav class="sam-nav" role="navigation" aria-label="Main navigation">
@@ -1699,8 +1700,8 @@
     <div class="sam-hero__inner">
       <div class="sam-hero__content">
         <p class="sam-hero__overline">How It Installs</p>
-        <h1 class="sam-hero__h1">Less than 30 minutes per machine.<br>At the MCC, not on the asset.</h1>
-        <p class="sam-hero__lead">CT/VT clamps at the motor control cabinet, a cellular gateway, and a power supply. That's the hardware. No sensors on the machine, no production downtime, no scaffolding, no ATEX permits. Your maintenance team can deploy this.</p>
+        <h1 class="sam-hero__h1">60 to 90 minutes per asset.<br>At the MCC, not on the machine.</h1>
+        <p class="sam-hero__lead">CT/VT clamps at the motor control cabinet, a SAM4 DAQ device, and a power supply. No sensors on the machine, no scaffolding, no ATEX permits. Your electrical maintenance team handles the full install.</p>
       </div>
     </div>
   </section>
@@ -1724,23 +1725,23 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
           </div>
           <span class="sam-arch__step-label">CT/VT clamps</span>
-          <span class="sam-arch__step-sub">Non-invasive sensors</span>
+          <span class="sam-arch__step-sub">Clamp-on current and voltage</span>
         </div>
         <span class="sam-arch__arrow" aria-hidden="true">&rarr;</span>
         <div class="sam-arch__step">
           <div class="sam-arch__step-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
-          <span class="sam-arch__step-label">Edge device</span>
-          <span class="sam-arch__step-sub">Gateway in the MCC</span>
+          <span class="sam-arch__step-label">SAM4 DAQ</span>
+          <span class="sam-arch__step-sub">DIN-rail mounted in the MCC</span>
         </div>
         <span class="sam-arch__arrow" aria-hidden="true">&rarr;</span>
         <div class="sam-arch__step">
           <div class="sam-arch__step-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/></svg>
           </div>
-          <span class="sam-arch__step-label">Cellular (4G/LTE)</span>
-          <span class="sam-arch__step-sub">No corporate network</span>
+          <span class="sam-arch__step-label">Ethernet + Cellular</span>
+          <span class="sam-arch__step-sub">PoE between DAQs, 4G/LTE upstream</span>
         </div>
         <span class="sam-arch__arrow" aria-hidden="true">&rarr;</span>
         <div class="sam-arch__step">
@@ -1758,7 +1759,7 @@
   <section class="sam-install-why">
     <div class="sam-install-why__inner">
       <p class="overline">The wedge</p>
-      <h2 class="sam-reveal">Traditional monitoring needs sensors bolted to the machine. ESA doesn't.</h2>
+      <h2>Traditional monitoring needs sensors bolted to the machine. ESA doesn't.</h2>
       <p class="lead sam-install-why__lead">30–40% of critical rotating equipment sits beyond the reach of conventional monitoring: submerged pumps, sealed blowers, hazardous zones, remote sites. SAM4 starts exactly here, with the assets that keep reliability engineers awake at night.</p>
 
       <div class="sam-install-why__grid">
@@ -1776,7 +1777,7 @@
         </div>
       </div>
 
-      <p class="sam-install-why__footnote">SAM4 installs at the motor control cabinet in under 30 minutes. No wiring to the machine. No downtime. <a href="#steps" class="sam-text-link">See how it installs →</a></p>
+      <p class="sam-install-why__footnote">SAM4 installs at the motor control cabinet in 60 to 90 minutes. No wiring to the machine. No sensors on the asset. <a href="#steps" class="sam-text-link">See how it installs →</a></p>
     </div>
   </section>
 
@@ -1784,42 +1785,48 @@
   <section id="steps" class="sam-inst-steps">
     <div class="sam-inst-steps__inner">
       <p class="overline">Installation process</p>
-      <h2 class="sam-reveal">Four steps. One shift. First data within hours.</h2>
-      <p class="lead sam-inst-steps__lead">Every installation follows the same process, whether you're connecting 5 assets in a pilot or 1,000 across a fleet. No specialist contractor required.</p>
+      <h2>Five steps. One shift. First data within hours.</h2>
+      <p class="lead sam-inst-steps__lead">Every installation follows the same process, whether you're connecting 5 assets in a pilot or 1,000 across a fleet. Your electrical maintenance team runs the install.</p>
 
       <div class="sam-inst-steps__grid">
         <div class="sam-inst-steps__card">
           <span class="sam-inst-steps__num kpi-value">01</span>
-          <h3 class="sam-inst-steps__card-title">CT/VT clamp installation</h3>
-          <p class="sam-inst-steps__card-desc">Current and voltage transducers are clamped onto the motor supply cables inside the motor control cabinet. Non-invasive. No cable cutting, no rewiring, no interruption to power supply.</p>
-          <p class="sam-inst-steps__card-detail">~10 minutes per motor</p>
+          <h3 class="sam-inst-steps__card-title">Preparation and MCC isolation</h3>
+          <p class="sam-inst-steps__card-desc">De-energize the relevant MCC section per your site's lockout/tagout procedure. Verify isolation before opening the cabinet. The motor is temporarily stopped during CT/VT installation only.</p>
+          <p class="sam-inst-steps__card-detail">Standard LOTO procedure</p>
         </div>
         <div class="sam-inst-steps__card">
           <span class="sam-inst-steps__num kpi-value">02</span>
-          <h3 class="sam-inst-steps__card-title">Gateway setup</h3>
-          <p class="sam-inst-steps__card-desc">The Samotics gateway connects to the CT/VT clamps and handles edge processing. It mounts inside or adjacent to the MCC. One gateway serves multiple motors.</p>
-          <p class="sam-inst-steps__card-detail">~10 minutes per gateway</p>
+          <h3 class="sam-inst-steps__card-title">CT/VT clamp installation</h3>
+          <p class="sam-inst-steps__card-desc">Current transformers clamp onto each phase of the motor supply cable. Voltage measurement connects via fused terminal blocks. Phase order matters: match CT orientation to cable labelling.</p>
+          <p class="sam-inst-steps__card-detail">Per motor feeder</p>
         </div>
         <div class="sam-inst-steps__card">
           <span class="sam-inst-steps__num kpi-value">03</span>
-          <h3 class="sam-inst-steps__card-title">Cellular connection</h3>
-          <p class="sam-inst-steps__card-desc">The gateway transmits data over cellular (4G/LTE), not your corporate network. No IT tickets, no firewall changes, no VPN configuration. Plug in the SIM, confirm signal, done.</p>
-          <p class="sam-inst-steps__card-detail">~5 minutes per gateway</p>
+          <h3 class="sam-inst-steps__card-title">DAQ device setup</h3>
+          <p class="sam-inst-steps__card-desc">The SAM4 DAQ mounts on a DIN rail inside or adjacent to the MCC. Connect CT/VT leads to the DAQ. Multiple DAQ units chain together via Power over Ethernet (PoE). One power supply unit feeds the chain.</p>
+          <p class="sam-inst-steps__card-detail">One DAQ per motor feeder</p>
         </div>
         <div class="sam-inst-steps__card">
           <span class="sam-inst-steps__num kpi-value">04</span>
+          <h3 class="sam-inst-steps__card-title">Connectivity and verification</h3>
+          <p class="sam-inst-steps__card-desc">A modem kit provides the cellular (4G/LTE) uplink. No corporate network needed. After re-energizing, verify LED status on each DAQ, then commission via the SAM4.local browser interface.</p>
+          <p class="sam-inst-steps__card-detail">No IT tickets, no firewall changes</p>
+        </div>
+        <div class="sam-inst-steps__card">
+          <span class="sam-inst-steps__num kpi-value">05</span>
           <h3 class="sam-inst-steps__card-title">Cloud activation</h3>
-          <p class="sam-inst-steps__card-desc">Once the gateway is online, Samotics configures the asset in SAM4. Baseline data collection begins immediately. AI models start learning the motor's normal signature within hours.</p>
+          <p class="sam-inst-steps__card-desc">Once the DAQ is online, Samotics configures the asset in SAM4. Baseline data collection begins immediately. AI models start learning the motor's normal signature within hours.</p>
           <p class="sam-inst-steps__card-detail">First diagnostics within 48 hours</p>
         </div>
       </div>
 
       <!-- Time callout -->
       <div class="sam-inst-steps__time-callout">
-        <span class="sam-inst-steps__time-value kpi-value">30–60 min</span>
+        <span class="sam-inst-steps__time-value kpi-value">60–90 min</span>
         <div>
-          <p class="sam-inst-steps__time-label">Typical installation time per motor control cabinet</p>
-          <p class="sam-inst-steps__time-sub">Your existing electrical maintenance team. No specialist contractors.</p>
+          <p class="sam-inst-steps__time-label">Typical installation time per asset</p>
+          <p class="sam-inst-steps__time-sub">Your existing electrical maintenance team. Standard tools. No specialist contractors.</p>
         </div>
       </div>
 
@@ -1840,7 +1847,7 @@
   <section id="eliminated" class="sam-inst-elim">
     <div class="sam-inst-elim__inner">
       <p class="overline">What this eliminates</p>
-      <h2 class="sam-reveal">Everything that makes traditional monitoring slow, expensive, or impossible</h2>
+      <h2>Everything that makes traditional monitoring slow, expensive, or impossible</h2>
       <p class="lead sam-inst-elim__lead">Every item below is a real deployment barrier that has killed or delayed condition monitoring projects. SAM4 removes all of them.</p>
 
       <div class="sam-inst-elim__categories">
@@ -1875,11 +1882,11 @@
           <div class="sam-inst-elim__category-list">
             <div class="sam-inst-elim__category-item">
               <svg class="sam-inst-elim__category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
-              <p class="sam-inst-elim__category-text"><strong>No production downtime</strong>Clamps go on live cables. Motor keeps running.</p>
+              <p class="sam-inst-elim__category-text"><strong>Minimal production impact</strong>The MCC section is de-energized briefly for CT/VT installation, then re-energized. The motor returns to service the same shift.</p>
             </div>
             <div class="sam-inst-elim__category-item">
               <svg class="sam-inst-elim__category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
-              <p class="sam-inst-elim__category-text"><strong>No specialist contractor</strong>Your maintenance team installs. No external coordination.</p>
+              <p class="sam-inst-elim__category-text"><strong>No specialist contractor</strong>Your qualified electrical maintenance team installs. No external coordination.</p>
             </div>
           </div>
         </div>
@@ -1891,7 +1898,7 @@
   <section class="sam-install-scale">
     <div class="sam-install-scale__inner">
       <p class="overline">The pivot</p>
-      <h2 class="sam-reveal">Scale with near-zero friction</h2>
+      <h2>Scale with near-zero friction</h2>
       <p class="lead sam-install-scale__lead">Once SAM4 hardware is in the cabinet, scaling is fundamentally different from traditional monitoring. Adding the next asset means a configuration change, not a new sensor, new wiring, or a new integration project.</p>
 
       <!-- Friction comparison -->
@@ -1927,7 +1934,7 @@
       <!-- KPI stats -->
       <div class="sam-install-scale__stats">
         <div class="sam-install-scale__stat">
-          <span class="sam-install-scale__stat-value kpi-value">&lt;30 min</span>
+          <span class="sam-install-scale__stat-value kpi-value">60–90 min</span>
           <span class="sam-install-scale__stat-label">Install time per asset</span>
         </div>
         <div class="sam-install-scale__stat">
@@ -1946,7 +1953,7 @@
   <section id="scale" class="sam-inst-scale">
     <div class="sam-inst-scale__inner">
       <p class="overline">Deployment scale</p>
-      <h2 class="sam-reveal">Same process at every scale</h2>
+      <h2>Same process at every scale</h2>
       <p class="lead sam-inst-scale__lead">The installation process doesn't change between a 5-asset pilot and a 1,000-asset fleet rollout. Only the number of shifts changes.</p>
 
       <div class="sam-inst-scale__progression">
