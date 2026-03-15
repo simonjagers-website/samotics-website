@@ -2237,13 +2237,19 @@
       max-width: 30ch;
     }
     
+    .sam-plat-alert-example__layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-09);
+      align-items: start;
+    }
+
     .sam-plat-alert-example__card {
       background: var(--sam-white);
       border: 1px solid var(--sam-border-light);
       border-left: 4px solid var(--sam-space-cadet);
       border-radius: 0;
       padding: var(--sp-08);
-      max-width: 520px;
     }
     
     .sam-plat-alert-example__header {
@@ -2301,10 +2307,44 @@
       color: var(--sam-comet);
       margin: 0;
     }
-    
+
+    .sam-plat-alert-example__context {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-07);
+      padding-top: var(--sp-06);
+    }
+
+    .sam-plat-alert-example__context-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-03);
+    }
+
+    .sam-plat-alert-example__context-title {
+      font-family: var(--sam-font);
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.3;
+      color: var(--sam-space-cadet);
+      margin: 0;
+    }
+
+    .sam-plat-alert-example__context-desc {
+      font-family: var(--sam-font);
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--sam-comet);
+      margin: 0;
+    }
+
     @media (max-width: 991px) {
       .sam-plat-alert-example__inner h2 {
         font-size: 2rem;
+      }
+      .sam-plat-alert-example__layout {
+        grid-template-columns: 1fr;
       }
       .sam-plat-alert-example__card {
         padding: var(--sp-06);
@@ -2378,6 +2418,75 @@
       .sam-quote__text {
         font-size: 1.25rem;
         padding-left: var(--sp-05);
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════
+    SCROLL-TRIGGERED ANIMATIONS
+    ════════════════════════════════════════════════════════════════════════ */
+
+    .sam-reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .sam-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children in grids */
+    .sam-reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .sam-reveal-stagger.is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .sam-reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+    .sam-reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+    .sam-reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+    .sam-reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+    .sam-reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+
+    /* Card hover effects */
+    .sam-plat-components__card,
+    .sam-plat-dash__feature,
+    .sam-plat-validation__card,
+    .sam-plat-integrations__card,
+    .sam-plat-enterprise__item,
+    .sam-plat-flow__step-card {
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+    .sam-plat-components__card:hover,
+    .sam-plat-dash__feature:hover,
+    .sam-plat-validation__card:hover,
+    .sam-plat-integrations__card:hover,
+    .sam-plat-enterprise__item:hover,
+    .sam-plat-flow__step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(31, 31, 51, 0.08);
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .sam-reveal,
+      .sam-reveal-stagger > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .sam-plat-components__card,
+      .sam-plat-dash__feature,
+      .sam-plat-validation__card,
+      .sam-plat-integrations__card,
+      .sam-plat-enterprise__item,
+      .sam-plat-flow__step-card {
+        transition: none !important;
       }
     }
 
@@ -2605,7 +2714,7 @@
       <p class="overline">How SAM4 works</p>
       <h2>From electrical signal to maintenance action</h2>
 
-      <div class="sam-plat-flow__diagram">
+      <div class="sam-plat-flow__diagram sam-reveal-stagger">
         <div class="sam-plat-flow__step">
           <div class="sam-plat-flow__step-num">
             <span class="kpi-value" style="color: var(--sam-orange);">1</span>
@@ -2673,7 +2782,7 @@
       <p class="overline">What you get</p>
       <h2>Four components. One managed service.</h2>
 
-      <div class="sam-plat-components__grid">
+      <div class="sam-plat-components__grid sam-reveal-stagger">
         <div class="sam-plat-components__card">
           <div class="sam-plat-components__card-icon" aria-hidden="true">
             <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -2788,7 +2897,7 @@
         </div>
       </div>
 
-      <div class="sam-plat-validation__cards">
+      <div class="sam-plat-validation__cards sam-reveal-stagger">
         <div class="sam-plat-validation__card">
           <h3 class="sam-plat-validation__card-title">Diagnostics expertise</h3>
           <p class="sam-plat-validation__card-desc">Reliability engineers with deep knowledge of pumps, compressors, fans, and motors. Every anomaly reviewed. Fault type confirmed.</p>
@@ -2804,7 +2913,7 @@
       </div>
 
       <!-- Not Self-Serve Callout -->
-      <div class="sam-plat-validation__callout">
+      <div class="sam-plat-validation__callout sam-reveal">
         <p class="sam-plat-validation__callout-title">SAM4 is a managed service. Not self-serve software.</p>
         <p class="sam-plat-validation__callout-desc">Behind the platform is a team that knows your fleet, your sites, and your maintenance priorities. Human-verified alerts. Actionable recommendations. No alert fatigue.</p>
       </div>
@@ -2817,33 +2926,48 @@
       <p class="overline">Diagnostic depth</p>
       <h2>What your team receives with every alert</h2>
 
-      <div class="sam-plat-alert-example__card">
-        <div class="sam-plat-alert-example__header">
-          <h3 class="sam-plat-alert-example__title">Real alert example</h3>
+      <div class="sam-plat-alert-example__layout sam-reveal">
+        <div class="sam-plat-alert-example__card">
+          <div class="sam-plat-alert-example__header">
+            <h3 class="sam-plat-alert-example__title">Real alert example</h3>
+          </div>
+          <div class="sam-plat-alert-example__row">
+            <span class="sam-plat-alert-example__label">Asset</span>
+            <span class="sam-plat-alert-example__value">Pump P-301A</span>
+          </div>
+          <div class="sam-plat-alert-example__row">
+            <span class="sam-plat-alert-example__label">Fault</span>
+            <span class="sam-plat-alert-example__value">Inner race bearing defect</span>
+          </div>
+          <div class="sam-plat-alert-example__row">
+            <span class="sam-plat-alert-example__label">Severity</span>
+            <span class="sam-plat-alert-example__value" style="color: var(--sam-orange); font-weight: 600;">High</span>
+          </div>
+          <div class="sam-plat-alert-example__row">
+            <span class="sam-plat-alert-example__label">Lead time</span>
+            <span class="sam-plat-alert-example__value">4–6 weeks</span>
+          </div>
+          <div class="sam-plat-alert-example__row sam-plat-alert-example__row--last">
+            <span class="sam-plat-alert-example__label">Action</span>
+            <span class="sam-plat-alert-example__value">Schedule bearing replacement at next planned outage</span>
+          </div>
         </div>
-        <div class="sam-plat-alert-example__row">
-          <span class="sam-plat-alert-example__label">Asset</span>
-          <span class="sam-plat-alert-example__value">Pump P-301A</span>
-        </div>
-        <div class="sam-plat-alert-example__row">
-          <span class="sam-plat-alert-example__label">Fault</span>
-          <span class="sam-plat-alert-example__value">Inner race bearing defect</span>
-        </div>
-        <div class="sam-plat-alert-example__row">
-          <span class="sam-plat-alert-example__label">Severity</span>
-          <span class="sam-plat-alert-example__value" style="color: var(--sam-orange); font-weight: 600;">High</span>
-        </div>
-        <div class="sam-plat-alert-example__row">
-          <span class="sam-plat-alert-example__label">Lead time</span>
-          <span class="sam-plat-alert-example__value">4–6 weeks</span>
-        </div>
-        <div class="sam-plat-alert-example__row sam-plat-alert-example__row--last">
-          <span class="sam-plat-alert-example__label">Action</span>
-          <span class="sam-plat-alert-example__value">Schedule bearing replacement at next planned outage</span>
+
+        <div class="sam-plat-alert-example__context">
+          <div class="sam-plat-alert-example__context-item">
+            <h4 class="sam-plat-alert-example__context-title">Not just an alert — a diagnosis</h4>
+            <p class="sam-plat-alert-example__context-desc">Every SAM4 alert names the specific fault type, rates its severity, and recommends the maintenance action. Your team knows what to do without opening a second system.</p>
+          </div>
+          <div class="sam-plat-alert-example__context-item">
+            <h4 class="sam-plat-alert-example__context-title">Weeks of lead time, not hours</h4>
+            <p class="sam-plat-alert-example__context-desc">ESA detects mechanical faults early in their progression. This alert gave the maintenance team 4–6 weeks to plan a bearing replacement — no emergency shutdown, no production loss.</p>
+          </div>
+          <div class="sam-plat-alert-example__context-item">
+            <h4 class="sam-plat-alert-example__context-title">Spectral signatures included</h4>
+            <p class="sam-plat-alert-example__context-desc">Alert cards include spectral signatures and trend graphs for full diagnostic context. Engineers can verify the finding, track degradation over time, and build confidence in the system.</p>
+          </div>
         </div>
       </div>
-
-      <p class="sam-plat-alert-example__footer"><em>Alert cards include spectral signatures and trend graphs for full diagnostic context.</em></p>
     </div>
   </section>
 
@@ -2853,7 +2977,7 @@
       <p class="overline">Getting started</p>
       <h2>SAM4 deployment takes weeks, not months.</h2>
 
-      <div class="sam-plat-journey__grid">
+      <div class="sam-plat-journey__grid sam-reveal-stagger">
         <div class="sam-plat-journey__stage">
           <span class="sam-plat-journey__stage-num kpi-value">1</span>
           <h3 class="sam-plat-journey__stage-title">Asset selection</h3>
@@ -2907,7 +3031,7 @@
       <h3 style="font: 600 32px/1.2 var(--sam-font); color: var(--sam-black); margin-bottom: 24px; margin-top: 12px;">SAP Plant Maintenance &amp; IBM Maximo</h3>
       <p class="lead sam-plat-integrations__lead" style="margin-bottom: 32px;">Industry-standard CMMS platforms for heavy industrial maintenance. SAM4 integrates with both, plus any system that accepts REST API input.</p>
 
-      <div class="sam-plat-integrations__grid">
+      <div class="sam-plat-integrations__grid sam-reveal-stagger">
         <div class="sam-plat-integrations__card">
           <h4 class="sam-plat-integrations__card-title">SAP Plant Maintenance</h4>
           <p class="sam-plat-integrations__card-desc">SAM4 alerts create notifications or maintenance orders in SAP PM. Asset mapping links SAM4 assets to your SAP functional locations. Alert data populates the order description, priority, and recommended action.</p>
@@ -2936,7 +3060,7 @@
       <h2>Built for multi-site, multi-team operations</h2>
       <p class="lead sam-plat-enterprise__lead">SAM4 scales from a 20-asset pilot to a 10,000+ asset fleet. The enterprise features below exist because our largest customers demanded them.</p>
 
-      <div class="sam-plat-enterprise__grid">
+      <div class="sam-plat-enterprise__grid sam-reveal-stagger">
         <div class="sam-plat-enterprise__item">
           <div class="sam-plat-enterprise__item-icon" aria-hidden="true">
             <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -3376,6 +3500,33 @@
   });
 })();
 
+  </script>
+  <script>
+    /* ════════════════════════════════════════════════════════════════════════
+       SCROLL-TRIGGERED REVEAL ANIMATIONS
+    ════════════════════════════════════════════════════════════════════════ */
+    (function () {
+      'use strict';
+
+      /* Respect user preference */
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var revealEls = document.querySelectorAll('.sam-reveal, .sam-reveal-stagger');
+      if (!revealEls.length) return;
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      revealEls.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
   </script>
 </body>
 </html>
