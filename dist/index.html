@@ -2789,6 +2789,7 @@
   <section class="sam-method">
     <div class="sam-method__inner">
       <h2 class="sam-method__heading">Monitor from the electrical cabinet. Not the machine.</h2>
+      <p class="sam-method__body">Vibration sensors work well on accessible assets. But 30 to 40% of critical rotating equipment sits where no sensor can go. ESA reads the motor's electrical signature from the cabinet, covering every asset in the drivetrain without touching the machine.</p>
       <p class="sam-method__body">SAM4 captures current and voltage signatures at the motor control cabinet. Those signatures reveal the condition of the entire drivetrain: motor, transmission, coupling, and driven load. Changes in spectral patterns identify developing faults weeks to months before failure.</p>
       <p class="sam-method__body">Once connected, Samotics manages the full pipeline: signal capture, AI detection, engineer validation, and confirmed maintenance alerts.</p>
       <div class="sam-method__cards">
@@ -2889,10 +2890,38 @@
         <div class="sam-proof__logo-item"><img src="/assets/images/logos/tata.png" alt="Tata Steel" loading="lazy"></div>
       </div>
 
-      <blockquote class="sam-proof__featured-quote">
-        <p>&ldquo;At first I was a bit sceptical about SAM4&rsquo;s ability to detect failures by analysing electrical waveforms, but the results speak for themselves: it just works.&rdquo;</p>
-        <footer>Philip Curran, DuPont</footer>
+      <blockquote class="sam-proof__featured-quote" id="sam-rotating-quote">
+        <p id="sam-quote-text"></p>
+        <footer id="sam-quote-attr"></footer>
       </blockquote>
+      <script>
+      (function(){
+        var quotes = [
+          {text:"At first I was a bit sceptical about SAM4\u2019s ability to detect failures by analysing electrical waveforms, but the results speak for themselves: it just works.",attr:"Philip Curran, DuPont"},
+          {text:"SAM4 detected possible bearing damage to the gearbox motor, which we had not picked up through our vibration monitoring.",attr:"Schiphol Airport"},
+          {text:"Samotics gives insight into assets that have not been available to us before.",attr:"Michael Webster, Wannon Water"},
+          {text:"SAM4 delivers clear and actionable insights that enable our teams to make swift, informed decisions.",attr:"Yorkshire Water"}
+        ];
+        var i = 0;
+        var textEl = document.getElementById('sam-quote-text');
+        var attrEl = document.getElementById('sam-quote-attr');
+        function show(){
+          textEl.style.opacity = 0;
+          attrEl.style.opacity = 0;
+          setTimeout(function(){
+            textEl.innerHTML = '\u201C' + quotes[i].text + '\u201D';
+            attrEl.textContent = quotes[i].attr;
+            textEl.style.opacity = 1;
+            attrEl.style.opacity = 1;
+            i = (i + 1) % quotes.length;
+          }, 400);
+        }
+        textEl.style.transition = 'opacity 0.4s ease';
+        attrEl.style.transition = 'opacity 0.4s ease';
+        show();
+        setInterval(show, 6000);
+      })();
+      </script>
 
       <a href="/proof" class="sam-text-link">See all customer results &rarr;</a>
     </div>
