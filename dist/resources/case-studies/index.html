@@ -113,9 +113,9 @@
 .sam-logo--white { filter: brightness(0) invert(1); }
 .sam-logo--dark { display: none; }
 .sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
-.sam-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
-.sam-nav__link { display: flex; align-items: center; gap: 4px; padding: 8px 14px; font: 500 14px/1 var(--sam-font); color: rgba(255,255,255,0.85); text-decoration: none; border-radius: 6px; transition: background var(--sam-transition), color var(--sam-transition); }
-.sam-nav__link:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.sam-nav { display: flex; align-items: center; gap: 28px; margin-left: auto; }
+.sam-nav__link { font: 500 15px/1 var(--sam-font); color: rgba(255,255,255,0.85); text-decoration: none; padding: 8px 0; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; position: relative; transition: color 150ms ease; white-space: nowrap; }
+.sam-nav__link:hover, .sam-nav__link:focus-visible { color: #fff; }
 .sam-nav__chevron { transition: transform 200ms ease-out; }
 .sam-nav__item--has-dropdown { position: relative; }
 .sam-dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); min-width: 280px; background: var(--sam-white); border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12); padding: 8px; z-index: 100; }
@@ -599,16 +599,6 @@
 </head>
 <body>
 
-<!-- Shared nav CSS overrides (ensures consistent styling across all page CSS variants) -->
-<style>
-.sam-nav__link { font: 500 15px/1 var(--sam-font) !important; padding: 8px 0 !important; background: none !important; border: none !important; border-radius: 0 !important; cursor: pointer; display: flex; align-items: center; gap: 5px; color: rgba(255,255,255,0.85); text-decoration: none; position: relative; transition: color 150ms ease; white-space: nowrap; }
-.sam-nav__link:hover, .sam-nav__link:focus-visible { background: none !important; color: #fff !important; }
-</style>
-<!-- Shared nav CSS overrides (ensures consistent styling across all page CSS variants) -->
-<style>
-.sam-nav__link { font: 500 15px/1 var(--sam-font) !important; padding: 8px 0 !important; background: none !important; border: none !important; border-radius: 0 !important; cursor: pointer; display: flex; align-items: center; gap: 5px; color: rgba(255,255,255,0.85); text-decoration: none; position: relative; transition: color 150ms ease; white-space: nowrap; }
-.sam-nav__link:hover, .sam-nav__link:focus-visible { background: none !important; color: #fff !important; }
-</style>
 <header class="sam-header" role="navigation" aria-label="Main navigation">
   <a href="#main-content" class="sam-skip-link">Skip to content</a>
   <div class="sam-header__inner">
