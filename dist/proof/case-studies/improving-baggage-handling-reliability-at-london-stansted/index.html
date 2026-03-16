@@ -38,87 +38,257 @@
   </style>
   <style>
     
-  /* ── Case Study Page Styles ── */
-  .sam-hero--casestudy {
-    position: relative;
-    min-height: 340px;
-    display: flex;
-    align-items: center;
-    background-color: var(--sam-space-cadet, #1F1F33);
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-  }
-  .sam-hero--casestudy .sam-hero__overlay {
-    background: linear-gradient(135deg, rgba(31,31,51,0.92) 40%, rgba(31,31,51,0.6) 100%);
-  }
-  .sam-casestudy-content {
-    padding: 3rem 0;
-    background: var(--sam-seashell, #F8F5F2);
-  }
-  .sam-casestudy-content__inner {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .sam-casestudy-content__block {
-    margin-bottom: 2.5rem;
-  }
-  .sam-casestudy-content__block h2 {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--sam-space-cadet, #1F1F33);
-    margin: 0 0 1rem;
-    line-height: 1.3;
-  }
-  .sam-casestudy-content__block p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #3a3a4a;
-    margin: 0 0 1rem;
-  }
-  .sam-casestudy-content__figure {
-    margin: 1.5rem 0;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .sam-casestudy-content__figure img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .sam-casestudy-quote {
-    padding: 3rem 0;
-    background: var(--sam-space-cadet, #1F1F33);
-  }
-  .sam-casestudy-quote__inner {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .sam-casestudy-quote blockquote {
-    margin: 0;
-    border-left: 4px solid var(--sam-orange, #FF5429);
-    padding-left: 1.5rem;
-  }
-  .sam-casestudy-quote blockquote p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.6;
-    color: #fff;
-    margin: 0 0 1rem;
-  }
-  .sam-casestudy-quote blockquote cite {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.95rem;
-    font-style: normal;
-    color: rgba(255,255,255,0.7);
-    display: block;
-  }
+/* ============================================================
+   CASE STUDY PAGE — Design-system-compliant CSS
+   Mirrors detection story layout: hero → summary → story → quote → CTA
+   ============================================================ */
+
+/* ── Font inheritance (wildcard rule) ── */
+.sam-casestudy,
+.sam-casestudy * {
+  font-family: var(--sam-font, 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+/* ── Reset ── */
+.sam-casestudy { overflow-x: hidden; }
+
+/* ============================================================
+   §1  HERO (compact dark banner with optional background image)
+   Background: Space Cadet dark
+   ============================================================ */
+.sam-hero--casestudy {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-hero--casestudy .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(31,31,51,0.92) 40%, rgba(31,31,51,0.6) 100%);
+  z-index: 1;
+}
+.sam-hero--casestudy .sam-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+.sam-hero--casestudy .sam-hero__content { max-width: 720px; }
+.sam-hero--casestudy .sam-hero__overline {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-hero--casestudy .sam-hero__h1 {
+  font-size: 2.5rem; font-weight: 700;
+  line-height: 1.18; color: var(--sam-white);
+  margin: 0;
+}
+
+/* ============================================================
+   §2  STORY CONTENT
+   Background: Seashell — multi-section narrative with images
+   ============================================================ */
+.sam-casestudy-story {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-story__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-10);
+}
+.sam-casestudy-story__block {
+  max-width: 780px;
+}
+.sam-casestudy-story .overline {
+  color: var(--sam-teal-dark);
+}
+.sam-casestudy-story__block h2 {
+  font-size: 1.75rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-casestudy-story__block p {
+  font-size: 1.0625rem; line-height: 1.7;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-casestudy-story__block p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Images within content */
+.sam-casestudy-story__figure {
+  margin: var(--sp-07) 0 0;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 780px;
+}
+.sam-casestudy-story__figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   §3  QUOTE (optional)
+   Background: White — follows seashell story section
+   ============================================================ */
+.sam-casestudy-quote {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-quote__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.sam-casestudy-quote__blockquote { margin: 0; padding: 0; }
+.sam-casestudy-quote__text {
+  font-size: 1.375rem; font-weight: 400;
+  line-height: 1.5; color: var(--sam-space-cadet); font-style: italic;
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-casestudy-quote__attribution {
+  display: flex; flex-direction: column; gap: var(--sp-02);
+}
+.sam-casestudy-quote__name {
+  font-size: 1rem; font-weight: 600;
+  color: var(--sam-space-cadet);
+}
+.sam-casestudy-quote__company {
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+}
+
+/* ============================================================
+   §4  CTA BLOCK
+   Background alternates based on whether quote is present:
+   No quote:  story(seashell) → CTA(white)
+   Has quote: story(seashell) → quote(white) → CTA(seashell)
+   ============================================================ */
+.sam-cta-block--casestudy {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+  text-align: center;
+}
+.sam-cta-block--casestudy-alt {
+  background: var(--sam-seashell);
+}
+
+/* ============================================================
+   §5  RELATED STORIES
+   Background alternates opposite to CTA
+   ============================================================ */
+.sam-casestudy-related {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-related--alt {
+  background: var(--sam-white);
+}
+.sam-casestudy-related__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.sam-casestudy-related .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-casestudy-related h2 {
+  font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-casestudy-related__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-07);
+}
+.sam-casestudy-related__card {
+  display: flex; flex-direction: column; gap: var(--sp-04);
+  background: var(--sam-white); border-radius: 8px;
+  padding: var(--sp-07) var(--sp-06);
+  text-decoration: none; color: inherit;
+  border: 1px solid var(--sam-border-light);
+  border-top: 4px solid var(--sam-space-cadet);
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-casestudy-related__card:hover {
+  box-shadow: var(--shadow-md); border-color: var(--sam-space-cadet);
+}
+.sam-casestudy-related__card-industry {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sam-teal-dark);
+}
+.sam-casestudy-related__card-title {
+  font-size: 1.125rem; font-weight: 700;
+  color: var(--sam-space-cadet); margin: 0;
+}
+.sam-casestudy-related__card-outcome {
+  font-size: 0.9375rem;
+  color: var(--sam-space-cadet);
+  margin: 0; flex: 1;
+}
+.sam-casestudy-related__card-link {
+  font-size: 0.9375rem; font-weight: 600;
+  color: var(--sam-blue); margin-top: auto;
+}
+.sam-casestudy-related__card:hover .sam-casestudy-related__card-link {
+  color: var(--sam-orange);
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet (≤ 1055px)
+   ============================================================ */
+@media (max-width: 1055px) {
+  .sam-hero--casestudy { min-height: 280px; padding: var(--sp-10) var(--sp-06); }
+  .sam-hero--casestudy .sam-hero__h1 { font-size: 2rem; }
+
+  .sam-casestudy-story { padding: var(--sp-10) var(--sp-06); }
+  .sam-casestudy-story__inner { gap: var(--sp-09); }
+
+  .sam-casestudy-quote { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-cta-block--casestudy { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-casestudy-related { padding: var(--sp-10) var(--sp-06); }
+  .sam-casestudy-related__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile (≤ 671px)
+   ============================================================ */
+@media (max-width: 671px) {
+  .sam-hero--casestudy { min-height: 240px; padding: var(--sp-09) var(--sp-05); }
+  .sam-hero--casestudy .sam-hero__h1 { font-size: 1.5rem; }
+
+  .sam-casestudy-story { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-story__inner { gap: var(--sp-08); }
+  .sam-casestudy-story__block h2 { font-size: 1.375rem; }
+
+  .sam-casestudy-quote { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-quote__text { font-size: 1.125rem; }
+
+  .sam-cta-block--casestudy { padding: var(--sp-09) var(--sp-05); }
+  .sam-cta-block__heading { font-size: 1.5rem; }
+  .sam-cta-block__actions { flex-direction: column; }
+  .sam-btn { width: 100%; min-height: 48px; }
+
+  .sam-casestudy-related { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-related h2 { font-size: 1.5rem; }
+
+  .sam-detect-summary__grid { grid-template-columns: 1fr; }
+}
 
     /* Header CSS */
     /* ============================================================
@@ -1149,9 +1319,9 @@
 
   </style>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Anolyte Pump Saved from Breakdown | Samotics">
-  <meta property="og:description" content="Anolyte pump case study: SAM4 detected cavitation damage to bearing early. Prevented unplanned downtime and extended equipment operational life.">
-  <meta property="og:url" content="https://samoticstestpage.com/proof/case-studies/cavitation-anolyte-pump/">
+  <meta property="og:title" content="Improving baggage handling reliability at London Stansted | Samotics">
+  <meta property="og:description" content="Improving baggage handling reliability at London Stansted. London Stansted is one of the UK&#x27;s busiest international airports, serving millions of passengers eac">
+  <meta property="og:url" content="https://samoticstestpage.com/proof/case-studies/improving-baggage-handling-reliability-at-london-stansted/">
   <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
   <meta property="og:site_name" content="Samotics">
 </head>
@@ -1329,7 +1499,7 @@
 
 <main id="main-content" class="sam-casestudy">
 
-  <!-- Hero -->
+  <!-- ─── 1. HERO ─── -->
   <section class="sam-hero sam-hero--casestudy" style="background-image:url('https://samotics.com/wp-content/uploads/2026/01/stansted-airport_compressed_pixels-too.jpg');">
     <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
@@ -1340,7 +1510,7 @@
     </div>
   </section>
 
-  <!-- Summary bar -->
+  <!-- ─── 2. SUMMARY BAR ─── -->
   <section class="sam-detect-summary">
     <div class="sam-detect-summary__inner">
       <div class="sam-detect-summary__grid">
@@ -1350,7 +1520,7 @@
         </div>
         <div class="sam-detect-summary__item">
           <span class="sam-detect-summary__label">Fault detected</span>
-          <span class="sam-detect-summary__value">Mechanical unbalance</span>
+          <span class="sam-detect-summary__value">Multiple faults</span>
         </div>
         <div class="sam-detect-summary__item">
           <span class="sam-detect-summary__label">Industry</span>
@@ -1364,53 +1534,89 @@
     </div>
   </section>
 
-  <!-- Content sections -->
-  <section class="sam-casestudy-content">
-    <div class="sam-casestudy-content__inner">
-      <div class="sam-casestudy-content__block">
+  <!-- ─── 3. STORY ─── -->
+  <section class="sam-casestudy-story">
+    <div class="sam-casestudy-story__inner">
+      <div class="sam-casestudy-story__block">
         <h2>About London Stansted</h2>
         <p>London Stansted is one of the UK&#x27;s busiest international airports, serving millions of passengers each year. Reliable baggage handling is essential to ensure on-time departures, efficient transfers, and a smooth passenger experience. To handle baggage, Stansted relies on conveyors and reclaim carousels operating continuously under tight time constraints. Any disruption can quickly affect passenger flow and airport operations.</p>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
+        <p class="overline">The challenge</p>
         <h2>The challenge: Monitoring assets that run non-stop</h2>
         <p>Baggage handling equipment at Stansted is difficult to inspect using traditional methods due to safety restrictions, limited access, and the need to keep systems running at all times. Without continuous visibility into asset condition, early-stage mechanical issues can go unnoticed until they lead to sudden failures. Stansted needed a way to detect developing issues without interrupting operations or relying on frequent manual inspections.</p>
-      </div>
-      <div class="sam-casestudy-content__block">
-        <h2>The solution: Real-time insights from the motor control cabinet</h2>
-        <p>Stansted implemented Samotics’ SAM4 system to monitor its critical baggage handling assets. Because SAM4 sensors are installed in the motor control cabinet, rather than on assets themselves, SAM4 can offer around-the-clock visibility into asset condition and performance for even the hardest-to-reach and highest-speed assets – without any operational disruption during installation. Stansted’s engineering team can now track asset health remotely and respond to alerts before faults lead to breakdowns.</p>
-        <figure class="sam-casestudy-content__figure">
+        <figure class="sam-casestudy-story__figure">
           <img src="https://samotics.com/wp-content/uploads/2026/01/diagram_compressed-scaled.jpg" alt="Diagram compressed scaled" loading="lazy">
         </figure>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
+        <p class="overline">The solution</p>
+        <h2>The solution: Real-time insights from the motor control cabinet</h2>
+        <p>Stansted implemented Samotics’ SAM4 system to monitor its critical baggage handling assets. Because SAM4 sensors are installed in the motor control cabinet, rather than on assets themselves, SAM4 can offer around-the-clock visibility into asset condition and performance for even the hardest-to-reach and highest-speed assets – without any operational disruption during installation. Stansted’s engineering team can now track asset health remotely and respond to alerts before faults lead to breakdowns.</p>
+      </div>
+      <div class="sam-casestudy-story__block">
+        <p class="overline">The solution</p>
         <h2>Example detection: Mechanical unbalance on a critical conveyor motor</h2>
         <p>In May 2025, the SAM4 system detected early signs of mechanical unbalance in a critical motor. Thanks to SAM4’s early warning, the engineering team scheduled a maintenance intervention before the issue could cause a breakdown – avoiding disruption to operations and preventing approximately €56,000 in potential downtime costs.</p>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
+        <p class="overline">The outcome</p>
         <h2>The result: Smooth, uninterrupted airport operations</h2>
         <p>Since deploying SAM4, Stansted has detected and resolved three critical incidents across its baggage handling equipment – each time before any disruption to operations. By catching faults early, the airport has avoided approximately €170,000 in combined breakdown-related costs.</p>
       </div>
     </div>
   </section>
 
-  <!-- Quote -->
+  <!-- ─── 4. QUOTE ─── -->
   <section class="sam-casestudy-quote">
     <div class="sam-casestudy-quote__inner">
-      <blockquote>
-        <p>&ldquo;“My experience with installing the SAM4 monitoring system at Stansted Airport has been exceptional. The system’s accuracy and ease of integration have made it a key tool in boosting reliability and reducing unplanned downtime within the airport.”&rdquo;</p>
-        <cite>Taylor Roloff, Technical Lead, Stansted Airport</cite>
+      <blockquote class="sam-casestudy-quote__blockquote">
+        <p class="sam-casestudy-quote__text">&ldquo;“My experience with installing the SAM4 monitoring system at Stansted Airport has been exceptional. The system’s accuracy and ease of integration have made it a key tool in boosting reliability and reducing unplanned downtime within the airport.”&rdquo;</p>
+        <div class="sam-casestudy-quote__attribution">
+          <span class="sam-casestudy-quote__name">Taylor Roloff</span>
+          <span class="sam-casestudy-quote__company">Technical Lead, Stansted Airport</span>
+        </div>
       </blockquote>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="sam-cta-block sam-cta-block--detect">
+  <!-- ─── CTA ─── -->
+  <section class="sam-cta-block sam-cta-block--casestudy sam-cta-block--casestudy-alt">
     <div class="sam-cta-block__inner">
       <h2 class="sam-cta-block__heading">See what SAM4 can detect on your assets</h2>
       <p class="sam-cta-block__sub">Every story above comes from a real deployment. Request a demo to see how SAM4 works on your equipment.</p>
       <div class="sam-cta-block__actions">
         <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Talk to an engineer</a>
         <a href="/proof/" class="sam-btn sam-btn--outline">See all proof</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RELATED ─── -->
+  <section class="sam-casestudy-related sam-casestudy-related--alt">
+    <div class="sam-casestudy-related__inner">
+      <p class="overline">Related stories</p>
+      <h2>More results from the field</h2>
+
+      <div class="sam-casestudy-related__grid">
+        <a href="/proof/case-studies/how-schipol-airport-improved-reliability-of-its-current-baggage-handling-lines/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Aviation</span>
+          <h3 class="sam-casestudy-related__card-title">How Schiphol Airport improved the reliability of its baggage handling lines</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">100% detection accuracy</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
+        <a href="/proof/case-studies/prevent-exhaust-fan-failure-in-wood-manufacturing-case-study/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Manufacturing</span>
+          <h3 class="sam-casestudy-related__card-title">Six early alerts to degrading fans save up to 12 hours and € 96k in unplanned downtime</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">€ 96k saved</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
+        <a href="/proof/case-studies/how-arcelormittal-prevented-31-hours-of-downtime-by-detecting-27-failures-ahead-of-time/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Metals &amp; Mining</span>
+          <h3 class="sam-casestudy-related__card-title">How ArcelorMittal prevented 31 hours of downtime by detecting 27 failures ahead of time</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">31 hours of downtime prevented</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
       </div>
     </div>
   </section>

@@ -38,87 +38,257 @@
   </style>
   <style>
     
-  /* ── Case Study Page Styles ── */
-  .sam-hero--casestudy {
-    position: relative;
-    min-height: 340px;
-    display: flex;
-    align-items: center;
-    background-color: var(--sam-space-cadet, #1F1F33);
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-  }
-  .sam-hero--casestudy .sam-hero__overlay {
-    background: linear-gradient(135deg, rgba(31,31,51,0.92) 40%, rgba(31,31,51,0.6) 100%);
-  }
-  .sam-casestudy-content {
-    padding: 3rem 0;
-    background: var(--sam-seashell, #F8F5F2);
-  }
-  .sam-casestudy-content__inner {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .sam-casestudy-content__block {
-    margin-bottom: 2.5rem;
-  }
-  .sam-casestudy-content__block h2 {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--sam-space-cadet, #1F1F33);
-    margin: 0 0 1rem;
-    line-height: 1.3;
-  }
-  .sam-casestudy-content__block p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #3a3a4a;
-    margin: 0 0 1rem;
-  }
-  .sam-casestudy-content__figure {
-    margin: 1.5rem 0;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .sam-casestudy-content__figure img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .sam-casestudy-quote {
-    padding: 3rem 0;
-    background: var(--sam-space-cadet, #1F1F33);
-  }
-  .sam-casestudy-quote__inner {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .sam-casestudy-quote blockquote {
-    margin: 0;
-    border-left: 4px solid var(--sam-orange, #FF5429);
-    padding-left: 1.5rem;
-  }
-  .sam-casestudy-quote blockquote p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.6;
-    color: #fff;
-    margin: 0 0 1rem;
-  }
-  .sam-casestudy-quote blockquote cite {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.95rem;
-    font-style: normal;
-    color: rgba(255,255,255,0.7);
-    display: block;
-  }
+/* ============================================================
+   CASE STUDY PAGE — Design-system-compliant CSS
+   Mirrors detection story layout: hero → summary → story → quote → CTA
+   ============================================================ */
+
+/* ── Font inheritance (wildcard rule) ── */
+.sam-casestudy,
+.sam-casestudy * {
+  font-family: var(--sam-font, 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+/* ── Reset ── */
+.sam-casestudy { overflow-x: hidden; }
+
+/* ============================================================
+   §1  HERO (compact dark banner with optional background image)
+   Background: Space Cadet dark
+   ============================================================ */
+.sam-hero--casestudy {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-hero--casestudy .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(31,31,51,0.92) 40%, rgba(31,31,51,0.6) 100%);
+  z-index: 1;
+}
+.sam-hero--casestudy .sam-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+.sam-hero--casestudy .sam-hero__content { max-width: 720px; }
+.sam-hero--casestudy .sam-hero__overline {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-hero--casestudy .sam-hero__h1 {
+  font-size: 2.5rem; font-weight: 700;
+  line-height: 1.18; color: var(--sam-white);
+  margin: 0;
+}
+
+/* ============================================================
+   §2  STORY CONTENT
+   Background: Seashell — multi-section narrative with images
+   ============================================================ */
+.sam-casestudy-story {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-story__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-10);
+}
+.sam-casestudy-story__block {
+  max-width: 780px;
+}
+.sam-casestudy-story .overline {
+  color: var(--sam-teal-dark);
+}
+.sam-casestudy-story__block h2 {
+  font-size: 1.75rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-casestudy-story__block p {
+  font-size: 1.0625rem; line-height: 1.7;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-casestudy-story__block p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Images within content */
+.sam-casestudy-story__figure {
+  margin: var(--sp-07) 0 0;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 780px;
+}
+.sam-casestudy-story__figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   §3  QUOTE (optional)
+   Background: White — follows seashell story section
+   ============================================================ */
+.sam-casestudy-quote {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-quote__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.sam-casestudy-quote__blockquote { margin: 0; padding: 0; }
+.sam-casestudy-quote__text {
+  font-size: 1.375rem; font-weight: 400;
+  line-height: 1.5; color: var(--sam-space-cadet); font-style: italic;
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-casestudy-quote__attribution {
+  display: flex; flex-direction: column; gap: var(--sp-02);
+}
+.sam-casestudy-quote__name {
+  font-size: 1rem; font-weight: 600;
+  color: var(--sam-space-cadet);
+}
+.sam-casestudy-quote__company {
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+}
+
+/* ============================================================
+   §4  CTA BLOCK
+   Background alternates based on whether quote is present:
+   No quote:  story(seashell) → CTA(white)
+   Has quote: story(seashell) → quote(white) → CTA(seashell)
+   ============================================================ */
+.sam-cta-block--casestudy {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+  text-align: center;
+}
+.sam-cta-block--casestudy-alt {
+  background: var(--sam-seashell);
+}
+
+/* ============================================================
+   §5  RELATED STORIES
+   Background alternates opposite to CTA
+   ============================================================ */
+.sam-casestudy-related {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-related--alt {
+  background: var(--sam-white);
+}
+.sam-casestudy-related__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.sam-casestudy-related .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-casestudy-related h2 {
+  font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-casestudy-related__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-07);
+}
+.sam-casestudy-related__card {
+  display: flex; flex-direction: column; gap: var(--sp-04);
+  background: var(--sam-white); border-radius: 8px;
+  padding: var(--sp-07) var(--sp-06);
+  text-decoration: none; color: inherit;
+  border: 1px solid var(--sam-border-light);
+  border-top: 4px solid var(--sam-space-cadet);
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-casestudy-related__card:hover {
+  box-shadow: var(--shadow-md); border-color: var(--sam-space-cadet);
+}
+.sam-casestudy-related__card-industry {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sam-teal-dark);
+}
+.sam-casestudy-related__card-title {
+  font-size: 1.125rem; font-weight: 700;
+  color: var(--sam-space-cadet); margin: 0;
+}
+.sam-casestudy-related__card-outcome {
+  font-size: 0.9375rem;
+  color: var(--sam-space-cadet);
+  margin: 0; flex: 1;
+}
+.sam-casestudy-related__card-link {
+  font-size: 0.9375rem; font-weight: 600;
+  color: var(--sam-blue); margin-top: auto;
+}
+.sam-casestudy-related__card:hover .sam-casestudy-related__card-link {
+  color: var(--sam-orange);
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet (≤ 1055px)
+   ============================================================ */
+@media (max-width: 1055px) {
+  .sam-hero--casestudy { min-height: 280px; padding: var(--sp-10) var(--sp-06); }
+  .sam-hero--casestudy .sam-hero__h1 { font-size: 2rem; }
+
+  .sam-casestudy-story { padding: var(--sp-10) var(--sp-06); }
+  .sam-casestudy-story__inner { gap: var(--sp-09); }
+
+  .sam-casestudy-quote { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-cta-block--casestudy { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-casestudy-related { padding: var(--sp-10) var(--sp-06); }
+  .sam-casestudy-related__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile (≤ 671px)
+   ============================================================ */
+@media (max-width: 671px) {
+  .sam-hero--casestudy { min-height: 240px; padding: var(--sp-09) var(--sp-05); }
+  .sam-hero--casestudy .sam-hero__h1 { font-size: 1.5rem; }
+
+  .sam-casestudy-story { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-story__inner { gap: var(--sp-08); }
+  .sam-casestudy-story__block h2 { font-size: 1.375rem; }
+
+  .sam-casestudy-quote { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-quote__text { font-size: 1.125rem; }
+
+  .sam-cta-block--casestudy { padding: var(--sp-09) var(--sp-05); }
+  .sam-cta-block__heading { font-size: 1.5rem; }
+  .sam-cta-block__actions { flex-direction: column; }
+  .sam-btn { width: 100%; min-height: 48px; }
+
+  .sam-casestudy-related { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-related h2 { font-size: 1.5rem; }
+
+  .sam-detect-summary__grid { grid-template-columns: 1fr; }
+}
 
     /* Header CSS */
     /* ============================================================
@@ -1149,9 +1319,9 @@
 
   </style>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Anolyte Pump Saved from Breakdown | Samotics">
-  <meta property="og:description" content="Anolyte pump case study: SAM4 detected cavitation damage to bearing early. Prevented unplanned downtime and extended equipment operational life.">
-  <meta property="og:url" content="https://samoticstestpage.com/proof/case-studies/cavitation-anolyte-pump/">
+  <meta property="og:title" content="Control change would reduce aeration blowers&#x27; energy cost by 5% overnight | Samotics">
+  <meta property="og:description" content="Control change would reduce aeration blowers&#x27; energy cost by 5% overnight. Aeration is easily the most energy-intensive process in the wastewater treatment proc">
+  <meta property="og:url" content="https://samoticstestpage.com/proof/case-studies/aeration-blowers-energy-waste-reduction-case-study/">
   <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
   <meta property="og:site_name" content="Samotics">
 </head>
@@ -1329,7 +1499,7 @@
 
 <main id="main-content" class="sam-casestudy">
 
-  <!-- Hero -->
+  <!-- ─── 1. HERO ─── -->
   <section class="sam-hero sam-hero--casestudy" style="background-image:url('https://samotics.com/wp-content/uploads/2023/10/Control-change-would-reduce-aeration-blowers-energy-cost-by-5-overnight-thumbnail.jpg');">
     <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
@@ -1340,7 +1510,7 @@
     </div>
   </section>
 
-  <!-- Summary bar -->
+  <!-- ─── 2. SUMMARY BAR ─── -->
   <section class="sam-detect-summary">
     <div class="sam-detect-summary__inner">
       <div class="sam-detect-summary__grid">
@@ -1356,40 +1526,79 @@
           <span class="sam-detect-summary__label">Industry</span>
           <span class="sam-detect-summary__value">Water &amp; Wastewater</span>
         </div>
+        <div class="sam-detect-summary__item sam-detect-summary__item--highlight">
+          <span class="sam-detect-summary__label">Key result</span>
+          <span class="sam-detect-summary__value kpi-value">5% energy reduction</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Content sections -->
-  <section class="sam-casestudy-content">
-    <div class="sam-casestudy-content__inner">
-      <div class="sam-casestudy-content__block">
+  <!-- ─── 3. STORY ─── -->
+  <section class="sam-casestudy-story">
+    <div class="sam-casestudy-story__inner">
+      <div class="sam-casestudy-story__block">
+        <p class="overline">The challenge</p>
         <h2>Problem</h2>
         <p>Aeration is easily the most energy-intensive process in the wastewater treatment process, responsible for up to 60% of a treatment plant&#x27;s power consumption. Five rotary lobe blowers in an activated sludge plant (ASP) at a wastewater treatment works were consuming more than six gigawatts of energy per year, at a cost of €1.3 million. The blowers in a second ASP at the same treatment works showed similar behavior.</p>
         <p>SAM4 Energy was installed on the blowers to find any room for improvement. After analyzing the blowers&#x27; real-time operational data, SAM4 Energy determined that part of the high energy demand was due to short operation cycles below the blowers&#x27; nominal speed.</p>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
+        <p class="overline">The solution</p>
         <h2>Solution</h2>
         <p>Our Energy team advised the customer to improve the existing control strategy at both ASPs by increasing the speed of the blowers already running before switching on an additional blower, as well as extending the delay time for an additional assist blower. These two simple changes would instantly reduce the number of low-speed operational cycles. Based on six months of operational data, we calculated that this would reduce the blowers&#x27; total energy consumption by 5%.</p>
+        <figure class="sam-casestudy-story__figure">
+          <img src="https://samotics.com/wp-content/uploads/2023/10/problem-graph-2.jpg" alt="Problem graph 2" loading="lazy">
+        </figure>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
+        <p class="overline">The outcome</p>
         <h2>Savings</h2>
         <p>Once implemented, this simple improvement will save the customer 268 metric tons in carbon emissions and €120,000 in energy costs per year.</p>
-        <figure class="sam-casestudy-content__figure">
-          <img src="https://samotics.com/wp-content/uploads/2023/10/problem-graph-2.jpg" alt="Problem graph 2" loading="lazy">
+        <figure class="sam-casestudy-story__figure">
+          <img src="https://samotics.com/wp-content/uploads/2023/10/energy_case_aeration_blowers_table.jpg" alt="" loading="lazy">
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="sam-cta-block sam-cta-block--detect">
+  <!-- ─── CTA ─── -->
+  <section class="sam-cta-block sam-cta-block--casestudy">
     <div class="sam-cta-block__inner">
       <h2 class="sam-cta-block__heading">See what SAM4 can detect on your assets</h2>
       <p class="sam-cta-block__sub">Every story above comes from a real deployment. Request a demo to see how SAM4 works on your equipment.</p>
       <div class="sam-cta-block__actions">
         <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Talk to an engineer</a>
         <a href="/proof/" class="sam-btn sam-btn--outline">See all proof</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RELATED ─── -->
+  <section class="sam-casestudy-related">
+    <div class="sam-casestudy-related__inner">
+      <p class="overline">Related stories</p>
+      <h2>More results from the field</h2>
+
+      <div class="sam-casestudy-related__grid">
+        <a href="/proof/case-studies/how-vitens-increased-operational-efficiency-by-7-through-real-time-asset-measurements/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Water &amp; Wastewater</span>
+          <h3 class="sam-casestudy-related__card-title">How Vitens increased operational efficiency by 7% through real-time asset measurements</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">Identified 10% efficiency loss across three pumps</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
+        <a href="/proof/case-studies/booster-pump-energy-optimization-case-study/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Water &amp; Wastewater</span>
+          <h3 class="sam-casestudy-related__card-title">Hydraulically rerating an existing booster pump station to reduce energy cost by EUR 99k a year</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">€99k/year saved</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
+        <a href="/proof/case-studies/rightsizing-booster-pumps-to-save-wasted-energy/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Water &amp; Wastewater</span>
+          <h3 class="sam-casestudy-related__card-title">Rightsizing booster pumps to save €121k a year in wasted energy</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">€121k saved</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
       </div>
     </div>
   </section>

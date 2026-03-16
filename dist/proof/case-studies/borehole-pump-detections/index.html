@@ -38,87 +38,257 @@
   </style>
   <style>
     
-  /* ── Case Study Page Styles ── */
-  .sam-hero--casestudy {
-    position: relative;
-    min-height: 340px;
-    display: flex;
-    align-items: center;
-    background-color: var(--sam-space-cadet, #1F1F33);
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-  }
-  .sam-hero--casestudy .sam-hero__overlay {
-    background: linear-gradient(135deg, rgba(31,31,51,0.92) 40%, rgba(31,31,51,0.6) 100%);
-  }
-  .sam-casestudy-content {
-    padding: 3rem 0;
-    background: var(--sam-seashell, #F8F5F2);
-  }
-  .sam-casestudy-content__inner {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .sam-casestudy-content__block {
-    margin-bottom: 2.5rem;
-  }
-  .sam-casestudy-content__block h2 {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--sam-space-cadet, #1F1F33);
-    margin: 0 0 1rem;
-    line-height: 1.3;
-  }
-  .sam-casestudy-content__block p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #3a3a4a;
-    margin: 0 0 1rem;
-  }
-  .sam-casestudy-content__figure {
-    margin: 1.5rem 0;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .sam-casestudy-content__figure img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .sam-casestudy-quote {
-    padding: 3rem 0;
-    background: var(--sam-space-cadet, #1F1F33);
-  }
-  .sam-casestudy-quote__inner {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .sam-casestudy-quote blockquote {
-    margin: 0;
-    border-left: 4px solid var(--sam-orange, #FF5429);
-    padding-left: 1.5rem;
-  }
-  .sam-casestudy-quote blockquote p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.6;
-    color: #fff;
-    margin: 0 0 1rem;
-  }
-  .sam-casestudy-quote blockquote cite {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.95rem;
-    font-style: normal;
-    color: rgba(255,255,255,0.7);
-    display: block;
-  }
+/* ============================================================
+   CASE STUDY PAGE — Design-system-compliant CSS
+   Mirrors detection story layout: hero → summary → story → quote → CTA
+   ============================================================ */
+
+/* ── Font inheritance (wildcard rule) ── */
+.sam-casestudy,
+.sam-casestudy * {
+  font-family: var(--sam-font, 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+/* ── Reset ── */
+.sam-casestudy { overflow-x: hidden; }
+
+/* ============================================================
+   §1  HERO (compact dark banner with optional background image)
+   Background: Space Cadet dark
+   ============================================================ */
+.sam-hero--casestudy {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-hero--casestudy .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(31,31,51,0.92) 40%, rgba(31,31,51,0.6) 100%);
+  z-index: 1;
+}
+.sam-hero--casestudy .sam-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+.sam-hero--casestudy .sam-hero__content { max-width: 720px; }
+.sam-hero--casestudy .sam-hero__overline {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-hero--casestudy .sam-hero__h1 {
+  font-size: 2.5rem; font-weight: 700;
+  line-height: 1.18; color: var(--sam-white);
+  margin: 0;
+}
+
+/* ============================================================
+   §2  STORY CONTENT
+   Background: Seashell — multi-section narrative with images
+   ============================================================ */
+.sam-casestudy-story {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-story__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-10);
+}
+.sam-casestudy-story__block {
+  max-width: 780px;
+}
+.sam-casestudy-story .overline {
+  color: var(--sam-teal-dark);
+}
+.sam-casestudy-story__block h2 {
+  font-size: 1.75rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-casestudy-story__block p {
+  font-size: 1.0625rem; line-height: 1.7;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-casestudy-story__block p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Images within content */
+.sam-casestudy-story__figure {
+  margin: var(--sp-07) 0 0;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 780px;
+}
+.sam-casestudy-story__figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   §3  QUOTE (optional)
+   Background: White — follows seashell story section
+   ============================================================ */
+.sam-casestudy-quote {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-quote__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.sam-casestudy-quote__blockquote { margin: 0; padding: 0; }
+.sam-casestudy-quote__text {
+  font-size: 1.375rem; font-weight: 400;
+  line-height: 1.5; color: var(--sam-space-cadet); font-style: italic;
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-casestudy-quote__attribution {
+  display: flex; flex-direction: column; gap: var(--sp-02);
+}
+.sam-casestudy-quote__name {
+  font-size: 1rem; font-weight: 600;
+  color: var(--sam-space-cadet);
+}
+.sam-casestudy-quote__company {
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+}
+
+/* ============================================================
+   §4  CTA BLOCK
+   Background alternates based on whether quote is present:
+   No quote:  story(seashell) → CTA(white)
+   Has quote: story(seashell) → quote(white) → CTA(seashell)
+   ============================================================ */
+.sam-cta-block--casestudy {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+  text-align: center;
+}
+.sam-cta-block--casestudy-alt {
+  background: var(--sam-seashell);
+}
+
+/* ============================================================
+   §5  RELATED STORIES
+   Background alternates opposite to CTA
+   ============================================================ */
+.sam-casestudy-related {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-related--alt {
+  background: var(--sam-white);
+}
+.sam-casestudy-related__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.sam-casestudy-related .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-casestudy-related h2 {
+  font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-casestudy-related__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-07);
+}
+.sam-casestudy-related__card {
+  display: flex; flex-direction: column; gap: var(--sp-04);
+  background: var(--sam-white); border-radius: 8px;
+  padding: var(--sp-07) var(--sp-06);
+  text-decoration: none; color: inherit;
+  border: 1px solid var(--sam-border-light);
+  border-top: 4px solid var(--sam-space-cadet);
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-casestudy-related__card:hover {
+  box-shadow: var(--shadow-md); border-color: var(--sam-space-cadet);
+}
+.sam-casestudy-related__card-industry {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sam-teal-dark);
+}
+.sam-casestudy-related__card-title {
+  font-size: 1.125rem; font-weight: 700;
+  color: var(--sam-space-cadet); margin: 0;
+}
+.sam-casestudy-related__card-outcome {
+  font-size: 0.9375rem;
+  color: var(--sam-space-cadet);
+  margin: 0; flex: 1;
+}
+.sam-casestudy-related__card-link {
+  font-size: 0.9375rem; font-weight: 600;
+  color: var(--sam-blue); margin-top: auto;
+}
+.sam-casestudy-related__card:hover .sam-casestudy-related__card-link {
+  color: var(--sam-orange);
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet (≤ 1055px)
+   ============================================================ */
+@media (max-width: 1055px) {
+  .sam-hero--casestudy { min-height: 280px; padding: var(--sp-10) var(--sp-06); }
+  .sam-hero--casestudy .sam-hero__h1 { font-size: 2rem; }
+
+  .sam-casestudy-story { padding: var(--sp-10) var(--sp-06); }
+  .sam-casestudy-story__inner { gap: var(--sp-09); }
+
+  .sam-casestudy-quote { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-cta-block--casestudy { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-casestudy-related { padding: var(--sp-10) var(--sp-06); }
+  .sam-casestudy-related__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile (≤ 671px)
+   ============================================================ */
+@media (max-width: 671px) {
+  .sam-hero--casestudy { min-height: 240px; padding: var(--sp-09) var(--sp-05); }
+  .sam-hero--casestudy .sam-hero__h1 { font-size: 1.5rem; }
+
+  .sam-casestudy-story { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-story__inner { gap: var(--sp-08); }
+  .sam-casestudy-story__block h2 { font-size: 1.375rem; }
+
+  .sam-casestudy-quote { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-quote__text { font-size: 1.125rem; }
+
+  .sam-cta-block--casestudy { padding: var(--sp-09) var(--sp-05); }
+  .sam-cta-block__heading { font-size: 1.5rem; }
+  .sam-cta-block__actions { flex-direction: column; }
+  .sam-btn { width: 100%; min-height: 48px; }
+
+  .sam-casestudy-related { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-related h2 { font-size: 1.5rem; }
+
+  .sam-detect-summary__grid { grid-template-columns: 1fr; }
+}
 
     /* Header CSS */
     /* ============================================================
@@ -1149,9 +1319,9 @@
 
   </style>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Anolyte Pump Saved from Breakdown | Samotics">
-  <meta property="og:description" content="Anolyte pump case study: SAM4 detected cavitation damage to bearing early. Prevented unplanned downtime and extended equipment operational life.">
-  <meta property="og:url" content="https://samoticstestpage.com/proof/case-studies/cavitation-anolyte-pump/">
+  <meta property="og:title" content="Preventing downtime on borehole pumps | Samotics">
+  <meta property="og:description" content="Preventing downtime on borehole pumps. Pumps are the lifeline of the water and wastewater industry. Borehole pumps are one type of pump that play a critical rol">
+  <meta property="og:url" content="https://samoticstestpage.com/proof/case-studies/borehole-pump-detections/">
   <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
   <meta property="og:site_name" content="Samotics">
 </head>
@@ -1329,8 +1499,8 @@
 
 <main id="main-content" class="sam-casestudy">
 
-  <!-- Hero -->
-  <section class="sam-hero sam-hero--casestudy" style="background-image:url('https://samotics.com/wp-content/uploads/2024/09/T09F5A4AG-U0513FLAL6T-8c5ae70a8ceb-72.png');">
+  <!-- ─── 1. HERO ─── -->
+  <section class="sam-hero sam-hero--casestudy" style="background-image:url('https://samotics.com/wp-content/uploads/2023/10/preventing-downtime-borehole-pumps-case-study.png');">
     <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
       <div class="sam-hero__content">
@@ -1340,7 +1510,7 @@
     </div>
   </section>
 
-  <!-- Summary bar -->
+  <!-- ─── 2. SUMMARY BAR ─── -->
   <section class="sam-detect-summary">
     <div class="sam-detect-summary__inner">
       <div class="sam-detect-summary__grid">
@@ -1350,7 +1520,7 @@
         </div>
         <div class="sam-detect-summary__item">
           <span class="sam-detect-summary__label">Fault detected</span>
-          <span class="sam-detect-summary__value">Cavitation</span>
+          <span class="sam-detect-summary__value">Multiple faults</span>
         </div>
         <div class="sam-detect-summary__item">
           <span class="sam-detect-summary__label">Industry</span>
@@ -1360,10 +1530,10 @@
     </div>
   </section>
 
-  <!-- Content sections -->
-  <section class="sam-casestudy-content">
-    <div class="sam-casestudy-content__inner">
-      <div class="sam-casestudy-content__block">
+  <!-- ─── 3. STORY ─── -->
+  <section class="sam-casestudy-story">
+    <div class="sam-casestudy-story__inner">
+      <div class="sam-casestudy-story__block">
         <h2>Borehole pumps: the pumping heart of the water industry</h2>
         <p>Pumps are the lifeline of the water and wastewater industry. Borehole pumps are one type of pump that play a critical role in water distribution to residential areas. Their unexpected failure can lead to major water supply disruptions, impacting many households. Because these pumps are typically submerged and located remotely, they are hard to maintain and keep an eye on.</p>
         <p>Submerged borehole pumps are notoriously difficult to reach; they can be found up to 200 meters below ground. In conditions like these, traditional proximity-based technologies, like vibration or acoustic analysis, are inadequate: it is simply too difficult to fit sensors on assets that are located so far underground.</p>
@@ -1372,41 +1542,73 @@
         <p>In short, there are three key drivers that set SAM4 Health apart from other monitoring systems:</p>
         <p>In the water industry downtime and associated impacts can come with significant financial and environmental costs. The following section will outline three case studies of how SAM4 Health helped detect faults at an early stage.</p>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
         <h2>1. Early warning of submerged borehole pump clogging</h2>
         <p>SAM4 Health is widely used to monitor borehole pumps. In one particular case, it has been installed to monitor a set of submerged borehole pumps situated in iron-containing wells.</p>
         <p>One early cause of clogging is that of iron build up at the inlet of borehole pumps. SAM4 Health was able to flag the iron deposit nearly a year in advance by detecting patterns of decreasing active power paired with multiple instances of cavitation.</p>
+        <figure class="sam-casestudy-story__figure">
+          <img src="https://samotics.com/wp-content/uploads/2023/05/illustration-of-a-borehole-pump.png" alt="Illustration of a borehole pump" loading="lazy">
+        </figure>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
         <h2>2. Early warning of VFD issues on a borehole pump</h2>
         <p>Borehole pumps are often used to pump up spring water to be processed and turned into drinking water. As a result, these pumps are often located in remote locations which are not easily accessible to maintenance personnel.</p>
         <p>SAM4 Health detected an unstable supply frequency with an increase in active power and a decrease in power factor. This is an indicator of a pump struggling to keep its speed and load stable and therefore is likely to fail on short notice.</p>
-        <figure class="sam-casestudy-content__figure">
-          <img src="https://samotics.com/wp-content/uploads/2023/10/preventing-downtime-borehole-pumps-case-study.png" alt="" loading="lazy">
+        <figure class="sam-casestudy-story__figure">
+          <img src="https://samotics.com/wp-content/uploads/2022/06/SAM4-measures-decreasing-active-power-over-time.jpg" alt="Sam4 measures decreasing active power over time" loading="lazy">
         </figure>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
         <h2>3. Early warning of submerged borehole pump degradation</h2>
         <p>SAM4 Health is not solely used to monitor borehole pumps in extremely remote locations. In this specific case it detected mechanical unbalance on a submerged borehole pump in a larger production facility.</p>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
         <h2>The conclusion</h2>
         <p>Borehole pumps are critical assets across various settings in the water industry. Their inherent nature of being located far underground makes it difficult to apply traditional condition monitoring methods. SAM4 Health provides a solution through which you can detect a multitude of critical failure modes well in advance from the safety of the motor control cabinet.</p>
-        <figure class="sam-casestudy-content__figure">
-          <img src="https://samotics.com/wp-content/uploads/2023/05/illustration-of-a-borehole-pump.png" alt="Illustration of a borehole pump" loading="lazy">
+        <figure class="sam-casestudy-story__figure">
+          <img src="https://samotics.com/wp-content/uploads/2022/06/SAM4-measures-increased-noise-on-the-frequency-spectrum.jpg" alt="Sam4 measures increased noise on the frequency spectrum" loading="lazy">
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="sam-cta-block sam-cta-block--detect">
+  <!-- ─── CTA ─── -->
+  <section class="sam-cta-block sam-cta-block--casestudy">
     <div class="sam-cta-block__inner">
       <h2 class="sam-cta-block__heading">See what SAM4 can detect on your assets</h2>
       <p class="sam-cta-block__sub">Every story above comes from a real deployment. Request a demo to see how SAM4 works on your equipment.</p>
       <div class="sam-cta-block__actions">
         <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Talk to an engineer</a>
         <a href="/proof/" class="sam-btn sam-btn--outline">See all proof</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RELATED ─── -->
+  <section class="sam-casestudy-related">
+    <div class="sam-casestudy-related__inner">
+      <p class="overline">Related stories</p>
+      <h2>More results from the field</h2>
+
+      <div class="sam-casestudy-related__grid">
+        <a href="/proof/case-studies/southern-waters-success-story-preventing-3-failures-saving-748k-and-ensuring-resilience/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Water &amp; Wastewater</span>
+          <h3 class="sam-casestudy-related__card-title">Southern Water&#x27;s success story: preventing three failures, saving GBP 748K, and ensuring operational resilience</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">£748K saved</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
+        <a href="/proof/case-studies/how-vitens-increased-operational-efficiency-by-7-through-real-time-asset-measurements/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Water &amp; Wastewater</span>
+          <h3 class="sam-casestudy-related__card-title">How Vitens increased operational efficiency by 7% through real-time asset measurements</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">Identified 10% efficiency loss across three pumps</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
+        <a href="/proof/case-studies/oxidation-ditch-rotor-fault-detection-case-study/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Water &amp; Wastewater</span>
+          <h3 class="sam-casestudy-related__card-title">Early alerts on a degrading oxidation ditch rotor prevent two pollution events and up to €900k in costs</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">€900k saved</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
       </div>
     </div>
   </section>

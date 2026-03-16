@@ -38,87 +38,257 @@
   </style>
   <style>
     
-  /* ── Case Study Page Styles ── */
-  .sam-hero--casestudy {
-    position: relative;
-    min-height: 340px;
-    display: flex;
-    align-items: center;
-    background-color: var(--sam-space-cadet, #1F1F33);
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-  }
-  .sam-hero--casestudy .sam-hero__overlay {
-    background: linear-gradient(135deg, rgba(31,31,51,0.92) 40%, rgba(31,31,51,0.6) 100%);
-  }
-  .sam-casestudy-content {
-    padding: 3rem 0;
-    background: var(--sam-seashell, #F8F5F2);
-  }
-  .sam-casestudy-content__inner {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .sam-casestudy-content__block {
-    margin-bottom: 2.5rem;
-  }
-  .sam-casestudy-content__block h2 {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--sam-space-cadet, #1F1F33);
-    margin: 0 0 1rem;
-    line-height: 1.3;
-  }
-  .sam-casestudy-content__block p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #3a3a4a;
-    margin: 0 0 1rem;
-  }
-  .sam-casestudy-content__figure {
-    margin: 1.5rem 0;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .sam-casestudy-content__figure img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .sam-casestudy-quote {
-    padding: 3rem 0;
-    background: var(--sam-space-cadet, #1F1F33);
-  }
-  .sam-casestudy-quote__inner {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  .sam-casestudy-quote blockquote {
-    margin: 0;
-    border-left: 4px solid var(--sam-orange, #FF5429);
-    padding-left: 1.5rem;
-  }
-  .sam-casestudy-quote blockquote p {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.6;
-    color: #fff;
-    margin: 0 0 1rem;
-  }
-  .sam-casestudy-quote blockquote cite {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.95rem;
-    font-style: normal;
-    color: rgba(255,255,255,0.7);
-    display: block;
-  }
+/* ============================================================
+   CASE STUDY PAGE — Design-system-compliant CSS
+   Mirrors detection story layout: hero → summary → story → quote → CTA
+   ============================================================ */
+
+/* ── Font inheritance (wildcard rule) ── */
+.sam-casestudy,
+.sam-casestudy * {
+  font-family: var(--sam-font, 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+/* ── Reset ── */
+.sam-casestudy { overflow-x: hidden; }
+
+/* ============================================================
+   §1  HERO (compact dark banner with optional background image)
+   Background: Space Cadet dark
+   ============================================================ */
+.sam-hero--casestudy {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  background-color: var(--sam-space-cadet);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-hero--casestudy .sam-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(31,31,51,0.92) 40%, rgba(31,31,51,0.6) 100%);
+  z-index: 1;
+}
+.sam-hero--casestudy .sam-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+.sam-hero--casestudy .sam-hero__content { max-width: 720px; }
+.sam-hero--casestudy .sam-hero__overline {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--sam-orange);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-hero--casestudy .sam-hero__h1 {
+  font-size: 2.5rem; font-weight: 700;
+  line-height: 1.18; color: var(--sam-white);
+  margin: 0;
+}
+
+/* ============================================================
+   §2  STORY CONTENT
+   Background: Seashell — multi-section narrative with images
+   ============================================================ */
+.sam-casestudy-story {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-story__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-10);
+}
+.sam-casestudy-story__block {
+  max-width: 780px;
+}
+.sam-casestudy-story .overline {
+  color: var(--sam-teal-dark);
+}
+.sam-casestudy-story__block h2 {
+  font-size: 1.75rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-casestudy-story__block p {
+  font-size: 1.0625rem; line-height: 1.7;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-casestudy-story__block p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Images within content */
+.sam-casestudy-story__figure {
+  margin: var(--sp-07) 0 0;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 780px;
+}
+.sam-casestudy-story__figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   §3  QUOTE (optional)
+   Background: White — follows seashell story section
+   ============================================================ */
+.sam-casestudy-quote {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-quote__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.sam-casestudy-quote__blockquote { margin: 0; padding: 0; }
+.sam-casestudy-quote__text {
+  font-size: 1.375rem; font-weight: 400;
+  line-height: 1.5; color: var(--sam-space-cadet); font-style: italic;
+  margin: 0 0 var(--sp-06) 0;
+}
+.sam-casestudy-quote__attribution {
+  display: flex; flex-direction: column; gap: var(--sp-02);
+}
+.sam-casestudy-quote__name {
+  font-size: 1rem; font-weight: 600;
+  color: var(--sam-space-cadet);
+}
+.sam-casestudy-quote__company {
+  font-size: 0.875rem;
+  color: var(--sam-comet);
+}
+
+/* ============================================================
+   §4  CTA BLOCK
+   Background alternates based on whether quote is present:
+   No quote:  story(seashell) → CTA(white)
+   Has quote: story(seashell) → quote(white) → CTA(seashell)
+   ============================================================ */
+.sam-cta-block--casestudy {
+  background: var(--sam-white);
+  padding: var(--sp-11) var(--sp-06);
+  text-align: center;
+}
+.sam-cta-block--casestudy-alt {
+  background: var(--sam-seashell);
+}
+
+/* ============================================================
+   §5  RELATED STORIES
+   Background alternates opposite to CTA
+   ============================================================ */
+.sam-casestudy-related {
+  background: var(--sam-seashell);
+  padding: var(--sp-11) var(--sp-06);
+}
+.sam-casestudy-related--alt {
+  background: var(--sam-white);
+}
+.sam-casestudy-related__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.sam-casestudy-related .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-casestudy-related h2 {
+  font-size: 2rem; font-weight: 700;
+  line-height: 1.2; color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-08) 0;
+}
+.sam-casestudy-related__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-07);
+}
+.sam-casestudy-related__card {
+  display: flex; flex-direction: column; gap: var(--sp-04);
+  background: var(--sam-white); border-radius: 8px;
+  padding: var(--sp-07) var(--sp-06);
+  text-decoration: none; color: inherit;
+  border: 1px solid var(--sam-border-light);
+  border-top: 4px solid var(--sam-space-cadet);
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.sam-casestudy-related__card:hover {
+  box-shadow: var(--shadow-md); border-color: var(--sam-space-cadet);
+}
+.sam-casestudy-related__card-industry {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sam-teal-dark);
+}
+.sam-casestudy-related__card-title {
+  font-size: 1.125rem; font-weight: 700;
+  color: var(--sam-space-cadet); margin: 0;
+}
+.sam-casestudy-related__card-outcome {
+  font-size: 0.9375rem;
+  color: var(--sam-space-cadet);
+  margin: 0; flex: 1;
+}
+.sam-casestudy-related__card-link {
+  font-size: 0.9375rem; font-weight: 600;
+  color: var(--sam-blue); margin-top: auto;
+}
+.sam-casestudy-related__card:hover .sam-casestudy-related__card-link {
+  color: var(--sam-orange);
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet (≤ 1055px)
+   ============================================================ */
+@media (max-width: 1055px) {
+  .sam-hero--casestudy { min-height: 280px; padding: var(--sp-10) var(--sp-06); }
+  .sam-hero--casestudy .sam-hero__h1 { font-size: 2rem; }
+
+  .sam-casestudy-story { padding: var(--sp-10) var(--sp-06); }
+  .sam-casestudy-story__inner { gap: var(--sp-09); }
+
+  .sam-casestudy-quote { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-cta-block--casestudy { padding: var(--sp-10) var(--sp-06); }
+
+  .sam-casestudy-related { padding: var(--sp-10) var(--sp-06); }
+  .sam-casestudy-related__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile (≤ 671px)
+   ============================================================ */
+@media (max-width: 671px) {
+  .sam-hero--casestudy { min-height: 240px; padding: var(--sp-09) var(--sp-05); }
+  .sam-hero--casestudy .sam-hero__h1 { font-size: 1.5rem; }
+
+  .sam-casestudy-story { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-story__inner { gap: var(--sp-08); }
+  .sam-casestudy-story__block h2 { font-size: 1.375rem; }
+
+  .sam-casestudy-quote { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-quote__text { font-size: 1.125rem; }
+
+  .sam-cta-block--casestudy { padding: var(--sp-09) var(--sp-05); }
+  .sam-cta-block__heading { font-size: 1.5rem; }
+  .sam-cta-block__actions { flex-direction: column; }
+  .sam-btn { width: 100%; min-height: 48px; }
+
+  .sam-casestudy-related { padding: var(--sp-09) var(--sp-05); }
+  .sam-casestudy-related h2 { font-size: 1.5rem; }
+
+  .sam-detect-summary__grid { grid-template-columns: 1fr; }
+}
 
     /* Header CSS */
     /* ============================================================
@@ -1149,9 +1319,9 @@
 
   </style>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Anolyte Pump Saved from Breakdown | Samotics">
-  <meta property="og:description" content="Anolyte pump case study: SAM4 detected cavitation damage to bearing early. Prevented unplanned downtime and extended equipment operational life.">
-  <meta property="og:url" content="https://samoticstestpage.com/proof/case-studies/cavitation-anolyte-pump/">
+  <meta property="og:title" content="Early warning of failing heated godet roll prevents $90k in production loss | Samotics">
+  <meta property="og:description" content="Early warning of failing heated godet roll prevents $90k in production loss. Godet rolls are crucial in synthetic fiber production, ensuring yarn quality during">
+  <meta property="og:url" content="https://samoticstestpage.com/proof/case-studies/heated-godet-roll-fault-detection-case-study/">
   <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
   <meta property="og:site_name" content="Samotics">
 </head>
@@ -1329,7 +1499,7 @@
 
 <main id="main-content" class="sam-casestudy">
 
-  <!-- Hero -->
+  <!-- ─── 1. HERO ─── -->
   <section class="sam-hero sam-hero--casestudy" style="background-image:url('https://samotics.com/wp-content/uploads/2023/10/synthetic_fiber_production_stock_image.jpg');">
     <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
@@ -1340,7 +1510,7 @@
     </div>
   </section>
 
-  <!-- Summary bar -->
+  <!-- ─── 2. SUMMARY BAR ─── -->
   <section class="sam-detect-summary">
     <div class="sam-detect-summary__inner">
       <div class="sam-detect-summary__grid">
@@ -1364,36 +1534,65 @@
     </div>
   </section>
 
-  <!-- Content sections -->
-  <section class="sam-casestudy-content">
-    <div class="sam-casestudy-content__inner">
-      <div class="sam-casestudy-content__block">
+  <!-- ─── 3. STORY ─── -->
+  <section class="sam-casestudy-story">
+    <div class="sam-casestudy-story__inner">
+      <div class="sam-casestudy-story__block">
         <h2>SAM4 Health looks after heated godet rolls, preventing downtime and reducing costs</h2>
         <p>Godet rolls are crucial in synthetic fiber production, ensuring yarn quality during heat treatment. SAM4 Health system detects issues in heated godet rolls, preventing unexpected failures and costly downtime. In one case, motor overloading was detected and quickly addressed through inspection and maintenance. Timely warning saved $70,000 in lost production and $20,000 in corrective maintenance costs.</p>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
         <h2>Prevent unexpected failures with timely warnings</h2>
+        <figure class="sam-casestudy-story__figure">
+          <img src="https://samotics.com/wp-content/uploads/2023/10/heated_godet_roll_case_dashboard_image_700w-e1697034065150-300x182.png" alt="" loading="lazy">
+        </figure>
       </div>
-      <div class="sam-casestudy-content__block">
+      <div class="sam-casestudy-story__block">
         <h2>Failing heated godet roll prevention analysis</h2>
         <p>Godet rolls whether heated, cooled or ambient are an essential component in the production of synthetic fibers. They ensure the quality of the yarn characteristics during the heat treatment process. In one particular case, the SAM4 Health system has been installed on several heated godet rolls at one of the manufacturer&#x27;s production lines. Since these rolls operate under extremely high temperature levels, it would be difficult to spot any developing issues through manual inspection or vibration measurements early enough to prevent failure. For that reason, manufacturers of high-performance fibers rely on SAM4 Health to provide insight into the rolls&#x27; condition, so that they can resolve issues before they lead to unplanned downtime.</p>
         <p>SAM4 Health detected that the motor was operating above its rated current value, which is an indicator of motor overloading. We advised the customer to inspect the motor for signs of overheating and check the motor&#x27;s insulation integrity. Within 30 minutes after receiving the alert, the customer inspected the motor and adjusted the tension on the roll. After maintenance was performed, SAM4 Health confirmed that the roll&#x27;s motor current returned to healthy levels.</p>
         <p>This timely warning made it possible to inspect the asset and adjust its operating parameters without having to shut it down, which would have caused downtime and loss of production time. The customer noted that if the asset failed during service this would have led to 12 hours of downtime, resulting in $70,000 of lost production and an additional $20,000 on corrective maintenance.</p>
-        <figure class="sam-casestudy-content__figure">
-          <img src="https://samotics.com/wp-content/uploads/2023/10/heated_godet_roll_case_dashboard_image_700w-e1697034065150-300x182.png" alt="" loading="lazy">
-        </figure>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="sam-cta-block sam-cta-block--detect">
+  <!-- ─── CTA ─── -->
+  <section class="sam-cta-block sam-cta-block--casestudy">
     <div class="sam-cta-block__inner">
       <h2 class="sam-cta-block__heading">See what SAM4 can detect on your assets</h2>
       <p class="sam-cta-block__sub">Every story above comes from a real deployment. Request a demo to see how SAM4 works on your equipment.</p>
       <div class="sam-cta-block__actions">
         <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Talk to an engineer</a>
         <a href="/proof/" class="sam-btn sam-btn--outline">See all proof</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RELATED ─── -->
+  <section class="sam-casestudy-related">
+    <div class="sam-casestudy-related__inner">
+      <p class="overline">Related stories</p>
+      <h2>More results from the field</h2>
+
+      <div class="sam-casestudy-related__grid">
+        <a href="/proof/case-studies/prevent-exhaust-fan-failure-in-wood-manufacturing-case-study/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Manufacturing</span>
+          <h3 class="sam-casestudy-related__card-title">Six early alerts to degrading fans save up to 12 hours and € 96k in unplanned downtime</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">€ 96k saved</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
+        <a href="/proof/case-studies/how-schipol-airport-improved-reliability-of-its-current-baggage-handling-lines/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Aviation</span>
+          <h3 class="sam-casestudy-related__card-title">How Schiphol Airport improved the reliability of its baggage handling lines</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">100% detection accuracy</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
+        <a href="/proof/case-studies/how-arcelormittal-prevented-31-hours-of-downtime-by-detecting-27-failures-ahead-of-time/" class="sam-casestudy-related__card">
+          <span class="sam-casestudy-related__card-industry">Metals &amp; Mining</span>
+          <h3 class="sam-casestudy-related__card-title">How ArcelorMittal prevented 31 hours of downtime by detecting 27 failures ahead of time</h3>
+          <p class="sam-casestudy-related__card-outcome kpi-value">31 hours of downtime prevented</p>
+          <span class="sam-casestudy-related__card-link">Read story &rarr;</span>
+        </a>
       </div>
     </div>
   </section>
