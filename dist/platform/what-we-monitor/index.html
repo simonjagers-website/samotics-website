@@ -1633,6 +1633,154 @@
     min-height: 48px;
   }
 }
+
+/* Accuracy badge on fault tags */
+.sam-wwm-assets__fault {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.sam-wwm-assets__card-acc {
+  display: inline-flex;
+  align-items: center;
+}
+/* Upstream prevention callout */
+.sam-wwm-upstream {
+  background: var(--sam-seashell);
+  border: 1px solid var(--sam-border-light);
+  border-left: 4px solid #16A34A;
+  padding: var(--sp-07);
+  margin-top: var(--sp-08);
+}
+.sam-wwm-upstream__title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-04) 0;
+}
+.sam-wwm-upstream__text {
+  font-family: var(--sam-font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-05) 0;
+}
+.sam-wwm-upstream__stats {
+  display: flex;
+  gap: var(--sp-06);
+  flex-wrap: wrap;
+}
+.sam-wwm-upstream__stat {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-03);
+}
+.sam-wwm-upstream__stat-value {
+  font-family: var(--sam-mono);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #16A34A;
+}
+.sam-wwm-upstream__stat-label {
+  font-family: var(--sam-font);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--sam-space-cadet);
+}
+/* Detection boundaries */
+.sam-wwm-boundaries {
+  background: var(--sam-white);
+  padding: var(--sp-11) 0;
+}
+.sam-wwm-boundaries__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.sam-wwm-boundaries__inner .overline {
+  color: var(--sam-space-cadet);
+}
+.sam-wwm-boundaries__inner h2 {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sam-space-cadet);
+  margin: 0 0 var(--sp-06) 0;
+  max-width: 30ch;
+}
+.sam-wwm-boundaries__lead {
+  margin-bottom: var(--sp-09);
+}
+.sam-wwm-boundaries__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-07);
+  margin-bottom: var(--sp-08);
+}
+.sam-wwm-boundaries__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-05);
+}
+.sam-wwm-boundaries__col-title {
+  font-family: var(--sam-font);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--sam-space-cadet);
+  margin: 0;
+  padding-bottom: var(--sp-04);
+  border-bottom: 2px solid #16A34A;
+}
+.sam-wwm-boundaries__col-title--limit {
+  border-bottom-color: #D97706;
+}
+.sam-wwm-boundaries__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-04);
+  font-family: var(--sam-font);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sam-black);
+}
+.sam-wwm-boundaries__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+}
+.sam-wwm-boundaries__icon--strong { color: #16A34A; }
+.sam-wwm-boundaries__icon--limit { color: #D97706; }
+.sam-wwm-boundaries__cta {
+  display: flex;
+  gap: var(--sp-05);
+  flex-wrap: wrap;
+}
+@media (max-width: 671px) {
+  .sam-wwm-boundaries {
+    padding: var(--sp-10) 0;
+  }
+  .sam-wwm-boundaries__inner {
+    padding: 0 16px;
+  }
+  .sam-wwm-boundaries__inner h2 {
+    font-size: 2rem;
+  }
+  .sam-wwm-boundaries__grid {
+    grid-template-columns: 1fr;
+  }
+  .sam-wwm-upstream__stats {
+    flex-direction: column;
+    gap: var(--sp-04);
+  }
+}
+
 /* ── Image Placeholders ── */
 .sam-placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:var(--sam-seashell,#F8F5F2);border:2px dashed var(--sam-border-light,#E8E4E0);border-radius:8px;padding:48px 24px;min-height:240px;width:100%;box-sizing:border-box}.sam-placeholder--hero{min-height:320px;border-radius:0;border:none;background:linear-gradient(135deg,#F8F5F2 0%,#E8E4E0 100%)}.sam-placeholder--wide{min-height:200px}.sam-placeholder--compact{min-height:160px;padding:32px 16px}.sam-placeholder__icon{width:64px;height:64px;color:var(--sam-comet,#6B6B7F);opacity:.5}.sam-placeholder--hero .sam-placeholder__icon{width:80px;height:80px}.sam-placeholder__label{font:500 13px/1.4 var(--sam-font,'IBM Plex Sans',sans-serif);color:var(--sam-comet,#6B6B7F);opacity:.6;text-transform:uppercase;letter-spacing:.08em;text-align:center}@media(max-width:900px){.sam-placeholder{min-height:180px;padding:32px 16px}.sam-placeholder--hero{min-height:240px}}
 
@@ -1852,16 +2000,16 @@
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Pumps</h3>
             <span class="sam-wwm-assets__card-tag">Most monitored</span>
-          </div>
+          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#16A34A;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">91.0%</span></div>
           <p class="sam-wwm-assets__card-desc">Submersible, booster, borehole, process, injection, transfer, and circulation pumps. SAM4 detects bearing degradation, cavitation, blockage, seal wear, imbalance, and efficiency loss — weeks to months before failure.</p>
           <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Bearing degradation</span>
-            <span class="sam-wwm-assets__fault">Cavitation</span>
-            <span class="sam-wwm-assets__fault">Blockage</span>
-            <span class="sam-wwm-assets__fault">Imbalance</span>
+            <span class="sam-wwm-assets__fault">Bearing degradation<span class="sam-wwm-assets__fault-acc" style="color:#DC2626; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">30.8%</span></span>
+            <span class="sam-wwm-assets__fault">Cavitation<span class="sam-wwm-assets__fault-acc" style="color:#D97706; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">84.6%</span></span>
+            <span class="sam-wwm-assets__fault">Blockage<span class="sam-wwm-assets__fault-acc" style="color:#16A34A; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">97.4%</span></span>
+            <span class="sam-wwm-assets__fault">Imbalance<span class="sam-wwm-assets__fault-acc" style="color:#16A34A; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">96.2%</span></span>
             <span class="sam-wwm-assets__fault">Seal wear</span>
             <span class="sam-wwm-assets__fault">Efficiency loss</span>
-            <span class="sam-wwm-assets__fault">Misalignment</span>
+            <span class="sam-wwm-assets__fault">Misalignment<span class="sam-wwm-assets__fault-acc" style="color:#16A34A; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">100%</span></span>
           </div>
           <div class="sam-wwm-assets__card-industries">
             <span class="sam-wwm-assets__industry">Water</span>
@@ -1877,7 +2025,7 @@
         <div class="sam-wwm-assets__card" id="compressors">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Compressors</h3>
-          </div>
+          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#DC2626;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">37.5%†</span></div>
           <p class="sam-wwm-assets__card-desc">Gas compressors, air compressors, and process compressors — including assets in ATEX/hazardous zones. SAM4 detects bearing wear, valve faults, imbalance, and efficiency degradation without accessing the compressor skid.</p>
           <div class="sam-wwm-assets__card-faults">
             <span class="sam-wwm-assets__fault">Bearing wear</span>
@@ -1899,12 +2047,12 @@
         <div class="sam-wwm-assets__card" id="fans">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Fans &amp; blowers</h3>
-          </div>
+          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#16A34A;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">90.0%</span></div>
           <p class="sam-wwm-assets__card-desc">Ventilation fans, cooling fans, process blowers, and aerators. SAM4 detects imbalance, bearing degradation, belt issues, and process deviations. Critical for maintaining safe atmospheric conditions in enclosed spaces.</p>
           <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Imbalance</span>
-            <span class="sam-wwm-assets__fault">Bearing degradation</span>
-            <span class="sam-wwm-assets__fault">Belt wear</span>
+            <span class="sam-wwm-assets__fault">Imbalance<span class="sam-wwm-assets__fault-acc" style="color:#16A34A; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">100%</span></span>
+            <span class="sam-wwm-assets__fault">Bearing degradation<span class="sam-wwm-assets__fault-acc" style="color:#DC2626; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">50.0%</span></span>
+            <span class="sam-wwm-assets__fault">Belt wear<span class="sam-wwm-assets__fault-acc" style="color:#16A34A; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">100%</span></span>
             <span class="sam-wwm-assets__fault">Process deviations</span>
             <span class="sam-wwm-assets__fault">Efficiency loss</span>
           </div>
@@ -1922,14 +2070,14 @@
         <div class="sam-wwm-assets__card" id="conveyors">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Conveyors</h3>
-          </div>
+          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#D97706;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">88.6%</span></div>
           <p class="sam-wwm-assets__card-desc">Belt conveyors, screw conveyors, and chain conveyors. SAM4 detects bearing degradation, misalignment, belt/chain issues, blockage, and overload conditions. Common in materials handling across mining, pulp, and manufacturing.</p>
           <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Bearing degradation</span>
+            <span class="sam-wwm-assets__fault">Bearing degradation<span class="sam-wwm-assets__fault-acc" style="color:#D97706; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">75.0%</span></span>
             <span class="sam-wwm-assets__fault">Misalignment</span>
             <span class="sam-wwm-assets__fault">Blockage</span>
             <span class="sam-wwm-assets__fault">Overload</span>
-            <span class="sam-wwm-assets__fault">Electrical faults</span>
+            <span class="sam-wwm-assets__fault">Electrical faults<span class="sam-wwm-assets__fault-acc" style="color:#DC2626; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">33.3%</span></span>
           </div>
           <div class="sam-wwm-assets__card-industries">
             <span class="sam-wwm-assets__industry">Metals &amp; Mining</span>
@@ -1942,13 +2090,13 @@
         <div class="sam-wwm-assets__card" id="agitators">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Agitators &amp; mixers</h3>
-          </div>
+          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#D97706;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">72.7%</span></div>
           <p class="sam-wwm-assets__card-desc">Chemical reactors, blending vessels, and mixing tanks. SAM4 detects bearing degradation, seal failure indicators, imbalance from product buildup, and gearbox issues — without opening the vessel or entering the process area.</p>
           <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Bearing degradation</span>
+            <span class="sam-wwm-assets__fault">Bearing degradation<span class="sam-wwm-assets__fault-acc" style="color:#16A34A; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">100%</span></span>
             <span class="sam-wwm-assets__fault">Seal wear</span>
             <span class="sam-wwm-assets__fault">Imbalance</span>
-            <span class="sam-wwm-assets__fault">Gearbox faults</span>
+            <span class="sam-wwm-assets__fault">Gearbox faults<span class="sam-wwm-assets__fault-acc" style="color:#D97706; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">75.0%</span></span>
           </div>
           <div class="sam-wwm-assets__card-industries">
             <span class="sam-wwm-assets__industry">Chemicals</span>
@@ -1960,7 +2108,7 @@
         <div class="sam-wwm-assets__card" id="esps">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Electrical submersible pumps (ESPs)</h3>
-          </div>
+          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#16A34A;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">100%*</span></div>
           <p class="sam-wwm-assets__card-desc">Downhole ESPs in oil &amp; gas production. These assets operate thousands of metres underground and cannot be inspected without pulling the string — a process costing days and hundreds of thousands of dollars. SAM4 detects motor degradation, pump wear, and gas lock from the surface VSD.</p>
           <div class="sam-wwm-assets__card-faults">
             <span class="sam-wwm-assets__fault">Motor degradation</span>
@@ -2046,10 +2194,10 @@
         <div class="sam-wwm-assets__card" id="archimedes-screws">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Archimedes screws</h3>
-          </div>
+          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#D97706;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">80.0%</span></div>
           <p class="sam-wwm-assets__card-desc">Archimedes screw pumps used in water treatment inlet works and low-head pumping stations. SAM4 detects bearing degradation, trough wear indicators, drive chain faults, and efficiency loss — critical for preventing pollution events.</p>
           <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Bearing degradation</span>
+            <span class="sam-wwm-assets__fault">Bearing degradation<span class="sam-wwm-assets__fault-acc" style="color:#DC2626; margin-left:6px; font-family:var(--sam-mono); font-weight:700; font-size:0.75rem;">50.0%</span></span>
             <span class="sam-wwm-assets__fault">Trough wear</span>
             <span class="sam-wwm-assets__fault">Drive chain faults</span>
             <span class="sam-wwm-assets__fault">Efficiency loss</span>
@@ -2090,6 +2238,36 @@
           <a href="/contact?intent=demo" class="sam-btn sam-btn--primary" style="margin-top: auto;">Talk to an Engineer</a>
         </div>
 
+      </div>
+
+
+      <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin-top:var(--sp-05);">
+        Detection rates shown are from 1,874 resolved incidents (Jan 2024 – Feb 2026).
+        <span style="color:#16A34A;font-weight:600;">Green</span> = &ge;90%,
+        <span style="color:#D97706;font-weight:600;">Amber</span> = 60–89%,
+        <span style="color:#DC2626;font-weight:600;">Red</span> = &lt;60%.
+        *Small sample (5 units). †Under active development.
+        <a href="/proof/detection-accuracy" class="sam-text-link" style="font-size:0.8125rem;">Full report &rarr;</a>
+      </p>
+
+      <!-- Upstream Prevention Callout -->
+      <div class="sam-wwm-upstream">
+        <h3 class="sam-wwm-upstream__title">Seal leaks and bearing failures start with detectable root causes</h3>
+        <p class="sam-wwm-upstream__text">Mechanical seal leaks and bearing failures are rarely spontaneous. They are accelerated by misalignment, mechanical unbalance, and cavitation — conditions that SAM4 detects with high confidence. Clients monitoring these upstream conditions experience measurably lower occurrence of seal and bearing failures.</p>
+        <div class="sam-wwm-upstream__stats">
+          <div class="sam-wwm-upstream__stat">
+            <span class="sam-wwm-upstream__stat-value">100%</span>
+            <span class="sam-wwm-upstream__stat-label">Misalignment detection</span>
+          </div>
+          <div class="sam-wwm-upstream__stat">
+            <span class="sam-wwm-upstream__stat-value">96.3%</span>
+            <span class="sam-wwm-upstream__stat-label">Mechanical unbalance detection</span>
+          </div>
+          <div class="sam-wwm-upstream__stat">
+            <span class="sam-wwm-upstream__stat-value">86.7%</span>
+            <span class="sam-wwm-upstream__stat-label">Cavitation detection</span>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -2391,6 +2569,73 @@
           <h3 class="sam-wwm-industries__card-title">Energy Efficiency</h3>
           <p class="sam-wwm-industries__card-desc">BEP deviation, oversized motors, ESG</p>
         </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── DETECTION BOUNDARIES ─── -->
+  <section class="sam-wwm-boundaries">
+    <div class="sam-wwm-boundaries__inner">
+      <p class="overline">Detection boundaries</p>
+      <h2>What SAM4 detects well — and where it has limits</h2>
+      <p class="lead sam-wwm-boundaries__lead">No condition monitoring technology detects everything. We publish our detection boundaries so you know exactly what to expect. Based on 1,874 resolved incidents from January 2024 to February 2026.</p>
+
+      <div class="sam-wwm-boundaries__grid">
+
+        <div class="sam-wwm-boundaries__col">
+          <h3 class="sam-wwm-boundaries__col-title">Strong detection (&gt;85%)</h3>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--strong" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span><strong>Blockage / clogging</strong> — 97.4% detection across 545 cases</span>
+          </div>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--strong" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span><strong>Mechanical unbalance</strong> — 96.3% detection across 54 cases</span>
+          </div>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--strong" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span><strong>Belt degradation</strong> — 89.7% detection across 39 cases</span>
+          </div>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--strong" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span><strong>Cavitation</strong> — 86.7% detection across 15 cases</span>
+          </div>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--strong" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span><strong>Misalignment</strong> — 100% detection across 5 cases</span>
+          </div>
+        </div>
+
+        <div class="sam-wwm-boundaries__col">
+          <h3 class="sam-wwm-boundaries__col-title sam-wwm-boundaries__col-title--limit">Known limitations</h3>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--limit" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Motor bearing degradation</strong> — subtler ESA signatures than driven equipment bearings. Accounts for most bearing detection misses.</span>
+          </div>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--limit" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Stator shorts</strong> — too localised for current ESA sensitivity. Outside SAM4 detection scope.</span>
+          </div>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--limit" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Compressor-specific faults</strong> — reciprocating and variable-load profiles differ from SAM4's primary training set (37.5% detection).</span>
+          </div>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--limit" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Coupling unbalance</strong> — often masked by other drivetrain dynamics (57.1% detection).</span>
+          </div>
+          <div class="sam-wwm-boundaries__item">
+            <svg class="sam-wwm-boundaries__icon sam-wwm-boundaries__icon--limit" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Supply and cable faults</strong> — intermittent electrical anomalies are harder to classify consistently (50–53% detection).</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sam-wwm-boundaries__cta">
+        <a href="/proof/detection-accuracy" class="sam-text-link">See full detection transparency report &rarr;</a>
+        <a href="/technology/esa" class="sam-text-link">Learn how ESA works &rarr;</a>
       </div>
     </div>
   </section>

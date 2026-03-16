@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SAM4 detection accuracy report: 90.8% accuracy across core assets (Pumps, Fans, Conveyors) over 1,874 resolved incidents. 0.32% false alert rate. Transparent performance data.">
+  <title>SAM4 Detection Accuracy & Performance | Samotics</title>
+  <link rel="canonical" href="https://samoticstestpage.com/proof/detection-accuracy/">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: italic;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: italic;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
+    }
+  </style>
+  <style>
+    /* ──────────────────────────────────────────────────────── */
+    /* SAMOTICS HEADER — CSS */
+    /* ──────────────────────────────────────────────────────── */
+
+:root {
+  --sam-space-cadet: #1F1F33;
+  --sam-orange: #FF5429;
+  --sam-orange-dark: #D7411B;
+  --sam-blue: #005CBA;
+  --sam-white: #FFFFFF;
+  --sam-seashell: #F8F5F2;
+  --sam-black: #111111;
+  --sam-comet: #6B6B7F;
+  --sam-border-light: #E8E4E0;
+  --sam-header-bg: #1F1F33;
+  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sam-header-h: 80px;
+  --sam-header-h-compact: 64px;
+  --sam-transition: 150ms ease-out;
+  --sp-xs: 8px;
+  --sp-sm: 16px;
+  --sp-md: 24px;
+  --sp-lg: 32px;
+  --sp-xl: 48px;
+  --sp-2xl: 64px;
+  --sp-3xl: 96px;
+}
+
+/* ── Skip Link ── */
+.sam-skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10001;
+  padding: 8px 16px;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  font: 600 14px/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 0;
+}
+.sam-skip-link:focus {
+  top: 8px;
+}
+
+/* ── Header Shell ── */
+.sam-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: var(--sam-header-h);
+  background: var(--sam-header-bg);
+  transition: height var(--sam-transition), box-shadow var(--sam-transition);
+}
+.sam-header.is-scrolled {
+  height: var(--sam-header-h-compact);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Inner Container ── */
+.sam-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Logo ── */
+.sam-header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.sam-logo {
+  height: auto;
+  transition: transform 200ms ease-out, filter 200ms ease-out;
+}
+.sam-logo--white {
+  filter: brightness(0) invert(1);
+}
+.sam-logo--dark {
+  display: none;
+}
+.sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+
+/* ── Desktop Nav ── */
+.sam-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.sam-nav__link {
+  font: 500 15px/1 var(--sam-font);
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  transition: color var(--sam-transition);
+  white-space: nowrap;
+}
+.sam-nav__link:hover,
+.sam-nav__link:focus-visible {
+  color: var(--sam-white);
+}
+
+.sam-nav__link[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--sam-orange);
+}
+
+.sam-header.is-scrolled .sam-nav__link {
+  color: rgba(255, 255, 255, 0.85);
+}
+.sam-header.is-scrolled .sam-nav__link:hover,
+.sam-header.is-scrolled .sam-nav__link:focus-visible {
+  color: var(--sam-white);
+}
+
+.sam-nav__chevron {
+  transition: transform var(--sam-transition);
+  flex-shrink: 0;
+}
+
+/* ── Dropdown Panels ── */
+.sam-nav__item {
+  position: relative;
+}
+.sam-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  min-width: 300px;
+  background: var(--sam-white);
+  border: 1px solid var(--sam-border-light);
+  border-radius: 0;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--sam-transition), visibility var(--sam-transition), transform var(--sam-transition);
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.sam-nav__item--has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+
+.sam-nav__item--has-dropdown:hover .sam-dropdown,
+.sam-nav__item--has-dropdown:focus-within .sam-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.sam-nav__item--has-dropdown:hover .sam-nav__chevron,
+.sam-nav__item--has-dropdown:focus-within .sam-nav__chevron {
+  transform: rotate(180deg);
+}
+
+.sam-dropdown__item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 24px;
+  text-decoration: none;
+  transition: background-color 100ms ease-out;
+}
+.sam-dropdown__item:hover,
+.sam-dropdown__item:focus-visible {
+  background: var(--sam-seashell);
+}
+.sam-dropdown__label {
+  font: 500 15px/1.3 var(--sam-font);
+  color: var(--sam-black);
+}
+.sam-dropdown__desc {
+  font: 400 13px/1.4 var(--sam-font);
+  color: var(--sam-comet);
+  margin-top: 2px;
+}
+
+/* ── CTA Button ── */
+.sam-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: var(--sam-orange);
+  color: var(--sam-black);
+  font: 600 14px/1 var(--sam-font);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  white-space: nowrap;
+  transition: background-color var(--sam-transition);
+  cursor: pointer;
+}
+.sam-cta:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+}
+.sam-header.is-scrolled .sam-cta {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-header.is-scrolled .sam-cta:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+}
+
+/* ── Header Actions Wrapper ── */
+.sam-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* ── Hamburger (mobile only) ── */
+.sam-hamburger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.sam-hamburger__line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--sam-white);
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+  border-radius: 0;
+}
+.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Mobile Menu ── */
+.sam-mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--sam-header-h-compact);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--sam-white);
+  overflow-y: auto;
+  z-index: 999;
+  padding: 24px 16px;
+  flex-direction: column;
+}
+.sam-mobile-menu.is-open {
+  display: flex;
+  animation: samSlideIn 200ms ease-out;
+}
+
+@keyframes samSlideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.sam-mobile-nav__link {
+  display: block;
+  padding: 16px 0;
+  font: 500 16px/1 var(--sam-font);
+  color: var(--sam-black);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-mobile-nav__link:hover {
+  color: var(--sam-orange);
+}
+
+.sam-mobile-nav__group {
+  border-bottom: 1px solid var(--sam-border-light);
+}
+.sam-mobile-nav__toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+  font: 500 16px/1 var(--sam-font);
+  color: var(--sam-black);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sam-mobile-nav__arrow {
+  transition: transform 200ms ease-out;
+  flex-shrink: 0;
+}
+.sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow {
+  transform: rotate(180deg);
+}
+
+.sam-mobile-nav__sub {
+  display: none;
+  flex-direction: column;
+  padding: 0 0 8px 16px;
+}
+.sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
+  display: flex;
+}
+.sam-mobile-nav__sub a {
+  display: block;
+  padding: 12px 0;
+  font: 400 15px/1 var(--sam-font);
+  color: var(--sam-black);
+  text-decoration: none;
+}
+.sam-mobile-nav__sub a:hover {
+  color: var(--sam-orange);
+}
+
+.sam-mobile-nav__cta-wrap {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--sam-border-light);
+}
+.sam-mobile-nav__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 0;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  font: 600 16px/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 0;
+  transition: background-color var(--sam-transition);
+}
+.sam-mobile-nav__cta:hover {
+  background: var(--sam-orange-dark);
+}
+
+/* ── Focus Styles ── */
+.sam-nav__link:focus-visible,
+.sam-dropdown__item:focus-visible,
+.sam-cta:focus-visible,
+.sam-hamburger:focus-visible,
+.sam-mobile-nav__toggle:focus-visible,
+.sam-mobile-nav__link:focus-visible,
+.sam-mobile-nav__sub a:focus-visible {
+  outline: 3px solid var(--sam-blue);
+  outline-offset: 2px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .sam-header,
+  .sam-dropdown,
+  .sam-nav__chevron,
+  .sam-hamburger__line,
+  .sam-mobile-nav__arrow,
+  .sam-logo {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .sam-header {
+    height: var(--sam-header-h-compact);
+  }
+  .sam-header__inner {
+    padding: 0 16px;
+  }
+  .sam-nav {
+    display: none;
+  }
+  .sam-hamburger {
+    display: flex;
+  }
+  .sam-cta {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+    /* ──────────────────────────────────────────────────────── */
+    /* SAMOTICS FOOTER — CSS */
+    /* ──────────────────────────────────────────────────────── */
+
+.sam-prefooter {
+  background: var(--sam-seashell);
+  padding: 96px 0;
+}
+.sam-prefooter__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+.sam-prefooter__sub {
+  font: 400 19px/1.45 var(--sam-font);
+  color: var(--sam-comet);
+  max-width: 600px;
+}
+.sam-prefooter__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  background: var(--sam-orange);
+  color: var(--sam-black);
+  font: 600 16px/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  white-space: nowrap;
+  transition: background-color 150ms ease-out;
+  cursor: pointer;
+  margin-top: 8px;
+}
+.sam-prefooter__cta:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+}
+
+.sam-footer {
+  background: var(--sam-space-cadet);
+  color: var(--sam-white);
+  padding: 64px 32px 32px;
+}
+.sam-footer__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+}
+
+.sam-footer__top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.sam-footer__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.sam-footer__logo img {
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+.sam-footer__tagline {
+  font: 400 18px/1.4 var(--sam-font);
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+.sam-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.sam-footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sam-footer__col-heading {
+  font: 600 16px/1 var(--sam-font);
+  color: var(--sam-white);
+  margin: 0;
+}
+.sam-footer__col-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sam-footer__col-links a {
+  font: 400 15px/1.4 var(--sam-font);
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+.sam-footer__col-links a:hover {
+  color: var(--sam-white);
+}
+
+.sam-footer__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 24px 0;
+}
+
+.sam-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.sam-footer__bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.sam-footer__copyright {
+  font: 400 14px/1 var(--sam-font);
+  color: rgba(255, 255, 255, 0.6);
+}
+.sam-footer__social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--sam-white);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 150ms ease-out, color 150ms ease-out;
+}
+.sam-footer__social:hover {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-footer__legal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+.sam-footer__legal a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+.sam-footer__legal a:hover {
+  color: var(--sam-white);
+}
+.sam-footer__legal-sep {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 1055px) {
+  .sam-footer__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 671px) {
+  .sam-footer {
+    padding: 48px 16px 24px;
+  }
+  .sam-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .sam-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .sam-footer__bottom-left {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+    /* ──────────────────────────────────────────────────────── */
+    /* PAGE-SPECIFIC CSS — DETECTION ACCURACY */
+    /* ──────────────────────────────────────────────────────── */
+
+.sam-accuracy,
+.sam-accuracy * {
+  font-family: var(--sam-font);
+}
+
+/* ─── HERO ─── */
+.sam-accuracy-hero {
+  background: var(--sam-space-cadet);
+  color: var(--sam-white);
+  padding: var(--sp-3xl) var(--sp-lg);
+  text-align: center;
+}
+.sam-accuracy-hero__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+}
+.sam-accuracy-hero__overline {
+  font: 600 0.75rem/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-hero__title {
+  font: 700 2.5rem/1.2 var(--sam-font);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-hero__subtitle {
+  font: 400 1.0625rem/1.5 var(--sam-font);
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* ─── KPI SECTION ─── */
+.sam-accuracy-kpis {
+  background: var(--sam-white);
+  padding: var(--sp-3xl) var(--sp-lg);
+}
+.sam-accuracy-kpis__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+}
+.sam-accuracy-kpis__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-2xl);
+}
+.sam-accuracy-kpi-card {
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: var(--sp-lg);
+  background: var(--sam-white);
+}
+.sam-accuracy-kpi-card__label {
+  font: 600 0.75rem/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sam-comet);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-kpi-card__value {
+  font-family: 'JetBrains Mono', monospace;
+  font: 700 2.5rem/1 'JetBrains Mono', monospace;
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-sm) 0;
+}
+.sam-accuracy-kpi-card__value.kpi-value {
+  font-family: 'JetBrains Mono', monospace;
+}
+.sam-accuracy-kpi-card__context {
+  font: 400 0.9375rem/1.5 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0;
+}
+.sam-accuracy-kpis__meta {
+  text-align: center;
+  padding: var(--sp-lg);
+  background: var(--sam-seashell);
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+}
+.sam-accuracy-kpis__meta-label {
+  font: 600 0.75rem/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sam-comet);
+  margin: 0 0 var(--sp-sm) 0;
+}
+.sam-accuracy-kpis__meta-value {
+  font: 400 1.0625rem/1.5 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0;
+}
+
+/* ─── ASSET EXPLORER ─── */
+.sam-accuracy-explorer {
+  background: var(--sam-seashell);
+  padding: var(--sp-3xl) var(--sp-lg);
+}
+.sam-accuracy-explorer__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+}
+.sam-accuracy-explorer__header {
+  text-align: center;
+  margin-bottom: var(--sp-2xl);
+}
+.sam-accuracy-explorer__overline {
+  font: 600 0.75rem/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sam-comet);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-explorer__title {
+  font: 700 1.75rem/1.2 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0;
+}
+.sam-accuracy-explorer__tabs {
+  display: flex;
+  gap: var(--sp-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: var(--sp-2xl);
+  border-bottom: 1px solid #E5E7EB;
+}
+.sam-accuracy-explorer__tab {
+  padding: var(--sp-md) var(--sp-lg);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font: 500 1rem/1 var(--sam-font);
+  color: var(--sam-comet);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+.sam-accuracy-explorer__tab:hover {
+  color: var(--sam-black);
+}
+.sam-accuracy-explorer__tab.is-active {
+  color: var(--sam-black);
+  border-bottom-color: var(--sam-orange);
+}
+.sam-accuracy-explorer__content {
+  display: none;
+}
+.sam-accuracy-explorer__content.is-active {
+  display: block;
+}
+.sam-accuracy-explorer__asset-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-lg);
+}
+.sam-accuracy-explorer__asset-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-md) var(--sp-lg);
+  background: var(--sam-white);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px 8px 0 0;
+}
+.sam-accuracy-explorer__asset-name {
+  font: 600 1.0625rem/1 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0;
+}
+.sam-accuracy-explorer__asset-tier {
+  display: inline-block;
+  font: 600 0.6875rem/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  background: var(--sam-seashell);
+  color: var(--sam-comet);
+  border-radius: 4px;
+}
+.sam-accuracy-explorer__asset-accuracy {
+  font: 700 1.5rem/1 'JetBrains Mono', monospace;
+  color: var(--sam-black);
+}
+.sam-accuracy-explorer__failure-modes {
+  background: var(--sam-white);
+  border: 1px solid #E5E7EB;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: var(--sp-lg);
+}
+.sam-accuracy-explorer__mode-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-md);
+}
+.sam-accuracy-explorer__mode-row:last-child {
+  margin-bottom: 0;
+}
+.sam-accuracy-explorer__mode-name {
+  font: 500 0.9375rem/1 var(--sam-font);
+  color: var(--sam-black);
+  min-width: 140px;
+}
+.sam-accuracy-explorer__mode-bar {
+  flex: 1;
+  height: 24px;
+  background: #E5E7EB;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.sam-accuracy-explorer__mode-fill {
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 0.75rem/1 var(--sam-font);
+  color: var(--sam-white);
+  transition: width 200ms ease-out;
+}
+.sam-accuracy-explorer__mode-fill.green {
+  background: #16A34A;
+}
+.sam-accuracy-explorer__mode-fill.amber {
+  background: #D97706;
+}
+.sam-accuracy-explorer__mode-fill.red {
+  background: #DC2626;
+}
+
+/* ─── FAILURE MODES ─── */
+.sam-accuracy-modes {
+  background: var(--sam-white);
+  padding: var(--sp-3xl) var(--sp-lg);
+}
+.sam-accuracy-modes__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+}
+.sam-accuracy-modes__header {
+  text-align: center;
+  margin-bottom: var(--sp-2xl);
+}
+.sam-accuracy-modes__overline {
+  font: 600 0.75rem/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sam-comet);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-modes__title {
+  font: 700 1.75rem/1.2 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0;
+}
+.sam-accuracy-modes__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-lg);
+}
+.sam-accuracy-mode-card {
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: var(--sp-lg);
+  background: var(--sam-white);
+}
+.sam-accuracy-mode-card__name {
+  font: 600 1rem/1 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-mode-card__bar {
+  height: 32px;
+  background: #E5E7EB;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: var(--sp-md);
+}
+.sam-accuracy-mode-card__fill {
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 0.8125rem/1 'JetBrains Mono', monospace;
+  color: var(--sam-white);
+  transition: width 200ms ease-out;
+}
+.sam-accuracy-mode-card__fill.green {
+  background: #16A34A;
+}
+.sam-accuracy-mode-card__fill.amber {
+  background: #D97706;
+}
+.sam-accuracy-mode-card__fill.red {
+  background: #DC2626;
+}
+
+/* ─── UPSTREAM PREVENTION ─── */
+.sam-accuracy-upstream {
+  background: var(--sam-seashell);
+  padding: var(--sp-3xl) var(--sp-lg);
+}
+.sam-accuracy-upstream__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+}
+.sam-accuracy-upstream__header {
+  text-align: center;
+  margin-bottom: var(--sp-2xl);
+}
+.sam-accuracy-upstream__overline {
+  font: 600 0.75rem/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sam-comet);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-upstream__title {
+  font: 700 1.75rem/1.2 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-upstream__intro {
+  font: 400 1.0625rem/1.5 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 auto var(--sp-2xl) auto;
+  text-align: center;
+  max-width: 700px;
+}
+.sam-accuracy-upstream__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-2xl);
+}
+.sam-accuracy-upstream-card {
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: var(--sp-lg);
+  background: var(--sam-white);
+}
+.sam-accuracy-upstream-card__accuracy {
+  display: inline-block;
+  font: 700 1.75rem/1 'JetBrains Mono', monospace;
+  color: #16A34A;
+  margin: 0 0 var(--sp-sm) 0;
+}
+.sam-accuracy-upstream-card__name {
+  font: 600 1rem/1 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-upstream-card__desc {
+  font: 400 0.9375rem/1.6 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0;
+}
+
+/* ─── MONITORING ─── */
+.sam-accuracy-monitoring {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-lg);
+}
+.sam-accuracy-monitoring-card {
+  border: none;
+  padding: 0;
+}
+.sam-accuracy-monitoring-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sam-accuracy-monitoring-card__item {
+  font: 400 0.9375rem/1.6 var(--sam-font);
+  color: var(--sam-comet);
+  margin-bottom: var(--sp-sm);
+  padding-left: var(--sp-md);
+  position: relative;
+}
+.sam-accuracy-monitoring-card__item:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--sam-orange);
+}
+
+/* ─── BOUNDARIES ─── */
+.sam-accuracy-boundaries {
+  background: var(--sam-white);
+  padding: var(--sp-3xl) var(--sp-lg);
+}
+.sam-accuracy-boundaries__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+}
+.sam-accuracy-boundaries__header {
+  text-align: center;
+  margin-bottom: var(--sp-2xl);
+}
+.sam-accuracy-boundaries__overline {
+  font: 600 0.75rem/1 var(--sam-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sam-comet);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-boundaries__title {
+  font: 700 1.75rem/1.2 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-boundaries__quote {
+  font: 400 1.0625rem/1.6 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 auto;
+  text-align: center;
+  max-width: 700px;
+  font-style: italic;
+  padding: var(--sp-lg);
+  border-left: 4px solid var(--sam-orange);
+  background: var(--sam-seashell);
+  border-radius: 0 8px 8px 0;
+}
+
+/* ─── CTA BLOCK ─── */
+.sam-accuracy-cta-block {
+  background: var(--sam-seashell);
+  padding: var(--sp-3xl) var(--sp-lg);
+}
+.sam-accuracy-cta-block__inner {
+  max-width: 1584px;
+  margin: 0 auto;
+  text-align: center;
+}
+.sam-accuracy-cta-block__title {
+  font: 700 1.75rem/1.2 var(--sam-font);
+  color: var(--sam-black);
+  margin: 0 0 var(--sp-md) 0;
+}
+.sam-accuracy-cta-block__sub {
+  font: 400 1.0625rem/1.5 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 0 var(--sp-lg) 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sam-accuracy-cta-block__actions {
+  display: flex;
+  gap: var(--sp-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.sam-accuracy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  font: 600 1rem/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+.sam-accuracy-btn--primary {
+  background: var(--sam-orange);
+  color: var(--sam-black);
+}
+.sam-accuracy-btn--primary:hover {
+  background: var(--sam-orange-dark);
+  color: var(--sam-white);
+}
+.sam-accuracy-btn--outline {
+  border: 2px solid var(--sam-black);
+  color: var(--sam-black);
+  background: transparent;
+}
+.sam-accuracy-btn--outline:hover {
+  background: var(--sam-black);
+  color: var(--sam-white);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1055px) {
+  .sam-accuracy-kpis__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sam-accuracy-modes__grid {
+    grid-template-columns: 1fr;
+  }
+  .sam-accuracy-upstream__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sam-accuracy-monitoring {
+    grid-template-columns: 1fr;
+  }
+  .sam-accuracy-hero__title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 671px) {
+  .sam-accuracy-hero {
+    padding: var(--sp-2xl) var(--sp-md);
+  }
+  .sam-accuracy-hero__title {
+    font-size: 1.5rem;
+  }
+  .sam-accuracy-hero__subtitle {
+    font-size: 1rem;
+  }
+  .sam-accuracy-kpis {
+    padding: var(--sp-2xl) var(--sp-md);
+  }
+  .sam-accuracy-kpis__grid {
+    grid-template-columns: 1fr;
+  }
+  .sam-accuracy-explorer {
+    padding: var(--sp-2xl) var(--sp-md);
+  }
+  .sam-accuracy-modes {
+    padding: var(--sp-2xl) var(--sp-md);
+  }
+  .sam-accuracy-upstream {
+    padding: var(--sp-2xl) var(--sp-md);
+  }
+  .sam-accuracy-upstream__grid {
+    grid-template-columns: 1fr;
+  }
+  .sam-accuracy-boundaries {
+    padding: var(--sp-2xl) var(--sp-md);
+  }
+  .sam-accuracy-cta-block {
+    padding: var(--sp-2xl) var(--sp-md);
+  }
+  .sam-accuracy-cta-block__title {
+    font-size: 1.25rem;
+  }
+  .sam-accuracy-cta-block__actions {
+    flex-direction: column;
+  }
+  .sam-accuracy-btn {
+    width: 100%;
+  }
+  .sam-accuracy-explorer__mode-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sam-accuracy-explorer__mode-bar {
+    width: 100%;
+  }
+}
+  </style>
+
+  <!-- OG Tags -->
+  <meta property="og:title" content="SAM4 Detection Accuracy & Performance | Samotics">
+  <meta property="og:description" content="SAM4 detection accuracy report: 90.8% accuracy across core assets (Pumps, Fans, Conveyors) over 1,874 resolved incidents. 0.32% false alert rate. Transparent performance data.">
+  <meta property="og:url" content="https://samoticstestpage.com/proof/detection-accuracy/">
+  <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
+  <meta property="og:site_name" content="Samotics">
+</head>
+
+<body>
+
+<header class="sam-header" role="navigation" aria-label="Main navigation">
+  <a href="#main-content" class="sam-skip-link">Skip to content</a>
+  <div class="sam-header__inner">
+
+    <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
+      <img src="/assets/samotics-logo-white.svg" alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+      <img src="/assets/samotics-logo-white.svg" alt="Samotics" class="sam-logo sam-logo--dark" width="140" height="32">
+    </a>
+
+    <nav class="sam-nav" role="navigation">
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <a href="/technology" class="sam-nav__link">Technology
+          <svg class="sam-nav__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+        <div class="sam-dropdown">
+          <a href="/technology/esa" class="sam-dropdown__item">
+            <span class="sam-dropdown__label">ESA Technology</span>
+            <span class="sam-dropdown__desc">How electrical signature analysis works</span>
+          </a>
+          <a href="/technology/how-it-works" class="sam-dropdown__item">
+            <span class="sam-dropdown__label">How It Works</span>
+            <span class="sam-dropdown__desc">Complete technical overview</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <a href="/platform" class="sam-nav__link">Platform
+          <svg class="sam-nav__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+        <div class="sam-dropdown">
+          <a href="/platform/sam4" class="sam-dropdown__item">
+            <span class="sam-dropdown__label">SAM4 Platform</span>
+            <span class="sam-dropdown__desc">The SAM4 monitoring system</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/industries" class="sam-nav__link">Industries</a>
+      <a href="/resources/case-studies/" class="sam-nav__link" aria-current="page">Proof</a>
+      <a href="/resources/blog/" class="sam-nav__link">Blog</a>
+    </nav>
+
+    <div class="sam-header__actions">
+      <a href="/contact?intent=demo" class="sam-cta">Talk to an engineer</a>
+      <button class="sam-hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="sam-mobile-menu">
+    <a href="/industries" class="sam-mobile-nav__link">Industries</a>
+    <a href="/resources/case-studies/" class="sam-mobile-nav__link">Proof</a>
+    <a href="/resources/blog/" class="sam-mobile-nav__link">Blog</a>
+    <div class="sam-mobile-nav__cta-wrap">
+      <a href="/contact?intent=demo" class="sam-mobile-nav__cta">Talk to an engineer</a>
+    </div>
+  </div>
+</header>
+
+<main id="main-content" class="sam-accuracy">
+
+  <!-- HERO -->
+  <section class="sam-accuracy-hero">
+    <div class="sam-accuracy-hero__inner">
+      <p class="sam-accuracy-hero__overline">SAM4 Performance Report</p>
+      <h1 class="sam-accuracy-hero__title">Detection Accuracy & Transparency</h1>
+      <p class="sam-accuracy-hero__subtitle">We publish our detection boundaries because no technology detects everything. Transparency builds trust.</p>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section class="sam-accuracy-kpis">
+    <div class="sam-accuracy-kpis__inner">
+      <div class="sam-accuracy-kpis__grid">
+        <div class="sam-accuracy-kpi-card">
+          <p class="sam-accuracy-kpi-card__label">Core Asset Accuracy</p>
+          <p class="sam-accuracy-kpi-card__value kpi-value">90.8%</p>
+          <p class="sam-accuracy-kpi-card__context">Pump, Fan, Conveyor</p>
+        </div>
+
+        <div class="sam-accuracy-kpi-card">
+          <p class="sam-accuracy-kpi-card__label">All Assets Average</p>
+          <p class="sam-accuracy-kpi-card__value kpi-value">87.2%</p>
+          <p class="sam-accuracy-kpi-card__context">Across all asset types</p>
+        </div>
+
+        <div class="sam-accuracy-kpi-card">
+          <p class="sam-accuracy-kpi-card__label">False Alert Rate</p>
+          <p class="sam-accuracy-kpi-card__value kpi-value">0.32%</p>
+          <p class="sam-accuracy-kpi-card__context">6 false in 1,874 cases</p>
+        </div>
+      </div>
+
+      <div class="sam-accuracy-kpis__meta">
+        <p class="sam-accuracy-kpis__meta-label">Data Period</p>
+        <p class="sam-accuracy-kpis__meta-value">January 2024 – February 2026 | 1,874 resolved incidents</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSET EXPLORER -->
+  <section class="sam-accuracy-explorer">
+    <div class="sam-accuracy-explorer__inner">
+      <div class="sam-accuracy-explorer__header">
+        <p class="sam-accuracy-explorer__overline">By Asset Type</p>
+        <h2 class="sam-accuracy-explorer__title">Detection Performance by Equipment</h2>
+      </div>
+
+      <div class="sam-accuracy-explorer__tabs">
+        <button class="sam-accuracy-explorer__tab is-active" data-asset="pumps">Pumps</button>
+        <button class="sam-accuracy-explorer__tab" data-asset="fans">Fans</button>
+        <button class="sam-accuracy-explorer__tab" data-asset="conveyors">Conveyors</button>
+        <button class="sam-accuracy-explorer__tab" data-asset="archimedes">Archimedes</button>
+        <button class="sam-accuracy-explorer__tab" data-asset="blowers">Blowers</button>
+        <button class="sam-accuracy-explorer__tab" data-asset="esp">ESP</button>
+        <button class="sam-accuracy-explorer__tab" data-asset="compressors">Compressors</button>
+      </div>
+
+      <!-- PUMPS -->
+      <div class="sam-accuracy-explorer__content is-active" data-asset="pumps">
+        <div class="sam-accuracy-explorer__asset-row">
+          <div class="sam-accuracy-explorer__asset-header">
+            <div>
+              <p class="sam-accuracy-explorer__asset-name">Pumps</p>
+              <span class="sam-accuracy-explorer__asset-tier">Tier 1 – Core</span>
+            </div>
+            <div class="sam-accuracy-explorer__asset-accuracy">654/719 (91.0%)</div>
+          </div>
+          <div class="sam-accuracy-explorer__failure-modes">
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Blockage</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 97.4%">97.4%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Mech. unbalance</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 96.2%">96.2%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Cavitation</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 84.6%">84.6%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Air lock</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 80.8%">80.8%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Process</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 80.0%">80.0%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Elec. unbalance</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 70.6%">70.6%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Coupling unbal.</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 71.4%">71.4%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Impeller deg.</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 60.0%">60.0%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Bearing deg.</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill red" style="width: 30.8%">30.8%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Misalignment</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FANS -->
+      <div class="sam-accuracy-explorer__content" data-asset="fans">
+        <div class="sam-accuracy-explorer__asset-row">
+          <div class="sam-accuracy-explorer__asset-header">
+            <div>
+              <p class="sam-accuracy-explorer__asset-name">Fans</p>
+              <span class="sam-accuracy-explorer__asset-tier">Tier 1 – Core</span>
+            </div>
+            <div class="sam-accuracy-explorer__asset-accuracy">36/40 (90.0%)</div>
+          </div>
+          <div class="sam-accuracy-explorer__failure-modes">
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Belt deg.</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Contamination</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Mech. unbalance</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Misalignment</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Soft foot</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Fan defect</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 66.7%">66.7%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Bearing deg.</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 50.0%">50.0%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONVEYORS -->
+      <div class="sam-accuracy-explorer__content" data-asset="conveyors">
+        <div class="sam-accuracy-explorer__asset-row">
+          <div class="sam-accuracy-explorer__asset-header">
+            <div>
+              <p class="sam-accuracy-explorer__asset-name">Conveyors</p>
+              <span class="sam-accuracy-explorer__asset-tier">Tier 2</span>
+            </div>
+            <div class="sam-accuracy-explorer__asset-accuracy">31/35 (88.6%)</div>
+          </div>
+          <div class="sam-accuracy-explorer__failure-modes">
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Mech. unbalance</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 90.9%">90.9%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Contamination</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Bearing deg.</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill amber" style="width: 75.0%">75.0%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Belt deg.</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Gearbox unbal.</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Coupling unbal.</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill green" style="width: 100%">100%</div>
+              </div>
+            </div>
+            <div class="sam-accuracy-explorer__mode-row">
+              <span class="sam-accuracy-explorer__mode-name">Elec. unbalance</span>
+              <div class="sam-accuracy-explorer__mode-bar">
+                <div class="sam-accuracy-explorer__mode-fill red" style="width: 33.3%">33.3%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARCHIMEDES SCREWS -->
+      <div class="sam-accuracy-explorer__content" data-asset="archimedes">
+        <div class="sam-accuracy-explorer__asset-row">
+          <div class="sam-accuracy-explorer__asset-header">
+            <div>
+              <p class="sam-accuracy-explorer__asset-name">Archimedes Screws</p>
+              <span class="sam-accuracy-explorer__asset-tier">Tier 2</span>
+            </div>
+            <div class="sam-accuracy-explorer__asset-accuracy">8/10 (80.0%)</div>
+          </div>
+          <div class="sam-accuracy-explorer__failure-modes">
+            <p style="font-size: 0.9375rem; color: #6B6B7F; margin: 0;">18-month evaluation window. Full 2024+ rate: 71.4%</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOWERS -->
+      <div class="sam-accuracy-explorer__content" data-asset="blowers">
+        <div class="sam-accuracy-explorer__asset-row">
+          <div class="sam-accuracy-explorer__asset-header">
+            <div>
+              <p class="sam-accuracy-explorer__asset-name">Blowers</p>
+              <span class="sam-accuracy-explorer__asset-tier">Tier 2</span>
+            </div>
+            <div class="sam-accuracy-explorer__asset-accuracy">10/12 (83.3%)</div>
+          </div>
+          <div class="sam-accuracy-explorer__failure-modes">
+            <p style="font-size: 0.9375rem; color: #6B6B7F; margin: 0;">Data collection in progress. More samples needed for breakdown.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESP -->
+      <div class="sam-accuracy-explorer__content" data-asset="esp">
+        <div class="sam-accuracy-explorer__asset-row">
+          <div class="sam-accuracy-explorer__asset-header">
+            <div>
+              <p class="sam-accuracy-explorer__asset-name">Electrical Submersible Pump (ESP)</p>
+              <span class="sam-accuracy-explorer__asset-tier">Tier 1 – Early Stage</span>
+            </div>
+            <div class="sam-accuracy-explorer__asset-accuracy">5/5 (100%)</div>
+          </div>
+          <div class="sam-accuracy-explorer__failure-modes">
+            <p style="font-size: 0.9375rem; color: #6B6B7F; margin: 0;">Small sample size (5 cases). Continued monitoring recommended.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPRESSORS -->
+      <div class="sam-accuracy-explorer__content" data-asset="compressors">
+        <div class="sam-accuracy-explorer__asset-row">
+          <div class="sam-accuracy-explorer__asset-header">
+            <div>
+              <p class="sam-accuracy-explorer__asset-name">Compressors</p>
+              <span class="sam-accuracy-explorer__asset-tier">Tier 3 – Limited Data</span>
+            </div>
+            <div class="sam-accuracy-explorer__asset-accuracy">3/8 (37.5%)</div>
+          </div>
+          <div class="sam-accuracy-explorer__failure-modes">
+            <p style="font-size: 0.9375rem; color: #6B6B7F; margin: 0;">Limited deployment history. Not recommended for critical applications yet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAILURE MODES -->
+  <section class="sam-accuracy-modes">
+    <div class="sam-accuracy-modes__inner">
+      <div class="sam-accuracy-modes__header">
+        <p class="sam-accuracy-modes__overline">Overall Performance</p>
+        <h2 class="sam-accuracy-modes__title">Detection Rates by Failure Mode</h2>
+      </div>
+
+      <div class="sam-accuracy-modes__grid">
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Misalignment</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill green" style="width: 100%">100%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Blockage</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill green" style="width: 97.4%">97.4%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Mech. unbalance</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill green" style="width: 96.3%">96.3%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Belt degradation</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill amber" style="width: 89.7%">89.7%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Cavitation</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill amber" style="width: 86.7%">86.7%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Process issues</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill amber" style="width: 84.6%">84.6%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Air lock</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill amber" style="width: 82.1%">82.1%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Contamination</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill amber" style="width: 81.2%">81.2%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Elec. unbalance</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill amber" style="width: 68.0%">68.0%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Coupling unbal.</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill amber" style="width: 57.1%">57.1%</div>
+          </div>
+        </div>
+        <div class="sam-accuracy-mode-card">
+          <p class="sam-accuracy-mode-card__name">Bearing degrad.</p>
+          <div class="sam-accuracy-mode-card__bar">
+            <div class="sam-accuracy-mode-card__fill red" style="width: 45.9%">45.9%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPSTREAM PREVENTION -->
+  <section class="sam-accuracy-upstream">
+    <div class="sam-accuracy-upstream__inner">
+      <div class="sam-accuracy-upstream__header">
+        <p class="sam-accuracy-upstream__overline">Root Cause Prevention</p>
+        <h2 class="sam-accuracy-upstream__title">Detecting Upstream Failures</h2>
+        <p class="sam-accuracy-upstream__intro">SAM4 detects the upstream root causes that lead to catastrophic seal and bearing failures — preventing failures before they cascade.</p>
+      </div>
+
+      <div class="sam-accuracy-upstream__grid">
+        <div class="sam-accuracy-upstream-card">
+          <p class="sam-accuracy-upstream-card__accuracy">100%</p>
+          <p class="sam-accuracy-upstream-card__name">Misalignment</p>
+          <p class="sam-accuracy-upstream-card__desc">Primary driver of premature seal wear and uneven bearing loading</p>
+        </div>
+
+        <div class="sam-accuracy-upstream-card">
+          <p class="sam-accuracy-upstream-card__accuracy">96.3%</p>
+          <p class="sam-accuracy-upstream-card__name">Mechanical unbalance</p>
+          <p class="sam-accuracy-upstream-card__desc">Vibration that degrades both seals and bearings over time</p>
+        </div>
+
+        <div class="sam-accuracy-upstream-card">
+          <p class="sam-accuracy-upstream-card__accuracy">86.7%</p>
+          <p class="sam-accuracy-upstream-card__name">Cavitation</p>
+          <p class="sam-accuracy-upstream-card__desc">Pressure shocks that damage seals and accelerate bearing fatigue</p>
+        </div>
+      </div>
+
+      <div style="margin-top: var(--sp-2xl); padding: var(--sp-lg); background: var(--sam-white); border: 1px solid #E5E7EB; border-radius: 8px;">
+        <h3 style="font: 600 1rem/1 var(--sam-font); color: var(--sam-black); margin: 0 0 var(--sp-md) 0;">What SAM4 Monitors</h3>
+        <div class="sam-accuracy-monitoring">
+          <div class="sam-accuracy-monitoring-card">
+            <ul class="sam-accuracy-monitoring-card__list">
+              <li class="sam-accuracy-monitoring-card__item">Complete drivetrain via electrical signature</li>
+              <li class="sam-accuracy-monitoring-card__item">Failure modes altering torque or load</li>
+              <li class="sam-accuracy-monitoring-card__item">Gradual degradation patterns</li>
+            </ul>
+          </div>
+          <div class="sam-accuracy-monitoring-card">
+            <ul class="sam-accuracy-monitoring-card__list">
+              <li class="sam-accuracy-monitoring-card__item">Acute mechanical events</li>
+              <li class="sam-accuracy-monitoring-card__item">Upstream root causes of seal/bearing failure</li>
+              <li class="sam-accuracy-monitoring-card__item">Multi-failure cascades</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: var(--sp-lg); padding: var(--sp-lg); background: var(--sam-white); border: 1px solid #E5E7EB; border-radius: 8px;">
+        <h3 style="font: 600 1rem/1 var(--sam-font); color: var(--sam-black); margin: 0 0 var(--sp-md) 0;">Known Limitations</h3>
+        <div class="sam-accuracy-monitoring">
+          <div class="sam-accuracy-monitoring-card">
+            <ul class="sam-accuracy-monitoring-card__list">
+              <li class="sam-accuracy-monitoring-card__item">Mechanical seal leakage (directly)</li>
+              <li class="sam-accuracy-monitoring-card__item">Motor bearing degradation (early stage)</li>
+              <li class="sam-accuracy-monitoring-card__item">Stator shorts (localized)</li>
+            </ul>
+          </div>
+          <div class="sam-accuracy-monitoring-card">
+            <ul class="sam-accuracy-monitoring-card__list">
+              <li class="sam-accuracy-monitoring-card__item">Chemical attack / material aging</li>
+              <li class="sam-accuracy-monitoring-card__item">Instrumentation faults</li>
+              <li class="sam-accuracy-monitoring-card__item">Other failure modes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOUNDARIES & TRANSPARENCY -->
+  <section class="sam-accuracy-boundaries">
+    <div class="sam-accuracy-boundaries__inner">
+      <div class="sam-accuracy-boundaries__header">
+        <p class="sam-accuracy-boundaries__overline">Our Philosophy</p>
+        <h2 class="sam-accuracy-boundaries__title">Transparent About Our Limits</h2>
+      </div>
+      <p class="sam-accuracy-boundaries__quote">We publish our detection boundaries because no technology detects everything. Transparency builds trust.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sam-accuracy-cta-block">
+    <div class="sam-accuracy-cta-block__inner">
+      <h2 class="sam-accuracy-cta-block__title">See what SAM4 can detect on your assets</h2>
+      <p class="sam-accuracy-cta-block__sub">Request a demo to see how SAM4 performs on your equipment and which failure modes matter most for your operation.</p>
+      <div class="sam-accuracy-cta-block__actions">
+        <a href="/contact?intent=demo" class="sam-accuracy-btn sam-accuracy-btn--primary">Talk to an engineer</a>
+        <a href="/resources/case-studies/" class="sam-accuracy-btn sam-accuracy-btn--outline">See All Proof</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="sam-prefooter">
+  <div class="sam-prefooter__inner">
+    <p class="sam-prefooter__sub">See how SAM4 monitors the assets your sensors can't reach.</p>
+    <a href="/contact" class="sam-prefooter__cta">Talk to an engineer</a>
+  </div>
+</section>
+
+<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <div class="sam-footer__inner">
+
+    <div class="sam-footer__top">
+      <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
+        <img src="/assets/samotics-logo-white.svg" alt="Samotics" width="140" height="32">
+      </a>
+      <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
+    </div>
+
+    <div class="sam-footer__grid">
+
+      <div class="sam-footer__col">
+        <h3 class="sam-footer__col-heading">Technology</h3>
+        <div class="sam-footer__col-links">
+          <a href="/technology/esa">ESA Technology</a>
+          <a href="/technology/how-it-works">How It Works</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+        </div>
+      </div>
+
+      <div class="sam-footer__col">
+        <h3 class="sam-footer__col-heading">Platform</h3>
+        <div class="sam-footer__col-links">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/what-we-monitor">What We Monitor</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Trust & Security</a>
+          <a href="/platform/sam4-x">SAM4-X</a>
+        </div>
+      </div>
+
+      <div class="sam-footer__col">
+        <h3 class="sam-footer__col-heading">Industries</h3>
+        <div class="sam-footer__col-links">
+          <a href="/industries/water">Water & Wastewater</a>
+          <a href="/industries/oil-gas">Energy Production</a>
+          <a href="/industries/metals-mining">Metals & Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+        </div>
+      </div>
+
+      <div class="sam-footer__col">
+        <h3 class="sam-footer__col-heading">Resources</h3>
+        <div class="sam-footer__col-links">
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+
+      <div class="sam-footer__col">
+        <h3 class="sam-footer__col-heading">Company</h3>
+        <div class="sam-footer__col-links">
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sam-footer__divider"></div>
+
+    <div class="sam-footer__bottom">
+
+      <div class="sam-footer__bottom-left">
+        <span class="sam-footer__copyright">&copy; 2026 Samotics</span>
+
+        <a href="https://www.linkedin.com/company/samotics/" target="_blank" rel="noopener noreferrer" class="sam-footer__social" aria-label="Samotics on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sam-footer__legal">
+        <a href="/privacy">Privacy</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/terms">Terms</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/cookies">Cookies</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Header scroll listener
+      const header = document.querySelector('.sam-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          header.classList.add('is-scrolled');
+        } else {
+          header.classList.remove('is-scrolled');
+        }
+      });
+
+      // Hamburger menu toggle
+      const hamburger = document.querySelector('.sam-hamburger');
+      const mobileMenu = document.querySelector('.sam-mobile-menu');
+
+      if (hamburger) {
+        hamburger.addEventListener('click', () => {
+          const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+          hamburger.setAttribute('aria-expanded', !isOpen);
+          mobileMenu.classList.toggle('is-open');
+        });
+      }
+
+      // Mobile nav accordion
+      const mobileToggles = document.querySelectorAll('.sam-mobile-nav__toggle');
+      mobileToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const group = toggle.closest('.sam-mobile-nav__group');
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', !isOpen);
+          group.classList.toggle('is-open');
+        });
+      });
+
+      // Close mobile menu on link click
+      const mobileLinks = document.querySelectorAll('.sam-mobile-nav__link, .sam-mobile-nav__cta');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (hamburger) {
+            hamburger.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('is-open');
+          }
+        });
+      });
+
+      // Asset Explorer tabs
+      const tabs = document.querySelectorAll('.sam-accuracy-explorer__tab');
+      const contents = document.querySelectorAll('.sam-accuracy-explorer__content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const asset = tab.dataset.asset;
+
+          // Remove active from all tabs and contents
+          tabs.forEach(t => t.classList.remove('is-active'));
+          contents.forEach(c => c.classList.remove('is-active'));
+
+          // Add active to clicked tab and matching content
+          tab.classList.add('is-active');
+          const activeContent = document.querySelector(`.sam-accuracy-explorer__content[data-asset="${asset}"]`);
+          if (activeContent) {
+            activeContent.classList.add('is-active');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

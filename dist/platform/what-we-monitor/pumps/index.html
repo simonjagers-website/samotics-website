@@ -2715,28 +2715,28 @@
               <td class="sam-spec-faults__td">Inner/outer race defects, rolling element wear, lubrication breakdown</td>
               <td class="sam-spec-faults__td">Characteristic bearing fault frequencies appear in the motor current spectrum</td>
               <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#DC2626;" title="Motor bearings account for most misses. Driven equipment bearing detection is substantially higher.">30.8%*</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Cavitation</td>
               <td class="sam-spec-faults__td">Vapour bubble collapse at the impeller, caused by low NPSH or throttled suction</td>
               <td class="sam-spec-faults__td">Broadband noise increase in the electrical signature above baseline</td>
               <td class="sam-spec-faults__td">Days–weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#D97706;">84.6%</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Blockage / clogging</td>
               <td class="sam-spec-faults__td">Rag, debris, or sediment buildup restricting flow or loading the impeller</td>
               <td class="sam-spec-faults__td">Load signature shift — torque pattern changes relative to healthy baseline</td>
               <td class="sam-spec-faults__td">Hours–days</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">97.4%</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Imbalance</td>
               <td class="sam-spec-faults__td">Impeller erosion, deposit buildup, or broken vanes causing rotational imbalance</td>
               <td class="sam-spec-faults__td">1× running speed component increase in the current spectrum</td>
               <td class="sam-spec-faults__td">2–8 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">96.2%</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Seal wear</td>
@@ -2750,7 +2750,7 @@
               <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and pump</td>
               <td class="sam-spec-faults__td">2× running speed component in current spectrum, progressive increase over time</td>
               <td class="sam-spec-faults__td">2–6 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">100%</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Efficiency loss</td>
@@ -2764,6 +2764,29 @@
       </div>
 
       <p class="sam-spec-faults__note">Detection capability depends on drive topology, sampling rate, load variation, and operating conditions. <a href="/technology/esa-vs-vibration#limits" class="sam-text-link">See ESA detection constraints.</a></p>
+
+      <div style="margin-top:var(--sp-07);padding:var(--sp-06);background:var(--sam-white);border:1px solid var(--sam-border-light);border-radius:0;">
+        <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1.125rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 var(--sp-05) 0;">Detection boundaries</h3>
+        <p style="font-family:var(--sam-font);font-weight:400;font-size:0.875rem;line-height:1.5;color:var(--sam-comet);margin:0 0 var(--sp-05) 0;">No condition monitoring technology detects everything. These are the known limitations for this asset type.</p>
+        <div style="display:flex;flex-direction:column;gap:var(--sp-04);">
+          
+          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Motor bearing degradation</strong> — 30.8% detection. Motor bearings create subtler ESA signatures than driven equipment bearings. Driven equipment bearing detection on pumps is substantially higher.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Mechanical seal leaks</strong> — SAM4 does not detect seal leaks directly. However, the root causes that accelerate seal failure — misalignment (100%), mechanical unbalance (96.2%), and cavitation (84.6%) — are among SAM4's strongest detection categories. Clients monitoring these conditions report lower seal failure rates.</span>
+          </div>
+        </div>
+        
+        <div style="margin-top:var(--sp-06);padding:var(--sp-06);background:var(--sam-seashell);border:1px solid var(--sam-border-light);border-left:4px solid #16A34A;">
+          <p style="font-family:var(--sam-font);font-weight:600;font-size:1rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 8px 0;">Seal leaks and bearing failures start with detectable root causes</p>
+          <p style="font-family:var(--sam-font);font-weight:400;font-size:0.9375rem;line-height:1.6;color:var(--sam-black);margin:0;">The root causes of mechanical seal failure and bearing degradation — misalignment (<span style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">100%</span>), mechanical unbalance (<span style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">96.2%</span>), and cavitation (<span style="font-family:var(--sam-mono);font-weight:700;color:#D97706;">84.6%</span>) — are among SAM4's strongest detection categories. Clients monitoring these upstream conditions experience lower occurrence of seal and bearing failures.</p>
+        </div>
+        <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:var(--sp-05) 0 0 0;">Based on 1,874 resolved incidents (Jan 2024 – Feb 2026). <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
+      </div>
+
     </div>
   </section>
 
