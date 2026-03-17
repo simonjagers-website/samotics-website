@@ -1876,15 +1876,15 @@
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Sampling</h3>
-            <p class="sam-tech-detail__body">The SAM4 data acquisition unit samples current and voltage at high frequency — capturing the harmonic content needed to detect mechanical faults reflected in the electrical signature. Sampling parameters are tuned per motor type and application.</p>
+            <p class="sam-tech-detail__body">The SAM4 data acquisition unit samples current and voltage at high frequency, capturing the harmonic content needed to detect mechanical faults reflected in the electrical signature. Sampling parameters are tuned per motor type and application.</p>
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Edge processing</h3>
-            <p class="sam-tech-detail__body">Raw waveforms are pre-processed on the edge device before transmission. This includes windowing, basic quality checks, and compression. Only diagnostic-relevant data is sent to the cloud — reducing bandwidth by an order of magnitude while retaining full spectral information.</p>
+            <p class="sam-tech-detail__body">Raw waveforms are pre-processed on the edge device before transmission: windowing, quality checks, and compression. Only diagnostic-relevant data is sent to the cloud, reducing bandwidth by an order of magnitude while retaining full spectral information.</p>
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Connectivity</h3>
-            <p class="sam-tech-detail__body">Data transmits over standard industrial protocols (4G, Ethernet, Wi-Fi) to Samotics' cloud infrastructure. The edge device handles intermittent connectivity gracefully — buffering locally and syncing when reconnected. No IT infrastructure changes required.</p>
+            <p class="sam-tech-detail__body">Data transmits over standard industrial protocols (4G, Ethernet, Wi-Fi) to Samotics' cloud infrastructure. The edge device handles intermittent connectivity gracefully, buffering locally and syncing when reconnected. No IT infrastructure changes required.</p>
           </div>
         </div>
       </div>
@@ -1936,7 +1936,7 @@
         <div class="sam-tech-detail__grid sam-tech-detail__grid--two">
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Spectral decomposition</h3>
-            <p class="sam-tech-detail__body">Time-domain signals are transformed into the frequency domain using FFT and advanced spectral techniques. This reveals harmonic patterns invisible in the raw waveform — sideband frequencies around the supply frequency that correspond to specific mechanical fault signatures (bearing defect frequencies, gear mesh patterns, rotor bar faults).</p>
+            <p class="sam-tech-detail__body">Time-domain signals are transformed into the frequency domain using FFT and advanced spectral techniques. This reveals harmonic patterns invisible in the raw waveform: sideband frequencies around the supply frequency that correspond to specific mechanical fault signatures (bearing defect frequencies, gear mesh patterns, rotor bar faults).</p>
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Feature extraction</h3>
@@ -1944,11 +1944,11 @@
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Operating state classification</h3>
-            <p class="sam-tech-detail__body">Motors operate across different loads, speeds, and duty cycles. SAM4 classifies each measurement's operating state before comparing it to baseline — ensuring that a change in load isn't misread as a developing fault. This is critical for assets with variable frequency drives (VFDs) or intermittent duty.</p>
+            <p class="sam-tech-detail__body">Motors operate across different loads, speeds, and duty cycles. SAM4 classifies each measurement's operating state before comparing it to baseline, ensuring that a change in load isn't misread as a developing fault. This is critical for assets with variable frequency drives (VFDs) or intermittent duty.</p>
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Baseline learning</h3>
-            <p class="sam-tech-detail__body">During the initial monitoring period, SAM4 builds a statistical baseline for each asset across its observed operating states. Future measurements are compared against this asset-specific baseline — not generic thresholds. This means every motor is evaluated relative to its own normal behaviour, reducing false positives and catching subtle degradation early.</p>
+            <p class="sam-tech-detail__body">During the initial monitoring period, SAM4 builds a statistical baseline for each asset across its observed operating states. Future measurements are compared against this asset-specific baseline, not generic thresholds. This means every motor is evaluated relative to its own normal behaviour, reducing false positives and catching subtle degradation early.</p>
           </div>
         </div>
       </div>
@@ -1976,22 +1976,22 @@
         <div class="sam-tech-detail__grid sam-tech-detail__grid--three">
           <div class="sam-tech-detail__card sam-tech-detail__card--accent-teal">
             <h3 class="sam-tech-detail__title">Anomaly scoring</h3>
-            <p class="sam-tech-detail__body">Each feature vector is scored against the asset's baseline using statistical distance metrics. Features that deviate beyond learned thresholds are flagged. The system tracks trend direction and rate of change — distinguishing between a stable anomaly and one that's accelerating toward failure.</p>
+            <p class="sam-tech-detail__body">Each feature vector is scored against the asset's baseline using statistical distance metrics. Features that deviate beyond learned thresholds are flagged. The system tracks trend direction and rate of change, distinguishing between a stable anomaly and one that's accelerating toward failure.</p>
           </div>
           <div class="sam-tech-detail__card sam-tech-detail__card--accent-blue">
             <h3 class="sam-tech-detail__title">Fault classification</h3>
-            <p class="sam-tech-detail__body">When an anomaly is detected, classification models map the pattern of deviating features to known fault types: bearing degradation, misalignment, imbalance, electrical faults, cavitation, and more. The models are trained on labelled fault data from confirmed failures across the installed base — giving them real-world ground truth, not just lab data.</p>
+            <p class="sam-tech-detail__body">When an anomaly is detected, classification models map the pattern of deviating features to known fault types: bearing degradation, misalignment, imbalance, electrical faults, cavitation, and more. The models are trained on labelled fault data from confirmed failures across the installed base, giving them real-world ground truth rather than just lab data.</p>
           </div>
           <div class="sam-tech-detail__card sam-tech-detail__card--accent-orange">
             <h3 class="sam-tech-detail__title">Severity estimation</h3>
-            <p class="sam-tech-detail__body">Beyond detecting *that* a fault exists, the engine estimates *how far* the degradation has progressed. This combines the magnitude of spectral deviation, the rate of trend progression, and fault-type-specific degradation models — giving engineers a severity assessment to prioritise interventions.</p>
+            <p class="sam-tech-detail__body">Beyond detecting *that* a fault exists, the engine estimates *how far* the degradation has progressed. This combines the magnitude of spectral deviation, the rate of trend progression, and fault-type-specific degradation models, providing engineers a severity assessment to prioritise interventions.</p>
           </div>
         </div>
       </div>
 
       <div class="sam-tech-callout">
         <h3 class="sam-tech-callout__title">How the models improve</h3>
-        <p class="sam-tech-callout__body">Every validated alert feeds back into the training pipeline. When a Samotics engineer confirms a fault type and the customer validates the finding during maintenance, that data pair strengthens the models. With 80+ customers generating continuous feedback, the detection engine compounds in accuracy over time — an advantage that grows with scale.</p>
+        <p class="sam-tech-callout__body">Every validated alert feeds back into the training pipeline. When a Samotics engineer confirms a fault type and the customer validates the finding during maintenance, that data pair strengthens the models. With 80+ customers generating continuous feedback, the detection engine compounds in accuracy over time, creating an advantage that grows with scale.</p>
       </div>
     </div>
   </section>
@@ -2026,21 +2026,21 @@
           <span class="sam-tech-validation__num kpi-value">3</span>
           <div class="sam-tech-validation__content">
             <h3 class="sam-tech-validation__title">Critical escalation</h3>
-            <p class="sam-tech-validation__desc">Time-critical alerts — rapidly progressing faults, risk of imminent failure — are escalated immediately via direct notification. Your team gets a phone call, not just a dashboard update.</p>
+            <p class="sam-tech-validation__desc">Time-critical alerts (rapidly progressing faults, risk of imminent failure) are escalated immediately via direct notification. Your team gets a phone call, not just a dashboard update.</p>
           </div>
         </div>
         <div class="sam-tech-validation__step">
           <span class="sam-tech-validation__num kpi-value">4</span>
           <div class="sam-tech-validation__content">
             <h3 class="sam-tech-validation__title">Alert delivered</h3>
-            <p class="sam-tech-validation__desc">Validated diagnostics are published to the SAM4 dashboard with full supporting data: spectral plots, trend history, fault classification, severity, and recommended action. Every diagnostic is transparent — your team can see the evidence behind every conclusion.</p>
+            <p class="sam-tech-validation__desc">Validated diagnostics are published to the SAM4 dashboard with full supporting data: spectral plots, trend history, fault classification, severity, and recommended action. Every diagnostic is transparent; your team can see the evidence behind every conclusion.</p>
           </div>
         </div>
       </div>
 
       <div class="sam-tech-callout sam-tech-callout--dark">
         <h3 class="sam-tech-callout__title">Why human-in-the-loop matters</h3>
-        <p class="sam-tech-callout__body">Fully automated systems generate alert fatigue. Teams stop trusting them. SAM4's hybrid approach means every alert carries an engineer's judgement — which is why customers act on SAM4 alerts. The human review also catches edge cases that pure ML would miss: unusual operating conditions, maintenance activities that mimic faults, or asset configurations the models haven't seen before.</p>
+        <p class="sam-tech-callout__body">Fully automated systems generate alert fatigue. Teams stop trusting them. SAM4's hybrid approach means every alert carries an engineer's judgement, which is why customers act on SAM4 alerts. The human review also catches edge cases that pure ML would miss: unusual operating conditions, maintenance activities that mimic faults, or asset configurations the models haven't seen before.</p>
       </div>
     </div>
   </section>
@@ -2058,7 +2058,7 @@
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 32px;text-align:center;gap:8px;">
           <span style="font:600 11px/1.2 'JetBrains Mono',monospace;color:#6B6B7F;text-transform:uppercase;letter-spacing:.1em;opacity:.5;">1200×600</span>
           <span style="font:600 14px/1.3 'IBM Plex Sans',sans-serif;color:#1F1F33;">Data flow and integration architecture</span>
-          <span style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:#6B6B7F;max-width:640px;">3-tier vertical architecture. Bottom: SAM4 sensor → cellular uplink. Middle: SAM4 Cloud (Signal Processing → ML Engine → Alert Engine). Top: integrations — Email/SMS, CMMS (SAP, Maximo), SCADA/OPC-UA, REST API, Power BI/Grafana.</span>
+          <span style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:#6B6B7F;max-width:640px;">3-tier vertical architecture. Bottom: SAM4 sensor → cellular uplink. Middle: SAM4 Cloud (Signal Processing → ML Engine → Alert Engine). Top: integrations including Email/SMS, CMMS (SAP, Maximo), SCADA/OPC-UA, REST API, Power BI/Grafana.</span>
         </div>
       </div>
 
@@ -2070,7 +2070,7 @@
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">CMMS integration</h3>
-            <p class="sam-tech-detail__body">SAM4 pushes validated alerts directly into your CMMS (SAP PM, Maximo, Ultimo, and others) as work orders or notifications. No manual re-entry. Alerts carry the fault type, severity, asset identifier, and recommended action — ready for your planning process.</p>
+            <p class="sam-tech-detail__body">SAM4 pushes validated alerts directly into your CMMS (SAP PM, Maximo, Ultimo, and others) as work orders or notifications. No manual re-entry. Alerts carry the fault type, severity, asset identifier, and recommended action, ready for your planning process.</p>
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">API access</h3>
@@ -2083,11 +2083,11 @@
         <div class="sam-tech-detail__grid sam-tech-detail__grid--two">
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Alert taxonomy</h3>
-            <p class="sam-tech-detail__body">SAM4 alerts use a structured severity scale: Watch (early-stage deviation, monitor), Warning (confirmed fault, plan intervention), and Critical (imminent failure risk, act now). Each level has a defined SLA for engineering review and customer notification — so your team knows exactly what each alert means and how quickly to respond.</p>
+            <p class="sam-tech-detail__body">SAM4 alerts use a structured severity scale: Watch (early-stage deviation, monitor), Warning (confirmed fault, plan intervention), and Critical (imminent failure risk, act now). Each level has a defined SLA for engineering review and customer notification, so your team knows exactly what each alert means and how quickly to respond.</p>
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Reporting</h3>
-            <p class="sam-tech-detail__body">Monthly fleet health reports summarise asset condition, open diagnostics, resolved findings, and fleet-level trends. Quarterly business reviews map SAM4 findings to maintenance outcomes — confirmed saves, avoided downtime, and energy efficiency gains. All data available for export.</p>
+            <p class="sam-tech-detail__body">Monthly fleet health reports summarise asset condition, open diagnostics, resolved findings, and fleet-level trends. Quarterly business reviews map SAM4 findings to maintenance outcomes: confirmed saves, avoided downtime, and energy efficiency gains. All data available for export.</p>
           </div>
         </div>
       </div>
@@ -2100,7 +2100,7 @@
       <div class="sam-tech-section__text">
         <p class="overline">Performance</p>
         <h2>Detection accuracy across 10,000+ assets</h2>
-        <p class="lead">These metrics are measured across confirmed failures in the installed base — not lab conditions. Definitions and methodology are available on request.</p>
+        <p class="lead">These metrics are measured across confirmed failures in the installed base, not lab conditions. Definitions and methodology are available on request.</p>
       </div>
 
       <div class="sam-tech-stats">
@@ -2117,12 +2117,12 @@
         <div class="sam-tech-stats__item">
           <span class="sam-tech-stats__value kpi-value">Weeks&ndash;months</span>
           <span class="sam-tech-stats__label">Lead time before failure</span>
-          <span class="sam-tech-stats__note">Typical advance warning — varies by fault type, asset type, and operating conditions</span>
+          <span class="sam-tech-stats__note">Typical advance warning. Varies by fault type, asset type, and operating conditions.</span>
         </div>
         <div class="sam-tech-stats__item">
           <span class="sam-tech-stats__value kpi-value">24/7</span>
           <span class="sam-tech-stats__label">Continuous monitoring</span>
-          <span class="sam-tech-stats__note">No scheduled visits, no measurement campaigns — every asset monitored around the clock</span>
+          <span class="sam-tech-stats__note">No scheduled visits, no measurement campaigns. Every asset monitored around the clock.</span>
         </div>
       </div>
 
@@ -2147,15 +2147,15 @@
             </tr>
             <tr>
               <th>Detection rate</th>
-              <td><code>TP / (TP + FN)</code> &mdash; the proportion of confirmed failures where SAM4 had raised an alert before failure occurred. Currently <strong class="kpi-value">90.8%</strong> across core three assets (n=1,874 resolved incidents, January 2024 – February 2026).</td>
+              <td><code>TP / (TP + FN)</code>: the proportion of confirmed failures where SAM4 had raised an alert before failure occurred. Currently <strong class="kpi-value">90.8%</strong> across core three assets (n=1,874 resolved incidents, January 2024 – February 2026).</td>
             </tr>
             <tr>
               <th>False Positive Rate</th>
-              <td><code>FP / (TP + FP)</code> &mdash; the proportion of delivered findings that were not confirmed as a real fault. Currently <strong class="kpi-value">0.32%</strong> (n=1,874 resolved incidents, January 2024 – February 2026). Includes false communications (correct detection, incorrect fault classification).</td>
+              <td><code>FP / (TP + FP)</code>: the proportion of delivered findings that were not confirmed as a real fault. Currently <strong class="kpi-value">0.32%</strong> (n=1,874 resolved incidents, January 2024 – February 2026). Includes false communications (correct detection, incorrect fault classification).</td>
             </tr>
             <tr>
               <th>Measurement period</th>
-              <td>February 2025 &ndash; January 2026. Real-world field performance across the installed base &mdash; not lab results. Updated from Jira incident data (export: 13 February 2026).</td>
+              <td>February 2025 – January 2026. Real-world field performance across the installed base, not lab results. Updated from Jira incident data (export: 13 February 2026).</td>
             </tr>
             <tr>
               <th>Scope</th>
@@ -2197,7 +2197,7 @@
           </div>
           <div class="sam-tech-detail__card">
             <h3 class="sam-tech-detail__title">Network requirements</h3>
-            <p class="sam-tech-detail__body">The edge device requires outbound-only connectivity — no inbound ports, no VPN tunnels, no changes to your firewall rules. It works over 4G, Ethernet, or Wi-Fi. Bandwidth requirements are minimal after edge compression.</p>
+            <p class="sam-tech-detail__body">The edge device requires outbound-only connectivity: no inbound ports, no VPN tunnels, no firewall changes. It works over 4G, Ethernet, or Wi-Fi. Bandwidth requirements are minimal after edge compression.</p>
           </div>
         </div>
       </div>
