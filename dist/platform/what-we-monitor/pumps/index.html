@@ -2697,6 +2697,7 @@
     <div class="sam-spec-faults__inner">
       <p class="overline">What SAM4 detects on pumps</p>
       <h2>Seven fault types from one sensor location</h2>
+      <p style="font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-comet);margin:0 0 var(--sp-07) 0;">This is a non-exhaustive list. SAM4 may detect additional fault conditions depending on asset type, operating regime, and installation configuration. The fault types below are the most common detections on centrifugal pumps.</p>
 
       <div class="sam-spec-faults__table-wrap">
         <table class="sam-spec-faults__table">
@@ -2711,25 +2712,18 @@
           </thead>
           <tbody>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
-              <td class="sam-spec-faults__td">Inner/outer race defects, rolling element wear, lubrication breakdown</td>
-              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies appear in the motor current spectrum</td>
-              <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#DC2626;" title="Motor bearings account for most misses. Driven equipment bearing detection is substantially higher.">30.8%*</td>
-            </tr>
-            <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Cavitation</td>
-              <td class="sam-spec-faults__td">Vapour bubble collapse at the impeller, caused by low NPSH or throttled suction</td>
-              <td class="sam-spec-faults__td">Broadband noise increase in the electrical signature above baseline</td>
-              <td class="sam-spec-faults__td">Days–weeks</td>
-              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#D97706;">84.6%</td>
-            </tr>
-            <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Blockage / clogging</td>
               <td class="sam-spec-faults__td">Rag, debris, or sediment buildup restricting flow or loading the impeller</td>
               <td class="sam-spec-faults__td">Load signature shift — torque pattern changes relative to healthy baseline</td>
               <td class="sam-spec-faults__td">Hours–days</td>
               <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">97.4%</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Misalignment</td>
+              <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and pump</td>
+              <td class="sam-spec-faults__td">2× running speed component in current spectrum, progressive increase over time</td>
+              <td class="sam-spec-faults__td">2–6 weeks</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">100%</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Imbalance</td>
@@ -2739,18 +2733,25 @@
               <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">96.2%</td>
             </tr>
             <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Cavitation</td>
+              <td class="sam-spec-faults__td">Vapour bubble collapse at the impeller, caused by low NPSH or throttled suction</td>
+              <td class="sam-spec-faults__td">Broadband noise increase in the electrical signature above baseline</td>
+              <td class="sam-spec-faults__td">Days–weeks</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#D97706;">84.6%</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing wear</td>
+              <td class="sam-spec-faults__td">Inner/outer race defects, rolling element wear, lubrication breakdown</td>
+              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies appear in the motor current spectrum</td>
+              <td class="sam-spec-faults__td">4–12 weeks</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#DC2626;" title="Motor bearings account for most misses. Driven equipment bearing detection is substantially higher.">30.8%*</td>
+            </tr>
+            <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Seal wear</td>
               <td class="sam-spec-faults__td">Mechanical seal degradation leading to leakage, contamination, or motor ingress</td>
               <td class="sam-spec-faults__td">Progressive load profile change as friction and flow characteristics shift</td>
               <td class="sam-spec-faults__td">4–10 weeks</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
-            </tr>
-            <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Misalignment</td>
-              <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and pump</td>
-              <td class="sam-spec-faults__td">2× running speed component in current spectrum, progressive increase over time</td>
-              <td class="sam-spec-faults__td">2–6 weeks</td>
-              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">100%</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Efficiency loss</td>
@@ -2767,9 +2768,9 @@
 
       <div style="margin-top:var(--sp-07);padding:var(--sp-06);background:var(--sam-white);border:1px solid var(--sam-border-light);border-radius:0;">
         <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1.125rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 var(--sp-05) 0;">Detection boundaries</h3>
-        <p style="font-family:var(--sam-font);font-weight:400;font-size:0.875rem;line-height:1.5;color:var(--sam-comet);margin:0 0 var(--sp-05) 0;">No condition monitoring technology detects everything. These are the known limitations for this asset type.</p>
+        <p style="font-family:var(--sam-font);font-weight:400;font-size:0.875rem;line-height:1.5;color:var(--sam-comet);margin:0 0 var(--sp-05) 0;">No condition monitoring technology detects everything. These are the known limitations for ESA-based monitoring on pumps.</p>
         <div style="display:flex;flex-direction:column;gap:var(--sp-04);">
-          
+
           <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
             <span><strong>Motor bearing degradation</strong> — 30.8% detection. Motor bearings create subtler ESA signatures than driven equipment bearings. Driven equipment bearing detection on pumps is substantially higher.</span>
@@ -2777,6 +2778,26 @@
           <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
             <span><strong>Mechanical seal leaks</strong> — SAM4 does not detect seal leaks directly. However, the root causes that accelerate seal failure — misalignment (100%), mechanical unbalance (96.2%), and cavitation (84.6%) — are among SAM4's strongest detection categories. Clients monitoring these conditions report lower seal failure rates.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Low-load operation (&lt;30% rated)</strong> — Fault sidebands in the current signal are proportional to mechanical load. When a pump runs below ~30% of rated load, fault signatures weaken and may fall below the detection threshold. Pumps that cycle between low load and full load are still covered during loaded periods.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Variable frequency drives (VFDs)</strong> — VFDs change the supply frequency with motor speed. This requires additional signal processing (synchronous sampling, order tracking) to separate fault signatures from the varying fundamental. SAM4 supports VFD-driven pumps, but detection sensitivity can be lower than on direct-on-line motors, particularly at very low speeds.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Electrical noise from adjacent equipment</strong> — In dense MCC environments, electrical noise from nearby VFDs, welding equipment, or large switchgear can mask low-amplitude fault signals. Signal quality assessment during commissioning identifies whether the installation meets detection thresholds.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Unknown bearing model</strong> — Bearing fault detection works best when bearing geometry is known (number of rolling elements, pitch diameter, contact angle). Without this data, SAM4 relies on anomaly detection rather than specific fault frequency identification, which reduces accuracy for early-stage bearing defects.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span><strong>Upstream pipe blockages</strong> — A blockage in the suction pipework upstream of the pump appears as increased head and reduced flow — a signature similar to impeller wear. ESA detects the load change but cannot always distinguish between these two root causes without process data.</span>
           </div>
         </div>
         
@@ -2798,7 +2819,7 @@
 
       <div class="sam-spec-stories__grid">
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <a href="/resources/case-studies/condition-monitoring-centrifugal-pump/" class="sam-spec-stories__card">
           <div class="sam-spec-stories__card-top">
             <span class="sam-spec-stories__card-tag">Cavitation</span>
             <span class="sam-spec-stories__card-industry">Chemicals</span>
@@ -2808,7 +2829,7 @@
           <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
         </a>
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <a href="/resources/case-studies/condition-monitoring-for-anolyte-pumps-a-case-study/" class="sam-spec-stories__card">
           <div class="sam-spec-stories__card-top">
             <span class="sam-spec-stories__card-tag">Cavitation</span>
             <span class="sam-spec-stories__card-industry">Chemicals</span>
@@ -2818,7 +2839,7 @@
           <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
         </a>
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <a href="/resources/case-studies/condition-monitoring-circulator-pump-misalignment-gearbox/" class="sam-spec-stories__card">
           <div class="sam-spec-stories__card-top">
             <span class="sam-spec-stories__card-tag">Misalignment</span>
             <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
@@ -2828,7 +2849,7 @@
           <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
         </a>
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <a href="/resources/case-studies/condition-monitoring-cooling-pump-misalignment-unbalance/" class="sam-spec-stories__card">
           <div class="sam-spec-stories__card-top">
             <span class="sam-spec-stories__card-tag">Mechanical</span>
             <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
@@ -2838,7 +2859,7 @@
           <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
         </a>
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <a href="/resources/case-studies/condition-monitoring-oil-transfer-pump/" class="sam-spec-stories__card">
           <div class="sam-spec-stories__card-top">
             <span class="sam-spec-stories__card-tag">Multiple faults</span>
             <span class="sam-spec-stories__card-industry">Energy Production</span>
@@ -2848,7 +2869,7 @@
           <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
         </a>
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <a href="/resources/case-studies/condition-monitoring-wastewater-pump-detect-clogging/" class="sam-spec-stories__card">
           <div class="sam-spec-stories__card-top">
             <span class="sam-spec-stories__card-tag">Blockage</span>
             <span class="sam-spec-stories__card-industry">Water &amp; Wastewater</span>
