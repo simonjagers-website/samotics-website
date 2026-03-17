@@ -1338,9 +1338,16 @@
   align-items: center;
   gap: 4px;
 }
-.sam-wwm-assets__card-acc {
-  display: inline-flex;
-  align-items: center;
+a.sam-wwm-assets__fault--more {
+  color: var(--sam-blue);
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  border: 1px dashed var(--sam-blue);
+}
+a.sam-wwm-assets__fault--more:hover {
+  background: rgba(0, 92, 186, 0.06);
+  text-decoration: none;
 }
 /* Upstream prevention callout */
 .sam-wwm-upstream {
@@ -1693,149 +1700,113 @@
 
       <div class="sam-wwm-assets__grid">
 
-        <!-- Pumps -->
+        <!-- 1. Centrifugal Pumps -->
         <div class="sam-wwm-assets__card" id="pumps">
           <div class="sam-wwm-assets__card-header">
-            <h3 class="sam-wwm-assets__card-title">Pumps</h3>
+            <h3 class="sam-wwm-assets__card-title">Centrifugal pumps</h3>
             <span class="sam-wwm-assets__card-tag">Most monitored</span>
-          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#16A34A;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">91.0%</span></div>
+          </div>
           <p class="sam-wwm-assets__card-desc">Submersible, booster, borehole, process, injection, transfer, and circulation pumps. SAM4 detects bearing degradation, cavitation, blockage, seal wear, imbalance, and efficiency loss — weeks to months before failure.</p>
           <div class="sam-wwm-assets__card-faults">
             <span class="sam-wwm-assets__fault">Blockage</span>
             <span class="sam-wwm-assets__fault">Cavitation</span>
             <span class="sam-wwm-assets__fault">Imbalance</span>
-            <span class="sam-wwm-assets__fault">Misalignment</span>
+            <a href="/platform/what-we-monitor/pumps" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+4 more</a>
           </div>
           <a href="/platform/what-we-monitor/pumps" class="sam-wwm-assets__card-link sam-text-link">Pump monitoring details &rarr;</a>
         </div>
 
-        <!-- Compressors -->
-        <div class="sam-wwm-assets__card" id="compressors">
-          <div class="sam-wwm-assets__card-header">
-            <h3 class="sam-wwm-assets__card-title">Compressors</h3>
-          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#DC2626;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">37.5%†</span></div>
-          <p class="sam-wwm-assets__card-desc">Gas compressors, air compressors, and process compressors — including assets in ATEX/hazardous zones. SAM4 detects bearing wear, valve faults, imbalance, and efficiency degradation without accessing the compressor skid.</p>
-          <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Bearing wear</span>
-            <span class="sam-wwm-assets__fault">Valve faults</span>
-            <span class="sam-wwm-assets__fault">Imbalance</span>
-          </div>
-          <a href="/platform/what-we-monitor/compressors" class="sam-wwm-assets__card-link sam-text-link">Compressor monitoring details &rarr;</a>
-        </div>
-
-        <!-- Fans & Blowers -->
+        <!-- 2. Fans & Blowers -->
         <div class="sam-wwm-assets__card" id="fans">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Fans &amp; blowers</h3>
-          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#16A34A;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">90.0%</span></div>
+          </div>
           <p class="sam-wwm-assets__card-desc">Ventilation fans, cooling fans, process blowers, and aerators. SAM4 detects imbalance, bearing degradation, belt issues, and process deviations. Critical for maintaining safe atmospheric conditions in enclosed spaces.</p>
           <div class="sam-wwm-assets__card-faults">
             <span class="sam-wwm-assets__fault">Imbalance</span>
             <span class="sam-wwm-assets__fault">Belt wear</span>
             <span class="sam-wwm-assets__fault">Bearing degradation</span>
+            <a href="/platform/what-we-monitor/fans-blowers" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+2 more</a>
           </div>
           <a href="/platform/what-we-monitor/fans-blowers" class="sam-wwm-assets__card-link sam-text-link">Fan &amp; blower monitoring details &rarr;</a>
         </div>
 
-        <!-- Conveyors -->
+        <!-- 3. Conveyors -->
         <div class="sam-wwm-assets__card" id="conveyors">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Conveyors</h3>
-          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#D97706;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">88.6%</span></div>
+          </div>
           <p class="sam-wwm-assets__card-desc">Belt conveyors, screw conveyors, and chain conveyors. SAM4 detects bearing degradation, misalignment, belt/chain issues, blockage, and overload conditions. Common in materials handling across mining, pulp, and manufacturing.</p>
           <div class="sam-wwm-assets__card-faults">
             <span class="sam-wwm-assets__fault">Bearing degradation</span>
             <span class="sam-wwm-assets__fault">Misalignment</span>
             <span class="sam-wwm-assets__fault">Blockage</span>
+            <a href="/platform/what-we-monitor/conveyors" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+2 more</a>
           </div>
           <a href="/platform/what-we-monitor/conveyors" class="sam-wwm-assets__card-link sam-text-link">Conveyor monitoring details &rarr;</a>
         </div>
 
-        <!-- Agitators & Mixers -->
+        <!-- 4. Agitators & Mixers -->
         <div class="sam-wwm-assets__card" id="agitators">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Agitators &amp; mixers</h3>
-          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#D97706;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">72.7%</span></div>
+          </div>
           <p class="sam-wwm-assets__card-desc">Chemical reactors, blending vessels, and mixing tanks. SAM4 detects bearing degradation, seal failure indicators, imbalance from product buildup, and gearbox issues — without opening the vessel or entering the process area.</p>
           <div class="sam-wwm-assets__card-faults">
             <span class="sam-wwm-assets__fault">Bearing degradation</span>
             <span class="sam-wwm-assets__fault">Gearbox faults</span>
             <span class="sam-wwm-assets__fault">Imbalance</span>
+            <a href="/platform/what-we-monitor/agitators-mixers" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+1 more</a>
           </div>
           <a href="/platform/what-we-monitor/agitators-mixers" class="sam-wwm-assets__card-link sam-text-link">Agitator &amp; mixer monitoring details &rarr;</a>
         </div>
 
-        <!-- ESPs -->
-        <div class="sam-wwm-assets__card" id="esps">
+        <!-- 5. Compressors -->
+        <div class="sam-wwm-assets__card" id="compressors">
           <div class="sam-wwm-assets__card-header">
-            <h3 class="sam-wwm-assets__card-title">Electrical submersible pumps (ESPs)</h3>
-          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#16A34A;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">100%*</span></div>
-          <p class="sam-wwm-assets__card-desc">Downhole ESPs in oil &amp; gas production. These assets operate thousands of metres underground and cannot be inspected without pulling the string — a process costing days and hundreds of thousands of dollars. SAM4 detects motor degradation, pump wear, and gas lock from the surface VSD.</p>
-          <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Motor degradation</span>
-            <span class="sam-wwm-assets__fault">Pump wear</span>
-            <span class="sam-wwm-assets__fault">Gas lock</span>
+            <h3 class="sam-wwm-assets__card-title">Compressors</h3>
           </div>
-          <a href="/platform/what-we-monitor/esps" class="sam-wwm-assets__card-link sam-text-link">ESP monitoring details &rarr;</a>
+          <p class="sam-wwm-assets__card-desc">Gas compressors, air compressors, and process compressors — including assets in ATEX/hazardous zones. SAM4 detects bearing wear, valve faults, imbalance, and efficiency degradation without accessing the compressor skid.</p>
+          <div class="sam-wwm-assets__card-faults">
+            <span class="sam-wwm-assets__fault">Bearing wear</span>
+            <span class="sam-wwm-assets__fault">Valve faults</span>
+            <span class="sam-wwm-assets__fault">Imbalance</span>
+            <a href="/platform/what-we-monitor/compressors" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+2 more</a>
+          </div>
+          <a href="/platform/what-we-monitor/compressors" class="sam-wwm-assets__card-link sam-text-link">Compressor monitoring details &rarr;</a>
         </div>
 
-        <!-- Low Voltage Motors -->
-        <div class="sam-wwm-assets__card" id="lv-motors">
-          <div class="sam-wwm-assets__card-header">
-            <h3 class="sam-wwm-assets__card-title">Low voltage motors</h3>
-          </div>
-          <p class="sam-wwm-assets__card-desc">AC induction motors up to 1kV — the backbone of industrial operations. SAM4 monitors the motor itself plus the entire connected drivetrain, detecting winding faults, bearing degradation, eccentricity, misalignment, and electrical supply issues from the MCC.</p>
-          <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Bearing degradation</span>
-            <span class="sam-wwm-assets__fault">Winding faults</span>
-            <span class="sam-wwm-assets__fault">Misalignment</span>
-          </div>
-          <a href="/platform/what-we-monitor/lv-motors" class="sam-wwm-assets__card-link sam-text-link">LV motor monitoring details &rarr;</a>
-        </div>
-
-        <!-- Medium Voltage Motors -->
-        <div class="sam-wwm-assets__card" id="mv-motors">
-          <div class="sam-wwm-assets__card-header">
-            <h3 class="sam-wwm-assets__card-title">Medium voltage motors</h3>
-          </div>
-          <p class="sam-wwm-assets__card-desc">AC motors from 1kV to 15kV driving critical process equipment. These high-value assets are expensive to replace and hard to monitor with sensors. SAM4 detects winding insulation degradation, rotor bar faults, partial discharge indicators, and bearing wear — all from the motor control centre.</p>
-          <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Winding insulation</span>
-            <span class="sam-wwm-assets__fault">Rotor bar faults</span>
-            <span class="sam-wwm-assets__fault">Partial discharge</span>
-          </div>
-          <a href="/platform/what-we-monitor/mv-motors" class="sam-wwm-assets__card-link sam-text-link">MV motor monitoring details &rarr;</a>
-        </div>
-
-        <!-- Transmissions -->
-        <div class="sam-wwm-assets__card" id="transmissions">
-          <div class="sam-wwm-assets__card-header">
-            <h3 class="sam-wwm-assets__card-title">Transmissions</h3>
-          </div>
-          <p class="sam-wwm-assets__card-desc">Gearboxes, couplings, belt drives, and chain drives. SAM4 detects faults across the full mechanical transmission path — from the motor through to the driven equipment — using electrical signature analysis at the MCC.</p>
-          <div class="sam-wwm-assets__card-faults">
-            <span class="sam-wwm-assets__fault">Gear wear</span>
-            <span class="sam-wwm-assets__fault">Misalignment</span>
-            <span class="sam-wwm-assets__fault">Belt slip</span>
-          </div>
-          <a href="/platform/what-we-monitor/transmissions" class="sam-wwm-assets__card-link sam-text-link">Transmission monitoring details &rarr;</a>
-        </div>
-
-        <!-- Archimedes Screws -->
+        <!-- 6. Archimedes Screws -->
         <div class="sam-wwm-assets__card" id="archimedes-screws">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Archimedes screws</h3>
-          <span class="sam-wwm-assets__card-acc" style="font-family:var(--sam-mono);font-weight:700;font-size:0.875rem;color:#D97706;margin-left:auto;white-space:nowrap;" title="Overall detection accuracy">80.0%</span></div>
+          </div>
           <p class="sam-wwm-assets__card-desc">Archimedes screw pumps used in water treatment inlet works and low-head pumping stations. SAM4 detects bearing degradation, trough wear indicators, drive chain faults, and efficiency loss — critical for preventing pollution events.</p>
           <div class="sam-wwm-assets__card-faults">
             <span class="sam-wwm-assets__fault">Bearing degradation</span>
             <span class="sam-wwm-assets__fault">Trough wear</span>
             <span class="sam-wwm-assets__fault">Drive chain faults</span>
+            <a href="/platform/what-we-monitor/archimedes-screws" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+2 more</a>
           </div>
           <a href="/platform/what-we-monitor/archimedes-screws" class="sam-wwm-assets__card-link sam-text-link">Archimedes screw monitoring details &rarr;</a>
         </div>
 
-        <!-- Canned Motor Pumps -->
+        <!-- 7. ESPs -->
+        <div class="sam-wwm-assets__card" id="esps">
+          <div class="sam-wwm-assets__card-header">
+            <h3 class="sam-wwm-assets__card-title">Electrical submersible pumps (ESPs)</h3>
+          </div>
+          <p class="sam-wwm-assets__card-desc">Downhole ESPs in oil &amp; gas production. These assets operate thousands of metres underground and cannot be inspected without pulling the string — a process costing days and hundreds of thousands of dollars. SAM4 detects motor degradation, pump wear, and gas lock from the surface VSD.</p>
+          <div class="sam-wwm-assets__card-faults">
+            <span class="sam-wwm-assets__fault">Motor degradation</span>
+            <span class="sam-wwm-assets__fault">Pump wear</span>
+            <span class="sam-wwm-assets__fault">Gas lock</span>
+            <a href="/platform/what-we-monitor/esps" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+2 more</a>
+          </div>
+          <a href="/platform/what-we-monitor/esps" class="sam-wwm-assets__card-link sam-text-link">ESP monitoring details &rarr;</a>
+        </div>
+
+        <!-- 8. Canned Motor Pumps -->
         <div class="sam-wwm-assets__card" id="canned-motor-pumps">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Canned motor pumps</h3>
@@ -1845,11 +1816,57 @@
             <span class="sam-wwm-assets__fault">Bearing degradation</span>
             <span class="sam-wwm-assets__fault">Rotor eccentricity</span>
             <span class="sam-wwm-assets__fault">Winding faults</span>
+            <a href="/platform/what-we-monitor/canned-motor-pumps" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+2 more</a>
           </div>
           <a href="/platform/what-we-monitor/canned-motor-pumps" class="sam-wwm-assets__card-link sam-text-link">Canned motor pump monitoring details &rarr;</a>
         </div>
 
-        <!-- Asset Not Listed -->
+        <!-- 9. Transmissions -->
+        <div class="sam-wwm-assets__card" id="transmissions">
+          <div class="sam-wwm-assets__card-header">
+            <h3 class="sam-wwm-assets__card-title">Transmissions</h3>
+          </div>
+          <p class="sam-wwm-assets__card-desc">Gearboxes, couplings, belt drives, and chain drives. SAM4 detects faults across the full mechanical transmission path — from the motor through to the driven equipment — using electrical signature analysis at the MCC.</p>
+          <div class="sam-wwm-assets__card-faults">
+            <span class="sam-wwm-assets__fault">Gear wear</span>
+            <span class="sam-wwm-assets__fault">Misalignment</span>
+            <span class="sam-wwm-assets__fault">Belt slip</span>
+            <a href="/platform/what-we-monitor/transmissions" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+2 more</a>
+          </div>
+          <a href="/platform/what-we-monitor/transmissions" class="sam-wwm-assets__card-link sam-text-link">Transmission monitoring details &rarr;</a>
+        </div>
+
+        <!-- 10. Low Voltage Motors -->
+        <div class="sam-wwm-assets__card" id="lv-motors">
+          <div class="sam-wwm-assets__card-header">
+            <h3 class="sam-wwm-assets__card-title">Low voltage motors</h3>
+          </div>
+          <p class="sam-wwm-assets__card-desc">AC induction motors up to 1kV — the backbone of industrial operations. SAM4 monitors the motor itself plus the entire connected drivetrain, detecting winding faults, bearing degradation, eccentricity, misalignment, and electrical supply issues from the MCC.</p>
+          <div class="sam-wwm-assets__card-faults">
+            <span class="sam-wwm-assets__fault">Bearing degradation</span>
+            <span class="sam-wwm-assets__fault">Winding faults</span>
+            <span class="sam-wwm-assets__fault">Misalignment</span>
+            <a href="/platform/what-we-monitor/lv-motors" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+2 more</a>
+          </div>
+          <a href="/platform/what-we-monitor/lv-motors" class="sam-wwm-assets__card-link sam-text-link">LV motor monitoring details &rarr;</a>
+        </div>
+
+        <!-- 11. Medium Voltage Motors -->
+        <div class="sam-wwm-assets__card" id="mv-motors">
+          <div class="sam-wwm-assets__card-header">
+            <h3 class="sam-wwm-assets__card-title">Medium voltage motors</h3>
+          </div>
+          <p class="sam-wwm-assets__card-desc">AC motors from 1kV to 15kV driving critical process equipment. These high-value assets are expensive to replace and hard to monitor with sensors. SAM4 detects winding insulation degradation, rotor bar faults, partial discharge indicators, and bearing wear — all from the motor control centre.</p>
+          <div class="sam-wwm-assets__card-faults">
+            <span class="sam-wwm-assets__fault">Winding insulation</span>
+            <span class="sam-wwm-assets__fault">Rotor bar faults</span>
+            <span class="sam-wwm-assets__fault">Partial discharge</span>
+            <a href="/platform/what-we-monitor/mv-motors" class="sam-wwm-assets__fault sam-wwm-assets__fault--more">+2 more</a>
+          </div>
+          <a href="/platform/what-we-monitor/mv-motors" class="sam-wwm-assets__card-link sam-text-link">MV motor monitoring details &rarr;</a>
+        </div>
+
+        <!-- 12. Asset Not Listed -->
         <div class="sam-wwm-assets__card sam-wwm-assets__card--cta" id="not-listed">
           <div class="sam-wwm-assets__card-header">
             <h3 class="sam-wwm-assets__card-title">Asset not listed?</h3>
@@ -1859,13 +1876,6 @@
         </div>
 
       </div>
-
-
-      <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin-top:var(--sp-05);">
-        Detection accuracy based on 1,874 resolved incidents (Jan 2024 – Feb 2026).
-        *Small sample (5 units). †Under active development.
-        <a href="/proof/detection-accuracy" class="sam-text-link" style="font-size:0.8125rem;">Full accuracy report &rarr;</a>
-      </p>
 
       <!-- Upstream Prevention Callout -->
       <div class="sam-wwm-upstream">
