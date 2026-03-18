@@ -2712,36 +2712,57 @@
           <tbody>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Imbalance</td>
-              <td class="sam-spec-faults__td">Deposit buildup, blade erosion, or foreign object damage causing rotational imbalance</td>
-              <td class="sam-spec-faults__td">1× running speed component increase in the current spectrum</td>
+              <td class="sam-spec-faults__td">Deposit buildup, blade erosion, or foreign object damage causing rotational mass asymmetry</td>
+              <td class="sam-spec-faults__td">1× shaft rotation frequency sideband in the current spectrum. Amplitude increase tracks mass asymmetry from fouling, erosion, or deposit buildup</td>
               <td class="sam-spec-faults__td">3–10 weeks</td>
               <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">100%</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
-              <td class="sam-spec-faults__td">Inner/outer race defects, rolling element wear, lubrication breakdown</td>
-              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies in the motor current spectrum</td>
-              <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#DC2626;" title="Motor bearing detection is limited. Driven equipment bearing detection is higher.">50.0%*</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Misalignment</td>
+              <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and fan, from thermal growth, foundation settlement, or installation error</td>
+              <td class="sam-spec-faults__td">2× running speed component in the current spectrum, progressive increase over time as coupling or shaft alignment degrades</td>
+              <td class="sam-spec-faults__td">2–6 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Belt wear</td>
               <td class="sam-spec-faults__td">V-belt stretching, misalignment, or slippage on belt-driven fans</td>
-              <td class="sam-spec-faults__td">Belt frequency harmonics and slip ratio changes in the electrical signature</td>
+              <td class="sam-spec-faults__td">Belt frequency harmonics in the current spectrum. Belt fundamental = (π × pulley diameter × RPM) / belt length. Harmonic pattern shifts as belt tension or condition changes</td>
               <td class="sam-spec-faults__td">2–6 weeks</td>
               <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">100%</td>
             </tr>
             <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Stator winding degradation</td>
+              <td class="sam-spec-faults__td">Insulation breakdown in stator windings from thermal cycling, contamination, or voltage stress</td>
+              <td class="sam-spec-faults__td">Current imbalance between phases and rising negative sequence current components</td>
+              <td class="sam-spec-faults__td">4–12 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Broken rotor bars</td>
+              <td class="sam-spec-faults__td">Cracked or broken bars in the rotor cage from thermal fatigue or high starting currents</td>
+              <td class="sam-spec-faults__td">Characteristic sidebands at (1±2s)f around supply frequency, where s is motor slip</td>
+              <td class="sam-spec-faults__td">4–8 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
+              <td class="sam-spec-faults__td">Inner/outer race defects, rolling element wear, lubrication breakdown in motor or fan bearings</td>
+              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies (BPFO, BPFI sidebands) in the motor current spectrum, modulated by load zone position</td>
+              <td class="sam-spec-faults__td">4–12 weeks</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#DC2626;" title="Motor bearing detection is limited. Driven equipment bearing detection is higher.">50.0%*</td>
+            </tr>
+            <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Process deviations</td>
-              <td class="sam-spec-faults__td">Abnormal airflow, damper issues, or system resistance changes</td>
-              <td class="sam-spec-faults__td">Load signature deviations from established operating baseline</td>
+              <td class="sam-spec-faults__td">Abnormal airflow, damper issues, or system resistance changes affecting fan loading</td>
+              <td class="sam-spec-faults__td">Load signature deviations from established operating baseline. Step changes or progressive drift in mean current at equivalent conditions</td>
               <td class="sam-spec-faults__td">Days–weeks</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--partial">Partial</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Efficiency loss</td>
               <td class="sam-spec-faults__td">Fan operating below design efficiency due to wear, fouling, or system changes</td>
-              <td class="sam-spec-faults__td">Power consumption deviation tracked against baseline at equivalent conditions</td>
+              <td class="sam-spec-faults__td">Power consumption deviation tracked against baseline at equivalent operating conditions</td>
               <td class="sam-spec-faults__td">Continuous</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
             </tr>
