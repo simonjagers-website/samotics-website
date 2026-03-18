@@ -2711,37 +2711,44 @@
           </thead>
           <tbody>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Winding faults</td>
-              <td class="sam-spec-faults__td">Turn-to-turn shorts, insulation breakdown, phase imbalance</td>
-              <td class="sam-spec-faults__td">Stator current asymmetry: phase imbalance rises as winding insulation degrades</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Stator winding degradation</td>
+              <td class="sam-spec-faults__td">Turn-to-turn shorts, insulation breakdown from thermal cycling, contamination, or voltage stress</td>
+              <td class="sam-spec-faults__td">Current imbalance between phases and rising negative sequence current components. Inter-turn shorts produce odd harmonic distortion (3rd, 5th, 7th)</td>
               <td class="sam-spec-faults__td">4–12 weeks</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
-              <td class="sam-spec-faults__td">Inner/outer race defects, rolling element wear, lubrication breakdown</td>
-              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies appear in the motor current spectrum</td>
-              <td class="sam-spec-faults__td">4–12 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Broken rotor bars</td>
+              <td class="sam-spec-faults__td">Cracked or broken bars in the rotor cage from thermal fatigue or high starting currents</td>
+              <td class="sam-spec-faults__td">Characteristic sidebands at (1±2s)f around supply frequency, where s is motor slip. Lower sideband typically larger. ESA detects the electrical cause directly</td>
+              <td class="sam-spec-faults__td">4–8 weeks</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Eccentricity</td>
-              <td class="sam-spec-faults__td">Air gap irregularity from rotor sag, thermal distortion, or mechanical wear</td>
-              <td class="sam-spec-faults__td">Characteristic eccentricity frequencies appear in the motor current spectrum</td>
+              <td class="sam-spec-faults__td">Air gap irregularity from rotor sag, thermal distortion, or bearing wear creating non-uniform magnetic flux</td>
+              <td class="sam-spec-faults__td">Rotor slot harmonic families specific to the motor's geometry. Static eccentricity produces slot harmonics; dynamic eccentricity adds shaft-speed sidebands</td>
               <td class="sam-spec-faults__td">2–8 weeks</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Misalignment</td>
-              <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and driven load</td>
-              <td class="sam-spec-faults__td">2× running speed component in current spectrum, progressive increase over time</td>
+              <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and driven load from thermal growth or installation error</td>
+              <td class="sam-spec-faults__td">2× running speed component in the current spectrum, progressive increase as alignment degrades. Angular misalignment also produces 1× component</td>
               <td class="sam-spec-faults__td">2–6 weeks</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Electrical faults</td>
-              <td class="sam-spec-faults__td">Supply imbalance, harmonic distortion, capacitor failure, soft starter faults</td>
-              <td class="sam-spec-faults__td">Voltage and current imbalance analysis: direct measurement at the MCC</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
+              <td class="sam-spec-faults__td">Inner/outer race defects, rolling element wear, lubrication breakdown</td>
+              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies (BPFO, BPFI sidebands) in the motor current spectrum, modulated by load zone position</td>
+              <td class="sam-spec-faults__td">4–12 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Supply quality issues</td>
+              <td class="sam-spec-faults__td">Voltage imbalance, harmonic distortion, capacitor failure, soft starter faults, or VFD-related interference</td>
+              <td class="sam-spec-faults__td">Voltage and current harmonic spectrum analysis, power factor deviation, and supply-synchronous patterns. Direct measurement at the MCC</td>
               <td class="sam-spec-faults__td">Continuous</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
             </tr>
