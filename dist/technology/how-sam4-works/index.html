@@ -1624,6 +1624,9 @@
   margin: 0;
   font-style: italic;
 }
+details[open] > summary svg {
+  transform: rotate(90deg);
+}
 @media (max-width: 671px) {
   .sam-measurement-box__inner { padding: 0 16px; }
   .sam-measurement-box__card { padding: var(--sp-06); }
@@ -2182,7 +2185,30 @@
             </tr>
           </tbody>
         </table>
-        <p class="sam-measurement-box__note">Detection rate and false positive rate are measured differently across the industry. We publish our definitions because enterprise buyers deserve auditable claims. <a href="/contact?intent=methodology" class="sam-text-link">Request full methodology &rarr;</a></p>
+        <p class="sam-measurement-box__note">Detection rate and false positive rate are measured differently across the industry. We publish our definitions because enterprise buyers deserve auditable claims.</p>
+
+        <details style="margin-top:24px;border-top:1px solid var(--sam-border-light);padding-top:24px;">
+          <summary style="font:600 1rem/1.3 var(--sam-font);color:var(--sam-space-cadet);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;">
+            <svg style="flex-shrink:0;transition:transform 200ms;" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 3 11 8 6 13"/></svg>
+            Full methodology: how we count detections
+          </summary>
+          <div style="margin-top:16px;font:400 0.938rem/1.7 var(--sam-font);color:var(--sam-comet);">
+            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">What counts as a confirmed detection</h4>
+            <p style="margin:0 0 16px;">SAM4 sent an alert to the customer <strong>prior to failure</strong>. The customer confirmed the fault was present through inspection, maintenance action, or observed failure. Confirmation is logged in the Samotics incident management system with a customer reference. An alert that arrives after a failure has already occurred does not count as a confirmed detection.</p>
+
+            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">What counts as a false communication</h4>
+            <p style="margin:0 0 16px;">SAM4 sent an alert, but no issue was found. The customer investigated and determined no fault was present. This includes cases where the alert classification was incorrect (e.g., alert said "bearing fault" but the actual issue was a process change) and cases where no anomaly existed at all. Both count against the false communication rate.</p>
+
+            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">Dataset construction</h4>
+            <p style="margin:0 0 16px;">The dataset includes all resolved incidents across the active SAM4 fleet from January 2024 to February 2026: <strong class="kpi-value">1,874</strong> resolved incidents. "Resolved" means the incident has a confirmed outcome (true positive, false positive, or false negative). Open incidents and incidents pending customer confirmation are excluded. Data is sourced from the Samotics incident tracking system and verified against customer feedback.</p>
+
+            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">Scope: core three assets</h4>
+            <p style="margin:0 0 16px;">The 90.8% detection rate applies to the three asset types with the largest monitored fleet: <strong>pumps, fans, and conveyors</strong>. These asset types have sufficient sample size for statistically meaningful accuracy measurement. Other asset types (compressors, transmissions, motors) are monitored but not yet included in the headline figure due to smaller sample sizes. Detection rates by asset type are available on request.</p>
+
+            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">Engineer validation layer</h4>
+            <p style="margin:0;">Every SAM4 alert passes through a reliability engineer before delivery to the customer. The engineer reviews the spectral data, assesses fault severity, and adds root cause analysis and a recommended action. This human-in-the-loop validation is the primary mechanism for filtering false positives before they reach the customer. The 0.32% false communication rate reflects alerts that passed this validation but were ultimately not confirmed by the customer.</p>
+          </div>
+        </details>
       </div>
 
       <div class="sam-perf-boundaries">
