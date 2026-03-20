@@ -1,1296 +1,982 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Vibration sensors cover accessible assets. ESA covers the 30–40% of your fleet that sensors can't reach. A fault-by-fault comparison to help you decide where each technology fits.">
-  <title>ESA vs Vibration: Which Assets Need Which | Samotics</title>
-  <link rel="canonical" href="https://samoticstestpage.com/technology/esa-vs-vibration/">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <style>
-    @font-face {
-      font-family: 'IBM Plex Sans';
-      font-style: normal;
-      font-weight: 100 700;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'IBM Plex Sans';
-      font-style: italic;
-      font-weight: 100 700;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'JetBrains Mono';
-      font-style: normal;
-      font-weight: 100 800;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
-    }
-  </style>
-  <style>
-    /* ============================================================
-   SAMOTICS HEADER — CSS
-   ============================================================ */
-
-:root {
-  --sam-space-cadet: #1F1F33;
-  --sam-orange: #FF5429;
-  --sam-orange-dark: #D7411B;
-  --sam-orange-deep: #A33013;
-  --sam-blue: #005CBA;
-  --sam-blue-dark: #004179;
-  --sam-blue-light: #B3DAFF;
-  --sam-teal: #0098AC;
-  --sam-teal-dark: #006C6C;
-  --sam-white: #FFFFFF;
-  --sam-seashell: #F8F5F2;
-  --sam-black: #111111;
-  --sam-comet: #6B6B7F;
-  --sam-muted-dark: #B0B0C8;
-  --sam-border-light: #E8E4E0;
-  --sam-dark-elevated: #2A2A42;
-  --sam-gold: #FAC91F;
-  --sam-header-bg: #1F1F33;
-  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --sam-mono: 'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  --sam-header-h: 80px;
-  --sam-header-h-compact: 64px;
-  --sam-transition: 150ms ease-out;
-
-  --sp-01: 2px;
-  --sp-02: 4px;
-  --sp-03: 8px;
-  --sp-04: 12px;
-  --sp-05: 16px;
-  --sp-06: 24px;
-  --sp-07: 32px;
-  --sp-08: 48px;
-  --sp-09: 64px;
-  --sp-10: 96px;
-  --sp-11: 128px;
-  --sp-12: 160px;
-
-  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
-  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
-  --shadow-lg:  0 12px 32px rgba(31,31,51,0.14);
-  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
-
-  --ease: 150ms ease-out;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.sam-skip-link {
-  position: absolute;
-  top: -100%;
-  left: 16px;
-  z-index: 10001;
-  padding: 8px 16px;
-  background: var(--sam-orange);
-  color: var(--sam-white);
-  font: 600 14px/1 var(--sam-font);
-  text-decoration: none;
-  border-radius: 0;
-}
-.sam-skip-link:focus {
-  top: 8px;
-}
-
-.sam-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  height: var(--sam-header-h);
-  background: var(--sam-header-bg);
-  transition: height var(--sam-transition),
-              box-shadow var(--sam-transition);
-}
-.sam-header.is-scrolled {
-  height: var(--sam-header-h-compact);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-}
-
-.sam-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-.sam-header__logo {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-.sam-logo {
-  height: auto;
-  transition: transform 200ms ease-out, filter 200ms ease-out;
-}
-.sam-logo--white {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vibration covers accessible assets. ESA covers the 30-40% your sensors can't reach. A fault-by-fault comparison to help you decide where each technology fits.">
+  <title>ESA & Vibration: Which Assets Need Which Method | Samotics</title>
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="ESA & Vibration Monitoring: Coverage Comparison">
+  <meta property="og:description" content="Vibration covers accessible assets. ESA covers the 30-40% your sensors can't reach.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samotics.com/technology/esa-vs-vibration/">
   
-}
-.sam-logo--dark {
-  display: none;
-}
-.sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
-
-.sam-nav {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-.sam-nav__link {
-  font: 500 15px/1 var(--sam-font);
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  padding: 8px 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  position: relative;
-  transition: color var(--sam-transition);
-  white-space: nowrap;
-}
-.sam-nav__link:hover,
-.sam-nav__link:focus-visible {
-  color: var(--sam-white);
-}
-.sam-nav__link[aria-current="page"]::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--sam-orange);
-}
-.sam-header.is-scrolled .sam-nav__link {
-  color: rgba(255, 255, 255, 0.85);
-}
-.sam-header.is-scrolled .sam-nav__link:hover,
-.sam-header.is-scrolled .sam-nav__link:focus-visible {
-  color: var(--sam-white);
-}
-.sam-nav__chevron {
-  transition: transform var(--sam-transition);
-  flex-shrink: 0;
-}
-
-.sam-nav__item {
-  position: relative;
-}
-.sam-dropdown {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-4px);
-  min-width: 300px;
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-radius: 0;
-  padding: 8px 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--sam-transition),
-              visibility var(--sam-transition),
-              transform var(--sam-transition);
-  pointer-events: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-.sam-nav__item--has-dropdown::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 16px;
-}
-.sam-nav__item--has-dropdown:hover .sam-dropdown,
-.sam-nav__item--has-dropdown:focus-within .sam-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
-}
-.sam-nav__item--has-dropdown:hover .sam-nav__chevron,
-.sam-nav__item--has-dropdown:focus-within .sam-nav__chevron {
-  transform: rotate(180deg);
-}
-.sam-dropdown__item {
-  display: flex;
-  flex-direction: column;
-  padding: 12px 24px;
-  text-decoration: none;
-  transition: background-color 100ms ease-out;
-  cursor: default;
-}
-.sam-dropdown__item:hover,
-.sam-dropdown__item:focus-visible {
-  background: var(--sam-seashell);
-}
-.sam-dropdown__item a {
-  text-decoration: none;
-  cursor: pointer;
-}
-.sam-dropdown__label {
-  font: 500 15px/1.3 var(--sam-font);
-  color: var(--sam-black);
-}
-.sam-dropdown__desc {
-  font: 400 13px/1.4 var(--sam-font);
-  color: var(--sam-comet);
-  margin-top: 2px;
-}
-
-.sam-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 24px;
-  background: var(--sam-orange);
-  color: var(--sam-black);
-  font: 600 14px/1 var(--sam-font);
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  border-radius: 0;
-  border: none;
-  white-space: nowrap;
-  transition: background-color var(--sam-transition);
-  cursor: pointer;
-}
-.sam-cta:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-}
-
-.sam-header__actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
-
-.sam-hamburger {
-  display: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.sam-hamburger__line {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--sam-white);
-  transition: transform 200ms ease-out, opacity 200ms ease-out;
-  border-radius: 0;
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) {
-  opacity: 0;
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-.sam-mobile-menu {
-  display: none;
-  position: fixed;
-  top: var(--sam-header-h-compact);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--sam-white);
-  overflow-y: auto;
-  z-index: 999;
-  padding: 24px 16px;
-  flex-direction: column;
-}
-.sam-mobile-menu.is-open {
-  display: flex;
-  animation: samSlideIn 200ms ease-out;
-}
-@keyframes samSlideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-.sam-mobile-nav__link {
-  display: block;
-  padding: 16px 0;
-  font: 500 16px/1 var(--sam-font);
-  color: var(--sam-black);
-  text-decoration: none;
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__link:hover {
-  color: var(--sam-orange);
-}
-.sam-mobile-nav__group {
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 16px 0;
-  font: 500 16px/1 var(--sam-font);
-  color: var(--sam-black);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.sam-mobile-nav__arrow {
-  transition: transform 200ms ease-out;
-  flex-shrink: 0;
-}
-.sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow {
-  transform: rotate(180deg);
-}
-.sam-mobile-nav__sub {
-  display: none;
-  flex-direction: column;
-  padding: 0 0 8px 16px;
-}
-.sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
-  display: flex;
-}
-.sam-mobile-nav__sub a {
-  display: block;
-  padding: 12px 0;
-  font: 400 15px/1 var(--sam-font);
-  color: var(--sam-black);
-  text-decoration: none;
-}
-.sam-mobile-nav__sub a:hover {
-  color: var(--sam-orange);
-}
-.sam-mobile-nav__cta-wrap {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 14px 0;
-  background: var(--sam-orange);
-  color: var(--sam-white);
-  font: 600 16px/1 var(--sam-font);
-  text-decoration: none;
-  border-radius: 0;
-  transition: background-color var(--sam-transition);
-}
-.sam-mobile-nav__cta:hover {
-  background: var(--sam-orange-dark);
-}
-
-.sam-nav__link:focus-visible,
-.sam-dropdown__item:focus-visible,
-.sam-cta:focus-visible,
-.sam-hamburger:focus-visible,
-.sam-mobile-nav__toggle:focus-visible,
-.sam-mobile-nav__link:focus-visible,
-.sam-mobile-nav__sub a:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sam-header,
-  .sam-dropdown,
-  .sam-nav__chevron,
-  .sam-hamburger__line,
-  .sam-mobile-nav__arrow,
-  .sam-logo {
-    transition: none !important;
-    animation: none !important;
-  }
-}
-
-@media (max-width: 991px) {
-  .sam-header {
-    height: var(--sam-header-h-compact);
-  }
-  .sam-header__inner {
-    padding: 0 16px;
-  }
-  .sam-nav {
-    display: none;
-  }
-  .sam-hamburger {
-    display: flex;
-  }
-  .sam-cta {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-}
-
-    /* ============================================================
-   SAMOTICS FOOTER — CSS
-   ============================================================ */
-
-.sam-footer {
-  background: var(--sam-space-cadet);
-  padding-top: 96px;
-}
-.sam-footer__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-.sam-footer__top {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 64px;
-}
-.sam-footer__logo {
-  display: inline-flex;
-  text-decoration: none;
-}
-.sam-footer__logo img {
-  width: 140px;
-  height: auto;
-}
-.sam-footer__tagline {
-  font: 400 16px/1.6 var(--sam-font);
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0;
-  max-width: 360px;
-}
-.sam-footer__grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 32px;
-  margin-bottom: 64px;
-}
-.sam-footer__col-heading {
-  font: 600 14px/1 var(--sam-font);
-  color: #FFFFFF;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0 0 16px 0;
-}
-.sam-footer__col-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.sam-footer__col-links a {
-  font: 400 14px/1.4 var(--sam-font);
-  color: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
-  transition: color 150ms ease-out;
-}
-.sam-footer__col-links a:hover,
-.sam-footer__col-links a:focus-visible {
-  color: #FFFFFF;
-}
-.sam-footer__divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.15);
-}
-.sam-footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 0;
-}
-.sam-footer__bottom-left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.sam-footer__copyright {
-  font: 400 13px/1 var(--sam-font);
-  color: rgba(255, 255, 255, 0.4);
-}
-.sam-footer__social {
-  display: inline-flex;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.4);
-  transition: color 150ms ease-out;
-}
-.sam-footer__social:hover {
-  color: #FFFFFF;
-}
-.sam-footer__legal {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.sam-footer__legal a {
-  font: 400 13px/1 var(--sam-font);
-  color: rgba(255, 255, 255, 0.4);
-  text-decoration: none;
-  transition: color 150ms ease-out;
-}
-.sam-footer__legal a:hover,
-.sam-footer__legal a:focus-visible {
-  color: #FFFFFF;
-}
-.sam-footer__legal-sep {
-  color: rgba(255, 255, 255, 0.2);
-}
-
-@media (max-width: 991px) {
-  .sam-footer__grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .sam-footer__col-heading {
-    cursor: pointer;
-    user-select: none;
-  }
-  .sam-footer__col-links {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 200ms ease-out;
-  }
-  .sam-footer__col.is-open .sam-footer__col-links {
-    max-height: 500px;
-  }
-  .sam-footer__bottom {
-    flex-direction: column;
-    gap: 24px;
-  }
-  .sam-footer__bottom-left {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-    /* ============================================================
-   PAGE-SPECIFIC: ESA & VIBRATION
-   ============================================================ */
-
-.sam-compare, .sam-compare * {
-  font-family: var(--sam-font);
-}
-
-.sam-compare {
-  overflow-x: hidden;
-}
-
-.sam-overline {
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  margin: 0 0 var(--sp-06) 0;
-}
-
-.sam-hero {
-  background-color: var(--sam-space-cadet);
-  background-size: cover;
-  background-position: center;
-  padding: var(--sp-12) 0 var(--sp-11) 0;
-  min-height: 480px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.sam-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(31,31,51,0.92) 0%, rgba(31,31,51,0.40) 100%);
-  z-index: 0;
-}
-.sam-hero__inner {
-  position: relative;
-  z-index: 1;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-  width: 100%;
-}
-.sam-hero__overline {
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--sam-orange);
-  margin: 0 0 var(--sp-06) 0;
-}
-.sam-hero__h1 {
-  font-weight: 700;
-  font-size: 4rem;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--sam-white);
-  margin: 0 0 var(--sp-07) 0;
-  max-width: 18ch;
-}
-.sam-hero__lead {
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: var(--sam-white);
-  margin: 0 0 var(--sp-07) 0;
-  max-width: 60ch;
-}
-.sam-hero__ctas {
-  display: flex;
-  gap: var(--sp-05);
-  flex-wrap: wrap;
-}
-
-.sam-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 32px;
-  font: 600 1rem/1 var(--sam-font);
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease);
-  white-space: nowrap;
-}
-.sam-btn:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-
-.sam-btn--primary {
-  background: var(--sam-orange);
-  color: var(--sam-black);
-}
-.sam-btn--primary:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-  box-shadow: var(--shadow-cta);
-}
-
-.sam-btn--ghost {
-  background: transparent;
-  color: var(--sam-white);
-  border: 1px solid var(--sam-white);
-}
-.sam-btn--ghost:hover {
-  background: var(--sam-white);
-  color: var(--sam-space-cadet);
-}
-
-.sam-jump-nav {
-  background: var(--sam-seashell);
-  border-bottom: 1px solid var(--sam-border-light);
-  position: fixed;
-  top: var(--sam-header-h);
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  transition: top var(--sam-transition);
-}
-.sam-jump-nav.is-compact {
-  top: var(--sam-header-h-compact);
-}
-/* Offset main content so fixed jump nav doesn't overlap */
-.sam-compare { padding-top: 50px; }
-.sam-jump-nav__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-  display: flex;
-  gap: var(--sp-06);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.sam-jump-nav__link {
-  display: block;
-  padding: var(--sp-05) 0;
-  font: 500 14px/1 var(--sam-font);
-  color: var(--sam-comet);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color var(--ease);
-  border-bottom: 2px solid transparent;
-  position: relative;
-}
-.sam-jump-nav__link:hover {
-  color: var(--sam-space-cadet);
-}
-.sam-jump-nav__link.is-active {
-  color: var(--sam-blue);
-  border-bottom-color: var(--sam-blue);
-}
-
-/* Section Backgrounds */
-.sam-compare__section-white {
-  background: var(--sam-white);
-  padding: var(--sp-11) 0;
-}
-.sam-compare__section-seashell {
-  background: var(--sam-seashell);
-  padding: var(--sp-11) 0;
-}
-
-.sam-compare__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-
-.sam-compare h2 {
-  font: 600 3rem/1.2 var(--sam-font);
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-  max-width: 30ch;
-}
-
-.sam-compare .sam-overline {
-  color: var(--sam-blue);
-}
-
-.sam-compare__lead {
-  font: 400 1.25rem/1.6 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-09) 0;
-  max-width: 60ch;
-}
-
-/* Comparison Table */
-.sam-compare__table-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin-bottom: var(--sp-08);
-}
-
-.sam-compare__table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 720px;
-}
-
-.sam-compare__table thead {
-  background: var(--sam-white);
-}
-
-.sam-compare__table th {
-  font: 600 1rem/1 var(--sam-font);
-  letter-spacing: 0.02em;
-  text-align: left;
-  padding: var(--sp-05) var(--sp-06);
-  border-bottom: 2px solid var(--sam-space-cadet);
-  vertical-align: bottom;
-  color: var(--sam-space-cadet);
-}
-
-.sam-compare__table th:first-child {
-  width: 28%;
-  color: var(--sam-space-cadet);
-}
-
-.sam-compare__table th:nth-child(2) {
-  width: 36%;
-  color: var(--sam-blue);
-  background: rgba(0, 92, 186, 0.04);
-}
-
-.sam-compare__table th:last-child {
-  width: 36%;
-  color: var(--sam-comet);
-}
-
-.sam-compare__table td {
-  font: 400 1rem/1.5 var(--sam-font);
-  padding: var(--sp-05) var(--sp-06);
-  border-bottom: 1px solid var(--sam-border-light);
-  vertical-align: top;
-  color: var(--sam-black);
-}
-
-.sam-compare__table td:first-child {
-  font-weight: 500;
-  color: var(--sam-space-cadet);
-}
-
-.sam-compare__table td:nth-child(2) {
-  background: rgba(0, 92, 186, 0.04);
-}
-
-.sam-compare__table tbody tr:hover {
-  background: var(--sam-seashell);
-}
-.sam-compare__table tbody tr:hover td:nth-child(2) {
-  background: rgba(0, 92, 186, 0.07);
-}
-
-.sam-compare__table-note {
-  font: 400 0.875rem/1.5 var(--sam-font);
-  color: var(--sam-comet);
-  margin-top: var(--sp-04);
-}
-
-/* Card Grids */
-.sam-compare__grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-06);
-}
-
-.sam-compare__grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-06);
-  margin-bottom: var(--sp-08);
-}
-
-.sam-compare__card {
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-top: 3px solid var(--sam-blue);
-  padding: var(--sp-07);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-04);
-}
-
-.sam-compare__card-title {
-  font: 600 1.25rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0;
-}
-
-.sam-compare__card-desc {
-  font: 400 1rem/1.6 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0;
-}
-
-/* Detection Matrix */
-.sam-detection-matrix {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.sam-detection-matrix__table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 800px;
-}
-
-.sam-detection-matrix__table thead {
-  background: var(--sam-white);
-}
-
-.sam-detection-matrix__table th {
-  font: 600 1rem/1 var(--sam-font);
-  letter-spacing: 0.02em;
-  text-align: left;
-  padding: var(--sp-05) var(--sp-06);
-  border-bottom: 2px solid var(--sam-space-cadet);
-  color: var(--sam-space-cadet);
-}
-
-.sam-detection-matrix__table td {
-  font: 400 1rem/1.5 var(--sam-font);
-  padding: var(--sp-05) var(--sp-06);
-  border-bottom: 1px solid var(--sam-border-light);
-  vertical-align: top;
-  color: var(--sam-black);
-}
-
-.sam-detection-matrix__fault {
-  font-weight: 500;
-  color: var(--sam-space-cadet);
-}
-
-.sam-dm-badge {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font: 600 0.875rem/1 var(--sam-font);
-  margin-right: var(--sp-03);
-}
-
-.sam-dm-badge--strong {
-  background: rgba(13, 128, 80, 0.15);
-  color: #0D8050;
-}
-
-.sam-dm-badge--moderate {
-  background: rgba(0, 152, 172, 0.15);
-  color: #0098AC;
-}
-
-.sam-dm-badge--limited {
-  background: rgba(255, 84, 41, 0.15);
-  color: #FF5429;
-}
-
-.sam-dm-badge--none {
-  background: rgba(107, 107, 127, 0.15);
-  color: #6B6B7F;
-}
-
-.sam-dm-note {
-  display: block;
-  font: 400 0.875rem/1.4 var(--sam-font);
-  color: var(--sam-comet);
-  margin-top: var(--sp-02);
-}
-
-.sam-detection-matrix__esa-wins {
-  background: rgba(13, 128, 80, 0.04);
-  border-left: 3px solid #0D8050;
-}
-.sam-detection-matrix__esa-wins td:first-child {
-  padding-left: calc(var(--sp-06) - 3px);
-}
-.sam-detection-matrix__legend {
-  display: flex;
-  gap: var(--sp-06);
-  margin-top: var(--sp-06);
-  flex-wrap: wrap;
-}
-
-.sam-detection-matrix__legend-item {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-03);
-  font: 400 0.875rem/1 var(--sam-font);
-  color: var(--sam-comet);
-}
-
-/* Split Panel */
-.sam-compare__split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-08);
-  align-items: start;
-}
-
-.sam-compare__split-title {
-  font: 600 1.5rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-05) 0;
-}
-
-.sam-compare__split-stat {
-  font: 600 2.5rem/1 var(--sam-mono);
-  color: var(--sam-blue);
-  margin: 0;
-}
-
-.sam-compare__split-label {
-  font: 400 0.875rem/1.5 var(--sam-font);
-  color: var(--sam-comet);
-  margin-top: var(--sp-02);
-}
-
-/* FAQ */
-.sam-compare__faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-06);
-}
-
-.sam-compare__faq-item {
-  border: 1px solid var(--sam-border-light);
-  padding: var(--sp-06);
-}
-
-.sam-compare__faq-item[open] {
-  background: var(--sam-seashell);
-}
-
-.sam-compare__faq-question {
-  font: 600 1.125rem/1.4 var(--sam-font);
-  color: var(--sam-space-cadet);
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--sp-04);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.sam-compare__faq-question::-webkit-details-marker {
-  display: none;
-}
-
-.sam-compare__faq-question::after {
-  content: '';
-  width: 24px;
-  height: 24px;
-  background: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') center / contain no-repeat;
-  color: var(--sam-comet);
-  transition: transform 200ms ease-out;
-  flex-shrink: 0;
-}
-
-.sam-compare__faq-item[open] .sam-compare__faq-question::after {
-  transform: rotate(90deg);
-}
-
-.sam-compare__faq-answer {
-  margin-top: var(--sp-06);
-  padding-top: var(--sp-06);
-  border-top: 1px solid var(--sam-border-light);
-}
-
-.sam-compare__faq-answer p {
-  font: 400 1rem/1.6 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 var(--sp-04) 0;
-}
-
-.sam-compare__faq-answer p:last-child {
-  margin-bottom: 0;
-}
-
-/* Evidence Panel */
-.sam-compare__evidence-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-06);
-  margin-bottom: var(--sp-08);
-}
-
-.sam-compare__evidence-card {
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  padding: var(--sp-07);
-}
-
-.sam-compare__evidence-customer {
-  font: 600 0.875rem/1 var(--sam-font);
-  color: var(--sam-comet);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0 0 var(--sp-04) 0;
-}
-
-.sam-compare__evidence-title {
-  font: 600 1.25rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-04) 0;
-}
-
-.sam-compare__evidence-body {
-  font: 400 1rem/1.6 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 var(--sp-05) 0;
-}
-
-.sam-compare__evidence-stat {
-  display: flex;
-  gap: var(--sp-03);
-  align-items: baseline;
-}
-
-.sam-compare__evidence-stat-value {
-  font: 600 1.75rem/1 var(--sam-mono);
-  color: var(--sam-blue);
-}
-
-.sam-compare__evidence-stat-label {
-  font: 400 0.875rem/1.4 var(--sam-font);
-  color: var(--sam-comet);
-}
-
-.sam-compare__quote {
-  background: var(--sam-white);
-  border-left: 4px solid var(--sam-blue);
-  padding: var(--sp-07);
-  margin-top: var(--sp-08);
-}
-
-.sam-compare__quote-text {
-  font: 400 1.125rem/1.6 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 var(--sp-04) 0;
-  font-style: italic;
-}
-
-.sam-compare__quote-cite {
-  font: 500 1rem/1 var(--sam-font);
-  color: var(--sam-comet);
-  margin: 0;
-}
-
-/* Measurement Box */
-.sam-compare__measurement {
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-left: 4px solid var(--sam-blue);
-  padding: var(--sp-07);
-  margin-top: var(--sp-08);
-}
-
-.sam-compare__measurement-title {
-  font: 600 1.25rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-04);
-}
-
-.sam-compare__measurement-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.sam-compare__measurement-table th {
-  font: 600 0.875rem/1 var(--sam-font);
-  text-align: left;
-  padding: var(--sp-04) var(--sp-05);
-  border-bottom: 1px solid var(--sam-border-light);
-  color: var(--sam-space-cadet);
-}
-
-.sam-compare__measurement-table td {
-  font: 400 1rem/1.6 var(--sam-font);
-  padding: var(--sp-04) var(--sp-05);
-  border-bottom: 1px solid var(--sam-border-light);
-  color: var(--sam-black);
-}
-
-.sam-compare__measurement-table tr:last-child td {
-  border-bottom: none;
-}
-
-.sam-compare__measurement-note {
-  font: 400 0.875rem/1.5 var(--sam-font);
-  color: var(--sam-comet);
-  margin-top: var(--sp-05);
-  padding-top: var(--sp-05);
-  border-top: 1px solid var(--sam-border-light);
-}
-
-/* CTA Block */
-.sam-cta-block {
-  background: var(--sam-white);
-  padding: var(--sp-11) 0;
-}
-
-.sam-cta-block__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-  text-align: center;
-}
-
-.sam-cta-block__heading {
-  font: 600 3rem/1.2 var(--sam-font);
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-}
-
-.sam-cta-block__sub {
-  font: 400 1.25rem/1.6 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-08) 0;
-  max-width: 60ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.sam-cta-block__actions {
-  display: flex;
-  gap: var(--sp-05);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Responsive */
-@media (max-width: 1199px) {
-  .sam-compare__grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .sam-compare__grid-2 {
-    grid-template-columns: 1fr;
-  }
-
-  .sam-compare__split {
-    grid-template-columns: 1fr;
-  }
-
-  .sam-compare__evidence-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .sam-compare h2 {
-    font-size: 2.25rem;
-  }
-}
-
-@media (max-width: 767px) {
-  .sam-compare h2 {
-    font-size: 1.75rem;
-  }
-
-  .sam-hero__h1 {
-    font-size: 2.5rem;
-  }
-
-  .sam-hero__ctas {
-    flex-direction: column;
-  }
-
-  .sam-btn {
-    width: 100%;
-  }
-
-  .sam-jump-nav__inner {
-    padding: 0 16px;
-  }
-
-  .sam-compare__inner {
-    padding: 0 16px;
-  }
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --orange-dark: #D7411B;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --dark-blue-300: #A0A0B8;
+      
+      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-data: 'JetBrains Mono', 'Consolas', monospace;
+      
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-30: 120px;
+      
+      --radius-default: 4px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
+      --motion-fast: 100ms;
+      --motion-normal: 300ms;
+      
+      --max-width: 1120px;
+      --max-width-wide: 1280px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--space-cadet);
+      background: var(--white);
+    }
+
+    /* ===== HEADER ===== */
+    .sam-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--sam-header-h, 80px);
+      background: var(--space-cadet);
+      color: var(--white);
+      z-index: 1000;
+      transition: height var(--motion-normal);
+    }
+
+    .sam-header.is-scrolled {
+      box-shadow: 0 2px 8px rgba(31, 31, 51, 0.12);
+    }
+
+    .sam-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-4);
+      height: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .sam-header__logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      margin-right: var(--space-12);
+      flex-shrink: 0;
+    }
+
+    .sam-logo {
+      height: 32px;
+      width: auto;
+    }
+
+    .sam-logo--dark {
+      display: none;
+    }
+
+    .sam-header.is-scrolled .sam-logo--white {
+      display: none;
+    }
+
+    .sam-header.is-scrolled .sam-logo--dark {
+      display: block;
+    }
+
+    .sam-nav {
+      display: flex;
+      gap: var(--space-12);
+      align-items: center;
+      flex: 1;
+    }
+
+    .sam-nav__link {
+      color: inherit;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: var(--space-2) 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      opacity: 0.85;
+      transition: opacity var(--motion-fast);
+    }
+
+    .sam-nav__link:hover {
+      opacity: 1;
+    }
+
+    .sam-nav__item--has-dropdown {
+      position: relative;
+    }
+
+    .sam-dropdown {
+      position: absolute;
+      top: calc(100% + var(--space-2));
+      left: -var(--space-6);
+      background: var(--white);
+      border-radius: var(--radius-default);
+      border: 1px solid var(--border-grey);
+      min-width: 260px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity var(--motion-fast), transform var(--motion-fast);
+      box-shadow: 0 4px 12px rgba(31, 31, 51, 0.1);
+    }
+
+    .sam-nav__item--has-dropdown:hover .sam-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .sam-dropdown__item {
+      display: block;
+      padding: var(--space-4) var(--space-6);
+      text-decoration: none;
+      color: var(--space-cadet);
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background var(--motion-fast);
+    }
+
+    .sam-dropdown__item:first-child {
+      border-radius: var(--radius-default) var(--radius-default) 0 0;
+    }
+
+    .sam-dropdown__item:last-child {
+      border-radius: 0 0 var(--radius-default) var(--radius-default);
+    }
+
+    .sam-dropdown__item:hover {
+      background: var(--seashell);
+    }
+
+    .sam-dropdown__label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: var(--space-2);
+    }
+
+    .sam-dropdown__desc {
+      display: block;
+      font-size: 12px;
+      color: var(--comet);
+    }
+
+    .sam-header__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-left: auto;
+    }
+
+    .sam-cta-secondary {
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+      text-decoration: none;
+      opacity: 0.8;
+      white-space: nowrap;
+      transition: opacity var(--motion-fast);
+    }
+
+    .sam-cta-secondary:hover {
+      opacity: 1;
+    }
+
+    .sam-cta {
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 500;
+      padding: var(--space-3) var(--space-6);
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: var(--radius-default);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background var(--motion-fast);
+    }
+
+    .sam-cta:hover {
+      background: var(--orange-dark);
+    }
+
+    .sam-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-2);
+    }
+
+    .sam-hamburger__line {
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: transform var(--motion-normal), opacity var(--motion-normal);
+    }
+
+    .sam-mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--sam-header-h, 80px);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--white);
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .sam-mobile-menu.is-open {
+      display: block;
+    }
+
+    .sam-mobile-nav {
+      padding: var(--space-6);
+    }
+
+    .sam-mobile-nav__link,
+    .sam-mobile-nav__toggle {
+      display: block;
+      width: 100%;
+      padding: var(--space-4);
+      font-size: 16px;
+      text-align: left;
+      text-decoration: none;
+      color: var(--space-cadet);
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: var(--font-primary);
+      font-weight: 500;
+    }
+
+    .sam-mobile-nav__group {
+      margin-bottom: var(--space-4);
+    }
+
+    .sam-mobile-nav__toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sam-mobile-nav__arrow {
+      transition: transform var(--motion-normal);
+    }
+
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__arrow {
+      transform: rotate(180deg);
+    }
+
+    .sam-mobile-nav__sub {
+      display: none;
+      padding-left: var(--space-4);
+      border-left: 2px solid var(--border-grey);
+      margin-left: var(--space-4);
+    }
+
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
+      display: block;
+    }
+
+    .sam-mobile-nav__sub a {
+      display: block;
+      padding: var(--space-3) 0;
+      font-size: 14px;
+      color: var(--comet);
+      text-decoration: none;
+    }
+
+    .sam-mobile-nav__cta-wrap {
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--border-grey);
+    }
+
+    .sam-mobile-nav__cta {
+      display: block;
+      padding: var(--space-4);
+      background: var(--orange);
+      color: var(--white);
+      text-align: center;
+      text-decoration: none;
+      border-radius: var(--radius-default);
+      font-weight: 500;
+      font-family: var(--font-primary);
+    }
+
+    .sam-skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--orange);
+      color: var(--white);
+      padding: var(--space-3) var(--space-4);
+      text-decoration: none;
+      z-index: 100;
+    }
+
+    .sam-skip-link:focus {
+      top: 0;
+    }
+
+    @media (max-width: 991px) {
+      .sam-nav {
+        display: none;
+      }
+
+      .sam-header__actions {
+        gap: var(--space-2);
+      }
+
+      .sam-cta-secondary {
+        display: none;
+      }
+
+      .sam-hamburger {
+        display: flex;
+        margin-left: var(--space-4);
+      }
+    }
+
+    /* ===== MAIN PAGE WRAPPER ===== */
+    .sam-page {
+      padding-top: var(--sam-header-h, 80px);
+    }
+
+    main {
+      width: 100%;
+    }
+
+    #main-content {
+      display: block;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      width: 100%;
+    }
+
+    .sam-section {
+      padding: var(--space-24) var(--space-4);
+    }
+
+    .sam-section--hero {
+      background: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-30) var(--space-4);
+    }
+
+    .sam-section--dark {
+      background: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-24) var(--space-4);
+    }
+
+    .sam-section--light {
+      background: var(--seashell);
+    }
+
+    .sam-section__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .sam-section__inner--wide {
+      max-width: var(--max-width-wide);
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1 {
+      font-size: 48px;
+      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+    }
+
+    h2 {
+      font-size: 36px;
+      line-height: 1.3;
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+    }
+
+    h3 {
+      font-size: 20px;
+      line-height: 1.4;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+    }
+
+    p {
+      margin-bottom: var(--space-4);
+    }
+
+    .sam-overline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+    }
+
+    .sam-lead {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--comet);
+      margin-bottom: var(--space-8);
+    }
+
+    .sam-section--hero .sam-lead {
+      color: var(--white);
+      opacity: 0.95;
+    }
+
+    .sam-subheading {
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: var(--comet);
+      margin-bottom: var(--space-6);
+    }
+
+    .sam-section--hero .sam-subheading {
+      color: var(--white);
+      opacity: 0.9;
+    }
+
+    /* ===== BUTTONS ===== */
+    .sam-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-default);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-primary);
+      transition: all var(--motion-fast);
+    }
+
+    .sam-btn--primary {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .sam-btn--primary:hover {
+      background: var(--orange-dark);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-btn--secondary {
+      background: transparent;
+      color: var(--space-cadet);
+      border: 1px solid var(--border-grey);
+    }
+
+    .sam-btn--secondary:hover {
+      border-color: var(--space-cadet);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-section--hero .sam-btn--secondary {
+      color: var(--white);
+      border-color: var(--white);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .sam-section--hero .sam-btn--secondary:hover {
+      border-color: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ===== GRID ===== */
+    .sam-grid {
+      display: grid;
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-grid--cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sam-grid--cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      .sam-grid--cols-2,
+      .sam-grid--cols-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== CARDS ===== */
+    .sam-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      transition: all var(--motion-fast);
+    }
+
+    .sam-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-card h3 {
+      margin-bottom: var(--space-3);
+    }
+
+    /* ===== TABLES ===== */
+    .sam-table-container {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-default);
+      border: 1px solid var(--border-grey);
+      margin-bottom: var(--space-12);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      font-family: var(--font-primary);
+    }
+
+    thead {
+      background: var(--space-cadet);
+      color: var(--white);
+    }
+
+    th {
+      padding: var(--space-4) var(--space-6);
+      text-align: left;
+      font-weight: 600;
+      border: none;
+    }
+
+    td {
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--border-grey);
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--seashell);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ===== STRENGTH BADGES ===== */
+    .sam-strength {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: var(--radius-default);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .sam-strength--strong {
+      background: rgba(76, 175, 80, 0.2);
+      color: #2e7d32;
+    }
+
+    .sam-strength--moderate {
+      background: rgba(255, 152, 0, 0.2);
+      color: #e65100;
+    }
+
+    .sam-strength--limited {
+      background: rgba(255, 193, 7, 0.2);
+      color: #f57f17;
+    }
+
+    .sam-strength--none {
+      background: rgba(158, 158, 158, 0.2);
+      color: #616161;
+    }
+
+    /* ===== CALLOUT ===== */
+    .sam-callout {
+      background: var(--seashell);
+      border-left: 4px solid var(--orange);
+      padding: var(--space-6);
+      border-radius: var(--radius-default);
+      margin: var(--space-8) 0;
+    }
+
+    /* ===== ACCORDION ===== */
+    .sam-accordion-item {
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      margin-bottom: var(--space-4);
+      overflow: hidden;
+    }
+
+    .sam-accordion-button {
+      width: 100%;
+      padding: var(--space-6);
+      background: var(--white);
+      border: none;
+      text-align: left;
+      font-family: var(--font-primary);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background var(--motion-fast);
+    }
+
+    .sam-accordion-button:hover {
+      background: var(--seashell);
+    }
+
+    .sam-accordion-button.is-open {
+      background: var(--seashell);
+    }
+
+    .sam-accordion-chevron {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      transition: transform var(--motion-normal);
+    }
+
+    .sam-accordion-button.is-open .sam-accordion-chevron {
+      transform: rotate(180deg);
+    }
+
+    .sam-accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--motion-normal) ease-out;
+    }
+
+    .sam-accordion-content.is-open {
+      max-height: 500px;
+    }
+
+    .sam-accordion-text {
+      padding: 0 var(--space-6) var(--space-6);
+      line-height: 1.7;
+    }
+
+    /* ===== FOOTER ===== */
+    .sam-footer {
+      background: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-24) var(--space-4);
+      margin-top: var(--space-24);
+    }
+
+    .sam-footer__inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .sam-footer__top {
+      margin-bottom: var(--space-16);
+    }
+
+    .sam-footer__logo {
+      display: inline-block;
+      margin-bottom: var(--space-6);
+    }
+
+    .sam-footer__logo img {
+      height: 32px;
+      width: auto;
+    }
+
+    .sam-footer__tagline {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 280px;
+    }
+
+    .sam-footer__grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-12);
+      margin-bottom: var(--space-16);
+    }
+
+    .sam-footer__col-heading {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sam-footer__col-heading::after {
+      display: none;
+    }
+
+    .sam-footer__col-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .sam-footer__col-links a {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color var(--motion-fast);
+    }
+
+    .sam-footer__col-links a:hover {
+      color: var(--white);
+    }
+
+    .sam-footer__divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-footer__certs {
+      display: flex;
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-footer__certs a {
+      display: inline-block;
+    }
+
+    .sam-footer__certs img {
+      height: 72px;
+      width: auto;
+    }
+
+    .sam-footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-8);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+
+    .sam-footer__copyright {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sam-footer__social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: rgba(255, 255, 255, 0.7);
+      transition: color var(--motion-fast);
+    }
+
+    .sam-footer__social:hover {
+      color: var(--white);
+    }
+
+    .sam-footer__legal {
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .sam-footer__legal a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color var(--motion-fast);
+    }
+
+    .sam-footer__legal a:hover {
+      color: var(--white);
+    }
+
+    .sam-footer__legal-sep {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .sam-footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sam-footer__col-heading {
+        padding-bottom: var(--space-3);
+      }
+
+      .sam-footer__col-links {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--motion-normal);
+      }
+
+      .sam-footer__col.is-open .sam-footer__col-links {
+        max-height: 500px;
+      }
+
+      .sam-footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ===== COMPARISON BAR ===== */
+    .sam-comparison-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+      margin: var(--space-12) 0;
+    }
+
+    .sam-comparison-bar__item {
+      background: var(--seashell);
+      padding: var(--space-8);
+      border-radius: var(--radius-default);
+    }
+
+    .sam-comparison-bar__item h3 {
+      color: var(--orange);
+      margin-bottom: var(--space-2);
+    }
+
+    .sam-comparison-bar__item p {
+      font-size: 14px;
+      color: var(--comet);
+    }
+
+    @media (max-width: 768px) {
+      .sam-comparison-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== CASE STUDIES ===== */
+    .sam-case-study {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      text-align: left;
+    }
+
+    .sam-case-study h3 {
+      margin-bottom: var(--space-3);
+    }
+
+    .sam-case-study p {
+      font-size: 14px;
+      color: var(--comet);
+      margin-bottom: var(--space-4);
+    }
+
+    .sam-case-study__metric {
+      font-family: var(--font-data);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--orange);
+      margin-top: var(--space-6);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .sam-lead {
+        font-size: 16px;
+      }
+
+      .sam-section {
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .sam-section--hero {
+        padding: var(--space-24) var(--space-4);
+      }
+
+      table {
+        font-size: 12px;
+      }
+
+      th, td {
+        padding: var(--space-3) var(--space-4);
+      }
+    }
   </style>
 </head>
 <body>
-
-<a href="#main-content" class="sam-skip-link">Skip to main content</a>
-
-<!-- Header -->
-<header class="sam-header" role="navigation" aria-label="Main navigation">
+  <div class="sam-page">
+    <!-- HEADER -->
+    <header class="sam-header" role="navigation" aria-label="Main navigation">
   <a href="#main-content" class="sam-skip-link">Skip to content</a>
   <div class="sam-header__inner">
 
@@ -1463,471 +1149,396 @@
 
 </header>
 
-<!-- Jump Navigation (fixed below header) -->
-<nav class="sam-jump-nav" aria-label="Page sections">
-  <div class="sam-jump-nav__inner">
-    <a href="#comparison" class="sam-jump-nav__link">Comparison</a>
-    <a href="#esa-strengths" class="sam-jump-nav__link">ESA Strengths</a>
-    <a href="#vibration-strengths" class="sam-jump-nav__link">Vibration Strengths</a>
-    <a href="#detection-matrix" class="sam-jump-nav__link">Detection Matrix</a>
-    <a href="#complementary" class="sam-jump-nav__link">Better Together</a>
-    <a href="#evidence" class="sam-jump-nav__link">Evidence</a>
-    <a href="#faq" class="sam-jump-nav__link">FAQ</a>
-  </div>
-</nav>
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
 
-<!-- Main Content -->
-<main id="main-content" class="sam-compare">
-
-  <!-- 1. HERO (Dark) -->
-  <section class="sam-hero" style="background-image: url('/assets/images/heroes/hero-esa-vibration.jpg');">
-    <div class="sam-hero__overlay"></div>
-    <div class="sam-hero__inner">
-      <div class="sam-hero__content">
-        <p class="sam-hero__overline">ESA & Vibration Monitoring</p>
-        <h1 class="sam-hero__h1">Vibration monitoring has blind spots. ESA closes them.</h1>
-        <p class="sam-hero__lead">Vibration is excellent for accessible rotating equipment. But 30-40% of a typical fleet sits beyond sensor reach: submerged pumps, sealed drives, hazardous zones. ESA monitors those assets from the motor control cabinet. Many customers run both. The question isn't which is better. It's which assets need which method.</p>
-        <div class="sam-hero__ctas">
-          <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
-          <a href="#detection-matrix" class="sam-btn sam-btn--ghost">See Detection Matrix</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- 2. COMPARISON TABLE (White) -->
-  <section class="sam-compare__section-white" id="comparison">
-    <div class="sam-compare__inner">
-      <p class="sam-overline" style="color: var(--sam-blue);">Side by side</p>
-      <h2>What each method covers and where it stops</h2>
-      <p class="sam-compare__lead">The difference isn't which is better. It's where the sensor sits, what it can reach, and what it costs to deploy.</p>
-
-      <div class="sam-compare__table-wrapper" role="region" aria-label="ESA versus vibration comparison table" tabindex="0">
-        <table class="sam-compare__table">
-          <thead>
-            <tr>
-              <th>Criteria</th>
-              <th>ESA (SAM4)</th>
-              <th>Vibration monitoring</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Sensor location</td>
-              <td>Motor control cabinet (MCC)</td>
-              <td>On or near the asset</td>
-            </tr>
-            <tr>
-              <td>Physical access to asset</td>
-              <td>Not required</td>
-              <td>Required</td>
-            </tr>
-            <tr>
-              <td>Installation time</td>
-              <td>&lt;60 minutes per machine</td>
-              <td>Hours to days (varies by access)</td>
-            </tr>
-            <tr>
-              <td>Production shutdown</td>
-              <td>None</td>
-              <td>Often required for mounting</td>
-            </tr>
-            <tr>
-              <td>Monitoring mode</td>
-              <td>Continuous (24/7)</td>
-              <td>Continuous or periodic (route-based)</td>
-            </tr>
-            <tr>
-              <td>Submerged assets</td>
-              <td>Monitored from MCC</td>
-              <td>Cannot mount sensor</td>
-            </tr>
-            <tr>
-              <td>ATEX / hazardous zones</td>
-              <td>No ATEX cert needed</td>
-              <td>Requires ATEX-rated equipment</td>
-            </tr>
-            <tr>
-              <td>Enclosed / sealed assets</td>
-              <td>No disassembly needed</td>
-              <td>Requires access to housing</td>
-            </tr>
-            <tr>
-              <td>Bearing fault detection</td>
-              <td>Detected</td>
-              <td>High resolution</td>
-            </tr>
-            <tr>
-              <td>Misalignment / imbalance</td>
-              <td>Detected</td>
-              <td>High resolution</td>
-            </tr>
-            <tr>
-              <td>Electrical faults</td>
-              <td>Primary strength</td>
-              <td>Not detectable</td>
-            </tr>
-            <tr>
-              <td>Process deviations</td>
-              <td>Cavitation, clogging, efficiency</td>
-              <td>Limited (indirect indicators)</td>
-            </tr>
-            <tr>
-              <td>Mechanical fault resolution</td>
-              <td>Good. AI-enhanced detection</td>
-              <td>Excellent on accessible assets</td>
-            </tr>
-            <tr>
-              <td>Cost per monitoring point</td>
-              <td>Lower (MCC install)</td>
-              <td>Higher for hard-to-reach assets</td>
-            </tr>
-            <tr>
-              <td>Fleet scalability</td>
-              <td>Rapid deployment (1,000+ assets)</td>
-              <td>Slower. Per-asset installation</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="sam-compare__table-note"><strong>How to read this table.</strong> Each row represents a deployment or operational factor. Checkmarks and crosses indicate capability or constraint. Partial marks show cases where the method applies but with caveats. ESA's defining advantage is reach. Vibration's strength is mechanical resolution on accessible assets.</p>
-    </div>
-  </section>
-
-  <!-- 3. WHERE ESA ADDS VALUE (Seashell) -->
-  <section class="sam-compare__section-seashell" id="esa-strengths">
-    <div class="sam-compare__inner">
-      <p class="sam-overline" style="color: var(--sam-blue);">Beyond vibration's reach</p>
-      <h2>The assets vibration can't monitor</h2>
-      <p class="sam-compare__lead">ESA's defining advantage is reach. These scenarios add coverage that vibration physically cannot provide.</p>
-
-      <div class="sam-compare__grid-3">
-        <div class="sam-compare__card">
-          <h3 class="sam-compare__card-title">Submerged or enclosed</h3>
-          <p class="sam-compare__card-desc">Submersible pumps, sealed compressors, enclosed blowers. ESA monitors from the control cabinet. No disassembly. No access to housing.</p>
-        </div>
-        <div class="sam-compare__card">
-          <h3 class="sam-compare__card-title">Hazardous zones</h3>
-          <p class="sam-compare__card-desc">ATEX areas, confined spaces, flammable atmospheres. ESA sensors stay in the MCC. No explosion risk. No ATEX certification required.</p>
-        </div>
-        <div class="sam-compare__card">
-          <h3 class="sam-compare__card-title">Remote sites</h3>
-          <p class="sam-compare__card-desc">Off-grid pumping stations, remote production lines, distributed assets. ESA transmits via cellular. No site visits for data collection.</p>
-        </div>
-        <div class="sam-compare__card">
-          <h3 class="sam-compare__card-title">Electrical faults</h3>
-          <p class="sam-compare__card-desc">Stator winding degradation, rotor bar defects, insulation breakdown. ESA detects electrical faults. Vibration cannot.</p>
-        </div>
-        <div class="sam-compare__card">
-          <h3 class="sam-compare__card-title">Between vibration rounds</h3>
-          <p class="sam-compare__card-desc">ESA provides continuous 24/7 monitoring on accessible assets, catching faults between scheduled vibration routes.</p>
-        </div>
-        <div class="sam-compare__card">
-          <h3 class="sam-compare__card-title">Fleet-scale speed</h3>
-          <p class="sam-compare__card-desc">Deploy across 1,000+ assets in weeks. MCC installation takes &lt;60 minutes per asset. Vibration deployment takes weeks per asset.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. WHERE VIBRATION EXCELS (White) -->
-  <section class="sam-compare__section-white" id="vibration-strengths">
-    <div class="sam-compare__inner">
-      <p class="sam-overline" style="color: var(--sam-comet);">Vibration's strengths</p>
-      <h2>Where vibration has the edge</h2>
-      <p class="sam-compare__lead">Vibration monitoring has decades of field validation. For certain faults on accessible assets, it provides resolution ESA doesn't match.</p>
-
-      <div class="sam-compare__grid-2">
-        <div class="sam-compare__card" style="border-top-color: var(--sam-comet);">
-          <h3 class="sam-compare__card-title">High-resolution mechanical diagnostics</h3>
-          <p class="sam-compare__card-desc">Vibration sensors mounted on machinery provide direct mechanical data. Bearing defect frequencies, gear mesh patterns, resonance analysis. For accessible assets on defined routes, vibration delivers finer spectral detail.</p>
-        </div>
-        <div class="sam-compare__card" style="border-top-color: var(--sam-comet);">
-          <h3 class="sam-compare__card-title">Established practice and standards</h3>
-          <p class="sam-compare__card-desc">Decades of ISO 10816, ISO 20816 validation. Industry standards. Widespread expertise. If your fleet is 60-70% accessible, mature vibration is proven and familiar.</p>
-        </div>
-      </div>
-
-      <p style="font: 400 1rem/1.6 var(--sam-font); color: var(--sam-black); margin: var(--sp-08) 0; max-width: 70ch;"><strong>Caveat.</strong> These advantages apply to accessible assets. Once a motor sits beyond physical reach, you need ESA. Vibration alone can't solve the coverage problem.</p>
-
-      <div style="background: var(--sam-seashell); border: 1px solid var(--sam-border-light); padding: var(--sp-06); margin-top: var(--sp-06);">
-        <p style="font: 500 1rem/1.5 var(--sam-font); color: var(--sam-space-cadet); margin: 0 0 var(--sp-04) 0;"><strong>ESA constraints.</strong> Detection depends on drive topology (AC induction motors), sampling rate, and load variation. Very low-frequency drives (&lt;5 Hz VFD output) limit spectral resolution. Extremely short duty cycles (&lt;10 seconds) reduce analysis depth.</p>
-      </div>
-
-      <div style="background: rgba(13, 128, 80, 0.08); border: 1px solid rgba(13, 128, 80, 0.2); padding: var(--sp-06); margin-top: var(--sp-06);">
-        <p style="font: 500 1rem/1.5 var(--sam-font); color: var(--sam-space-cadet); margin: 0 0 var(--sp-03) 0;"><strong>What we miss.</strong> 90.8% detection rate across 1,874 resolved incidents in the SAM4 fleet (core three assets: pumps, fans, conveyors). Most misses were indirect — late-stage mechanical effects on inaccessible assets, extreme load variation masking signals, or drive configurations outside design parameters.</p>
-        <p style="font: 400 0.875rem/1.5 var(--sam-font); color: var(--sam-comet); margin: 0;">Why this transparency. No monitoring technology covers everything. Stating boundaries builds trust.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. DETECTION MATRIX (Seashell) -->
-  <section class="sam-compare__section-seashell" id="detection-matrix">
-    <div class="sam-compare__inner">
-      <p class="sam-overline" style="color: var(--sam-blue);">Fault-by-fault breakdown</p>
-      <h2>What each method detects</h2>
-      <p class="sam-compare__lead">This is a coverage map, not a scorecard. Use both where they add value.</p>
-
-      <div class="sam-detection-matrix">
-        <table class="sam-detection-matrix__table">
-          <thead>
-            <tr>
-              <th>Fault class</th>
-              <th>ESA (SAM4)</th>
-              <th>Vibration</th>
-              <th>Primary method</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="sam-detection-matrix__fault">Bearing damage</td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Detected via current signature modulation</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">High spectral resolution on accessible assets</span></td>
-              <td>Both. Complementary</td>
-            </tr>
-            <tr>
-              <td class="sam-detection-matrix__fault">Misalignment / imbalance</td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Load torque oscillation visible in current</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Classical vibration signature. Well-documented</span></td>
-              <td>Vibration (when accessible)</td>
-            </tr>
-            <tr class="sam-detection-matrix__esa-wins">
-              <td class="sam-detection-matrix__fault">Stator winding degradation</td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Primary ESA strength. Inter-turn shorts, insulation breakdown</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--none">Not detectable</span><span class="sam-dm-note">Electrical fault. No mechanical vibration signature</span></td>
-              <td>ESA only</td>
-            </tr>
-            <tr class="sam-detection-matrix__esa-wins">
-              <td class="sam-detection-matrix__fault">Rotor bar defects</td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Sideband analysis around supply frequency</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--limited">Limited</span><span class="sam-dm-note">Indirect. Only late-stage mechanical effects</span></td>
-              <td>ESA primary</td>
-            </tr>
-            <tr class="sam-detection-matrix__esa-wins">
-              <td class="sam-detection-matrix__fault">Supply asymmetry / power quality</td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Voltage and current imbalance measured directly</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--none">Not detectable</span><span class="sam-dm-note">Electrical condition. Outside vibration scope</span></td>
-              <td>ESA only</td>
-            </tr>
-            <tr class="sam-detection-matrix__esa-wins">
-              <td class="sam-detection-matrix__fault">Cavitation</td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Load pattern changes visible in current draw</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--moderate">Moderate</span><span class="sam-dm-note">High-frequency noise on accessible pumps</span></td>
-              <td>ESA primary</td>
-            </tr>
-            <tr class="sam-detection-matrix__esa-wins">
-              <td class="sam-detection-matrix__fault">Clogging / blockage</td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Power draw deviation from baseline</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--limited">Limited</span><span class="sam-dm-note">Indirect flow effects only</span></td>
-              <td>ESA primary</td>
-            </tr>
-            <tr class="sam-detection-matrix__esa-wins">
-              <td class="sam-detection-matrix__fault">Efficiency loss / BEP drift</td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Power consumption vs expected operating point</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--none">Not detectable</span><span class="sam-dm-note">Process condition. No vibration signature</span></td>
-              <td>ESA only</td>
-            </tr>
-            <tr>
-              <td class="sam-detection-matrix__fault">Belt / coupling wear</td>
-              <td><span class="sam-dm-badge sam-dm-badge--moderate">Moderate</span><span class="sam-dm-note">Torque variation detectable in advanced cases</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Distinctive frequency patterns on accessible drives</span></td>
-              <td>Vibration primary</td>
-            </tr>
-            <tr>
-              <td class="sam-detection-matrix__fault">Loose foundation / structural</td>
-              <td><span class="sam-dm-badge sam-dm-badge--limited">Limited</span><span class="sam-dm-note">Only if load profile is significantly affected</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Sub-harmonic and directional vibration patterns</span></td>
-              <td>Vibration primary</td>
-            </tr>
-            <tr>
-              <td class="sam-detection-matrix__fault">Gear mesh faults</td>
-              <td><span class="sam-dm-badge sam-dm-badge--limited">Limited</span><span class="sam-dm-note">Only if gearbox load couples to motor current</span></td>
-              <td><span class="sam-dm-badge sam-dm-badge--strong">Strong</span><span class="sam-dm-note">Gear mesh frequency and sidebands. Well-characterised</span></td>
-              <td>Vibration primary</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="sam-detection-matrix__legend">
-        <span class="sam-detection-matrix__legend-item"><span class="sam-dm-badge sam-dm-badge--strong" style="padding: 2px 8px;">Strong</span> High detection confidence</span>
-        <span class="sam-detection-matrix__legend-item"><span class="sam-dm-badge sam-dm-badge--moderate" style="padding: 2px 8px;">Moderate</span> Detectable with caveats</span>
-        <span class="sam-detection-matrix__legend-item"><span class="sam-dm-badge sam-dm-badge--limited" style="padding: 2px 8px;">Limited</span> Indirect or late-stage only</span>
-        <span class="sam-detection-matrix__legend-item"><span class="sam-dm-badge sam-dm-badge--none" style="padding: 2px 8px;">Not detectable</span> Outside method's scope</span>
-      </div>
-
-      <p class="sam-compare__table-note" style="margin-top: var(--sp-06);"><strong>How to read this matrix.</strong> Strong means high detection confidence. Moderate means detectable but with conditions or caveats. Limited means indirect or only late-stage. Not detectable means the method is not designed to address this fault class. Primary method column shows which approach is most effective for each fault.</p>
-    </div>
-  </section>
-
-  <!-- 6. BETTER TOGETHER (White) -->
-  <section class="sam-compare__section-white" id="complementary">
-    <div class="sam-compare__inner">
-      <p class="sam-overline" style="color: var(--sam-blue);">Better together</p>
-      <h2>100% of your fleet. Not 60-70%.</h2>
-
-      <div class="sam-compare__split">
-        <div>
-          <div class="sam-compare__split-title">Vibration</div>
-          <p class="sam-compare__split-stat">60-70%</p>
-          <p class="sam-compare__split-label">Accessible assets covered by traditional monitoring</p>
-          <p style="font: 400 1rem/1.6 var(--sam-font); color: var(--sam-black); margin-top: var(--sp-04);">High-resolution mechanical diagnostics. Decades of proven standards. Strong on accessible rotating equipment.</p>
-        </div>
-        <div>
-          <div class="sam-compare__split-title">ESA</div>
-          <p class="sam-compare__split-stat">30-40%</p>
-          <p class="sam-compare__split-label">Previously invisible assets now monitored</p>
-          <p style="font: 400 1rem/1.6 var(--sam-font); color: var(--sam-black); margin-top: var(--sp-04);">Submerged, enclosed, hazardous, remote. Electrical faults. Continuous monitoring. From the MCC cabinet.</p>
-        </div>
-      </div>
-
-      <div style="background: var(--sam-seashell); border: 1px solid var(--sam-border-light); padding: var(--sp-07); margin-top: var(--sp-08);">
-        <p style="font: 400 1rem/1.6 var(--sam-font); color: var(--sam-black); margin: 0;"><strong>Combining signal types.</strong> Vibration and ESA detect faults through different physics. Vibration reads mechanical motion. ESA reads electrical current signature. When both methods cover the same asset, you get two independent signals. Faults detected by both increase confidence. Faults detected by one only expand your detection map. The overlap isn't duplication. It's validation.</p>
-      </div>
-
-      <div style="margin-top: var(--sp-08); padding: var(--sp-07) 0; border-top: 2px solid var(--sam-space-cadet); text-align: center;">
-        <p style="font: 600 1.5rem/1.4 var(--sam-font); color: var(--sam-space-cadet); margin: 0 0 var(--sp-04) 0;">Vibration monitors what sensors can reach.<br>ESA monitors what sensors cannot.</p>
-        <p style="font: 400 1.125rem/1.6 var(--sam-font); color: var(--sam-comet); margin: 0;">Together they cover the entire plant.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. EVIDENCE (Seashell) -->
-  <section class="sam-compare__section-seashell" id="evidence">
-    <div class="sam-compare__inner">
-      <h2>ESA caught what vibration missed</h2>
-
-      <div class="sam-compare__evidence-grid">
-        <div class="sam-compare__evidence-card">
-          <p class="sam-compare__evidence-customer">Schiphol Airport</p>
-          <h3 class="sam-compare__evidence-title">Bearing damage missed by vibration, caught by ESA</h3>
-          <p class="sam-compare__evidence-body">Vibration sensors on the baggage handling gearbox motor showed no alarm. SAM4 detected the developing bearing degradation through current signature analysis. Post-maintenance inspection confirmed the damage. Across the deployment, SAM4 caught all 9 confirmed faults. Vibration missed 100% of them.</p>
-          <div class="sam-compare__evidence-stat">
-            <span class="sam-compare__evidence-stat-value">9/9</span>
-            <span class="sam-compare__evidence-stat-label">faults detected</span>
+      <!-- SECTION 1: HERO -->
+      <section class="sam-section sam-section--hero">
+        <div class="sam-section__inner">
+          <p class="sam-overline">Technology</p>
+          <h1>ESA & Vibration Monitoring</h1>
+          <p class="sam-subheading">Vibration monitoring has blind spots. ESA closes them.</p>
+          <p class="sam-lead">Vibration is excellent for accessible rotating equipment. But 30-40% of a typical fleet sits beyond sensor reach — submerged pumps, sealed drives, hazardous zones. ESA monitors those assets from the motor control cabinet. The question isn't which is better. It's which assets need which method.</p>
+          <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+            <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+            <a href="#detection-matrix" class="sam-btn sam-btn--secondary">See Detection Matrix ↓</a>
           </div>
         </div>
+      </section>
 
-        <div class="sam-compare__evidence-card">
-          <p class="sam-compare__evidence-customer">DuPont</p>
-          <h3 class="sam-compare__evidence-title">Faults found where vibration programme was mature</h3>
-          <p class="sam-compare__evidence-body">DuPont had a mature vibration programme across critical rotating equipment. ESA found faults vibration had not flagged. Over three years, those detections prevented unplanned shutdowns worth an estimated 1.7 million euro. The vibration programme was working. ESA caught what it could not.</p>
-          <div class="sam-compare__evidence-stat">
-            <span class="sam-compare__evidence-stat-value">€1.7M</span>
-            <span class="sam-compare__evidence-stat-label">estimated costs prevented</span>
+      <!-- SECTION 2: SIDE BY SIDE -->
+      <section class="sam-section">
+        <div class="sam-section__inner sam-section__inner--wide">
+          <h2>Side by side</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">The difference isn't which is better. It's where the sensor sits, what it can reach, and what it costs to deploy.</p>
+          
+          <div class="sam-table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 30%;">Criteria</th>
+                  <th style="width: 35%;">ESA (SAM4)</th>
+                  <th style="width: 35%;">Vibration Monitoring</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Sensor location</strong></td>
+                  <td>Motor control cabinet (MCC)</td>
+                  <td>On or near the asset</td>
+                </tr>
+                <tr>
+                  <td><strong>Physical access</strong></td>
+                  <td>Not required</td>
+                  <td>Required</td>
+                </tr>
+                <tr>
+                  <td><strong>Installation time</strong></td>
+                  <td>&lt;60 minutes per machine</td>
+                  <td>Hours to days</td>
+                </tr>
+                <tr>
+                  <td><strong>Production shutdown</strong></td>
+                  <td>None</td>
+                  <td>Often required for mounting</td>
+                </tr>
+                <tr>
+                  <td><strong>Monitoring mode</strong></td>
+                  <td>Continuous 24/7</td>
+                  <td>Continuous or periodic (route-based)</td>
+                </tr>
+                <tr>
+                  <td><strong>Submerged assets</strong></td>
+                  <td>Monitored from MCC</td>
+                  <td>Cannot mount sensor</td>
+                </tr>
+                <tr>
+                  <td><strong>ATEX/hazardous zones</strong></td>
+                  <td>No ATEX cert needed</td>
+                  <td>Requires ATEX-rated equipment</td>
+                </tr>
+                <tr>
+                  <td><strong>Enclosed/sealed assets</strong></td>
+                  <td>No disassembly needed</td>
+                  <td>Requires access to housing</td>
+                </tr>
+                <tr>
+                  <td><strong>Bearing fault detection</strong></td>
+                  <td>Detected</td>
+                  <td>High resolution</td>
+                </tr>
+                <tr>
+                  <td><strong>Misalignment/imbalance</strong></td>
+                  <td>Detected</td>
+                  <td>High resolution</td>
+                </tr>
+                <tr>
+                  <td><strong>Electrical faults</strong></td>
+                  <td>Primary strength</td>
+                  <td>Not detectable</td>
+                </tr>
+                <tr>
+                  <td><strong>Process deviations</strong></td>
+                  <td>Cavitation, clogging, efficiency</td>
+                  <td>Limited</td>
+                </tr>
+                <tr>
+                  <td><strong>Fleet scalability</strong></td>
+                  <td>Rapid deployment (1,000+ assets)</td>
+                  <td>Per-asset installation</td>
+                </tr>
+                <tr>
+                  <td><strong>Cost per monitoring point</strong></td>
+                  <td>Lower (MCC install)</td>
+                  <td>Higher for hard-to-reach assets</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="sam-compare__quote">
-        <p class="sam-compare__quote-text">"You don't know what you don't know. If you're not looking continuously, you're exposed."</p>
-        <p class="sam-compare__quote-cite">John McCrystal, DuPont</p>
-      </div>
-
-      <p style="font: 400 1rem/1.6 var(--sam-font); color: var(--sam-blue); margin: var(--sp-07) 0 0 0;"><a href="/proof" style="font: 500 1rem/1 var(--sam-font); color: var(--sam-blue); text-decoration: none;">Explore all customer results →</a></p>
-    </div>
-  </section>
-
-  <!-- 8. FAQ (White) -->
-  <section class="sam-compare__section-white" id="faq">
-    <div class="sam-compare__inner">
-      <h2>Common questions from reliability teams</h2>
-
-      <div class="sam-compare__faq-list">
-
-        <details class="sam-compare__faq-item" open>
-          <summary class="sam-compare__faq-question">Does SAM4 replace my vibration sensors?</summary>
-          <div class="sam-compare__faq-answer">
-            <p>No. SAM4 extends your monitoring programme to assets that vibration sensors can't reach. Submerged pumps, sealed blowers, ATEX zones, and remote sites. Where vibration is already installed and delivering value, keep it. SAM4 covers the 30-40% of your fleet that currently has zero visibility.</p>
-            <p>Many customers run both side by side. Vibration gives depth on accessible assets. ESA gives breadth across the fleet. Together they close more of the monitoring gap than either method alone.</p>
+      <!-- SECTION 3: BEYOND VIBRATION'S REACH -->
+      <section class="sam-section sam-section--light">
+        <div class="sam-section__inner">
+          <h2>Beyond vibration's reach</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">ESA's defining advantage is reach. These scenarios add coverage that vibration physically cannot provide.</p>
+          
+          <div class="sam-grid sam-grid--cols-3">
+            <div class="sam-card">
+              <h3>Submerged or enclosed</h3>
+              <p>Submersible pumps, sealed compressors, enclosed blowers. ESA monitors from the control cabinet. No disassembly.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Hazardous zones</h3>
+              <p>ATEX areas, confined spaces, flammable atmospheres. ESA sensors stay in the MCC. No explosion risk.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Remote sites</h3>
+              <p>Off-grid pumping stations, remote production lines. ESA transmits via cellular. No site visits.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Electrical faults</h3>
+              <p>Stator winding degradation, rotor bar defects, insulation breakdown. ESA detects these. Vibration cannot.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Between vibration rounds</h3>
+              <p>Continuous 24/7 monitoring catches faults between scheduled vibration routes.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Fleet-scale speed</h3>
+              <p>Deploy across 1,000+ assets in weeks. MCC installation &lt;60 minutes per asset.</p>
+            </div>
           </div>
-        </details>
+        </div>
+      </section>
 
-        <details class="sam-compare__faq-item">
-          <summary class="sam-compare__faq-question">Can ESA detect everything vibration detects?</summary>
-          <div class="sam-compare__faq-answer">
-            <p>Not everything. For high-resolution mechanical diagnostics on accessible assets. Specific bearing defect frequencies, gear mesh patterns, resonance analysis. Vibration sensors mounted on the machine provide finer spectral detail. ESA detects the same fault categories (bearings, misalignment, imbalance) but through electrical signatures rather than mechanical vibration. Where ESA adds capability is electrical faults (stator winding, rotor bar, insulation) and process deviations (cavitation, clogging, efficiency loss) that vibration doesn't see.</p>
+      <!-- SECTION 4: VIBRATION'S STRENGTHS -->
+      <section class="sam-section">
+        <div class="sam-section__inner">
+          <h2>Where vibration has the edge</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">Vibration monitoring has decades of field validation. For certain faults on accessible assets, it provides resolution ESA doesn't match.</p>
+          
+          <div class="sam-grid sam-grid--cols-2">
+            <div class="sam-card">
+              <h3>High-resolution mechanical diagnostics</h3>
+              <p>Vibration sensors mounted on machinery provide direct mechanical data. Bearing defect frequencies, gear mesh patterns, resonance analysis. For accessible assets, vibration delivers finer spectral detail.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Established standards</h3>
+              <p>Decades of ISO 10816, ISO 20816 validation. Industry standards. Widespread expertise. If your fleet is 60-70% accessible, mature vibration is proven and familiar.</p>
+            </div>
           </div>
-        </details>
 
-        <details class="sam-compare__faq-item">
-          <summary class="sam-compare__faq-question">What if I already have a mature vibration programme?</summary>
-          <div class="sam-compare__faq-answer">
-            <p>Good. That means 60-70% of your fleet is covered. SAM4 targets the remaining 30-40% your vibration programme physically can't reach. It also adds continuous monitoring between vibration routes on accessible assets, catching faults that develop between scheduled rounds. Your vibration analysts keep doing what they do best. SAM4 fills the gap in their coverage map. And gives them a second signal type to cross-reference when both methods cover the same asset.</p>
+          <div class="sam-callout">
+            <strong>Caveat:</strong> These advantages apply to accessible assets. Once a motor sits beyond physical reach, you need ESA.
           </div>
-        </details>
+        </div>
+      </section>
 
-        <details class="sam-compare__faq-item">
-          <summary class="sam-compare__faq-question">How does SAM4 handle false positives?</summary>
-          <div class="sam-compare__faq-answer">
-            <p>Every alert is reviewed by a Samotics reliability engineer before it reaches your team. The AI flags anomalies. A human validates the fault type, assesses severity, and writes a specific recommended action. The result: a 0.32% false communication rate across 1,874 resolved incidents with zero false anomalies. The 0.32% includes cases where the detection was correct but the fault classification was adjusted after customer feedback. Your maintenance team gets expert-validated insights, not raw alerts to triage. This is a core part of the service model. Not an optional add-on.</p>
+      <!-- SECTION 5: FAULT-BY-FAULT MATRIX -->
+      <section class="sam-section sam-section--light" id="detection-matrix">
+        <div class="sam-section__inner sam-section__inner--wide">
+          <h2>Fault-by-fault detection matrix</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">This is a coverage map, not a scorecard. Use both where they add value.</p>
+          
+          <div class="sam-table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 25%;">Fault Class</th>
+                  <th style="width: 25%;">ESA (SAM4)</th>
+                  <th style="width: 25%;">Vibration</th>
+                  <th style="width: 25%;">Primary Method</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Bearing damage</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Both (complementary)</td>
+                </tr>
+                <tr>
+                  <td><strong>Misalignment/imbalance</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Vibration (when accessible)</td>
+                </tr>
+                <tr>
+                  <td><strong>Stator winding degradation</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--none">Not detectable</span></td>
+                  <td>ESA only</td>
+                </tr>
+                <tr>
+                  <td><strong>Rotor bar defects</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--limited">Limited</span></td>
+                  <td>ESA primary</td>
+                </tr>
+                <tr>
+                  <td><strong>Supply asymmetry</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--none">Not detectable</span></td>
+                  <td>ESA only</td>
+                </tr>
+                <tr>
+                  <td><strong>Cavitation</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--moderate">Moderate</span></td>
+                  <td>ESA primary</td>
+                </tr>
+                <tr>
+                  <td><strong>Clogging/blockage</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--limited">Limited</span></td>
+                  <td>ESA primary</td>
+                </tr>
+                <tr>
+                  <td><strong>Efficiency loss</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--none">Not detectable</span></td>
+                  <td>ESA only</td>
+                </tr>
+                <tr>
+                  <td><strong>Belt/coupling wear</strong></td>
+                  <td><span class="sam-strength sam-strength--moderate">Moderate</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Vibration primary</td>
+                </tr>
+                <tr>
+                  <td><strong>Loose foundation</strong></td>
+                  <td><span class="sam-strength sam-strength--limited">Limited</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Vibration primary</td>
+                </tr>
+                <tr>
+                  <td><strong>Gear mesh faults</strong></td>
+                  <td><span class="sam-strength sam-strength--limited">Limited</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Vibration primary</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </details>
+        </div>
+      </section>
 
-      </div>
-    </div>
-  </section>
+      <!-- SECTION 6: BETTER TOGETHER -->
+      <section class="sam-section">
+        <div class="sam-section__inner">
+          <h2>Better together</h2>
+          <p class="sam-subheading">100% of your fleet. Not 60–70%.</p>
+          
+          <div class="sam-comparison-bar">
+            <div class="sam-comparison-bar__item">
+              <h3>60–70%</h3>
+              <p>Accessible assets covered by vibration</p>
+            </div>
+            <div class="sam-comparison-bar__item" style="background: rgba(255, 84, 41, 0.1);">
+              <h3 style="color: var(--orange);">30–40%</h3>
+              <p>Previously invisible assets now monitored by ESA</p>
+            </div>
+          </div>
 
-  <!-- 9. MEASUREMENT METHODOLOGY (Seashell) -->
-  <section class="sam-compare__section-seashell">
-    <div class="sam-compare__inner">
-      <div class="sam-compare__measurement">
-        <h3 class="sam-compare__measurement-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          How we measure detection performance
-        </h3>
-        <table class="sam-compare__measurement-table">
-          <tbody>
-            <tr>
-              <th>True Positive (TP)</th>
-              <td>A SAM4 finding that is confirmed by customer action, independent inspection, or observed failure.</td>
-            </tr>
-            <tr>
-              <th>False Positive (FP)</th>
-              <td>A SAM4 finding delivered to the customer that is not confirmed as a real fault.</td>
-            </tr>
-            <tr>
-              <th>False Negative (FN)</th>
-              <td>An asset failure that occurred without a prior SAM4 alert during the monitoring period.</td>
-            </tr>
-            <tr>
-              <th>False Positive Rate</th>
-              <td><code style="font-family: var(--sam-mono);">FP / (TP + FP)</code>. The proportion of delivered findings that were not confirmed.</td>
-            </tr>
-            <tr>
-              <th>Current rate</th>
-              <td><span style="font-family: var(--sam-mono); font-weight: 700;">0.32%</span> across 1,874 resolved incidents (January 2024 – February 2026). Includes false communications (correct detection, incorrect fault classification). Zero false anomalies in this period.</td>
-            </tr>
-            <tr>
-              <th>Scope</th>
-              <td>All validated findings delivered to customers across the active SAM4 fleet. Every alert is reviewed by a Samotics diagnostics engineer before delivery.</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="sam-compare__measurement-note">We publish this metric because we believe condition monitoring vendors should define their terms. If a vendor quotes an accuracy rate without stating the formula, sample, and time window. Ask them to.</p>
-      </div>
-    </div>
-  </section>
+          <p style="margin-top: var(--space-8); color: var(--comet);">Vibration and ESA detect faults through different physics. Vibration reads mechanical motion. ESA reads electrical current signature. When both methods cover the same asset, you get two independent signals. The overlap isn't duplication — it's validation.</p>
 
-  <!-- 10. CTA BLOCK (White) -->
-  <section class="sam-cta-block">
-    <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">See what ESA detects on your assets</h2>
-      <p class="sam-cta-block__sub">Request a demo and speak with a reliability engineer within 48 hours. Real data from real assets. No slides.</p>
-      <div class="sam-cta-block__actions">
-        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
-        <a href="/proof" class="sam-btn sam-btn--primary" style="background: var(--sam-teal); color: var(--sam-white);">See Customer Results</a>
-      </div>
-    </div>
-  </section>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-12);">
+            <div style="padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default); text-align: center;">
+              <p style="font-weight: 500; color: var(--space-cadet);">Vibration monitors what sensors can reach.</p>
+            </div>
+            <div style="padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default); text-align: center;">
+              <p style="font-weight: 500; color: var(--space-cadet);">ESA monitors what sensors cannot.</p>
+            </div>
+            <div style="padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default); text-align: center;">
+              <p style="font-weight: 500; color: var(--space-cadet);">Together they cover the entire plant.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-</main>
+      <!-- SECTION 7: CUSTOMER EVIDENCE -->
+      <section class="sam-section sam-section--light">
+        <div class="sam-section__inner">
+          <h2>Evidence from the field</h2>
+          
+          <div class="sam-grid sam-grid--cols-2">
+            <div class="sam-case-study">
+              <h3>Schiphol Airport</h3>
+              <p>"Bearing damage missed by vibration, caught by ESA. SAM4 detected developing bearing degradation through current signature analysis. Vibration sensors showed no alarm. Across the deployment, SAM4 caught all 9 confirmed faults."</p>
+              <div class="sam-case-study__metric">9 / 9 faults detected</div>
+            </div>
+            <div class="sam-case-study">
+              <h3>DuPont</h3>
+              <p>"DuPont had a mature vibration programme. ESA found faults vibration had not flagged. Over three years, those detections prevented unplanned shutdowns worth an estimated €1.7M."</p>
+              <div class="sam-case-study__metric">€1.7M costs prevented</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- Footer -->
-<!-- Footer -->
-<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+      <!-- SECTION 8: FAQ -->
+      <section class="sam-section">
+        <div class="sam-section__inner">
+          <h2>Common questions from reliability teams</h2>
+          
+          <div style="max-width: 800px;">
+            <div class="sam-accordion-item">
+              <button class="sam-accordion-button" type="button">
+                <span>Does SAM4 replace my vibration sensors?</span>
+                <svg class="sam-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="sam-accordion-content">
+                <div class="sam-accordion-text">
+                  <p>No. SAM4 extends your monitoring programme to assets vibration can't reach. Submerged pumps, sealed blowers, ATEX zones, remote sites. Where vibration delivers value, keep it. SAM4 covers the 30–40% with zero visibility. Many customers run both.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sam-accordion-item">
+              <button class="sam-accordion-button" type="button">
+                <span>Can ESA detect everything vibration detects?</span>
+                <svg class="sam-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="sam-accordion-content">
+                <div class="sam-accordion-text">
+                  <p>Not everything. For high-resolution mechanical diagnostics on accessible assets, vibration provides finer spectral detail. ESA adds electrical faults and process deviations that vibration doesn't see.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sam-accordion-item">
+              <button class="sam-accordion-button" type="button">
+                <span>What if I already have a mature vibration programme?</span>
+                <svg class="sam-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="sam-accordion-content">
+                <div class="sam-accordion-text">
+                  <p>Good. That means 60–70% of your fleet is covered. SAM4 targets the remaining 30–40%. It also adds continuous monitoring between vibration routes.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sam-accordion-item">
+              <button class="sam-accordion-button" type="button">
+                <span>How does SAM4 handle false positives?</span>
+                <svg class="sam-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="sam-accordion-content">
+                <div class="sam-accordion-text">
+                  <p>Every alert is reviewed by a reliability engineer. Result: 0.32% false communication rate across 1,874 resolved incidents with zero false anomalies.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TERMINAL CTA -->
+      <section class="sam-section sam-section--dark">
+        <div class="sam-section__inner">
+          <h2>See what ESA detects on your assets</h2>
+          <p style="font-size: 18px; color: rgba(255, 255, 255, 0.9); margin-bottom: var(--space-8);">Request a demo and speak with a reliability engineer within 48 hours. Real data from real assets. No slides.</p>
+          <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+            <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+            <a href="/proof" class="sam-btn sam-btn--secondary" style="--sam-white: var(--white);">See customer results →</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
   <div class="sam-footer__inner">
 
     <!-- Top: Logo + Tagline -->
@@ -2043,142 +1654,69 @@
   </div>
 </footer>
 
-<!-- Structured Data: Breadcrumb -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://samoticstestpage.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Technology",
-      "item": "https://samoticstestpage.com/technology/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "ESA & Vibration",
-      "item": "https://samoticstestpage.com/technology/esa-vs-vibration/"
-    }
-  ]
-}
-</script>
+  </div>
 
-<!-- JavaScript -->
-<script>
-(function () {
-  'use strict';
+  <script>
+    (function () {
+      'use strict';
 
-  var header = document.querySelector('.sam-header');
-  if (!header) return;
-
-  /* Scroll: toggle .is-scrolled */
-  var scrollThreshold = 20;
-  function onScroll() {
-    if (window.scrollY > scrollThreshold) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  /* Mobile Menu Toggle */
-  var hamburger = header.querySelector('.sam-hamburger');
-  var mobileMenu = document.getElementById('mobile-menu');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', function () {
-      var isOpen = mobileMenu.classList.toggle('is-open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-  }
-
-  /* Mobile Accordions */
-  var toggles = document.querySelectorAll('.sam-mobile-nav__toggle');
-  toggles.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var group = btn.closest('.sam-mobile-nav__group');
-      var isOpen = group.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', isOpen);
-    });
-  });
-
-  /* Footer Accordions (mobile) */
-  var footerCols = document.querySelectorAll('[data-footer-accordion]');
-  footerCols.forEach(function (col) {
-    var heading = col.querySelector('.sam-footer__col-heading');
-    if (!heading) return;
-    heading.addEventListener('click', function () {
-      if (window.innerWidth > 991) return;
-      col.classList.toggle('is-open');
-    });
-  });
-
-  /* Jump Nav: Active state on scroll + compact top */
-  var jumpNav = document.querySelector('.sam-jump-nav');
-  var jumpLinks = document.querySelectorAll('.sam-jump-nav__link');
-  var sections = [];
-  jumpLinks.forEach(function (link) {
-    var id = link.getAttribute('href').replace('#', '');
-    var section = document.getElementById(id);
-    if (section) sections.push({ link: link, el: section });
-  });
-
-  function updateJumpNav() {
-    /* Sync jump nav top with header compact state */
-    if (jumpNav) {
-      if (window.scrollY > 10) { jumpNav.classList.add('is-compact'); }
-      else { jumpNav.classList.remove('is-compact'); }
-    }
-
-    var scrollPos = window.scrollY + 200;
-    var active = null;
-    jumpLinks.forEach(function (l) { l.classList.remove('is-active'); });
-    sections.forEach(function (s) {
-      if (s.el.offsetTop <= scrollPos) { active = s; }
-    });
-    if (active) active.link.classList.add('is-active');
-  }
-
-  if (sections.length) {
-    window.addEventListener('scroll', updateJumpNav, { passive: true });
-    updateJumpNav();
-  }
-
-  /* Smooth Scroll for Jump Links */
-  jumpLinks.forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      var target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Header scroll effect
+      var header = document.querySelector('.sam-header');
+      if (header) {
+        var scrollThreshold = 20;
+        function onScroll() {
+          if (window.scrollY > scrollThreshold) {
+            header.classList.add('is-scrolled');
+          } else {
+            header.classList.remove('is-scrolled');
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
       }
-    });
-  });
 
-  /* FAQ Accordion Keyboard Support */
-  var faqItems = document.querySelectorAll('.sam-compare__faq-item');
-  faqItems.forEach(function (item) {
-    var summary = item.querySelector('.sam-compare__faq-question');
-    if (summary) {
-      summary.addEventListener('click', function (e) {
-        e.preventDefault();
-        item.open = !item.open;
+      // Mobile menu toggle
+      var hamburger = document.querySelector('.sam-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function () {
+          var isOpen = mobileMenu.classList.toggle('is-open');
+          hamburger.setAttribute('aria-expanded', isOpen);
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+      }
+
+      // Mobile nav submenus
+      document.querySelectorAll('.sam-mobile-nav__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var group = btn.closest('.sam-mobile-nav__group');
+          var isOpen = group.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
       });
-    }
-  });
 
-})();
-</script>
+      // Footer accordions (mobile)
+      document.querySelectorAll('[data-footer-accordion]').forEach(function (col) {
+        var heading = col.querySelector('.sam-footer__col-heading');
+        if (!heading) return;
+        heading.addEventListener('click', function () {
+          if (window.innerWidth > 991) return;
+          col.classList.toggle('is-open');
+        });
+      });
+
+      // FAQ accordions
+      document.querySelectorAll('.sam-accordion-button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.sam-accordion-item');
+          var content = item.querySelector('.sam-accordion-content');
+          var isOpen = btn.classList.toggle('is-open');
+          content.classList.toggle('is-open', isOpen);
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>

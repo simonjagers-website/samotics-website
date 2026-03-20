@@ -1,1690 +1,1096 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SAM4 real-time ESA analysis: detects bearing wear, cavitation, and misalignment in rotating equipment with proven 90.8% detection accuracy across core assets."><title>Technical Deep Dive | Samotics</title>
-  <link rel="canonical" href="https://samoticstestpage.com/technology/how-sam4-works/">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SAM4 real-time ESA analysis detects bearing wear, cavitation, and misalignment in rotating equipment. 90.8% detection accuracy across core assets. Full methodology published.">
+  <title>Technical Deep Dive — From Electrical Signal to Validated Diagnostic | Samotics</title>
+
   <style>
-    @font-face {
-      font-family: 'IBM Plex Sans';
-      font-style: normal;
-      font-weight: 100 700;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+    /* ============================================================================
+       RESET & BASE
+       ============================================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    @font-face {
-      font-family: 'IBM Plex Sans';
-      font-style: italic;
-      font-weight: 100 700;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
+
+    html {
+      scroll-behavior: smooth;
     }
-    @font-face {
-      font-family: 'JetBrains Mono';
-      font-style: normal;
-      font-weight: 100 800;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+
+    body {
+      font-family: var(--font-primary);
+      background-color: var(--white);
+      color: var(--space-cadet);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    @font-face {
-      font-family: 'JetBrains Mono';
-      font-style: italic;
-      font-weight: 100 800;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
+
+    /* ============================================================================
+       CSS TOKENS
+       ============================================================================ */
+    :root {
+      /* Colors */
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --dark-blue-300: #A0A0B8;
+
+      /* Typography */
+      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-data: 'JetBrains Mono', 'Consolas', monospace;
+
+      /* Spacing */
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-30: 120px;
+
+      /* Radius & Shadow */
+      --radius-default: 4px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
+
+      /* Motion */
+      --motion-fast: 100ms;
+      --motion-normal: 300ms;
+
+      /* Layout */
+      --max-width: 1120px;
+      --max-width-wide: 1280px;
+      --header-h: 80px;
+      --header-h-compact: 64px;
+    }
+
+    /* ============================================================================
+       TYPOGRAPHY
+       ============================================================================ */
+    h1 {
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: var(--space-6);
+    }
+
+    h2 {
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+      margin-bottom: var(--space-6);
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: var(--space-4);
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+      max-width: 65ch;
+    }
+
+    .sam-overline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+      display: block;
+    }
+
+    .sam-lead {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--comet);
+      max-width: 70ch;
+      margin-bottom: var(--space-8);
+    }
+
+    /* ============================================================================
+       LAYOUT
+       ============================================================================ */
+    .sam-page {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .sam-container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .sam-container--wide {
+      max-width: var(--max-width-wide);
+    }
+
+    section {
+      width: 100%;
+    }
+
+    /* ============================================================================
+       HERO SECTION
+       ============================================================================ */
+    .sam-hero {
+      background-color: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-30) 0;
+      position: relative;
+    }
+
+    .sam-hero__inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .sam-hero h1 {
+      color: var(--white);
+      max-width: 55ch;
+    }
+
+    .sam-hero .sam-lead {
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 70ch;
+    }
+
+    /* Hero KPI Stats */
+    .sam-hero__stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+      max-width: 100%;
+    }
+
+    .sam-hero__stat {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .sam-hero__stat-value {
+      font-family: var(--font-data);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--orange);
+      line-height: 1.2;
+    }
+
+    .sam-hero__stat-label {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+    }
+
+    /* ============================================================================
+       CONTENT SECTIONS
+       ============================================================================ */
+    .sam-content-section {
+      padding: var(--space-30) 0;
+    }
+
+    .sam-content-section--white {
+      background-color: var(--white);
+    }
+
+    .sam-content-section--seashell {
+      background-color: var(--seashell);
+    }
+
+    .sam-content-section--dark {
+      background-color: var(--space-cadet);
+      color: var(--white);
+    }
+
+    .sam-content-section--dark h2,
+    .sam-content-section--dark h3 {
+      color: var(--white);
+    }
+
+    .sam-content-section--dark p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .sam-content-section__intro {
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-content-section__intro p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--comet);
+      max-width: 70ch;
+    }
+
+    .sam-content-section--dark .sam-content-section__intro p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* ============================================================================
+       CARD GRID
+       ============================================================================ */
+    .sam-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-card-grid--2col {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+
+    .sam-card {
+      background-color: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      transition: box-shadow var(--motion-normal) ease-out;
+    }
+
+    .sam-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-card h3 {
+      margin-bottom: var(--space-4);
+      color: var(--space-cadet);
+    }
+
+    .sam-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--comet);
+      margin-bottom: 0;
+    }
+
+    /* ============================================================================
+       CALLOUT / SIDEBAR
+       ============================================================================ */
+    .sam-callout {
+      background-color: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      margin: var(--space-10) 0;
+      border-left: 4px solid var(--orange);
+    }
+
+    .sam-callout p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 0;
+      color: var(--space-cadet);
+    }
+
+    .sam-callout h4 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--orange);
+      margin-bottom: var(--space-3);
+    }
+
+    /* ============================================================================
+       TWO-COLUMN LAYOUT
+       ============================================================================ */
+    .sam-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      align-items: start;
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-two-col__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .sam-two-col__subsection h3 {
+      color: var(--space-cadet);
+      margin-bottom: var(--space-3);
+    }
+
+    .sam-two-col__subsection p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--comet);
+      margin-bottom: 0;
+    }
+
+    /* ============================================================================
+       PIPELINE STEPS
+       ============================================================================ */
+    .sam-pipeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-pipeline__step {
+      background-color: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      counter-increment: step-counter;
+    }
+
+    .sam-pipeline__step::before {
+      content: counter(step-counter);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background-color: var(--orange);
+      color: var(--white);
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: var(--space-4);
+    }
+
+    .sam-pipeline__step h3 {
+      font-size: 16px;
+      margin-bottom: var(--space-3);
+    }
+
+    .sam-pipeline__step p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 0;
+      color: var(--comet);
+    }
+
+    .sam-pipeline {
+      counter-reset: step-counter;
+    }
+
+    /* ============================================================================
+       KPI CARD HORIZONTAL
+       ============================================================================ */
+    .sam-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-kpi-card {
+      background-color: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      text-align: center;
+    }
+
+    .sam-kpi-card__value {
+      font-family: var(--font-data);
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--orange);
+      margin-bottom: var(--space-3);
+      line-height: 1.2;
+    }
+
+    .sam-kpi-card__label {
+      font-size: 13px;
+      color: var(--comet);
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ============================================================================
+       METHODOLOGY / DEFINITIONS
+       ============================================================================ */
+    .sam-definitions {
+      background-color: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-definition {
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-6);
+      border-bottom: 1px solid var(--border-grey);
+    }
+
+    .sam-definition:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .sam-definition__term {
+      font-weight: 600;
+      color: var(--space-cadet);
+      font-size: 15px;
+      margin-bottom: var(--space-2);
+    }
+
+    .sam-definition__desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--comet);
+      margin-bottom: 0;
+    }
+
+    /* ============================================================================
+       CTA BUTTON
+       ============================================================================ */
+    .sam-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background-color: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-default);
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color var(--motion-normal) ease-out;
+      white-space: nowrap;
+    }
+
+    .sam-cta:hover {
+      background-color: #D7411B;
+    }
+
+    .sam-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background-color: transparent;
+      color: var(--comet);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--motion-normal) ease-out;
+    }
+
+    .sam-cta-secondary:hover {
+      background-color: var(--seashell);
+      border-color: var(--comet);
+    }
+
+    .sam-cta-link {
+      color: var(--blue-600);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--motion-normal) ease-out;
+    }
+
+    .sam-cta-link:hover {
+      border-bottom-color: var(--blue-600);
+    }
+
+    /* ============================================================================
+       HEADER
+       ============================================================================ */
+    .sam-header {
+      background-color: var(--space-cadet);
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sam-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-h);
+      padding: 0 var(--space-6);
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .sam-header__logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      margin-right: auto;
+      flex-shrink: 0;
+    }
+
+    .sam-logo {
+      height: 32px;
+      width: auto;
+    }
+
+    .sam-logo--dark {
+      display: none;
+    }
+
+    .sam-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      flex: 1;
+      justify-content: center;
+      margin: 0 var(--space-8);
+    }
+
+    .sam-nav__link {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color var(--motion-fast) ease-out;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) 0;
+    }
+
+    .sam-nav__link:hover {
+      color: var(--white);
+    }
+
+    .sam-nav__item {
+      position: relative;
+    }
+
+    .sam-nav__item--has-dropdown:hover .sam-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .sam-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background-color: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      min-width: 280px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--motion-normal) ease-out;
+      margin-top: var(--space-3);
+      box-shadow: 0 10px 25px rgba(31, 31, 51, 0.1);
+      z-index: 1001;
+    }
+
+    .sam-dropdown__item {
+      display: block;
+      padding: var(--space-4) var(--space-6);
+      text-decoration: none;
+      color: var(--space-cadet);
+      font-size: 13px;
+      border-bottom: 1px solid var(--border-grey);
+      transition: background-color var(--motion-fast) ease-out;
+    }
+
+    .sam-dropdown__item:last-child {
+      border-bottom: none;
+    }
+
+    .sam-dropdown__item:hover {
+      background-color: var(--seashell);
+    }
+
+    .sam-dropdown__label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+      color: var(--space-cadet);
+    }
+
+    .sam-dropdown__desc {
+      display: block;
+      font-size: 12px;
+      color: var(--comet);
+    }
+
+    .sam-header__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .sam-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-3);
+      margin-left: var(--space-4);
+    }
+
+    .sam-hamburger__line {
+      width: 24px;
+      height: 2px;
+      background-color: var(--white);
+      transition: all var(--motion-normal) ease-out;
+    }
+
+    .sam-mobile-menu {
+      display: none;
+      position: absolute;
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      background-color: var(--space-cadet);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      max-height: calc(100vh - var(--header-h));
+      overflow-y: auto;
+      z-index: 999;
+    }
+
+    .sam-mobile-menu.is-open {
+      display: block;
+    }
+
+    .sam-mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: var(--space-4) 0;
+    }
+
+    .sam-mobile-nav__link {
+      padding: var(--space-4) var(--space-6);
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    .sam-mobile-nav__link:hover {
+      color: var(--white);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .sam-mobile-nav__group {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sam-mobile-nav__toggle {
+      width: 100%;
+      padding: var(--space-4) var(--space-6);
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    .sam-mobile-nav__toggle:hover {
+      color: var(--white);
+    }
+
+    .sam-mobile-nav__arrow {
+      color: currentColor;
+      transition: transform var(--motion-normal) ease-out;
+    }
+
+    .sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow {
+      transform: rotate(180deg);
+    }
+
+    .sam-mobile-nav__sub {
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .sam-mobile-nav__sub.is-open {
+      display: flex;
+    }
+
+    .sam-mobile-nav__sub a {
+      padding: var(--space-3) var(--space-8);
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 13px;
+      border-bottom: none;
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    .sam-mobile-nav__sub a:hover {
+      color: var(--white);
+      background-color: transparent;
+    }
+
+    .sam-mobile-nav__cta-wrap {
+      padding: var(--space-6);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sam-mobile-nav__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 24px;
+      background-color: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-default);
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color var(--motion-normal) ease-out;
+    }
+
+    .sam-mobile-nav__cta:hover {
+      background-color: #D7411B;
+    }
+
+    .sam-skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background-color: var(--orange);
+      color: var(--white);
+      padding: 8px 16px;
+      text-decoration: none;
+      z-index: 100;
+      border-radius: 0 0 4px 0;
+    }
+
+    .sam-skip-link:focus {
+      top: 0;
+    }
+
+    /* ============================================================================
+       FOOTER
+       ============================================================================ */
+    .sam-footer {
+      background-color: var(--space-cadet);
+      color: var(--white);
+      margin-top: auto;
+    }
+
+    .sam-footer__inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-24) var(--space-6) var(--space-12);
+    }
+
+    .sam-footer__top {
+      margin-bottom: var(--space-16);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .sam-footer__logo {
+      display: inline-flex;
+      text-decoration: none;
+    }
+
+    .sam-footer__logo img {
+      height: 32px;
+      width: auto;
+    }
+
+    .sam-footer__tagline {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 50ch;
+    }
+
+    .sam-footer__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--space-10);
+      margin-bottom: var(--space-16);
+    }
+
+    .sam-footer__col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .sam-footer__col-heading {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: var(--space-2);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sam-footer__col-heading::after {
+      content: '';
+      width: 0;
+      height: 0;
+      display: none;
+    }
+
+    .sam-footer__col-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .sam-footer__col-links a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    .sam-footer__col-links a:hover {
+      color: var(--white);
+    }
+
+    .sam-footer__divider {
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-footer__certs {
+      display: flex;
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+      align-items: center;
+    }
+
+    .sam-footer__certs a {
+      display: inline-flex;
+      text-decoration: none;
+      transition: opacity var(--motion-fast) ease-out;
+    }
+
+    .sam-footer__certs a:hover {
+      opacity: 0.8;
+    }
+
+    .sam-footer__certs img {
+      height: 72px;
+      width: auto;
+    }
+
+    .sam-footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sam-footer__copyright {
+      display: block;
+    }
+
+    .sam-footer__legal {
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    .sam-footer__legal a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    .sam-footer__legal a:hover {
+      color: var(--white);
+    }
+
+    .sam-footer__legal-sep {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .sam-footer__social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.7);
+      transition: color var(--motion-fast) ease-out;
+      text-decoration: none;
+    }
+
+    .sam-footer__social:hover {
+      color: var(--white);
+    }
+
+    /* ============================================================================
+       RESPONSIVE
+       ============================================================================ */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+
+      p, .sam-lead {
+        font-size: 15px;
+      }
+
+      .sam-header__inner {
+        height: var(--header-h-compact);
+      }
+
+      .sam-nav {
+        display: none;
+      }
+
+      .sam-hamburger {
+        display: flex;
+      }
+
+      .sam-hero {
+        padding: var(--space-24) 0;
+      }
+
+      .sam-hero h1 {
+        font-size: 32px;
+      }
+
+      .sam-hero__stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sam-content-section {
+        padding: var(--space-24) 0;
+      }
+
+      .sam-card-grid--2col {
+        grid-template-columns: 1fr;
+      }
+
+      .sam-two-col {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+      }
+
+      .sam-pipeline {
+        grid-template-columns: 1fr;
+      }
+
+      .sam-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sam-footer__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sam-footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .sam-footer__certs {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .sam-hero__stat-value {
+        font-size: 24px;
+      }
+
+      .sam-hero__stats {
+        grid-template-columns: 1fr;
+      }
+
+      .sam-kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sam-hero {
+        padding: var(--space-16) 0;
+      }
+
+      .sam-content-section {
+        padding: var(--space-16) 0;
+      }
     }
   </style>
-  <style>
-    /* Header CSS */
-    /* ============================================================
-   SAMOTICS HEADER — CSS
-   Paste into Bricks Code Element → CSS tab
-   ============================================================ */
-
-/* ── Tokens ── */
-:root {
-  --sam-space-cadet: #1F1F33;
-  --sam-orange: #FF5429;
-  --sam-orange-dark: #D7411B;
-  --sam-blue: #005CBA;
-  --sam-white: #FFFFFF;
-  --sam-seashell: #F8F5F2;
-  --sam-black: #111111;
-  --sam-comet: #6B6B7F;
-  --sam-border-light: #E8E4E0;
-  --sam-header-bg: #1F1F33;
-  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --sam-header-h: 80px;
-  --sam-header-h-compact: 64px;
-  --sam-transition: 150ms ease-out;
-}
-
-/* ── Skip Link ── */
-.sam-skip-link {
-  position: absolute;
-  top: -100%;
-  left: 16px;
-  z-index: 10001;
-  padding: 8px 16px;
-  background: var(--sam-orange);
-  color: var(--sam-white);
-  font: 600 14px/1 var(--sam-font);
-  text-decoration: none;
-  border-radius: 0;
-}
-.sam-skip-link:focus {
-  top: 8px;
-}
-
-/* ── Header Shell ── */
-.sam-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  height: var(--sam-header-h);
-  background: var(--sam-header-bg);
-  transition: height var(--sam-transition),
-              box-shadow var(--sam-transition);
-}
-.sam-header.is-scrolled {
-  height: var(--sam-header-h-compact);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-}
-
-/* ── Inner Container ── */
-.sam-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* ── Logo ── */
-.sam-header__logo {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-.sam-logo {
-  height: auto;
-  transition: transform 200ms ease-out, filter 200ms ease-out;
-}
-/* Logo: white version on dark header */
-.sam-logo--white {
-  
-}
-.sam-logo--dark {
-  display: none;
-}
-.sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
-
-/* ── Desktop Nav ── */
-.sam-nav {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-/* Nav Links — <a> tags so they're clickable AND hoverable */
-.sam-nav__link {
-  font: 500 15px/1 var(--sam-font);
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  padding: 8px 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  position: relative;
-  transition: color var(--sam-transition);
-  white-space: nowrap;
-}
-.sam-nav__link:hover,
-.sam-nav__link:focus-visible {
-  color: var(--sam-white);
-}
-
-/* Active page indicator */
-.sam-nav__link[aria-current="page"]::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--sam-orange);
-}
-
-/* Scrolled state */
-.sam-header.is-scrolled .sam-nav__link {
-  color: rgba(255, 255, 255, 0.85);
-}
-.sam-header.is-scrolled .sam-nav__link:hover,
-.sam-header.is-scrolled .sam-nav__link:focus-visible {
-  color: var(--sam-white);
-}
-
-/* Chevron */
-.sam-nav__chevron {
-  transition: transform var(--sam-transition);
-  flex-shrink: 0;
-}
-
-/* ── Dropdown Panels ── */
-.sam-nav__item {
-  position: relative;
-}
-.sam-dropdown {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-4px);
-  min-width: 300px;
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-radius: 0;
-  padding: 8px 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--sam-transition),
-              visibility var(--sam-transition),
-              transform var(--sam-transition);
-  pointer-events: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-/* Invisible bridge: closes the hover gap between trigger and dropdown */
-.sam-nav__item--has-dropdown::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 16px;
-}
-
-/* HOVER to open dropdowns */
-.sam-nav__item--has-dropdown:hover .sam-dropdown,
-.sam-nav__item--has-dropdown:focus-within .sam-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
-}
-.sam-nav__item--has-dropdown:hover .sam-nav__chevron,
-.sam-nav__item--has-dropdown:focus-within .sam-nav__chevron {
-  transform: rotate(180deg);
-}
-
-/* Dropdown Items */
-.sam-dropdown__item {
-  display: flex;
-  flex-direction: column;
-  padding: 12px 24px;
-  text-decoration: none;
-  transition: background-color 100ms ease-out;
-}
-.sam-dropdown__item:hover,
-.sam-dropdown__item:focus-visible {
-  background: var(--sam-seashell);
-}
-.sam-dropdown__label {
-  font: 500 15px/1.3 var(--sam-font);
-  color: var(--sam-black);
-}
-.sam-dropdown__desc {
-  font: 400 13px/1.4 var(--sam-font);
-  color: var(--sam-comet);
-  margin-top: 2px;
-}
-.sam-dropdown__badge {
-  display: inline-block;
-  font: 600 10px/1 var(--sam-font);
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--sam-white); background: var(--sam-space-cadet);
-  padding: 3px 6px; border-radius: 3px;
-  margin-left: 6px; vertical-align: middle;
-}
-
-/* ── CTA Button ── */
-.sam-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 24px;
-  background: var(--sam-orange);
-  color: var(--sam-black);
-  font: 600 14px/1 var(--sam-font);
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  border-radius: 0;
-  border: none;
-  white-space: nowrap;
-  transition: background-color var(--sam-transition);
-  cursor: pointer;
-}
-.sam-cta:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-}
-.sam-header.is-scrolled .sam-cta {
-  background: var(--sam-orange);
-  color: var(--sam-black);
-}
-.sam-header.is-scrolled .sam-cta:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-}
-
-/* ── Header Actions Wrapper ── */
-.sam-header__actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
-
-/* ── Hamburger (mobile only) ── */
-.sam-hamburger {
-  display: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.sam-hamburger__line {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--sam-white);
-  transition: transform 200ms ease-out, opacity 200ms ease-out;
-  border-radius: 0;
-}
-/* Open state */
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) {
-  opacity: 0;
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-/* ── Mobile Menu ── */
-.sam-mobile-menu {
-  display: none;
-  position: fixed;
-  top: var(--sam-header-h-compact);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--sam-white);
-  overflow-y: auto;
-  z-index: 999;
-  padding: 24px 16px;
-  flex-direction: column;
-}
-.sam-mobile-menu.is-open {
-  display: flex;
-  animation: samSlideIn 200ms ease-out;
-}
-
-@keyframes samSlideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-/* Mobile Nav Links */
-.sam-mobile-nav__link {
-  display: block;
-  padding: 16px 0;
-  font: 500 16px/1 var(--sam-font);
-  color: var(--sam-black);
-  text-decoration: none;
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__link:hover {
-  color: var(--sam-orange);
-}
-
-/* Mobile Accordion Groups */
-.sam-mobile-nav__group {
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 16px 0;
-  font: 500 16px/1 var(--sam-font);
-  color: var(--sam-black);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.sam-mobile-nav__arrow {
-  transition: transform 200ms ease-out;
-  flex-shrink: 0;
-}
-.sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow {
-  transform: rotate(180deg);
-}
-
-/* Sub-links (hidden by default) */
-.sam-mobile-nav__sub {
-  display: none;
-  flex-direction: column;
-  padding: 0 0 8px 16px;
-}
-.sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
-  display: flex;
-}
-.sam-mobile-nav__sub a {
-  display: block;
-  padding: 12px 0;
-  font: 400 15px/1 var(--sam-font);
-  color: var(--sam-black);
-  text-decoration: none;
-}
-.sam-mobile-nav__sub a:hover {
-  color: var(--sam-orange);
-}
-
-/* Mobile CTA */
-.sam-mobile-nav__cta-wrap {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 14px 0;
-  background: var(--sam-orange);
-  color: var(--sam-white);
-  font: 600 16px/1 var(--sam-font);
-  text-decoration: none;
-  border-radius: 0;
-  transition: background-color var(--sam-transition);
-}
-.sam-mobile-nav__cta:hover {
-  background: var(--sam-orange-dark);
-}
-
-/* ── Focus Styles ── */
-.sam-nav__link:focus-visible,
-.sam-dropdown__item:focus-visible,
-.sam-cta:focus-visible,
-.sam-hamburger:focus-visible,
-.sam-mobile-nav__toggle:focus-visible,
-.sam-mobile-nav__link:focus-visible,
-.sam-mobile-nav__sub a:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-
-/* ── Reduced Motion ── */
-@media (prefers-reduced-motion: reduce) {
-  .sam-header,
-  .sam-dropdown,
-  .sam-nav__chevron,
-  .sam-hamburger__line,
-  .sam-mobile-nav__arrow,
-  .sam-logo {
-    transition: none !important;
-    animation: none !important;
-  }
-}
-
-/* ── Responsive ── */
-@media (max-width: 991px) {
-  .sam-header {
-    height: var(--sam-header-h-compact);
-  }
-  .sam-header__inner {
-    padding: 0 16px;
-  }
-  .sam-nav {
-    display: none;
-  }
-  .sam-hamburger {
-    display: flex;
-  }
-  .sam-cta {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-}
-
-    /* Footer CSS */
-    /* ============================================================
-   SAMOTICS FOOTER — CSS
-   Paste into Bricks Code Element → CSS tab
-   ============================================================ */
-
-/* ── Pre-footer CTA Section ── */
-.sam-prefooter {
-  background: var(--sam-seashell, #F8F5F2);
-  padding: 96px 0;
-}
-.sam-prefooter__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 24px;
-}
-.sam-prefooter__heading {
-  font: 600 48px/1.15 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: var(--sam-space-cadet, #1F1F33);
-  letter-spacing: -0.01em;
-  margin: 0;
-}
-.sam-prefooter__sub {
-  font: 400 18px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: var(--sam-comet, #6B6B7F);
-  margin: 0;
-  max-width: 520px;
-}
-.sam-prefooter__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 32px;
-  background: var(--sam-orange, #FF5429);
-  color: #FFFFFF;
-  font: 600 16px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  border-radius: 0;
-  border: none;
-  cursor: pointer;
-  transition: background-color 150ms ease-out;
-}
-.sam-prefooter__cta:hover {
-  background: var(--sam-orange-dark, #D7411B);
-}
-
-/* ── Footer Shell ── */
-.sam-footer {
-  background: var(--sam-space-cadet, #1F1F33);
-  padding-top: 96px;
-}
-.sam-footer__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* ── Top: Logo + Tagline ── */
-.sam-footer__top {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 64px;
-}
-.sam-footer__logo {
-  display: inline-flex;
-  text-decoration: none;
-}
-.sam-footer__logo img {
-  width: 140px;
-  height: auto;
-}
-.sam-footer__tagline {
-  font: 400 16px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0;
-  max-width: 360px;
-}
-
-/* ── 5-Column Nav Grid ── */
-.sam-footer__grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 32px;
-  margin-bottom: 64px;
-}
-
-/* Column */
-.sam-footer__col-heading {
-  font: 600 14px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: #FFFFFF;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0 0 16px 0;
-}
-.sam-footer__col-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.sam-footer__col-links a {
-  font: 400 14px/1.4 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
-  transition: color 150ms ease-out;
-}
-.sam-footer__col-links a:hover,
-.sam-footer__col-links a:focus-visible {
-  color: #FFFFFF;
-}
-
-/* ── Divider ── */
-.sam-footer__divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-
-/* ── Certification Badges ── */
-.sam-footer__certs {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 24px 0;
-}
-.sam-footer__certs a {
-  display: block;
-  opacity: 0.7;
-  transition: opacity 150ms ease-out;
-}
-.sam-footer__certs a:hover {
-  opacity: 1;
-}
-.sam-footer__certs img {
-  display: block;
-  background: var(--sam-white);
-  border-radius: 4px;
-  padding: 4px;
-}
-/* ── Bottom Bar ── */
-.sam-footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 0;
-}
-.sam-footer__bottom-left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.sam-footer__copyright {
-  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.4);
-}
-
-/* LinkedIn */
-.sam-footer__social {
-  display: inline-flex;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.4);
-  transition: color 150ms ease-out;
-}
-.sam-footer__social:hover {
-  color: #FFFFFF;
-}
-
-/* Legal Links */
-.sam-footer__legal {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.sam-footer__legal a {
-  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.4);
-  text-decoration: none;
-  transition: color 150ms ease-out;
-}
-.sam-footer__legal a:hover,
-.sam-footer__legal a:focus-visible {
-  color: #FFFFFF;
-}
-.sam-footer__legal-sep {
-  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.2);
-}
-
-/* ── Focus Styles ── */
-.sam-prefooter__cta:focus-visible,
-.sam-footer__col-links a:focus-visible,
-.sam-footer__social:focus-visible,
-.sam-footer__legal a:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-
-/* ── Reduced Motion ── */
-@media (prefers-reduced-motion: reduce) {
-  .sam-prefooter__cta,
-  .sam-footer__col-links a,
-  .sam-footer__social,
-  .sam-footer__legal a {
-    transition: none !important;
-  }
-}
-
-/* ── Responsive ── */
-@media (max-width: 991px) {
-  .sam-prefooter {
-    padding: 64px 0;
-  }
-  .sam-prefooter__inner {
-    padding: 0 16px;
-  }
-  .sam-prefooter__heading {
-    font-size: 32px;
-  }
-
-  .sam-footer {
-    padding-top: 64px;
-  }
-  .sam-footer__inner {
-    padding: 0 16px;
-  }
-  .sam-footer__top {
-    margin-bottom: 48px;
-  }
-
-  /* Grid → single column accordion */
-  .sam-footer__grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-    margin-bottom: 48px;
-  }
-
-  .sam-footer__col {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 0;
-  }
-  .sam-footer__col-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    margin: 0;
-    cursor: pointer;
-  }
-  .sam-footer__col-heading::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-right: 2px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
-    transform: rotate(45deg);
-    transition: transform 200ms ease-out;
-    flex-shrink: 0;
-  }
-  .sam-footer__col.is-open .sam-footer__col-heading::after {
-    transform: rotate(-135deg);
-  }
-
-  .sam-footer__col-links {
-    display: none;
-    padding: 0 0 16px 0;
-  }
-  .sam-footer__col.is-open .sam-footer__col-links {
-    display: flex;
-  }
-
-  /* Bottom bar stacks */
-  .sam-footer__bottom {
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-  }
-}
-    /* Page CSS */
-    /* ============================================================
-   SAMOTICS — HOW SAM4 WORKS (Technical Depth) — CSS
-   Paste into Bricks Code Element → CSS tab
-   ============================================================ */
-
-/* ── Tokens (extend header/footer tokens) ── */
-:root {
-  /* Core Palette */
-  --sam-space-cadet:     #1F1F33;
-  --sam-orange:          #FF5429;
-  --sam-orange-dark:     #D7411B;
-  --sam-orange-deep:     #A33013;
-  --sam-blue:            #005CBA;
-  --sam-blue-dark:       #004179;
-  --sam-blue-light:      #B3DAFF;
-  --sam-teal:            #0098AC;
-  --sam-teal-dark:       #006C6C;
-  --sam-white:           #FFFFFF;
-  --sam-seashell:        #F8F5F2;
-  --sam-black:           #111111;
-  --sam-comet:           #6B6B7F;
-  --sam-muted-dark:      #B0B0C8;
-  --sam-border-light:    #E8E4E0;
-  --sam-dark-elevated:   #2A2A42;
-
-  /* Fonts */
-  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-
-  /* Spacing */
-  --sp-01: 2px;
-  --sp-02: 4px;
-  --sp-03: 8px;
-  --sp-04: 12px;
-  --sp-05: 16px;
-  --sp-06: 24px;
-  --sp-07: 32px;
-  --sp-08: 48px;
-  --sp-09: 64px;
-  --sp-10: 96px;
-  --sp-11: 128px;
-  --sp-12: 160px;
-
-  /* Shadows */
-  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
-  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
-  --shadow-lg:  0 12px 32px rgba(31,31,51,0.14);
-  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
-
-  /* Transitions */
-  --ease: 150ms ease-out;
-}
-
-/* ── Reset ── */
-.sam-tech {
-  overflow-x: hidden;
-}
-
-/* ── Shared: Overline ── */
-.overline {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  margin: 0 0 var(--sp-06) 0;
-  color: var(--sam-teal-dark);
-}
-.overline--light {
-  color: var(--sam-orange);
-}
-
-/* ── Shared: Lead ── */
-.lead {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: var(--sam-space-cadet);
-  max-width: 60ch;
-  margin: 0;
-}
-.lead--light {
-  color: rgba(255,255,255,0.85);
-}
-
-/* ── Shared: Text Link ── */
-.sam-text-link {
-  font-family: var(--sam-font);
-  font-weight: 500;
-  font-size: 1rem;
-  color: var(--sam-teal-dark);
-  text-decoration: none;
-  transition: color var(--ease);
-}
-.sam-text-link:hover {
-  color: var(--sam-space-cadet);
-}
-.sam-text-link:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-
-/* ── Image Placeholders ── */
-.sam-placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:var(--sam-seashell,#F8F5F2);border:2px dashed var(--sam-border-light,#E8E4E0);border-radius:8px;padding:48px 24px;min-height:240px;width:100%;box-sizing:border-box}
-.sam-placeholder--hero{min-height:320px;border-radius:0;border:none;background:linear-gradient(135deg,#F8F5F2 0%,#E8E4E0 100%)}
-.sam-placeholder--wide{min-height:200px}
-.sam-placeholder--compact{min-height:160px;padding:32px 16px}
-.sam-placeholder__icon{width:64px;height:64px;color:var(--sam-comet,#6B6B7F);opacity:.5}
-.sam-placeholder--hero .sam-placeholder__icon{width:80px;height:80px}
-.sam-placeholder__label{font:500 13px/1.4 var(--sam-font,'IBM Plex Sans',sans-serif);color:var(--sam-comet,#6B6B7F);opacity:.6;text-transform:uppercase;letter-spacing:.08em;text-align:center}
-.sam-placeholder-logos{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;width:100%;max-width:800px}
-.sam-placeholder-logos__item{display:flex;align-items:center;justify-content:center;background:var(--sam-white,#fff);border:1px dashed var(--sam-border-light,#E8E4E0);border-radius:6px;padding:16px;min-height:60px}
-.sam-placeholder-logos__item svg{width:32px;height:32px;color:var(--sam-comet,#6B6B7F);opacity:.4}
-@media(max-width:900px){.sam-placeholder{min-height:180px;padding:32px 16px}.sam-placeholder--hero{min-height:240px}.sam-placeholder-logos{grid-template-columns:repeat(3,1fr)}}
-
-/* ── Shared: Buttons ── */
-.sam-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 32px;
-  font: 600 1rem/1 var(--sam-font);
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
-  white-space: nowrap;
-}
-.sam-btn:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-.sam-btn--primary {
-  background: var(--sam-orange);
-  color: var(--sam-black);
-}
-.sam-btn--primary:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-  box-shadow: var(--shadow-cta);
-}
-.sam-btn--primary:active {
-  background: var(--sam-orange-deep);
-  color: var(--sam-white);
-}
-.sam-btn--secondary {
-  background: transparent;
-  color: var(--sam-teal-dark);
-  border: 2px solid var(--sam-teal-dark);
-}
-.sam-btn--secondary:hover {
-  background: var(--sam-teal-dark);
-  color: var(--sam-white);
-}
-.sam-btn--secondary:active {
-  background: var(--sam-teal-dark, #006C6C);
-  color: var(--sam-white);
-  border-color: var(--sam-teal-dark, #006C6C);
-}
-
-/* ── KPI Value ── */
-.kpi-value {
-  font-family: var(--sam-mono);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums lining-nums;
-}
-
-/* ============================================================
-   1. HERO
-   ============================================================ */
-
-.sam-hero--tech {
-  background-color: var(--sam-space-cadet);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: var(--sp-12) 0 var(--sp-11) 0;
-  min-height: 520px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.sam-hero--tech .sam-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(31,31,51,0.90) 0%, rgba(31,31,51,0.78) 45%, rgba(31,31,51,0.40) 100%);
-  z-index: 0;
-}
-.sam-hero--tech .sam-hero__inner {
-  position: relative;
-  z-index: 1;
-}
-.sam-hero__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-  width: 100%;
-}
-.sam-hero__overline {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--sam-orange);
-  margin: 0 0 var(--sp-06) 0;
-}
-.sam-hero__h1 {
-  font-family: var(--sam-font);
-  font-weight: 700;
-  font-size: 4rem;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--sam-white);
-  margin: 0 0 var(--sp-07) 0;
-  max-width: 22ch;
-}
-.sam-hero__lead {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: var(--sam-white);
-  margin: 0 0 var(--sp-07) 0;
-  max-width: 58ch;
-}
-
-/* Hero Proof Callout */
-.sam-hero__proof-callout {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.85);
-  border-left: 3px solid var(--sam-orange);
-  padding: var(--sp-05) var(--sp-06);
-  margin: 0 0 var(--sp-07) 0;
-  max-width: 58ch;
-  background: rgba(255,255,255,0.06);
-}
-.sam-hero__proof-callout .kpi-value {
-  color: var(--sam-orange);
-  font-size: 1.25rem;
-}
-
-/* Jump Nav */
-.sam-hero__jump-nav {
-  display: flex;
-  gap: var(--sp-06);
-  flex-wrap: wrap;
-}
-.sam-hero__jump-link {
-  font-family: var(--sam-font);
-  font-weight: 500;
-  font-size: 1rem;
-  color: var(--sam-muted-dark);
-  text-decoration: none;
-  padding-bottom: var(--sp-02);
-  border-bottom: 1px solid transparent;
-  transition: color var(--ease), border-color var(--ease);
-}
-.sam-hero__jump-link:hover {
-  color: var(--sam-white);
-  border-bottom-color: var(--sam-orange);
-}
-.sam-hero__jump-link:focus-visible {
-  outline: 3px solid var(--sam-blue-light);
-  outline-offset: 2px;
-}
-
-/* ============================================================
-   2. TECH SECTIONS (generic container)
-   ============================================================ */
-
-.sam-tech-section {
-  padding: var(--sp-11) 0;
-}
-.sam-tech-section--white {
-  background: var(--sam-white);
-}
-.sam-tech-section--seashell {
-  background: var(--sam-seashell);
-}
-.sam-tech-section--dark {
-  background: var(--sam-space-cadet);
-}
-.sam-tech-section__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-tech-section__text {
-  margin-bottom: var(--sp-09);
-}
-.sam-tech-section__text h2 {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-  max-width: 30ch;
-}
-.sam-tech-section__h2--light {
-  color: var(--sam-white) !important;
-}
-.sam-tech-section__text .lead {
-  margin-top: var(--sp-05);
-}
-
-/* Overline colour by section background */
-.sam-tech-section--white .overline {
-  color: var(--sam-teal-dark);
-}
-.sam-tech-section--seashell .overline {
-  color: var(--sam-orange-dark);
-}
-
-/* ============================================================
-   3. DETAIL CARDS
-   ============================================================ */
-
-.sam-tech-detail {
-  margin-bottom: var(--sp-08);
-}
-.sam-tech-detail:last-child {
-  margin-bottom: 0;
-}
-.sam-tech-detail__grid {
-  display: grid;
-  gap: var(--sp-06);
-}
-.sam-tech-detail__grid--two {
-  grid-template-columns: repeat(2, 1fr);
-}
-.sam-tech-detail__grid--three {
-  grid-template-columns: repeat(3, 1fr);
-}
-/* Default: 4-column for signal acquisition */
-.sam-tech-detail__grid:not(.sam-tech-detail__grid--two):not(.sam-tech-detail__grid--three) {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.sam-tech-detail__card {
-  padding: var(--sp-07);
-  border: 1px solid var(--sam-border-light);
-  border-top: 3px solid var(--sam-border-light);
-  background: var(--sam-white);
-}
-.sam-tech-detail__card--accent-teal {
-  border-top-color: var(--sam-teal-dark);
-}
-.sam-tech-detail__card--accent-blue {
-  border-top-color: var(--sam-blue);
-}
-.sam-tech-detail__card--accent-orange {
-  border-top-color: var(--sam-orange);
-}
-.sam-tech-detail__title {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.3;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-04) 0;
-}
-.sam-tech-detail__body {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--sam-black);
-  margin: 0;
-}
-
-/* Cards on seashell bg keep white bg */
-.sam-tech-section--seashell .sam-tech-detail__card {
-  background: var(--sam-white);
-}
-
-/* Cards on dark bg */
-.sam-tech-section--dark .sam-tech-detail__card {
-  background: var(--sam-dark-elevated);
-  border-color: rgba(255,255,255,0.08);
-}
-.sam-tech-section--dark .sam-tech-detail__title {
-  color: var(--sam-white);
-}
-.sam-tech-section--dark .sam-tech-detail__body {
-  color: rgba(255,255,255,0.75);
-}
-
-/* ============================================================
-   4. CALLOUT BOX
-   ============================================================ */
-
-.sam-tech-callout {
-  border: 1px solid var(--sam-border-light);
-  border-left: 4px solid var(--sam-teal-dark);
-  padding: var(--sp-07);
-  max-width: 800px;
-  margin-top: var(--sp-08);
-}
-.sam-tech-callout--dark {
-  border-color: rgba(255,255,255,0.10);
-  border-left-color: var(--sam-orange);
-  background: var(--sam-dark-elevated);
-}
-.sam-tech-callout__title {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.3;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-04) 0;
-}
-.sam-tech-callout--dark .sam-tech-callout__title {
-  color: var(--sam-white);
-}
-.sam-tech-callout__body {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--sam-black);
-  margin: 0;
-}
-.sam-tech-callout--dark .sam-tech-callout__body {
-  color: rgba(255,255,255,0.75);
-}
-.sam-tech-callout__body .sam-text-link {
-  color: var(--sam-teal);
-}
-.sam-tech-callout__body .sam-text-link:hover {
-  color: var(--sam-teal-dark);
-}
-
-/* ============================================================
-   5. PIPELINE VISUAL (signal processing flow)
-   ============================================================ */
-
-.sam-tech-pipeline-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sp-06);
-  margin-bottom: var(--sp-09);
-  padding: var(--sp-08) 0;
-}
-.sam-tech-pipeline-visual__step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--sp-04);
-  padding: var(--sp-07);
-  border: 1px solid var(--sam-border-light);
-  background: var(--sam-white);
-  min-width: 160px;
-}
-.sam-tech-pipeline-visual__icon {
-  color: var(--sam-space-cadet);
-}
-.sam-tech-pipeline-visual__label {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--sam-space-cadet);
-}
-.sam-tech-pipeline-visual__arrow {
-  flex-shrink: 0;
-}
-
-/* ============================================================
-   6. VALIDATION STEPS (dark section)
-   ============================================================ */
-
-.sam-tech-validation {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-06);
-  margin-bottom: var(--sp-08);
-}
-.sam-tech-validation__step {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--sp-06);
-  padding: var(--sp-07);
-  background: var(--sam-dark-elevated);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-left: 3px solid var(--sam-orange);
-}
-.sam-tech-validation__num {
-  font-size: 2rem;
-  color: var(--sam-orange);
-  line-height: 1;
-  flex-shrink: 0;
-  width: 48px;
-  text-align: center;
-}
-.sam-tech-validation__content {
-  flex: 1;
-}
-.sam-tech-validation__title {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.3;
-  color: var(--sam-white);
-  margin: 0 0 var(--sp-03) 0;
-}
-.sam-tech-validation__desc {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.75);
-  margin: 0;
-}
-
-/* ============================================================
-   7. STATS (performance section)
-   ============================================================ */
-
-.sam-tech-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-06);
-  margin-bottom: var(--sp-08);
-}
-.sam-tech-stats__item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-03);
-  padding: var(--sp-07);
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-top: 3px solid var(--sam-teal-dark);
-}
-.sam-tech-stats__value {
-  font-size: 2.5rem;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-}
-.sam-tech-stats__label {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--sam-space-cadet);
-}
-.sam-tech-stats__note {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--sam-comet);
-}
-
-/* ============================================================
-   8. CTA BLOCK
-   ============================================================ */
-
-.sam-cta-block--tech {
-  background: var(--sam-space-cadet);
-  padding: var(--sp-11) 0;
-}
-.sam-cta-block__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-  text-align: center;
-}
-.sam-cta-block__heading {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--sam-white);
-  margin: 0 0 var(--sp-06) 0;
-}
-.sam-cta-block__sub {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.75);
-  margin: 0 0 var(--sp-07) 0;
-  max-width: 56ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Mid-funnel links (light variant for dark bg) */
-.sam-cta-block__mid-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--sp-04);
-  flex-wrap: wrap;
-  margin-bottom: var(--sp-07);
-}
-.sam-cta-block__mid-link--light {
-  font-family: var(--sam-font);
-  font-weight: 500;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.65);
-  text-decoration: none;
-  padding-bottom: 1px;
-  border-bottom: 1px solid transparent;
-  transition: color var(--ease), border-color var(--ease);
-}
-.sam-cta-block__mid-link--light:hover {
-  color: var(--sam-white);
-  border-bottom-color: var(--sam-orange);
-}
-.sam-cta-block__mid-sep--light {
-  color: rgba(255,255,255,0.20);
-  font-size: 1.25rem;
-  line-height: 1;
-}
-
-.sam-cta-block__actions {
-  display: flex;
-  justify-content: center;
-  gap: var(--sp-05);
-  flex-wrap: wrap;
-}
-
-/* Secondary button on dark bg needs light border */
-.sam-cta-block--tech .sam-btn--secondary {
-  color: var(--sam-white);
-  border-color: rgba(255,255,255,0.30);
-}
-.sam-cta-block--tech .sam-btn--secondary:hover {
-  background: rgba(255,255,255,0.10);
-  border-color: rgba(255,255,255,0.50);
-  color: var(--sam-white);
-}
-
-/* ============================================================
-   FOCUS STYLES
-   ============================================================ */
-
-.sam-tech-detail__card:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  .sam-btn,
-  .sam-text-link,
-  .sam-hero__jump-link,
-  .sam-cta-block__mid-link--light {
-    transition: none !important;
-  }
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-/* Tablet (max-width: 1055px) */
-@media (max-width: 1055px) {
-
-  .sam-hero--tech {
-    padding: var(--sp-10) 0;
-    min-height: auto;
-  }
-  .sam-hero__h1 {
-    font-size: 3rem;
-    max-width: none;
-  }
-  .sam-hero__h1 br {
-    display: none;
-  }
-
-  .sam-tech-section {
-    padding: var(--sp-10) 0;
-  }
-  .sam-tech-section__text h2 {
-    font-size: 2.5rem;
-    max-width: none;
-  }
-
-  .sam-tech-detail__grid,
-  .sam-tech-detail__grid--three {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .sam-tech-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .sam-tech-pipeline-visual {
-    flex-direction: column;
-    padding: var(--sp-06) 0;
-  }
-  .sam-tech-pipeline-visual__arrow {
-    transform: rotate(90deg);
-  }
-  .sam-tech-pipeline-visual__step {
-    min-width: auto;
-    width: 100%;
-    max-width: 280px;
-  }
-}
-
-/* Mobile (max-width: 671px) */
-@media (max-width: 671px) {
-
-  .sam-hero--tech {
-    padding: var(--sp-09) 0;
-  }
-  .sam-hero__inner {
-    padding: 0 16px;
-  }
-  .sam-hero__h1 {
-    font-size: 2.5rem;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-  .sam-hero__lead {
-    font-size: 1.125rem;
-    line-height: 1.5;
-  }
-  .sam-hero__jump-nav {
-    flex-direction: column;
-    gap: var(--sp-04);
-  }
-
-  .sam-tech-section__inner {
-    padding: 0 16px;
-  }
-  .sam-tech-section__text h2 {
-    font-size: 2rem;
-  }
-
-  .sam-tech-detail__grid,
-  .sam-tech-detail__grid--two,
-  .sam-tech-detail__grid--three {
-    grid-template-columns: 1fr;
-  }
-
-  .sam-tech-stats {
-    grid-template-columns: 1fr;
-    gap: var(--sp-05);
-  }
-
-  .sam-tech-validation__step {
-    flex-direction: column;
-    gap: var(--sp-04);
-  }
-  .sam-tech-validation__num {
-    width: auto;
-    text-align: left;
-  }
-
-  .sam-tech-callout {
-    max-width: none;
-  }
-
-  .sam-cta-block--tech {
-    padding: var(--sp-10) 0;
-  }
-  .sam-cta-block__inner {
-    padding: 0 16px;
-  }
-  .sam-cta-block__heading {
-    font-size: 2rem;
-  }
-  .sam-cta-block__mid-links {
-    flex-direction: column;
-    gap: var(--sp-03);
-  }
-  .sam-cta-block__mid-sep,
-  .sam-cta-block__mid-sep--light {
-    display: none;
-  }
-  .sam-cta-block__actions {
-    flex-direction: column;
-  }
-  .sam-cta-block__actions .sam-btn {
-    width: 100%;
-    min-height: 48px;
-  }
-}
-
-/* ── Measurement Definition Box ── */
-.sam-measurement-box {
-  background: var(--sam-white);
-  padding: var(--sp-09) 0;
-}
-.sam-measurement-box__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-measurement-box__card {
-  border: 2px solid var(--sam-blue);
-  border-left: 6px solid var(--sam-blue);
-  padding: var(--sp-07);
-  background: var(--sam-seashell);
-  max-width: 900px;
-}
-.sam-measurement-box__heading {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-05) 0;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-03);
-}
-.sam-measurement-box__heading svg {
-  flex-shrink: 0;
-  color: var(--sam-blue);
-}
-.sam-measurement-box__table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0 0 var(--sp-05) 0;
-}
-.sam-measurement-box__table th,
-.sam-measurement-box__table td {
-  font-family: var(--sam-font);
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  padding: var(--sp-03) var(--sp-05);
-  text-align: left;
-  vertical-align: top;
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-measurement-box__table th {
-  font-weight: 600;
-  color: var(--sam-space-cadet);
-  width: 180px;
-  white-space: nowrap;
-}
-.sam-measurement-box__table td {
-  color: var(--sam-black);
-}
-.sam-measurement-box__table code {
-  font-family: var(--sam-mono);
-  font-size: 0.875rem;
-  background: var(--sam-white);
-  padding: 2px 6px;
-  border: 1px solid var(--sam-border-light);
-}
-.sam-measurement-box__note {
-  font-family: var(--sam-font);
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--sam-comet);
-  margin: 0;
-  font-style: italic;
-}
-details[open] > summary svg {
-  transform: rotate(90deg);
-}
-@media (max-width: 671px) {
-  .sam-measurement-box__inner { padding: 0 16px; }
-  .sam-measurement-box__card { padding: var(--sp-06); }
-  .sam-measurement-box__table th { width: auto; white-space: normal; }
-}
-
-/* ============================================================
-   PERFORMANCE BOUNDARIES CALLOUT
-   ============================================================ */
-.sam-perf-boundaries {
-  border: 2px solid var(--sam-blue);
-  border-left: 6px solid var(--sam-blue);
-  padding: var(--sp-07);
-  background: var(--sam-seashell);
-  max-width: 900px;
-}
-.sam-perf-boundaries__title {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-05) 0;
-}
-.sam-perf-boundaries__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.sam-perf-boundaries__item {
-  font-family: var(--sam-font);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--sam-black);
-  margin: 0 0 var(--sp-04) 0;
-}
-.sam-perf-boundaries__item:last-child {
-  margin-bottom: 0;
-}
-.sam-perf-boundaries__item strong {
-  font-weight: 600;
-  color: var(--sam-space-cadet);
-}
-
-  </style>
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Technical Deep Dive | Samotics">
-  <meta property="og:description" content="SAM4 real-time ESA analysis: detects bearing wear, cavitation, and misalignment in rotating equipment with proven 90.8% detection accuracy across core assets.">
-  <meta property="og:url" content="https://samoticstestpage.com/technology/how-sam4-works/">
-  <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
-  <meta property="og:site_name" content="Samotics">
 </head>
 <body>
-  <!-- ===================== PHP & HTML ===================== -->
-
-<header class="sam-header" role="navigation" aria-label="Main navigation">
+  <div class="sam-page">
+    <!-- HEADER -->
+    <header class="sam-header" role="navigation" aria-label="Main navigation">
   <a href="#main-content" class="sam-skip-link">Skip to content</a>
   <div class="sam-header__inner">
 
@@ -1856,441 +1262,314 @@ details[open] > summary svg {
   </div>
 
 </header>
-  <!-- ===================== PHP & HTML ===================== -->
 
-<main id="main-content" class="sam-tech">
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
 
-  <!-- ─── 1. HERO ─── -->
-  <section class="sam-hero sam-hero--tech" style="background-image: url('/assets/hero-sam4-mcc.jpg');">
-    <div class="sam-hero__overlay"></div>
-    <div class="sam-hero__inner">
-      <div class="sam-hero__content">
-        <p class="sam-hero__overline">Technical deep dive</p>
-        <h1 class="sam-hero__h1">From electrical signal<br>to validated diagnostic</h1>
-        <p class="sam-hero__lead">SAM4 turns raw current and voltage waveforms into confirmed fault diagnostics — continuously, for your entire fleet. This page walks through the full pipeline: how signals are captured, how AI models detect anomalies, how engineers validate every alert, and how results reach your team.</p>
-        <p class="sam-hero__proof-callout">This pipeline runs across <strong class="kpi-value">10,000+</strong> assets today. <strong class="kpi-value">5,300+</strong> validated findings delivered. <strong class="kpi-value">0.32%</strong> false communication rate. <strong class="kpi-value">€80M+</strong> detection value identified.</p>
-        <nav class="sam-hero__jump-nav" aria-label="Page sections">
-          <a href="#signal-acquisition" class="sam-hero__jump-link">Signal acquisition</a>
-          <a href="#signal-processing" class="sam-hero__jump-link">Signal processing</a>
-          <a href="#ai-engine" class="sam-hero__jump-link">AI engine</a>
-          <a href="#expert-validation" class="sam-hero__jump-link">Expert validation</a>
-          <a href="#delivery" class="sam-hero__jump-link">Delivery &amp; integration</a>
-          <a href="#performance" class="sam-hero__jump-link">Performance</a>
-        </nav>
-      </div>
-    </div>
-  </section>
+      <!-- HERO SECTION -->
+      <section class="sam-hero">
+        <div class="sam-container">
+          <div class="sam-hero__inner">
+            <span class="sam-overline">Technical Deep Dive</span>
+            <h1>From electrical signal to validated diagnostic</h1>
+            <p class="sam-lead">SAM4 turns raw current and voltage waveforms into confirmed fault diagnostics — continuously, for your entire fleet. This page walks through the full pipeline: how signals are captured, how AI models detect anomalies, how engineers validate every alert, and how results reach your team.</p>
 
-  <!-- ─── 2. SIGNAL ACQUISITION ─── -->
-  <section id="signal-acquisition" class="sam-tech-section sam-tech-section--white">
-    <div class="sam-tech-section__inner">
-      <div class="sam-tech-section__text">
-        <p class="overline">Step 1</p>
-        <h2>Signal acquisition at the MCC</h2>
-        <p class="lead">Every AC motor draws current and voltage in patterns that reflect the mechanical condition of the full drivetrain. SAM4 captures those patterns at the motor control cabinet — not on the asset.</p>
-      </div>
+            <div class="sam-hero__stats">
+              <div class="sam-hero__stat">
+                <div class="sam-hero__stat-value">10,000+</div>
+                <div class="sam-hero__stat-label">Assets monitored today</div>
+              </div>
+              <div class="sam-hero__stat">
+                <div class="sam-hero__stat-value">5,300+</div>
+                <div class="sam-hero__stat-label">Validated findings delivered</div>
+              </div>
+              <div class="sam-hero__stat">
+                <div class="sam-hero__stat-value">0.32%</div>
+                <div class="sam-hero__stat-label">False communication rate</div>
+              </div>
+              <div class="sam-hero__stat">
+                <div class="sam-hero__stat-value">€80M+</div>
+                <div class="sam-hero__stat-label">Detection value identified</div>
+              </div>
+            </div>
 
-      <div class="sam-img-placeholder" style="position:relative;width:100%;padding-bottom:50.0%;background:#F8F5F2;border:1px solid #E8E4E0;border-radius:8px;overflow:hidden;">
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 32px;text-align:center;gap:8px;">
-          <span style="font:600 11px/1.2 'JetBrains Mono',monospace;color:#6B6B7F;text-transform:uppercase;letter-spacing:.1em;opacity:.5;">1200×600</span>
-          <span style="font:600 14px/1.3 'IBM Plex Sans',sans-serif;color:#1F1F33;">MCC hardware installation diagram</span>
-          <span style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:#6B6B7F;max-width:640px;">Cutaway view of Motor Control Cabinet. SAM4 CT sensor clipped onto power cable inside (blue highlight). Circuit breaker, contactor, cable labelled. Cellular antenna above. Callouts: non-invasive, no asset wiring, install in <20 minutes.</span>
-        </div>
-      </div>
-
-      <div class="sam-tech-detail">
-        <div class="sam-tech-detail__grid">
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Hardware</h3>
-            <p class="sam-tech-detail__body">Split-core current transformers (CTs) and voltage taps (VTs) clamp around the motor supply cables inside the MCC. No process shutdown. No mechanical modification. Installation takes under 60 minutes per asset.</p>
-          </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Sampling</h3>
-            <p class="sam-tech-detail__body">The SAM4 data acquisition unit samples current and voltage at high frequency, capturing the harmonic content needed to detect mechanical faults reflected in the electrical signature. Sampling parameters are tuned per motor type and application.</p>
-          </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Edge processing</h3>
-            <p class="sam-tech-detail__body">Raw waveforms are pre-processed on the edge device before transmission: windowing, quality checks, and compression. Only diagnostic-relevant data is sent to the cloud, reducing bandwidth by an order of magnitude while retaining full spectral information.</p>
-          </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Connectivity</h3>
-            <p class="sam-tech-detail__body">Data transmits over standard industrial protocols (4G, Ethernet, Wi-Fi) to Samotics' cloud infrastructure. The edge device handles intermittent connectivity gracefully, buffering locally and syncing when reconnected. No IT infrastructure changes required.</p>
+            <div style="margin-top: var(--space-10);">
+              <a href="/contact?intent=demo" class="sam-cta">Request a Demo</a>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="sam-tech-callout">
-        <h3 class="sam-tech-callout__title">Why the MCC, not the asset?</h3>
-        <p class="sam-tech-callout__body">Conventional vibration sensors need physical mounting on the machine — which means physical access, permits, wiring runs, and per-asset installation costs. For submerged pumps, sealed blowers, ATEX zones, or remote sites, that's often impossible. The motor control cabinet is always accessible, always in a safe environment, and serves every motor on the feeder. One installation point. Full drivetrain visibility.</p>
-      </div>
-    </div>
-  </section>
+      <!-- SECTION 1: SIGNAL ACQUISITION -->
+      <section class="sam-content-section sam-content-section--white">
+        <div class="sam-container">
+          <span class="sam-overline">STEP 01</span>
+          <h2>Signal acquisition at the MCC</h2>
+          <p>Every AC motor draws current and voltage in patterns that reflect the mechanical condition of the full drivetrain. SAM4 captures those patterns at the motor control cabinet — not on the asset.</p>
 
-  <!-- ─── 3. SIGNAL PROCESSING ─── -->
-  <section id="signal-processing" class="sam-tech-section sam-tech-section--seashell">
-    <div class="sam-tech-section__inner">
-      <div class="sam-tech-section__text">
-        <p class="overline">Step 2</p>
-        <h2>Signal processing and feature extraction</h2>
-        <p class="lead">Raw electrical waveforms contain thousands of data points per second. The signal processing layer transforms this into a structured set of diagnostic features — the fingerprint of each asset's condition.</p>
-      </div>
+          <div class="sam-card-grid sam-card-grid--2col">
+            <div class="sam-card">
+              <h3>Hardware</h3>
+              <p>Split-core CTs and voltage taps clamp around motor supply cables inside the MCC. No process shutdown. No mechanical modification. Under 60 minutes per asset.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Sampling</h3>
+              <p>The SAM4 DAQ unit samples current and voltage at high frequency, capturing harmonic content needed to detect mechanical faults reflected in the electrical signature.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Edge processing</h3>
+              <p>Raw waveforms are pre-processed on the edge device: windowing, quality checks, compression. Only diagnostic-relevant data sent to cloud.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Connectivity</h3>
+              <p>Data transmits over 4G, Ethernet, or Wi-Fi. Edge device handles intermittent connectivity, buffering locally. No IT infrastructure changes required.</p>
+            </div>
+          </div>
 
-      <div class="sam-tech-pipeline-visual">
-        <div class="sam-tech-pipeline-visual__step">
-          <div class="sam-tech-pipeline-visual__icon">
-            <img src="/assets/icons/Samotics-icon-28.svg" alt="" aria-hidden="true" width="48" height="48">
-          </div>
-          <span class="sam-tech-pipeline-visual__label">Raw waveform</span>
-        </div>
-        <div class="sam-tech-pipeline-visual__arrow" aria-hidden="true">
-          <svg aria-hidden="true" width="32" height="24" viewBox="0 0 32 24"><path d="M4,12 L24,12 M20,6 L28,12 L20,18" fill="none" stroke="#6B6B7F" stroke-width="2"/></svg>
-        </div>
-        <div class="sam-tech-pipeline-visual__step">
-          <div class="sam-tech-pipeline-visual__icon">
-            <img src="/assets/icons/Samotics-icon-13.svg" alt="" aria-hidden="true" width="48" height="48">
-          </div>
-          <span class="sam-tech-pipeline-visual__label">Spectral analysis</span>
-        </div>
-        <div class="sam-tech-pipeline-visual__arrow" aria-hidden="true">
-          <svg aria-hidden="true" width="32" height="24" viewBox="0 0 32 24"><path d="M4,12 L24,12 M20,6 L28,12 L20,18" fill="none" stroke="#6B6B7F" stroke-width="2"/></svg>
-        </div>
-        <div class="sam-tech-pipeline-visual__step">
-          <div class="sam-tech-pipeline-visual__icon">
-            <img src="/assets/icons/Samotics-icon-34.svg" alt="" aria-hidden="true" width="48" height="48">
-          </div>
-          <span class="sam-tech-pipeline-visual__label">Feature vectors</span>
-        </div>
-      </div>
-
-      <div class="sam-tech-detail">
-        <div class="sam-tech-detail__grid sam-tech-detail__grid--two">
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Spectral decomposition</h3>
-            <p class="sam-tech-detail__body">Time-domain signals are transformed into the frequency domain using FFT and advanced spectral techniques. This reveals harmonic patterns invisible in the raw waveform: sideband frequencies around the supply frequency that correspond to specific mechanical fault signatures (bearing defect frequencies, gear mesh patterns, rotor bar faults).</p>
-          </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Feature extraction</h3>
-            <p class="sam-tech-detail__body">From each processed signal, SAM4 extracts hundreds of diagnostic features: spectral amplitudes at fault-specific frequencies, envelope statistics, current signature symmetry, power factor trends, and load-normalised indicators. These features form a high-dimensional fingerprint that characterises the asset's condition at each measurement point.</p>
-          </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Operating state classification</h3>
-            <p class="sam-tech-detail__body">Motors operate across different loads, speeds, and duty cycles. SAM4 classifies each measurement's operating state before comparing it to baseline, ensuring that a change in load isn't misread as a developing fault. This is critical for assets with variable frequency drives (VFDs) or intermittent duty.</p>
-          </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Baseline learning</h3>
-            <p class="sam-tech-detail__body">During the initial monitoring period, SAM4 builds a statistical baseline for each asset across its observed operating states. Future measurements are compared against this asset-specific baseline, not generic thresholds. This means every motor is evaluated relative to its own normal behaviour, reducing false positives and catching subtle degradation early.</p>
+          <div class="sam-callout">
+            <h4>Why the MCC, not the asset?</h4>
+            <p>Conventional vibration sensors need physical mounting — which means access, permits, wiring, and per-asset costs. For submerged pumps, sealed blowers, ATEX zones, the MCC is always accessible and serves every motor on the feeder.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ─── 4. AI DETECTION ENGINE ─── -->
-  <section id="ai-engine" class="sam-tech-section sam-tech-section--white">
-    <div class="sam-tech-section__inner">
-      <div class="sam-tech-section__text">
-        <p class="overline">Step 3</p>
-        <h2>AI-driven anomaly detection</h2>
-        <p class="lead">The detection engine compares each asset's current condition against its learned baseline and a library of known fault patterns — trained on data from over 10,000 industrial assets across 80+ customers.</p>
-      </div>
+      <!-- SECTION 2: SIGNAL PROCESSING -->
+      <section class="sam-content-section sam-content-section--seashell">
+        <div class="sam-container">
+          <span class="sam-overline">STEP 02</span>
+          <h2>Signal processing and feature extraction</h2>
+          <p>Raw electrical waveforms contain thousands of data points per second. The signal processing layer transforms this into structured diagnostic features — the fingerprint of each asset's condition.</p>
 
-      <div class="sam-img-placeholder" style="position:relative;width:100%;padding-bottom:50.0%;background:#F8F5F2;border:1px solid #E8E4E0;border-radius:8px;overflow:hidden;">
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 32px;text-align:center;gap:8px;">
-          <span style="font:600 11px/1.2 'JetBrains Mono',monospace;color:#6B6B7F;text-transform:uppercase;letter-spacing:.1em;opacity:.5;">1200×600</span>
-          <span style="font:600 14px/1.3 'IBM Plex Sans',sans-serif;color:#1F1F33;">AI anomaly detection pipeline</span>
-          <span style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:#6B6B7F;max-width:640px;">5-stage horizontal pipeline: 01 Raw Signal (waveform) → 02 Feature Extraction (FFT spectrum) → 03 Baseline Learning (bell curve, teal) → 04 Anomaly Detection (deviation in orange) → 05 Diagnostic Classification (fault list). 'Continuous · Real-time · Automated' below.</span>
-        </div>
-      </div>
-
-      <div class="sam-tech-detail">
-        <div class="sam-tech-detail__grid sam-tech-detail__grid--three">
-          <div class="sam-tech-detail__card sam-tech-detail__card--accent-teal">
-            <h3 class="sam-tech-detail__title">Anomaly scoring</h3>
-            <p class="sam-tech-detail__body">Each feature vector is scored against the asset's baseline using statistical distance metrics. Features that deviate beyond learned thresholds are flagged. The system tracks trend direction and rate of change, distinguishing between a stable anomaly and one that's accelerating toward failure.</p>
-          </div>
-          <div class="sam-tech-detail__card sam-tech-detail__card--accent-blue">
-            <h3 class="sam-tech-detail__title">Fault classification</h3>
-            <p class="sam-tech-detail__body">When an anomaly is detected, classification models map the pattern of deviating features to known fault types: bearing degradation, misalignment, imbalance, electrical faults, cavitation, and more. The models are trained on labelled fault data from confirmed failures across the installed base, giving them real-world ground truth rather than just lab data.</p>
-          </div>
-          <div class="sam-tech-detail__card sam-tech-detail__card--accent-orange">
-            <h3 class="sam-tech-detail__title">Severity estimation</h3>
-            <p class="sam-tech-detail__body">Beyond detecting *that* a fault exists, the engine estimates *how far* the degradation has progressed. This combines the magnitude of spectral deviation, the rate of trend progression, and fault-type-specific degradation models, providing engineers a severity assessment to prioritise interventions.</p>
+          <div class="sam-two-col">
+            <div class="sam-two-col__content">
+              <div class="sam-two-col__subsection">
+                <h3>Spectral decomposition</h3>
+                <p>Time-domain signals transformed to frequency domain using FFT. Reveals harmonic patterns: sideband frequencies around supply frequency that correspond to specific mechanical faults.</p>
+              </div>
+              <div class="sam-two-col__subsection">
+                <h3>Feature extraction</h3>
+                <p>Hundreds of diagnostic features extracted: spectral amplitudes at fault-specific frequencies, envelope statistics, current signature symmetry, power factor trends, load-normalised indicators.</p>
+              </div>
+            </div>
+            <div class="sam-two-col__content">
+              <div class="sam-two-col__subsection">
+                <h3>Operating state classification</h3>
+                <p>Motors operate across loads, speeds, duty cycles. SAM4 classifies each measurement's operating state before comparing to baseline. Critical for VFD-driven or intermittent assets.</p>
+              </div>
+              <div class="sam-two-col__subsection">
+                <h3>Baseline learning</h3>
+                <p>During initial monitoring, SAM4 builds a statistical baseline per asset across observed operating states. Every motor evaluated relative to its own normal behaviour.</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="sam-tech-callout">
-        <h3 class="sam-tech-callout__title">How the models improve</h3>
-        <p class="sam-tech-callout__body">Every validated alert feeds back into the training pipeline. When a Samotics engineer confirms a fault type and the customer validates the finding during maintenance, that data pair strengthens the models. With 80+ customers generating continuous feedback, the detection engine compounds in accuracy over time, creating an advantage that grows with scale.</p>
-      </div>
-    </div>
-  </section>
+      <!-- SECTION 3: AI DETECTION -->
+      <section class="sam-content-section sam-content-section--white">
+        <div class="sam-container">
+          <span class="sam-overline">STEP 03</span>
+          <h2>AI-driven anomaly detection</h2>
+          <p>The detection engine compares each asset's current condition against its learned baseline and a library of known fault patterns — trained on data from 10,000+ industrial assets across 80+ customers.</p>
 
-  <!-- ─── 5. EXPERT VALIDATION ─── -->
-  <section id="expert-validation" class="sam-tech-section sam-tech-section--dark">
-    <div class="sam-tech-section__inner">
-      <div class="sam-tech-section__text">
-        <p class="overline overline--light">Step 4</p>
-        <h2 class="sam-tech-section__h2--light">Every alert reviewed by a reliability engineer</h2>
-        <p class="lead lead--light">AI flags the anomaly. A human confirms it. Every alert that reaches your team has been reviewed by a Samotics reliability engineer — no unfiltered machine output, no alert fatigue.</p>
-      </div>
-
-      
-
-      <div class="sam-tech-validation">
-        <div class="sam-tech-validation__step">
-          <span class="sam-tech-validation__num kpi-value">1</span>
-          <div class="sam-tech-validation__content">
-            <h3 class="sam-tech-validation__title">AI flags anomaly</h3>
-            <p class="sam-tech-validation__desc">The detection engine identifies a statistically significant deviation and generates a preliminary classification with confidence score.</p>
+          <div class="sam-card-grid">
+            <div class="sam-card">
+              <h3>Anomaly scoring</h3>
+              <p>Each feature vector scored against baseline using statistical distance metrics. System tracks trend direction and rate of change, distinguishing stable anomaly from accelerating failure.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Fault classification</h3>
+              <p>Classification models map deviating features to known fault types: bearing, alignment, balance, electrical, cavitation. Trained on labelled fault data from confirmed failures — real-world ground truth, not lab data.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Severity estimation</h3>
+              <p>Beyond detecting a fault, the engine estimates how far degradation has progressed. Combines spectral deviation magnitude, trend progression rate, and fault-specific degradation models.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Model improvement</h3>
+              <p>Every validated alert feeds back into training. With 80+ customers generating continuous feedback, detection accuracy compounds over time. Scale creates an advantage.</p>
+            </div>
           </div>
         </div>
-        <div class="sam-tech-validation__step">
-          <span class="sam-tech-validation__num kpi-value">2</span>
-          <div class="sam-tech-validation__content">
-            <h3 class="sam-tech-validation__title">Engineer reviews</h3>
-            <p class="sam-tech-validation__desc">A Samotics reliability engineer examines the spectral data, reviews the asset's operating context, and confirms or refines the fault classification. They assess severity and write a specific maintenance recommendation.</p>
+      </section>
+
+      <!-- SECTION 4: ENGINEER VALIDATION -->
+      <section class="sam-content-section sam-content-section--seashell">
+        <div class="sam-container">
+          <span class="sam-overline">STEP 04</span>
+          <h2>Every alert reviewed by a reliability engineer</h2>
+          <p>AI flags the anomaly. A human confirms it. Every alert that reaches your team has been reviewed by a Samotics reliability engineer.</p>
+
+          <div class="sam-pipeline">
+            <div class="sam-pipeline__step">
+              <h3>AI flags anomaly</h3>
+              <p>Detection engine identifies statistically significant deviation. Preliminary classification with confidence score.</p>
+            </div>
+            <div class="sam-pipeline__step">
+              <h3>Engineer reviews</h3>
+              <p>Reliability engineer examines spectral data, reviews operating context, confirms or refines fault classification. Writes specific maintenance recommendation.</p>
+            </div>
+            <div class="sam-pipeline__step">
+              <h3>Critical escalation</h3>
+              <p>Rapidly progressing faults escalated immediately. Your team gets a phone call, not just a dashboard update.</p>
+            </div>
+            <div class="sam-pipeline__step">
+              <h3>Alert delivered</h3>
+              <p>Validated diagnostics published to SAM4 dashboard with full evidence: spectral plots, trend history, fault classification, severity, recommended action.</p>
+            </div>
+          </div>
+
+          <div class="sam-callout">
+            <h4>Why human-in-the-loop?</h4>
+            <p>Fully automated systems generate alert fatigue. Teams stop trusting them. SAM4's hybrid approach means every alert carries engineer judgement — which is why customers act on them.</p>
           </div>
         </div>
-        <div class="sam-tech-validation__step">
-          <span class="sam-tech-validation__num kpi-value">3</span>
-          <div class="sam-tech-validation__content">
-            <h3 class="sam-tech-validation__title">Critical escalation</h3>
-            <p class="sam-tech-validation__desc">Time-critical alerts (rapidly progressing faults, risk of imminent failure) are escalated immediately via direct notification. Your team gets a phone call, not just a dashboard update.</p>
+      </section>
+
+      <!-- SECTION 5: ALERT DELIVERY -->
+      <section class="sam-content-section sam-content-section--white">
+        <div class="sam-container">
+          <span class="sam-overline">STEP 05</span>
+          <h2>Alert delivery and system integration</h2>
+          <p>Validated diagnostics reach your team through the SAM4 dashboard and push directly into your existing maintenance systems.</p>
+
+          <div class="sam-card-grid">
+            <div class="sam-card">
+              <h3>SAM4 Dashboard</h3>
+              <p>Fleet-level overview with drill-down. Each diagnostic includes fault classification, severity, trend history, spectral evidence, recommended action.</p>
+            </div>
+            <div class="sam-card">
+              <h3>CMMS Integration</h3>
+              <p>Pushes alerts into SAP PM, Maximo, Ultimo as work orders. No manual re-entry.</p>
+            </div>
+            <div class="sam-card">
+              <h3>REST API</h3>
+              <p>Pull asset health data, alert history, trend metrics into custom dashboards or data platforms.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Alert Taxonomy</h3>
+              <p>Structured severity: Watch (monitor), Warning (plan intervention), Critical (act now). Defined SLA per level.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Reporting</h3>
+              <p>Monthly fleet health reports. Quarterly business reviews mapping findings to outcomes: confirmed saves, avoided downtime, efficiency gains.</p>
+            </div>
           </div>
         </div>
-        <div class="sam-tech-validation__step">
-          <span class="sam-tech-validation__num kpi-value">4</span>
-          <div class="sam-tech-validation__content">
-            <h3 class="sam-tech-validation__title">Alert delivered</h3>
-            <p class="sam-tech-validation__desc">Validated diagnostics are published to the SAM4 dashboard with full supporting data: spectral plots, trend history, fault classification, severity, and recommended action. Every diagnostic is transparent; your team can see the evidence behind every conclusion.</p>
+      </section>
+
+      <!-- SECTION 6: PERFORMANCE METRICS -->
+      <section class="sam-content-section sam-content-section--seashell">
+        <div class="sam-container">
+          <h2>Detection accuracy across 10,000+ assets</h2>
+          <p class="sam-content-section__intro">These metrics are measured across confirmed failures in the installed base, not lab conditions.</p>
+
+          <div class="sam-kpi-grid">
+            <div class="sam-kpi-card">
+              <div class="sam-kpi-card__value">90.8%</div>
+              <div class="sam-kpi-card__label">Detection rate (core assets). 1,874 resolved incidents (Jan 2024 – Feb 2026)</div>
+            </div>
+            <div class="sam-kpi-card">
+              <div class="sam-kpi-card__value">0.32%</div>
+              <div class="sam-kpi-card__label">False communication rate. 6 false comms across 1,874 incidents. Zero false anomalies.</div>
+            </div>
+            <div class="sam-kpi-card">
+              <div class="sam-kpi-card__value">Weeks–months</div>
+              <div class="sam-kpi-card__label">Lead time before failure. Varies by fault type and asset.</div>
+            </div>
+            <div class="sam-kpi-card">
+              <div class="sam-kpi-card__value">24/7</div>
+              <div class="sam-kpi-card__label">Continuous monitoring. No scheduled visits or campaigns.</div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="sam-tech-callout sam-tech-callout--dark">
-        <h3 class="sam-tech-callout__title">Why human-in-the-loop matters</h3>
-        <p class="sam-tech-callout__body">Fully automated systems generate alert fatigue. Teams stop trusting them. SAM4's hybrid approach means every alert carries an engineer's judgement, which is why customers act on SAM4 alerts. The human review also catches edge cases that pure ML would miss: unusual operating conditions, maintenance activities that mimic faults, or asset configurations the models haven't seen before.</p>
-      </div>
-    </div>
-  </section>
+      <!-- SECTION 7: METHODOLOGY -->
+      <section class="sam-content-section sam-content-section--white">
+        <div class="sam-container">
+          <h2>How we measure detection performance</h2>
+          <p>Definitions matter. We publish ours.</p>
 
-  <!-- ─── 6. DELIVERY & INTEGRATION ─── -->
-  <section id="delivery" class="sam-tech-section sam-tech-section--white">
-    <div class="sam-tech-section__inner">
-      <div class="sam-tech-section__text">
-        <p class="overline">Step 5</p>
-        <h2>Alert delivery and system integration</h2>
-        <p class="lead">Validated diagnostics reach your team through the SAM4 dashboard and push directly into your existing maintenance systems — fitting into the workflow your team already uses.</p>
-      </div>
-
-      <div class="sam-img-placeholder" style="position:relative;width:100%;padding-bottom:50.0%;background:#F8F5F2;border:1px solid #E8E4E0;border-radius:8px;overflow:hidden;">
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 32px;text-align:center;gap:8px;">
-          <span style="font:600 11px/1.2 'JetBrains Mono',monospace;color:#6B6B7F;text-transform:uppercase;letter-spacing:.1em;opacity:.5;">1200×600</span>
-          <span style="font:600 14px/1.3 'IBM Plex Sans',sans-serif;color:#1F1F33;">Data flow and integration architecture</span>
-          <span style="font:400 12px/1.5 'IBM Plex Sans',sans-serif;color:#6B6B7F;max-width:640px;">3-tier vertical architecture. Bottom: SAM4 sensor → cellular uplink. Middle: SAM4 Cloud (Signal Processing → ML Engine → Alert Engine). Top: integrations including Email/SMS, CMMS (SAP, Maximo), SCADA/OPC-UA, REST API, Power BI/Grafana.</span>
-        </div>
-      </div>
-
-      <div class="sam-tech-detail">
-        <div class="sam-tech-detail__grid sam-tech-detail__grid--three">
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">SAM4 dashboard</h3>
-            <p class="sam-tech-detail__body">Fleet-level overview with drill-down to individual assets. Each diagnostic includes: fault classification, severity rating, trend history, spectral evidence, and recommended action. Designed for maintenance planners, not data scientists.</p>
+          <div class="sam-definitions">
+            <div class="sam-definition">
+              <div class="sam-definition__term">True Positive (TP)</div>
+              <div class="sam-definition__desc">SAM4 finding confirmed by customer action, inspection, or observed failure.</div>
+            </div>
+            <div class="sam-definition">
+              <div class="sam-definition__term">False Positive (FP)</div>
+              <div class="sam-definition__desc">SAM4 finding not confirmed as a real fault.</div>
+            </div>
+            <div class="sam-definition">
+              <div class="sam-definition__term">False Negative (FN)</div>
+              <div class="sam-definition__desc">Asset failure without prior SAM4 alert.</div>
+            </div>
+            <div class="sam-definition">
+              <div class="sam-definition__term">Detection Rate</div>
+              <div class="sam-definition__desc">TP / (TP + FN) = 90.8% (n=1,874, Jan 2024 – Feb 2026)</div>
+            </div>
+            <div class="sam-definition">
+              <div class="sam-definition__term">False Positive Rate</div>
+              <div class="sam-definition__desc">FP / (TP + FP) = 0.32% (n=1,874)</div>
+            </div>
           </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">CMMS integration</h3>
-            <p class="sam-tech-detail__body">SAM4 pushes validated alerts directly into your CMMS (SAP PM, Maximo, Ultimo, and others) as work orders or notifications. No manual re-entry. Alerts carry the fault type, severity, asset identifier, and recommended action, ready for your planning process.</p>
-          </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">API access</h3>
-            <p class="sam-tech-detail__body">For teams building custom dashboards or integrating into existing data platforms, SAM4 provides a REST API. Pull asset health data, alert history, and trend metrics into your own systems. Full documentation available during onboarding.</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="sam-tech-detail">
-        <div class="sam-tech-detail__grid sam-tech-detail__grid--two">
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Alert taxonomy</h3>
-            <p class="sam-tech-detail__body">SAM4 alerts use a structured severity scale: Watch (early-stage deviation, monitor), Warning (confirmed fault, plan intervention), and Critical (imminent failure risk, act now). Each level has a defined SLA for engineering review and customer notification, so your team knows exactly what each alert means and how quickly to respond.</p>
+          <div class="sam-callout">
+            <h4>Transparency</h4>
+            <p>We publish this metric because we believe condition monitoring vendors should define their terms. If a vendor quotes an accuracy rate without stating the formula, sample, and time window — ask them to.</p>
           </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Reporting</h3>
-            <p class="sam-tech-detail__body">Monthly fleet health reports summarise asset condition, open diagnostics, resolved findings, and fleet-level trends. Quarterly business reviews map SAM4 findings to maintenance outcomes: confirmed saves, avoided downtime, and energy efficiency gains. All data available for export.</p>
+
+          <div style="margin-top: var(--space-10); background-color: var(--seashell); padding: var(--space-8); border-radius: var(--radius-default); border: 1px solid var(--border-grey);">
+            <h3 style="margin-bottom: var(--space-4);">What these numbers don't tell you</h3>
+            <ul style="margin-left: var(--space-6); color: var(--comet); line-height: 1.8;">
+              <li>Detection varies by fault type. Bearing and stator winding highest.</li>
+              <li>Lead time isn't guaranteed. SAM4 is not trip protection.</li>
+              <li>New asset types need 4–8 weeks baseline data.</li>
+            </ul>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ─── 7. PERFORMANCE ─── -->
-  <section id="performance" class="sam-tech-section sam-tech-section--seashell">
-    <div class="sam-tech-section__inner">
-      <div class="sam-tech-section__text">
-        <p class="overline">Performance</p>
-        <h2>Detection accuracy across 10,000+ assets</h2>
-        <p class="lead">These metrics are measured across confirmed failures in the installed base, not lab conditions. Definitions and methodology are available on request.</p>
-      </div>
+      <!-- SECTION 8: SECURITY -->
+      <section class="sam-content-section sam-content-section--seashell">
+        <div class="sam-container">
+          <h2>Enterprise-grade data handling</h2>
 
-      <div class="sam-tech-stats">
-        <div class="sam-tech-stats__item">
-          <span class="sam-tech-stats__value kpi-value">90.8%</span>
-          <span class="sam-tech-stats__label">Detection rate (core assets)</span>
-          <span class="sam-tech-stats__note">1,874 resolved incidents (January 2024 – February 2026)</span>
-        </div>
-        <div class="sam-tech-stats__item">
-          <span class="sam-tech-stats__value kpi-value">0.32%</span>
-          <span class="sam-tech-stats__label">False communication rate</span>
-          <span class="sam-tech-stats__note">6 false communications across 1,874 resolved incidents. Zero false anomalies in this period.</span>
-        </div>
-        <div class="sam-tech-stats__item">
-          <span class="sam-tech-stats__value kpi-value">Weeks&ndash;months</span>
-          <span class="sam-tech-stats__label">Lead time before failure</span>
-          <span class="sam-tech-stats__note">Typical advance warning. Varies by fault type, asset type, and operating conditions.</span>
-        </div>
-        <div class="sam-tech-stats__item">
-          <span class="sam-tech-stats__value kpi-value">24/7</span>
-          <span class="sam-tech-stats__label">Continuous monitoring</span>
-          <span class="sam-tech-stats__note">No scheduled visits, no measurement campaigns. Every asset monitored around the clock.</span>
-        </div>
-      </div>
-
-      <div class="sam-measurement-box__card">
-        <h3 class="sam-measurement-box__heading">
-          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          How we measure detection performance
-        </h3>
-        <table class="sam-measurement-box__table">
-          <tbody>
-            <tr>
-              <th>True Positive (TP)</th>
-              <td>A SAM4 finding that is confirmed by customer action, independent inspection, or observed failure.</td>
-            </tr>
-            <tr>
-              <th>False Positive (FP)</th>
-              <td>A SAM4 finding delivered to the customer that is not confirmed as a real fault.</td>
-            </tr>
-            <tr>
-              <th>False Negative (FN)</th>
-              <td>An asset failure that occurred without a prior SAM4 alert during the monitoring period.</td>
-            </tr>
-            <tr>
-              <th>Detection rate</th>
-              <td><code>TP / (TP + FN)</code>: the proportion of confirmed failures where SAM4 had raised an alert before failure occurred. Currently <strong class="kpi-value">90.8%</strong> across core three assets (n=1,874 resolved incidents, January 2024 – February 2026).</td>
-            </tr>
-            <tr>
-              <th>False Positive Rate</th>
-              <td><code>FP / (TP + FP)</code>: the proportion of delivered findings that were not confirmed as a real fault. Currently <strong class="kpi-value">0.32%</strong> (n=1,874 resolved incidents, January 2024 – February 2026). Includes false communications (correct detection, incorrect fault classification).</td>
-            </tr>
-            <tr>
-              <th>Measurement period</th>
-              <td>February 2025 – January 2026. Real-world field performance across the installed base, not lab results. Updated from Jira incident data (export: 13 February 2026).</td>
-            </tr>
-            <tr>
-              <th>Scope</th>
-              <td>All validated findings delivered to customers across the active SAM4 fleet. Every alert is reviewed by a Samotics diagnostics engineer before delivery.</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="sam-measurement-box__note">Detection rate and false positive rate are measured differently across the industry. We publish our definitions because enterprise buyers deserve auditable claims.</p>
-
-        <details style="margin-top:24px;border-top:1px solid var(--sam-border-light);padding-top:24px;">
-          <summary style="font:600 1rem/1.3 var(--sam-font);color:var(--sam-space-cadet);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;">
-            <svg style="flex-shrink:0;transition:transform 200ms;" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 3 11 8 6 13"/></svg>
-            Full methodology: how we count detections
-          </summary>
-          <div style="margin-top:16px;font:400 0.938rem/1.7 var(--sam-font);color:var(--sam-comet);">
-            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">What counts as a confirmed detection</h4>
-            <p style="margin:0 0 16px;">SAM4 sent an alert to the customer <strong>prior to failure</strong>. The customer confirmed the fault was present through inspection, maintenance action, or observed failure. Confirmation is logged in the Samotics incident management system with a customer reference. An alert that arrives after a failure has already occurred does not count as a confirmed detection.</p>
-
-            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">What counts as a false communication</h4>
-            <p style="margin:0 0 16px;">SAM4 sent an alert, but no issue was found. The customer investigated and determined no fault was present. This includes cases where the alert classification was incorrect (e.g., alert said "bearing fault" but the actual issue was a process change) and cases where no anomaly existed at all. Both count against the false communication rate.</p>
-
-            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">Dataset construction</h4>
-            <p style="margin:0 0 16px;">The dataset includes all resolved incidents across the active SAM4 fleet from January 2024 to February 2026: <strong class="kpi-value">1,874</strong> resolved incidents. "Resolved" means the incident has a confirmed outcome (true positive, false positive, or false negative). Open incidents and incidents pending customer confirmation are excluded. Data is sourced from the Samotics incident tracking system and verified against customer feedback.</p>
-
-            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">Scope: core three assets</h4>
-            <p style="margin:0 0 16px;">The 90.8% detection rate applies to the three asset types with the largest monitored fleet: <strong>pumps, fans, and conveyors</strong>. These asset types have sufficient sample size for statistically meaningful accuracy measurement. Other asset types (compressors, transmissions, motors) are monitored but not yet included in the headline figure due to smaller sample sizes. Detection rates by asset type are available on request.</p>
-
-            <h4 style="font:600 0.938rem/1.3 var(--sam-font);color:var(--sam-space-cadet);margin:0 0 8px;">Engineer validation layer</h4>
-            <p style="margin:0;">Every SAM4 alert passes through a reliability engineer before delivery to the customer. The engineer reviews the spectral data, assesses fault severity, and adds root cause analysis and a recommended action. This human-in-the-loop validation is the primary mechanism for filtering false positives before they reach the customer. The 0.32% false communication rate reflects alerts that passed this validation but were ultimately not confirmed by the customer.</p>
-          </div>
-        </details>
-      </div>
-
-      <div class="sam-perf-boundaries">
-        <h3 class="sam-perf-boundaries__title">What these numbers don't tell you</h3>
-        <ul class="sam-perf-boundaries__list">
-          <li class="sam-perf-boundaries__item"><strong>Detection varies by fault type.</strong> Bearing defects and stator winding faults have the highest detection rates. Purely mechanical faults on low-load assets may take longer to appear in the electrical signature.</li>
-          <li class="sam-perf-boundaries__item"><strong>Lead time isn't guaranteed.</strong> "Weeks to months" is typical, but some faults progress faster than expected. SAM4 is not a trip-protection system.</li>
-          <li class="sam-perf-boundaries__item"><strong>New asset types need baseline data.</strong> First detections on a newly monitored asset type may take 4–8 weeks while the AI builds an operational profile.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 8. SECURITY & DATA ─── -->
-  <section class="sam-tech-section sam-tech-section--white">
-    <div class="sam-tech-section__inner">
-      <div class="sam-tech-section__text">
-        <p class="overline">Security &amp; data</p>
-        <h2>Enterprise-grade data handling</h2>
-      </div>
-
-      <div class="sam-tech-detail">
-        <div class="sam-tech-detail__grid sam-tech-detail__grid--three">
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Data ownership</h3>
-            <p class="sam-tech-detail__body">Your data remains yours. Samotics processes electrical signatures to deliver diagnostics. Raw data and diagnostic results are available for export at any time. Data retention policies are contractually defined.</p>
-          </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Cloud infrastructure</h3>
-            <p class="sam-tech-detail__body">SAM4 runs on enterprise-grade cloud infrastructure with encryption at rest and in transit, role-based access control, and ISO 27001–certified security practices. Architecture details are available during technical due diligence.</p>
-          </div>
-          <div class="sam-tech-detail__card">
-            <h3 class="sam-tech-detail__title">Network requirements</h3>
-            <p class="sam-tech-detail__body">The edge device requires outbound-only connectivity: no inbound ports, no VPN tunnels, no firewall changes. It works over 4G, Ethernet, or Wi-Fi. Bandwidth requirements are minimal after edge compression.</p>
+          <div class="sam-card-grid">
+            <div class="sam-card">
+              <h3>Data ownership</h3>
+              <p>Your data remains yours. Raw data and results available for export. Retention policies contractually defined.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Cloud infrastructure</h3>
+              <p>Encryption at rest and in transit. Role-based access control. ISO 27001 certified.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Network requirements</h3>
+              <p>Outbound-only connectivity. No inbound ports, no VPN, no firewall changes. Minimal bandwidth after edge compression.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ─── 9. CTA BLOCK ─── -->
-  <section class="sam-cta-block sam-cta-block--tech">
-    <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">Go deeper or get started</h2>
-      <p class="sam-cta-block__sub">Whether you're evaluating the technology or ready to see it on your assets.</p>
-      <div class="sam-cta-block__mid-links">
-        <a href="/resources/" class="sam-cta-block__mid-link sam-cta-block__mid-link--light">Download Technical Guide</a>
-        <span class="sam-cta-block__mid-sep sam-cta-block__mid-sep--light" aria-hidden="true">&middot;</span>
-        <a href="/resources/" class="sam-cta-block__mid-link sam-cta-block__mid-link--light">See a Sample Report</a>
-        <span class="sam-cta-block__mid-sep sam-cta-block__mid-sep--light" aria-hidden="true">&middot;</span>
-        <a href="/technology/esa" class="sam-cta-block__mid-link sam-cta-block__mid-link--light">Explore ESA Technology</a>
-      </div>
-      <div class="sam-cta-block__actions">
-        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-        <a href="/contact?intent=audit" class="sam-btn sam-btn--secondary">Book an Asset Audit</a>
-      </div>
-    </div>
-  </section>
+      <!-- TERMINAL CTA SECTION -->
+      <section class="sam-content-section sam-content-section--dark">
+        <div class="sam-container">
+          <h2 style="max-width: 60ch;">Go deeper or get started</h2>
+          <p style="font-size: 16px; color: rgba(255, 255, 255, 0.85); max-width: 65ch;">Whether you're evaluating the technology or ready to see it on your assets.</p>
 
-</main>
-  <!-- ===================== PHP & HTML ===================== -->
+          <div style="display: flex; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-10);">
+            <a href="/contact?intent=demo" class="sam-cta">Request a Demo</a>
+            <a href="/technology/esa" class="sam-cta-secondary" style="color: var(--white); border-color: rgba(255, 255, 255, 0.3);">Explore ESA Technology →</a>
+            <a href="/proof" class="sam-cta-secondary" style="color: var(--white); border-color: rgba(255, 255, 255, 0.3);">See customer results →</a>
+          </div>
+        </div>
+      </section>
 
-<!-- Pre-footer CTA -->
-<section class="sam-prefooter">
-  <div class="sam-prefooter__inner">
-    
-    <p class="sam-prefooter__sub">See how SAM4 monitors the assets your sensors can't reach.</p>
-    <a href="/contact" class="sam-prefooter__cta">Talk to an engineer</a>
-  </div>
-</section>
+    </main>
 
-<!-- Footer -->
-<!-- Footer -->
-<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+    <!-- FOOTER -->
+    <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
   <div class="sam-footer__inner">
 
     <!-- Top: Logo + Tagline -->
@@ -2405,209 +1684,59 @@ details[open] > summary svg {
 
   </div>
 </footer>
+
+  </div>
+
+  <!-- SHARED JAVASCRIPT -->
   <script>
-    /* ============================================================
-   SAMOTICS HEADER — JavaScript
-   Paste into Bricks Code Element → JavaScript tab
-   ============================================================ */
-
-(function () {
-  'use strict';
-
-  var header = document.querySelector('.sam-header');
-  if (!header) return;
-
-  /* ── Scroll: toggle .is-scrolled ── */
-  var scrollThreshold = 20;
-
-  function onScroll() {
-    if (window.scrollY > scrollThreshold) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // initial check
-
-  /* ── Mobile Menu Toggle ── */
-  var hamburger = header.querySelector('.sam-hamburger');
-  var mobileMenu = document.getElementById('sam-mobile-menu');
-
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', function () {
-      var isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', String(!isOpen));
-      hamburger.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
-      mobileMenu.classList.toggle('is-open');
-      mobileMenu.setAttribute('aria-hidden', String(isOpen));
-      document.body.style.overflow = isOpen ? '' : 'hidden';
-    });
-  }
-
-  /* ── Mobile Accordion Toggles ── */
-  var toggles = header.querySelectorAll('.sam-mobile-nav__toggle');
-  toggles.forEach(function (toggle) {
-    toggle.addEventListener('click', function () {
-      var group = this.closest('.sam-mobile-nav__group');
-      var isOpen = group.classList.contains('is-open');
-
-      // Close all others
-      header.querySelectorAll('.sam-mobile-nav__group.is-open').forEach(function (g) {
-        if (g !== group) {
-          g.classList.remove('is-open');
-          g.querySelector('.sam-mobile-nav__toggle').setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      // Toggle current
-      group.classList.toggle('is-open');
-      this.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-
-  /* ── Desktop Dropdown Keyboard Navigation ── */
-  var dropdownTriggers = header.querySelectorAll('.sam-nav__link--dropdown');
-  dropdownTriggers.forEach(function (trigger) {
-    var parent = trigger.closest('.sam-nav__item--has-dropdown');
-    var dropdown = parent.querySelector('.sam-dropdown');
-    var items = dropdown ? dropdown.querySelectorAll('.sam-dropdown__item') : [];
-
-    trigger.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
+    // Navigation toggles
+    document.querySelectorAll('.sam-nav__item--has-dropdown .sam-nav__link').forEach(button => {
+      button.addEventListener('click', (e) => {
         e.preventDefault();
-        var expanded = trigger.getAttribute('aria-expanded') === 'true';
-        trigger.setAttribute('aria-expanded', String(!expanded));
-
-        if (!expanded && items.length) {
-          items[0].focus();
-        }
-      }
-
-      if (e.key === 'ArrowDown' && items.length) {
-        e.preventDefault();
-        trigger.setAttribute('aria-expanded', 'true');
-        items[0].focus();
-      }
-
-      if (e.key === 'Escape') {
-        trigger.setAttribute('aria-expanded', 'false');
-        trigger.focus();
-      }
-    });
-
-    // Arrow navigation within dropdown
-    items.forEach(function (item, index) {
-      item.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          if (index < items.length - 1) items[index + 1].focus();
-        }
-        if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          if (index > 0) {
-            items[index - 1].focus();
-          } else {
-            trigger.focus();
-          }
-        }
-        if (e.key === 'Escape') {
-          trigger.setAttribute('aria-expanded', 'false');
-          trigger.focus();
-        }
-        if (e.key === 'Tab' && !e.shiftKey && index === items.length - 1) {
-          trigger.setAttribute('aria-expanded', 'false');
-        }
       });
     });
-  });
 
-  /* ── Close mobile menu on resize to desktop ── */
-  var mql = window.matchMedia('(min-width: 992px)');
-  function handleResize(e) {
-    if (e.matches && mobileMenu && mobileMenu.classList.contains('is-open')) {
-      hamburger.setAttribute('aria-expanded', 'false');
-      hamburger.setAttribute('aria-label', 'Open menu');
-      mobileMenu.classList.remove('is-open');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  }
-  if (mql.addEventListener) {
-    mql.addEventListener('change', handleResize);
-  } else {
-    mql.addListener(handleResize);
-  }
+    // Hamburger menu
+    const hamburger = document.querySelector('.sam-hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  /* ── Close dropdown on outside click (desktop) ── */
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('.sam-nav__item--has-dropdown')) {
-      dropdownTriggers.forEach(function (t) {
-        t.setAttribute('aria-expanded', 'false');
-      });
-    }
-  });
-
-})();
-  </script>
-  <script>
-    /* ============================================================
-   SAMOTICS FOOTER — JavaScript
-   Paste into Bricks Code Element → JavaScript tab
-   ============================================================ */
-
-(function () {
-  'use strict';
-
-  /* ── Footer Accordion (mobile only) ── */
-  var cols = document.querySelectorAll('[data-footer-accordion]');
-  if (!cols.length) return;
-
-  function isMobile() {
-    return window.innerWidth <= 991;
-  }
-
-  cols.forEach(function (col) {
-    var heading = col.querySelector('.sam-footer__col-heading');
-    if (!heading) return;
-
-    heading.addEventListener('click', function () {
-      if (!isMobile()) return;
-
-      var isOpen = col.classList.contains('is-open');
-
-      // Close all other columns
-      cols.forEach(function (c) {
-        if (c !== col) c.classList.remove('is-open');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('is-open');
+        mobileMenu.classList.toggle('is-open');
+        hamburger.setAttribute('aria-expanded', !isOpen);
       });
 
-      // Toggle current
-      col.classList.toggle('is-open');
-    });
-  });
-
-  /* ── Reset accordion state on resize to desktop ── */
-  var mql = window.matchMedia('(min-width: 992px)');
-
-  function handleResize(e) {
-    if (e.matches) {
-      cols.forEach(function (col) {
-        col.classList.remove('is-open');
+      // Mobile nav toggles
+      document.querySelectorAll('.sam-mobile-nav__toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const sub = toggle.nextElementSibling;
+          const isOpen = sub.classList.contains('is-open');
+          sub.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', !isOpen);
+        });
       });
     }
-  }
 
-  if (mql.addEventListener) {
-    mql.addEventListener('change', handleResize);
-  } else {
-    mql.addListener(handleResize);
-  }
+    // Footer accordion on mobile
+    if (window.innerWidth < 768) {
+      document.querySelectorAll('[data-footer-accordion]').forEach(col => {
+        const heading = col.querySelector('.sam-footer__col-heading');
+        const links = col.querySelector('.sam-footer__col-links');
 
-})();
-  </script>
-  <script>
-    
+        if (heading && links) {
+          heading.style.cursor = 'pointer';
+          links.style.display = 'none';
+
+          heading.addEventListener('click', () => {
+            const isVisible = links.style.display !== 'none';
+            links.style.display = isVisible ? 'none' : 'flex';
+          });
+        }
+      });
+    }
+
+    // Smooth scroll on page load (handled by HTML scroll-behavior)
   </script>
 </body>
 </html>
