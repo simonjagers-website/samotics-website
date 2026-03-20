@@ -1,1779 +1,1386 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SAM4 security: encrypted communications with no network exposure. Predictive maintenance data remains secure on your infrastructure. GDPR-compliant."><title>Trust &amp; Security Centre | Samotics</title>
-  <link rel="canonical" href="https://samoticstestpage.com/platform/security/">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SAM4 is ISO 27001 certified, SOC 2 compliant, with one-way data flow and zero OT network access. Enterprise security for industrial condition monitoring.">
+  <title>Security | SAM4 Platform | Samotics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'IBM Plex Sans';
-      font-style: normal;
-      font-weight: 100 700;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+  <style>
+    /* ===== SHARED DESIGN TOKENS ===== */
+    :root {
+      --sam-space-cadet: #1F1F33;
+      --sam-orange: #FF5429;
+      --sam-orange-dark: #D7411B;
+      --sam-blue: #005CBA;
+      --sam-white: #FFFFFF;
+      --sam-seashell: #F8F5F2;
+      --sam-black: #111111;
+      --sam-comet: #6B6B7F;
+      --sam-border-light: #E8E4E0;
+      --sam-header-bg: #1F1F33;
+      --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sam-header-h: 80px;
+      --sam-header-h-compact: 64px;
+      --sam-transition: 150ms ease-out;
     }
-    @font-face {
-      font-family: 'IBM Plex Sans';
+
+    :root {
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --dark-blue-300: #A0A0B8;
+      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-data: 'JetBrains Mono', 'Consolas', monospace;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-30: 120px;
+      --radius-default: 4px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
+      --motion-fast: 100ms;
+      --motion-normal: 300ms;
+      --max-width: 1120px;
+      --max-width-wide: 1280px;
+    }
+
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      color: var(--space-cadet);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: var(--blue-600);
+      text-decoration: none;
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    a:hover {
+      color: var(--orange);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .sam-skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--orange);
+      color: var(--white);
+      padding: var(--space-3) var(--space-6);
+      text-decoration: none;
+      z-index: 100;
+      font-weight: 500;
+    }
+
+    .sam-skip-link:focus {
+      top: 0;
+    }
+
+    /* ===== HEADER ===== */
+    .sam-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--sam-header-h);
+      background: var(--sam-header-bg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 40;
+      transition: height var(--sam-transition);
+    }
+
+    .sam-header.is-scrolled {
+      box-shadow: 0 2px 8px rgba(31, 31, 51, 0.1);
+    }
+
+    .sam-header__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+    }
+
+    .sam-header__logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .sam-logo {
+      display: none;
+      width: 140px;
+      height: 32px;
+    }
+
+    .sam-logo--white {
+      display: block;
+    }
+
+    /* ===== NAV ===== */
+    .sam-nav {
+      display: none;
+      gap: var(--space-8);
+      align-items: center;
+      flex: 1;
+    }
+
+    @media (min-width: 992px) {
+      .sam-nav {
+        display: flex;
+      }
+    }
+
+    .sam-nav__link {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-2) 0;
+      transition: color var(--motion-fast) ease-out;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .sam-nav__link:hover {
+      color: var(--white);
+    }
+
+    .sam-nav__link[aria-current="page"] {
+      color: var(--orange);
+    }
+
+    .sam-nav__chevron {
+      transition: transform var(--motion-fast) ease-out;
+    }
+
+    .sam-nav__item--has-dropdown {
+      position: relative;
+    }
+
+    .sam-nav__item--has-dropdown:hover .sam-dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .sam-nav__item--has-dropdown:hover .sam-nav__chevron {
+      transform: rotate(180deg);
+    }
+
+    .sam-dropdown {
+      position: absolute;
+      top: calc(100% + var(--space-4));
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      min-width: 280px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--motion-fast) ease-out, visibility var(--motion-fast) ease-out;
+      box-shadow: 0 4px 12px rgba(31, 31, 51, 0.1);
+    }
+
+    .sam-dropdown__item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-6);
+      color: var(--space-cadet);
+      text-decoration: none;
+      transition: background var(--motion-fast) ease-out;
+      border-bottom: 1px solid var(--border-grey);
+    }
+
+    .sam-dropdown__item:last-child {
+      border-bottom: none;
+    }
+
+    .sam-dropdown__item:hover {
+      background: var(--seashell);
+      color: var(--orange);
+    }
+
+    .sam-dropdown__label {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .sam-dropdown__desc {
+      font-size: 12px;
+      color: var(--comet);
+    }
+
+    /* ===== HEADER ACTIONS ===== */
+    .sam-header__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .sam-cta-secondary {
+      display: none;
+    }
+
+    @media (min-width: 992px) {
+      .sam-cta-secondary {
+        display: inline-block;
+      }
+    }
+
+    /* ===== CTA BUTTONS ===== */
+    .sam-cta {
+      display: inline-block;
+      padding: var(--space-3) var(--space-6);
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: var(--radius-default);
+      font-size: 14px;
+      font-weight: 600;
+      transition: background var(--motion-fast) ease-out, box-shadow var(--motion-fast) ease-out;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-primary);
+    }
+
+    .sam-cta:hover {
+      background: var(--sam-orange-dark);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-cta-secondary {
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity var(--motion-fast) ease-out;
+    }
+
+    .sam-cta-secondary:hover {
+      opacity: 1;
+      color: var(--orange);
+    }
+
+    /* ===== HAMBURGER ===== */
+    .sam-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-2);
+      z-index: 50;
+    }
+
+    @media (min-width: 992px) {
+      .sam-hamburger {
+        display: none;
+      }
+    }
+
+    .sam-hamburger__line {
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: all var(--motion-normal) ease-out;
+    }
+
+    .sam-hamburger.is-open .sam-hamburger__line:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .sam-hamburger.is-open .sam-hamburger__line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .sam-hamburger.is-open .sam-hamburger__line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .sam-mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--sam-header-h);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--space-cadet);
+      z-index: 30;
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--motion-normal) ease-out, visibility var(--motion-normal) ease-out;
+    }
+
+    .sam-mobile-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (min-width: 992px) {
+      .sam-mobile-menu {
+        display: none;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .sam-mobile-menu {
+        display: block;
+      }
+    }
+
+    .sam-mobile-nav {
+      padding: var(--space-6);
+    }
+
+    .sam-mobile-nav__link,
+    .sam-mobile-nav__toggle {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: var(--space-4) 0;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      background: none;
+      border: none;
+      font-family: var(--font-primary);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    .sam-mobile-nav__link:hover,
+    .sam-mobile-nav__toggle:hover {
+      color: var(--orange);
+    }
+
+    .sam-mobile-nav__group {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sam-mobile-nav__toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-4) 0;
+    }
+
+    .sam-mobile-nav__arrow {
+      transition: transform var(--motion-fast) ease-out;
+    }
+
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__arrow {
+      transform: rotate(180deg);
+    }
+
+    .sam-mobile-nav__sub {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--motion-normal) ease-out;
+    }
+
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
+      max-height: 500px;
+    }
+
+    .sam-mobile-nav__sub a {
+      display: block;
+      padding: var(--space-3) 0 var(--space-3) var(--space-4);
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sam-mobile-nav__sub a:hover {
+      color: var(--orange);
+    }
+
+    .sam-mobile-nav__cta-wrap {
+      padding: var(--space-6) 0 var(--space-4) 0;
+    }
+
+    .sam-mobile-nav__cta {
+      display: block;
+      padding: var(--space-4) var(--space-6);
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: var(--radius-default);
+      font-weight: 600;
+      text-align: center;
+      transition: background var(--motion-fast) ease-out;
+    }
+
+    .sam-mobile-nav__cta:hover {
+      background: var(--sam-orange-dark);
+    }
+
+    /* ===== PAGE WRAPPER ===== */
+    .sam-page {
+      padding-top: var(--sam-header-h);
+      min-height: 100vh;
+    }
+
+    main {
+      display: block;
+    }
+
+    /* ===== SECTIONS ===== */
+    .sam-section {
+      padding: var(--space-24) var(--space-6);
+    }
+
+    .sam-section--hero {
+      background: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-30) var(--space-6);
+    }
+
+    .sam-section--alt {
+      background: var(--seashell);
+    }
+
+    .sam-section__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .sam-section__inner--wide {
+      max-width: var(--max-width-wide);
+    }
+
+    /* ===== OVERLINES ===== */
+    .sam-overline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+      display: inline-block;
+    }
+
+    .sam-section--hero .sam-overline {
+      color: var(--orange);
+    }
+
+    /* ===== HEADINGS ===== */
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-6);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-8);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: var(--space-2);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+    }
+
+    /* ===== PARAGRAPHS & TEXT ===== */
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+      color: var(--space-cadet);
+    }
+
+    .sam-section--hero p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .sam-lead {
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 500;
+      color: var(--space-cadet);
+      max-width: 680px;
+    }
+
+    .sam-section--hero .sam-lead {
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 100%;
+    }
+
+    .sam-small {
+      font-size: 14px;
+      color: var(--comet);
+      line-height: 1.5;
+    }
+
+    /* ===== CARDS ===== */
+    .sam-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      transition: box-shadow var(--motion-fast) ease-out, transform var(--motion-fast) ease-out;
+    }
+
+    .sam-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-card h3 {
+      margin-bottom: var(--space-4);
+      color: var(--space-cadet);
+    }
+
+    .sam-card p {
+      margin-bottom: 0;
+      color: var(--comet);
+    }
+
+    /* ===== GRIDS ===== */
+    .sam-grid {
+      display: grid;
+      gap: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .sam-grid--2 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .sam-grid--3 {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .sam-grid--6 {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    @media (min-width: 768px) {
+      .sam-grid--3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .sam-grid--6 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .sam-grid--6 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ===== STATS BAR ===== */
+    .sam-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-6);
+      padding: var(--space-8) 0;
+      border-top: 1px solid var(--border-grey);
+      border-bottom: 1px solid var(--border-grey);
+      margin-bottom: var(--space-24);
+    }
+
+    .sam-stat {
+      text-align: center;
+    }
+
+    .sam-stat__value {
+      font-family: var(--font-data);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1.2;
+      margin-bottom: var(--space-2);
+      letter-spacing: -0.01em;
+    }
+
+    .sam-stat__label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--comet);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .sam-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sam-stat__value {
+        font-size: 24px;
+      }
+    }
+
+    /* ===== TIMELINE CARDS ===== */
+    .sam-timeline-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      position: relative;
+    }
+
+    .sam-timeline-card::before {
+      content: attr(data-year);
+      display: block;
+      font-family: var(--font-data);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: var(--space-3);
+    }
+
+    .sam-timeline-card h3 {
+      margin-bottom: var(--space-4);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* ===== PARTNER CARDS ===== */
+    .sam-partner-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+
+    .sam-partner-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-partner-card .sam-partner-role {
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: var(--space-4);
+      letter-spacing: 0.05em;
+    }
+
+    .sam-partner-card p {
+      margin-bottom: var(--space-4);
+      color: var(--comet);
+      font-size: 14px;
+    }
+
+    .sam-partner-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--blue-600);
+    }
+
+    /* ===== LEADER CARDS ===== */
+    .sam-leader-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      text-align: center;
+    }
+
+    .sam-leader-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-leader-role {
+      font-size: 13px;
+      color: var(--comet);
+      font-weight: 500;
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sam-leader-bio {
+      font-size: 14px;
+      color: var(--space-cadet);
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+
+    .sam-leader-social {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-4);
+    }
+
+    .sam-leader-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-default);
+      background: var(--seashell);
+      color: var(--space-cadet);
+      transition: background var(--motion-fast) ease-out, color var(--motion-fast) ease-out;
+    }
+
+    .sam-leader-social a:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .sam-leader-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ===== ADVISOR CARDS ===== */
+    .sam-advisor-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+
+    .sam-advisor-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-advisor-card p {
+      margin-bottom: 0;
+      color: var(--comet);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== CULTURE CARDS ===== */
+    .sam-culture-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+
+    .sam-culture-card h3 {
+      margin-bottom: var(--space-4);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-culture-card p {
+      margin-bottom: 0;
+      color: var(--comet);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== TESTIMONIAL ===== */
+    .sam-testimonial {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      border-left: 4px solid var(--orange);
+      margin-bottom: var(--space-8);
+    }
+
+    .sam-testimonial blockquote {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--space-cadet);
+      font-weight: 500;
+      margin-bottom: var(--space-4);
       font-style: italic;
-      font-weight: 100 700;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
     }
-    @font-face {
-      font-family: 'JetBrains Mono';
-      font-style: normal;
-      font-weight: 100 800;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+
+    .sam-testimonial-source {
+      font-size: 13px;
+      color: var(--comet);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    @font-face {
-      font-family: 'JetBrains Mono';
-      font-style: italic;
-      font-weight: 100 800;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
+
+    /* ===== BADGES STRIP ===== */
+    .sam-badges {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: var(--space-8) 0;
+    }
+
+    .sam-badge {
+      display: inline-block;
+      padding: var(--space-3) var(--space-6);
+      background: var(--seashell);
+      border-radius: var(--radius-default);
+      font-size: 13px;
+      color: var(--comet);
+      text-align: center;
+    }
+
+    /* ===== FOOTER ===== */
+    .sam-footer {
+      background: var(--space-cadet);
+      color: rgba(255, 255, 255, 0.8);
+      padding: var(--space-24) var(--space-6) var(--space-12) var(--space-6);
+      margin-top: var(--space-24);
+    }
+
+    .sam-footer__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .sam-footer__top {
+      margin-bottom: var(--space-16);
+    }
+
+    .sam-footer__logo {
+      display: inline-block;
+      margin-bottom: var(--space-4);
+    }
+
+    .sam-footer__logo img {
+      width: 140px;
+      height: 32px;
+    }
+
+    .sam-footer__tagline {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 400px;
+    }
+
+    .sam-footer__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--space-12);
+      margin-bottom: var(--space-16);
+    }
+
+    .sam-footer__col {
+      min-width: 0;
+    }
+
+    .sam-footer__col-heading {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: var(--space-4);
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    @media (max-width: 991px) {
+      .sam-footer__col-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .sam-footer__col-heading::after {
+        content: '+';
+        font-size: 18px;
+      }
+
+      .sam-footer__col.is-open .sam-footer__col-heading::after {
+        content: '-';
+      }
+    }
+
+    .sam-footer__col-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      max-height: 1000px;
+      overflow: hidden;
+      transition: max-height var(--motion-normal) ease-out;
+    }
+
+    @media (max-width: 991px) {
+      .sam-footer__col-links {
+        max-height: 0;
+      }
+
+      .sam-footer__col.is-open .sam-footer__col-links {
+        max-height: 500px;
+      }
+    }
+
+    .sam-footer__col-links a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    .sam-footer__col-links a:hover {
+      color: var(--orange);
+    }
+
+    .sam-footer__divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: var(--space-16) 0;
+    }
+
+    .sam-footer__certs {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-8);
+      margin-bottom: var(--space-16);
+    }
+
+    .sam-footer__certs a {
+      display: inline-block;
+      opacity: 0.7;
+      transition: opacity var(--motion-fast) ease-out;
+    }
+
+    .sam-footer__certs a:hover {
+      opacity: 1;
+    }
+
+    .sam-footer__certs img {
+      width: 72px;
+      height: 72px;
+    }
+
+    .sam-footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    .sam-footer__bottom-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    .sam-footer__copyright {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .sam-footer__social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: rgba(255, 255, 255, 0.6);
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    .sam-footer__social:hover {
+      color: var(--orange);
+    }
+
+    .sam-footer__legal {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      font-size: 12px;
+    }
+
+    .sam-footer__legal a {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sam-footer__legal a:hover {
+      color: var(--orange);
+    }
+
+    .sam-footer__legal-sep {
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .sam-footer__bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .sam-footer__bottom-left {
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+
+    /* ===== SECONDARY BUTTON ===== */
+    .sam-button-secondary {
+      display: inline-block;
+      padding: var(--space-3) var(--space-6);
+      background: transparent;
+      border: 1px solid var(--border-grey);
+      color: var(--space-cadet);
+      text-decoration: none;
+      border-radius: var(--radius-default);
+      font-size: 14px;
+      font-weight: 600;
+      transition: background var(--motion-fast) ease-out, color var(--motion-fast) ease-out, border-color var(--motion-fast) ease-out;
+    }
+
+    .sam-button-secondary:hover {
+      background: var(--seashell);
+      border-color: var(--space-cadet);
+      color: var(--orange);
+    }
+
+    /* ===== LINK WITH ARROW ===== */
+    .sam-link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--blue-600);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: gap var(--motion-fast) ease-out;
+    }
+
+    .sam-link-arrow:hover {
+      gap: var(--space-3);
+      color: var(--orange);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sam-section {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .sam-section--hero {
+        padding: var(--space-24) var(--space-6);
+      }
+    }
+
+    /* ===== FOCUS & ACCESSIBILITY ===== */
+    *:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
-  <style>
-    /* Header CSS */
-    /* ============================================================
-   SAMOTICS HEADER — CSS
-   Paste into Bricks Code Element → CSS tab
-   ============================================================ */
 
-/* ── Tokens ── */
-:root {
-  --sam-space-cadet: #1F1F33;
-  --sam-orange: #FF5429;
-  --sam-orange-dark: #D7411B;
-  --sam-blue: #005CBA;
-  --sam-white: #FFFFFF;
-  --sam-seashell: #F8F5F2;
-  --sam-black: #111111;
-  --sam-comet: #6B6B7F;
-  --sam-border-light: #E8E4E0;
-  --sam-header-bg: #1F1F33;
-  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --sam-header-h: 80px;
-  --sam-header-h-compact: 64px;
-  --sam-transition: 150ms ease-out;
-}
 
-/* ── Skip Link ── */
-.sam-skip-link {
-  position: absolute;
-  top: -100%;
-  left: 16px;
-  z-index: 10001;
-  padding: 8px 16px;
-  background: var(--sam-orange);
-  color: var(--sam-white);
-  font: 600 14px/1 var(--sam-font);
-  text-decoration: none;
-  border-radius: 0;
-}
-.sam-skip-link:focus {
-  top: 8px;
-}
-
-/* ── Header Shell ── */
-.sam-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  height: var(--sam-header-h);
-  background: var(--sam-header-bg);
-  transition: height var(--sam-transition),
-              box-shadow var(--sam-transition);
-}
-.sam-header.is-scrolled {
-  height: var(--sam-header-h-compact);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-}
-
-/* ── Inner Container ── */
-.sam-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* ── Logo ── */
-.sam-header__logo {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-.sam-logo {
-  height: auto;
-  transition: transform 200ms ease-out, filter 200ms ease-out;
-}
-/* Logo: white version on dark header */
-.sam-logo--white {
-  
-}
-.sam-logo--dark {
-  display: none;
-}
-.sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
-
-/* ── Desktop Nav ── */
-.sam-nav {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-/* Nav Links — <a> tags so they're clickable AND hoverable */
-.sam-nav__link {
-  font: 500 15px/1 var(--sam-font);
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  padding: 8px 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  position: relative;
-  transition: color var(--sam-transition);
-  white-space: nowrap;
-}
-.sam-nav__link:hover,
-.sam-nav__link:focus-visible {
-  color: var(--sam-white);
-}
-
-/* Active page indicator */
-.sam-nav__link[aria-current="page"]::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--sam-orange);
-}
-
-/* Scrolled state */
-.sam-header.is-scrolled .sam-nav__link {
-  color: rgba(255, 255, 255, 0.85);
-}
-.sam-header.is-scrolled .sam-nav__link:hover,
-.sam-header.is-scrolled .sam-nav__link:focus-visible {
-  color: var(--sam-white);
-}
-
-/* Chevron */
-.sam-nav__chevron {
-  transition: transform var(--sam-transition);
-  flex-shrink: 0;
-}
-
-/* ── Dropdown Panels ── */
-.sam-nav__item {
-  position: relative;
-}
-.sam-dropdown {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-4px);
-  min-width: 300px;
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-radius: 0;
-  padding: 8px 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--sam-transition),
-              visibility var(--sam-transition),
-              transform var(--sam-transition);
-  pointer-events: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-/* Invisible bridge: closes the hover gap between trigger and dropdown */
-.sam-nav__item--has-dropdown::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 16px;
-}
-
-/* HOVER to open dropdowns */
-.sam-nav__item--has-dropdown:hover .sam-dropdown,
-.sam-nav__item--has-dropdown:focus-within .sam-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
-}
-.sam-nav__item--has-dropdown:hover .sam-nav__chevron,
-.sam-nav__item--has-dropdown:focus-within .sam-nav__chevron {
-  transform: rotate(180deg);
-}
-
-/* Dropdown Items */
-.sam-dropdown__item {
-  display: flex;
-  flex-direction: column;
-  padding: 12px 24px;
-  text-decoration: none;
-  transition: background-color 100ms ease-out;
-}
-.sam-dropdown__item:hover,
-.sam-dropdown__item:focus-visible {
-  background: var(--sam-seashell);
-}
-.sam-dropdown__label {
-  font: 500 15px/1.3 var(--sam-font);
-  color: var(--sam-black);
-}
-.sam-dropdown__desc {
-  font: 400 13px/1.4 var(--sam-font);
-  color: var(--sam-comet);
-  margin-top: 2px;
-}
-.sam-dropdown__badge {
-  display: inline-block;
-  font: 600 10px/1 var(--sam-font);
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--sam-white); background: var(--sam-space-cadet);
-  padding: 3px 6px; border-radius: 3px;
-  margin-left: 6px; vertical-align: middle;
-}
-
-/* ── CTA Button ── */
-.sam-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 24px;
-  background: var(--sam-orange);
-  color: var(--sam-black);
-  font: 600 14px/1 var(--sam-font);
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  border-radius: 0;
-  border: none;
-  white-space: nowrap;
-  transition: background-color var(--sam-transition);
-  cursor: pointer;
-}
-.sam-cta:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-}
-.sam-header.is-scrolled .sam-cta {
-  background: var(--sam-orange);
-  color: var(--sam-black);
-}
-.sam-header.is-scrolled .sam-cta:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-}
-
-/* ── Header Actions Wrapper ── */
-.sam-header__actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
-
-/* ── Hamburger (mobile only) ── */
-.sam-hamburger {
-  display: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.sam-hamburger__line {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--sam-white);
-  transition: transform 200ms ease-out, opacity 200ms ease-out;
-  border-radius: 0;
-}
-/* Open state */
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) {
-  opacity: 0;
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-/* ── Mobile Menu ── */
-.sam-mobile-menu {
-  display: none;
-  position: fixed;
-  top: var(--sam-header-h-compact);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--sam-white);
-  overflow-y: auto;
-  z-index: 999;
-  padding: 24px 16px;
-  flex-direction: column;
-}
-.sam-mobile-menu.is-open {
-  display: flex;
-  animation: samSlideIn 200ms ease-out;
-}
-
-@keyframes samSlideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-/* Mobile Nav Links */
-.sam-mobile-nav__link {
-  display: block;
-  padding: 16px 0;
-  font: 500 16px/1 var(--sam-font);
-  color: var(--sam-black);
-  text-decoration: none;
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__link:hover {
-  color: var(--sam-orange);
-}
-
-/* Mobile Accordion Groups */
-.sam-mobile-nav__group {
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 16px 0;
-  font: 500 16px/1 var(--sam-font);
-  color: var(--sam-black);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.sam-mobile-nav__arrow {
-  transition: transform 200ms ease-out;
-  flex-shrink: 0;
-}
-.sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow {
-  transform: rotate(180deg);
-}
-
-/* Sub-links (hidden by default) */
-.sam-mobile-nav__sub {
-  display: none;
-  flex-direction: column;
-  padding: 0 0 8px 16px;
-}
-.sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
-  display: flex;
-}
-.sam-mobile-nav__sub a {
-  display: block;
-  padding: 12px 0;
-  font: 400 15px/1 var(--sam-font);
-  color: var(--sam-black);
-  text-decoration: none;
-}
-.sam-mobile-nav__sub a:hover {
-  color: var(--sam-orange);
-}
-
-/* Mobile CTA */
-.sam-mobile-nav__cta-wrap {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 14px 0;
-  background: var(--sam-orange);
-  color: var(--sam-white);
-  font: 600 16px/1 var(--sam-font);
-  text-decoration: none;
-  border-radius: 0;
-  transition: background-color var(--sam-transition);
-}
-.sam-mobile-nav__cta:hover {
-  background: var(--sam-orange-dark);
-}
-
-/* ── Focus Styles ── */
-.sam-nav__link:focus-visible,
-.sam-dropdown__item:focus-visible,
-.sam-cta:focus-visible,
-.sam-hamburger:focus-visible,
-.sam-mobile-nav__toggle:focus-visible,
-.sam-mobile-nav__link:focus-visible,
-.sam-mobile-nav__sub a:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-
-/* ── Reduced Motion ── */
-@media (prefers-reduced-motion: reduce) {
-  .sam-header,
-  .sam-dropdown,
-  .sam-nav__chevron,
-  .sam-hamburger__line,
-  .sam-mobile-nav__arrow,
-  .sam-logo {
-    transition: none !important;
-    animation: none !important;
-  }
-}
-
-/* ── Responsive ── */
-@media (max-width: 991px) {
-  .sam-header {
-    height: var(--sam-header-h-compact);
-  }
-  .sam-header__inner {
-    padding: 0 16px;
-  }
-  .sam-nav {
-    display: none;
-  }
-  .sam-hamburger {
-    display: flex;
-  }
-  .sam-cta {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-}
-
-    /* Footer CSS */
-    /* ============================================================
-   SAMOTICS FOOTER — CSS
-   Paste into Bricks Code Element → CSS tab
-   ============================================================ */
-
-/* ── Pre-footer CTA Section ── */
-.sam-prefooter {
-  background: var(--sam-seashell, #F8F5F2);
-  padding: 96px 0;
-}
-.sam-prefooter__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 24px;
-}
-.sam-prefooter__heading {
-  font: 600 48px/1.15 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: var(--sam-space-cadet, #1F1F33);
-  letter-spacing: -0.01em;
-  margin: 0;
-}
-.sam-prefooter__sub {
-  font: 400 18px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: var(--sam-comet, #6B6B7F);
-  margin: 0;
-  max-width: 520px;
-}
-.sam-prefooter__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 32px;
-  background: var(--sam-orange, #FF5429);
-  color: #FFFFFF;
-  font: 600 16px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  border-radius: 0;
-  border: none;
-  cursor: pointer;
-  transition: background-color 150ms ease-out;
-}
-.sam-prefooter__cta:hover {
-  background: var(--sam-orange-dark, #D7411B);
-}
-
-/* ── Footer Shell ── */
-.sam-footer {
-  background: var(--sam-space-cadet, #1F1F33);
-  padding-top: 96px;
-}
-.sam-footer__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* ── Top: Logo + Tagline ── */
-.sam-footer__top {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 64px;
-}
-.sam-footer__logo {
-  display: inline-flex;
-  text-decoration: none;
-}
-.sam-footer__logo img {
-  width: 140px;
-  height: auto;
-}
-.sam-footer__tagline {
-  font: 400 16px/1.6 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0;
-  max-width: 360px;
-}
-
-/* ── 5-Column Nav Grid ── */
-.sam-footer__grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 32px;
-  margin-bottom: 64px;
-}
-
-/* Column */
-.sam-footer__col-heading {
-  font: 600 14px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: #FFFFFF;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0 0 16px 0;
-}
-.sam-footer__col-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.sam-footer__col-links a {
-  font: 400 14px/1.4 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
-  transition: color 150ms ease-out;
-}
-.sam-footer__col-links a:hover,
-.sam-footer__col-links a:focus-visible {
-  color: #FFFFFF;
-}
-
-/* ── Divider ── */
-.sam-footer__divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-
-/* ── Certification Badges ── */
-.sam-footer__certs {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 24px 0;
-}
-.sam-footer__certs a {
-  display: block;
-  opacity: 0.7;
-  transition: opacity 150ms ease-out;
-}
-.sam-footer__certs a:hover {
-  opacity: 1;
-}
-.sam-footer__certs img {
-  display: block;
-  background: var(--sam-white);
-  border-radius: 4px;
-  padding: 4px;
-}
-/* ── Bottom Bar ── */
-.sam-footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 0;
-}
-.sam-footer__bottom-left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.sam-footer__copyright {
-  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.4);
-}
-
-/* LinkedIn */
-.sam-footer__social {
-  display: inline-flex;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.4);
-  transition: color 150ms ease-out;
-}
-.sam-footer__social:hover {
-  color: #FFFFFF;
-}
-
-/* Legal Links */
-.sam-footer__legal {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.sam-footer__legal a {
-  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.4);
-  text-decoration: none;
-  transition: color 150ms ease-out;
-}
-.sam-footer__legal a:hover,
-.sam-footer__legal a:focus-visible {
-  color: #FFFFFF;
-}
-.sam-footer__legal-sep {
-  font: 400 13px/1 var(--sam-font, 'IBM Plex Sans', sans-serif);
-  color: rgba(255, 255, 255, 0.2);
-}
-
-/* ── Focus Styles ── */
-.sam-prefooter__cta:focus-visible,
-.sam-footer__col-links a:focus-visible,
-.sam-footer__social:focus-visible,
-.sam-footer__legal a:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-
-/* ── Reduced Motion ── */
-@media (prefers-reduced-motion: reduce) {
-  .sam-prefooter__cta,
-  .sam-footer__col-links a,
-  .sam-footer__social,
-  .sam-footer__legal a {
-    transition: none !important;
-  }
-}
-
-/* ── Responsive ── */
-@media (max-width: 991px) {
-  .sam-prefooter {
-    padding: 64px 0;
-  }
-  .sam-prefooter__inner {
-    padding: 0 16px;
-  }
-  .sam-prefooter__heading {
-    font-size: 32px;
-  }
-
-  .sam-footer {
-    padding-top: 64px;
-  }
-  .sam-footer__inner {
-    padding: 0 16px;
-  }
-  .sam-footer__top {
-    margin-bottom: 48px;
-  }
-
-  /* Grid → single column accordion */
-  .sam-footer__grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-    margin-bottom: 48px;
-  }
-
-  .sam-footer__col {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 0;
-  }
-  .sam-footer__col-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    margin: 0;
-    cursor: pointer;
-  }
-  .sam-footer__col-heading::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-right: 2px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
-    transform: rotate(45deg);
-    transition: transform 200ms ease-out;
-    flex-shrink: 0;
-  }
-  .sam-footer__col.is-open .sam-footer__col-heading::after {
-    transform: rotate(-135deg);
-  }
-
-  .sam-footer__col-links {
-    display: none;
-    padding: 0 0 16px 0;
-  }
-  .sam-footer__col.is-open .sam-footer__col-links {
-    display: flex;
-  }
-
-  /* Bottom bar stacks */
-  .sam-footer__bottom {
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-  }
-}
-    /* Page CSS */
-    /* ============================================================
-   SAMOTICS SECURITY & COMPLIANCE PAGE — CSS
-   Paste into Bricks Code Element → CSS tab
-   ============================================================ */
-
-/* ── Tokens (extend header/footer tokens) ── */
-:root {
-  /* Core Palette */
-  --sam-space-cadet:     #1F1F33;
-  --sam-orange:          #FF5429;
-  --sam-orange-dark:     #D7411B;
-  --sam-orange-deep:     #A33013;
-  --sam-blue:            #005CBA;
-  --sam-blue-dark:       #004179;
-  --sam-blue-light:      #B3DAFF;
-  --sam-teal:            #0098AC;
-  --sam-teal-dark:       #006C6C;
-  --sam-white:           #FFFFFF;
-  --sam-seashell:        #F8F5F2;
-  --sam-black:           #111111;
-  --sam-comet:           #6B6B7F;
-  --sam-muted-dark:      #B0B0C8;
-  --sam-border-light:    #E8E4E0;
-  --sam-dark-elevated:   #2A2A42;
-
-  /* Fonts */
-  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-
-  /* Spacing */
-  --sp-01: 2px;
-  --sp-02: 4px;
-  --sp-03: 8px;
-  --sp-04: 12px;
-  --sp-05: 16px;
-  --sp-06: 24px;
-  --sp-07: 32px;
-  --sp-08: 48px;
-  --sp-09: 64px;
-  --sp-10: 96px;
-  --sp-11: 128px;
-  --sp-12: 160px;
-
-  /* Shadows */
-  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
-  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
-  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
-
-  /* Transitions */
-  --ease: 150ms ease-out;
-}
-
-/* ── Reset ── */
-.sam-security {
-  overflow-x: hidden;
-}
-
-/* ── Shared: Overline ── */
-.overline {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  margin: 0 0 var(--sp-06) 0;
-}
-
-/* ── Shared: Lead ── */
-.lead {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: var(--sam-space-cadet);
-  max-width: 60ch;
-  margin: 0;
-}
-
-/* ── Shared: Text Link ── */
-.sam-text-link {
-  font-family: var(--sam-font);
-  font-weight: 500;
-  font-size: 1rem;
-  color: var(--sam-blue);
-  text-decoration: none;
-  transition: color var(--ease);
-}
-.sam-text-link:hover {
-  color: var(--sam-blue-dark);
-}
-
-/* ── Shared: Buttons ── */
-.sam-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 32px;
-  font: 600 1rem/1 var(--sam-font);
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
-  white-space: nowrap;
-}
-.sam-btn:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-.sam-btn--primary {
-  background: var(--sam-orange);
-  color: var(--sam-black);
-}
-.sam-btn--primary:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-  box-shadow: var(--shadow-cta);
-}
-.sam-btn--primary:active {
-  background: var(--sam-orange-deep);
-  color: var(--sam-white);
-}
-.sam-btn--secondary {
-  background: transparent;
-  color: var(--sam-space-cadet);
-  border: 2px solid var(--sam-space-cadet);
-}
-.sam-btn--secondary:hover {
-  background: var(--sam-space-cadet);
-  color: var(--sam-white);
-}
-.sam-btn--secondary:active {
-  background: var(--sam-space-cadet);
-  color: var(--sam-white);
-  border-color: var(--sam-teal-dark, #006C6C);
-}
-
-/* ============================================================
-   1. HERO
-   ============================================================ */
-
-.sam-hero--security {
-  background-color: var(--sam-space-cadet);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: var(--sp-12) 0 var(--sp-11) 0;
-  min-height: 480px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.sam-hero--security .sam-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.75) 45%, rgba(31,31,51,0.35) 100%);
-  z-index: 0;
-}
-.sam-hero--security .sam-hero__inner {
-  position: relative;
-  z-index: 1;
-}
-.sam-hero__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-  width: 100%;
-}
-.sam-hero__overline {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--sam-orange);
-  margin: 0 0 var(--sp-06) 0;
-}
-.sam-hero__h1 {
-  font-family: var(--sam-font);
-  font-weight: 700;
-  font-size: 4rem;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--sam-white);
-  margin: 0 0 var(--sp-07) 0;
-  max-width: 22ch;
-}
-.sam-hero__lead {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: var(--sam-white);
-  margin: 0;
-  max-width: 60ch;
-}
-
-/* ============================================================
-   2. CERTIFICATIONS
-   ============================================================ */
-
-.sam-sec-certs {
-  background: var(--sam-white);
-  padding: var(--sp-11) 0;
-}
-.sam-sec-certs__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-sec-certs__inner .overline {
-  color: var(--sam-blue);
-}
-.sam-sec-certs__inner h2 {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-  max-width: 25ch;
-}
-.sam-sec-certs__lead {
-  margin-bottom: var(--sp-09);
-}
-
-/* Certification Cards */
-.sam-sec-certs__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-06);
-}
-.sam-sec-certs__card {
-  border: 1px solid var(--sam-border-light);
-  border-top: 3px solid var(--sam-blue);
-  padding: var(--sp-07);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-04);
-}
-.sam-sec-certs__card-badge {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 92, 186, 0.08);
-  margin-bottom: var(--sp-02);
-}
-.sam-sec-certs__card-badge-text {
-  font-family: var(--sam-mono);
-  font-weight: 700;
-  font-size: 0.75rem;
-  color: var(--sam-blue);
-  letter-spacing: 0.02em;
-}
-.sam-sec-certs__card-title {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.3;
-  color: var(--sam-space-cadet);
-  margin: 0;
-}
-.sam-sec-certs__card-desc {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--sam-black);
-  margin: 0;
-}
-.sam-sec-certs__card-scope {
-  font-family: var(--sam-mono);
-  font-weight: 400;
-  font-size: 0.8125rem;
-  color: var(--sam-comet);
-  letter-spacing: 0.01em;
-  margin-top: auto;
-  padding-top: var(--sp-03);
-  border-top: 1px solid var(--sam-border-light);
-}
-
-/* ============================================================
-   3. CELLULAR ARCHITECTURE
-   ============================================================ */
-
-.sam-sec-arch {
-  background: var(--sam-seashell);
-  padding: var(--sp-11) 0;
-}
-.sam-sec-arch__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-sec-arch__inner .overline {
-  color: var(--sam-teal-dark);
-}
-.sam-sec-arch__inner h2 {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-  max-width: 35ch;
-}
-.sam-sec-arch__lead {
-  margin-bottom: var(--sp-09);
-}
-
-/* Highlight Items */
-.sam-sec-arch__highlights {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-06);
-  margin-bottom: var(--sp-08);
-}
-.sam-sec-arch__highlight {
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-left: 4px solid var(--sam-teal-dark);
-  padding: var(--sp-06);
-}
-.sam-sec-arch__highlight-title {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 1.3;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-03) 0;
-}
-.sam-sec-arch__highlight-desc {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--sam-black);
-  margin: 0;
-}
-
-/* Callout */
-.sam-sec-arch__callout {
-  background: rgba(0, 92, 186, 0.06);
-  border-left: 4px solid var(--sam-blue);
-  padding: var(--sp-06);
-}
-.sam-sec-arch__callout-text {
-  font-family: var(--sam-font);
-  font-weight: 500;
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--sam-space-cadet);
-  margin: 0;
-  max-width: 65ch;
-}
-
-/* ============================================================
-   4. DATA SECURITY
-   ============================================================ */
-
-.sam-sec-data {
-  background: var(--sam-white);
-  padding: var(--sp-11) 0;
-}
-.sam-sec-data__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-sec-data__inner .overline {
-  color: var(--sam-orange-dark);
-}
-.sam-sec-data__inner h2 {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-  max-width: 35ch;
-}
-.sam-sec-data__lead {
-  margin-bottom: var(--sp-09);
-}
-
-/* Data Security Items */
-.sam-sec-data__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-06);
-}
-.sam-sec-data__item {
-  padding: var(--sp-06);
-  border: 1px solid var(--sam-border-light);
-  border-left: 4px solid var(--sam-blue);
-}
-.sam-sec-data__item-label {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 1.3;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-03) 0;
-}
-.sam-sec-data__item-desc {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--sam-black);
-  margin: 0;
-}
-
-/* ============================================================
-   5. SECURITY DOCS (GATED FORM)
-   ============================================================ */
-
-.sam-sec-docs {
-  background: var(--sam-seashell);
-  padding: var(--sp-11) 0;
-}
-.sam-sec-docs__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-sec-docs__inner .overline {
-  color: var(--sam-blue);
-}
-.sam-sec-docs__inner h2 {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-  max-width: 30ch;
-}
-.sam-sec-docs__lead {
-  margin-bottom: var(--sp-09);
-}
-
-/* Form Wrapper: two-column layout */
-.sam-sec-docs__form-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: var(--sp-08);
-  align-items: start;
-}
-.sam-sec-docs__form-heading {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.3;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-}
-
-/* Document list */
-.sam-sec-docs__doc-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-05);
-}
-.sam-sec-docs__doc-item {
-  font-family: var(--sam-font);
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 1.4;
-  color: var(--sam-space-cadet);
-  display: flex;
-  align-items: center;
-  gap: var(--sp-03);
-}
-.sam-sec-docs__doc-icon {
-  color: var(--sam-blue);
-  flex-shrink: 0;
-}
-
-/* Form container */
-.sam-sec-docs__form-container {
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  padding: var(--sp-07);
-}
-.sam-sec-docs__form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-05);
-}
-.sam-sec-docs__field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-02);
-}
-.sam-sec-docs__field--full {
-  grid-column: 1 / -1;
-}
-.sam-sec-docs__field label,
-.sam-sec-docs__fieldset legend {
-  font-family: var(--sam-font);
-  font-weight: 500;
-  font-size: 0.875rem;
-  color: var(--sam-space-cadet);
-}
-.sam-sec-docs__field input[type="text"],
-.sam-sec-docs__field input[type="email"] {
-  font-family: var(--sam-font);
-  font-size: 1rem;
-  padding: var(--sp-04) var(--sp-05);
-  border: 1px solid var(--sam-border-light);
-  color: var(--sam-black);
-  background: var(--sam-white);
-  transition: border-color var(--ease);
-}
-.sam-sec-docs__field input:focus {
-  outline: none;
-  border-color: var(--sam-blue);
-  box-shadow: 0 0 0 3px rgba(0, 92, 186, 0.15);
-}
-
-/* Fieldset */
-.sam-sec-docs__fieldset {
-  border: none;
-  padding: 0;
-  margin: 0;
-}
-.sam-sec-docs__fieldset legend {
-  margin-bottom: var(--sp-03);
-}
-
-/* Checkboxes */
-.sam-sec-docs__checkbox {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 0.9375rem;
-  color: var(--sam-black);
-  display: flex;
-  align-items: center;
-  gap: var(--sp-03);
-  cursor: pointer;
-  line-height: 1.4;
-  padding: var(--sp-02) 0;
-}
-.sam-sec-docs__checkbox input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  accent-color: var(--sam-blue);
-}
-
-/* Consent */
-.sam-sec-docs__consent {
-  padding-top: var(--sp-03);
-  border-top: 1px solid var(--sam-border-light);
-}
-.sam-sec-docs__consent .sam-sec-docs__checkbox {
-  font-size: 0.8125rem;
-  color: var(--sam-comet);
-}
-
-/* Submit */
-.sam-sec-docs__submit {
-  width: auto;
-}
-
-/* ============================================================
-   6. COMPLIANCE FRAMEWORKS
-   ============================================================ */
-
-.sam-sec-comply {
-  background: var(--sam-white);
-  padding: var(--sp-11) 0;
-}
-.sam-sec-comply__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-sec-comply__inner .overline {
-  color: var(--sam-comet);
-}
-.sam-sec-comply__inner h2 {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-  max-width: 25ch;
-}
-.sam-sec-comply__lead {
-  margin-bottom: var(--sp-09);
-}
-
-/* Compliance Items */
-.sam-sec-comply__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-06);
-}
-.sam-sec-comply__item {
-  padding: var(--sp-06);
-  border: 1px solid var(--sam-border-light);
-}
-.sam-sec-comply__item-title {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 1.3;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-03) 0;
-}
-.sam-sec-comply__item-desc {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--sam-black);
-  margin: 0;
-}
-
-/* ============================================================
-   7. CTA BLOCK
-   ============================================================ */
-
-.sam-cta-block--security {
-  background: var(--sam-seashell);
-  padding: var(--sp-11) 0;
-}
-.sam-cta-block__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-  text-align: center;
-}
-.sam-cta-block__heading {
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--sam-space-cadet);
-  margin: 0 0 var(--sp-06) 0;
-}
-.sam-cta-block__sub {
-  font-family: var(--sam-font);
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--sam-black);
-  margin: 0 0 var(--sp-08) 0;
-  max-width: 56ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-.sam-cta-block__actions {
-  display: flex;
-  justify-content: center;
-  gap: var(--sp-05);
-  flex-wrap: wrap;
-}
-
-/* ============================================================
-   FOCUS & REDUCED MOTION
-   ============================================================ */
-
-.sam-text-link:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sam-btn,
-  .sam-text-link {
-    transition: none !important;
-  }
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-/* Tablet (max-width: 1055px) */
-@media (max-width: 1055px) {
-
-  .sam-hero--security {
-    padding: var(--sp-10) 0;
-    min-height: auto;
-  }
-  .sam-hero__h1 {
-    font-size: 3rem;
-    max-width: none;
-  }
-  .sam-hero__h1 br {
-    display: none;
-  }
-
-  .sam-sec-certs__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .sam-sec-arch__highlights {
-    grid-template-columns: 1fr;
-  }
-
-  .sam-sec-data__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .sam-sec-docs__form-wrapper {
-    grid-template-columns: 1fr;
-  }
-
-  .sam-sec-comply__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Mobile (max-width: 671px) */
-@media (max-width: 671px) {
-
-  .sam-hero--security {
-    padding: var(--sp-09) 0;
-  }
-  .sam-hero__inner {
-    padding: 0 16px;
-  }
-  .sam-hero__h1 {
-    font-size: 2.5rem;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-  .sam-hero__lead {
-    font-size: 1.125rem;
-    line-height: 1.5;
-  }
-
-  .sam-sec-certs {
-    padding: var(--sp-10) 0;
-  }
-  .sam-sec-certs__inner {
-    padding: 0 16px;
-  }
-  .sam-sec-certs__inner h2 {
-    font-size: 2rem;
-  }
-
-  .sam-sec-arch {
-    padding: var(--sp-10) 0;
-  }
-  .sam-sec-arch__inner {
-    padding: 0 16px;
-  }
-  .sam-sec-arch__inner h2 {
-    font-size: 2rem;
-  }
-
-  .sam-sec-data {
-    padding: var(--sp-10) 0;
-  }
-  .sam-sec-data__inner {
-    padding: 0 16px;
-  }
-  .sam-sec-data__inner h2 {
-    font-size: 2rem;
-  }
-
-  .sam-sec-docs {
-    padding: var(--sp-10) 0;
-  }
-  .sam-sec-docs__inner {
-    padding: 0 16px;
-  }
-  .sam-sec-docs__inner h2 {
-    font-size: 2rem;
-  }
-  .sam-sec-docs__form-container {
-    padding: var(--sp-06);
-  }
-  .sam-sec-docs__form {
-    grid-template-columns: 1fr;
-  }
-
-  .sam-sec-comply {
-    padding: var(--sp-10) 0;
-  }
-  .sam-sec-comply__inner {
-    padding: 0 16px;
-  }
-  .sam-sec-comply__inner h2 {
-    font-size: 2rem;
-  }
-
-  .sam-cta-block--security {
-    padding: var(--sp-10) 0;
-  }
-  .sam-cta-block__inner {
-    padding: 0 16px;
-  }
-  .sam-cta-block__heading {
-    font-size: 2rem;
-  }
-  .sam-cta-block__actions {
-    flex-direction: column;
-  }
-  .sam-cta-block__actions .sam-btn {
-    width: 100%;
-    min-height: 48px;
-  }
-}
-
-/* ============================================================
-   TRUST CENTRE — ADDITIONAL SECTIONS
-   ============================================================ */
-
-/* ─── Transparency / Data Ownership ─── */
-.sam-trust-transparency {
-  padding: 80px 0;
-  background: var(--sam-seashell);
-}
-.sam-trust-transparency__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-trust-transparency h2 {
-  font: 700 2rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 8px 0 12px;
-}
-.sam-trust-transparency .lead {
-  font-size: 1.125rem;
-  color: var(--sam-comet);
-  line-height: 1.6;
-  max-width: 760px;
-  margin-bottom: 40px;
-}
-.sam-trust-transparency__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.sam-trust-transparency__card {
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-radius: 8px;
-  padding: 28px 24px;
-}
-.sam-trust-transparency__card-title {
-  font: 600 1.063rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin-bottom: 10px;
-}
-.sam-trust-transparency__card-desc {
-  font-family: var(--sam-font);
-  font-size: 0.938rem;
-  font-weight: 400;
-  color: var(--sam-comet);
-  line-height: 1.6;
-  margin: 0;
-}
-.sam-trust-transparency__card-value {
-  display: block;
-  font: 700 2rem/1 var(--sam-mono);
-  color: var(--sam-blue);
-  margin-bottom: 8px;
-}
-
-/* ─── IT/OT Review Checklist ─── */
-.sam-trust-checklist {
-  padding: 80px 0;
-  background: var(--sam-space-cadet);
-  color: var(--sam-white);
-}
-.sam-trust-checklist__inner {
-  max-width: 1584px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-trust-checklist h2 {
-  font: 700 2rem/1.2 var(--sam-font);
-  color: var(--sam-white);
-  margin: 8px 0 12px;
-}
-.sam-trust-checklist .lead {
-  font-size: 1.125rem;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.6;
-  max-width: 760px;
-  margin-bottom: 40px;
-}
-.sam-trust-checklist .overline {
-  color: var(--sam-orange);
-}
-.sam-trust-checklist__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-.sam-trust-checklist__item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 20px 24px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
-}
-.sam-trust-checklist__icon {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(0,186,110,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem;
-  color: #00ba6e;
-  font-weight: 700;
-  margin-top: 2px;
-}
-.sam-trust-checklist__question {
-  font: 600 0.938rem/1.4 var(--sam-font);
-  color: var(--sam-white);
-  margin-bottom: 4px;
-}
-.sam-trust-checklist__answer {
-  font-family: var(--sam-font);
-  font-size: 0.875rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.5;
-  margin: 0;
-}
-.sam-trust-checklist__footer {
-  margin-top: 32px;
-  padding: 20px 24px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
-  font-family: var(--sam-font);
-  font-size: 0.875rem;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.6;
-}
-.sam-trust-checklist__footer a {
-  color: var(--sam-orange);
-}
-
-@media (max-width: 768px) {
-  .sam-trust-transparency__grid {
-    grid-template-columns: 1fr;
-  }
-  .sam-trust-checklist__grid {
-    grid-template-columns: 1fr;
-  }
-  .sam-trust-transparency,
-  .sam-trust-checklist {
-    padding: 56px 0;
-  }
-  .sam-trust-transparency h2,
-  .sam-trust-checklist h2 {
-    font-size: 1.5rem;
-  }
-}
-/* ── Image Placeholders ── */
-.sam-placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:var(--sam-seashell,#F8F5F2);border:2px dashed var(--sam-border-light,#E8E4E0);border-radius:8px;padding:48px 24px;min-height:240px;width:100%;box-sizing:border-box}.sam-placeholder--hero{min-height:320px;border-radius:0;border:none;background:linear-gradient(135deg,#F8F5F2 0%,#E8E4E0 100%)}.sam-placeholder--wide{min-height:200px}.sam-placeholder--compact{min-height:160px;padding:32px 16px}.sam-placeholder__icon{width:64px;height:64px;color:var(--sam-comet,#6B6B7F);opacity:.5}.sam-placeholder--hero .sam-placeholder__icon{width:80px;height:80px}.sam-placeholder__label{font:500 13px/1.4 var(--sam-font,'IBM Plex Sans',sans-serif);color:var(--sam-comet,#6B6B7F);opacity:.6;text-transform:uppercase;letter-spacing:.08em;text-align:center}@media(max-width:900px){.sam-placeholder{min-height:180px;padding:32px 16px}.sam-placeholder--hero{min-height:240px}}
-
-  
-        .sam-prefooter__actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .sam-prefooter__cta--secondary {
-            display: inline-block;
-            padding: 0.875rem 2rem;
-            border: 2px solid #FF5429;
-            border-radius: 4px;
-            color: #FF5429;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: background-color 0.2s, color 0.2s;
-            text-align: center;
-        }
-        .sam-prefooter__cta--secondary:hover {
-            background-color: #FF5429;
-            color: #fff;
-        }
-</style>
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Trust &amp; Security Centre | Samotics">
-  <meta property="og:description" content="SAM4 security: encrypted communications with no network exposure. Predictive maintenance data remains secure on your infrastructure. GDPR-compliant.">
-  <meta property="og:url" content="https://samoticstestpage.com/platform/security/">
-  <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
-  <meta property="og:site_name" content="Samotics">
+    /* ===== SECURITY PAGE — PAGE CSS ===== */
+
+    /* Cert badge grid */
+    .sam-cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-cert-card {
+      background: #fff;
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+      text-align: center;
+      transition: box-shadow 0.2s ease;
+    }
+    .sam-cert-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .sam-cert-card__badge {
+      font-family: var(--font-data);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--orange);
+      background: rgba(255,84,41,0.08);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: var(--radius);
+      margin-bottom: var(--space-3);
+    }
+    .sam-cert-card__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--space-cadet);
+      margin-bottom: var(--space-2);
+    }
+    .sam-cert-card__body {
+      font-size: 14px;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+
+    /* Card grids */
+    .sam-card-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+    .sam-card-grid--2col { grid-template-columns: repeat(2, 1fr); }
+    .sam-card-grid--3col { grid-template-columns: repeat(3, 1fr); }
+    .sam-card-grid--4col { grid-template-columns: repeat(4, 1fr); }
+
+    .sam-card {
+      background: #fff;
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+      transition: box-shadow 0.2s ease;
+    }
+    .sam-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .sam-card__icon {
+      font-size: 28px;
+      margin-bottom: var(--space-3);
+    }
+    .sam-card__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--space-cadet);
+      margin-bottom: var(--space-2);
+    }
+    .sam-card__body {
+      font-size: 14px;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+
+    /* Checklist */
+    .sam-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-width: 640px;
+    }
+    .sam-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--border-grey);
+      font-size: 15px;
+      color: var(--space-cadet);
+      line-height: 1.5;
+    }
+    .sam-checklist li:last-child {
+      border-bottom: none;
+    }
+    .sam-checklist li::before {
+      content: '\2713';
+      color: var(--orange);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Callout box */
+    .sam-callout {
+      background: var(--seashell);
+      border-left: 3px solid var(--orange);
+      border-radius: var(--radius);
+      padding: var(--space-5) var(--space-6);
+    }
+    .sam-callout p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--space-cadet);
+      line-height: 1.6;
+    }
+    .sam-callout strong {
+      font-weight: 700;
+    }
+
+    /* Two-column layout */
+    .sam-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      align-items: start;
+    }
+
+    /* Data architecture diagram - simple horizontal flow */
+    .sam-data-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: var(--space-8) 0;
+      flex-wrap: wrap;
+    }
+    .sam-data-flow__node {
+      background: #fff;
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-4) var(--space-5);
+      text-align: center;
+      min-width: 140px;
+    }
+    .sam-data-flow__node--edge {
+      border-color: var(--orange);
+    }
+    .sam-data-flow__node-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--space-cadet);
+    }
+    .sam-data-flow__node-sub {
+      font-size: 12px;
+      color: var(--comet);
+      margin-top: 2px;
+    }
+    .sam-data-flow__arrow {
+      width: 32px;
+      text-align: center;
+      color: var(--comet);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* FAQ / Accordion */
+    .sam-faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .sam-faq {
+      border-bottom: 1px solid var(--border-grey);
+    }
+    .sam-faq__q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: var(--space-4) 0;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--space-cadet);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sam-faq__q::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--comet);
+      transition: transform 0.2s ease;
+    }
+    .sam-faq__q[aria-expanded="true"]::after {
+      content: '\2212';
+    }
+    .sam-faq__a {
+      display: none;
+      padding-bottom: var(--space-4);
+      font-size: 15px;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+    .sam-faq__a.is-open {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sam-cert-grid,
+      .sam-card-grid--2col,
+      .sam-card-grid--3col,
+      .sam-card-grid--4col {
+        grid-template-columns: 1fr;
+      }
+      .sam-two-col {
+        grid-template-columns: 1fr;
+      }
+      .sam-data-flow {
+        flex-direction: column;
+      }
+      .sam-data-flow__arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+  </style>
 </head>
 <body>
-  <!-- ===================== PHP & HTML ===================== -->
+  <div class="sam-page">
 
 <header class="sam-header" role="navigation" aria-label="Main navigation">
   <a href="#main-content" class="sam-skip-link">Skip to content</a>
@@ -1947,389 +1554,194 @@
   </div>
 
 </header>
-  <!-- ===================== PHP & HTML ===================== -->
 
-<main id="main-content" class="sam-security">
 
-  <!-- ─── 1. HERO ─── -->
-  <section class="sam-hero sam-hero--security" style="background-image: url('/assets/hero-sam4-mcc.jpg');">
-    <div class="sam-hero__overlay"></div>
-    <div class="sam-hero__inner">
-      <div class="sam-hero__content">
-        <p class="sam-hero__overline">Trust &amp; Security Centre</p>
-        <h1 class="sam-hero__h1">Built to pass your IT/OT review.<br>Built to keep passing it.</h1>
-        <p class="sam-hero__lead">ISO 27001 certified. Cellular architecture. No corporate network dependency. Every claim on this page is audited, documented, and available for download. We built SAM4's security posture for one audience: the person who has to sign off.</p>
+  <main id="main">
+
+    <!-- HERO — dark bg -->
+    <section class="sam-section sam-section--dark" style="padding-top:120px;padding-bottom:96px;">
+      <div class="sam-container">
+        <p class="sam-eyebrow" style="color:var(--orange);font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-3);">Trust &amp; Security</p>
+        <h1 class="sam-section__title" style="color:#fff;max-width:680px;">Enterprise security. Industrial-grade data protection.</h1>
+        <p class="sam-section__subtitle" style="color:rgba(255,255,255,0.8);max-width:600px;">SAM4 is ISO 27001 certified, SOC 2 compliant, and built for OT environments where uptime and data integrity are non-negotiable.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ─── 2. CERTIFICATIONS ─── -->
-  <section id="certifications" class="sam-sec-certs">
-    <div class="sam-sec-certs__inner">
-      <p class="overline">Certifications</p>
-      <h2>Audited. Certified. Documented.</h2>
-      <p class="lead sam-sec-certs__lead">These aren't logo badges. Each certification has a defined scope, an independent auditor, and documentation you can hand directly to your security team.</p>
-
-      <div class="sam-sec-certs__grid">
-        <div class="sam-sec-certs__card">
-          <div class="sam-sec-certs__card-badge">
-            <img src="/assets/images/certifications/dnv-iso-27001.webp" alt="DNV ISO 27001" width="80" height="80">
-          </div>
-          <h3 class="sam-sec-certs__card-title">ISO 27001</h3>
-          <p class="sam-sec-certs__card-desc">Information security management system certification. Covers risk assessment, access control policies, incident management, and continuous improvement of security practices across the organisation.</p>
-          <p class="sam-sec-certs__card-scope">Scope: Organisation-wide information security management</p>
-        </div>
-        <div class="sam-sec-certs__card">
-          <div class="sam-sec-certs__card-badge">
-            <img src="/assets/images/certifications/dnv-iso-9001.webp" alt="DNV ISO 9001" width="80" height="80">
-          </div>
-          <h3 class="sam-sec-certs__card-title">ISO 9001</h3>
-          <p class="sam-sec-certs__card-desc">Quality management system certification. Ensures consistent processes for product development, service delivery, and customer support. Relevant for enterprise procurement that requires QMS compliance.</p>
-          <p class="sam-sec-certs__card-scope">Scope: Product development, service delivery, customer operations</p>
-        </div>
-        <div class="sam-sec-certs__card">
-          <div class="sam-sec-certs__card-badge">
-            <span class="sam-sec-certs__card-badge-text">NIS2</span>
-          </div>
-          <h3 class="sam-sec-certs__card-title">NIS2 Aligned</h3>
-          <p class="sam-sec-certs__card-desc">Aligned with the EU Network and Information Security Directive (NIS2). Relevant for customers in critical infrastructure sectors (water, energy, chemicals) where NIS2 compliance is mandatory for suppliers. Gap closure programme in progress for 2026.</p>
-          <p class="sam-sec-certs__card-scope">Scope: Critical infrastructure supply chain requirements</p>
-        </div>
-      </div>
-
-      
-    </div>
-  </section>
-
-  <!-- ─── 3. CELLULAR ARCHITECTURE ─── -->
-  <section id="architecture" class="sam-sec-arch">
-    <div class="sam-sec-arch__inner">
-      <p class="overline">Network architecture</p>
-      <h2>Cellular, not corporate. The single most important architectural decision.</h2>
-      <p class="lead sam-sec-arch__lead">SAM4 data travels over cellular networks (4G/LTE) from the gateway to the cloud via HTTPS or MQTT, encrypted with TLS 1.2. Your corporate network (WiFi, LAN, SCADA, OT) is never touched. This is the point that changes the security conversation.</p>
-
-      <div class="sam-sec-arch__highlights">
-        <div class="sam-sec-arch__highlight">
-          <h3 class="sam-sec-arch__highlight-title">No firewall changes</h3>
-          <p class="sam-sec-arch__highlight-desc">The gateway communicates outbound over cellular. No inbound connections to your network. No firewall rules to create, no ports to open, no VPN tunnels to configure.</p>
-        </div>
-        <div class="sam-sec-arch__highlight">
-          <h3 class="sam-sec-arch__highlight-title">No corporate WiFi or LAN</h3>
-          <p class="sam-sec-arch__highlight-desc">The data path is entirely separate from your IT and OT networks. There is no logical or physical connection between the SAM4 gateway and your corporate infrastructure.</p>
-        </div>
-        <div class="sam-sec-arch__highlight">
-          <h3 class="sam-sec-arch__highlight-title">No IT involvement for deployment</h3>
-          <p class="sam-sec-arch__highlight-desc">Because the network is cellular, your IT team doesn't need to provision anything. No network architecture review (for connectivity), no change requests, no IT project timeline to manage.</p>
-        </div>
-        <div class="sam-sec-arch__highlight">
-          <h3 class="sam-sec-arch__highlight-title">OT network isolation preserved</h3>
-          <p class="sam-sec-arch__highlight-desc">SAM4 never connects to the OT network. The CT/VT clamps are passive sensors: they read current and voltage. They do not inject signals, send commands, or interact with motor controllers.</p>
-        </div>
-      </div>
-
-      <div class="sam-sec-arch__callout">
-        <p class="sam-sec-arch__callout-text">The cellular architecture isn't just a convenience. It's the reason SAM4 can be deployed in weeks instead of the months that IT/OT convergence projects typically require.</p>
-      </div>
-
-      
-    </div>
-  </section>
-
-  <!-- ─── 4. DATA SECURITY ─── -->
-  <section id="data-security" class="sam-sec-data">
-    <div class="sam-sec-data__inner">
-      <p class="overline">Data security</p>
-      <h2>Encrypted in transit. Encrypted at rest. Audited continuously.</h2>
-      <p class="lead sam-sec-data__lead">The specifics your security review will ask for: addressed directly.</p>
-
-      <div class="sam-sec-data__grid">
-        <div class="sam-sec-data__item">
-          <h4 class="sam-sec-data__item-label">Encryption in transit</h4>
-          <p class="sam-sec-data__item-desc">All data transmitted from the gateway to the cloud uses TLS 1.2 encryption over the cellular connection via HTTPS or MQTT.</p>
-        </div>
-        <div class="sam-sec-data__item">
-          <h4 class="sam-sec-data__item-label">Encryption at rest</h4>
-          <p class="sam-sec-data__item-desc">All stored data is encrypted using AES-256. This covers raw signal data, processed analytics, diagnostic reports, and customer configuration data.</p>
-        </div>
-        <div class="sam-sec-data__item">
-          <h4 class="sam-sec-data__item-label">Data residency</h4>
-          <p class="sam-sec-data__item-desc">SAM4 cloud infrastructure is hosted in the EU (primary) with configurable data residency options for customers with specific geographic requirements. Data sovereignty requirements are addressed during onboarding.</p>
-        </div>
-        <div class="sam-sec-data__item">
-          <h4 class="sam-sec-data__item-label">Access controls &amp; audit logging</h4>
-          <p class="sam-sec-data__item-desc">Role-based access control (RBAC) with SSO integration. All access events are logged and auditable. Administrative actions are tracked with full audit trails. Session management includes automatic timeout and re-authentication.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 4b. TRANSPARENCY & DATA OWNERSHIP ─── -->
-  <section id="transparency" class="sam-trust-transparency">
-    <div class="sam-trust-transparency__inner">
-      <p class="overline">Your data, your rules</p>
-      <h2>Transparency commitments you can hold us to</h2>
-      <p class="lead">These aren't aspirational statements. They're contractual commitments documented in our MSA and verified through independent audit.</p>
-
-      <div class="sam-trust-transparency__grid">
-        <div class="sam-trust-transparency__card">
-          <span class="sam-trust-transparency__card-value">100%</span>
-          <h3 class="sam-trust-transparency__card-title">You own your data</h3>
-          <p class="sam-trust-transparency__card-desc">All raw signal data, processed analytics, and diagnostic outputs belong to you. Full data export available at any time. If you leave, your data leaves with you. Ours is deleted within 90 days.</p>
-        </div>
-        <div class="sam-trust-transparency__card">
-          <span class="sam-trust-transparency__card-value">99.5%</span>
-          <h3 class="sam-trust-transparency__card-title">Platform uptime SLA</h3>
-          <p class="sam-trust-transparency__card-desc">Contractual platform availability target. Measured monthly. Downtime during scheduled maintenance windows is excluded. Real uptime figures are shared with customers quarterly.</p>
-        </div>
-        <div class="sam-trust-transparency__card">
-          <span class="sam-trust-transparency__card-value">&lt;24h</span>
-          <h3 class="sam-trust-transparency__card-title">Security incident response</h3>
-          <p class="sam-trust-transparency__card-desc">Contractual notification within 24 hours of a confirmed security incident. Full incident report within 72 hours. Aligned with NIS2 reporting obligations for critical infrastructure suppliers.</p>
-        </div>
-        <div class="sam-trust-transparency__card">
-          <span class="sam-trust-transparency__card-value">EU</span>
-          <h3 class="sam-trust-transparency__card-title">Data residency default</h3>
-          <p class="sam-trust-transparency__card-desc">All customer data stored and processed within the EU by default. Alternative data residency configurations available for customers with specific geographic or sovereignty requirements.</p>
-        </div>
-        <div class="sam-trust-transparency__card">
-          <span class="sam-trust-transparency__card-value">0</span>
-          <h3 class="sam-trust-transparency__card-title">Data resale</h3>
-          <p class="sam-trust-transparency__card-desc">Your operational data is never sold, shared with third parties, or used for anything beyond delivering your monitoring service. This includes anonymised or aggregated forms. Zero exceptions.</p>
-        </div>
-        <div class="sam-trust-transparency__card">
-          <span class="sam-trust-transparency__card-value">1/yr</span>
-          <h3 class="sam-trust-transparency__card-title">Independent audit cycle</h3>
-          <p class="sam-trust-transparency__card-desc">ISO 27001 surveillance audit every 12 months with full re-certification every 3 years. ISO 9001 on the same cycle. Results shared on request.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 5. SECURITY DOCS (GATED FORM) ─── -->
-  <section id="security-docs" class="sam-sec-docs">
-    <div class="sam-sec-docs__inner">
-      <p class="overline">Security documentation</p>
-      <h2>Download the docs your review requires</h2>
-      <p class="lead sam-sec-docs__lead">Request the specific documents you need. They download immediately. No waiting for a sales follow-up.</p>
-
-      <div class="sam-sec-docs__form-wrapper">
-        <div class="sam-sec-docs__form-info">
-          <h3 class="sam-sec-docs__form-heading">Available documents</h3>
-          <ul class="sam-sec-docs__doc-list">
-            <li class="sam-sec-docs__doc-item">
-              <span class="sam-sec-docs__doc-icon" aria-hidden="true">
-                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="2" width="14" height="16" rx="0"/><line x1="6" y1="7" x2="14" y2="7"/><line x1="6" y1="10" x2="14" y2="10"/><line x1="6" y1="13" x2="11" y2="13"/>
-                </svg>
-              </span>
-              ISO 27001 Certificate
-            </li>
-            <li class="sam-sec-docs__doc-item">
-              <span class="sam-sec-docs__doc-icon" aria-hidden="true">
-                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="2" width="14" height="16" rx="0"/><line x1="6" y1="7" x2="14" y2="7"/><line x1="6" y1="10" x2="14" y2="10"/><line x1="6" y1="13" x2="11" y2="13"/>
-                </svg>
-              </span>
-              Architecture Diagram
-            </li>
-            <li class="sam-sec-docs__doc-item">
-              <span class="sam-sec-docs__doc-icon" aria-hidden="true">
-                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="2" width="14" height="16" rx="0"/><line x1="6" y1="7" x2="14" y2="7"/><line x1="6" y1="10" x2="14" y2="10"/><line x1="6" y1="13" x2="11" y2="13"/>
-                </svg>
-              </span>
-              NIS2 Compliance Summary
-            </li>
-          </ul>
-        </div>
-
-        <div class="sam-sec-docs__form-container">
-          <h3 class="sam-sec-docs__form-heading">Request documents</h3>
-          <!-- Note: In Bricks/WordPress, replace this with a form plugin (e.g. Gravity Forms, WPForms)
-               that captures: First name, Last name, Work email, Company, Job title,
-               and a multi-select checkbox for document selection.
-               See CTA Strategy §4 for full field specs. -->
-          <form class="sam-sec-docs__form" id="security-docs-form">
-            <div class="sam-sec-docs__field">
-              <label for="sec-fname">First name *</label>
-              <input type="text" id="sec-fname" name="first_name" required autocomplete="given-name">
-            </div>
-            <div class="sam-sec-docs__field">
-              <label for="sec-lname">Last name *</label>
-              <input type="text" id="sec-lname" name="last_name" required autocomplete="family-name">
-            </div>
-            <div class="sam-sec-docs__field sam-sec-docs__field--full">
-              <label for="sec-email">Work email *</label>
-              <input type="email" id="sec-email" name="email" required autocomplete="email">
-            </div>
-            <div class="sam-sec-docs__field">
-              <label for="sec-company">Company *</label>
-              <input type="text" id="sec-company" name="company" required autocomplete="organization">
-            </div>
-            <div class="sam-sec-docs__field">
-              <label for="sec-title">Job title *</label>
-              <input type="text" id="sec-title" name="job_title" required autocomplete="organization-title">
-            </div>
-            <fieldset class="sam-sec-docs__field sam-sec-docs__field--full sam-sec-docs__fieldset">
-              <legend>Which documents do you need? *</legend>
-              <label class="sam-sec-docs__checkbox">
-                <input type="checkbox" name="docs" value="iso27001"> ISO 27001 Certificate
-              </label>
-              <label class="sam-sec-docs__checkbox">
-                <input type="checkbox" name="docs" value="architecture"> Architecture Diagram
-              </label>
-              <label class="sam-sec-docs__checkbox">
-                <input type="checkbox" name="docs" value="nis2"> NIS2 Compliance Summary
-              </label>
-              <label class="sam-sec-docs__checkbox">
-                <input type="checkbox" name="docs" value="all"> All of the above
-              </label>
-            </fieldset>
-            <div class="sam-sec-docs__field sam-sec-docs__field--full sam-sec-docs__consent">
-              <label class="sam-sec-docs__checkbox">
-                <input type="checkbox" name="consent" required> I agree to receive communications from Samotics. View our <a href="/privacy" class="sam-text-link">Privacy Policy</a>.
-              </label>
-            </div>
-            <div class="sam-sec-docs__field sam-sec-docs__field--full">
-              <button type="submit" class="sam-btn sam-btn--primary sam-sec-docs__submit">Request Security Docs</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 6. COMPLIANCE FRAMEWORKS ─── -->
-  <section id="compliance" class="sam-sec-comply">
-    <div class="sam-sec-comply__inner">
-      <p class="overline">Regulatory alignment</p>
-      <h2>Built for regulated industries</h2>
-      <p class="lead sam-sec-comply__lead">SAM4 operates in water utilities, chemical plants, oil &amp; gas facilities, and critical infrastructure. The platform's security posture reflects the regulatory requirements of these sectors.</p>
-
-      <div class="sam-sec-comply__grid">
-        <div class="sam-sec-comply__item">
-          <h4 class="sam-sec-comply__item-title">NIS2 Directive</h4>
-          <p class="sam-sec-comply__item-desc">The EU Network and Information Security Directive requires entities in essential sectors to manage cybersecurity risk across their supply chain. SAM4's certifications and cellular architecture support customer NIS2 compliance obligations. Samotics is progressing its own NIS2 alignment programme through 2026.</p>
-        </div>
-        <div class="sam-sec-comply__item">
-          <h4 class="sam-sec-comply__item-title">OFWAT / Water industry</h4>
-          <p class="sam-sec-comply__item-desc">UK water utilities face regulatory requirements around operational resilience, pollution prevention, and data protection. SAM4's monitoring data supports regulatory reporting while meeting Ofwat's expectations for supplier security.</p>
-        </div>
-        <div class="sam-sec-comply__item">
-          <h4 class="sam-sec-comply__item-title">ATEX / Hazardous environments</h4>
-          <p class="sam-sec-comply__item-desc">SAM4 hardware installs in the safe zone (MCC), not in ATEX-classified areas. No ATEX certification is required for the monitoring hardware because it never enters the hazardous zone.</p>
-        </div>
-        <div class="sam-sec-comply__item">
-          <h4 class="sam-sec-comply__item-title">GDPR / Data protection</h4>
-          <p class="sam-sec-comply__item-desc">SAM4 processes industrial equipment data, not personal data. Where user account data is involved, Samotics complies with GDPR requirements including data minimisation, right to access, and right to deletion.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 6b. IT/OT REVIEW CHECKLIST ─── -->
-  <section id="review-checklist" class="sam-trust-checklist">
-    <div class="sam-trust-checklist__inner">
-      <p class="overline">Pre-answered for your review</p>
-      <h2>The 10 questions your IT/OT team will ask</h2>
-      <p class="lead">We've been through enough security reviews to know the pattern. Here are the answers, up front.</p>
-
-      <div class="sam-trust-checklist__grid">
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">Does it connect to our corporate network?</p>
-            <p class="sam-trust-checklist__answer">No. SAM4 uses cellular (4G/LTE) connectivity. Your corporate WiFi, LAN, and OT networks are never involved.</p>
-          </div>
-        </div>
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">Do we need to open firewall ports?</p>
-            <p class="sam-trust-checklist__answer">No. The gateway communicates outbound over cellular. No inbound connections, no firewall changes, no VPN tunnels.</p>
-          </div>
-        </div>
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">Does it touch our SCADA or control systems?</p>
-            <p class="sam-trust-checklist__answer">No. The CT/VT clamps are passive sensors. They read current and voltage. They do not inject signals, send commands, or interact with controllers.</p>
-          </div>
-        </div>
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">What certifications do you hold?</p>
-            <p class="sam-trust-checklist__answer">ISO 27001, ISO 9001. Aligned with NIS2. All certificates available for download on this page.</p>
-          </div>
-        </div>
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">Where is our data stored?</p>
-            <p class="sam-trust-checklist__answer">EU by default. AES-256 encrypted at rest. TLS 1.2+ in transit. Data residency options available for specific geographic requirements.</p>
-          </div>
-        </div>
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">Who has access to our data?</p>
-            <p class="sam-trust-checklist__answer">Role-based access control with SSO integration. All access logged and auditable. Only your assigned diagnostics team and authorised Samotics personnel.</p>
-          </div>
-        </div>
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">Do you share or sell our data?</p>
-            <p class="sam-trust-checklist__answer">No. Your data is never shared with third parties, sold, or used for anything beyond delivering your service. This is contractual.</p>
-          </div>
-        </div>
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">What happens if we terminate?</p>
-            <p class="sam-trust-checklist__answer">Full data export provided. All customer data deleted from Samotics systems within 90 days. Documented in the MSA.</p>
-          </div>
-        </div>
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">How long does IT approval typically take?</p>
-            <p class="sam-trust-checklist__answer">Most IT/OT reviews complete in 1&ndash;3 weeks. The cellular architecture removes the most common objection: network integration.</p>
-          </div>
-        </div>
-        <div class="sam-trust-checklist__item">
-          <div class="sam-trust-checklist__icon">&#10003;</div>
-          <div>
-            <p class="sam-trust-checklist__question">Can we do a pen test or security assessment?</p>
-            <p class="sam-trust-checklist__answer">Yes. We support customer-initiated security assessments and can share results from recent third-party penetration tests under NDA.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="sam-trust-checklist__footer">
-        Need to send this checklist to your IT team? <a href="#security-docs">Download the full security documentation pack</a> — it includes the architecture diagram, ISO 27001 certificate, and a pre-written IT/OT review brief designed to accelerate internal approvals.
-      </div>
-    </div>
-  </section>
-
-</main>
-  <!-- ===================== PHP & HTML ===================== -->
-
-<!-- Pre-footer CTA -->
-<section class="sam-prefooter">
-        <div class="sam-prefooter__inner">
-            
-            <p class="sam-prefooter__sub">Get the full security documentation: architecture diagrams, data flow, compliance certifications.</p>
-            <div class="sam-prefooter__actions">
-                <a href="/contact?intent=security" class="sam-prefooter__cta">Request a security review</a>
-            <a href="/contact" class="sam-prefooter__cta sam-prefooter__cta--secondary">Talk to an engineer</a>
-            </div>
-        </div>
     </section>
 
-<!-- Footer -->
-<!-- Footer -->
+    <!-- SECTION 1: Certifications — seashell bg -->
+    <section class="sam-section" style="background:var(--seashell);">
+      <div class="sam-container">
+        <h2 class="sam-section__title">Certified and audited</h2>
+        <p class="sam-section__subtitle" style="max-width:640px;">Third-party validation, not just promises. Our security posture is independently verified every year.</p>
+        <div class="sam-cert-grid" style="margin-top:var(--space-8);">
+          <div class="sam-cert-card">
+            <span class="sam-cert-card__badge">ISO 27001</span>
+            <div class="sam-cert-card__title">Information Security</div>
+            <div class="sam-cert-card__body">Certified ISMS covering all SAM4 operations — data handling, access control, incident response, and supplier management.</div>
+          </div>
+          <div class="sam-cert-card">
+            <span class="sam-cert-card__badge">ISO 9001</span>
+            <div class="sam-cert-card__title">Quality Management</div>
+            <div class="sam-cert-card__body">Systematic quality management across hardware production, software development, and service delivery.</div>
+          </div>
+          <div class="sam-cert-card">
+            <span class="sam-cert-card__badge">SOC 2 Type II</span>
+            <div class="sam-cert-card__title">Trust Services</div>
+            <div class="sam-cert-card__body">Independent audit of security, availability, and confidentiality controls across the SAM4 platform.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Data architecture — white bg -->
+    <section class="sam-section">
+      <div class="sam-container">
+        <h2 class="sam-section__title">How data flows</h2>
+        <p class="sam-section__subtitle" style="max-width:640px;">SAM4 collects only electrical current signals — no process data, no PLC access, no control system integration. The data path is one-directional by design.</p>
+        <div class="sam-data-flow" style="margin-top:var(--space-8);">
+          <div class="sam-data-flow__node sam-data-flow__node--edge">
+            <div class="sam-data-flow__node-label">SAM4 Edge</div>
+            <div class="sam-data-flow__node-sub">On-site hardware</div>
+          </div>
+          <div class="sam-data-flow__arrow">&#8594;</div>
+          <div class="sam-data-flow__node">
+            <div class="sam-data-flow__node-label">TLS 1.3 tunnel</div>
+            <div class="sam-data-flow__node-sub">Encrypted transit</div>
+          </div>
+          <div class="sam-data-flow__arrow">&#8594;</div>
+          <div class="sam-data-flow__node">
+            <div class="sam-data-flow__node-label">SAM4 Cloud</div>
+            <div class="sam-data-flow__node-sub">EU-hosted (Azure)</div>
+          </div>
+          <div class="sam-data-flow__arrow">&#8594;</div>
+          <div class="sam-data-flow__node">
+            <div class="sam-data-flow__node-label">SAM4 Dashboard</div>
+            <div class="sam-data-flow__node-sub">HTTPS access</div>
+          </div>
+        </div>
+        <div class="sam-callout" style="margin-top:var(--space-6);max-width:640px;margin-left:auto;margin-right:auto;">
+          <p><strong>One-way data flow.</strong> SAM4 Edge pushes data outbound only. No inbound connections from the cloud to your OT network. No remote access to plant systems.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Network security — seashell bg -->
+    <section class="sam-section" style="background:var(--seashell);">
+      <div class="sam-container">
+        <h2 class="sam-section__title">Network and OT security</h2>
+        <p class="sam-section__subtitle" style="max-width:640px;">SAM4 operates alongside your OT network without touching it. No SCADA integration, no PLC connections, no process control access.</p>
+        <div class="sam-card-grid sam-card-grid--2col" style="margin-top:var(--space-8);">
+          <div class="sam-card">
+            <div class="sam-card__icon">&#128274;</div>
+            <div class="sam-card__title">Network isolation</div>
+            <div class="sam-card__body">SAM4 Edge devices sit on a separate VLAN or dedicated network segment. No bridging between IT, OT, and monitoring traffic.</div>
+          </div>
+          <div class="sam-card">
+            <div class="sam-card__icon">&#128272;</div>
+            <div class="sam-card__title">Encrypted at every layer</div>
+            <div class="sam-card__body">TLS 1.3 in transit. AES-256 encryption at rest. Certificate-based device authentication. No shared secrets.</div>
+          </div>
+          <div class="sam-card">
+            <div class="sam-card__icon">&#128737;</div>
+            <div class="sam-card__title">No inbound connections</div>
+            <div class="sam-card__body">The Edge device initiates all communication. Your firewall allows outbound HTTPS only. No open ports, no listening services.</div>
+          </div>
+          <div class="sam-card">
+            <div class="sam-card__icon">&#128065;</div>
+            <div class="sam-card__title">Passive measurement only</div>
+            <div class="sam-card__body">CTs measure current non-invasively. SAM4 never writes to or controls any plant equipment. Read-only by physics.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Cloud security — white bg -->
+    <section class="sam-section">
+      <div class="sam-container">
+        <h2 class="sam-section__title">Cloud platform security</h2>
+        <p class="sam-section__subtitle" style="max-width:640px;">SAM4's cloud infrastructure runs on Microsoft Azure in EU data centres, with defence-in-depth controls at every layer.</p>
+        <div class="sam-card-grid sam-card-grid--3col" style="margin-top:var(--space-8);">
+          <div class="sam-card">
+            <div class="sam-card__icon">&#127466;&#127482;</div>
+            <div class="sam-card__title">EU data residency</div>
+            <div class="sam-card__body">All customer data stored and processed in EU-based Azure data centres. GDPR-compliant data handling throughout.</div>
+          </div>
+          <div class="sam-card">
+            <div class="sam-card__icon">&#128100;</div>
+            <div class="sam-card__title">Role-based access</div>
+            <div class="sam-card__body">Granular RBAC with SSO integration. Multi-factor authentication enforced. Session timeouts and audit logging on every action.</div>
+          </div>
+          <div class="sam-card">
+            <div class="sam-card__icon">&#128202;</div>
+            <div class="sam-card__title">Continuous monitoring</div>
+            <div class="sam-card__body">24/7 infrastructure monitoring, automated vulnerability scanning, and regular penetration testing by independent firms.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: IT/OT Gatekeeper checklist — seashell bg -->
+    <section class="sam-section" style="background:var(--seashell);">
+      <div class="sam-container">
+        <div class="sam-two-col">
+          <div>
+            <h2 class="sam-section__title" style="text-align:left;">IT/OT gatekeeper checklist</h2>
+            <p style="color:var(--comet);font-size:15px;line-height:1.6;max-width:480px;">The questions your security team will ask — and the answers they need to approve SAM4 deployment.</p>
+          </div>
+          <ul class="sam-checklist">
+            <li>Does it touch the control network? No. Separate VLAN, outbound-only.</li>
+            <li>Can it control plant equipment? No. Passive current measurement only.</li>
+            <li>Where is data stored? EU-based Azure data centres.</li>
+            <li>Is data encrypted? TLS 1.3 in transit, AES-256 at rest.</li>
+            <li>Does it require open firewall ports? No. Outbound HTTPS (443) only.</li>
+            <li>Is it independently audited? ISO 27001 and SOC 2 Type II certified.</li>
+            <li>Can we restrict user access? Yes. RBAC with SSO and MFA.</li>
+            <li>What data does it collect? Electrical current waveforms only. No process data.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Security FAQ — white bg -->
+    <section class="sam-section">
+      <div class="sam-container">
+        <h2 class="sam-section__title">Frequently asked questions</h2>
+        <div class="sam-faq-list" style="margin-top:var(--space-8);">
+          <div class="sam-faq">
+            <button class="sam-faq__q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('is-open');">Can SAM4 access or control our PLC/SCADA systems?</button>
+            <div class="sam-faq__a">No. SAM4 measures electrical current through passive CTs. It has no physical or logical connection to control systems, PLCs, or SCADA networks. The measurement is non-invasive and read-only by design.</div>
+          </div>
+          <div class="sam-faq">
+            <button class="sam-faq__q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('is-open');">What happens if the network connection drops?</button>
+            <div class="sam-faq__a">The SAM4 Edge device buffers data locally and resumes upload when connectivity returns. No data is lost. The asset continues running normally — SAM4 never affects plant operations.</div>
+          </div>
+          <div class="sam-faq">
+            <button class="sam-faq__q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('is-open');">Can we host SAM4 on-premise?</button>
+            <div class="sam-faq__a">SAM4 is a cloud-native platform. On-premise deployments are available for enterprise customers with specific regulatory requirements. Contact our team to discuss options.</div>
+          </div>
+          <div class="sam-faq">
+            <button class="sam-faq__q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('is-open');">How do you handle security incidents?</button>
+            <div class="sam-faq__a">Our ISO 27001 ISMS includes a documented incident response procedure. Customers are notified within 24 hours of any confirmed security incident affecting their data. We conduct post-incident reviews and publish findings to affected customers.</div>
+          </div>
+          <div class="sam-faq">
+            <button class="sam-faq__q" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('is-open');">Can we get a copy of the security documentation?</button>
+            <div class="sam-faq__a">Yes. We provide ISO 27001 certificates, SOC 2 reports, data processing agreements, and a detailed security whitepaper to customers and prospects under NDA. Use the form below to request access.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: Terminal CTA — dark bg -->
+    <section class="sam-section sam-section--dark" style="text-align:center;">
+      <div class="sam-container">
+        <h2 class="sam-section__title" style="color:#fff;margin-bottom:var(--space-4);">Request security documentation</h2>
+        <p class="sam-section__subtitle" style="color:rgba(255,255,255,0.8);max-width:540px;margin-left:auto;margin-right:auto;margin-bottom:var(--space-8);">Get our ISO 27001 certificate, SOC 2 report, data processing agreement, and security whitepaper. Everything your IT team needs to approve SAM4.</p>
+        <a href="/contact/" class="sam-cta sam-cta--primary">Request Security Docs</a>
+      </div>
+    </section>
+
+  </main>
+
+
 <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
   <div class="sam-footer__inner">
 
@@ -2444,252 +1856,60 @@
 
   </div>
 </footer>
+
+  </div><!-- .sam-page -->
+
   <script>
-    /* ============================================================
-   SAMOTICS HEADER — JavaScript
-   Paste into Bricks Code Element → JavaScript tab
-   ============================================================ */
+  <script>
+    (function () {
+      'use strict';
 
-(function () {
-  'use strict';
-
-  var header = document.querySelector('.sam-header');
-  if (!header) return;
-
-  /* ── Scroll: toggle .is-scrolled ── */
-  var scrollThreshold = 20;
-
-  function onScroll() {
-    if (window.scrollY > scrollThreshold) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // initial check
-
-  /* ── Mobile Menu Toggle ── */
-  var hamburger = header.querySelector('.sam-hamburger');
-  var mobileMenu = document.getElementById('sam-mobile-menu');
-
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', function () {
-      var isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', String(!isOpen));
-      hamburger.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
-      mobileMenu.classList.toggle('is-open');
-      mobileMenu.setAttribute('aria-hidden', String(isOpen));
-      document.body.style.overflow = isOpen ? '' : 'hidden';
-    });
-  }
-
-  /* ── Mobile Accordion Toggles ── */
-  var toggles = header.querySelectorAll('.sam-mobile-nav__toggle');
-  toggles.forEach(function (toggle) {
-    toggle.addEventListener('click', function () {
-      var group = this.closest('.sam-mobile-nav__group');
-      var isOpen = group.classList.contains('is-open');
-
-      // Close all others
-      header.querySelectorAll('.sam-mobile-nav__group.is-open').forEach(function (g) {
-        if (g !== group) {
-          g.classList.remove('is-open');
-          g.querySelector('.sam-mobile-nav__toggle').setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      // Toggle current
-      group.classList.toggle('is-open');
-      this.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-
-  /* ── Desktop Dropdown Keyboard Navigation ── */
-  var dropdownTriggers = header.querySelectorAll('.sam-nav__link--dropdown');
-  dropdownTriggers.forEach(function (trigger) {
-    var parent = trigger.closest('.sam-nav__item--has-dropdown');
-    var dropdown = parent.querySelector('.sam-dropdown');
-    var items = dropdown ? dropdown.querySelectorAll('.sam-dropdown__item') : [];
-
-    trigger.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        var expanded = trigger.getAttribute('aria-expanded') === 'true';
-        trigger.setAttribute('aria-expanded', String(!expanded));
-
-        if (!expanded && items.length) {
-          items[0].focus();
-        }
-      }
-
-      if (e.key === 'ArrowDown' && items.length) {
-        e.preventDefault();
-        trigger.setAttribute('aria-expanded', 'true');
-        items[0].focus();
-      }
-
-      if (e.key === 'Escape') {
-        trigger.setAttribute('aria-expanded', 'false');
-        trigger.focus();
-      }
-    });
-
-    // Arrow navigation within dropdown
-    items.forEach(function (item, index) {
-      item.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          if (index < items.length - 1) items[index + 1].focus();
-        }
-        if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          if (index > 0) {
-            items[index - 1].focus();
+      // Header scroll state
+      var header = document.querySelector('.sam-header');
+      if (header) {
+        var scrollThreshold = 20;
+        function onScroll() {
+          if (window.scrollY > scrollThreshold) {
+            header.classList.add('is-scrolled');
           } else {
-            trigger.focus();
+            header.classList.remove('is-scrolled');
           }
         }
-        if (e.key === 'Escape') {
-          trigger.setAttribute('aria-expanded', 'false');
-          trigger.focus();
-        }
-        if (e.key === 'Tab' && !e.shiftKey && index === items.length - 1) {
-          trigger.setAttribute('aria-expanded', 'false');
-        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      // Hamburger menu
+      var hamburger = document.querySelector('.sam-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function () {
+          var isOpen = mobileMenu.classList.toggle('is-open');
+          hamburger.setAttribute('aria-expanded', isOpen);
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+      }
+
+      // Mobile nav toggles
+      document.querySelectorAll('.sam-mobile-nav__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var group = btn.closest('.sam-mobile-nav__group');
+          var isOpen = group.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
       });
-    });
-  });
 
-  /* ── Close mobile menu on resize to desktop ── */
-  var mql = window.matchMedia('(min-width: 992px)');
-  function handleResize(e) {
-    if (e.matches && mobileMenu && mobileMenu.classList.contains('is-open')) {
-      hamburger.setAttribute('aria-expanded', 'false');
-      hamburger.setAttribute('aria-label', 'Open menu');
-      mobileMenu.classList.remove('is-open');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  }
-  if (mql.addEventListener) {
-    mql.addEventListener('change', handleResize);
-  } else {
-    mql.addListener(handleResize);
-  }
-
-  /* ── Close dropdown on outside click (desktop) ── */
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('.sam-nav__item--has-dropdown')) {
-      dropdownTriggers.forEach(function (t) {
-        t.setAttribute('aria-expanded', 'false');
+      // Footer accordion (mobile)
+      document.querySelectorAll('[data-footer-accordion]').forEach(function (col) {
+        var heading = col.querySelector('.sam-footer__col-heading');
+        if (!heading) return;
+        heading.addEventListener('click', function () {
+          if (window.innerWidth > 991) return;
+          col.classList.toggle('is-open');
+        });
       });
-    }
-  });
-
-})();
+    })();
   </script>
-  <script>
-    /* ============================================================
-   SAMOTICS FOOTER — JavaScript
-   Paste into Bricks Code Element → JavaScript tab
-   ============================================================ */
-
-(function () {
-  'use strict';
-
-  /* ── Footer Accordion (mobile only) ── */
-  var cols = document.querySelectorAll('[data-footer-accordion]');
-  if (!cols.length) return;
-
-  function isMobile() {
-    return window.innerWidth <= 991;
-  }
-
-  cols.forEach(function (col) {
-    var heading = col.querySelector('.sam-footer__col-heading');
-    if (!heading) return;
-
-    heading.addEventListener('click', function () {
-      if (!isMobile()) return;
-
-      var isOpen = col.classList.contains('is-open');
-
-      // Close all other columns
-      cols.forEach(function (c) {
-        if (c !== col) c.classList.remove('is-open');
-      });
-
-      // Toggle current
-      col.classList.toggle('is-open');
-    });
-  });
-
-  /* ── Reset accordion state on resize to desktop ── */
-  var mql = window.matchMedia('(min-width: 992px)');
-
-  function handleResize(e) {
-    if (e.matches) {
-      cols.forEach(function (col) {
-        col.classList.remove('is-open');
-      });
-    }
-  }
-
-  if (mql.addEventListener) {
-    mql.addEventListener('change', handleResize);
-  } else {
-    mql.addListener(handleResize);
-  }
-
-})();
-  </script>
-  <script>
-    /* ============================================================
-   SAMOTICS SECURITY & COMPLIANCE PAGE — JavaScript
-   Paste into Bricks Code Element → JavaScript tab
-   ============================================================ */
-
-(function () {
-  'use strict';
-
-  /* ── Skip-link target ── */
-  var main = document.getElementById('main-content');
-  if (main && !main.hasAttribute('tabindex')) {
-    main.setAttribute('tabindex', '-1');
-  }
-
-  /* ── Smooth scroll for in-page anchors ── */
-  var headerH = 80;
-  var gap     = 24;
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      var id = this.getAttribute('href').slice(1);
-      var target = document.getElementById(id);
-      if (!target) return;
-      e.preventDefault();
-      var top = target.getBoundingClientRect().top + window.pageYOffset - headerH - gap;
-      window.scrollTo({ top: top, behavior: 'smooth' });
-      target.setAttribute('tabindex', '-1');
-      target.focus({ preventScroll: true });
-    });
-  });
-
-  /* ── "All of the above" checkbox logic ── */
-  var allCheckbox = document.querySelector('input[value="all"]');
-  var docCheckboxes = document.querySelectorAll('input[name="docs"]:not([value="all"])');
-  if (allCheckbox && docCheckboxes.length) {
-    allCheckbox.addEventListener('change', function () {
-      docCheckboxes.forEach(function (cb) { cb.checked = allCheckbox.checked; });
-    });
-    docCheckboxes.forEach(function (cb) {
-      cb.addEventListener('change', function () {
-        allCheckbox.checked = Array.from(docCheckboxes).every(function (c) { return c.checked; });
-      });
-    });
-  }
-})();
 
   </script>
 </body>
