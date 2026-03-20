@@ -1203,18 +1203,18 @@
       gap: var(--space-6);
     }
     .sam-asset-card {
+      display: flex;
+      flex-direction: column;
       background: #fff;
       border: 1px solid var(--border-grey);
       border-radius: var(--radius);
       padding: var(--space-8);
       transition: box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
     }
-    .sam-asset-card:hover {
+    a.sam-asset-card:hover {
       box-shadow: var(--shadow-sm);
-    }
-    .sam-asset-card__icon {
-      font-size: 36px;
-      margin-bottom: var(--space-3);
     }
     .sam-asset-card__title {
       font-size: 18px;
@@ -1227,11 +1227,13 @@
       color: var(--comet);
       line-height: 1.6;
       margin-bottom: var(--space-3);
+      flex: 1;
     }
     .sam-asset-card__detects {
       font-size: 13px;
       color: var(--space-cadet);
       line-height: 1.5;
+      margin-bottom: var(--space-3);
     }
     .sam-asset-card__detects strong {
       display: block;
@@ -1241,6 +1243,11 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: var(--space-1);
+    }
+    .sam-asset-card__link {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--blue-600, #005CBA);
     }
 
     /* Card grids */
@@ -1616,65 +1623,121 @@
         <p class="sam-section__subtitle" style="max-width:640px;">SAM4 covers the full range of rotating equipment in industrial plants. Here are the asset types we see most across our 10,000+ monitored assets.</p>
         <div class="sam-asset-grid" style="margin-top:var(--space-8);">
 
-          <div class="sam-asset-card">
-            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.127 3.502L10 1.05l4.874 2.452A1.75 1.75 0 0116 5.13v5.374a5.856 5.856 0 01-3.044 5.136L10 17.5l-2.956-1.86A5.856 5.856 0 014 10.504V5.13a1.75 1.75 0 011.127-1.628z"/></svg></div>
-            <div class="sam-asset-card__title">Pumps</div>
-            <div class="sam-asset-card__body">Centrifugal, submersible, positive displacement. The most common asset in our fleet. Critical in water, chemicals, and oil &amp; gas.</div>
+          <a href="/platform/what-we-monitor/pumps" class="sam-asset-card">
+            <div class="sam-asset-card__title">Centrifugal pumps</div>
+            <div class="sam-asset-card__body">Submersible, booster, borehole, process, injection, transfer, and circulation pumps. The most monitored asset type in our fleet.</div>
             <div class="sam-asset-card__detects">
               <strong>Common detections</strong>
-              Bearing degradation, impeller wear, cavitation, seal failure, dry running
+              Bearing degradation, cavitation, blockage, seal wear, imbalance, efficiency loss
             </div>
-          </div>
+            <span class="sam-asset-card__link">Pump monitoring details &rarr;</span>
+          </a>
 
-          <div class="sam-asset-card">
-            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 4.75A.75.75 0 012.75 4h11.5a2.25 2.25 0 010 4.5H2.75A.75.75 0 012 7.75v-3zm0 8A.75.75 0 012.75 12h7.5a2.25 2.25 0 010 4.5h-7.5A.75.75 0 012 15.75v-3z"/></svg></div>
+          <a href="/platform/what-we-monitor/fans-blowers" class="sam-asset-card">
             <div class="sam-asset-card__title">Fans &amp; blowers</div>
-            <div class="sam-asset-card__body">Supply fans, exhaust fans, ID/FD fans, blowers. Found in HVAC, process ventilation, and combustion air systems.</div>
+            <div class="sam-asset-card__body">Ventilation fans, cooling fans, process blowers, and aerators. Critical for safe atmospheric conditions in enclosed spaces.</div>
             <div class="sam-asset-card__detects">
               <strong>Common detections</strong>
-              Bearing failure, belt degradation, imbalance, blade fouling, misalignment
+              Imbalance, bearing degradation, belt issues, blade fouling, process deviations
             </div>
-          </div>
+            <span class="sam-asset-card__link">Fan monitoring details &rarr;</span>
+          </a>
 
-          <div class="sam-asset-card">
-            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.84 1.804A1 1 0 018.82 1h2.36a1 1 0 01.98.804l.331 1.652a6.993 6.993 0 011.929 1.115l1.598-.54a1 1 0 011.186.447l1.18 2.044a1 1 0 01-.205 1.251l-1.267 1.113a7.047 7.047 0 010 2.228l1.267 1.113a1 1 0 01.206 1.25l-1.18 2.045a1 1 0 01-1.187.447l-1.598-.54a6.993 6.993 0 01-1.929 1.115l-.33 1.652a1 1 0 01-.98.804H8.82a1 1 0 01-.98-.804l-.331-1.652a6.993 6.993 0 01-1.929-1.115l-1.598.54a1 1 0 01-1.186-.447l-1.18-2.044a1 1 0 01.205-1.251l1.267-1.114a7.05 7.05 0 010-2.227L1.821 7.773a1 1 0 01-.206-1.25l1.18-2.045a1 1 0 011.187-.447l1.598.54A6.993 6.993 0 017.51 3.456l.33-1.652zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg></div>
-            <div class="sam-asset-card__title">Compressors</div>
-            <div class="sam-asset-card__body">Screw, reciprocating, centrifugal. High-value assets in refrigeration, pneumatics, and process gas applications.</div>
-            <div class="sam-asset-card__detects">
-              <strong>Common detections</strong>
-              Valve degradation, bearing wear, rotor contact, suction/discharge issues
-            </div>
-          </div>
-
-          <div class="sam-asset-card">
-            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 01-9.379 2.624l-1.7 1.133a.25.25 0 01-.386-.13l-.874-3.092a.25.25 0 01.262-.316l3.211.332a.25.25 0 01.124.446l-1.437.958a4 4 0 006.779-1.955.75.75 0 011.4 0zM4.688 8.576a5.5 5.5 0 019.38-2.624l1.7-1.133a.25.25 0 01.385.13l.875 3.092a.25.25 0 01-.263.316l-3.21-.332a.25.25 0 01-.125-.446l1.438-.957a4 4 0 00-6.78 1.954.75.75 0 01-1.4 0z" clip-rule="evenodd"/></svg></div>
-            <div class="sam-asset-card__title">Mixers &amp; agitators</div>
-            <div class="sam-asset-card__body">Reactor mixers, blending agitators, flocculators. Often submerged or enclosed, making visual inspection impossible.</div>
-            <div class="sam-asset-card__detects">
-              <strong>Common detections</strong>
-              Gearbox wear, bearing failure, impeller damage, mechanical looseness
-            </div>
-          </div>
-
-          <div class="sam-asset-card">
-            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v2H3V5zm0 4h14v2H3V9zm0 4h14v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2z"/></svg></div>
+          <a href="/platform/what-we-monitor/conveyors" class="sam-asset-card">
             <div class="sam-asset-card__title">Conveyors</div>
-            <div class="sam-asset-card__body">Belt conveyors, screw conveyors, bucket elevators. Long assets with multiple failure points along the drive train.</div>
+            <div class="sam-asset-card__body">Belt conveyors, screw conveyors, and chain conveyors. Common in materials handling across mining, pulp, and manufacturing.</div>
             <div class="sam-asset-card__detects">
               <strong>Common detections</strong>
-              Belt slip, bearing failure, chain wear, gearbox degradation, overload
+              Bearing degradation, misalignment, belt/chain issues, blockage, overload
             </div>
-          </div>
+            <span class="sam-asset-card__link">Conveyor monitoring details &rarr;</span>
+          </a>
 
-          <div class="sam-asset-card">
-            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.5 10a4.5 4.5 0 004.284-5.882c-.105-.324-.51-.391-.752-.15L15.34 6.66a.454.454 0 01-.493.101 3.046 3.046 0 01-1.608-1.607.454.454 0 01.1-.493l2.693-2.692c.24-.242.174-.647-.15-.752a4.5 4.5 0 00-5.873 4.575c.055.873-.128 1.808-.8 2.368l-7.482 6.19a1.882 1.882 0 102.504 2.504l6.19-7.482c.56-.672 1.495-.855 2.368-.8.096.007.193.01.291.01zM5 16a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"/></svg></div>
-            <div class="sam-asset-card__title">Other motor-driven assets</div>
-            <div class="sam-asset-card__body">Crushers, screens, centrifuges, aerators, scrubbers. Any asset with an electric motor in the drive train.</div>
+          <a href="/platform/what-we-monitor/agitators-mixers" class="sam-asset-card">
+            <div class="sam-asset-card__title">Agitators &amp; mixers</div>
+            <div class="sam-asset-card__body">Chemical reactors, blending vessels, and mixing tanks. Often submerged or enclosed, making visual inspection impossible.</div>
             <div class="sam-asset-card__detects">
               <strong>Common detections</strong>
-              Motor electrical faults, mechanical degradation, process anomalies, power quality
+              Bearing degradation, seal failure, imbalance from product buildup, gearbox issues
             </div>
-          </div>
+            <span class="sam-asset-card__link">Mixer monitoring details &rarr;</span>
+          </a>
+
+          <a href="/platform/what-we-monitor/compressors" class="sam-asset-card">
+            <div class="sam-asset-card__title">Compressors</div>
+            <div class="sam-asset-card__body">Gas, air, and process compressors, including assets in ATEX/hazardous zones. High-value assets that are expensive to replace.</div>
+            <div class="sam-asset-card__detects">
+              <strong>Common detections</strong>
+              Bearing wear, valve faults, imbalance, efficiency degradation
+            </div>
+            <span class="sam-asset-card__link">Compressor monitoring details &rarr;</span>
+          </a>
+
+          <a href="/platform/what-we-monitor/archimedes-screws" class="sam-asset-card">
+            <div class="sam-asset-card__title">Archimedes screws</div>
+            <div class="sam-asset-card__body">Screw pumps used in water treatment inlet works and low-head pumping stations. Critical for preventing pollution events.</div>
+            <div class="sam-asset-card__detects">
+              <strong>Common detections</strong>
+              Bearing degradation, trough wear, drive chain faults, efficiency loss
+            </div>
+            <span class="sam-asset-card__link">Screw pump monitoring details &rarr;</span>
+          </a>
+
+          <a href="/platform/what-we-monitor/esps" class="sam-asset-card">
+            <div class="sam-asset-card__title">Electrical submersible pumps</div>
+            <div class="sam-asset-card__body">Downhole ESPs in oil &amp; gas production. Operate thousands of metres underground. Pulling the string costs days and hundreds of thousands of dollars.</div>
+            <div class="sam-asset-card__detects">
+              <strong>Common detections</strong>
+              Motor degradation, pump wear, gas lock
+            </div>
+            <span class="sam-asset-card__link">ESP monitoring details &rarr;</span>
+          </a>
+
+          <a href="/platform/what-we-monitor/canned-motor-pumps" class="sam-asset-card">
+            <div class="sam-asset-card__title">Canned motor pumps</div>
+            <div class="sam-asset-card__body">Sealless pumps where the motor rotor is immersed in the process fluid. Impossible to access with vibration sensors.</div>
+            <div class="sam-asset-card__detects">
+              <strong>Common detections</strong>
+              Bearing degradation, rotor eccentricity, recirculation changes, winding faults
+            </div>
+            <span class="sam-asset-card__link">Canned pump monitoring details &rarr;</span>
+          </a>
+
+          <a href="/platform/what-we-monitor/transmissions" class="sam-asset-card">
+            <div class="sam-asset-card__title">Transmissions</div>
+            <div class="sam-asset-card__body">Gearboxes, couplings, belt drives, and chain drives. SAM4 detects faults across the full mechanical transmission path from motor to driven equipment.</div>
+            <div class="sam-asset-card__detects">
+              <strong>Common detections</strong>
+              Gear wear, belt/chain degradation, coupling faults, misalignment
+            </div>
+            <span class="sam-asset-card__link">Transmission monitoring details &rarr;</span>
+          </a>
+
+          <a href="/platform/what-we-monitor/lv-motors" class="sam-asset-card">
+            <div class="sam-asset-card__title">Low voltage motors</div>
+            <div class="sam-asset-card__body">AC induction motors up to 1 kV: the backbone of industrial operations. SAM4 monitors the motor and the entire connected drivetrain.</div>
+            <div class="sam-asset-card__detects">
+              <strong>Common detections</strong>
+              Winding faults, bearing degradation, eccentricity, misalignment, supply issues
+            </div>
+            <span class="sam-asset-card__link">LV motor monitoring details &rarr;</span>
+          </a>
+
+          <a href="/platform/what-we-monitor/mv-motors" class="sam-asset-card">
+            <div class="sam-asset-card__title">Medium voltage motors</div>
+            <div class="sam-asset-card__body">AC motors from 1 kV to 15 kV driving critical process equipment. High-value assets that are expensive to replace and hard to monitor with sensors.</div>
+            <div class="sam-asset-card__detects">
+              <strong>Common detections</strong>
+              Winding insulation degradation, rotor bar faults, partial discharge, bearing wear
+            </div>
+            <span class="sam-asset-card__link">MV motor monitoring details &rarr;</span>
+          </a>
+
+          <a href="/contact" class="sam-asset-card" style="border-style:dashed;">
+            <div class="sam-asset-card__title">Asset not listed?</div>
+            <div class="sam-asset-card__body">SAM4 monitors any AC motor-driven rotating asset. If it draws current, we can likely monitor it. Share your asset list and we'll confirm coverage.</div>
+            <span class="sam-asset-card__link">Talk to us &rarr;</span>
+          </a>
 
         </div>
       </div>
