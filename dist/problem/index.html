@@ -51,14 +51,22 @@
       --space-2: 8px;
       --space-3: 12px;
       --space-4: 16px;
+      --space-5: 20px;
       --space-6: 24px;
+      --space-7: 28px;
       --space-8: 32px;
+      --space-10: 40px;
       --space-12: 48px;
+      --space-14: 56px;
       --space-16: 64px;
       --space-20: 80px;
       --space-24: 96px;
       --space-32: 128px;
     }
+
+    /* ========================================
+       GLOBAL & TYPOGRAPHY
+       ======================================== */
 
     * {
       margin: 0;
@@ -66,13 +74,59 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      width: 100%;
-      height: 100%;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       font-family: var(--font-primary);
-      color: var(--space-cadet);
       background-color: var(--white);
-      line-height: 1.6;
+      color: var(--space-cadet);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Typography scale */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 56px;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 48px;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    h4 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    h6 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
     }
 
     a {
@@ -85,199 +139,530 @@
       color: var(--orange);
     }
 
+    button, [role="button"] {
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-primary);
+    }
+
     /* ========================================
-       HEADER (shared, comes from external)
+       HEADER (Sam-prefixed tokens)
        ======================================== */
 
-    header {
+    .sam-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       height: var(--sam-header-h);
-      background: var(--sam-header-bg);
-      z-index: 1000;
+      background-color: var(--sam-header-bg);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding: 0 var(--space-8);
+      transition: all var(--sam-transition);
     }
 
-    @media (max-width: 991px) {
-      header {
-        height: var(--sam-header-h-compact);
+    .sam-header.is-compact {
+      height: var(--sam-header-h-compact);
+    }
+
+    .sam-header-container {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sam-logo {
+      color: var(--sam-white);
+      font-size: 20px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      transition: opacity var(--sam-transition);
+    }
+
+    .sam-logo:hover {
+      opacity: 0.8;
+    }
+
+    .sam-nav {
+      display: flex;
+      gap: var(--space-8);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sam-nav a {
+      color: var(--sam-white);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color var(--sam-transition);
+    }
+
+    .sam-nav a:hover {
+      color: var(--sam-orange);
+    }
+
+    .sam-nav-mobile {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .sam-nav {
+        display: none;
+      }
+
+      .sam-nav-mobile {
+        display: block;
+      }
+
+      .sam-header {
+        padding: 0 var(--space-4);
       }
     }
+
+    /* ========================================
+       FOOTER (Sam-prefixed tokens)
+       ======================================== */
+
+    .sam-footer {
+      background-color: var(--sam-space-cadet);
+      color: var(--sam-white);
+      padding: var(--space-16) var(--space-8);
+      margin-top: var(--space-24);
+    }
+
+    .sam-footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-8);
+    }
+
+    .sam-footer-section h4 {
+      color: var(--sam-white);
+      margin-bottom: var(--space-4);
+      font-size: 16px;
+    }
+
+    .sam-footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sam-footer-section li {
+      margin-bottom: var(--space-3);
+    }
+
+    .sam-footer-section a {
+      color: var(--sam-white);
+      font-size: 14px;
+      opacity: 0.8;
+      transition: opacity var(--sam-transition);
+    }
+
+    .sam-footer-section a:hover {
+      opacity: 1;
+      color: var(--sam-orange);
+    }
+
+    .sam-footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: var(--space-8);
+      padding-top: var(--space-8);
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    /* ========================================
+       PAGE LAYOUT
+       ======================================== */
 
     main {
       margin-top: var(--sam-header-h);
     }
 
-    @media (max-width: 991px) {
-      main {
-        margin-top: var(--sam-header-h-compact);
+    .page-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--space-8);
+    }
+
+    @media (max-width: 768px) {
+      .page-container {
+        padding: 0 var(--space-4);
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      h3 {
+        font-size: 24px;
       }
     }
 
     /* ========================================
-       HERO
+       HERO SECTION
        ======================================== */
 
     .hero {
-      padding: var(--space-20) var(--space-8);
-      background: linear-gradient(135deg, var(--space-cadet) 0%, #2A2A42 100%);
+      background: linear-gradient(135deg, var(--space-cadet) 0%, #2a2a3e 100%);
       color: var(--white);
+      padding: var(--space-24) var(--space-8);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background: radial-gradient(circle at 100% 0%, rgba(255, 84, 41, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      margin-bottom: var(--space-4);
-      line-height: 1.2;
+      margin-bottom: var(--space-6);
+      font-size: clamp(36px, 6vw, 56px);
     }
 
     .hero p {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      font-weight: 400;
-      max-width: 700px;
-      margin: 0 auto;
-      opacity: 0.9;
-      line-height: 1.5;
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: var(--space-8);
+      opacity: 0.95;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background-color: var(--orange);
+      color: var(--white);
+      padding: var(--space-4) var(--space-8);
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background-color var(--sam-transition), transform var(--sam-transition);
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+    }
+
+    .hero-cta:hover {
+      background-color: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
     }
 
     /* ========================================
-       CONTENT GRID
+       PROBLEM CARDS SECTION
        ======================================== */
 
-    .content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: var(--space-20) var(--space-8);
+    .problems-section {
+      padding: var(--space-24) var(--space-8);
+      background-color: var(--seashell);
     }
 
-    .grid-2 {
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-16);
+    }
+
+    .section-header h2 {
+      margin-bottom: var(--space-4);
+    }
+
+    .section-header p {
+      font-size: 18px;
+      color: var(--comet);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .problems-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: var(--space-8);
-      margin-bottom: var(--space-12);
     }
 
-    .card {
-      background: var(--seashell);
+    .problem-card {
+      background: var(--white);
       border: 1px solid var(--border-grey);
       border-radius: 8px;
-      padding: var(--space-6);
-      transition: transform var(--sam-transition), box-shadow var(--sam-transition);
+      padding: var(--space-8);
+      transition: all var(--sam-transition);
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    .problem-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-color: var(--orange);
     }
 
-    .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: var(--space-3);
+    .problem-card h3 {
+      margin-bottom: var(--space-4);
       color: var(--space-cadet);
     }
 
-    .card p {
-      font-size: 0.95rem;
+    .problem-card p {
       color: var(--comet);
       line-height: 1.6;
     }
 
+    @media (max-width: 768px) {
+      .problems-section {
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .problems-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ========================================
-       STATS SECTION
+       COLLAPSIBLE ACCORDION
        ======================================== */
 
-    .stats {
-      background: var(--seashell);
-      padding: var(--space-12) var(--space-8);
+    .accordion-section {
+      padding: var(--space-24) var(--space-8);
+      background: var(--white);
+    }
+
+    .accordion-header {
+      text-align: center;
+      margin-bottom: var(--space-16);
+    }
+
+    .accordion {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .accordion-item {
+      border: 1px solid var(--border-grey);
       border-radius: 8px;
-      margin: var(--space-12) 0;
+      margin-bottom: var(--space-4);
+      overflow: hidden;
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      padding: var(--space-6) var(--space-8);
+      background: var(--white);
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--space-cadet);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--sam-transition);
+    }
+
+    .accordion-trigger:hover {
+      background: var(--seashell);
+    }
+
+    .accordion-trigger.is-open {
+      background-color: var(--orange);
+      color: var(--white);
+    }
+
+    .accordion-icon {
+      font-size: 20px;
+      transition: transform var(--sam-transition);
+    }
+
+    .accordion-trigger.is-open .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      padding: var(--space-6) var(--space-8);
+      background: var(--seashell);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--sam-transition);
+    }
+
+    .accordion-content.is-open {
+      max-height: 500px;
+    }
+
+    .accordion-content p {
+      line-height: 1.6;
+      color: var(--space-cadet);
+    }
+
+    /* ========================================
+       IMPACT STATS SECTION
+       ======================================== */
+
+    .stats-section {
+      background: linear-gradient(135deg, var(--space-cadet) 0%, #2a2a3e 100%);
+      color: var(--white);
+      padding: var(--space-24) var(--space-8);
     }
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-6);
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-12);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
       text-align: center;
     }
 
-    .stat {
-      padding: var(--space-4);
-    }
-
-    .stat-value {
+    .stat-number {
       font-family: var(--font-data);
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-size: 48px;
       font-weight: 700;
       color: var(--orange);
-      margin-bottom: var(--space-2);
+      margin-bottom: var(--space-3);
     }
 
     .stat-label {
-      font-size: 0.9rem;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .stats-section {
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .stat-number {
+        font-size: 32px;
+      }
+    }
+
+    /* ========================================
+       SOLUTION SECTION
+       ======================================== */
+
+    .solution-section {
+      padding: var(--space-24) var(--space-8);
+      background: var(--white);
+    }
+
+    .solution-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .solution-content h2 {
+      margin-bottom: var(--space-8);
+      text-align: center;
+    }
+
+    .solution-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-8);
+      margin-bottom: var(--space-16);
+    }
+
+    .solution-item {
+      background: var(--seashell);
+      padding: var(--space-6);
+      border-radius: 8px;
+      border-left: 4px solid var(--orange);
+    }
+
+    .solution-item h3 {
+      font-size: 20px;
+      margin-bottom: var(--space-3);
+      color: var(--space-cadet);
+    }
+
+    .solution-item p {
       color: var(--comet);
-      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     /* ========================================
        CTA SECTION
        ======================================== */
 
-    .cta {
-      background: var(--orange);
+    .cta-section {
+      background: linear-gradient(135deg, var(--orange) 0%, #d7411b 100%);
       color: var(--white);
-      padding: var(--space-8);
-      border-radius: 8px;
+      padding: var(--space-24) var(--space-8);
       text-align: center;
-      margin: var(--space-12) 0;
     }
 
-    .cta h2 {
-      font-size: 1.75rem;
-      margin-bottom: var(--space-4);
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .cta p {
-      font-size: 1rem;
-      margin-bottom: var(--space-4);
+    .cta-content h2 {
+      margin-bottom: var(--space-6);
     }
 
-    .btn {
-      display: inline-block;
-      padding: var(--space-3) var(--space-6);
-      background: var(--white);
-      color: var(--orange);
-      border: 2px solid var(--white);
+    .cta-content p {
+      font-size: 18px;
+      margin-bottom: var(--space-8);
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      background-color: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-4) var(--space-8);
       border-radius: 4px;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 16px;
+      display: inline-block;
       transition: all var(--sam-transition);
-      cursor: pointer;
       text-decoration: none;
+      cursor: pointer;
+      border: none;
     }
 
-    .btn:hover {
-      background: transparent;
-      color: var(--white);
-    }
-
-    /* ========================================
-       FOOTER (shared, comes from external)
-       ======================================== */
-
-    footer {
-      background: var(--sam-header-bg);
-      color: var(--sam-white);
-      padding: var(--space-12) var(--space-8);
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    footer p {
-      font-size: 0.9rem;
-      opacity: 0.8;
+    .cta-button:hover {
+      background-color: var(--white);
+      color: var(--orange);
     }
 
     /* ========================================
@@ -285,364 +670,287 @@
        ======================================== */
 
     @media (max-width: 768px) {
-      .hero {
-        padding: var(--space-12) var(--space-6);
+      .cta-section {
+        padding: var(--space-16) var(--space-4);
       }
 
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .hero p {
-        font-size: 1rem;
-      }
-
-      .content {
-        padding: var(--space-12) var(--space-6);
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cta h2 {
-        font-size: 1.5rem;
-      }
-    }
-
-    /* ========================================
-       ACCESSIBILITY
-       ======================================== */
-
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #1a1a1a;
-        color: #e0e0e0;
-      }
-
-      .card {
-        background: #2a2a2a;
-        border-color: #444;
-      }
-
-      .stats {
-        background: #2a2a2a;
-      }
-    }
-
-    /* ========================================
-       CONFIDENCE WHISPERS SPECIFIC
-       ======================================== */
-
-    .sam-section-hero {
-      background: linear-gradient(135deg, #1F1F33 0%, #2A2A42 100%);
-      color: white;
-      padding: 80px 32px;
-      text-align: center;
-    }
-
-    .sam-section-hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700;
-      margin-bottom: 16px;
-      line-height: 1.1;
-    }
-
-    .sam-section-hero p {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.6;
-      opacity: 0.95;
-    }
-
-    .sam-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin: 48px 0;
-    }
-
-    .sam-card {
-      background: #F8F5F2;
-      border: 1px solid #E5E7EB;
-      border-radius: 8px;
-      padding: 24px;
-      transition: transform 150ms ease-out, box-shadow 150ms ease-out;
-    }
-
-    .sam-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(31, 31, 51, 0.15);
-    }
-
-    .sam-card h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #1F1F33;
-      margin-bottom: 12px;
-    }
-
-    .sam-card p {
-      font-size: 0.95rem;
-      color: #6B6B7F;
-      line-height: 1.6;
-    }
-
-    .sam-stat-box {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      background: #F8F5F2;
-      padding: 48px 32px;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .sam-stat {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .sam-stat-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 700;
-      color: #FF5429;
-    }
-
-    .sam-stat-label {
-      font-size: 0.85rem;
-      color: #6B6B7F;
-      font-weight: 500;
-    }
-
-    .sam-cta-section {
-      background: linear-gradient(135deg, #FF5429 0%, #D7411B 100%);
-      color: white;
-      padding: 64px 32px;
-      border-radius: 8px;
-      text-align: center;
-      margin: 80px 0;
-    }
-
-    .sam-cta-section h2 {
-      font-size: 2rem;
-      margin-bottom: 16px;
-    }
-
-    .sam-cta-section p {
-      font-size: 1.05rem;
-      margin-bottom: 32px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .sam-btn {
-      display: inline-block;
-      padding: 12px 32px;
-      background: white;
-      color: #FF5429;
-      border: 2px solid white;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 150ms ease-out;
-    }
-
-    .sam-btn:hover {
-      background: transparent;
-      color: white;
-    }
-
-    @media (max-width: 768px) {
-      .sam-section-hero {
-        padding: 48px 24px;
-      }
-
-      .sam-section-hero h1 {
-        font-size: 1.75rem;
-      }
-
-      .sam-stat-box {
-        grid-template-columns: 1fr;
-        padding: 32px 24px;
-      }
-
-      .sam-cta-section {
-        padding: 48px 24px;
-      }
-
-      .sam-cta-section h2 {
-        font-size: 1.5rem;
+      .cta-content p {
+        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
-
-  <header id="sam-header"></header>
-
-  <main>
-    <section class="hero">
-      <h1>The Monitoring Blind Spot</h1>
-      <p>30–40% of critical rotating equipment runs without condition monitoring. Discover why—and how to fix it.</p>
-    </section>
-
-    <div class="content">
-      <section>
-        <h2>The Hidden Threat</h2>
-        <p>Submerged pumps. Enclosed drives. ATEX motors. Gearboxes in harsh environments. Equipment that's "too difficult to monitor" sits idle in your plant, running blind—until catastrophic failure.</p>
-        <p>When it fails, production stops. Repair costs spike. Supply chains break. Your team scrambles.</p>
-        <p><strong>This equipment shouldn't be invisible.</strong></p>
-      </section>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Submerged Pumps</h3>
-          <p>Underwater and flooded environments have always meant no condition monitoring. Until now. Non-intrusive electrical monitoring works through water.</p>
-        </div>
-        <div class="card">
-          <h3>Enclosed Drives</h3>
-          <p>Motors and gearboxes sealed in enclosures reject vibration sensors. Electrical Signature Analysis penetrates the enclosure—no modification needed.</p>
-        </div>
-        <div class="card">
-          <h3>ATEX &amp; Hazardous Zones</h3>
-          <p>Explosive atmospheres forbid certain hardware. ESA needs no additional sensors or power—just the motor's electrical signature.</p>
-        </div>
-      </div>
-
-      <section>
-        <h2>The Cost of Blindness</h2>
-        <p>Unexpected downtime of a critical pump or drive costs your operation more than early detection ever would:</p>
-
-        <div class="stats">
-          <div class="stats-grid">
-            <div class="stat">
-              <div class="stat-value">€50K+</div>
-              <div class="stat-label">Avg. unplanned downtime cost</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">72h</div>
-              <div class="stat-label">Typical repair turnaround</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">2–5x</div>
-              <div class="stat-label">Emergency repair premium</div>
-            </div>
-          </div>
-        </div>
-
-        <p style="margin-top: var(--space-6);">Monitoring one blind-spot asset typically pays for itself after a single prevented failure.</p>
-      </section>
-
-      <section style="margin-top: var(--space-16);">
-        <h2>The Solution: Electrical Signature Analysis</h2>
-        <p><strong>Samotics' Confidence Whispers</strong> uses ESA to monitor equipment that conventional sensors can't reach:</p>
-
-        <div class="grid-2" style="margin-top: var(--space-8);">
-          <div class="card">
-            <h3>No Installation Burden</h3>
-            <p>Tap into the motor's electrical signal. No vibration probes. No IP-rated hardware in hazardous zones. Non-intrusive, non-invasive.</p>
-          </div>
-          <div class="card">
-            <h3>Early Warning</h3>
-            <p>Catch bearing wear, shaft misalignment, and cavitation weeks before failure. Plan maintenance. Avoid surprises.</p>
-          </div>
-          <div class="card">
-            <h3>Continuous Insight</h3>
-            <p>Monitor from commissioning to decommissioning. Real-time alerts. Historical trend data. Root-cause analysis baked in.</p>
-          </div>
-        </div>
-      </section>
-
-      <section style="margin-top: var(--space-16);">
-        <h2>Why Samotics?</h2>
-        <ul style="margin-left: var(--space-6); margin-top: var(--space-4);">
-          <li><strong>Domain expertise:</strong> Electrical engineers who invented ESA and scaled it in industry.</li>
-          <li><strong>Proven at scale:</strong> Monitoring thousands of assets across oil &amp; gas, water, manufacturing, and utilities.</li>
-          <li><strong>Compliance-first:</strong> Built for safety-critical sectors. Audit trails, API documentation, and standards alignment included.</li>
-          <li><strong>Flexible deployment:</strong> Edge, cloud, or hybrid. API-first architecture. Integrates with your DCS, SCADA, or ERP.</li>
-        </ul>
-      </section>
-
-      <div class="cta">
-        <h2>End the Blind Spot</h2>
-        <p>Let's talk about the critical equipment you're currently flying blind with.</p>
-        <a href="/contact/" class="btn">Get in Touch</a>
+  <!-- Header -->
+  <header class="sam-header">
+    <div class="sam-header-container">
+      <a href="/" class="sam-logo">
+        Samotics
+      </a>
+      <nav class="sam-nav">
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#solution">The Solution</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </nav>
+      <div class="sam-nav-mobile">
+        <button aria-label="Menu">☰</button>
       </div>
     </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>The Monitoring Blind Spot</h1>
+        <p>30–40% of critical rotating equipment has no condition monitoring. Discover what you can't see — and what it costs.</p>
+        <button class="hero-cta" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">Learn More</button>
+      </div>
+    </section>
+
+    <div class="page-container">
+      <!-- Problem Cards Section -->
+      <section class="problems-section" id="problem">
+        <div class="section-header">
+          <h2>What's Being Missed?</h2>
+          <p>Equipment hidden from view is hidden from insight. Until it's too late.</p>
+        </div>
+        <div class="problems-grid">
+          <div class="problem-card">
+            <h3>🔴 Submerged Pumps</h3>
+            <p>Cannot be monitored visually or with standard accelerometers. Bearing wear and cavitation go undetected until failure.</p>
+          </div>
+          <div class="problem-card">
+            <h3>🔴 Enclosed Motors</h3>
+            <p>Sealed enclosures and ATEX certification prevent access. Equipment runs blind, with no early warning of degradation.</p>
+          </div>
+          <div class="problem-card">
+            <h3>🔴 Subsea Equipment</h3>
+            <p>Deepwater installations have zero visibility into bearing health and structural integrity. Failure means emergency response and mission loss.</p>
+          </div>
+          <div class="problem-card">
+            <h3>🔴 Gearboxes in Tight Spaces</h3>
+            <p>Integrated into systems where sensors cannot be mounted. Gear tooth damage, pitting, and lubrication issues stay hidden.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Accordion / Deep Dive Section -->
+      <section class="accordion-section">
+        <div class="accordion-header">
+          <h2>Why This Matters</h2>
+          <p>Every hidden failure carries costs you can see — and costs you cannot.</p>
+        </div>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span>Unplanned Downtime: The Visible Cost</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>When equipment fails without warning, production stops. For manufacturers, refineries, and utilities, every hour of unplanned downtime translates to lost revenue, missed delivery windows, and customer penalties. A single bearing failure can idle an entire production line — and the repair lead time for specialized equipment can stretch weeks. This is the cost everyone sees.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span>Safety Incidents: The Human Cost</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>Unexpected equipment failure doesn't just stop production. It creates hazardous conditions. A catastrophic pump failure can cause flooding, chemical release, or personnel injury. In offshore and subsea operations, failure means emergency response and potential loss of life. Unmonitored equipment is uncontrolled risk — and regulators are increasingly demanding visibility.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span>Secondary Damage: The Cascading Cost</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>Equipment doesn't always fail gently. When a bearing fails, it can damage the shaft, housing, or coupled equipment. When seals break, contamination spreads to the entire fluid system. What starts as a localized bearing issue becomes a repair requiring full system overhaul — turning a 5,000 EUR replacement into a 50,000 EUR project. Without early warning, you pay for cascading failure, not prevention.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span>Inventory & Spare Parts: The Hidden Tax</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>Because failure is unpredictable, operations keep large inventories of expensive spare parts on hand — just in case. For critical equipment with long lead times, this means millions in idle capital. Predictive maintenance cuts spare parts inventory by 25–40%, freeing capital and reducing storage costs. Without visibility, you're paying to be reactive instead of proactive.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span>Compliance & Regulatory Risk</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>Offshore, marine, and hazardous-area regulations increasingly require documented condition monitoring. Failure to monitor — or inability to prove you're monitoring — creates compliance gaps, audit findings, and potential operation restrictions. Regulators don't accept "we didn't see it coming" as an excuse.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <h2 style="text-align: center; margin-bottom: var(--space-12); color: var(--white);">The Numbers</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">30–40%</div>
+            <div class="stat-label">of critical rotating equipment globally has no condition monitoring</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">$50M+</div>
+            <div class="stat-label">average annual loss per large operation from unplanned equipment failure</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3–5x</div>
+            <div class="stat-label">cost multiplier when cascading damage occurs</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">25–40%</div>
+            <div class="stat-label">reduction in spare parts inventory with predictive maintenance</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Solution Section -->
+      <section class="solution-section" id="solution">
+        <div class="solution-content">
+          <h2>The Solution: Monitor What Was Invisible</h2>
+          <p style="text-align: center; color: var(--comet); margin-bottom: var(--space-12); font-size: 18px;">Samotics' Electrical Signature Analysis (ESA) provides continuous condition monitoring for equipment that conventional sensors cannot reach.</p>
+          <div class="solution-list">
+            <div class="solution-item">
+              <h3>Non-Invasive</h3>
+              <p>No sensors to mount, no equipment modification. Monitor submerged, enclosed, and sealed equipment without opening systems or risking contamination.</p>
+            </div>
+            <div class="solution-item">
+              <h3>Early Detection</h3>
+              <p>Detect bearing degradation, cavitation, and mechanical issues weeks before failure. Act before risk becomes crisis.</p>
+            </div>
+            <div class="solution-item">
+              <h3>Proven Across Industries</h3>
+              <p>Deployed in offshore, marine, power generation, refining, and manufacturing. Works where traditional monitoring can't.</p>
+            </div>
+            <div class="solution-item">
+              <h3>Integrated with Your Systems</h3>
+              <p>Feeds directly into your CMMS, control systems, and dashboards. Actionable insights, not raw data.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+      <div class="cta-content">
+        <h2>Ready to See What You've Been Missing?</h2>
+        <p>Talk to our team about how ESA can eliminate your monitoring blind spots and reduce unplanned downtime.</p>
+        <a href="mailto:hello@samotics.com" class="cta-button">Get in Touch</a>
+      </div>
+    </section>
   </main>
 
-  <footer id="sam-footer"></footer>
+  <!-- Footer -->
+  <footer class="sam-footer">
+    <div class="sam-footer-container">
+      <div class="sam-footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/product">Overview</a></li>
+          <li><a href="/capabilities">Capabilities</a></li>
+          <li><a href="/use-cases">Use Cases</a></li>
+        </ul>
+      </div>
+      <div class="sam-footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="sam-footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/guides">Guides</a></li>
+          <li><a href="/case-studies">Case Studies</a></li>
+          <li><a href="/docs">Documentation</a></li>
+        </ul>
+      </div>
+      <div class="sam-footer-section">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/terms">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sam-footer-bottom">
+      <p>&copy; 2026 Samotics. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script>
-    (function () {
-      /* Header & Footer Loaders */
-      var headerEl = document.getElementById('sam-header');
-      var footerEl = document.getElementById('sam-footer');
+  // Header scroll behavior
+  (function() {
+    const header = document.querySelector('.sam-header');
+    let lastScrollY = 0;
 
-      if (headerEl) {
-        fetch('/header.html')
-          .then(function (r) { return r.text(); })
-          .then(function (html) { headerEl.innerHTML = html; })
-          .catch(function (err) { console.warn('Header load failed:', err); });
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > 100) {
+        header.classList.add('is-compact');
+      } else {
+        header.classList.remove('is-compact');
       }
+      
+      lastScrollY = currentScrollY;
+    });
+  })();
 
-      if (footerEl) {
-        fetch('/footer.html')
-          .then(function (r) { return r.text(); })
-          .then(function (html) { footerEl.innerHTML = html; })
-          .catch(function (err) { console.warn('Footer load failed:', err); });
+  // Accordion functionality
+  (function() {
+    const items = document.querySelectorAll('.accordion-item');
+    
+    items.forEach(item => {
+      const trigger = item.querySelector('.accordion-trigger');
+      const content = item.querySelector('.accordion-content');
+      
+      trigger.addEventListener('click', () => {
+        const isOpen = content.classList.contains('is-open');
+        
+        // Close all other items
+        items.forEach(otherItem => {
+          const otherContent = otherItem.querySelector('.accordion-content');
+          const otherTrigger = otherItem.querySelector('.accordion-trigger');
+          otherContent.classList.remove('is-open');
+          otherTrigger.classList.remove('is-open');
+        });
+        
+        // Toggle current item
+        if (!isOpen) {
+          content.classList.add('is-open');
+          trigger.classList.add('is-open');
+        }
+      });
+    });
+  })();
+
+  // Collapsible columns (for future expandable content)
+  (function() {
+    const collapsibles = document.querySelectorAll('[data-collapsible]');
+    
+    collapsibles.forEach(col => {
+      const toggle = col.querySelector('[data-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          col.classList.toggle('is-open');
+        });
       }
-
-      /* Content Accordions (mobile) */
-      setTimeout(function () {
-        var sections = document.querySelectorAll('section');
-        sections.forEach(function (section) {
-          var heading = section.querySelector('h2');
-          if (!heading) return;
-          heading.addEventListener('click', function () {
-            if (window.innerWidth > 991) return;
-            section.classList.toggle('is-open');
-          });
-        });
-
-        var cards = document.querySelectorAll('.card');
-        cards.forEach(function (card) {
-          var heading = card.querySelector('h3');
-          if (!heading) return;
-          heading.addEventListener('click', function () {
-            if (window.innerWidth > 991) return;
-            card.classList.toggle('is-open');
-          });
-        });
-
-        /* Footer Accordions (mobile) */
-        var footerCols = document.querySelectorAll('[data-footer-accordion]');
-        footerCols.forEach(function (col) {
-          var heading = col.querySelector('.sam-footer__col-heading');
-          if (!heading) return;
-          heading.addEventListener('click', function () {
-            if (window.innerWidth > 991) return;
-            col.classList.toggle('is-open');
-          });
-        });
-      }, 100);
-    })();
-  </script>
+    });
+  })();
+</script>
 
 </body>
 </html>
