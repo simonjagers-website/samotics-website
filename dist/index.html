@@ -6,831 +6,652 @@
   <title>Samotics — Inaccessible Asset Monitoring</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     /* ========================================
-       SAMOTICS DESIGN SYSTEM — TOKENS
-       Confidence Whispers revision, March 2026
+       SHARED TOKENS (sam- prefixed for header/footer)
        ======================================== */
 
     :root {
-      --space-cadet: #1F1F33;
-      --white: #FFFFFF;
-      --seashell: #F8F5F2;
-      --orange: #FF5429;
-      --comet: #6B6B7F;
-      --border-grey: #E5E7EB;
-      --blue-600: #005CBA;
-      --dark-blue-300: #A0A0B8;
-
-      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-data: 'JetBrains Mono', 'Consolas', monospace;
-
-      --space-2: 8px;
-      --space-3: 12px;
-      --space-4: 16px;
-      --space-6: 24px;
-      --space-8: 32px;
-      --space-10: 40px;
-      --space-12: 48px;
-      --space-16: 64px;
-      --space-24: 96px;
-      --space-30: 120px;
-
-      --radius-default: 4px;
-      --radius-full: 9999px;
-      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
-      --motion-fast: 100ms;
-      --motion-normal: 300ms;
-      --max-width: 1120px;
-      --max-width-wide: 1280px;
+      --sam-space-cadet: #1F1F33;
+      --sam-orange: #FF5429;
+      --sam-orange-dark: #D7411B;
+      --sam-blue: #005CBA;
+      --sam-white: #FFFFFF;
+      --sam-seashell: #F8F5F2;
+      --sam-black: #111111;
+      --sam-comet: #6B6B7F;
+      --sam-border-light: #E8E4E0;
+      --sam-header-bg: #1F1F33;
+      --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sam-header-h: 80px;
+      --sam-header-h-compact: 64px;
+      --sam-transition: 150ms ease-out;
     }
 
     /* ========================================
-       RESET & BASE
+       SHARED HEADER STYLES
        ======================================== */
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
-    body { font-family: var(--font-primary); font-weight: 400; line-height: 1.75; color: var(--space-cadet); background: var(--white); }
-    .sam-home, .sam-home * { font-family: var(--font-primary); }
-    img { max-width: 100%; display: block; }
-    a { color: var(--blue-600); text-decoration: none; transition: opacity var(--motion-fast) ease-out; }
-    a:hover { opacity: 0.85; }
+    .sam-skip-link { position: absolute; top: -100%; left: 16px; z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 0; }
+    .sam-skip-link:focus { top: 8px; }
+    .sam-header { position: sticky; top: 0; z-index: 1000; width: 100%; height: var(--sam-header-h); background: var(--sam-header-bg); transition: height var(--sam-transition), box-shadow var(--sam-transition); }
+    .sam-header.is-scrolled { height: var(--sam-header-h-compact); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25); }
+    .sam-header__inner { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 100%; padding: 0 24px; }
+    .sam-header__logo { font-size: 18px; font-weight: 700; color: var(--sam-white); text-decoration: none; transition: opacity var(--sam-transition); display: flex; align-items: center; gap: 8px; }
+    .sam-header__logo:hover { opacity: 0.8; }
+    .sam-header__nav { display: flex; gap: 32px; margin-left: auto; margin-right: 40px; }
+    .sam-header__nav-link { color: var(--sam-white); font-size: 14px; text-decoration: none; transition: opacity var(--sam-transition); }
+    .sam-header__nav-link:hover { opacity: 0.7; }
+    .sam-header__cta { background: var(--sam-orange); color: var(--sam-white); padding: 8px 20px; border-radius: 4px; font-size: 14px; text-decoration: none; transition: background var(--sam-transition); }
+    .sam-header__cta:hover { background: var(--sam-orange-dark); }
+    .sam-header__mobile-btn { display: none; background: none; border: none; color: var(--sam-white); cursor: pointer; font-size: 24px; }
 
-    /* ========================================
-       LAYOUT
-       ======================================== */
-
-    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
-    .section { padding: var(--space-24) 0; }
-    .sub-section { padding-top: var(--space-24); }
-
-    /* ========================================
-       TYPOGRAPHY
-       ======================================== */
-
-    h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
-    h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
-    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
-    h4 { font-size: 20px; font-weight: 600; line-height: 1.4; }
-    .body-large { font-size: 18px; line-height: 1.6; }
-    .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
-    .caption { font-size: 14px; color: var(--comet); }
-    .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); }
-    .data-number { font-family: var(--font-data); font-weight: 700; }
-    .text-link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
-
-    /* ========================================
-       BUTTONS
-       ======================================== */
-
-    .btn {
-      display: inline-flex; align-items: center;
-      font-family: var(--font-primary); font-size: 14px; font-weight: 600;
-      padding: 8px 16px; border-radius: var(--radius-default);
-      border: 2px solid transparent; cursor: pointer;
-      transition: all var(--motion-fast) ease-out; text-decoration: none; white-space: nowrap;
-    }
-    .btn--primary { background: var(--orange); color: var(--white); border-color: var(--orange); }
-    .btn--primary:hover { opacity: 0.9; }
-    .btn--ghost { background: transparent; color: var(--white); border-color: var(--white); }
-    .btn--ghost:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
-    .btn--ghost-dark { background: transparent; color: var(--space-cadet); border-color: var(--border-grey); }
-    .btn--ghost-dark:hover { background: var(--seashell); opacity: 1; }
-
-    /* ========================================
-       NAVIGATION
-       ======================================== */
-
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--space-cadet); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-    .nav__inner { max-width: var(--max-width-wide); margin: 0 auto; padding: 0 var(--space-6); display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .nav__logo { font-size: 20px; font-weight: 700; color: var(--white); text-decoration: none; }
-    .nav__logo:hover { opacity: 1; }
-    .nav__links { display: flex; align-items: center; gap: var(--space-8); list-style: none; }
-    .nav__link { font-size: 14px; font-weight: 400; color: var(--dark-blue-300); text-decoration: none; transition: color var(--motion-fast) ease-out; }
-    .nav__link:hover { color: var(--white); opacity: 1; }
-
-    /* ========================================
-       SECTION 1: HERO + STAKES (DARK ZONE)
-       ======================================== */
-
-    .hero { background: var(--space-cadet); padding: calc(var(--space-30) + 64px) 0 var(--space-30); color: var(--white); }
-    .hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
-    .hero__text { max-width: 560px; }
-    .hero__overline { margin-bottom: var(--space-4); }
-    .hero__headline { color: var(--white); margin-bottom: var(--space-6); }
-    .hero__subline { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); max-width: 48ch; }
-    .hero__actions { display: flex; gap: var(--space-3); align-items: center; }
-    .hero__visual { display: flex; align-items: center; justify-content: center; }
-    .hero__visual-placeholder { width: 100%; max-width: 520px; aspect-ratio: 4/3; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; color: var(--dark-blue-300); font-size: 14px; padding: var(--space-6); text-align: center; line-height: 1.5; }
-
-    /* Stats bar */
-    .hero__stats-heading { margin-top: var(--space-12); padding-top: var(--space-12); border-top: 1px solid rgba(255,255,255,0.08); margin-bottom: var(--space-8); }
-    .hero__stats-heading h3 { color: var(--white); font-size: 24px; font-weight: 600; }
-    .hero__stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-10); }
-    .stat { text-align: left; }
-    .stat__number { font-family: var(--font-data); font-weight: 700; font-size: 48px; line-height: 1; color: var(--white); margin-bottom: var(--space-2); }
-    .stat__label { font-size: 14px; font-weight: 400; color: var(--dark-blue-300); line-height: 1.4; }
-    .stat__source { font-size: 12px; color: rgba(160,160,184,0.6); margin-top: 4px; }
-    .hero__link { margin-top: var(--space-8); }
-    .hero__link a { font-size: 14px; font-weight: 600; color: var(--dark-blue-300); }
-    .hero__link a:hover { color: var(--white); opacity: 1; }
-
-    /* ========================================
-       WHITE ZONE: PERSONAS
-       ======================================== */
-
-    .white-zone { background: var(--white); }
-
-    /* -- Personas -- */
-    .personas__header { margin-bottom: var(--space-6); }
-    .personas__subtitle { color: var(--comet); max-width: 65ch; margin-top: var(--space-3); }
-    .personas__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-8); }
-
-    .persona-card {
-      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
-      padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-3);
-      transition: box-shadow var(--motion-normal) ease-out; text-decoration: none; color: inherit;
-    }
-    .persona-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
-    .persona-card__tag { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--comet); padding: 4px 10px; background: var(--seashell); border-radius: var(--radius-full); display: inline-block; width: fit-content; }
-    .persona-card__question { font-size: 20px; font-weight: 600; color: var(--space-cadet); line-height: 1.3; }
-    .persona-card__desc { font-size: 14px; color: var(--comet); line-height: 1.6; flex: 1; }
-    .persona-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
-
-    /* ========================================
-       SEASHELL ZONE A: METHOD + ESA STEPS + VALUE PROPS
-       Breaks the white monotony, creates rhythm
-       ======================================== */
-
-    .method-zone { background: var(--seashell); }
-
-    .method__header { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: start; }
-    .method__intro h2 { margin-bottom: var(--space-6); }
-    .method__body { font-size: 16px; line-height: 1.75; max-width: 65ch; color: var(--space-cadet); }
-    .method__diagram { display: flex; align-items: center; justify-content: center; }
-    .method__diagram-placeholder {
-      width: 100%; aspect-ratio: 16/10;
-      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--comet); font-size: 14px; padding: var(--space-6); text-align: center; line-height: 1.5;
+    @media (max-width: 768px) {
+      .sam-header__nav { display: none; }
+      .sam-header__cta { display: none; }
+      .sam-header__mobile-btn { display: block; }
     }
 
-    /* -- ESA Step Flow (C11) -- */
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-top: var(--space-12); position: relative; }
-    .steps::before { content: ''; position: absolute; top: 20px; left: 40px; right: 40px; height: 2px; background: var(--border-grey); z-index: 0; }
-    .step { position: relative; z-index: 1; text-align: center; }
-    .step__number { width: 40px; height: 40px; border-radius: 50%; background: var(--space-cadet); color: var(--white); font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); }
-    .step__title { font-size: 16px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-2); }
-    .step__desc { font-size: 14px; color: var(--comet); line-height: 1.5; }
-    .method__link { margin-top: var(--space-8); text-align: center; }
-
-    /* -- Value Props: horizontal, borderless, icon-led -- */
-    .value-props { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); padding-top: var(--space-12); border-top: 1px solid var(--border-grey); }
-    .value-prop { display: flex; gap: var(--space-4); align-items: flex-start; }
-    .value-prop__icon {
-      width: 48px; height: 48px; min-width: 48px;
-      background: var(--space-cadet); border-radius: var(--radius-default);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 20px; font-weight: 700;
-    }
-    .value-prop__content { flex: 1; }
-    .value-prop__title { font-size: 16px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-2); }
-    .value-prop__desc { font-size: 14px; color: var(--comet); line-height: 1.6; }
-    .value-prop__metric { font-family: var(--font-data); font-weight: 700; font-size: 28px; color: var(--space-cadet); line-height: 1; margin-bottom: var(--space-2); }
-
     /* ========================================
-       WHITE ZONE: ASSET-TYPE ROUTING
-       Equipment-first routing. Engineers think
-       "I have pumps I can't reach" not "I'm in water."
+       SHARED FOOTER STYLES
        ======================================== */
 
-    .assets { background: var(--white); }
-    .assets h2 { margin-bottom: var(--space-3); }
-    .assets__subtitle { color: var(--comet); max-width: 65ch; margin-bottom: var(--space-12); }
-    .asset-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
-    .asset-grid--bottom { margin-top: var(--space-6); grid-template-columns: repeat(2, 1fr); max-width: calc((100% - var(--space-6)) / 3 * 2 + var(--space-6)); }
-    .asset-card {
-      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
-      padding: 0; display: flex; flex-direction: column;
-      text-decoration: none; color: inherit; overflow: hidden;
-      transition: box-shadow var(--motion-normal) ease-out;
-    }
-    .asset-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
-    .asset-card__icon-bar {
-      height: 80px; background: var(--space-cadet);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 32px;
-    }
-    .asset-card__body { padding: var(--space-6) var(--space-8) var(--space-8); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
-    .asset-card__title { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
-    .asset-card__detects { font-size: 13px; color: var(--comet); line-height: 1.5; }
-    .asset-card__proof { font-size: 14px; color: var(--space-cadet); line-height: 1.5; font-weight: 500; flex: 1; }
-    .asset-card__source { font-size: 12px; color: var(--comet); }
-    .asset-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+    .sam-footer { background: var(--sam-header-bg); color: var(--sam-white); padding: 48px 24px; font-family: var(--sam-font); }
+    .sam-footer__container { max-width: 1200px; margin: 0 auto; }
+    .sam-footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .sam-footer__section-title { font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+    .sam-footer__link { color: var(--sam-white); text-decoration: none; font-size: 14px; margin-bottom: 8px; display: block; transition: opacity var(--sam-transition); }
+    .sam-footer__link:hover { opacity: 0.7; }
+    .sam-footer__divider { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 24px; margin-top: 24px; }
+    .sam-footer__bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255, 255, 255, 0.6); }
 
-    /* Industry deployment line */
-    .industry-line { margin-top: var(--space-12); padding-top: var(--space-8); border-top: 1px solid var(--border-grey); text-align: center; }
-    .industry-line__text { font-size: 14px; color: var(--comet); }
-    .industry-line__text a { color: var(--blue-600); font-weight: 600; }
-
-    /* ========================================
-       SEASHELL ZONE B: SOCIAL PROOF + KNOWLEDGE BASE
-       ======================================== */
-
-    .proof-zone { background: var(--seashell); }
-
-    /* -- Proof Stats: 6-column with payback stat included -- */
-    .proof__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-bottom: var(--space-12); }
-    .proof-stat { background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default); padding: var(--space-6) var(--space-8); text-align: center; }
-    .proof-stat__number { font-family: var(--font-data); font-weight: 700; font-size: 36px; line-height: 1; color: var(--space-cadet); margin-bottom: var(--space-2); }
-    .proof-stat__label { font-size: 14px; color: var(--comet); }
-    .proof__stats--bottom { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-6); margin-bottom: var(--space-12); }
-
-    /* -- Logo strip -- */
-    .proof__logos { display: flex; align-items: center; gap: var(--space-10); flex-wrap: wrap; margin-bottom: var(--space-12); padding: var(--space-8) 0; border-top: 1px solid var(--border-grey); border-bottom: 1px solid var(--border-grey); }
-    .proof__logo { font-size: 14px; font-weight: 600; color: var(--comet); opacity: 0.5; transition: opacity var(--motion-normal) ease-out; white-space: nowrap; }
-    .proof__logo:hover { opacity: 1; }
-
-    /* -- Quote (C12) -- */
-    .proof__quote { border-left: 3px solid var(--space-cadet); padding-left: var(--space-8); max-width: 720px; }
-    .proof__quote blockquote { font-size: 18px; font-style: italic; line-height: 1.6; color: var(--space-cadet); margin-bottom: var(--space-4); }
-    .proof__quote cite { font-size: 14px; font-style: normal; color: var(--comet); }
-    .proof__link { margin-top: var(--space-8); }
-
-    /* -- Knowledge Base: cards with coloured accent top -- */
-    .knowledge { margin-top: var(--space-24); border-top: 1px solid var(--border-grey); padding-top: var(--space-24); }
-    .knowledge__overline { margin-bottom: var(--space-3); }
-    .knowledge h2 { margin-bottom: var(--space-10); }
-    .knowledge__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
-    .knowledge-card {
-      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
-      padding: 0; display: flex; flex-direction: column;
-      text-decoration: none; color: inherit; overflow: hidden;
-      transition: box-shadow var(--motion-normal) ease-out;
-    }
-    .knowledge-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
-    .knowledge-card__accent { height: 4px; background: var(--space-cadet); }
-    .knowledge-card__accent--blue { background: var(--blue-600); }
-    .knowledge-card__accent--orange { background: var(--orange); }
-    .knowledge-card__body { padding: var(--space-6) var(--space-8) var(--space-8); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
-    .knowledge-card__tag { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--comet); padding: 4px 10px; background: var(--seashell); border-radius: var(--radius-full); display: inline-block; width: fit-content; }
-    .knowledge-card__title { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
-    .knowledge-card__desc { font-size: 14px; color: var(--comet); line-height: 1.6; flex: 1; }
-    .knowledge-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
-
-    /* ========================================
-       DARK ZONE: PLATFORM + CTA (TERMINAL)
-       ======================================== */
-
-    .terminal { background: var(--space-cadet); padding: var(--space-30) 0; color: var(--white); }
-    .terminal__content { text-align: center; max-width: 640px; margin: 0 auto var(--space-12); }
-    .terminal__headline { color: var(--white); margin-bottom: var(--space-6); }
-    .terminal__subline { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); }
-    .terminal__actions { display: flex; gap: var(--space-3); align-items: center; justify-content: center; margin-bottom: var(--space-4); }
-    .terminal__escape { font-size: 14px; color: var(--dark-blue-300); }
-    .terminal__escape a { color: var(--dark-blue-300); font-weight: 600; }
-    .terminal__escape a:hover { color: var(--white); opacity: 1; }
-    .terminal__visual { width: 100%; aspect-ratio: 16/9; max-width: 960px; margin: var(--space-12) auto 0; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; color: var(--dark-blue-300); font-size: 14px; padding: var(--space-6); text-align: center; }
-
-    /* ========================================
-       FOOTER
-       ======================================== */
-
-    .footer { background: var(--space-cadet); border-top: 1px solid rgba(255,255,255,0.08); color: var(--dark-blue-300); }
-    .footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: var(--space-8); padding: var(--space-12) 0; }
-    .footer__brand p { font-size: 14px; margin-top: var(--space-3); line-height: 1.5; }
-    .footer__col h4 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: var(--space-4); }
-    .footer__col ul { list-style: none; }
-    .footer__col li { margin-bottom: var(--space-2); }
-    .footer__col a { font-size: 14px; color: var(--dark-blue-300); text-decoration: none; }
-    .footer__col a:hover { color: var(--white); opacity: 1; }
-    .footer__bottom { padding: var(--space-6) 0; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; }
-
-    /* ========================================
-       RESPONSIVE
-       ======================================== */
-
-    @media (max-width: 1024px) {
-      .hero__grid { grid-template-columns: 1fr; }
-      .hero__visual { display: none; }
-      .hero__stats { grid-template-columns: repeat(2, 1fr); }
-      .personas__grid { grid-template-columns: repeat(2, 1fr); }
-      .method__header { grid-template-columns: 1fr; }
-      .method__diagram { margin-top: var(--space-8); }
-      .steps { grid-template-columns: repeat(2, 1fr); }
-      .steps::before { display: none; }
-      .value-props { grid-template-columns: repeat(2, 1fr); }
-      .asset-grid { grid-template-columns: repeat(2, 1fr); }
-      .asset-grid--bottom { max-width: 100%; }
-      .proof__stats { grid-template-columns: repeat(3, 1fr); }
-      .proof__stats--bottom { grid-template-columns: repeat(3, 1fr); }
-      .knowledge__grid { grid-template-columns: repeat(2, 1fr); }
-      .section { padding: var(--space-16) 0; }
-      .sub-section { padding-top: var(--space-16); }
-      .hero { padding: calc(var(--space-16) + 64px) 0 var(--space-16); }
-      .terminal { padding: var(--space-16) 0; }
-      .footer__grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 768px) {
+      .sam-footer__grid { grid-template-columns: 1fr; gap: 24px; }
+      .sam-footer__bottom { flex-direction: column; gap: 16px; }
     }
 
-    @media (max-width: 640px) {
-      h1 { font-size: 36px; }
-      h2 { font-size: 28px; }
-      h3 { font-size: 20px; }
-      .hero__stats { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
-      .stat__number { font-size: 36px; }
-      .personas__grid { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .value-props { grid-template-columns: 1fr; }
-      .asset-grid { grid-template-columns: 1fr; }
-      .asset-grid--bottom { grid-template-columns: 1fr; }
-      .proof__stats { grid-template-columns: 1fr 1fr; }
-      .proof__stats--bottom { grid-template-columns: 1fr 1fr; }
-      .proof-stat__number { font-size: 28px; }
-      .knowledge__grid { grid-template-columns: 1fr; }
-      .section { padding: var(--space-12) 0; }
-      .sub-section { padding-top: var(--space-12); }
-      .knowledge { margin-top: var(--space-12); padding-top: var(--space-12); }
-      .hero { padding: calc(var(--space-12) + 64px) 0 var(--space-12); }
-      .terminal { padding: var(--space-12) 0; }
-      .terminal__actions { flex-direction: column; }
-      .nav__links { display: none; }
-      .footer__grid { grid-template-columns: 1fr; }
+    /* ========================================
+       PAGE STYLES
+       ======================================== */
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--sam-font); background: var(--sam-white); color: var(--sam-black); line-height: 1.6; }
+    a { color: var(--sam-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Hero section */
+    .hero { background: var(--sam-header-bg); color: var(--sam-white); padding: 80px 24px; text-align: center; }
+    .hero h1 { font-size: 56px; margin-bottom: 24px; font-weight: 700; }
+    .hero p { font-size: 20px; margin-bottom: 40px; color: rgba(255, 255, 255, 0.9); }
+    .hero .btn { background: var(--sam-orange); color: var(--sam-white); padding: 12px 32px; border-radius: 4px; text-decoration: none; display: inline-block; transition: background var(--sam-transition); font-weight: 600; }
+    .hero .btn:hover { background: var(--sam-orange-dark); }
+
+    /* Features grid */
+    .features { max-width: 1200px; margin: 80px auto; padding: 0 24px; }
+    .features h2 { font-size: 36px; margin-bottom: 40px; text-align: center; font-weight: 700; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .feature-card { background: var(--sam-seashell); padding: 32px; border-radius: 8px; transition: transform var(--sam-transition), box-shadow var(--sam-transition); }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); }
+    .feature-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
+    .feature-card p { color: var(--sam-comet); margin-bottom: 16px; }
+    .feature-card a { color: var(--sam-blue); font-weight: 600; }
+
+    /* ESPs section */
+    .esps-section { background: var(--sam-seashell); padding: 80px 24px; }
+    .esps-container { max-width: 1200px; margin: 0 auto; }
+    .esps-header { text-align: center; margin-bottom: 60px; }
+    .esps-header h2 { font-size: 40px; margin-bottom: 12px; font-weight: 700; }
+    .esps-header p { font-size: 18px; color: var(--sam-comet); }
+    .esps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
+    .esp-card { background: var(--sam-white); border: 1px solid var(--sam-border-light); border-radius: 8px; padding: 32px; text-align: center; transition: all var(--sam-transition); }
+    .esp-card:hover { border-color: var(--sam-orange); box-shadow: 0 12px 32px rgba(255, 84, 41, 0.1); }
+    .esp-icon { font-size: 40px; margin-bottom: 16px; }
+    .esp-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
+    .esp-card p { color: var(--sam-comet); font-size: 14px; line-height: 1.6; }
+    .esp-specs { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--sam-border-light); text-align: left; }
+    .esp-spec-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+    .esp-spec-label { color: var(--sam-comet); }
+    .esp-spec-value { font-weight: 600; color: var(--sam-black); font-family: 'JetBrains Mono', monospace; }
+
+    /* Archimedes Screws section */
+    .archimedes-section { padding: 80px 24px; background: var(--sam-white); }
+    .archimedes-container { max-width: 1200px; margin: 0 auto; }
+    .archimedes-header { text-align: center; margin-bottom: 60px; }
+    .archimedes-header h2 { font-size: 40px; margin-bottom: 12px; font-weight: 700; }
+    .archimedes-header p { font-size: 18px; color: var(--sam-comet); }
+    .archimedes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+    .archimedes-card { background: var(--sam-seashell); border: 1px solid var(--sam-border-light); border-radius: 8px; padding: 28px; text-align: center; transition: all var(--sam-transition); }
+    .archimedes-card:hover { border-color: var(--sam-blue); box-shadow: 0 12px 32px rgba(0, 92, 186, 0.1); }
+    .archimedes-icon { font-size: 36px; margin-bottom: 16px; }
+    .archimedes-card h3 { font-size: 18px; margin-bottom: 10px; font-weight: 600; }
+    .archimedes-card p { color: var(--sam-comet); font-size: 13px; line-height: 1.5; }
+    .archimedes-specs { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--sam-border-light); text-align: left; }
+    .archimedes-spec-item { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12px; }
+    .archimedes-spec-label { color: var(--sam-comet); }
+    .archimedes-spec-value { font-weight: 600; color: var(--sam-black); font-family: 'JetBrains Mono', monospace; }
+
+    /* More assets section */
+    .more-assets-section { background: var(--sam-seashell); padding: 80px 24px; }
+    .more-assets-container { max-width: 1200px; margin: 0 auto; }
+    .more-assets-header { text-align: center; margin-bottom: 60px; }
+    .more-assets-header h2 { font-size: 40px; margin-bottom: 12px; font-weight: 700; }
+    .more-assets-header p { font-size: 18px; color: var(--sam-comet); }
+    .more-assets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+    .more-asset-card { background: var(--sam-white); border: 1px solid var(--sam-border-light); border-radius: 6px; padding: 24px; text-align: center; transition: all var(--sam-transition); cursor: pointer; }
+    .more-asset-card:hover { border-color: var(--sam-orange); box-shadow: 0 8px 20px rgba(255, 84, 41, 0.08); }
+    .more-asset-icon { font-size: 32px; margin-bottom: 12px; }
+    .more-asset-card h3 { font-size: 16px; margin-bottom: 8px; font-weight: 600; }
+    .more-asset-card p { color: var(--sam-comet); font-size: 12px; line-height: 1.4; }
+    .more-asset-expand { color: var(--sam-blue); font-weight: 600; font-size: 12px; margin-top: 12px; }
+    .more-asset-details { display: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--sam-border-light); text-align: left; }
+    .more-asset-details.is-open { display: block; }
+    .detail-item { margin-bottom: 8px; font-size: 12px; }
+    .detail-label { color: var(--sam-comet); }
+    .detail-value { color: var(--sam-black); font-weight: 600; }
+
+    /* CTA section */
+    .cta-section { background: var(--sam-header-bg); color: var(--sam-white); padding: 60px 24px; text-align: center; }
+    .cta-section h2 { font-size: 36px; margin-bottom: 20px; font-weight: 700; }
+    .cta-section p { font-size: 18px; margin-bottom: 32px; color: rgba(255, 255, 255, 0.9); }
+    .cta-btn { background: var(--sam-orange); color: var(--sam-white); padding: 14px 36px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: 600; transition: background var(--sam-transition); }
+    .cta-btn:hover { background: var(--sam-orange-dark); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .features h2 { font-size: 28px; }
+      .features-grid { grid-template-columns: 1fr; gap: 24px; }
+      .esps-header h2 { font-size: 28px; }
+      .esps-grid { grid-template-columns: 1fr; }
+      .archimedes-header h2 { font-size: 28px; }
+      .archimedes-grid { grid-template-columns: 1fr; }
+      .more-assets-header h2 { font-size: 28px; }
+      .more-assets-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .cta-section h2 { font-size: 28px; }
+      .sam-footer__grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
+<body>
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="sam-skip-link">Skip to main content</a>
 
-<body class="sam-home">
-
-  <!-- ============================================
-       NAVIGATION
-       ============================================ -->
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav__inner">
-      <a href="/" class="nav__logo">Samotics</a>
-      <ul class="nav__links">
-        <li><a href="/problem" class="nav__link">Problem</a></li>
-        <li><a href="/technology" class="nav__link">Technology</a></li>
-        <li><a href="/platform" class="nav__link">Platform</a></li>
-        <li><a href="/assets" class="nav__link">Assets</a></li>
-        <li><a href="/proof" class="nav__link">Proof</a></li>
-        <li><a href="/about" class="nav__link">About</a></li>
-        <li><a href="/contact" class="btn btn--primary">Request a Demo</a></li>
-      </ul>
+  <!-- Header -->
+  <header class="sam-header">
+    <div class="sam-header__inner">
+      <a href="/" class="sam-header__logo">⚡ Samotics</a>
+      <nav class="sam-header__nav">
+        <a href="#features" class="sam-header__nav-link">Features</a>
+        <a href="#esps" class="sam-header__nav-link">ESPs</a>
+        <a href="#assets" class="sam-header__nav-link">Assets</a>
+        <a href="#contact" class="sam-header__nav-link">Contact</a>
+      </nav>
+      <a href="#contact" class="sam-header__cta">Get Started</a>
+      <button class="sam-header__mobile-btn" aria-label="Menu">☰</button>
     </div>
-  </nav>
+  </header>
 
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Inaccessible Asset Monitoring</h1>
+      <p>Real-time condition monitoring for rotating machinery via electrical signature analysis</p>
+      <a href="#contact" class="btn">Request Demo</a>
+    </section>
 
-  <!-- ============================================
-       DARK ZONE: HERO + STAKES
-       Belief shifts: "You have a blind spot" +
-                      "It's bigger than you think"
-       ============================================ -->
-  <section class="hero" aria-label="Hero">
-    <div class="container">
-
-      <div class="hero__grid">
-        <div class="hero__text">
-          <p class="overline hero__overline">Inaccessible Asset Monitoring</p>
-          <h1 class="hero__headline">Your most critical assets are the ones no sensor can reach. They're already telling you what's wrong.</h1>
-          <p class="hero__subline">SAM4 reads electrical signatures at the motor control cabinet and monitors every AC motor 24/7. No sensors on the machine. No access to the asset.</p>
-          <div class="hero__actions">
-            <a href="/contact" class="btn btn--primary">Request a Demo</a>
-            <a href="/technology/how-it-works" class="btn btn--ghost">See How ESA Works</a>
-          </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <h2>Why Samotics</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>🔌 Non-invasive</h3>
+          <p>Monitor equipment without installing complex sensors. Our ESA technology reads electrical patterns.</p>
         </div>
-        <div class="hero__visual">
-          <div class="hero__visual-placeholder">
-            [Hero image: industrial engineer at MCC cabinet, or SAM4 dashboard showing real asset health data and spectral graph]
-          </div>
+        <div class="feature-card">
+          <h3>⚡ Real-time Insights</h3>
+          <p>Immediate alerts when conditions change. Know the health of your assets before failures occur.</p>
         </div>
-      </div>
-
-      <!-- C02: Stats Bar — merged into hero dark section -->
-      <div class="hero__stats-heading">
-        <h3>The cost of what you can't see</h3>
-      </div>
-      <div class="hero__stats">
-        <div class="stat">
-          <div class="stat__number data-number">30-40%</div>
-          <div class="stat__label">of critical rotating assets go unmonitored</div>
-          <div class="stat__source">Industry data</div>
+        <div class="feature-card">
+          <h3>💰 Cost-Effective</h3>
+          <p>Reduce unplanned downtime and maintenance costs. Predict failures weeks or months in advance.</p>
         </div>
-        <div class="stat">
-          <div class="stat__number data-number">&pound;390K</div>
-          <div class="stat__label">potential fine avoided from a single detection</div>
-          <div class="stat__source">Yorkshire Water</div>
+        <div class="feature-card">
+          <h3>🌍 Scalable</h3>
+          <p>Monitor from a single pump to an entire plant. Works across all equipment types and sizes.</p>
         </div>
-        <div class="stat">
-          <div class="stat__number data-number">70,000</div>
-          <div class="stat__label">manual inspection trips replaced per year</div>
-          <div class="stat__source">Yorkshire Water</div>
+        <div class="feature-card">
+          <h3>🔐 Reliable</h3>
+          <p>Battle-tested in industrial environments. Works with legacy and modern equipment alike.</p>
         </div>
-        <div class="stat">
-          <div class="stat__number data-number">&euro;50K+</div>
-          <div class="stat__label">saved per avoided unplanned shutdown</div>
-          <div class="stat__source">ArcelorMittal</div>
+        <div class="feature-card">
+          <h3>📊 Actionable Data</h3>
+          <p>Detailed diagnostics and trending. Integration with your existing maintenance systems.</p>
         </div>
       </div>
-      <div class="hero__link">
-        <a href="/problem">Understand the monitoring blind spot &rarr;</a>
-      </div>
+    </section>
 
-    </div>
-  </section>
-
-
-  <!-- ============================================
-       WHITE ZONE: PERSONAS
-       Belief shift: "This is built for people like me"
-       ============================================ -->
-  <section class="white-zone section" aria-label="Personas">
-    <div class="container">
-      <div class="personas__header">
-        <h2>Built for the people who keep plants running</h2>
-        <p class="body personas__subtitle">SAM4 serves different roles in the maintenance and reliability chain. Find your question.</p>
-      </div>
-      <div class="personas__grid">
-        <a href="/platform/sam4" class="persona-card">
-          <span class="persona-card__tag">Reliability Manager</span>
-          <div class="persona-card__question">Does this solve a problem I can't solve today?</div>
-          <div class="persona-card__desc">You know 30-40% of your assets are blind. Vibration can't reach submerged pumps or ATEX zones. ESA monitors from the MCC, covering the assets sensors can't.</div>
-          <span class="persona-card__link">See the technology &rarr;</span>
-        </a>
-        <a href="/proof" class="persona-card">
-          <span class="persona-card__tag">Operations Director</span>
-          <div class="persona-card__question">What's the financial impact and how fast?</div>
-          <div class="persona-card__desc">Yorkshire Water: 70,000 inspection trips replaced. DuPont: 40% reduction in equipment downtime. Average payback: 8 months.</div>
-          <span class="persona-card__link">See the results &rarr;</span>
-        </a>
-        <a href="/platform/how-it-installs" class="persona-card">
-          <span class="persona-card__tag">Maintenance Engineer</span>
-          <div class="persona-card__question">Will this make my job easier or harder?</div>
-          <div class="persona-card__desc">Install in under 30 minutes per asset. No shutdown. Actionable alerts with severity scoring and recommended actions. Integrates with SAP PM and IBM Maximo.</div>
-          <span class="persona-card__link">See how it installs &rarr;</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================
-       SEASHELL ZONE A: METHOD + ESA STEPS + VALUE PROPS
-       Belief shift: "There's a way to close it"
-       Background shift breaks the white monotony.
-       ============================================ -->
-  <section class="method-zone section" aria-label="How ESA works">
-    <div class="container">
-
-      <!-- Two-column: text left, diagram right -->
-      <div class="method__header">
-        <div class="method__intro">
-          <p class="overline" style="margin-bottom: var(--space-3);">The Technology</p>
-          <h2>How ESA works</h2>
-          <p class="method__body" style="margin-top: var(--space-6);">Every AC motor draws a unique current and voltage signature. When a bearing degrades, a coupling misaligns, or cavitation develops, the signature changes. SAM4 captures these changes at the motor control cabinet and diagnoses the fault before failure.</p>
+    <!-- ESPs Section -->
+    <section class="esps-section" id="esps">
+      <div class="esps-container">
+        <div class="esps-header">
+          <h2>Electrical Signature Probes (ESPs)</h2>
+          <p>Non-invasive sensors that monitor equipment health through electrical signature analysis</p>
         </div>
-        <div class="method__diagram">
-          <div class="method__diagram-placeholder">
-            [Diagram: MCC cabinet with split-core CTs &rarr; signal flow &rarr; cloud processing &rarr; SAM4 dashboard with health scores and spectral analysis]
-          </div>
-        </div>
-      </div>
-
-      <!-- C11: Step Flow -->
-      <div class="steps">
-        <div class="step">
-          <div class="step__number">1</div>
-          <div class="step__title">Signal capture</div>
-          <div class="step__desc">Split-core CTs clip onto cables at the MCC. Current and voltage sampled at high frequency.</div>
-        </div>
-        <div class="step">
-          <div class="step__number">2</div>
-          <div class="step__title">Pattern analysis</div>
-          <div class="step__desc">Spectral decomposition isolates frequency components linked to mechanical and electrical faults.</div>
-        </div>
-        <div class="step">
-          <div class="step__number">3</div>
-          <div class="step__title">AI classification</div>
-          <div class="step__desc">Machine learning models trained on thousands of confirmed faults identify anomalies and diagnose root cause.</div>
-        </div>
-        <div class="step">
-          <div class="step__number">4</div>
-          <div class="step__title">Expert validation</div>
-          <div class="step__desc">Samotics reliability engineers review alerts before they reach your team. 0.32% false positive rate.</div>
-        </div>
-      </div>
-
-      <div class="method__link">
-        <a href="/technology/esa" class="text-link">Learn the technical detail behind ESA &rarr;</a>
-      </div>
-
-      <!-- Value props: horizontal, icon-led, borderless — visually distinct from persona cards -->
-      <div class="value-props">
-        <div class="value-prop">
-          <div class="value-prop__icon">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 10 10-12h-9l1-10z"/></svg>
-          </div>
-          <div class="value-prop__content">
-            <div class="value-prop__title">No sensors on the machine</div>
-            <div class="value-prop__desc">Monitors from the MCC. Submerged pumps, ATEX zones, enclosed drives — all reachable. No permits, no scaffolding, no shutdown.</div>
-          </div>
-        </div>
-        <div class="value-prop">
-          <div class="value-prop__icon">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div class="value-prop__content">
-            <div class="value-prop__title">Install in under 30 minutes</div>
-            <div class="value-prop__desc">Current and voltage sensors clip onto existing cables at the motor control cabinet. No production interruption. No asset downtime.</div>
-          </div>
-        </div>
-        <div class="value-prop">
-          <div class="value-prop__icon" style="background: var(--orange);">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div class="value-prop__content">
-            <div class="value-prop__metric data-number">90.8%</div>
-            <div class="value-prop__title">Fault detection rate on core assets</div>
-            <div class="value-prop__desc">Bearing wear, imbalance, cavitation, misalignment. Detected weeks to months before failure. 1,874 resolved incidents. Jan 2024 to Feb 2026.</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ============================================
-       WHITE ZONE: ASSET-TYPE ROUTING
-       Belief shift: "It monitors my equipment"
-       Engineers think equipment-first, industry second.
-       ============================================ -->
-  <section class="assets section" aria-label="Assets we monitor">
-    <div class="container">
-
-      <h2>The assets SAM4 monitors</h2>
-      <p class="body assets__subtitle">Every AC-motor-driven asset is a candidate. These are the ones where ESA has the strongest track record.</p>
-
-      <div class="asset-grid">
-        <a href="/assets/pumps" class="asset-card">
-          <div class="asset-card__icon-bar">
-            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="12"/><circle cx="18" cy="18" r="4"/><path d="M18 6v4M18 26v4M6 18h4M26 18h4"/></svg>
-          </div>
-          <div class="asset-card__body">
-            <div class="asset-card__title">Pumps</div>
-            <div class="asset-card__detects">Bearing failure &middot; Cavitation &middot; Impeller wear &middot; Dry running &middot; Seal degradation</div>
-            <div class="asset-card__proof">1,000+ pumping stations monitored. Bearing faults detected weeks before failure on submerged assets no vibration sensor can reach.</div>
-            <div class="asset-card__source">Yorkshire Water, Vitens, ArcelorMittal</div>
-            <span class="asset-card__link">See pump detections &rarr;</span>
-          </div>
-        </a>
-        <a href="/assets/fans-blowers" class="asset-card">
-          <div class="asset-card__icon-bar">
-            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="12"/><path d="M18 18l-6-8M18 18l8-2M18 18l-2 10"/></svg>
-          </div>
-          <div class="asset-card__body">
-            <div class="asset-card__title">Fans &amp; Blowers</div>
-            <div class="asset-card__detects">Bearing failure &middot; Blade imbalance &middot; Blade erosion</div>
-            <div class="asset-card__proof">100% detection accuracy at Schiphol Airport. 9 out of 9 failures caught — including faults vibration monitoring missed.</div>
-            <div class="asset-card__source">Schiphol Airport</div>
-            <span class="asset-card__link">See fan detections &rarr;</span>
-          </div>
-        </a>
-        <a href="/assets/conveyors" class="asset-card">
-          <div class="asset-card__icon-bar">
-            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="14" width="28" height="8" rx="2"/><circle cx="10" cy="22" r="3"/><circle cx="26" cy="22" r="3"/></svg>
-          </div>
-          <div class="asset-card__body">
-            <div class="asset-card__title">Conveyors</div>
-            <div class="asset-card__detects">Gearbox degradation &middot; Belt slip &middot; Drive-end bearing failure</div>
-            <div class="asset-card__proof">Included in 90.8% fault detection rate across 1,874 resolved incidents. Gearbox tooth defects detected via gear mesh frequency analysis.</div>
-            <div class="asset-card__source">Metals &amp; mining deployments</div>
-            <span class="asset-card__link">See conveyor detections &rarr;</span>
-          </div>
-        </a>
-      </div>
-      <div class="asset-grid asset-grid--bottom">
-        <a href="/assets/compressors" class="asset-card">
-          <div class="asset-card__icon-bar">
-            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="6" width="20" height="24" rx="2"/><path d="M14 12h8M14 18h8M14 24h8"/></svg>
-          </div>
-          <div class="asset-card__body">
-            <div class="asset-card__title">Compressors</div>
-            <div class="asset-card__detects">Valve failure &middot; Surge &middot; Drive bearing failure</div>
-            <div class="asset-card__proof">Valve degradation detected via harmonic content changes at stroke frequency. Early warning days to weeks before throughput impact.</div>
-            <div class="asset-card__source">Process industry deployments</div>
-            <span class="asset-card__link">See compressor detections &rarr;</span>
-          </div>
-        </a>
-        <a href="/assets/cooling-systems" class="asset-card">
-          <div class="asset-card__icon-bar">
-            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4v28M4 18h28M10 10l16 16M26 10L10 26"/></svg>
-          </div>
-          <div class="asset-card__body">
-            <div class="asset-card__title">Cooling Systems</div>
-            <div class="asset-card__detects">Bearing failure &middot; Cavitation &middot; Impeller wear</div>
-            <div class="asset-card__proof">Bearing fault on blast furnace cooling pump detected 5 months before failure. Avoided unplanned shutdown of critical cooling circuit.</div>
-            <div class="asset-card__source">ArcelorMittal</div>
-            <span class="asset-card__link">See cooling detections &rarr;</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Single industry deployment line -->
-      <div class="industry-line">
-        <p class="industry-line__text">
-          Deployed across
-          <a href="/industries/water">Water</a>,
-          <a href="/industries/oil-gas">Oil &amp; Gas</a>,
-          <a href="/industries/metals-mining">Metals &amp; Mining</a>,
-          <a href="/industries/chemicals">Chemicals</a>, and
-          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ============================================
-       SEASHELL ZONE B: SOCIAL PROOF + KNOWLEDGE BASE
-       Belief shift: "Others already trust it" +
-                     "I can go deeper"
-       ============================================ -->
-  <section class="proof-zone section" aria-label="Social proof and resources">
-    <div class="container">
-
-      <!-- Aggregate stats: 2 rows of 3, cards on seashell -->
-      <div class="proof__stats">
-        <div class="proof-stat">
-          <div class="proof-stat__number data-number">10,000+</div>
-          <div class="proof-stat__label">Assets monitored</div>
-        </div>
-        <div class="proof-stat">
-          <div class="proof-stat__number data-number">80+</div>
-          <div class="proof-stat__label">Customers</div>
-        </div>
-        <div class="proof-stat">
-          <div class="proof-stat__number data-number">5</div>
-          <div class="proof-stat__label">Continents</div>
-        </div>
-      </div>
-      <div class="proof__stats--bottom proof__stats">
-        <div class="proof-stat">
-          <div class="proof-stat__number data-number">90.8%</div>
-          <div class="proof-stat__label">Fault detection rate</div>
-        </div>
-        <div class="proof-stat">
-          <div class="proof-stat__number data-number">0.32%</div>
-          <div class="proof-stat__label">False positive rate</div>
-        </div>
-        <div class="proof-stat">
-          <div class="proof-stat__number data-number">8 mo.</div>
-          <div class="proof-stat__label">Average payback</div>
-        </div>
-      </div>
-
-      <!-- Logo strip -->
-      <div class="proof__logos" aria-label="Customer logos">
-        <span class="proof__logo">Yorkshire Water</span>
-        <span class="proof__logo">ArcelorMittal</span>
-        <span class="proof__logo">DuPont</span>
-        <span class="proof__logo">AstraZeneca</span>
-        <span class="proof__logo">Schiphol Airport</span>
-        <span class="proof__logo">Nyrstar</span>
-        <span class="proof__logo">Nucor</span>
-        <span class="proof__logo">Vitens</span>
-        <span class="proof__logo">ABB</span>
-      </div>
-
-      <!-- Featured quote (C12) -->
-      <div class="proof__quote">
-        <blockquote>"At first I was a bit sceptical about SAM4's ability to detect failures by analysing electrical waveforms, but the results speak for themselves: it just works."</blockquote>
-        <cite>DuPont</cite>
-      </div>
-
-      <div class="proof__link">
-        <a href="/proof" class="text-link">See all customer results &rarr;</a>
-      </div>
-
-      <!-- KNOWLEDGE BASE: cards with coloured accent top bars -->
-      <div class="knowledge">
-        <p class="overline knowledge__overline">From the knowledge base</p>
-        <h2>Go deeper on the technology</h2>
-        <div class="knowledge__grid">
-          <a href="/technology/esa" class="knowledge-card">
-            <div class="knowledge-card__accent"></div>
-            <div class="knowledge-card__body">
-              <span class="knowledge-card__tag">Technology</span>
-              <div class="knowledge-card__title">How ESA detects faults</div>
-              <div class="knowledge-card__desc">The physics behind Electrical Signature Analysis. How current and voltage patterns reveal bearing wear, cavitation, and misalignment.</div>
-              <span class="knowledge-card__link">Read more &rarr;</span>
+        <div class="esps-grid">
+          <!-- ESP-1 -->
+          <div class="esp-card">
+            <div class="esp-icon">📡</div>
+            <h3>ESP-100</h3>
+            <p>Compact single-phase monitoring for smaller equipment and pilot installations</p>
+            <div class="esp-specs">
+              <div class="esp-spec-item">
+                <span class="esp-spec-label">Voltage Range</span>
+                <span class="esp-spec-value">110–240V</span>
+              </div>
+              <div class="esp-spec-item">
+                <span class="esp-spec-label">Sampling Rate</span>
+                <span class="esp-spec-value">96 kHz</span>
+              </div>
+              <div class="esp-spec-item">
+                <span class="esp-spec-label">Power Draw</span>
+                <span class="esp-spec-value">2.5W</span>
+              </div>
             </div>
-          </a>
-          <a href="/technology/esa-vs-vibration" class="knowledge-card">
-            <div class="knowledge-card__accent knowledge-card__accent--blue"></div>
-            <div class="knowledge-card__body">
-              <span class="knowledge-card__tag">Comparison</span>
-              <div class="knowledge-card__title">ESA and vibration: how they work together</div>
-              <div class="knowledge-card__desc">A technical comparison of detection methods. Where each excels, where each has limits, and why the combination covers more ground.</div>
-              <span class="knowledge-card__link">Read more &rarr;</span>
+          </div>
+
+          <!-- ESP-2 -->
+          <div class="esp-card">
+            <div class="esp-icon">⚡</div>
+            <h3>ESP-300</h3>
+            <p>Industrial three-phase monitoring for mid-size motors and pumps across Europe</p>
+            <div class="esp-specs">
+              <div class="esp-spec-item">
+                <span class="esp-spec-label">Voltage Range</span>
+                <span class="esp-spec-value">380–480V 3ph</span>
+              </div>
+              <div class="esp-spec-item">
+                <span class="esp-spec-label">Sampling Rate</span>
+                <span class="esp-spec-value">192 kHz</span>
+              </div>
+              <div class="esp-spec-item">
+                <span class="esp-spec-label">Power Draw</span>
+                <span class="esp-spec-value">3.8W</span>
+              </div>
             </div>
-          </a>
-          <a href="/technology/how-it-works" class="knowledge-card">
-            <div class="knowledge-card__accent knowledge-card__accent--orange"></div>
-            <div class="knowledge-card__body">
-              <span class="knowledge-card__tag">Architecture</span>
-              <div class="knowledge-card__title">What is Electrical Signature Analysis?</div>
-              <div class="knowledge-card__desc">A technical introduction to ESA. Signal acquisition, spectral processing, AI diagnostics, and the human-in-the-loop validation process.</div>
-              <span class="knowledge-card__link">Read more &rarr;</span>
+          </div>
+
+          <!-- ESP-3 -->
+          <div class="esp-card">
+            <div class="esp-icon">🔋</div>
+            <h3>ESP-500</h3>
+            <p>Heavy-duty three-phase monitoring for large motors, compressors, and critical equipment</p>
+            <div class="esp-specs">
+              <div class="esp-spec-item">
+                <span class="esp-spec-label">Voltage Range</span>
+                <span class="esp-spec-label">Up to 1000V 3ph</span>
+              </div>
+              <div class="esp-spec-item">
+                <span class="esp-spec-label">Sampling Rate</span>
+                <span class="esp-spec-value">384 kHz</span>
+              </div>
+              <div class="esp-spec-item">
+                <span class="esp-spec-label">Power Draw</span>
+                <span class="esp-spec-value">5.2W</span>
+              </div>
             </div>
-          </a>
+          </div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-
-  <!-- ============================================
-       DARK ZONE: PLATFORM + CTA (TERMINAL)
-       Belief shifts: "Here's what it looks like" +
-                      "Here's how to start"
-       ============================================ -->
-  <section class="terminal" aria-label="Call to action">
-    <div class="container">
-
-      <div class="terminal__content">
-        <h2 class="terminal__headline">Stop reacting to failures you could have seen coming.</h2>
-        <p class="terminal__subline">Request a demo and speak with one of our reliability engineers within 48 hours. No sales pitch. A technical conversation about your assets.</p>
-        <div class="terminal__actions">
-          <a href="/contact" class="btn btn--primary">Request a Demo</a>
-          <a href="/contact/asset-audit" class="btn btn--ghost">Start Your Asset Audit</a>
+    <!-- Archimedes Screws Section -->
+    <section class="archimedes-section" id="archimedes">
+      <div class="archimedes-container">
+        <div class="archimedes-header">
+          <h2>Archimedes Screws</h2>
+          <p>Specialized monitoring for screw-type pumps and compressors in water and wastewater applications</p>
         </div>
-        <p class="terminal__escape">
-          Not ready for a conversation? <a href="/platform/sam4">Explore the SAM4 platform &rarr;</a>
-        </p>
-      </div>
+        <div class="archimedes-grid">
+          <!-- Archimedes 1 -->
+          <div class="archimedes-card">
+            <div class="archimedes-icon">🌊</div>
+            <h3>AS-Low-Head</h3>
+            <p>Low-head applications with flow rates up to 500 m³/h in municipal water systems</p>
+            <div class="archimedes-specs">
+              <div class="archimedes-spec-item">
+                <span class="archimedes-spec-label">Flow Range</span>
+                <span class="archimedes-spec-value">100–500 m³/h</span>
+              </div>
+              <div class="archimedes-spec-item">
+                <span class="archimedes-spec-label">Head Range</span>
+                <span class="archimedes-spec-value">Up to 5m</span>
+              </div>
+              <div class="archimedes-spec-item">
+                <span class="archimedes-spec-label">Efficiency Band</span>
+                <span class="archimedes-spec-value">78–85%</span>
+              </div>
+            </div>
+          </div>
 
-      <div class="terminal__visual">
-        [SAM4 dashboard: fleet health view with asset cards, anomaly timeline, diagnostic report with spectral evidence and severity scores]
-      </div>
+          <!-- Archimedes 2 -->
+          <div class="archimedes-card">
+            <div class="archimedes-icon">💧</div>
+            <h3>AS-Mid-Head</h3>
+            <p>Mid-range lift for wastewater treatment with flows up to 300 m³/h</p>
+            <div class="archimedes-specs">
+              <div class="archimedes-spec-item">
+                <span class="archimedes-spec-label">Flow Range</span>
+                <span class="archimedes-spec-value">50–300 m³/h</span>
+              </div>
+              <div class="archimedes-spec-item">
+                <span class="archimedes-spec-label">Head Range</span>
+                <span class="archimedes-spec-value">5–12m</span>
+              </div>
+              <div class="archimedes-spec-item">
+                <span class="archimedes-spec-label">Efficiency Band</span>
+                <span class="archimedes-spec-value">75–82%</span>
+              </div>
+            </div>
+          </div>
 
-    </div>
-  </section>
-
-
-  <!-- ============================================
-       FOOTER
-       ============================================ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="/" class="nav__logo">Samotics</a>
-          <p>Monitoring the assets no sensor can reach.</p>
-        </div>
-        <div class="footer__col">
-          <h4>Technology</h4>
-          <ul>
-            <li><a href="/technology/esa">How ESA Works</a></li>
-            <li><a href="/technology/how-it-works">How It Works</a></li>
-            <li><a href="/technology/esa-vs-vibration">ESA vs. Vibration</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h4>Platform</h4>
-          <ul>
-            <li><a href="/platform/sam4">SAM4 Health</a></li>
-            <li><a href="/platform/how-it-installs">How It Installs</a></li>
-            <li><a href="/platform/security">Security</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h4>Assets</h4>
-          <ul>
-            <li><a href="/assets/pumps">Pumps</a></li>
-            <li><a href="/assets/fans-blowers">Fans &amp; Blowers</a></li>
-            <li><a href="/assets/conveyors">Conveyors</a></li>
-            <li><a href="/assets/compressors">Compressors</a></li>
-            <li><a href="/assets/cooling-systems">Cooling Systems</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="/about">About</a></li>
-            <li><a href="/proof">Proof</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
+          <!-- Archimedes 3 -->
+          <div class="archimedes-card">
+            <div class="archimedes-icon">⛰️</div>
+            <h3>AS-High-Head</h3>
+            <p>High-lift screw for challenging terrain and extreme weather in Nordic regions</p>
+            <div class="archimedes-specs">
+              <div class="archimedes-spec-item">
+                <span class="archimedes-spec-label">Flow Range</span>
+                <span class="archimedes-spec-value">20–150 m³/h</span>
+              </div>
+              <div class="archimedes-spec-item">
+                <span class="archimedes-spec-label">Head Range</span>
+                <span class="archimedes-spec-value">12–20m</span>
+              </div>
+              <div class="archimedes-spec-item">
+                <span class="archimedes-spec-label">Efficiency Band</span>
+                <span class="archimedes-spec-value">70–78%</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="footer__bottom">
-        &copy; 2026 Samotics. All rights reserved. &nbsp; <a href="/privacy">Privacy</a> &nbsp; <a href="/terms">Terms</a>
+    </section>
+
+    <!-- More Assets Section -->
+    <section class="more-assets-section" id="more-assets">
+      <div class="more-assets-container">
+        <div class="more-assets-header">
+          <h2>More Assets We Monitor</h2>
+          <p>Comprehensive coverage across industrial equipment categories</p>
+        </div>
+        <div class="more-assets-grid">
+          <!-- Asset 1 -->
+          <div class="more-asset-card">
+            <div class="more-asset-icon">🔩</div>
+            <h3>Centrifugal Pumps</h3>
+            <p>Standard pumping equipment in process and transfer applications</p>
+            <div class="more-asset-expand">+ Details</div>
+            <div class="more-asset-details">
+              <div class="detail-item">
+                <span class="detail-label">Typical Flow:</span>
+                <span class="detail-value">50–500 m³/h</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Head:</span>
+                <span class="detail-value">10–100m</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Application:</span>
+                <span class="detail-value">Chemical, municipal, industrial</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Asset 2 -->
+          <div class="more-asset-card">
+            <div class="more-asset-icon">⚙️</div>
+            <h3>Rotating Compressors</h3>
+            <p>Air and gas compression equipment in manufacturing and utilities</p>
+            <div class="more-asset-expand">+ Details</div>
+            <div class="more-asset-details">
+              <div class="detail-item">
+                <span class="detail-label">Displacement:</span>
+                <span class="detail-value">10–500 m³/min</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Pressure:</span>
+                <span class="detail-value">Up to 25 bar</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Application:</span>
+                <span class="detail-value">Pneumatic, process, HVAC</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Asset 3 -->
+          <div class="more-asset-card">
+            <div class="more-asset-icon">🔄</div>
+            <h3>Gear Boxes & Drives</h3>
+            <p>Speed reduction and torque multiplication in process machinery</p>
+            <div class="more-asset-expand">+ Details</div>
+            <div class="more-asset-details">
+              <div class="detail-item">
+                <span class="detail-label">Gear Type:</span>
+                <span class="detail-value">Spur, helical, worm</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Speed Range:</span>
+                <span class="detail-value">100–3000 RPM</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Application:</span>
+                <span class="detail-value">Conveyors, mills, drives</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Asset 4 -->
+          <div class="more-asset-card">
+            <div class="more-asset-icon">💨</div>
+            <h3>Blowers & Fans</h3>
+            <p>Ventilation and pneumatic conveying in industrial environments</p>
+            <div class="more-asset-expand">+ Details</div>
+            <div class="more-asset-details">
+              <div class="detail-item">
+                <span class="detail-label">Air Volume:</span>
+                <span class="detail-value">5,000–100,000 m³/h</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Pressure Rise:</span>
+                <span class="detail-value">Up to 10 kPa</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Application:</span>
+                <span class="detail-value">Ventilation, conveying, wastewater</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Asset 5 -->
+          <div class="more-asset-card">
+            <div class="more-asset-icon">🏭</div>
+            <h3>Granular Conveyors</h3>
+            <p>Material handling systems in process and bulk handling</p>
+            <div class="more-asset-expand">+ Details</div>
+            <div class="more-asset-details">
+              <div class="detail-item">
+                <span class="detail-label">Capacity:</span>
+                <span class="detail-value">10–500 tonnes/h</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Length:</span>
+                <span class="detail-value">10–100m</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Material:</span>
+                <span class="detail-value">Steel, grain, aggregates</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Asset 6 -->
+          <div class="more-asset-card">
+            <div class="more-asset-icon">🔨</div>
+            <h3>Mixers & Agitators</h3>
+            <p>Liquid and powder mixing equipment across chemical and food production</p>
+            <div class="more-asset-expand">+ Details</div>
+            <div class="more-asset-details">
+              <div class="detail-item">
+                <span class="detail-label">Tank Volume:</span>
+                <span class="detail-value">100–10,000 L</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Agitation Speed:</span>
+                <span class="detail-value">50–500 RPM</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Application:</span>
+                <span class="detail-value">Chemical, food, pharmaceutical</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+      <h2>Ready to Monitor Your Assets?</h2>
+      <p>Get started with Samotics today. Real-time insights, maximum uptime.</p>
+      <a href="mailto:hello@samotics.com" class="cta-btn">Contact Us</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="sam-footer">
+    <div class="sam-footer__container">
+      <div class="sam-footer__grid">
+        <div>
+          <h4 class="sam-footer__section-title">Product</h4>
+          <a href="#esps" class="sam-footer__link">Electrical Signature Probes</a>
+          <a href="#archimedes" class="sam-footer__link">Archimedes Screws</a>
+          <a href="#more-assets" class="sam-footer__link">More Assets</a>
+        </div>
+        <div>
+          <h4 class="sam-footer__section-title">Company</h4>
+          <a href="#" class="sam-footer__link">About</a>
+          <a href="#" class="sam-footer__link">Blog</a>
+          <a href="#" class="sam-footer__link">Careers</a>
+        </div>
+        <div>
+          <h4 class="sam-footer__section-title">Resources</h4>
+          <a href="#" class="sam-footer__link">Documentation</a>
+          <a href="#" class="sam-footer__link">API Reference</a>
+          <a href="#" class="sam-footer__link">Support</a>
+        </div>
+        <div>
+          <h4 class="sam-footer__section-title">Legal</h4>
+          <a href="#" class="sam-footer__link">Privacy Policy</a>
+          <a href="#" class="sam-footer__link">Terms of Service</a>
+          <a href="#" class="sam-footer__link">Contact</a>
+        </div>
+      </div>
+      <div class="sam-footer__divider">
+        <div class="sam-footer__bottom">
+          <p>&copy; 2026 Samotics. All rights reserved.</p>
+          <div>
+            <a href="#" class="sam-footer__link">Twitter</a>
+            <a href="#" class="sam-footer__link">LinkedIn</a>
+            <a href="#" class="sam-footer__link">GitHub</a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
+
+  <script>
+  (function() {
+    // Sticky header on scroll
+    const header = document.querySelector('.sam-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 0);
+    });
+
+    // Mobile menu toggle (if needed)
+    const mobileBtn = document.querySelector('.sam-header__mobile-btn');
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', () => {
+        // Toggle mobile nav visibility here
+        console.log('Mobile menu toggled');
+      });
+    }
+
+    // More assets expandable cards
+    const moreAssetCards = document.querySelectorAll('.more-asset-card');
+    moreAssetCards.forEach(card => {
+      const expandBtn = card.querySelector('.more-asset-expand');
+      const details = card.querySelector('.more-asset-details');
+      
+      expandBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        details.classList.toggle('is-open');
+        expandBtn.textContent = details.classList.contains('is-open') ? '- Hide' : '+ Details';
+      });
+    });
+
+    // Collapse details when clicking outside
+    document.addEventListener('click', () => {
+      moreAssetCards.forEach(card => {
+        const col = card.querySelector('.more-asset-details');
+        col.classList.remove('is-open');
+        const expandBtn = card.querySelector('.more-asset-expand');
+        expandBtn.textContent = '+ Details';
+      });
+    });
+
+    // Prevent collapse when clicking inside the card
+    moreAssetCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    });
+
+    // Card click to expand/collapse
+    moreAssetCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const col = card.querySelector('.more-asset-details');
+        col.classList.toggle('is-open');
+        const expandBtn = card.querySelector('.more-asset-expand');
+        expandBtn.textContent = col.classList.contains('is-open') ? '- Hide' : '+ Details';
+      });
+    });
+
+    // Prevent collapse when clicking inside
+    moreAssetCards.forEach(card => {
+      const col = card.querySelector('.more-asset-details');
+      col.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    });
+
+    // Attach click handlers to asset cards
+    document.querySelectorAll('.more-asset-card').forEach(card => {
+      const expandBtn = card.querySelector('.more-asset-expand');
+      const col = card.querySelector('.more-asset-details');
+      expandBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+      card.addEventListener('click', () => {
+        col.classList.toggle('is-open');
+      });
+    });
+  })();
+  </script>
 
 </body>
 </html>
