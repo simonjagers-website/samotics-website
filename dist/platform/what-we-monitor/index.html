@@ -1177,6 +1177,16 @@
       fill: currentColor;
     }
 
+    
+    /* Left-align override (design system rule) */
+    .sam-section__title,
+    .sam-section__subtitle {
+      text-align: left;
+    }
+    .sam-stats-bar,
+    .sam-stat {
+      text-align: center;
+    }
     /* Container alias */
     .sam-container {
       max-width: var(--max-width);
@@ -1184,9 +1194,9 @@
       padding: 0 var(--space-6);
     }
 
-    /* ===== WHAT WE MONITOR — PAGE CSS ===== */
+    /* ===== WHAT WE MONITOR. PAGE CSS ===== */
 
-    /* Asset type cards — larger, with icon top */
+    /* Asset type cards. larger, with icon top */
     .sam-asset-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1196,7 +1206,7 @@
       background: #fff;
       border: 1px solid var(--border-grey);
       border-radius: var(--radius);
-      padding: var(--space-6);
+      padding: var(--space-8);
       transition: box-shadow 0.2s ease;
     }
     .sam-asset-card:hover {
@@ -1246,7 +1256,7 @@
       background: #fff;
       border: 1px solid var(--border-grey);
       border-radius: var(--radius);
-      padding: var(--space-6);
+      padding: var(--space-8);
       transition: box-shadow 0.2s ease;
     }
     .sam-card:hover {
@@ -1590,7 +1600,7 @@
 
   <main id="main">
 
-    <!-- HERO — dark bg -->
+    <!-- HERO. dark bg -->
     <section class="sam-section sam-section--dark" style="padding-top:120px;padding-bottom:96px;">
       <div class="sam-container">
         <p class="sam-eyebrow" style="color:var(--orange);font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-3);">What We Monitor</p>
@@ -1599,7 +1609,7 @@
       </div>
     </section>
 
-    <!-- SECTION 1: Asset types — seashell bg -->
+    <!-- SECTION 1: Asset types. seashell bg -->
     <section class="sam-section" style="background:var(--seashell);">
       <div class="sam-container">
         <h2 class="sam-section__title">Asset types we monitor</h2>
@@ -1670,7 +1680,7 @@
       </div>
     </section>
 
-    <!-- SECTION 2: What we detect — white bg -->
+    <!-- SECTION 2: What we detect. white bg -->
     <section class="sam-section">
       <div class="sam-container">
         <h2 class="sam-section__title">What we detect</h2>
@@ -1745,7 +1755,7 @@
       </div>
     </section>
 
-    <!-- SECTION 3: Detection stats — seashell bg -->
+    <!-- SECTION 3: Detection stats. seashell bg -->
     <section class="sam-section" style="background:var(--seashell);">
       <div class="sam-container">
         <div class="sam-stats-bar">
@@ -1772,11 +1782,11 @@
       </div>
     </section>
 
-    <!-- SECTION 4: ESA vs vibration — white bg -->
+    <!-- SECTION 4: ESA vs vibration. white bg -->
     <section class="sam-section">
       <div class="sam-container">
-        <h2 class="sam-section__title">Why ESA detects what vibration misses</h2>
-        <p class="sam-section__subtitle" style="max-width:640px;">Vibration monitoring requires a sensor on every asset. ESA reads the motor current from the MCC — covering the full drive train from one measurement point.</p>
+        <h2 class="sam-section__title">ESA vs vibration: coverage compared</h2>
+        <p class="sam-section__subtitle" style="max-width:640px;">Vibration monitoring requires a sensor on every asset. ESA reads the motor current from the MCC. covering the full drive train from one measurement point.</p>
         <div class="sam-card-grid sam-card-grid--2col" style="margin-top:var(--space-8);">
           <div class="sam-card">
             <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/></svg></div>
@@ -1786,7 +1796,7 @@
           <div class="sam-card">
             <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5.127 3.502L10 1.05l4.874 2.452A1.75 1.75 0 0116 5.13v5.374a5.856 5.856 0 01-3.044 5.136L10 17.5l-2.956-1.86A5.856 5.856 0 014 10.504V5.13a1.75 1.75 0 011.127-1.628z"/></svg></div>
             <div class="sam-card__title">Submerged and enclosed assets</div>
-            <div class="sam-card__body">You can't mount a vibration sensor on a submerged pump or sealed mixer. ESA monitors from the MCC — no physical access to the asset needed.</div>
+            <div class="sam-card__body">You can't mount a vibration sensor on a submerged pump or sealed mixer. ESA monitors from the MCC. no physical access to the asset needed.</div>
           </div>
           <div class="sam-card">
             <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M11.983 1.907a.75.75 0 00-1.292-.657l-8.5 9.5A.75.75 0 002.75 12h6.572l-1.305 6.093a.75.75 0 001.292.657l8.5-9.5A.75.75 0 0017.25 8h-6.572l1.305-6.093z"/></svg></div>
@@ -1802,21 +1812,21 @@
       </div>
     </section>
 
-    <!-- SECTION 5: Customer proof — seashell bg -->
-    <section class="sam-section" style="background:var(--seashell);">
+    <!-- SECTION 5: Customer proof. seashell bg -->
+    <section class="sam-section" style=""                           >
       <div class="sam-container">
         <div class="sam-quote" style="max-width:720px;margin:0 auto;">
           <p class="sam-quote__text">SAM4 detected possible bearing damage which was not picked up through vibration monitoring.</p>
-          <p class="sam-quote__attr">Royal Schiphol Group — Amsterdam Airport</p>
+          <p class="sam-quote__attr">Royal Schiphol Group. Amsterdam Airport</p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 6: Terminal CTA — dark bg -->
-    <section class="sam-section sam-section--dark" style="text-align:center;">
+    <!-- SECTION 6: Terminal CTA. dark bg -->
+    <section class="sam-section" style="text-align:left;">
       <div class="sam-container">
-        <h2 class="sam-section__title" style="color:#fff;margin-bottom:var(--space-4);">See what SAM4 detects on your assets</h2>
-        <p class="sam-section__subtitle" style="color:rgba(255,255,255,0.8);max-width:540px;margin-left:auto;margin-right:auto;margin-bottom:var(--space-8);">Share your asset list. We'll show you which failure modes ESA covers and what detection lead times to expect.</p>
+        <h2 class="sam-section__title" style="margin-bottom:var(--space-4);">See what SAM4 detects on your assets</h2>
+        <p class="sam-section__subtitle" style="max-width:540px;margin-bottom:var(--space-8);">Share your asset list. We'll show you which failure modes ESA covers and what detection lead times to expect.</p>
         <a href="/contact/" class="sam-cta sam-cta--primary">Request a Demo</a>
       </div>
     </section>
