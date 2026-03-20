@@ -337,23 +337,171 @@
         background: #2a2a2a;
       }
     }
+
+    /* ========================================
+       CONFIDENCE WHISPERS SPECIFIC
+       ======================================== */
+
+    .sam-section-hero {
+      background: linear-gradient(135deg, #1F1F33 0%, #2A2A42 100%);
+      color: white;
+      padding: 80px 32px;
+      text-align: center;
+    }
+
+    .sam-section-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .sam-section-hero p {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    .sam-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 48px 0;
+    }
+
+    .sam-card {
+      background: #F8F5F2;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 24px;
+      transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+    }
+
+    .sam-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(31, 31, 51, 0.15);
+    }
+
+    .sam-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1F1F33;
+      margin-bottom: 12px;
+    }
+
+    .sam-card p {
+      font-size: 0.95rem;
+      color: #6B6B7F;
+      line-height: 1.6;
+    }
+
+    .sam-stat-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      background: #F8F5F2;
+      padding: 48px 32px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .sam-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sam-stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: #FF5429;
+    }
+
+    .sam-stat-label {
+      font-size: 0.85rem;
+      color: #6B6B7F;
+      font-weight: 500;
+    }
+
+    .sam-cta-section {
+      background: linear-gradient(135deg, #FF5429 0%, #D7411B 100%);
+      color: white;
+      padding: 64px 32px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 80px 0;
+    }
+
+    .sam-cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .sam-cta-section p {
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sam-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: white;
+      color: #FF5429;
+      border: 2px solid white;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 150ms ease-out;
+    }
+
+    .sam-btn:hover {
+      background: transparent;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .sam-section-hero {
+        padding: 48px 24px;
+      }
+
+      .sam-section-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .sam-stat-box {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+
+      .sam-cta-section {
+        padding: 48px 24px;
+      }
+
+      .sam-cta-section h2 {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <header id="header"></header>
+  <header id="sam-header"></header>
 
   <main>
-    <!-- HERO SECTION -->
     <section class="hero">
       <h1>The Monitoring Blind Spot</h1>
       <p>30–40% of critical rotating equipment runs without condition monitoring. Discover why—and how to fix it.</p>
     </section>
 
-    <!-- MAIN CONTENT -->
     <div class="content">
-
-      <!-- PROBLEM OVERVIEW -->
       <section>
         <h2>The Hidden Threat</h2>
         <p>Submerged pumps. Enclosed drives. ATEX motors. Gearboxes in harsh environments. Equipment that's "too difficult to monitor" sits idle in your plant, running blind—until catastrophic failure.</p>
@@ -361,7 +509,6 @@
         <p><strong>This equipment shouldn't be invisible.</strong></p>
       </section>
 
-      <!-- THREE-COLUMN GRID -->
       <div class="grid-2">
         <div class="card">
           <h3>Submerged Pumps</h3>
@@ -372,12 +519,11 @@
           <p>Motors and gearboxes sealed in enclosures reject vibration sensors. Electrical Signature Analysis penetrates the enclosure—no modification needed.</p>
         </div>
         <div class="card">
-          <h3>ATEX & Hazardous Zones</h3>
+          <h3>ATEX &amp; Hazardous Zones</h3>
           <p>Explosive atmospheres forbid certain hardware. ESA needs no additional sensors or power—just the motor's electrical signature.</p>
         </div>
       </div>
 
-      <!-- THE COST SECTION -->
       <section>
         <h2>The Cost of Blindness</h2>
         <p>Unexpected downtime of a critical pump or drive costs your operation more than early detection ever would:</p>
@@ -402,7 +548,6 @@
         <p style="margin-top: var(--space-6);">Monitoring one blind-spot asset typically pays for itself after a single prevented failure.</p>
       </section>
 
-      <!-- THE SOLUTION -->
       <section style="margin-top: var(--space-16);">
         <h2>The Solution: Electrical Signature Analysis</h2>
         <p><strong>Samotics' Confidence Whispers</strong> uses ESA to monitor equipment that conventional sensors can't reach:</p>
@@ -423,80 +568,79 @@
         </div>
       </section>
 
-      <!-- WHY SAMOTICS -->
       <section style="margin-top: var(--space-16);">
         <h2>Why Samotics?</h2>
         <ul style="margin-left: var(--space-6); margin-top: var(--space-4);">
           <li><strong>Domain expertise:</strong> Electrical engineers who invented ESA and scaled it in industry.</li>
-          <li><strong>Proven at scale:</strong> Monitoring thousands of assets across oil & gas, water, manufacturing, and utilities.</li>
+          <li><strong>Proven at scale:</strong> Monitoring thousands of assets across oil &amp; gas, water, manufacturing, and utilities.</li>
           <li><strong>Compliance-first:</strong> Built for safety-critical sectors. Audit trails, API documentation, and standards alignment included.</li>
           <li><strong>Flexible deployment:</strong> Edge, cloud, or hybrid. API-first architecture. Integrates with your DCS, SCADA, or ERP.</li>
         </ul>
       </section>
 
-      <!-- FINAL CTA -->
       <div class="cta">
         <h2>End the Blind Spot</h2>
         <p>Let's talk about the critical equipment you're currently flying blind with.</p>
         <a href="/contact/" class="btn">Get in Touch</a>
       </div>
-
     </div>
   </main>
 
-  <footer id="footer"></footer>
+  <footer id="sam-footer"></footer>
 
   <script>
-    // ========================================
-    // SHARED HEADER LOADER
-    // ========================================
     (function () {
-      fetch('/header.html')
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById('header').innerHTML = html;
-          // Re-run any header initialization if needed
-        })
-        .catch(err => console.warn('Header failed to load:', err));
-    })();
+      /* Header & Footer Loaders */
+      var headerEl = document.getElementById('sam-header');
+      var footerEl = document.getElementById('sam-footer');
 
-    // ========================================
-    // SHARED FOOTER LOADER
-    // ========================================
-    (function () {
-      fetch('/footer.html')
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById('footer').innerHTML = html;
-          // Re-run any footer initialization if needed
-        })
-        .catch(err => console.warn('Footer failed to load:', err));
-    })();
+      if (headerEl) {
+        fetch('/header.html')
+          .then(function (r) { return r.text(); })
+          .then(function (html) { headerEl.innerHTML = html; })
+          .catch(function (err) { console.warn('Header load failed:', err); });
+      }
 
-    // ========================================
-    // COLLAPSIBLE SECTIONS (Mobile)
-    // ========================================
-    (function () {
-      const headings = document.querySelectorAll('h2, h3');
-      headings.forEach(heading => {
-        heading.addEventListener('click', function () {
-          if (window.innerWidth > 991) return;
-          const col = heading.closest('section') || heading.closest('.card');
-          if (col) {
+      if (footerEl) {
+        fetch('/footer.html')
+          .then(function (r) { return r.text(); })
+          .then(function (html) { footerEl.innerHTML = html; })
+          .catch(function (err) { console.warn('Footer load failed:', err); });
+      }
+
+      /* Content Accordions (mobile) */
+      setTimeout(function () {
+        var sections = document.querySelectorAll('section');
+        sections.forEach(function (section) {
+          var heading = section.querySelector('h2');
+          if (!heading) return;
+          heading.addEventListener('click', function () {
+            if (window.innerWidth > 991) return;
+            section.classList.toggle('is-open');
+          });
+        });
+
+        var cards = document.querySelectorAll('.card');
+        cards.forEach(function (card) {
+          var heading = card.querySelector('h3');
+          if (!heading) return;
+          heading.addEventListener('click', function () {
+            if (window.innerWidth > 991) return;
+            card.classList.toggle('is-open');
+          });
+        });
+
+        /* Footer Accordions (mobile) */
+        var footerCols = document.querySelectorAll('[data-footer-accordion]');
+        footerCols.forEach(function (col) {
+          var heading = col.querySelector('.sam-footer__col-heading');
+          if (!heading) return;
+          heading.addEventListener('click', function () {
+            if (window.innerWidth > 991) return;
             col.classList.toggle('is-open');
-          }
+          });
         });
-      });
-
-      // Nested cards in collapsible sections
-      const cardHeadings = document.querySelectorAll('.card h3');
-      cardHeadings.forEach(heading => {
-        const col = heading.closest('.card');
-        heading.addEventListener('click', function () {
-          if (window.innerWidth > 991) return;
-          col.classList.toggle('is-open');
-        });
-      });
+      }, 100);
     })();
   </script>
 
