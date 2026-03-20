@@ -1150,6 +1150,40 @@
     }
 
 
+    
+    
+    /* Clean icon indicators */
+    .sam-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: var(--space-3);
+    }
+    .sam-icon--orange {
+      background: rgba(255,84,41,0.08);
+      color: var(--orange);
+    }
+    .sam-icon--grey {
+      background: rgba(107,107,127,0.08);
+      color: var(--comet);
+    }
+    .sam-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* Container alias */
+    .sam-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
     /* ===== HOW IT INSTALLS — PAGE CSS ===== */
 
     /* Hero stats row */
@@ -1615,17 +1649,17 @@
         <p class="sam-section__subtitle" style="max-width:640px;">Most condition monitoring systems demand sensor networks, gateway infrastructure, and weeks of commissioning. SAM4 skips all of that.</p>
         <div class="sam-card-grid sam-card-grid--3col" style="margin-top:var(--space-8);">
           <div class="sam-card">
-            <div class="sam-card__icon">&#10060;</div>
+            <div class="sam-icon sam-icon--grey"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/></svg></div>
             <div class="sam-card__title">No vibration sensors</div>
             <div class="sam-card__body">No accelerometers to mount, calibrate, or replace. ESA reads the motor current directly from the MCC.</div>
           </div>
           <div class="sam-card">
-            <div class="sam-card__icon">&#10060;</div>
+            <div class="sam-icon sam-icon--grey"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/></svg></div>
             <div class="sam-card__title">No wireless gateways</div>
             <div class="sam-card__body">No mesh networks, batteries, or signal-strength surveys. SAM4 connects over your existing Ethernet or 4G.</div>
           </div>
           <div class="sam-card">
-            <div class="sam-card__icon">&#10060;</div>
+            <div class="sam-icon sam-icon--grey"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/></svg></div>
             <div class="sam-card__title">No process shutdowns</div>
             <div class="sam-card__body">CTs clip around live cables inside the MCC. The asset keeps running. Production stays on schedule.</div>
           </div>
@@ -1640,12 +1674,12 @@
         <p class="sam-section__subtitle" style="max-width:640px;">Access to the MCC, a network drop, and 30 minutes per asset. That's the full requirements list.</p>
         <div class="sam-card-grid sam-card-grid--2col" style="margin-top:var(--space-8);">
           <div class="sam-card">
-            <div class="sam-card__icon">&#9889;</div>
+            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M11.983 1.907a.75.75 0 00-1.292-.657l-8.5 9.5A.75.75 0 002.75 12h6.572l-1.305 6.093a.75.75 0 001.292.657l8.5-9.5A.75.75 0 0017.25 8h-6.572l1.305-6.093z"/></svg></div>
             <div class="sam-card__title">MCC access</div>
             <div class="sam-card__body">SAM4 current transformers clip around the supply cables inside your motor control centre. No modification to the existing wiring.</div>
           </div>
           <div class="sam-card">
-            <div class="sam-card__icon">&#128268;</div>
+            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z"/><path d="M11.603 7.963a.75.75 0 00-.977 1.138 2.5 2.5 0 01.142 3.667l-3 3a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 005.656 5.656l3-3a4 4 0 00-.225-5.865z"/></svg></div>
             <div class="sam-card__title">Network connection</div>
             <div class="sam-card__body">One Ethernet port or 4G SIM per SAM4 Edge device. Data volumes are small — typically under 50 MB per asset per month.</div>
           </div>
@@ -1751,17 +1785,17 @@
         <p class="sam-section__subtitle" style="max-width:640px;">SAM4 is a managed service, not a software licence. Our reliability engineers validate every alert before it reaches your team.</p>
         <div class="sam-card-grid sam-card-grid--3col" style="margin-top:var(--space-8);">
           <div class="sam-card">
-            <div class="sam-card__icon">&#128269;</div>
+            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/></svg></div>
             <div class="sam-card__title">Engineer-validated alerts</div>
             <div class="sam-card__body">Every alert goes through human review. You get actionable diagnostics, not raw data noise.</div>
           </div>
           <div class="sam-card">
-            <div class="sam-card__icon">&#128200;</div>
+            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M1 4.75A.75.75 0 011.75 4h16.5a.75.75 0 010 1.5H1.75A.75.75 0 011 4.75zm0 5A.75.75 0 011.75 9h16.5a.75.75 0 010 1.5H1.75A.75.75 0 011 9.75zm12 5a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75zm-8 0a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z"/></svg></div>
             <div class="sam-card__title">Monthly reporting</div>
             <div class="sam-card__body">Asset health summaries, detection highlights, and fleet-level trends. Delivered to your inbox or CMMS.</div>
           </div>
           <div class="sam-card">
-            <div class="sam-card__icon">&#128736;</div>
+            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.5 10a4.5 4.5 0 004.284-5.882c-.105-.324-.51-.391-.752-.15L15.34 6.66a.454.454 0 01-.493.101 3.046 3.046 0 01-1.608-1.607.454.454 0 01.1-.493l2.693-2.692c.24-.242.174-.647-.15-.752a4.5 4.5 0 00-5.873 4.575c.055.873-.128 1.808-.8 2.368l-7.482 6.19a1.882 1.882 0 102.504 2.504l6.19-7.482c.56-.672 1.495-.855 2.368-.8.096.007.193.01.291.01zM5 16a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"/></svg></div>
             <div class="sam-card__title">Hardware maintenance</div>
             <div class="sam-card__body">SAM4 Edge has no moving parts and no batteries to replace. If a device fails, we ship a replacement.</div>
           </div>
@@ -1776,12 +1810,12 @@
         <p class="sam-section__subtitle" style="max-width:640px;">Start with one MCC. Expand to the full plant. Roll out across sites. The architecture doesn't change.</p>
         <div class="sam-card-grid sam-card-grid--2col" style="margin-top:var(--space-8);">
           <div class="sam-card">
-            <div class="sam-card__icon">&#127981;</div>
+            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 16.5v-13h-.25a.75.75 0 010-1.5h12.5a.75.75 0 010 1.5H16v13h.25a.75.75 0 010 1.5H3.75a.75.75 0 010-1.5H4zm3-11a.5.5 0 01.5-.5h1a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-1a.5.5 0 01-.5-.5v-1zm.5 3.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5h-1zm3.5-3.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-1a.5.5 0 01-.5-.5v-1zm.5 3.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5h-1z" clip-rule="evenodd"/></svg></div>
             <div class="sam-card__title">Multi-site from day one</div>
             <div class="sam-card__body">SAM4's cloud architecture supports unlimited sites under one tenant. Fleet-level dashboards give you a single view across all locations.</div>
           </div>
           <div class="sam-card">
-            <div class="sam-card__icon">&#128640;</div>
+            <div class="sam-icon sam-icon--orange"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.606 12.97a.75.75 0 01-.134 1.051 2.494 2.494 0 00-.93 2.437 2.494 2.494 0 002.437-.93.75.75 0 111.186.918 3.995 3.995 0 01-4.482 1.332.75.75 0 01-.461-.461 3.994 3.994 0 011.332-4.482.75.75 0 011.052.134z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M13.703 2.424c2.26-.476 3.894.21 4.542.858.647.648 1.334 2.281.858 4.542-.467 2.221-1.845 4.756-4.642 7.063a.75.75 0 01-.965-.042l-5.34-5.34a.75.75 0 01-.042-.966c2.307-2.797 4.842-4.175 7.063-4.642zM12.22 7.78a1.5 1.5 0 112.121-2.12 1.5 1.5 0 01-2.121 2.12z" clip-rule="evenodd"/></svg></div>
             <div class="sam-card__title">Add assets in minutes</div>
             <div class="sam-card__body">New assets plug into existing Edge devices. Adding 5 more motors to a panel takes under an hour. No new infrastructure needed.</div>
           </div>
