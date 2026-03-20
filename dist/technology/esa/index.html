@@ -1,1526 +1,1079 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Every AC motor broadcasts its condition through current and voltage signatures. Electrical Signature Analysis reads those signals at the MCC to detect bearing wear, misalignment, and cavitation weeks before failure.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Every AC motor broadcasts its condition through current and voltage signatures. Electrical Signature Analysis reads those signals at the MCC — detecting bearing wear, misalignment, and cavitation weeks before failure.">
   <title>How ESA Detects Faults From the Electrical Cabinet | Samotics</title>
-  <link rel="canonical" href="https://samoticstestpage.com/technology/esa/">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <style>
-    @font-face {
-      font-family: 'IBM Plex Sans';
-      font-style: normal;
-      font-weight: 100 700;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'IBM Plex Sans';
-      font-style: italic;
-      font-weight: 100 700;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'JetBrains Mono';
-      font-style: normal;
-      font-weight: 100 800;
-      font-display: swap;
-      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
-    }
-  </style>
-  <style>
-    /* Header CSS */
-    /* ============================================================
-   SAMOTICS HEADER — CSS
-   ============================================================ */
-
-/* ── Tokens ── */
-:root {
-  --sam-space-cadet: #1F1F33;
-  --sam-orange: #FF5429;
-  --sam-orange-dark: #D7411B;
-  --sam-orange-deep: #A33013;
-  --sam-blue: #005CBA;
-  --sam-blue-dark: #004179;
-  --sam-blue-light: #B3DAFF;
-  --sam-teal: #0098AC;
-  --sam-teal-dark: #006C6C;
-  --sam-white: #FFFFFF;
-  --sam-seashell: #F8F5F2;
-  --sam-black: #111111;
-  --sam-comet: #6B6B7F;
-  --sam-muted-dark: #B0B0C8;
-  --sam-border-light: #E8E4E0;
-  --sam-dark-elevated: #2A2A42;
-  --sam-gold: #FAC91F;
-  --sam-header-bg: #1F1F33;
-  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --sam-mono: 'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  --sam-header-h: 80px;
-  --sam-header-h-compact: 64px;
-  --sam-transition: 150ms ease-out;
-
-  /* Spacing */
-  --sp-01: 2px;
-  --sp-02: 4px;
-  --sp-03: 8px;
-  --sp-04: 12px;
-  --sp-05: 16px;
-  --sp-06: 24px;
-  --sp-07: 32px;
-  --sp-08: 48px;
-  --sp-09: 64px;
-  --sp-10: 96px;
-
-  /* Shadows */
-  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
-  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
-  --shadow-lg:  0 12px 32px rgba(31,31,51,0.14);
-  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
-
-  /* Transitions */
-  --ease: 150ms ease-out;
-}
-
-/* ── Screen-reader only ── */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* ── Skip Link ── */
-.sam-skip-link {
-  position: absolute;
-  top: -100%;
-  left: 16px;
-  z-index: 10001;
-  padding: 8px 16px;
-  background: var(--sam-orange);
-  color: var(--sam-white);
-  font: 600 14px/1 var(--sam-font);
-  text-decoration: none;
-  border-radius: 0;
-}
-.sam-skip-link:focus {
-  top: 8px;
-}
-
-/* ── Header Shell ── */
-.sam-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  height: var(--sam-header-h);
-  background: var(--sam-header-bg);
-  transition: height var(--sam-transition),
-              box-shadow var(--sam-transition);
-}
-.sam-header.is-scrolled {
-  height: var(--sam-header-h-compact);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-}
-
-/* ── Inner Container ── */
-.sam-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* ── Logo ── */
-.sam-header__logo {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-.sam-logo {
-  height: auto;
-  transition: transform 200ms ease-out, filter 200ms ease-out;
-}
-.sam-logo--white {
+  <link rel="canonical" href="https://samotics.com/technology/esa/">
   
-}
-.sam-logo--dark {
-  display: none;
-}
-.sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+  <style>
+    /* SHARED TOKENS */
+    :root {
+      --sam-space-cadet: #1F1F33;
+      --sam-orange: #FF5429;
+      --sam-orange-dark: #D7411B;
+      --sam-blue: #005CBA;
+      --sam-white: #FFFFFF;
+      --sam-seashell: #F8F5F2;
+      --sam-black: #111111;
+      --sam-comet: #6B6B7F;
+      --sam-border-light: #E8E4E0;
+      --sam-header-bg: #1F1F33;
+      --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sam-header-h: 80px;
+      --sam-header-h-compact: 64px;
+      --sam-transition: 150ms ease-out;
+    }
 
-/* ── Desktop Nav ── */
-.sam-nav {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-.sam-nav__link {
-  font: 500 15px/1 var(--sam-font);
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  padding: 8px 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  position: relative;
-  transition: color var(--sam-transition);
-  white-space: nowrap;
-}
-.sam-nav__link:hover,
-.sam-nav__link:focus-visible {
-  color: var(--sam-white);
-}
-.sam-nav__link[aria-current="page"]::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--sam-orange);
-}
-.sam-header.is-scrolled .sam-nav__link {
-  color: rgba(255, 255, 255, 0.85);
-}
-.sam-header.is-scrolled .sam-nav__link:hover,
-.sam-header.is-scrolled .sam-nav__link:focus-visible {
-  color: var(--sam-white);
-}
-.sam-nav__chevron {
-  transition: transform var(--sam-transition);
-  flex-shrink: 0;
-}
+    /* PAGE TOKENS */
+    :root {
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --dark-blue-300: #A0A0B8;
+      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-data: 'JetBrains Mono', 'Consolas', monospace;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-30: 120px;
+      --radius-default: 4px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
+      --motion-fast: 100ms;
+      --motion-normal: 300ms;
+      --max-width: 1120px;
+      --max-width-wide: 1280px;
+    }
 
-/* ── Dropdown Panels ── */
-.sam-nav__item {
-  position: relative;
-}
-.sam-dropdown {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-4px);
-  min-width: 300px;
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-radius: 0;
-  padding: 8px 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--sam-transition),
-              visibility var(--sam-transition),
-              transform var(--sam-transition);
-  pointer-events: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-.sam-nav__item--has-dropdown::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 16px;
-}
-.sam-nav__item--has-dropdown:hover .sam-dropdown,
-.sam-nav__item--has-dropdown:focus-within .sam-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
-}
-.sam-nav__item--has-dropdown:hover .sam-nav__chevron,
-.sam-nav__item--has-dropdown:focus-within .sam-nav__chevron {
-  transform: rotate(180deg);
-}
-.sam-dropdown__item {
-  display: flex;
-  flex-direction: column;
-  padding: 12px 24px;
-  text-decoration: none;
-  transition: background-color 100ms ease-out;
-}
-.sam-dropdown__item:hover,
-.sam-dropdown__item:focus-visible {
-  background: var(--sam-seashell);
-}
-.sam-dropdown__label {
-  font: 500 15px/1.3 var(--sam-font);
-  color: var(--sam-black);
-}
-.sam-dropdown__desc {
-  font: 400 13px/1.4 var(--sam-font);
-  color: var(--sam-comet);
-  margin-top: 2px;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* ── CTA Button ── */
-.sam-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 24px;
-  background: var(--sam-orange);
-  color: var(--sam-black);
-  font: 600 14px/1 var(--sam-font);
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  border-radius: 0;
-  border: none;
-  white-space: nowrap;
-  transition: background-color var(--sam-transition);
-  cursor: pointer;
-}
-.sam-cta:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* ── Header Actions Wrapper ── */
-.sam-header__actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
+    body {
+      font-family: var(--sam-font);
+      color: var(--space-cadet);
+      background-color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-/* ── Hamburger (mobile only) ── */
-.sam-hamburger {
-  display: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.sam-hamburger__line {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--sam-white);
-  transition: transform 200ms ease-out, opacity 200ms ease-out;
-  border-radius: 0;
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) {
-  opacity: 0;
-}
-.sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
+    .sam-page {
+      font-family: var(--sam-font);
+    }
 
-/* ── Mobile Menu ── */
-.sam-mobile-menu {
-  display: none;
-  position: fixed;
-  top: var(--sam-header-h-compact);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--sam-white);
-  overflow-y: auto;
-  z-index: 999;
-  padding: 24px 16px;
-  flex-direction: column;
-}
-.sam-mobile-menu.is-open {
-  display: flex;
-  animation: samSlideIn 200ms ease-out;
-}
-@keyframes samSlideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-.sam-mobile-nav__link {
-  display: block;
-  padding: 16px 0;
-  font: 500 16px/1 var(--sam-font);
-  color: var(--sam-black);
-  text-decoration: none;
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__link:hover {
-  color: var(--sam-orange);
-}
-.sam-mobile-nav__group {
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 16px 0;
-  font: 500 16px/1 var(--sam-font);
-  color: var(--sam-black);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.sam-mobile-nav__arrow {
-  transition: transform 200ms ease-out;
-  flex-shrink: 0;
-}
-.sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow {
-  transform: rotate(180deg);
-}
-.sam-mobile-nav__sub {
-  display: none;
-  flex-direction: column;
-  padding: 0 0 8px 16px;
-}
-.sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
-  display: flex;
-}
-.sam-mobile-nav__sub a {
-  display: block;
-  padding: 12px 0;
-  font: 400 15px/1 var(--sam-font);
-  color: var(--sam-black);
-  text-decoration: none;
-}
-.sam-mobile-nav__sub a:hover {
-  color: var(--sam-orange);
-}
-.sam-mobile-nav__cta-wrap {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid var(--sam-border-light);
-}
-.sam-mobile-nav__cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 14px 0;
-  background: var(--sam-orange);
-  color: var(--sam-white);
-  font: 600 16px/1 var(--sam-font);
-  text-decoration: none;
-  border-radius: 0;
-  transition: background-color var(--sam-transition);
-}
-.sam-mobile-nav__cta:hover {
-  background: var(--sam-orange-dark);
-}
+    /* ========== HEADER ========== */
+    .sam-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--sam-header-bg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all var(--sam-transition);
+      padding: 0 var(--space-4);
+    }
 
-/* ── Focus Styles ── */
-.sam-nav__link:focus-visible,
-.sam-dropdown__item:focus-visible,
-.sam-cta:focus-visible,
-.sam-hamburger:focus-visible,
-.sam-mobile-nav__toggle:focus-visible,
-.sam-mobile-nav__link:focus-visible,
-.sam-mobile-nav__sub a:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
+    .sam-header.is-scrolled {
+      box-shadow: var(--shadow-sm);
+    }
 
-/* ── Reduced Motion ── */
-@media (prefers-reduced-motion: reduce) {
-  .sam-header,
-  .sam-dropdown,
-  .sam-nav__chevron,
-  .sam-hamburger__line,
-  .sam-mobile-nav__arrow,
-  .sam-logo {
-    transition: none !important;
-    animation: none !important;
-  }
-}
+    .sam-header__inner {
+      max-width: var(--max-width-wide);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--sam-header-h);
+    }
 
-/* ── Responsive ── */
-@media (max-width: 991px) {
-  .sam-header {
-    height: var(--sam-header-h-compact);
-  }
-  .sam-header__inner {
-    padding: 0 16px;
-  }
-  .sam-nav {
-    display: none;
-  }
-  .sam-hamburger {
-    display: flex;
-  }
-  .sam-cta {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-}
+    .sam-header__logo {
+      flex-shrink: 0;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
 
-    /* Footer CSS */
-    /* ============================================================
-   SAMOTICS FOOTER — CSS
-   ============================================================ */
+    .sam-logo {
+      height: 32px;
+      width: auto;
+    }
 
-.sam-footer {
-  background: var(--sam-space-cadet);
-  padding-top: 96px;
-}
-.sam-footer__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-.sam-footer__top {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 64px;
-}
-.sam-footer__logo {
-  display: inline-flex;
-  text-decoration: none;
-}
-.sam-footer__logo img {
-  width: 140px;
-  height: auto;
-}
-.sam-footer__tagline {
-  font: 400 16px/1.6 var(--sam-font);
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0;
-  max-width: 360px;
-}
-.sam-footer__grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 32px;
-  margin-bottom: 64px;
-}
-.sam-footer__col-heading {
-  font: 600 14px/1 var(--sam-font);
-  color: #FFFFFF;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0 0 16px 0;
-}
-.sam-footer__col-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.sam-footer__col-links a {
-  font: 400 14px/1.4 var(--sam-font);
-  color: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
-  transition: color 150ms ease-out;
-}
-.sam-footer__col-links a:hover,
-.sam-footer__col-links a:focus-visible {
-  color: #FFFFFF;
-}
-.sam-footer__divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.15);
-}
-.sam-footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 0;
-}
-.sam-footer__bottom-left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.sam-footer__copyright {
-  font: 400 13px/1 var(--sam-font);
-  color: rgba(255, 255, 255, 0.4);
-}
-.sam-footer__social {
-  display: inline-flex;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.4);
-  transition: color 150ms ease-out;
-}
-.sam-footer__social:hover {
-  color: #FFFFFF;
-}
-.sam-footer__legal {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.sam-footer__legal a {
-  font: 400 13px/1 var(--sam-font);
-  color: rgba(255, 255, 255, 0.4);
-  text-decoration: none;
-  transition: color 150ms ease-out;
-}
-.sam-footer__legal a:hover,
-.sam-footer__legal a:focus-visible {
-  color: #FFFFFF;
-}
-.sam-footer__legal-sep {
-  font: 400 13px/1 var(--sam-font);
-  color: rgba(255, 255, 255, 0.2);
-}
+    .sam-logo--dark {
+      display: none;
+    }
 
-/* Footer focus styles */
-.sam-footer__col-links a:focus-visible,
-.sam-footer__social:focus-visible,
-.sam-footer__legal a:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
+    .sam-header.is-scrolled .sam-logo--white {
+      display: none;
+    }
 
-/* Footer responsive */
-@media (max-width: 991px) {
-  .sam-footer {
-    padding-top: 64px;
-  }
-  .sam-footer__inner {
-    padding: 0 16px;
-  }
-  .sam-footer__top {
-    margin-bottom: 48px;
-  }
-  .sam-footer__grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-    margin-bottom: 48px;
-  }
-  .sam-footer__col {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 0;
-  }
-  .sam-footer__col-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    margin: 0;
-    cursor: pointer;
-  }
-  .sam-footer__col-heading::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-right: 2px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
-    transform: rotate(45deg);
-    transition: transform 200ms ease-out;
-    flex-shrink: 0;
-  }
-  .sam-footer__col.is-open .sam-footer__col-heading::after {
-    transform: rotate(-135deg);
-  }
-  .sam-footer__col-links {
-    display: none;
-    padding: 0 0 16px 0;
-  }
-  .sam-footer__col.is-open .sam-footer__col-links {
-    display: flex;
-  }
-  .sam-footer__bottom {
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-  }
-}
+    .sam-header.is-scrolled .sam-logo--dark {
+      display: block;
+    }
 
-    /* Page CSS */
-    /* ============================================================
-   SAMOTICS ESA TECHNOLOGY PAGE — CSS
-   ============================================================ */
+    .sam-nav {
+      display: flex;
+      gap: var(--space-8);
+      align-items: center;
+      flex: 1;
+      margin-left: var(--space-12);
+    }
 
-/* ── Reset ── */
-.sam-esa,
-.sam-esa * {
-  font-family: var(--sam-font);
-}
-.sam-esa {
-  overflow-x: hidden;
-}
+    .sam-nav__link {
+      font-family: var(--sam-font);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--sam-white);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      transition: opacity var(--sam-transition);
+      padding: var(--space-2);
+    }
 
-/* ── Shared: Text Link ── */
-.sam-text-link {
-  font-family: var(--sam-font);
-  font-weight: 500;
-  font-size: 1rem;
-  color: var(--sam-blue);
-  text-decoration: none;
-  transition: color var(--ease);
-}
-.sam-text-link:hover {
-  color: var(--sam-orange);
-}
+    .sam-nav__link:hover {
+      opacity: 0.8;
+    }
 
-/* ── Shared: Buttons ── */
-.sam-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 32px;
-  font: 600 1rem/1 var(--sam-font);
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color var(--ease), color var(--ease), box-shadow var(--ease), border-color var(--ease);
-  white-space: nowrap;
-}
-.sam-btn:focus-visible {
-  outline: 3px solid var(--sam-blue);
-  outline-offset: 2px;
-}
-.sam-btn--primary {
-  background: var(--sam-orange);
-  color: var(--sam-black);
-}
-.sam-btn--primary:hover {
-  background: var(--sam-orange-dark);
-  color: var(--sam-white);
-  box-shadow: var(--shadow-cta);
-}
-.sam-btn--outline {
-  background: transparent;
-  color: var(--sam-space-cadet);
-  border: 2px solid var(--sam-space-cadet);
-}
-.sam-btn--outline:hover {
-  background: var(--sam-space-cadet);
-  color: var(--sam-white);
-}
-.sam-btn--ghost {
-  background: transparent;
-  color: var(--sam-white);
-  border: 2px solid rgba(255,255,255,0.4);
-}
-.sam-btn--ghost:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.8);
-  color: var(--sam-white);
-}
+    .sam-nav__chevron {
+      transition: transform var(--sam-transition);
+    }
 
-/* ── Breadcrumbs ── */
-.sam-breadcrumb {
-  background: var(--sam-white);
-  border-bottom: 1px solid var(--sam-border-light);
-  padding: 12px 0;
-}
-.sam-breadcrumb__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-breadcrumb__list {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font: 400 0.8125rem/1 var(--sam-font);
-  color: var(--sam-comet);
-}
-.sam-breadcrumb__list a {
-  color: var(--sam-blue);
-  text-decoration: none;
-}
-.sam-breadcrumb__list a:hover {
-  color: var(--sam-orange);
-}
-.sam-breadcrumb__sep {
-  color: var(--sam-comet);
-}
-.sam-breadcrumb__current {
-  color: var(--sam-black);
-}
+    .sam-nav__item--has-dropdown {
+      position: relative;
+    }
 
-/* ── 1. Hero ── */
-.sam-hero {
-  position: relative;
-  min-height: 520px;
-  display: flex;
-  align-items: center;
-  background-size: cover;
-  background-position: center;
-  padding: 80px 0;
-}
-.sam-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(31,31,51,0.94) 0%, rgba(31,31,51,0.50) 100%);
-  z-index: 1;
-}
-.sam-hero__inner {
-  position: relative;
-  z-index: 2;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-  width: 100%;
-}
-.sam-hero__content {
-  max-width: 680px;
-}
-.sam-hero__overline {
-  font: 600 0.8125rem/1 var(--sam-font);
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--sam-orange);
-  margin: 0 0 16px 0;
-}
-.sam-hero__h1 {
-  font: 700 3rem/1.1 var(--sam-font);
-  color: var(--sam-white);
-  margin: 0 0 24px 0;
-}
-.sam-hero__lead {
-  font: 400 1.125rem/1.65 var(--sam-font);
-  color: rgba(255,255,255,0.85);
-  margin: 0 0 32px 0;
-  max-width: 600px;
-}
-.sam-hero__ctas {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-@media (max-width: 767px) {
-  .sam-hero {
-    min-height: 420px;
-    padding: 64px 0;
-  }
-  .sam-hero__h1 {
-    font-size: 2.25rem;
-  }
-  .sam-hero__lead {
-    font-size: 1rem;
-  }
-}
+    .sam-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--sam-header-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-default);
+      min-width: 280px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity var(--sam-transition), visibility var(--sam-transition), transform var(--sam-transition);
+      padding: var(--space-2);
+      margin-top: var(--space-4);
+    }
 
-/* ── Jump nav ── */
-.sam-jump-nav {
-  background: var(--sam-white);
-  border-bottom: 1px solid var(--sam-border-light);
-  padding: 0;
-  position: fixed;
-  top: var(--sam-header-h);
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  transition: top var(--sam-transition);
-}
-.sam-jump-nav.is-compact {
-  top: var(--sam-header-h-compact);
-}
-/* Offset body content so fixed jump nav doesn't overlap */
-.sam-esa { padding-top: 50px; }
-.sam-jump-nav__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-  display: flex;
-  gap: 32px;
-  overflow-x: auto;
-}
-.sam-jump-nav__link {
-  font: 500 0.875rem/1 var(--sam-font);
-  color: var(--sam-comet);
-  text-decoration: none;
-  padding: 16px 0;
-  border-bottom: 2px solid transparent;
-  white-space: nowrap;
-  transition: color var(--ease), border-color var(--ease);
-}
-.sam-jump-nav__link:hover,
-.sam-jump-nav__link.is-active {
-  color: var(--sam-space-cadet);
-  border-bottom-color: var(--sam-orange);
-}
-@media (max-width: 991px) {
-  .sam-jump-nav {
-    top: var(--sam-header-h-compact);
-  }
-}
+    .sam-nav__item--has-dropdown:hover .sam-dropdown,
+    .sam-nav__item--has-dropdown:focus-within .sam-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
 
-/* ── 2. The Mechanism ── */
-.sam-mechanism {
-  background: var(--sam-white);
-  padding: 64px 0;
-}
-.sam-mechanism__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-mechanism__overline {
-  font: 600 0.8125rem/1 var(--sam-font);
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--sam-orange);
-  margin: 0 0 12px 0;
-}
-.sam-mechanism__h2 {
-  font: 600 2.25rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 24px 0;
-  max-width: 720px;
-}
-.sam-mechanism__body {
-  font: 400 1.05rem/1.7 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 20px 0;
-  max-width: 720px;
-}
-.sam-mechanism__callout {
-  background: var(--sam-seashell);
-  border-left: 4px solid var(--sam-orange);
-  padding: var(--sp-06) var(--sp-07);
-  margin: 32px 0;
-  max-width: 720px;
-}
-.sam-mechanism__callout p {
-  font: 400 1rem/1.6 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0;
-}
-.sam-mechanism__callout strong {
-  font-weight: 600;
-  color: var(--sam-space-cadet);
-}
-.sam-mechanism__steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-06);
-  margin: 32px 0;
-}
-.sam-mechanism__step {
-  position: relative;
-  padding: var(--sp-06) var(--sp-07) var(--sp-06) var(--sp-07);
-  background: var(--sam-seashell);
-  border-top: 4px solid var(--sam-space-cadet);
-}
-.sam-mechanism__step-num {
-  font: 700 2rem/1 var(--sam-mono);
-  color: var(--sam-orange);
-  margin: 0 0 8px 0;
-}
-.sam-mechanism__step-title {
-  font: 600 1rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 8px 0;
-}
-.sam-mechanism__step-desc {
-  font: 400 0.9375rem/1.55 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0;
-}
-.sam-mechanism__step + .sam-mechanism__step::before {
-  content: '→';
-  position: absolute;
-  left: -18px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.25rem;
-  color: var(--sam-comet);
-}
-@media (max-width: 767px) {
-  .sam-mechanism__steps {
-    grid-template-columns: 1fr;
-  }
-  .sam-mechanism__step + .sam-mechanism__step::before {
-    content: '↓';
-    left: 50%;
-    top: -18px;
-    transform: translateX(-50%);
-  }
-}
+    .sam-dropdown__item {
+      display: block;
+      padding: var(--space-3) var(--space-4);
+      text-decoration: none;
+      color: var(--sam-white);
+      font-size: 14px;
+      border-radius: var(--radius-default);
+      transition: background-color var(--sam-transition);
+    }
 
-/* ── 3. Data Acquisition ── */
-.sam-acquisition {
-  background: var(--sam-seashell);
-  padding: 64px 0;
-}
-.sam-acquisition__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-acquisition__overline {
-  font: 600 0.8125rem/1 var(--sam-font);
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--sam-orange);
-  margin: 0 0 12px 0;
-}
-.sam-acquisition__h2 {
-  font: 600 2.25rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 24px 0;
-}
-.sam-acquisition__body {
-  font: 400 1.05rem/1.7 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 20px 0;
-  max-width: 720px;
-}
-.sam-acquisition__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-06);
-  margin-top: 32px;
-}
-.sam-acquisition__card {
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-top: 4px solid var(--sam-space-cadet);
-  padding: var(--sp-06);
-}
-.sam-acquisition__card-step {
-  font: 700 0.75rem/1 var(--sam-mono);
-  color: var(--sam-orange);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin: 0 0 8px 0;
-}
-.sam-acquisition__card-title {
-  font: 600 1.125rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 8px 0;
-}
-.sam-acquisition__card-desc {
-  font: 400 0.9375rem/1.55 var(--sam-font);
-  color: var(--sam-comet);
-  margin: 0;
-}
-@media (max-width: 767px) {
-  .sam-acquisition__grid {
-    grid-template-columns: 1fr;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .sam-acquisition__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+    .sam-dropdown__item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
 
-/* ── 4. Signal Processing ── */
-.sam-processing {
-  background: var(--sam-white);
-  padding: 64px 0;
-}
-.sam-processing__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-processing__overline {
-  font: 600 0.8125rem/1 var(--sam-font);
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--sam-orange);
-  margin: 0 0 12px 0;
-}
-.sam-processing__h2 {
-  font: 600 2.25rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 24px 0;
-  max-width: 720px;
-}
-.sam-processing__body {
-  font: 400 1.05rem/1.7 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 20px 0;
-  max-width: 720px;
-}
-.sam-processing__columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-08);
-  margin-top: 32px;
-}
-.sam-processing__col-title {
-  font: 600 1.125rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 12px 0;
-}
-.sam-processing__col-body {
-  font: 400 1rem/1.65 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 12px 0;
-}
-.sam-processing__col-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.sam-processing__col-list li {
-  font: 400 0.9375rem/1.55 var(--sam-font);
-  color: var(--sam-black);
-  padding: 6px 0;
-  padding-left: 20px;
-  position: relative;
-}
-.sam-processing__col-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 12px;
-  width: 8px;
-  height: 8px;
-  background: var(--sam-orange);
-  border-radius: 50%;
-}
-@media (max-width: 767px) {
-  .sam-processing__columns {
-    grid-template-columns: 1fr;
-  }
-}
+    .sam-dropdown__label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: var(--space-1);
+    }
 
-/* ── 5. AI & Diagnostics ── */
-.sam-diagnostics {
-  background: var(--sam-seashell);
-  padding: 64px 0;
-}
-.sam-diagnostics__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-diagnostics__overline {
-  font: 600 0.8125rem/1 var(--sam-font);
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--sam-orange);
-  margin: 0 0 12px 0;
-}
-.sam-diagnostics__h2 {
-  font: 600 2.25rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 24px 0;
-  max-width: 720px;
-}
-.sam-diagnostics__body {
-  font: 400 1.05rem/1.7 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 20px 0;
-  max-width: 720px;
-}
-.sam-diagnostics__steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-06);
-  margin-top: 32px;
-}
-.sam-diagnostics__step {
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-top: 4px solid var(--sam-space-cadet);
-  padding: var(--sp-06);
-}
-.sam-diagnostics__step-num {
-  font: 700 0.75rem/1 var(--sam-mono);
-  color: var(--sam-orange);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin: 0 0 8px 0;
-}
-.sam-diagnostics__step-title {
-  font: 600 1.125rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 8px 0;
-}
-.sam-diagnostics__step-desc {
-  font: 400 0.9375rem/1.55 var(--sam-font);
-  color: var(--sam-comet);
-  margin: 0;
-}
-@media (max-width: 767px) {
-  .sam-diagnostics__steps {
-    grid-template-columns: 1fr;
-  }
-}
+    .sam-dropdown__desc {
+      display: block;
+      font-size: 12px;
+      opacity: 0.7;
+    }
 
-/* ── 6. Detection Capabilities ── */
-.sam-detection {
-  background: var(--sam-white);
-  padding: 64px 0;
-}
-.sam-detection__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-detection__h2 {
-  font: 600 2.25rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 12px 0;
-}
-.sam-detection__lead {
-  font: 400 1.05rem/1.7 var(--sam-font);
-  color: var(--sam-comet);
-  margin: 0 0 32px 0;
-  max-width: 720px;
-}
-.sam-detection__table-wrap {
-  overflow-x: auto;
-}
-.sam-detection__table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: var(--sam-font);
-}
-.sam-detection__table thead th {
-  font: 600 0.8125rem/1 var(--sam-font);
-  color: var(--sam-white);
-  background: var(--sam-space-cadet);
-  padding: 14px 16px;
-  text-align: left;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.sam-detection__table tbody td {
-  font: 400 0.9375rem/1.5 var(--sam-font);
-  color: var(--sam-black);
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--sam-border-light);
-  vertical-align: top;
-}
-.sam-detection__table tbody tr:nth-child(even):not(.sam-detection__category) {
-  background: var(--sam-seashell);
-}
-.sam-detection__table tbody tr:hover {
-  background: rgba(255, 84, 41, 0.04);
-}
-.sam-detection__category td {
-  font: 600 0.8125rem/1 var(--sam-font);
-  color: var(--sam-comet);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 20px 16px 10px 16px;
-  border-bottom: 2px solid var(--sam-space-cadet);
-  background: var(--sam-white) !important;
-}
-.sam-detection__category:hover {
-  background: var(--sam-white) !important;
-}
-.sam-detection__note {
-  font: 400 0.875rem/1.6 var(--sam-font);
-  color: var(--sam-comet);
-  margin: 20px 0 0 0;
-  max-width: 720px;
-}
-.sam-detection__lead-time {
-  font-family: var(--sam-mono);
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: var(--sam-space-cadet);
-}
+    .sam-header__actions {
+      display: flex;
+      gap: var(--space-6);
+      align-items: center;
+      flex-shrink: 0;
+    }
 
-/* ── 7. Evidence Panel ── */
-.sam-evidence {
-  background: var(--sam-seashell);
-  padding: 64px 0;
-}
-.sam-evidence__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-evidence__h2 {
-  font: 600 2.25rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 12px 0;
-}
-.sam-evidence__lead {
-  font: 400 1.05rem/1.7 var(--sam-font);
-  color: var(--sam-comet);
-  margin: 0 0 32px 0;
-  max-width: 720px;
-}
-.sam-evidence__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-06);
-}
-.sam-evidence__card {
-  display: flex;
-  flex-direction: column;
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-top: 4px solid var(--sam-space-cadet);
-  padding: var(--sp-07);
-}
-.sam-evidence__card-customer {
-  font: 600 0.8125rem/1 var(--sam-font);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--sam-orange);
-  margin: 0 0 12px 0;
-}
-.sam-evidence__card-title {
-  font: 600 1.25rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 12px 0;
-}
-.sam-evidence__card-body {
-  font: 400 0.9375rem/1.6 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 16px 0;
-}
-.sam-evidence__card-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: auto;
-  padding-top: 20px;
-  border-top: 1px solid var(--sam-border-light);
-}
-.sam-evidence__card-stat-value {
-  font: 700 3rem/1 var(--sam-mono);
-  color: var(--sam-orange);
-}
-.sam-evidence__card-stat-label {
-  font: 500 0.875rem/1.3 var(--sam-font);
-  color: var(--sam-comet);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.sam-evidence__quote {
-  background: var(--sam-white);
-  border: 1px solid var(--sam-border-light);
-  border-left: 4px solid var(--sam-orange);
-  padding: var(--sp-07);
-  margin-top: var(--sp-06);
-}
-.sam-evidence__quote blockquote {
-  font: 400 1.05rem/1.65 var(--sam-font);
-  color: var(--sam-black);
-  margin: 0 0 12px 0;
-  font-style: italic;
-}
-.sam-evidence__quote cite {
-  font: 500 0.875rem/1 var(--sam-font);
-  color: var(--sam-comet);
-  font-style: normal;
-}
-.sam-evidence__more {
-  margin: var(--sp-07) 0 0 0;
-  text-align: center;
-}
-.sam-evidence__more-link {
-  font: 600 1rem/1 var(--sam-font);
-  color: var(--sam-orange);
-  text-decoration: none;
-  transition: color var(--ease);
-}
-.sam-evidence__more-link:hover {
-  color: var(--sam-orange-dark);
-}
-@media (max-width: 767px) {
-  .sam-evidence__grid {
-    grid-template-columns: 1fr;
-  }
-}
+    .sam-cta-secondary {
+      font-family: var(--sam-font);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--sam-white);
+      text-decoration: none;
+      opacity: 0.8;
+      white-space: nowrap;
+      transition: opacity 150ms ease-out;
+    }
 
-/* ── 8. Honest Boundaries ── */
-.sam-boundaries {
-  background: var(--sam-white);
-  padding: 64px 0;
-}
-.sam-boundaries__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-boundaries__h2 {
-  font: 600 2.25rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 12px 0;
-}
-.sam-boundaries__lead {
-  font: 400 1.05rem/1.7 var(--sam-font);
-  color: var(--sam-comet);
-  margin: 0 0 32px 0;
-  max-width: 720px;
-}
-.sam-boundaries__columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-08);
-}
-.sam-boundaries__col {
-  border-top: 4px solid var(--sam-space-cadet);
-  padding-top: var(--sp-06);
-}
-.sam-boundaries__col--works {
-  border-top-color: #0D8050;
-}
-.sam-boundaries__col--limits {
-  border-top-color: var(--sam-orange);
-}
-.sam-boundaries__col-title {
-  font: 600 1.25rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 20px 0;
-}
-.sam-boundaries__row {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--sam-border-light);
-}
-.sam-boundaries__row:last-child {
-  border-bottom: none;
-}
-.sam-boundaries__icon {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font: 700 0.875rem/1 var(--sam-font);
-}
-.sam-boundaries__icon--check {
-  background: rgba(13, 128, 80, 0.10);
-  color: #0D8050;
-}
-.sam-boundaries__icon--cross {
-  background: rgba(255, 84, 41, 0.10);
-  color: var(--sam-orange);
-}
-.sam-boundaries__row-content {
-  flex: 1;
-}
-.sam-boundaries__row-title {
-  font: 600 0.9375rem/1.3 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 4px 0;
-}
-.sam-boundaries__row-desc {
-  font: 400 0.875rem/1.5 var(--sam-font);
-  color: var(--sam-comet);
-  margin: 0;
-}
-@media (max-width: 767px) {
-  .sam-boundaries__columns {
-    grid-template-columns: 1fr;
-    gap: var(--sp-07);
-  }
-}
+    .sam-cta {
+      font-family: var(--sam-font);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sam-white);
+      background-color: var(--sam-orange);
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-default);
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color var(--sam-transition), box-shadow var(--sam-transition);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
 
-/* ── 9. Validation ── */
-.sam-validation {
-  background: var(--sam-seashell);
-  padding: 64px 0;
-}
-.sam-validation__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-.sam-validation__h2 {
-  font: 600 2.25rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 12px 0;
-}
-.sam-validation__lead {
-  font: 400 1.05rem/1.7 var(--sam-font);
-  color: var(--sam-comet);
-  margin: 0 0 32px 0;
-  max-width: 720px;
-}
-.sam-validation__stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-06);
-}
-.sam-validation__stat {
-  text-align: center;
-}
-.sam-validation__stat-value {
-  font: 700 2.5rem/1 var(--sam-mono);
-  color: var(--sam-space-cadet);
-  display: block;
-  margin-bottom: 8px;
-}
-.sam-validation__stat-label {
-  font: 400 0.875rem/1.4 var(--sam-font);
-  color: var(--sam-comet);
-}
-@media (max-width: 767px) {
-  .sam-validation__stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--sp-07);
-  }
-}
+    .sam-cta:hover {
+      background-color: var(--sam-orange-dark);
+      box-shadow: var(--shadow-sm);
+    }
 
-/* ── 10. CTA Block ── */
-.sam-cta-block {
-  background: var(--sam-white);
-  padding: 80px 0;
-}
-.sam-cta-block__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5%;
-  text-align: center;
-}
-.sam-cta-block__heading {
-  font: 600 2.25rem/1.2 var(--sam-font);
-  color: var(--sam-space-cadet);
-  margin: 0 0 16px 0;
-}
-.sam-cta-block__sub {
-  font: 400 1.05rem/1.65 var(--sam-font);
-  color: var(--sam-comet);
-  max-width: 600px;
-  margin: 0 auto 32px auto;
-}
-.sam-cta-block__actions {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-@media (max-width: 767px) {
-  .sam-cta-block {
-    padding: 64px 0;
-  }
-  .sam-cta-block__heading {
-    font-size: 1.75rem;
-  }
-}
+    .sam-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: var(--space-2);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-2);
+    }
 
+    .sam-hamburger__line {
+      width: 24px;
+      height: 2px;
+      background-color: var(--sam-white);
+      transition: all var(--sam-transition);
+      border-radius: 1px;
+    }
+
+    .sam-mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--sam-header-h);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--sam-header-bg);
+      overflow-y: auto;
+      z-index: 999;
+    }
+
+    .sam-mobile-menu.is-open {
+      display: block;
+    }
+
+    .sam-mobile-nav {
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .sam-mobile-nav__link,
+    .sam-mobile-nav__toggle {
+      display: block;
+      font-family: var(--sam-font);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--sam-white);
+      text-decoration: none;
+      padding: var(--space-4) 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      transition: opacity var(--sam-transition);
+    }
+
+    .sam-mobile-nav__group {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sam-mobile-nav__toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sam-mobile-nav__arrow {
+      transition: transform var(--sam-transition);
+    }
+
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__arrow {
+      transform: rotate(180deg);
+    }
+
+    .sam-mobile-nav__sub {
+      display: none;
+      padding-left: var(--space-4);
+    }
+
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__sub {
+      display: block;
+    }
+
+    .sam-mobile-nav__sub a {
+      display: block;
+      font-family: var(--sam-font);
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: var(--space-3) 0;
+      transition: opacity var(--sam-transition);
+    }
+
+    .sam-mobile-nav__sub a:hover {
+      opacity: 0.6;
+    }
+
+    .sam-mobile-nav__cta-wrap {
+      padding: var(--space-8) 0 var(--space-4) 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sam-mobile-nav__cta {
+      display: block;
+      font-family: var(--sam-font);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sam-white);
+      background-color: var(--sam-orange);
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-default);
+      text-decoration: none;
+      text-align: center;
+      transition: background-color var(--sam-transition);
+    }
+
+    .sam-mobile-nav__cta:hover {
+      background-color: var(--sam-orange-dark);
+    }
+
+    .sam-skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--sam-orange);
+      color: var(--sam-white);
+      padding: var(--space-2) var(--space-4);
+      text-decoration: none;
+      z-index: 100;
+    }
+
+    .sam-skip-link:focus {
+      top: 0;
+    }
+
+    /* ========== FOOTER ========== */
+    .sam-footer {
+      background-color: var(--sam-header-bg);
+      color: var(--sam-white);
+      padding: var(--space-24) var(--space-4);
+      font-size: 14px;
+    }
+
+    .sam-footer__inner {
+      max-width: var(--max-width-wide);
+      margin: 0 auto;
+    }
+
+    .sam-footer__top {
+      margin-bottom: var(--space-16);
+    }
+
+    .sam-footer__logo {
+      display: inline-block;
+      margin-bottom: var(--space-4);
+      text-decoration: none;
+    }
+
+    .sam-footer__logo img {
+      height: 32px;
+      width: auto;
+    }
+
+    .sam-footer__tagline {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: var(--space-3);
+    }
+
+    .sam-footer__grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-12);
+      margin-bottom: var(--space-16);
+    }
+
+    .sam-footer__col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sam-footer__col-heading {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: var(--space-4);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sam-footer__col-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .sam-footer__col-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color var(--sam-transition);
+      font-size: 13px;
+    }
+
+    .sam-footer__col-links a:hover {
+      color: var(--sam-white);
+    }
+
+    .sam-footer__divider {
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: var(--space-12) 0;
+    }
+
+    .sam-footer__certs {
+      display: flex;
+      gap: var(--space-8);
+      justify-content: flex-start;
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-footer__certs a {
+      display: inline-block;
+      transition: opacity var(--sam-transition);
+      text-decoration: none;
+    }
+
+    .sam-footer__certs a:hover {
+      opacity: 0.8;
+    }
+
+    .sam-footer__certs img {
+      height: 72px;
+      width: auto;
+    }
+
+    .sam-footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      font-size: 13px;
+    }
+
+    .sam-footer__bottom-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .sam-footer__copyright {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sam-footer__social {
+      color: rgba(255, 255, 255, 0.6);
+      transition: color var(--sam-transition);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sam-footer__social:hover {
+      color: var(--sam-white);
+    }
+
+    .sam-footer__legal {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .sam-footer__legal a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color var(--sam-transition);
+    }
+
+    .sam-footer__legal a:hover {
+      color: var(--sam-white);
+    }
+
+    .sam-footer__legal-sep {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ========== PAGE-SPECIFIC STYLES ========== */
+
+    /* HERO */
+    .hero {
+      background-color: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-30) var(--space-4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .hero__overline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+    }
+
+    .hero__title {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-8);
+      color: var(--white);
+    }
+
+    .hero__lead {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: var(--space-12);
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 660px;
+    }
+
+    .hero__ctas {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-16);
+    }
+
+    .hero__cta-primary {
+      font-family: var(--sam-font);
+      font-size: 14px;
+      font-weight: 600;
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-default);
+      text-decoration: none;
+      display: inline-block;
+      transition: all var(--motion-normal) ease-out;
+      background-color: var(--orange);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+    }
+
+    .hero__cta-primary:hover {
+      background-color: var(--sam-orange-dark);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero__cta-secondary {
+      font-family: var(--sam-font);
+      font-size: 14px;
+      font-weight: 600;
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-default);
+      text-decoration: none;
+      display: inline-block;
+      transition: all var(--motion-normal) ease-out;
+      background-color: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+    }
+
+    .hero__cta-secondary:hover {
+      border-color: var(--white);
+    }
+
+    /* SECTION NAV */
+    .section-nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-4);
+      border-bottom: 1px solid var(--border-grey);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .section-nav__list {
+      display: flex;
+      gap: var(--space-6);
+      list-style: none;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .section-nav__link {
+      color: var(--comet);
+      text-decoration: none;
+      transition: color var(--motion-normal) ease-out;
+      display: block;
+      padding: var(--space-3) 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .section-nav__link:hover,
+    .section-nav__link.is-active {
+      color: var(--space-cadet);
+      border-bottom-color: var(--orange);
+    }
+
+    /* SECTION */
+    section {
+      padding: var(--space-24) var(--space-4);
+    }
+
+    section.alt-bg-1 {
+      background-color: var(--white);
+    }
+
+    section.alt-bg-2 {
+      background-color: var(--seashell);
+    }
+
+    .section__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section__overline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+    }
+
+    .section__title {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: var(--space-8);
+      color: var(--space-cadet);
+    }
+
+    .section__intro {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: var(--space-12);
+      color: var(--comet);
+      max-width: 720px;
+    }
+
+    /* PHYSICS SECTION */
+    .physics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+      margin-top: var(--space-12);
+    }
+
+    @media (min-width: 768px) {
+      .physics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .card {
+      background-color: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      transition: all var(--motion-normal) ease-out;
+    }
+
+    .alt-bg-2 .card {
+      background-color: var(--white);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card__number {
+      font-family: var(--font-data);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+    }
+
+    .card__title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+      color: var(--space-cadet);
+    }
+
+    .card__text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--comet);
+    }
+
+    /* CALLOUT */
+    .callout {
+      background-color: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      margin: var(--space-12) 0;
+      font-style: italic;
+      line-height: 1.8;
+      color: var(--space-cadet);
+    }
+
+    .white-bg .callout {
+      background-color: var(--seashell);
+    }
+
+    .alt-bg-2 .callout {
+      background-color: var(--white);
+      border-color: var(--border-grey);
+    }
+
+    /* TWO-COLUMN */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      margin-top: var(--space-12);
+    }
+
+    @media (min-width: 768px) {
+      .two-column {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .two-column__col h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+      color: var(--space-cadet);
+    }
+
+    .two-column__col p {
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: var(--space-6);
+      color: var(--comet);
+    }
+
+    .two-column__col ul {
+      list-style: none;
+      margin-top: var(--space-6);
+    }
+
+    .two-column__col li {
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: var(--space-4);
+      color: var(--comet);
+      padding-left: var(--space-6);
+      position: relative;
+    }
+
+    .two-column__col li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    /* DETECTION TABLE */
+    .detection-table {
+      width: 100%;
+      margin-top: var(--space-12);
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .detection-table th {
+      background-color: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-4) var(--space-6);
+      text-align: left;
+      font-weight: 600;
+      border-radius: var(--radius-default);
+    }
+
+    .detection-table td {
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--border-grey);
+    }
+
+    .detection-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .detection-table tbody tr:hover {
+      background-color: rgba(255, 84, 41, 0.04);
+    }
+
+    .detection-table .fault-type {
+      font-weight: 600;
+      color: var(--space-cadet);
+    }
+
+    .detection-table .component {
+      color: var(--comet);
+    }
+
+    .detection-table .lead-time {
+      font-family: var(--font-data);
+      font-weight: 600;
+      color: var(--orange);
+    }
+
+    .detection-table .method {
+      color: var(--comet);
+      font-size: 13px;
+    }
+
+    .table-group-title {
+      background-color: rgba(31, 31, 51, 0.05);
+      font-weight: 700;
+      color: var(--space-cadet);
+      padding: var(--space-6) var(--space-6) !important;
+    }
+
+    /* BOUNDARIES SECTION */
+    .boundaries-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      margin-top: var(--space-12);
+    }
+
+    @media (min-width: 768px) {
+      .boundaries-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .boundary-col h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+      color: var(--space-cadet);
+    }
+
+    .boundary-col ul {
+      list-style: none;
+    }
+
+    .boundary-col li {
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: var(--space-6);
+      color: var(--comet);
+      padding-left: var(--space-6);
+      position: relative;
+    }
+
+    .boundary-col li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    .boundary-col.constraints li::before {
+      content: "◆";
+      color: var(--comet);
+    }
+
+    /* TERMINAL CTA */
+    .terminal-cta {
+      background-color: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-24) var(--space-4);
+      text-align: center;
+    }
+
+    .terminal-cta__title {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      margin-bottom: var(--space-6);
+    }
+
+    .terminal-cta__body {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: var(--space-8);
+      max-width: 660px;
+      margin-left: auto;
+      margin-right: auto;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .terminal-cta__actions {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-12);
+    }
+
+    .terminal-cta__quote {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-left: 4px solid var(--orange);
+      padding: var(--space-8);
+      margin-top: var(--space-16);
+      border-radius: var(--radius-default);
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 660px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .terminal-cta__attribution {
+      display: block;
+      margin-top: var(--space-4);
+      font-style: normal;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 767px) {
+      .sam-nav {
+        display: none;
+      }
+
+      .sam-header__actions {
+        gap: var(--space-3);
+      }
+
+      .sam-header__actions .sam-cta-secondary {
+        display: none;
+      }
+
+      .sam-hamburger {
+        display: flex;
+      }
+
+      .hero__ctas {
+        flex-direction: column;
+      }
+
+      .hero__cta-primary,
+      .hero__cta-secondary {
+        width: 100%;
+        text-align: center;
+      }
+
+      .sam-footer__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+      }
+
+      .sam-footer__col-links {
+        display: none;
+      }
+
+      .sam-footer__col.is-open .sam-footer__col-links {
+        display: flex;
+      }
+
+      .sam-footer__bottom {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .sam-footer__bottom-left {
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+
+      .terminal-cta__actions {
+        flex-direction: column;
+      }
+
+      .terminal-cta__actions .hero__cta-primary,
+      .terminal-cta__actions .hero__cta-secondary {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      .sam-nav__link {
+        font-size: 13px;
+      }
+
+      .sam-nav {
+        gap: var(--space-6);
+      }
+    }
+
+    /* ========== UTILITIES ========== */
+    .text-center {
+      text-align: center;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #main-content {
+      outline: none;
+    }
   </style>
 </head>
-<body>
 
-<a href="#main-content" class="sam-skip-link">Skip to main content</a>
-
-<!-- Header -->
-<header class="sam-header" role="navigation" aria-label="Main navigation">
+<body class="sam-page">
+  <header class="sam-header" role="navigation" aria-label="Main navigation">
   <a href="#main-content" class="sam-skip-link">Skip to content</a>
   <div class="sam-header__inner">
 
@@ -1693,505 +1246,323 @@
 
 </header>
 
-<!-- Jump Navigation (fixed below header) -->
-<nav class="sam-jump-nav" aria-label="Page sections">
-  <div class="sam-jump-nav__inner">
-    <a href="#mechanism" class="sam-jump-nav__link">The Physics</a>
-    <a href="#acquisition" class="sam-jump-nav__link">Data Acquisition</a>
-    <a href="#processing" class="sam-jump-nav__link">Signal Processing</a>
-    <a href="#diagnostics" class="sam-jump-nav__link">AI &amp; Diagnostics</a>
-    <a href="#detection" class="sam-jump-nav__link">Detection Capabilities</a>
-    <a href="#evidence" class="sam-jump-nav__link">Evidence</a>
-    <a href="#boundaries" class="sam-jump-nav__link">Boundaries</a>
-  </div>
-</nav>
+  <main id="main-content">
 
-<!-- Breadcrumbs -->
-<nav class="sam-breadcrumb" aria-label="Breadcrumb">
-  <div class="sam-breadcrumb__inner">
-    <ol class="sam-breadcrumb__list">
-      <li><a href="/">Home</a></li>
-      <li class="sam-breadcrumb__sep" aria-hidden="true">&gt;</li>
-      <li><a href="/technology/esa">Technology</a></li>
-      <li class="sam-breadcrumb__sep" aria-hidden="true">&gt;</li>
-      <li class="sam-breadcrumb__current" aria-current="page">Electrical Signature Analysis</li>
-    </ol>
-  </div>
-</nav>
-
-<main id="main-content" class="sam-esa">
-
-  <!-- ─── 1. HERO (Dark) ─── -->
-  <section class="sam-hero" style="background-image: url('/assets/images/heroes/hero-esa.jpg');">
-    <div class="sam-hero__overlay"></div>
-    <div class="sam-hero__inner">
-      <div class="sam-hero__content">
-        <p class="sam-hero__overline">Electrical Signature Analysis</p>
-        <h1 class="sam-hero__h1">Every AC motor tells you what's wrong. Through its electrical signature.</h1>
-        <p class="sam-hero__lead">Current and voltage waveforms captured at the motor control cabinet reveal the condition of the entire drivetrain: motor, coupling, gearbox, and driven load. SAM4 reads those signatures 24/7. No sensors on the machine.</p>
-        <div class="sam-hero__ctas">
-          <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
-          <a href="#detection" class="sam-btn sam-btn--ghost">See Detection Capabilities</a>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero__content">
+        <div class="hero__overline">Electrical Signature Analysis</div>
+        <h1 class="hero__title">Every AC motor tells you what's wrong. Through its electrical signature.</h1>
+        <p class="hero__lead">Current and voltage waveforms captured at the motor control cabinet reveal the condition of the entire drivetrain — motor, coupling, gearbox, and driven load. SAM4 reads those signatures 24/7. No sensors on the machine.</p>
+        <div class="hero__ctas">
+          <a href="/contact?intent=demo" class="hero__cta-primary">Request a Demo</a>
+          <a href="#detection" class="hero__cta-secondary">See Detection Capabilities ↓</a>
         </div>
       </div>
     </div>
-  </section>
 
+    <!-- SECTION NAV -->
+    <nav class="section-nav" role="navigation" aria-label="Page sections">
+      <ul class="section-nav__list">
+        <li><a href="#physics" class="section-nav__link">The Physics</a></li>
+        <li><a href="#acquisition" class="section-nav__link">Data Acquisition</a></li>
+        <li><a href="#signal" class="section-nav__link">Signal Processing</a></li>
+        <li><a href="#ai" class="section-nav__link">AI & Diagnostics</a></li>
+        <li><a href="#detection" class="section-nav__link">Detection Capabilities</a></li>
+        <li><a href="#boundaries" class="section-nav__link">Boundaries</a></li>
+      </ul>
+    </nav>
 
-  <!-- ─── 2. THE MECHANISM (White) ─── -->
-  <section class="sam-mechanism" id="mechanism">
-    <div class="sam-mechanism__inner">
-      <p class="sam-mechanism__overline">The Physics</p>
-      <h2 class="sam-mechanism__h2">Mechanical faults change the electrical signature of a motor.</h2>
+    <!-- SECTION 2: THE PHYSICS -->
+    <section id="physics" class="alt-bg-1">
+      <div class="section__inner">
+        <div class="section__overline">The Physics</div>
+        <h2 class="section__title">Mechanical faults change the electrical signature of a motor.</h2>
+        <p class="section__intro">Every AC induction motor draws current from the supply. That current creates a rotating magnetic field in the stator, which induces current in the rotor. When something goes wrong mechanically, it shows up in the electrical signal.</p>
 
-      <p class="sam-mechanism__body">Every AC induction motor draws current from the supply. That current creates a rotating magnetic field in the stator, which induces current in the rotor. When something goes wrong mechanically, it shows up in the electrical signal. Here's how.</p>
-
-      <div class="sam-mechanism__steps">
-        <div class="sam-mechanism__step">
-          <p class="sam-mechanism__step-num">01</p>
-          <h3 class="sam-mechanism__step-title">Motor draws current</h3>
-          <p class="sam-mechanism__step-desc">The motor draws AC current from the supply. The interaction between stator and rotor magnetic fields produces torque that drives the load.</p>
+        <div class="physics-grid">
+          <div class="card">
+            <div class="card__number">1</div>
+            <h3 class="card__title">Motor draws current</h3>
+            <p class="card__text">The motor draws AC current from the supply. The interaction between stator and rotor magnetic fields produces torque that drives the load.</p>
+          </div>
+          <div class="card">
+            <div class="card__number">2</div>
+            <h3 class="card__title">Fault changes torque</h3>
+            <p class="card__text">A worn bearing increases friction. Misalignment creates cyclic load variation. Cavitation alters the hydraulic profile. Each fault changes the torque demand.</p>
+          </div>
+          <div class="card">
+            <div class="card__number">3</div>
+            <h3 class="card__title">Torque changes waveform</h3>
+            <p class="card__text">The air gap between stator and rotor acts as a transducer. Mechanical changes produce measurable modulations in current and voltage waveforms.</p>
+          </div>
+          <div class="card">
+            <div class="card__number">4</div>
+            <h3 class="card__title">ESA reads the pattern</h3>
+            <p class="card__text">Each fault type creates a distinct spectral fingerprint. SAM4 reads those patterns continuously from the motor control cabinet.</p>
+          </div>
         </div>
-        <div class="sam-mechanism__step">
-          <p class="sam-mechanism__step-num">02</p>
-          <h3 class="sam-mechanism__step-title">Fault changes torque</h3>
-          <p class="sam-mechanism__step-desc">A worn bearing increases friction. Misalignment creates cyclic load variation. Cavitation alters the hydraulic profile. Each fault changes the torque demand on the motor.</p>
+
+        <div class="callout">
+          The core principle: The electrical signature of a motor contains the mechanical condition of the entire drivetrain. You don't need a sensor on the machine. You need a sensor on the electrical supply.
         </div>
-        <div class="sam-mechanism__step">
-          <p class="sam-mechanism__step-num">03</p>
-          <h3 class="sam-mechanism__step-title">Torque changes waveform</h3>
-          <p class="sam-mechanism__step-desc">The air gap between stator and rotor acts as a transducer. Mechanical changes produce measurable modulations in the current and voltage waveforms.</p>
-        </div>
-        <div class="sam-mechanism__step">
-          <p class="sam-mechanism__step-num">04</p>
-          <h3 class="sam-mechanism__step-title">ESA reads the pattern</h3>
-          <p class="sam-mechanism__step-desc">Each fault type creates a distinct spectral fingerprint. SAM4 reads those patterns continuously from the motor control cabinet. No sensor on the machine.</p>
+
+        <p style="font-size: 15px; line-height: 1.8; margin-top: var(--space-12); color: var(--comet);">The physics has been validated for over 40 years. What's new is the ability to read these signatures continuously, at scale, with AI models trained on thousands of assets.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DATA ACQUISITION -->
+    <section id="acquisition" class="alt-bg-2">
+      <div class="section__inner">
+        <div class="section__overline">Data Acquisition</div>
+        <h2 class="section__title">From current clamp to cloud. No sensors on the machine.</h2>
+        <p class="section__intro">SAM4 captures current and voltage waveforms at the motor control cabinet using non-intrusive current clamps and voltage taps. Sampling rates up to 64 kHz. Installation takes less than 60 minutes per asset. Motor returns to service the same shift.</p>
+
+        <div class="physics-grid">
+          <div class="card">
+            <div class="card__number">1</div>
+            <h3 class="card__title">Current Clamps</h3>
+            <p class="card__text">Split-core CTs clamp around the motor supply cables in the MCC. Non-intrusive. No electrical disconnection required.</p>
+          </div>
+          <div class="card">
+            <div class="card__number">2</div>
+            <h3 class="card__title">DAQ Unit</h3>
+            <p class="card__text">The Samotics data acquisition unit samples three-phase current and voltage at high frequency. Mounts inside or adjacent to the MCC panel.</p>
+          </div>
+          <div class="card">
+            <div class="card__number">3</div>
+            <h3 class="card__title">Cellular Gateway</h3>
+            <p class="card__text">Data transmits via secure cellular connection. No dependency on plant IT/OT networks. No firewall changes.</p>
+          </div>
+          <div class="card">
+            <div class="card__number">4</div>
+            <h3 class="card__title">Cloud Processing</h3>
+            <p class="card__text">Raw waveform data streams to the Samotics cloud platform for signal processing, AI classification, and diagnostic review.</p>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="sam-mechanism__callout">
-        <p><strong>The core principle:</strong> The electrical signature of a motor contains the mechanical condition of the entire drivetrain. You don't need a sensor on the machine. You need a sensor on the electrical supply.</p>
-      </div>
+    <!-- SECTION 4: SIGNAL PROCESSING -->
+    <section id="signal" class="alt-bg-1">
+      <div class="section__inner">
+        <div class="section__overline">Signal Processing</div>
+        <h2 class="section__title">Turning raw waveforms into fault signatures.</h2>
 
-      <p class="sam-mechanism__body">The physics has been validated for over 40 years. What's new is the ability to read these signatures continuously, at scale, with AI models trained on thousands of assets. SAM4 applies it at the motor control cabinet, where current clamps and voltage taps capture the raw waveforms. From there, signal processing and AI do the rest.</p>
-    </div>
-  </section>
-
-  <!-- ─── 3. DATA ACQUISITION (Seashell) ─── -->
-  <section class="sam-acquisition" id="acquisition">
-    <div class="sam-acquisition__inner">
-      <p class="sam-acquisition__overline">Data Acquisition</p>
-      <h2 class="sam-acquisition__h2">From current clamp to cloud. No sensors on the machine.</h2>
-
-      <p class="sam-acquisition__body">SAM4 captures current and voltage waveforms at the motor control cabinet using non-intrusive current clamps and voltage taps. Sampling rates range from 20 kHz to 64 kHz depending on the asset configuration. Installation takes less than 60 minutes per asset. Motor returns to service the same shift. No scaffolding. No ATEX permits.</p>
-
-      <div class="sam-acquisition__grid">
-        <div class="sam-acquisition__card">
-          <p class="sam-acquisition__card-step">Step 01</p>
-          <h3 class="sam-acquisition__card-title">Current Clamps</h3>
-          <p class="sam-acquisition__card-desc">Split-core CTs clamp around the motor supply cables in the MCC. Non-intrusive. No electrical disconnection required.</p>
-        </div>
-        <div class="sam-acquisition__card">
-          <p class="sam-acquisition__card-step">Step 02</p>
-          <h3 class="sam-acquisition__card-title">DAQ Unit</h3>
-          <p class="sam-acquisition__card-desc">The Samotics data acquisition unit samples three-phase current and voltage at high frequency. Mounts inside or adjacent to the MCC panel.</p>
-        </div>
-        <div class="sam-acquisition__card">
-          <p class="sam-acquisition__card-step">Step 03</p>
-          <h3 class="sam-acquisition__card-title">Cellular Gateway</h3>
-          <p class="sam-acquisition__card-desc">Data transmits via secure cellular connection. No dependency on plant IT/OT networks. No firewall changes. No VPN configuration.</p>
-        </div>
-        <div class="sam-acquisition__card">
-          <p class="sam-acquisition__card-step">Step 04</p>
-          <h3 class="sam-acquisition__card-title">Cloud Processing</h3>
-          <p class="sam-acquisition__card-desc">Raw waveform data streams to the Samotics cloud platform for signal processing, AI classification, and diagnostic review.</p>
+        <div class="two-column">
+          <div class="two-column__col">
+            <h3>FFT and Spectral Analysis</h3>
+            <p>Raw three-phase current and voltage waveforms are captured at high frequency. Fast Fourier Transform (FFT) converts time-domain waveforms into frequency-domain spectra. This reveals the harmonic content that characterizes fault signatures.</p>
+            <p>Each fault type — bearing wear, misalignment, rotor bar damage, cavitation — creates distinct patterns in specific frequency bands. Bearing faults appear as modulations around running speed. Misalignment shows up in even harmonics. Rotor bar faults appear as sidebands around slip frequency.</p>
+          </div>
+          <div class="two-column__col">
+            <h3>How Baselines Work</h3>
+            <p>SAM4 establishes a spectral baseline during the 2–4 week calibration period. This baseline captures the "healthy" spectrum for the specific motor, load, and operating conditions.</p>
+            <p>Ongoing monitoring compares live spectra against this baseline. Deviations become the anomaly signal — increases in specific frequency bands flag developing faults before mechanical failure occurs.</p>
+            <h3 style="margin-top: var(--space-8);">What the Analysis Extracts</h3>
+            <ul>
+              <li>Rotational speed and load profile</li>
+              <li>Bearing fault frequencies (BSF, BPFO, BPFI)</li>
+              <li>Misalignment indicators (even harmonics)</li>
+              <li>Rotor bar condition (rotor slot harmonics)</li>
+              <li>Stator winding integrity (inter-turn faults)</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── 4. SIGNAL PROCESSING (White) ─── -->
-  <section class="sam-processing" id="processing">
-    <div class="sam-processing__inner">
-      <p class="sam-processing__overline">Signal Processing</p>
-      <h2 class="sam-processing__h2">Turning raw waveforms into fault signatures.</h2>
+    <!-- SECTION 5: AI & DIAGNOSTICS -->
+    <section id="ai" class="alt-bg-2">
+      <div class="section__inner">
+        <div class="section__overline">AI & Diagnostics</div>
+        <h2 class="section__title">AI detects. Engineers confirm.</h2>
+        <p class="section__intro">Anomaly detection alone generates too many false positives. SAM4 uses a three-stage pipeline: statistical anomaly flagging, AI classification by fault type, and final validation by a Samotics engineer.</p>
 
-      <p class="sam-processing__body">The raw current and voltage signals are time-domain waveforms. To extract fault information, SAM4 converts them to the frequency domain using Fast Fourier Transform (FFT). This produces a spectrum showing the amplitude of each frequency component in the signal.</p>
-
-      <p class="sam-processing__body">Mechanical faults produce characteristic patterns in this spectrum. A bearing defect creates sidebands at specific frequencies related to the bearing geometry. Misalignment produces elevated amplitude at 2× running speed, with changes also visible at 1× and 3× harmonics. Cavitation raises the broadband noise floor across 100 Hz to 2 kHz as bubble collapse impulses modulate motor torque. Each fault type has a distinct spectral fingerprint.</p>
-
-      <div class="sam-processing__columns">
-        <div>
-          <h3 class="sam-processing__col-title">What the analysis extracts</h3>
-          <ul class="sam-processing__col-list">
-            <li>Rotational speed and load from fundamental frequency</li>
-            <li>Bearing fault frequencies from inner race, outer race, ball pass, and cage defects</li>
-            <li>Misalignment indicators from 1x, 2x, 3x rotational harmonics</li>
-            <li>Rotor bar condition from sideband spacing around supply frequency</li>
-            <li>Stator winding integrity from current unbalance and negative sequence components</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="sam-processing__col-title">How baselines work</h3>
-          <p class="sam-processing__col-body">SAM4 establishes a spectral baseline for each asset during a calibration period (typically 2 to 4 weeks). This baseline represents the healthy operating condition across all observed load states.</p>
-          <p class="sam-processing__col-body">Ongoing monitoring compares new spectra against this baseline. Changes that exceed statistical thresholds trigger anomaly flags. The system accounts for load variation, ambient temperature, and process changes.</p>
+        <div class="physics-grid" style="margin-top: var(--space-12);">
+          <div class="card">
+            <div class="card__number">1</div>
+            <h3 class="card__title">Anomaly Detection</h3>
+            <p class="card__text">Statistical models flag deviations from spectral baseline. Changes beyond normal operating variance trigger the next stage.</p>
+          </div>
+          <div class="card">
+            <div class="card__number">2</div>
+            <h3 class="card__title">Fault Classification</h3>
+            <p class="card__text">AI models trained on 10,000+ assets classify the anomaly by fault type: bearing, alignment, balance, electrical, or process.</p>
+          </div>
+          <div class="card">
+            <div class="card__number">3</div>
+            <h3 class="card__title">Engineer Validation</h3>
+            <p class="card__text">A Samotics reliability engineer reviews every classified fault before it reaches your team. Human validation prevents false alarms.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── 5. AI & DIAGNOSTICS (Seashell) ─── -->
-  <section class="sam-diagnostics" id="diagnostics">
-    <div class="sam-diagnostics__inner">
-      <p class="sam-diagnostics__overline">AI &amp; Diagnostics</p>
-      <h2 class="sam-diagnostics__h2">AI detects. Engineers confirm.</h2>
+    <!-- SECTION 6: DETECTION CAPABILITIES -->
+    <section id="detection" class="alt-bg-1">
+      <div class="section__inner">
+        <div class="section__overline">Detection Capabilities</div>
+        <h2 class="section__title">What ESA detects</h2>
+        <p class="section__intro">SAM4 identifies developing faults across the full drivetrain. Detection lead times range from weeks to months before failure.</p>
 
-      <p class="sam-diagnostics__body">Anomaly detection alone generates too many false positives. SAM4 uses a three-stage pipeline: automated detection, AI classification, and human validation. Every alert that reaches your maintenance team has been reviewed by a Samotics reliability engineer.</p>
-
-      <div class="sam-diagnostics__steps">
-        <div class="sam-diagnostics__step">
-          <p class="sam-diagnostics__step-num">Stage 01</p>
-          <h3 class="sam-diagnostics__step-title">Anomaly Detection</h3>
-          <p class="sam-diagnostics__step-desc">Statistical models flag deviations from the spectral baseline. Multiple detection algorithms run in parallel to reduce blind spots. Flagged anomalies proceed to classification.</p>
-        </div>
-        <div class="sam-diagnostics__step">
-          <p class="sam-diagnostics__step-num">Stage 02</p>
-          <h3 class="sam-diagnostics__step-title">Fault Classification</h3>
-          <p class="sam-diagnostics__step-desc">AI models trained on data from 10,000+ assets classify the anomaly by fault type: bearing, alignment, balance, electrical, or process. The model assigns a severity score and confidence level.</p>
-        </div>
-        <div class="sam-diagnostics__step">
-          <p class="sam-diagnostics__step-num">Stage 03</p>
-          <h3 class="sam-diagnostics__step-title">Engineer Validation</h3>
-          <p class="sam-diagnostics__step-desc">A Samotics reliability engineer reviews every classified fault before it reaches your team. They verify the diagnosis, assess urgency, and write a maintenance recommendation in plain language.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 6. DETECTION CAPABILITIES (White) ─── -->
-  <section class="sam-detection" id="detection">
-    <div class="sam-detection__inner">
-      <h2 class="sam-detection__h2">What ESA detects</h2>
-      <p class="sam-detection__lead">SAM4 identifies developing faults across the full drivetrain: motor, coupling, gearbox, and driven load. Detection lead times range from weeks to months before failure.</p>
-
-      <div class="sam-detection__table-wrap">
-        <table class="sam-detection__table">
+        <table class="detection-table">
           <thead>
             <tr>
-              <th>Fault type</th>
+              <th>Fault Type</th>
               <th>Component</th>
-              <th>Detection method</th>
-              <th>Typical lead time</th>
+              <th>Detection Method</th>
+              <th>Typical Lead Time</th>
             </tr>
           </thead>
           <tbody>
-            <!-- ── Mechanical faults ── -->
-            <tr class="sam-detection__category"><td colspan="4">Mechanical faults</td></tr>
+            <!-- MECHANICAL FAULTS -->
             <tr>
-              <td>Bearing degradation</td>
-              <td>Motor, gearbox, driven load</td>
-              <td>Characteristic bearing fault frequencies in current spectrum</td>
-              <td><span class="sam-detection__lead-time">2 to 5 months</span></td>
+              <td colspan="4" class="table-group-title">Mechanical Faults</td>
             </tr>
             <tr>
-              <td>Misalignment</td>
-              <td>Coupling, shaft</td>
-              <td>Changes in 1x, 2x rotational harmonics</td>
-              <td><span class="sam-detection__lead-time">4 to 12 weeks</span></td>
+              <td class="fault-type">Bearing Wear</td>
+              <td class="component">Motor/pump bearings</td>
+              <td class="method">Ball pass frequency outer race (BPFO), ball pass frequency inner race (BPFI)</td>
+              <td class="lead-time">8–12 weeks</td>
             </tr>
             <tr>
-              <td>Imbalance</td>
-              <td>Rotor, impeller, fan</td>
-              <td>Elevated 1x rotational component</td>
-              <td><span class="sam-detection__lead-time">4 to 12 weeks</span></td>
+              <td class="fault-type">Misalignment</td>
+              <td class="component">Coupling</td>
+              <td class="method">Even harmonics, asynchronous sidebands</td>
+              <td class="lead-time">6–10 weeks</td>
             </tr>
             <tr>
-              <td>Coupling wear</td>
-              <td>Coupling</td>
-              <td>Changes in torsional vibration signature</td>
-              <td><span class="sam-detection__lead-time">4 to 12 weeks</span></td>
+              <td class="fault-type">Imbalance</td>
+              <td class="component">Rotor</td>
+              <td class="method">Running speed harmonic (1X) elevation</td>
+              <td class="lead-time">4–8 weeks</td>
             </tr>
             <tr>
-              <td>Impeller damage</td>
-              <td>Pump, fan, compressor</td>
-              <td>Blade pass frequency shifts, broadband spectral changes</td>
-              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
+              <td class="fault-type">Coupling Wear</td>
+              <td class="component">Flexible coupling</td>
+              <td class="method">Running speed harmonics + sidebands</td>
+              <td class="lead-time">6–12 weeks</td>
             </tr>
             <tr>
-              <td>Rotor eccentricity</td>
-              <td>Motor, ESP</td>
-              <td>Elevated slip-frequency sidebands around supply frequency</td>
-              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
+              <td class="fault-type">Impeller Damage</td>
+              <td class="component">Pump/fan impeller</td>
+              <td class="method">Blade pass frequency + sidebands</td>
+              <td class="lead-time">4–10 weeks</td>
             </tr>
             <tr>
-              <td>Belt / drive slip</td>
-              <td>Belt drive, VFD-driven load</td>
-              <td>Loss of expected load transfer, speed-torque mismatch</td>
-              <td><span class="sam-detection__lead-time">Days to weeks</span></td>
+              <td class="fault-type">Rotor Eccentricity</td>
+              <td class="component">Motor rotor</td>
+              <td class="method">Slot harmonics modulation</td>
+              <td class="lead-time">8–16 weeks</td>
             </tr>
-
-            <!-- ── Electrical faults ── -->
-            <tr class="sam-detection__category"><td colspan="4">Electrical faults</td></tr>
+            <!-- ELECTRICAL FAULTS -->
             <tr>
-              <td>Winding insulation breakdown</td>
-              <td>Stator</td>
-              <td>Current unbalance, negative sequence component analysis</td>
-              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
+              <td colspan="4" class="table-group-title">Electrical Faults</td>
             </tr>
             <tr>
-              <td>Broken rotor bars</td>
-              <td>Rotor</td>
-              <td>Sideband frequencies around supply frequency</td>
-              <td><span class="sam-detection__lead-time">Weeks to months</span></td>
+              <td class="fault-type">Winding Insulation Degradation</td>
+              <td class="component">Motor stator</td>
+              <td class="method">High-frequency transient detection, ground leakage</td>
+              <td class="lead-time">6–20 weeks</td>
             </tr>
             <tr>
-              <td>Supply power quality</td>
-              <td>Electrical supply, VFD</td>
-              <td>Voltage/current unbalance, harmonic distortion, overcurrent events</td>
-              <td><span class="sam-detection__lead-time">Real-time</span></td>
-            </tr>
-
-            <!-- ── Process & operational ── -->
-            <tr class="sam-detection__category"><td colspan="4">Process & operational</td></tr>
-            <tr>
-              <td>Cavitation</td>
-              <td>Pump impeller</td>
-              <td>Broadband noise increase, load instability patterns</td>
-              <td><span class="sam-detection__lead-time">Days to weeks</span></td>
+              <td class="fault-type">Broken Rotor Bars</td>
+              <td class="component">Motor rotor</td>
+              <td class="method">Slip-frequency sidebands around stator harmonics</td>
+              <td class="lead-time">4–12 weeks</td>
             </tr>
             <tr>
-              <td>Pump blockages</td>
-              <td>Pump</td>
-              <td>Sudden load spike or sustained overload pattern in current signature</td>
-              <td><span class="sam-detection__lead-time">Near-instant</span></td>
+              <td class="fault-type">Power Quality Issues</td>
+              <td class="component">Electrical supply</td>
+              <td class="method">Harmonic distortion, voltage imbalance</td>
+              <td class="lead-time">Real-time</td>
+            </tr>
+            <!-- PROCESS FAULTS -->
+            <tr>
+              <td colspan="4" class="table-group-title">Process Faults</td>
             </tr>
             <tr>
-              <td>Clogging / fouling</td>
-              <td>Pump, filter, screen</td>
-              <td>Progressive load increase, efficiency degradation</td>
-              <td><span class="sam-detection__lead-time">Days to weeks</span></td>
+              <td class="fault-type">Cavitation</td>
+              <td class="component">Pump</td>
+              <td class="method">Broadband noise elevation, high-frequency spectrum</td>
+              <td class="lead-time">2–8 weeks</td>
             </tr>
             <tr>
-              <td>Dry running</td>
-              <td>Pump</td>
-              <td>Sudden load drop, current signature collapse below normal operating range</td>
-              <td><span class="sam-detection__lead-time">Near-instant</span></td>
+              <td class="fault-type">Blockage/Restriction</td>
+              <td class="component">Filter, screen, line</td>
+              <td class="method">Load profile increase, current elevation</td>
+              <td class="lead-time">1–4 weeks</td>
             </tr>
             <tr>
-              <td>Process deviations</td>
-              <td>Driven load</td>
-              <td>Load profile changes, operating point drift</td>
-              <td><span class="sam-detection__lead-time">Real-time</span></td>
+              <td class="fault-type">Thermal Runaway</td>
+              <td class="component">Motor windings</td>
+              <td class="method">Sustained current elevation, waveform distortion</td>
+              <td class="lead-time">Hours to days</td>
+            </tr>
+            <tr>
+              <td class="fault-type">Lubrication Degradation</td>
+              <td class="component">Bearings, gearbox</td>
+              <td class="method">Bearing fault frequencies + elevated baseline</td>
+              <td class="lead-time">4–16 weeks</td>
             </tr>
           </tbody>
         </table>
       </div>
+    </section>
 
-      <p class="sam-detection__note">This table covers the most common fault types. ESA detects additional conditions depending on equipment type, operating context, and load profile.</p>
-    </div>
-  </section>
+    <!-- SECTION 7: HONEST BOUNDARIES -->
+    <section id="boundaries" class="alt-bg-2">
+      <div class="section__inner">
+        <div class="section__overline">Honest Boundaries</div>
+        <h2 class="section__title">Where ESA works best — and where it doesn't</h2>
 
-  <!-- ─── 7. EVIDENCE PANEL (Seashell) ─── -->
-  <section class="sam-evidence" id="evidence">
-    <div class="sam-evidence__inner">
-      <h2 class="sam-evidence__h2">Real detections. Named customers.</h2>
-      <p class="sam-evidence__lead">Documented fault detections from production deployments. Each validated by post-maintenance inspection.</p>
-
-      <div class="sam-evidence__grid">
-        <div class="sam-evidence__card">
-          <p class="sam-evidence__card-customer">ArcelorMittal</p>
-          <h3 class="sam-evidence__card-title">Bearing fault detected 5 months early</h3>
-          <p class="sam-evidence__card-body">SAM4 identified developing bearing degradation in a critical drive motor at a rolling mill. The fault was confirmed during a planned maintenance window. Without the early warning, the failure would have caused an unplanned production stop.</p>
-          <div class="sam-evidence__card-stat">
-            <span class="sam-evidence__card-stat-value">5 months</span>
-            <span class="sam-evidence__card-stat-label">advance warning before failure</span>
+        <div class="boundaries-grid">
+          <div class="boundary-col">
+            <h3>Best Suited For</h3>
+            <ul>
+              <li>Submerged, enclosed, or hazardous assets</li>
+              <li>Fleet-wide monitoring from a single MCC</li>
+              <li>Continuous 24/7 surveillance without downtime</li>
+              <li>Electrical fault detection (insulation, phase imbalance)</li>
+              <li>Assets where vibration sensors are impractical</li>
+              <li>Gearboxes, pumps, compressors, centrifuges</li>
+            </ul>
           </div>
-        </div>
-
-        <div class="sam-evidence__card">
-          <p class="sam-evidence__card-customer">Schiphol Airport</p>
-          <h3 class="sam-evidence__card-title">Gearbox fault missed by vibration, caught by ESA</h3>
-          <p class="sam-evidence__card-body">SAM4 detected bearing damage in a baggage handling gearbox motor that vibration monitoring had not flagged. Across the deployment, SAM4 achieved a 100% detection rate on 9 confirmed faults.</p>
-          <div class="sam-evidence__card-stat">
-            <span class="sam-evidence__card-stat-value">9/9</span>
-            <span class="sam-evidence__card-stat-label">faults detected (100% accuracy)</span>
-          </div>
-        </div>
-
-        <div class="sam-evidence__card">
-          <p class="sam-evidence__card-customer">Yorkshire Water</p>
-          <h3 class="sam-evidence__card-title">70,000 manual inspection trips eliminated per year</h3>
-          <p class="sam-evidence__card-body">Yorkshire Water deployed SAM4 across submersible pumps at remote pumping stations. ESA replaced physical inspection rounds with continuous remote monitoring, cutting site visits by 70,000 annually and catching a single fault that prevented a £390K pollution fine.</p>
-          <div class="sam-evidence__card-stat">
-            <span class="sam-evidence__card-stat-value">70,000</span>
-            <span class="sam-evidence__card-stat-label">inspection trips replaced per year</span>
-          </div>
-        </div>
-
-        <div class="sam-evidence__card">
-          <p class="sam-evidence__card-customer">DuPont</p>
-          <h3 class="sam-evidence__card-title">€1.7M in costs prevented over three years</h3>
-          <p class="sam-evidence__card-body">DuPont deployed SAM4 on critical rotating equipment across multiple sites. Over three years, the system identified faults that would have resulted in unplanned shutdowns. Total prevented cost: €1.7 million. Payback achieved within 8 months.</p>
-          <div class="sam-evidence__card-stat">
-            <span class="sam-evidence__card-stat-value">€1.7M</span>
-            <span class="sam-evidence__card-stat-label">costs prevented over 3 years</span>
+          <div class="boundary-col constraints">
+            <h3>Constraints to Know</h3>
+            <ul>
+              <li>VFD-driven motors have reduced harmonic resolution for some fault types</li>
+              <li>Minimum RPM requirements (typically 300+ RPM for reliable detection)</li>
+              <li>MCC physical access is mandatory for clamp installation</li>
+              <li>2–4 week calibration period before full detection capability</li>
+              <li>High-slip motors (cranes, hoists) may need longer observation windows</li>
+              <li>Three-phase power required (single-phase motors not supported)</li>
+            </ul>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="sam-evidence__quote">
-        <blockquote>"At first I was a bit sceptical about SAM4's ability to detect failures by analysing electrical waveforms, but the results speak for themselves: it just works."</blockquote>
-        <cite>Philip Curran, DuPont</cite>
-      </div>
-
-      <p class="sam-evidence__more">
-        <a href="/proof" class="sam-evidence__more-link">Explore all customer results →</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- ─── 8. HONEST BOUNDARIES (White) ─── -->
-  <section class="sam-boundaries" id="boundaries">
-    <div class="sam-boundaries__inner">
-      <h2 class="sam-boundaries__h2">Where ESA works. And where it doesn't.</h2>
-      <p class="sam-boundaries__lead">No monitoring technology covers everything. Stating the boundaries builds trust.</p>
-
-      <div class="sam-boundaries__columns">
-        <div class="sam-boundaries__col sam-boundaries__col--works">
-          <h3 class="sam-boundaries__col-title">Where ESA works</h3>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">AC induction motors</p>
-              <p class="sam-boundaries__row-desc">Fixed-speed and VFD-driven. Both fully supported.</p>
-            </div>
-          </div>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">5 Hz and above</p>
-              <p class="sam-boundaries__row-desc">Standard 50/60 Hz mains-fed and VFD output frequencies above 5 Hz.</p>
-            </div>
-          </div>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">Motor running under load</p>
-              <p class="sam-boundaries__row-desc">Intermittent duty cycles supported with minimum run-time thresholds.</p>
-            </div>
-          </div>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">Access to MCC cabinet</p>
-              <p class="sam-boundaries__row-desc">Current clamps install at the motor control cabinet. No access to the machine needed.</p>
-            </div>
-          </div>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--check" aria-hidden="true">✓</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">Complements existing vibration</p>
-              <p class="sam-boundaries__row-desc">Keep vibration where it's installed. ESA covers the assets vibration cannot reach.</p>
-            </div>
-          </div>
+    <!-- TERMINAL CTA -->
+    <div class="terminal-cta">
+      <div class="section__inner">
+        <h2 class="terminal-cta__title">See what ESA reveals about your assets</h2>
+        <p class="terminal-cta__body">A 30-minute demo walks through the full pipeline — from signal capture to validated diagnostic — running on real industrial assets.</p>
+        <div class="terminal-cta__actions">
+          <a href="/contact?intent=demo" class="hero__cta-primary">Request a Demo</a>
+          <a href="/proof" class="hero__cta-secondary">See customer results →</a>
         </div>
-
-        <div class="sam-boundaries__col sam-boundaries__col--limits">
-          <h3 class="sam-boundaries__col-title">Where ESA doesn't apply</h3>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">DC motors, steppers, servos</p>
-              <p class="sam-boundaries__row-desc">ESA requires AC induction motor physics. Other motor types are not supported.</p>
-            </div>
-          </div>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">VFD output below 5 Hz</p>
-              <p class="sam-boundaries__row-desc">Spectral analysis needs sufficient electrical frequency to resolve fault patterns.</p>
-            </div>
-          </div>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">Very short run times (&lt;10 seconds)</p>
-              <p class="sam-boundaries__row-desc">Intermittent duty is fine. But extremely short cycles limit analysis depth.</p>
-            </div>
-          </div>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">No MCC access</p>
-              <p class="sam-boundaries__row-desc">Direct bus-bar connections or inaccessible cabinets may prevent installation.</p>
-            </div>
-          </div>
-
-          <div class="sam-boundaries__row">
-            <span class="sam-boundaries__icon sam-boundaries__icon--cross" aria-hidden="true">✗</span>
-            <div class="sam-boundaries__row-content">
-              <p class="sam-boundaries__row-title">Calibration period: 2–4 weeks</p>
-              <p class="sam-boundaries__row-desc">SAM4 needs a baseline to learn normal operation. No alerts during this period.</p>
-            </div>
-          </div>
-        </div>
+        <blockquote class="terminal-cta__quote">
+          At first I was a bit sceptical about SAM4's ability to detect failures by analysing electrical waveforms, but the results speak for themselves: it just works.
+          <span class="terminal-cta__attribution">DuPont</span>
+        </blockquote>
       </div>
     </div>
-  </section>
 
-  <!-- ─── 9. VALIDATION (Seashell) ─── -->
-  <section class="sam-validation" id="validation">
-    <div class="sam-validation__inner">
-      <h2 class="sam-validation__h2">Validated science. Proven at scale.</h2>
-      <p class="sam-validation__lead">ESA is not experimental. The physics is well-established. The deployment is global.</p>
+  </main>
 
-      <div class="sam-validation__stats">
-        <div class="sam-validation__stat">
-          <span class="sam-validation__stat-value">40+</span>
-          <span class="sam-validation__stat-label">years of ESA research and validation</span>
-        </div>
-        <div class="sam-validation__stat">
-          <span class="sam-validation__stat-value">10,000+</span>
-          <span class="sam-validation__stat-label">assets monitored globally</span>
-        </div>
-        <div class="sam-validation__stat">
-          <span class="sam-validation__stat-value">80+</span>
-          <span class="sam-validation__stat-label">customers across 5 continents</span>
-        </div>
-        <div class="sam-validation__stat">
-          <span class="sam-validation__stat-value">&gt;90%</span>
-          <span class="sam-validation__stat-label">fault detection rate</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 10. CTA BLOCK (White) ─── -->
-  <section class="sam-cta-block">
-    <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">See what your electrical data reveals.</h2>
-      <p class="sam-cta-block__sub">Request a demo and speak with a reliability engineer within 48 hours. No sales pitch. A technical conversation about your assets.</p>
-      <div class="sam-cta-block__actions">
-        <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
-        <a href="/proof" class="sam-btn sam-btn--outline">See Customer Results</a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- Footer -->
-<!-- Footer -->
-<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
   <div class="sam-footer__inner">
 
     <!-- Top: Logo + Tagline -->
@@ -2307,128 +1678,45 @@
   </div>
 </footer>
 
-<!-- Structured Data: Breadcrumb -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://samoticstestpage.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Technology",
-      "item": "https://samoticstestpage.com/technology/esa/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Electrical Signature Analysis",
-      "item": "https://samoticstestpage.com/technology/esa/"
-    }
-  ]
-}
-</script>
-
-<script>
-(function () {
-  'use strict';
-
-  var header = document.querySelector('.sam-header');
-  if (!header) return;
-
-  /* ── Scroll: toggle .is-scrolled ── */
-  var scrollThreshold = 20;
-  function onScroll() {
-    if (window.scrollY > scrollThreshold) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  /* ── Mobile Menu Toggle ── */
-  var hamburger = header.querySelector('.sam-hamburger');
-  var mobileMenu = document.getElementById('mobile-menu');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', function () {
-      var isOpen = mobileMenu.classList.toggle('is-open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-  }
-
-  /* ── Mobile Accordions ── */
-  var toggles = document.querySelectorAll('.sam-mobile-nav__toggle');
-  toggles.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var group = btn.closest('.sam-mobile-nav__group');
-      var isOpen = group.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', isOpen);
-    });
-  });
-
-  /* ── Footer Accordions (mobile) ── */
-  var footerCols = document.querySelectorAll('[data-footer-accordion]');
-  footerCols.forEach(function (col) {
-    var heading = col.querySelector('.sam-footer__col-heading');
-    if (!heading) return;
-    heading.addEventListener('click', function () {
-      if (window.innerWidth > 991) return;
-      col.classList.toggle('is-open');
-    });
-  });
-
-  /* ── Jump Nav: Active state on scroll + compact top ── */
-  var jumpNav = document.querySelector('.sam-jump-nav');
-  var jumpLinks = document.querySelectorAll('.sam-jump-nav__link');
-  var sections = [];
-  jumpLinks.forEach(function (link) {
-    var id = link.getAttribute('href').replace('#', '');
-    var section = document.getElementById(id);
-    if (section) sections.push({ link: link, el: section });
-  });
-
-  function updateJumpNav() {
-    /* Sync jump nav top with header compact state */
-    if (jumpNav) {
-      if (window.scrollY > 10) { jumpNav.classList.add('is-compact'); }
-      else { jumpNav.classList.remove('is-compact'); }
-    }
-
-    var scrollPos = window.scrollY + 200;
-    var active = null;
-    jumpLinks.forEach(function (l) { l.classList.remove('is-active'); });
-    sections.forEach(function (s) {
-      if (s.el.offsetTop <= scrollPos) { active = s; }
-    });
-    if (active) active.link.classList.add('is-active');
-  }
-
-  if (sections.length) {
-    window.addEventListener('scroll', updateJumpNav, { passive: true });
-    updateJumpNav();
-  }
-
-  /* ── Smooth Scroll for Jump Links ── */
-  jumpLinks.forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      var target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  <script>
+    (function () {
+      'use strict';
+      var header = document.querySelector('.sam-header');
+      if (!header) return;
+      var scrollThreshold = 20;
+      function onScroll() {
+        if (window.scrollY > scrollThreshold) { header.classList.add('is-scrolled'); }
+        else { header.classList.remove('is-scrolled'); }
       }
-    });
-  });
-})();
-</script>
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      var hamburger = header.querySelector('.sam-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function () {
+          var isOpen = mobileMenu.classList.toggle('is-open');
+          hamburger.setAttribute('aria-expanded', isOpen);
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+      }
+      document.querySelectorAll('.sam-mobile-nav__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var group = btn.closest('.sam-mobile-nav__group');
+          var isOpen = group.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+      document.querySelectorAll('[data-footer-accordion]').forEach(function (col) {
+        var heading = col.querySelector('.sam-footer__col-heading');
+        if (!heading) return;
+        heading.addEventListener('click', function () {
+          if (window.innerWidth > 991) return;
+          col.classList.toggle('is-open');
+        });
+      });
+    })();
+  </script>
 
 </body>
+
 </html>
