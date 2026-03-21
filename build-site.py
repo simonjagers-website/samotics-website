@@ -2,16 +2,22 @@
 """
 Build a complete static site from Samotics page fragments.
 Generates full HTML documents from fragments, wrapping them with header/footer.
+
+Usage:
+    python build-site.py              # uses default paths (repo root)
+    python build-site.py --source pages --dist dist
 """
 
 import os
 import re
+import argparse
 from pathlib import Path
 from collections import defaultdict
 
-# Configuration
-SOURCE_DIR = Path("/sessions/stoic-sharp-darwin/mnt/Foundational Docs/pages")
-DIST_DIR = Path("/sessions/stoic-sharp-darwin/dist")
+# Resolve paths relative to this script's location (repo root)
+SCRIPT_DIR = Path(__file__).resolve().parent
+DEFAULT_SOURCE = SCRIPT_DIR / "pages"
+DEFAULT_DIST = SCRIPT_DIR / "dist"
 
 # Page mapping: (source_file, output_path, title)
 PAGE_MAPPING = [
@@ -128,7 +134,6 @@ def extract_title(html_content, fallback_title):
     h1_match = re.search(r"<h1[^>]*>([^<]+)</h1>", html_content)
     if h1_match:
         title = h1_match.group(1).strip()
-        # Remove any HTML entities or extra formatting
         title = re.sub(r"<[^>]+>", "", title).strip()
         if title:
             return title
@@ -136,36 +141,24 @@ def extract_title(html_content, fallback_title):
 
 
 def clean_php(content):
-    """Replace PHP snippets with static equivalents.
-
-    Note: Some pages (blog-archive, news-archive) contain WordPress loop PHP code
-    that should be replaced with static content or JavaScript-driven filtering.
-    This function removes simple PHP echo statements but leaves complex logic intact
-    for manual review.
-    """
-    # Remove simple PHP echo statements (home_url, get_template_directory_uri)
+    """Replace PHP snippets with static equivalents."""
     content = re.sub(r"\{\{home_url\('\/'\)\}\}", "/", content)
     content = re.sub(r"\{\{home_url\('([^']+)'\)\}\}", r"\1", content)
     content = re.sub(r"<?php\s+echo\s+home_url\('\/'\);\s*\?>", "/", content)
     content = re.sub(r"<?php\s+echo\s+home_url\('([^']+)'\);\s*\?>", r"\1", content)
     content = re.sub(r"<?php\s+echo\s+get_template_directory_uri\(\);\s*\?>", "/assets", content)
     content = re.sub(r"<?php\s+echo\s+get_permalink\(\);\s*\?>", "#", content)
-
-    # Note: Complex WordPress loops and WP_Query statements are intentionally left
-    # for manual migration or JavaScript replacement
     return content
 
 
 def strip_bricks_header(content):
     """Remove Bricks comment header from content."""
-    # Remove the Bricks header comments
     content = re.sub(
         r"<!--\s*={3,}.*?BRICKS.*?={3,}\s*-->.*?<!--\s*PHP & HTML\s*-->",
         "",
         content,
         flags=re.DOTALL | re.IGNORECASE,
     )
-    # Also handle just the header comment without the second one
     content = re.sub(
         r"<!--\s*={3,}.*?Bricks\s+Code\s+Element.*?={3,}\s*-->",
         "",
@@ -175,22 +168,19 @@ def strip_bricks_header(content):
     return content.strip()
 
 
-def get_page_css(page_name):
+def get_page_css(source_dir, page_name):
     """Get CSS for a page, handling special cases like industries and assets."""
     css_parts = []
 
-    # Check for page-specific CSS
-    page_css_path = SOURCE_DIR / f"{page_name}.css"
+    page_css_path = source_dir / f"{page_name}.css"
     if page_css_path.exists():
         css_parts.append(read_file(page_css_path))
 
-    # Industry pages: also include industry-template.css
     if page_name in ["water", "oil-gas", "metals-mining", "chemicals", "pulp-paper", "airports"]:
-        template_css = SOURCE_DIR / "industry-template.css"
+        template_css = source_dir / "industry-template.css"
         if template_css.exists():
             css_parts.append(read_file(template_css))
 
-    # Asset pages: include specific-asset.css and asset-type.css
     asset_names = [
         "mv-motors", "pumps", "fans-blowers", "compressors", "esps",
         "canned-motor-pumps", "transmissions", "conveyors", "agitators-mixers",
@@ -198,44 +188,40 @@ def get_page_css(page_name):
     ]
     if page_name in asset_names:
         for css_file in ["specific-asset.css", "asset-type.css"]:
-            css_path = SOURCE_DIR / css_file
+            css_path = source_dir / css_file
             if css_path.exists():
                 css_parts.append(read_file(css_path))
 
-    # Detection stories: include detection-story.css
     if page_name.startswith("detect-"):
-        template_css = SOURCE_DIR / "detection-story.css"
+        template_css = source_dir / "detection-story.css"
         if template_css.exists():
             css_parts.append(read_file(template_css))
 
     return "\n".join(css_parts)
 
 
-def build_html_page(page_name, output_path, title, source_subdir=""):
+def build_html_page(source_dir, dist_dir, page_name, output_path, title, source_subdir=""):
     """Build a complete HTML page from fragments."""
-    # Determine source file location
     if source_subdir:
-        page_html_path = SOURCE_DIR / source_subdir / f"{page_name}.html"
+        page_html_path = source_dir / source_subdir / f"{page_name}.html"
     else:
-        page_html_path = SOURCE_DIR / f"{page_name}.html"
+        page_html_path = source_dir / f"{page_name}.html"
 
     if not page_html_path.exists():
         return False, f"Source file not found: {page_html_path}"
 
-    # Read all components
-    header_html = read_file(SOURCE_DIR / "header.html")
-    header_css = read_file(SOURCE_DIR / "header.css")
-    header_js = read_file(SOURCE_DIR / "header.js")
+    header_html = read_file(source_dir / "header.html")
+    header_css = read_file(source_dir / "header.css")
+    header_js = read_file(source_dir / "header.js")
 
-    footer_html = read_file(SOURCE_DIR / "footer.html")
-    footer_css = read_file(SOURCE_DIR / "footer.css")
-    footer_js = read_file(SOURCE_DIR / "footer.js")
+    footer_html = read_file(source_dir / "footer.html")
+    footer_css = read_file(source_dir / "footer.css")
+    footer_js = read_file(source_dir / "footer.js")
 
     page_html = read_file(page_html_path)
-    page_css = get_page_css(page_name)
-    page_js = read_file(SOURCE_DIR / f"{page_name}.js")
+    page_css = get_page_css(source_dir, page_name)
+    page_js = read_file(source_dir / f"{page_name}.js")
 
-    # Clean content
     header_html = strip_bricks_header(header_html)
     footer_html = strip_bricks_header(footer_html)
     page_html = strip_bricks_header(page_html)
@@ -247,11 +233,9 @@ def build_html_page(page_name, output_path, title, source_subdir=""):
     footer_js = clean_php(footer_js)
     page_js = clean_php(page_js)
 
-    # Extract title from h1 if possible
     extracted_title = extract_title(page_html, title)
     page_title = f"{extracted_title} | Samotics"
 
-    # Build HTML document
     html_doc = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -287,8 +271,7 @@ def build_html_page(page_name, output_path, title, source_subdir=""):
 </html>
 """
 
-    # Create output directory and write file
-    output_file = DIST_DIR / output_path
+    output_file = dist_dir / output_path
     if str(output_file).endswith(".html"):
         output_file.parent.mkdir(parents=True, exist_ok=True)
     else:
@@ -304,27 +287,33 @@ def build_html_page(page_name, output_path, title, source_subdir=""):
 
 
 def main():
-    """Main build function."""
+    parser = argparse.ArgumentParser(description="Build Samotics static site")
+    parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE,
+                        help="Source pages directory (default: ./pages)")
+    parser.add_argument("--dist", type=Path, default=DEFAULT_DIST,
+                        help="Output directory (default: ./dist)")
+    args = parser.parse_args()
+
+    source_dir = args.source.resolve()
+    dist_dir = args.dist.resolve()
+
     print("=" * 70)
     print("SAMOTICS STATIC SITE BUILDER")
     print("=" * 70)
-    print(f"Source directory: {SOURCE_DIR}")
-    print(f"Output directory: {DIST_DIR}")
+    print(f"Source directory: {source_dir}")
+    print(f"Output directory: {dist_dir}")
     print()
 
-    # Ensure source dir exists
-    if not SOURCE_DIR.exists():
-        print(f"ERROR: Source directory not found: {SOURCE_DIR}")
-        return
+    if not source_dir.exists():
+        print(f"ERROR: Source directory not found: {source_dir}")
+        return 1
 
-    # Clear and create dist directory
-    DIST_DIR.mkdir(parents=True, exist_ok=True)
+    dist_dir.mkdir(parents=True, exist_ok=True)
 
-    stats = {"success": 0, "failed": 0, "skipped": 0}
+    stats = {"success": 0, "failed": 0}
     generated_pages = []
     failed_pages = []
 
-    # Process main pages from PAGE_MAPPING
     print("Generating main pages...")
     print("-" * 70)
 
@@ -334,90 +323,48 @@ def main():
         title = mapping[2]
         source_subdir = mapping[3] if len(mapping) > 3 else ""
 
-        success, result = build_html_page(page_name, output_path, title, source_subdir)
+        success, result = build_html_page(source_dir, dist_dir, page_name, output_path, title, source_subdir)
 
         if success:
-            print(f"✓ {page_name:30} → {output_path}")
+            print(f"  OK  {page_name:30} -> {output_path}")
             generated_pages.append((output_path, page_name))
             stats["success"] += 1
         else:
-            print(f"✗ {page_name:30} → ERROR: {result}")
+            print(f"  FAIL {page_name:30} -> {result}")
             failed_pages.append(page_name)
             stats["failed"] += 1
 
-    # Process detection stories
     print()
     print("Generating detection stories...")
     print("-" * 70)
 
     for story in DETECTION_STORIES:
-        # Extract slug from story name
         slug = story.replace("detect-", "")
         output_path = f"proof/case-studies/{slug}/"
 
-        success, result = build_html_page(story, output_path, slug.replace("-", " ").title())
+        success, result = build_html_page(source_dir, dist_dir, story, output_path, slug.replace("-", " ").title())
 
         if success:
-            print(f"✓ {story:30} → {output_path}")
+            print(f"  OK  {story:30} -> {output_path}")
             generated_pages.append((output_path, story))
             stats["success"] += 1
         else:
-            print(f"✗ {story:30} → ERROR: {result}")
+            print(f"  FAIL {story:30} -> {result}")
             failed_pages.append(story)
             stats["failed"] += 1
 
-    # Print summary
     print()
     print("=" * 70)
-    print("BUILD SUMMARY")
+    print(f"BUILD COMPLETE: {stats['success']} pages generated, {stats['failed']} failed")
     print("=" * 70)
-    print(f"Total pages generated:  {stats['success']}")
-    print(f"Failed:                 {stats['failed']}")
-    print()
 
     if failed_pages:
-        print("Failed pages:")
+        print("\nFailed pages:")
         for page in failed_pages:
             print(f"  - {page}")
-        print()
 
-    print("Generated files:")
-    output_paths = sorted(set(path for path, _ in generated_pages))
-    for path in output_paths[:20]:  # Show first 20
-        if str(path).endswith("index.html") or str(path).endswith(".html"):
-            if not str(path).endswith("index.html"):
-                print(f"  /{path}")
-            else:
-                print(f"  /{path}")
-        else:
-            print(f"  /{path}index.html")
-
-    if len(output_paths) > 20:
-        print(f"  ... and {len(output_paths) - 20} more")
-
-    print()
-    print("=" * 70)
-    print("NOTES FOR STATIC DEPLOYMENT")
-    print("=" * 70)
-    print()
-    print("Pages with WordPress PHP (require manual migration):")
-    print("  • /resources/blog/ (blog-archive.html)")
-    print("    - Contains WP_Query loops and category filtering")
-    print("    - Recommend: Generate static posts OR use JavaScript-based filtering")
-    print()
-    print("  • /resources/news/ (news-archive.html)")
-    print("    - Contains WP_Query loops for news posts")
-    print("    - Recommend: Generate static posts OR use JavaScript-based filtering")
-    print()
-    print("Pages with dynamic content (may need updates):")
-    print("  • /resources/webinars/ (if exists) - webinar archive")
-    print("  • /resources/whitepapers/ (if exists) - whitepaper archive")
-    print()
-    print("All other pages are static and ready to deploy.")
-    print()
-    print(f"Output directory: {DIST_DIR}")
-    print("=" * 70)
+    return 1 if stats["failed"] > 0 and stats["success"] == 0 else 0
 
 
 if __name__ == "__main__":
-    main()
+    exit(main())
