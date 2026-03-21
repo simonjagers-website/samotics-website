@@ -205,6 +205,7 @@
     .sam-nav__link:focus-visible, .sam-dropdown__item:focus-visible, .sam-cta:focus-visible, .sam-hamburger:focus-visible, .sam-mobile-nav__toggle:focus-visible, .sam-mobile-nav__link:focus-visible, .sam-mobile-nav__sub a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
     .sam-footer__col-links a:focus-visible, .sam-footer__social:focus-visible, .sam-footer__legal a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
     
+    .sam-hero > *:not(.sam-hero-overlay) { position: relative; z-index: 2; }
     .sam-hero-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
@@ -2210,7 +2211,8 @@
 <main id="main-content" class="sam-casestudy">
 
   <!-- ─── 1. HERO ─── -->
-  <section class="sam-hero sam-hero--casestudy" style="background-image:url('https://samotics.com/wp-content/uploads/2025/05/Electric-submersible-pump.jpg');">
+  <section class="sam-hero sam-hero--casestudy" style="background: var(--space-cadet, #1F1F33) url('/assets/images/heroes/hero-water.jpg') center/cover no-repeat; position: relative; overflow: hidden;"
+    <div class="sam-hero-overlay"></div> style="background-image:url('https://samotics.com/wp-content/uploads/2025/05/Electric-submersible-pump.jpg');">
     <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
       <div class="sam-hero__content">

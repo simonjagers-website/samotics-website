@@ -176,6 +176,7 @@
     .sam-nav__link:focus-visible, .sam-dropdown__item:focus-visible, .sam-cta:focus-visible, .sam-hamburger:focus-visible, .sam-mobile-nav__toggle:focus-visible, .sam-mobile-nav__link:focus-visible, .sam-mobile-nav__sub a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
     .sam-footer__col-links a:focus-visible, .sam-footer__social:focus-visible, .sam-footer__legal a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
     
+    .sam-section > *:not(.sam-hero-overlay) { position: relative; z-index: 2; }
     .sam-hero-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
@@ -1179,7 +1180,8 @@
   <main id="main">
 
     <!-- HERO. dark bg -->
-    <section class="sam-section sam-section--dark" style="padding-top:120px;padding-bottom:96px;">
+    <section class="sam-section sam-section--dark" style="background: var(--space-cadet, #1F1F33) url('/assets/images/heroes/hero-sam4-platform.jpg') center/cover no-repeat; position: relative; overflow: hidden;"
+    <div class="sam-hero-overlay"></div> style="padding-top:120px;padding-bottom:96px;">
       <div class="sam-container">
         <p class="sam-eyebrow" style="color:var(--orange);font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-3);">How It Installs</p>
         <h1 class="sam-section__title" style="color:#fff;max-width:680px;">Installed in 30 minutes. No process shutdown. No wiring changes.</h1>
