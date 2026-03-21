@@ -1264,7 +1264,8 @@
       <div class="hero__content">
         <div class="hero__overline">Electrical Signature Analysis</div>
         <h1 class="hero__title">Every AC motor tells you what's wrong. Through its electrical signature.</h1>
-        <p class="hero__lead">Current and voltage waveforms captured at the motor control cabinet reveal the condition of the entire drivetrain — motor, coupling, gearbox, and driven load. SAM4 reads those signatures 24/7. No sensors on the machine.</p>
+        <p class="hero__lead">Current and voltage waveforms captured at the motor control cabinet reveal the condition of the entire drivetrain. SAM4 reads those signatures 24/7. No sensors on the machine.</p>
+        <p class="hero__bridge" style="margin-top: var(--space-3); font-size: 17px; line-height: 1.7; color: var(--dark-blue-300); max-width: 640px;">Most condition monitoring requires sensors on the machine. ESA doesn't. That's why it works where vibration, thermal, and ultrasound can't.</p>
         <div class="hero__ctas">
           <a href="/contact?intent=demo" class="hero__cta-primary">Request a Demo</a>
           <a href="#detection" class="hero__cta-secondary">See Detection Capabilities ↓</a>
@@ -1333,7 +1334,7 @@
           <div class="card">
             <div class="card__number">1</div>
             <h3 class="card__title">Current Clamps</h3>
-            <p class="card__text">Split-core CTs clamp around the motor supply cables in the MCC. Non-intrusive. No electrical disconnection required.</p>
+            <p class="card__text">Split-core CTs clamp around the motor supply cables in the MCC. Requires a de-energized cabinet. Back online the next shift.</p>
           </div>
           <div class="card">
             <div class="card__number">2</div>
@@ -1348,7 +1349,7 @@
           <div class="card">
             <div class="card__number">4</div>
             <h3 class="card__title">Cloud Processing</h3>
-            <p class="card__text">Raw waveform data streams to the Samotics cloud platform for signal processing, AI classification, and diagnostic review.</p>
+            <p class="card__text">Signal processing runs on edge hardware and in the Samotics cloud. AI classification and diagnostic review follow. No data science team required on your side.</p>
           </div>
         </div>
       </div>
@@ -1359,6 +1360,7 @@
       <div class="section__inner">
         <div class="section__overline">Signal Processing</div>
         <h2 class="section__title">Turning raw waveforms into fault signatures.</h2>
+        <p class="section__intro">Unlike vibration or thermal data, electrical signals capture mechanical, electrical, and operational behaviour in a single measurement. One sensor point. Three diagnostic dimensions.</p>
 
         <div class="two-column">
           <div class="two-column__col">
@@ -1387,7 +1389,7 @@
     <section id="ai" class="alt-bg-2">
       <div class="section__inner">
         <div class="section__overline">AI & Diagnostics</div>
-        <h2 class="section__title">AI detects. Engineers confirm.</h2>
+        <h2 class="section__title">AI identifies patterns. Engineers validate root cause.</h2>
         <p class="section__intro">Anomaly detection alone generates too many false positives. SAM4 uses a three-stage pipeline: statistical anomaly flagging, AI classification by fault type, and final validation by a Samotics engineer.</p>
 
         <div class="physics-grid" style="margin-top: var(--space-12);">
@@ -1432,7 +1434,7 @@
               <td colspan="4" class="table-group-title">Mechanical Faults</td>
             </tr>
             <tr>
-              <td class="fault-type">Bearing Wear</td>
+              <td class="fault-type">Bearing Wear*</td>
               <td class="component">Motor/pump bearings</td>
               <td class="method">Ball pass frequency outer race (BPFO), ball pass frequency inner race (BPFI)</td>
               <td class="lead-time">8–12 weeks</td>
@@ -1519,6 +1521,7 @@
             </tr>
           </tbody>
         </table>
+        <p style="font-size: 13px; line-height: 1.6; color: var(--comet); margin-top: var(--space-4);">*Bearing detection accuracy varies by position: 45.9% overall across all bearing locations, 30.8% for pump/motor bearings specifically. ESA detects bearing faults earlier in the drivetrain (gearbox, coupling-side) more reliably than at the driven end. Core three fault categories (blockage, mechanical unbalance, cavitation) detect at 90.8%.</p>
       </div>
     </section>
 
@@ -1543,7 +1546,7 @@
           <div class="boundary-col constraints">
             <h3>Constraints to Know</h3>
             <ul>
-              <li>VFD-driven motors have reduced harmonic resolution for some fault types</li>
+              <li>VFD-driven motors: inverter switching noise reduces resolution for bearing fault frequencies and rotor bar sidebands. Mechanical unbalance and misalignment detection unaffected.</li>
               <li>Minimum RPM requirements (typically 300+ RPM for reliable detection)</li>
               <li>MCC physical access is mandatory for clamp installation</li>
               <li>2–4 week calibration period before full detection capability</li>
