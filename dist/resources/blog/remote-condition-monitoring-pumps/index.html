@@ -989,9 +989,13 @@
 
 /* Hero image */
 .sam-post__hero-image {
+  max-width: 720px; margin: -48px auto 0; padding: 0 24px;
+  position: relative; z-index: 3;
+}
+.sam-post__hero-image img {
   width: 100%; max-height: 480px; object-fit: cover;
   border-radius: var(--radius);
-  margin-top: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 /* Content area */
@@ -1359,12 +1363,11 @@
 </blockquote>
 <h2>ESA’s unique strengths and weaknesses</h2>
 <p>We’ve already noted one of ESA’s major advantages over other condition monitoring technologies: the sensors don’t need to be near the pump. Here are three more.</p>
-<pre><code>- There’s no need to choose which faults to focus on (or install dozens of expensive sensors), because **every frequency of interest is contained in the electrical signals**: impeller frequencies, cavitation frequencies, gear and belt frequencies, motor fault frequencies and so on. As long as you provide the ESA system with the pump’s specifications, one sensor unit will detect fault signatures across the full spectrum.
-
-- As you might expect from the name, **ESA excels at detecting electrical anomalies in both the motor and the power supply**. We’ll talk more about this below.
-
-- **ESA can automatically handle varying speeds and loads**, which is critical to meaningful fault detection in systems that experience this kind of operational variance. (Read more about how this works in [our ESA explaine](/kb/the-esa-explainer)[r](https://www.samotics.com/the-esa-explainer).)
-</code></pre>
+<ul>
+<li>There’s no need to choose which faults to focus on (or install dozens of expensive sensors), because **every frequency of interest is contained in the electrical signals**: impeller frequencies, cavitation frequencies, gear and belt frequencies, motor fault frequencies and so on. As long as you provide the ESA system with the pump’s specifications, one sensor unit will detect fault signatures across the full spectrum.</li>
+<li>As you might expect from the name, **ESA excels at detecting electrical anomalies in both the motor and the power supply**. We’ll talk more about this below.</li>
+<li>**ESA can automatically handle varying speeds and loads**, which is critical to meaningful fault detection in systems that experience this kind of operational variance. (Read more about how this works in [our ESA explaine](/kb/the-esa-explainer)[r](https://www.samotics.com/the-esa-explainer).)</li>
+</ul>
 <p>These are all significant benefits for not only submersible pumps, but industrial machinery in general. And that brings us to the first of ESA’s weaknesses: it only works on systems driven by electricity. In principle these can be AC or DC systems and (for AC) single or multiple phase, but in practice three-phase AC motors dominate the industrial landscape and that’s what most ESA systems on the market are designed for.</p>
 <p>Second, it only works on systems <em>directly</em> driven by electricity. The longer and more complex a drive train is, the less information the electrical signal will contain about components that are far from the motor. (This loss of information to attenuation, distortion and noise as a signal travels through a non-perfect transmission medium is a physical principle affecting all condition monitoring systems. for example, it’s also why vibration sensors need to be placed close to the bearing or other component you want to monitor, and why a doctor puts the stethoscope over your chest and not your knee when he wants to listen to your heart.)</p>
 <blockquote>
@@ -1378,10 +1381,10 @@
 <h2>Early detection of system stressors prevents future faults from developing</h2>
 <p>There’s just one problem in the rotor fault example above: we averted bearing-related pump failure, but we didn’t avoid having to eventually pull the pump for repairs. Months of advance notice is certainly helpful in planning the least disruptive, most efficient maintenance window, and in avoiding catastrophic, unplanned downtime. But what we’d really like our asset health monitoring system to do is help us stop damage from developing in the first place, to the extent that’s possible.</p>
 <p>There are two ways an ESA system can help here. Both are a direct consequence of capturing electrical data, which means they are unique to ESA systems.</p>
-<pre><code>- **ESA directly measures power quality. **First, under- and overvoltages, harmonic distortion, voltage imbalance and other power quality problems are directly visible in electrical data, long before they cause overheating or vibrations. By immediately alerting you to these supply-side issues, an ESA system enables you to resolve them before they have a chance to degrade the motor’s insulation or windings. This is a major boon, [because stator winding burnout caused by these PQ issues is responsible for 80 percent of motor failures](https://franklin-electric.com.au/media/8446/06394_Franklin_AID_2x2pp_FE277.pdf). Especially in pumps controlled by a variable frequency drive (VFD), the ability to directly detect voltage distortion can dramatically improve the pump’s run life. These electrical issues are still problems that must be resolved, but at this early stage their resolution doesn’t require lifting the pump. Only if they go unnoticed until the pump’s motor begins to suffer will you have to pull the pump itself for repairs.
-
-- **ESA can report on pump performance. **Second, the affinity laws enable ESA systems to transform their current and voltage measurements into accurate estimates of real-time power, head and flow. This means you can track the pump’s performance both instantaneously and over time. By comparing the pump’s actual operation to its desired operation. which occurs at or near its best efficiency point (BEP). an ESA system can identify behavior that will lead to bearing, impeller and seal damage down the road if it becomes chronic. This real-time insight can enhance your decision-making, from immediate corrective actions (such as lowering the supply frequency to stop cavitation) to long-term process changes. All the while, this information is enabling you to keep the pump operating more healthily than it would otherwise, which means it’s preventing the opportunity for damage to accumulate.
-</code></pre>
+<ul>
+<li>**ESA directly measures power quality. **First, under- and overvoltages, harmonic distortion, voltage imbalance and other power quality problems are directly visible in electrical data, long before they cause overheating or vibrations. By immediately alerting you to these supply-side issues, an ESA system enables you to resolve them before they have a chance to degrade the motor’s insulation or windings. This is a major boon, [because stator winding burnout caused by these PQ issues is responsible for 80 percent of motor failures](https://franklin-electric.com.au/media/8446/06394_Franklin_AID_2x2pp_FE277.pdf). Especially in pumps controlled by a variable frequency drive (VFD), the ability to directly detect voltage distortion can dramatically improve the pump’s run life. These electrical issues are still problems that must be resolved, but at this early stage their resolution doesn’t require lifting the pump. Only if they go unnoticed until the pump’s motor begins to suffer will you have to pull the pump itself for repairs.</li>
+<li>**ESA can report on pump performance. **Second, the affinity laws enable ESA systems to transform their current and voltage measurements into accurate estimates of real-time power, head and flow. This means you can track the pump’s performance both instantaneously and over time. By comparing the pump’s actual operation to its desired operation. which occurs at or near its best efficiency point (BEP). an ESA system can identify behavior that will lead to bearing, impeller and seal damage down the road if it becomes chronic. This real-time insight can enhance your decision-making, from immediate corrective actions (such as lowering the supply frequency to stop cavitation) to long-term process changes. All the while, this information is enabling you to keep the pump operating more healthily than it would otherwise, which means it’s preventing the opportunity for damage to accumulate.</li>
+</ul>
 <div class="sam-post__image"><img src="/assets/images/blog/1-sam4-pump-dashboard-1.jpg" alt="Article image" loading="lazy"></div>
 <p>A pump performance dashboard in an ESA system. The pump's actual operation is plotted against its performance and power curves. Source: Samotics.</p>
 <p>This ability to track a pump’s performance in real time also means ESA systems can identify when a pump would run more efficiently at a lower speed. In some industries, pumps are often overpowered for the average situation, because they must be bought to handle the peak situation, even if it only rarely occurs. If your pump is controlled by a VFD, this means an ESA system can give you the instantaneous data you need to dynamically match the pump’s speed to its current operating conditions. In pumps that are directly online (no VFD), this data can tell you if your process design is what keeps killing your pump. more painful to fix, but valuable to know.</p>

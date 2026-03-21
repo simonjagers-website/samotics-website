@@ -989,9 +989,13 @@
 
 /* Hero image */
 .sam-post__hero-image {
+  max-width: 720px; margin: -48px auto 0; padding: 0 24px;
+  position: relative; z-index: 3;
+}
+.sam-post__hero-image img {
   width: 100%; max-height: 480px; object-fit: cover;
   border-radius: var(--radius);
-  margin-top: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 /* Content area */
@@ -1348,36 +1352,33 @@
 <p>Reactive maintenance, also known as the run-to-failure approach, involves repairing equipment only after it has broken down. This strategy requires minimal upfront investment and is typically used for non-essential assets where unexpected failures do not significantly impact operations. For example, in a manufacturing plant, replacing light bulbs or minor conveyor belts only after they fail can be a cost-effective approach.</p>
 <p>One of the primary advantages of reactive maintenance is its low initial cost and minimal labor requirements, as intervention is only needed when equipment actually fails. Additionally, it is simple to implement since it does not require predictive tools or preventive schedules. However, the disadvantages include unplanned downtime, which can disrupt operations and lead to significant production losses. Emergency repairs are often more expensive than planned maintenance, and unexpected equipment failure can pose safety hazards, particularly in industries with strict safety regulations.</p>
 <p><strong>Key considerations:</strong></p>
-<pre><code>- Best suited for non-critical assets with low replacement costs.
-
-- Requires spare parts availability to reduce downtime.
-
-- Should be combined with preventive or predictive maintenance for essential equipment.
-</code></pre>
+<ul>
+<li>Best suited for non-critical assets with low replacement costs.</li>
+<li>Requires spare parts availability to reduce downtime.</li>
+<li>Should be combined with preventive or predictive maintenance for essential equipment.</li>
+</ul>
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <h2>Preventive maintenance: scheduled equipment upkeep</h2>
 <p>Preventive maintenance involves performing scheduled inspections, servicing, and part replacements at predetermined intervals, regardless of the equipment's condition. This approach reduces the likelihood of unexpected failures and extends asset lifespan. Industries such as steel production and water treatment rely on preventive maintenance to ensure safety and compliance. For instance, steel mills follow strict maintenance schedules to prevent equipment failures that could disrupt production.</p>
 <p>The main advantage of preventive maintenance is its ability to enhance reliability and prevent costly breakdowns. It ensures compliance with safety regulations and extends the longevity of critical equipment. However, a potential downside is the possibility of unnecessary maintenance if schedules are not optimized based on actual asset condition, leading to increased maintenance costs and resource use.</p>
 <p><strong>Key considerations:</strong></p>
-<pre><code>- Requires a structured maintenance calendar based on manufacturer recommendations.
-
-- Can be optimized using historical failure data.
-
-- Works best when combined with predictive or condition-based maintenance.
-</code></pre>
+<ul>
+<li>Requires a structured maintenance calendar based on manufacturer recommendations.</li>
+<li>Can be optimized using historical failure data.</li>
+<li>Works best when combined with predictive or condition-based maintenance.</li>
+</ul>
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <h2>Predictive maintenance: using data to prevent equipment failures</h2>
 <p>Predictive maintenance leverages real-time sensor data and advanced analytics to detect early signs of equipment failure. By monitoring key indicators such as vibration patterns, temperature fluctuations, and electrical anomalies, organizations can predict failures before they occur and schedule maintenance accordingly. For example, in chemical plants, vibration analysis is used to monitor pumps and reactors, identifying misalignments or bearing wear before they lead to costly breakdowns.</p>
 <p>This approach significantly reduces downtime and maintenance costs by addressing issues before failure occurs. Additionally, predictive maintenance improves asset reliability and optimizes maintenance schedules. However, it requires investment in Industrial IoT (IIoT) sensors, data analytics, and expertise to interpret sensor readings accurately.</p>
 <p><strong>Key considerations:</strong></p>
-<pre><code>- Requires Industrial IoT (IIoT) sensors for continuous monitoring.
-
-- Machine learning algorithms can improve failure prediction accuracy.
-
-- Integration with a computerized maintenance management system (CMMS) enhances automation.
-</code></pre>
+<ul>
+<li>Requires Industrial IoT (IIoT) sensors for continuous monitoring.</li>
+<li>Machine learning algorithms can improve failure prediction accuracy.</li>
+<li>Integration with a computerized maintenance management system (CMMS) enhances automation.</li>
+</ul>
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <h2>Condition-based maintenance: real-time equipment monitoring</h2>
@@ -1386,87 +1387,81 @@
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <p>**Key considerations: **</p>
-<pre><code>- Implementing this strategy requires selecting the right monitoring technology, such as vibration analysis or electrical analysis tools. Advanced solutions like Samotics’ SAM4 system use motor current data to deliver early fault detection, making condition-based maintenance more accessible and scalable.
-</code></pre>
+<ul>
+<li>Implementing this strategy requires selecting the right monitoring technology, such as vibration analysis or electrical analysis tools. Advanced solutions like Samotics’ SAM4 system use motor current data to deliver early fault detection, making condition-based maintenance more accessible and scalable.</li>
+</ul>
 <h3>How Samotics' SAM4 system enhances condition-based maintenance</h3>
 <p><a href="/platform/sam4/">Samotics’ SAM4</a> system overcomes these limitations by using electrical signature analysis (ESA) to monitor assets remotely - without the need for additional sensors on the equipment itself.</p>
 <h4>What makes SAM4 different?</h4>
-<pre><code>- **Monitor from the motor control cabinet:** SAM4 uses motor current data, eliminating the need for vibration or temperature sensors on the asset in the field, making it more cost-effective and scalable.
-
-- **Earlier fault detection:** Provides earlier and more accurate failure detection compared to standard vibration analysis.
-
-- **Works in harsh environments:** Unlike traditional methods, SAM4 functions in submerged, high-heat, and inaccessible locations where standard sensors fail.
-</code></pre>
+<ul>
+<li>**Monitor from the motor control cabinet:** SAM4 uses motor current data, eliminating the need for vibration or temperature sensors on the asset in the field, making it more cost-effective and scalable.</li>
+<li>**Earlier fault detection:** Provides earlier and more accurate failure detection compared to standard vibration analysis.</li>
+<li>**Works in harsh environments:** Unlike traditional methods, SAM4 functions in submerged, high-heat, and inaccessible locations where standard sensors fail.</li>
+</ul>
 <p>By enabling AI-powered predictive insights, Samotics' SAM4 system allows industries to detect failures weeks or even months in advance, providing unparalleled asset reliability and ensuring maintenance is both efficient and cost-effective.</p>
 <h2>Reliability-centered maintenance (RCM): maximizing equipment efficiency</h2>
 <p>Reliability-centered maintenance is a structured approach that assesses the function, failure modes, and consequences of failure for each asset to determine the most effective maintenance strategy. By prioritizing maintenance efforts based on asset criticality, RCM enhances reliability and reduces long-term costs. Industries such as aviation and power generation use RCM to ensure the availability of critical systems.</p>
 <p>A major advantage of RCM is its ability to balance maintenance costs with operational reliability by focusing efforts where they are most needed. However, the process requires detailed failure analysis and a structured decision-making framework, making implementation resource-intensive and complex.</p>
 <p><strong>Key considerations:</strong></p>
-<pre><code>- Failure Mode and Effects Analysis (FMEA) can help assess asset criticality.
-
-- RCM should be continuously updated to reflect changing operational conditions.
-
-- Implementation may be complex and resource-intensive.
-</code></pre>
+<ul>
+<li>Failure Mode and Effects Analysis (FMEA) can help assess asset criticality.</li>
+<li>RCM should be continuously updated to reflect changing operational conditions.</li>
+<li>Implementation may be complex and resource-intensive.</li>
+</ul>
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <h2>Proactive maintenance: eliminating equipment failure causes</h2>
 <p>Proactive maintenance focuses on identifying and eliminating the root causes of equipment failure rather than simply addressing issues as they arise. This approach relies on detailed failure analysis and corrective actions to prevent recurring problems.</p>
 <p>For example, in steel manufacturing, addressing contamination issues in hydraulic systems can significantly reduce premature component failures. While proactive maintenance enhances long-term asset performance and reliability, it requires specialized expertise and may not be applicable to all equipment types.</p>
 <p><strong>Key considerations:</strong></p>
-<pre><code>- Root cause analysis (RCA) can help identify failure patterns.
-
-- Requires a long-term commitment to continuous improvement.
-
-- Works best when combined with predictive or condition-based maintenance.
-</code></pre>
+<ul>
+<li>Root cause analysis (RCA) can help identify failure patterns.</li>
+<li>Requires a long-term commitment to continuous improvement.</li>
+<li>Works best when combined with predictive or condition-based maintenance.</li>
+</ul>
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <h2>Total productive maintenance (TPM): engaging employees in maintenance</h2>
 <p>Total productive maintenance is a holistic approach that involves employees at all levels in maintaining and improving equipment performance. By fostering a culture of continuous improvement, organizations can reduce downtime and enhance operational efficiency.</p>
 <p>For example, some car manufacturers integrate TPM into their lean manufacturing principles, encouraging operators to take responsibility for routine maintenance tasks. However, TPM requires strong organizational commitment and employee training to be effective.</p>
 <p><strong>Key considerations:</strong></p>
-<pre><code>- Operators should be trained to conduct basic maintenance and inspections.
-
-- A culture of accountability and continuous improvement must be established.
-
-- TPM works best in organizations that prioritize employee engagement.
-</code></pre>
+<ul>
+<li>Operators should be trained to conduct basic maintenance and inspections.</li>
+<li>A culture of accountability and continuous improvement must be established.</li>
+<li>TPM works best in organizations that prioritize employee engagement.</li>
+</ul>
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <h2>Corrective maintenance: addressing issues before complete failure</h2>
 <p>Corrective maintenance is performed after detecting a fault but before total equipment failure. This approach helps mitigate operational disruptions while allowing for planned repairs.</p>
 <p>For instance, replacing a leaking hydraulic hose before it bursts can prevent contamination and equipment damage. While corrective maintenance can reduce unexpected failures, it still involves reactive elements and may not be sufficient for critical industrial systems.</p>
 <p><strong>Key considerations:</strong></p>
-<pre><code>- Personnel should be trained to recognize early failure signs.
-
-- Spare parts should be readily available to enable quick repairs.
-
-- Works best when integrated with predictive or condition-based maintenance.
-</code></pre>
+<ul>
+<li>Personnel should be trained to recognize early failure signs.</li>
+<li>Spare parts should be readily available to enable quick repairs.</li>
+<li>Works best when integrated with predictive or condition-based maintenance.</li>
+</ul>
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <h2>Risk-based maintenance (RBM): prioritizing maintenance efforts</h2>
 <p>Risk-based maintenance prioritizes maintenance tasks based on the probability and impact of equipment failure. This ensures that resources are allocated efficiently to critical assets, minimizing risk while optimizing costs.</p>
 <p>For example, in the energy sector, high-voltage transformers receive priority maintenance due to their significant impact on grid stability. However, RBM requires continuous risk assessments and performance monitoring.</p>
 <p><strong>Key considerations:</strong></p>
-<pre><code>- Risk matrices can help prioritize maintenance tasks.
-
-- Regular risk evaluations are necessary to keep strategies relevant.
-
-- Suitable for industries with a high emphasis on safety and reliability.
-</code></pre>
+<ul>
+<li>Risk matrices can help prioritize maintenance tasks.</li>
+<li>Regular risk evaluations are necessary to keep strategies relevant.</li>
+<li>Suitable for industries with a high emphasis on safety and reliability.</li>
+</ul>
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <h2>Prescriptive maintenance: AI-driven equipment optimization</h2>
 <p>Prescriptive maintenance extends predictive maintenance by using artificial intelligence (AI) to recommend specific maintenance actions. In wind farms, AI-powered systems adjust turbine blade angles based on weather conditions to reduce wear and extend lifespan. While this approach enhances decision-making and cost efficiency, it requires advanced system integration and high initial investment.</p>
 <p><strong>Key considerations:</strong></p>
-<pre><code>- AI models should be integrated with existing maintenance systems.
-
-- Data inputs must be continuously updated for accuracy.
-
-- Requires investment in advanced analytics and automation.
-</code></pre>
+<ul>
+<li>AI models should be integrated with existing maintenance systems.</li>
+<li>Data inputs must be continuously updated for accuracy.</li>
+<li>Requires investment in advanced analytics and automation.</li>
+</ul>
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 
 <h3>Why predictive maintenance is the future of industrial equipment management</h3>

@@ -989,9 +989,13 @@
 
 /* Hero image */
 .sam-post__hero-image {
+  max-width: 720px; margin: -48px auto 0; padding: 0 24px;
+  position: relative; z-index: 3;
+}
+.sam-post__hero-image img {
   width: 100%; max-height: 480px; object-fit: cover;
   border-radius: var(--radius);
-  margin-top: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 /* Content area */
@@ -1371,20 +1375,15 @@
 <h2>Fault classification</h2>
 <p>MCSA classification algorithms recognize patterns associated with specific failure mechanisms. For example, pump cavitation shows a distinctly different pattern from bearing damage or stator failures. Different failure mechanisms leave distinct marks on the current sine wave, which can already point the maintenance team to the probable cause of the motor fault.</p>
 <p>The major faults of electrical machines that can be identified by MCSA include:</p>
-<pre><code>- Air-gap eccentricity: a non-uniform air gap between the rotor and the stator
-
-- Broken rotor bars that can cause sparking and overheating
-
-- Bearing damage
-
-- Cavitation
-
-- Shorted turns in stator windings
-
-- Load effects
-
-- Equipment wear effects
-</code></pre>
+<ul>
+<li>Air-gap eccentricity: a non-uniform air gap between the rotor and the stator</li>
+<li>Broken rotor bars that can cause sparking and overheating</li>
+<li>Bearing damage</li>
+<li>Cavitation</li>
+<li>Shorted turns in stator windings</li>
+<li>Load effects</li>
+<li>Equipment wear effects</li>
+</ul>
 <p>The latest developments in artificial intelligence can leverage what is called “transfer learning” to apply failure patterns to different assets. This means that the fingerprint of stator failure in a large motor can be used to detect the same issue in a smaller system. In some cases it is even possible to use a failure mechanism pattern from one equipment type to identify the same issue in a different equipment category.</p>
 <h2>Conclusion</h2>
 <p>An MCSA-based condition monitoring tool for ESPs can reduce unplanned downtime, lower maintenance costs and help operators minimize safety and environmental risks. The latest generation of MCSA-based condition monitoring tools offer unique monitoring capabilities for ESPs because the sensor system is installed inside the MCC, rather than on the asset.</p>

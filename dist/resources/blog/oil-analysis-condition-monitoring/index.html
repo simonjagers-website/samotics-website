@@ -989,9 +989,13 @@
 
 /* Hero image */
 .sam-post__hero-image {
+  max-width: 720px; margin: -48px auto 0; padding: 0 24px;
+  position: relative; z-index: 3;
+}
+.sam-post__hero-image img {
   width: 100%; max-height: 480px; object-fit: cover;
   border-radius: var(--radius);
-  margin-top: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 /* Content area */
@@ -1345,16 +1349,13 @@
 <h2>Oil analysis sensor technology</h2>
 <p>Oil sensors come in many different types. Some measure the oil’s dielectric constant, which changes as the oil degrades or becomes contaminated. (A substance’s dielectric constant reflects its ability to keep an electric field from forming in it.) Other oil sensors measure optical characteristics and compare them to model conditions to assess the oil’s quality (a technique called Fourier transform infrared spectroscopy). Still others use magnetic fields to detect and classify metallic particles in the oil (a sign of wear). And still others again use x-ray emissions to detect the presence of foreign elements.</p>
 <p>Oil sensors need to be placed on or near the asset that is being monitored. For this reason, oil analysis sensors are not suited to monitoring assets that are:</p>
-<pre><code>- inaccessible (such as underground pumps)
-
-- remote or widely spaced (such as offshore wind turbines)
-
-- situated in hard-to-reach places
-
-- situated in hazardous environments, such as ATEX zones
-
-- situated in harsh conditions, such as hot strip steel mills where extreme temperatures can damage the sensors and the resultant flow of data
-</code></pre>
+<ul>
+<li>inaccessible (such as underground pumps)</li>
+<li>remote or widely spaced (such as offshore wind turbines)</li>
+<li>situated in hard-to-reach places</li>
+<li>situated in hazardous environments, such as ATEX zones</li>
+<li>situated in harsh conditions, such as hot strip steel mills where extreme temperatures can damage the sensors and the resultant flow of data</li>
+</ul>
 <h2>Oil analysis performance in fault detection</h2>
 <p>Below is a P-F curve demonstrating how oil analysis compares to other <a href="/resources/blog/what-is-condition-monitoring">condition monitoring</a> techniques when it comes to fault detection in advance of an asset breakdown. This is a P-F curve for bearing failure in a specific production system.</p>
 <p>For more information on the accuracy of oil analysis in comparison to other condition monitoring techniques, download the <a href="/resources/knowledge-base/condition-monitoring-comparison-guide">condition monitoring comparison guide</a>.</p>
@@ -1364,29 +1365,22 @@
 <h2>Using oil analysis for fault detection: general rules of thumb</h2>
 <p>Every production system is different, meaning there’s no one-size-fits-all condition monitoring technology. However, we can state some general rules of thumb when it comes to areas where oil analysis is strong or weak in fault detection.</p>
 <h3>Strong in monitoring:</h3>
-<pre><code>- in noisy or vibrating environments
-
-- one motor driving many assets
-
-- mechanical faults
-
-- assets driven by direct current (DC)
-
-- rotating machinery (with the caveat that not all assets have oil that can be analyzed)
-
-- very slowly rotating machinery
-</code></pre>
+<ul>
+<li>in noisy or vibrating environments</li>
+<li>one motor driving many assets</li>
+<li>mechanical faults</li>
+<li>assets driven by direct current (DC)</li>
+<li>rotating machinery (with the caveat that not all assets have oil that can be analyzed)</li>
+<li>very slowly rotating machinery</li>
+</ul>
 <h3>Weak (or not possible) in monitoring:</h3>
-<pre><code>- remote or inaccessible assets
-
-- assets located in ATEX zones or other harsh conditions
-
-- leaks
-
-- electrical faults
-
-- energy insights
-</code></pre>
+<ul>
+<li>remote or inaccessible assets</li>
+<li>assets located in ATEX zones or other harsh conditions</li>
+<li>leaks</li>
+<li>electrical faults</li>
+<li>energy insights</li>
+</ul>
   </article>
 
   <div class="sam-post__footer">

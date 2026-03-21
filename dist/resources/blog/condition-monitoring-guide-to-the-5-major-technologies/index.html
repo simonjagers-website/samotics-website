@@ -989,9 +989,13 @@
 
 /* Hero image */
 .sam-post__hero-image {
+  max-width: 720px; margin: -48px auto 0; padding: 0 24px;
+  position: relative; z-index: 3;
+}
+.sam-post__hero-image img {
   width: 100%; max-height: 480px; object-fit: cover;
   border-radius: var(--radius);
-  margin-top: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 /* Content area */
@@ -1365,16 +1369,13 @@
 <p>As we have been discussing so far, condition-based monitoring strategies are used today for critical machines whose failure would be costly. The rise of AI and the IIoT made modern condition monitoring systems a serious contender to more traditional maintenance strategies such as time-based maintenance as they can provide better and faster results at a lower cost. This continuous condition monitoring insight provides important benefits to maintenance and operations teams such as:</p>
 <h3>Avoiding unplanned downtime</h3>
 <p>The ability to plan downtime in an industrial environment is very beneficial because the true cost of unplanned downtime due to a failed machine is often wildly underestimated. Below are several cost factors which are routinely ignored:</p>
-<pre><code>- lost production output at a specified quality level
-
-- emergency costs to replace the asset (delivery, installation, etc)
-
-- depending on the severity and type of machine break, other machines may be damaged because of the equipment fault
-
-- the cost of needing to store and manage large numbers of spare parts in case of a breakdown
-
-- reputational damage (as with a sewage or chemical spill)
-</code></pre>
+<ul>
+<li>lost production output at a specified quality level</li>
+<li>emergency costs to replace the asset (delivery, installation, etc)</li>
+<li>depending on the severity and type of machine break, other machines may be damaged because of the equipment fault</li>
+<li>the cost of needing to store and manage large numbers of spare parts in case of a breakdown</li>
+<li>reputational damage (as with a sewage or chemical spill)</li>
+</ul>
 <p>By accurately signaling when a machine will break, condition monitoring not only enables teams to schedule inspections, repairs or replacements well before functional failure, but it also provides the means to prevent these crippling, unnecessary maintenance costs.</p>
 <h3>Improving employee safety</h3>
 <p>An unexpected machine failure can pose a major threat to employees’ safety, especially the ones who are working around it. By accurately signaling an impending failure, plant managers can ensure timely repairs and replacements, and help maintain a safe working environment.</p>
@@ -1385,53 +1386,46 @@
 <p>In order to accurately detect developing failures, condition monitoring requires sophisticated analysis on a reliable source of information-rich data. There are five major technologies, categorized by data source: lubricants, vibrations, stress waves, temperature and electrical signals.</p>
 <h3>Lubricants</h3>
 <p>Lubricants are indispensable for the proper working of bearings, gearboxes and hydraulic systems. There are several analytical techniques that are routinely used to analyze the quality and the composition of lubricants to reveal any presence of contamination or aging, in turn providing a diagnosis of the machine’s condition. Historically, these techniques have been performed offline, but recent advancements in sensor technology now make it possible to analyze lubricants in real time. Below are some examples of oil analysis techniques:</p>
-<pre><code>- Atomic emission spectroscopy
-
-- Fourier transform infrared spectroscopy
-
-- Karl Fischer titration
-
-- Ferrography
-
-- Online oil condition monitoring (sensor technology)
-</code></pre>
+<ul>
+<li>Atomic emission spectroscopy</li>
+<li>Fourier transform infrared spectroscopy</li>
+<li>Karl Fischer titration</li>
+<li>Ferrography</li>
+<li>Online oil condition monitoring (sensor technology)</li>
+</ul>
 <div class="sam-post__image"><img src="/assets/images/blog/visual_scalable-01.jpg" alt="Article image" loading="lazy"></div>
 
 <h3>Vibrations</h3>
 <p>As with the everyday use of the word “vibration,” all industrial equipment produces some vibrations. In condition monitoring, vibration analysis is a process for collecting, measuring and analyzing a machine’s vibration patterns for any signs of unusual changes that can point to a potentially developing failure. Vibration measurements can be collected either through a handheld device or various types of vibration sensors installed directly on the asset. Here, too, there are several analytical techniques that measure different vibration characteristics:</p>
-<pre><code>- Shock pulse monitoring
-
-- Kurtosis measurement
-
-- Cepstrum analysis
-
-- Discrete frequency monitoring
-</code></pre>
+<ul>
+<li>Shock pulse monitoring</li>
+<li>Kurtosis measurement</li>
+<li>Cepstrum analysis</li>
+<li>Discrete frequency monitoring</li>
+</ul>
 <h3>Stress waves</h3>
 <p>Some faults, such as cracks, leaks and fiber breakage, produce elastic waves (or stress waves) within the material that’s cracking, leaking or breaking. This is the basis for acoustic emission analysis. Acoustic stress waves are a particularly good data source to detect surface and near-surface cracks and pitting, delamination, and corrosion fatigue in concrete, metal and fiberglass. As with the other technologies above, the measurements are collected via sensor technology, typically piezoelectric transducers.</p>
 <p>Common techniques include:</p>
-<pre><code>- Airborne ultrasound analysis
-
-- Structure-borne ultrasound analysis
-</code></pre>
+<ul>
+<li>Airborne ultrasound analysis</li>
+<li>Structure-borne ultrasound analysis</li>
+</ul>
 <h3>Temperature</h3>
 <p>Failing machines, corroded electrical cables and other parts can lead to unusual temperature changes. In condition monitoring, infrared thermography is used to measure and analyze the radiation (heat) emitting from a machine or a whole area in order to determine its condition. For measurement, temperature sensors range from simple thermocouples that measure the temperature at one location to infrared cameras that can capture the heat map for a whole area.</p>
 <p>Here, too, there are several techniques, including:</p>
-<pre><code>- Comparative thermography
-
-- Absolute thermography
-
-- Lock-in thermography
-</code></pre>
+<ul>
+<li>Comparative thermography</li>
+<li>Absolute thermography</li>
+<li>Lock-in thermography</li>
+</ul>
 <h3>Electrical signals</h3>
 <p>There’s an array of electrical condition monitoring methods out there, which fall into two basic categories: electrical signature analysis (ESA), which is performed while the machine is operating normally (or “online”), and motor circuit analysis (MCA), which is performed while the machine is deenergized (“offline”). Where other types of condition monitoring techniques analyze vibrations, lubricants or temperature, ESA analyzes current and voltage to determine an equipment’s condition.</p>
 <p>Common techniques include:</p>
-<pre><code>- [Motor current signature analysis](/blog/motor-current-signature-analysis)
-
-- Motor voltage signature analysis
-
-- Power quality analysis
-</code></pre>
+<ul>
+<li>[Motor current signature analysis](/blog/motor-current-signature-analysis)</li>
+<li>Motor voltage signature analysis</li>
+<li>Power quality analysis</li>
+</ul>
 <h2>What to consider when picking a condition monitoring system</h2>
 <p>Each of the 5 data sources that we mentioned in the previous section carries different information about the condition of a machine, which means there’s no “best” choice across the board. In ideal conditions, maintenance teams would use combinations of various condition monitoring techniques for their critical machines to ensure maximum insight. In practice, the constraints of cost and accessibility will force them to choose. To find the best fit for each machine and application, it’s important to consider the following factors:</p>
 <h3>Know your critical machines</h3>
@@ -1455,12 +1449,11 @@
 <h3>Real-time performance and energy metrics</h3>
 <p>As we noted above, ESA systems can track a host of additional metrics that help you raise efficiency, lower costs and shrink your company’s environmental footprint. All these metrics require current and voltage information; they can’t be calculated from vibration, thermal, acoustic or oil-based data. SAM4 has developed the following advanced tools to provide you with performance and energy insights. (Not every ESA system will provide these, so be sure to compare features.)</p>
 <p>Three of SAM4’s advanced energy and performance features:</p>
-<pre><code>- a real-time pump monitor to help you steer a pump back to its best efficiency point, reducing cavitation and raising bearing and seal life. Over time, the data can tell you where redesign or replacement would score major cost and efficiency gains.
-
-- an energy monitor to track an asset’s operational efficiency. Over time, the data can tell you where redesign or replacement would score major cost and efficiency gains. (Read more in [our sustainable industry white paper](/kb/sam4-sustainable-industry).)
-
-- a power quality monitor to identify and solve supply-side issues such as voltage unbalance and harmonic distortion.
-</code></pre>
+<ul>
+<li>a real-time pump monitor to help you steer a pump back to its best efficiency point, reducing cavitation and raising bearing and seal life. Over time, the data can tell you where redesign or replacement would score major cost and efficiency gains.</li>
+<li>an energy monitor to track an asset’s operational efficiency. Over time, the data can tell you where redesign or replacement would score major cost and efficiency gains. (Read more in [our sustainable industry white paper](/kb/sam4-sustainable-industry).)</li>
+<li>a power quality monitor to identify and solve supply-side issues such as voltage unbalance and harmonic distortion.</li>
+</ul>
 <h3>Find out more</h3>
 <p>If electrical signature analysis is among your selection of condition monitoring technologies, we’d be happy to tell you more about our solution. Please contact us <a href="https://www.samotics.com/demo">to book a no-obligation demo at your convenience</a>.</p>
   </article>

@@ -989,9 +989,13 @@
 
 /* Hero image */
 .sam-post__hero-image {
+  max-width: 720px; margin: -48px auto 0; padding: 0 24px;
+  position: relative; z-index: 3;
+}
+.sam-post__hero-image img {
   width: 100%; max-height: 480px; object-fit: cover;
   border-radius: var(--radius);
-  margin-top: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 /* Content area */
@@ -1344,31 +1348,28 @@
 <p>With our latest update, SAM4 now supports calibrated pump curves based on telemetry - giving you a much clearer picture of pump performance and efficiency.</p>
 <h2>📈 Real-world performance, not just specs</h2>
 <p>SAM4 now lets you:</p>
-<pre><code>- View actual pump head and flow performance based on historical telemetry
-
-- Toggle between OEM and calibrated curves directly in the dashboard
-
-- Get more accurate calculations of the Best Efficiency Point (BEP)
-</code></pre>
+<ul>
+<li>View actual pump head and flow performance based on historical telemetry</li>
+<li>Toggle between OEM and calibrated curves directly in the dashboard</li>
+<li>Get more accurate calculations of the Best Efficiency Point (BEP)</li>
+</ul>
 <p>This helps operations and energy teams:</p>
-<pre><code>- Validate how well a pump is performing relative to real-world conditions
-
-- Spot pumps that are chronically off-curve and wasting energy
-
-- Build stronger business cases for replacement or reconfiguration
-</code></pre>
+<ul>
+<li>Validate how well a pump is performing relative to real-world conditions</li>
+<li>Spot pumps that are chronically off-curve and wasting energy</li>
+<li>Build stronger business cases for replacement or reconfiguration</li>
+</ul>
 <p>“OEM curves are a good starting point - but they’re not the full picture. This update gives our customers a real, data-backed view of pump performance,” said Gianlucca Frasso (Lead Energy Efficiency Analysis at Samotics).</p>
-<p>.</p>
+
 <div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
 <p>OEM documentation pump curves show what’s expected. Calibrated pump curves show what’s really happening. By comparing the two, SAM4 reveals how pumps actually perform in the field - turning assumptions into actionable insights.</p>
 <h2>⚙️ How it works</h2>
 <p>When telemetry is available (head &amp; flow), SAM4 now overlays a calibrated curve that reflects observed pump behavior. This allows the system to:</p>
-<pre><code>- Detect shifts in pump performance over time
-
-- Deliver more accurate energy insights (e.g., kWh/m³, BEP deviation)
-
-- Improve prioritization of energy-saving recommendations
-</code></pre>
+<ul>
+<li>Detect shifts in pump performance over time</li>
+<li>Deliver more accurate energy insights (e.g., kWh/m³, BEP deviation)</li>
+<li>Improve prioritization of energy-saving recommendations</li>
+</ul>
 <p>For customers without complete telemetry, this work lays the foundation for future estimation models using proxy data.</p>
 <h2>🚀 Available now</h2>
 <p>The calibrated pump curve feature is now live for supported pumps across all customers. It’s already improving the accuracy of energy analyses in major water utilities.<br />
