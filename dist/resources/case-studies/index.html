@@ -43,7 +43,7 @@
       background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
       z-index: 1;
     }
-    .sam-cs-listing > *:not(.sam-hero-overlay) { position: relative; z-index: 2; }
+    .sam-cs-listing__hero > *:not(.sam-hero-overlay) { position: relative; z-index: 2; }
   </style>
   <style>
 :root {
@@ -114,7 +114,7 @@
 .sam-skip-link:focus { top: 8px; transform: none; }
 .sam-header { position: sticky; top: 0; z-index: 1000; width: 100%; height: var(--sam-header-h); background: var(--sam-header-bg); transition: height var(--sam-transition), box-shadow var(--sam-transition); }
 .sam-header.is-scrolled { height: var(--sam-header-h-compact); box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
-.sam-header__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px; }
+.sam-header__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
 .sam-header__logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
 .sam-logo { height: auto; transition: transform 200ms ease-out; }
 .sam-logo--white {  }
@@ -408,6 +408,7 @@
   padding: 96px 32px 48px;
 }
 .sam-cs-listing__hero-inner {
+  position: relative; z-index: 2;
   max-width: 1584px; margin: 0 auto;
 }
 .sam-cs-listing__overline {
