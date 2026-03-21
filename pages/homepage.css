@@ -277,13 +277,28 @@
   padding-top: var(--sp-05);
   border-top: 1px solid rgba(255,255,255,0.15);
 }
-.sam-hero__logo-item {
-  /* Replace with <img> for real logos */
-  font-family: var(--sam-font);
-  font-weight: 500;
-  font-size: 0.8125rem;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.02em;
+.sam-hero__logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity var(--ease);
+}
+.sam-hero__logo-link:hover {
+  opacity: 0.85;
+}
+.sam-hero__logo-link:focus-visible {
+  outline: 2px solid var(--sam-orange);
+  outline-offset: 4px;
+}
+.sam-hero__logo-img {
+  height: 24px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.55;
+  transition: opacity var(--ease);
+}
+.sam-hero__logo-link:hover .sam-hero__logo-img {
+  opacity: 0.9;
 }
 
 
@@ -668,15 +683,29 @@
   gap: var(--sp-07);
   align-items: center;
 }
-.sam-trust__logo-item {
-  /* Placeholder: replace with <img> tags for real logos */
-  font-family: var(--sam-font);
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: var(--sam-space-cadet);
-  padding: var(--sp-04) var(--sp-06);
-  border: 1px solid var(--sam-border-light);
-  background: var(--sam-seashell);
+.sam-trust__logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity var(--ease);
+}
+.sam-trust__logo-link:hover {
+  opacity: 0.85;
+}
+.sam-trust__logo-link:focus-visible {
+  outline: 2px solid var(--sam-space-cadet);
+  outline-offset: 4px;
+}
+.sam-trust__logo-img {
+  height: 32px;
+  width: auto;
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: opacity var(--ease), filter var(--ease);
+}
+.sam-trust__logo-link:hover .sam-trust__logo-img {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
 
