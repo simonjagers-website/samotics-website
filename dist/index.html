@@ -21,7 +21,7 @@
       --sam-seashell: #F0F8F8;
       --sam-black: #111111;
       --sam-comet: #6B6B7F;
-      --sam-border-light: #E8E4E0;
+      --sam-border-light: #E5E7EB;
       --sam-header-bg: #1F1F33;
       --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --sam-header-h: 80px;
@@ -56,7 +56,7 @@
     .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
     .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
     .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
-    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 0; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
     .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
     .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
     .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
@@ -78,7 +78,7 @@
     .sam-mobile-nav__sub a { display: block; padding: 12px 0; font: 400 15px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; }
     .sam-mobile-nav__sub a:hover { color: var(--sam-orange); }
     .sam-mobile-nav__cta-wrap { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--sam-border-light); }
-    .sam-mobile-nav__cta { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px 0; background: var(--sam-orange); color: var(--sam-white); font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 0; transition: background-color var(--sam-transition); }
+    .sam-mobile-nav__cta { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px 0; background: var(--sam-orange); color: var(--sam-white); font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 4px; transition: background-color var(--sam-transition); }
     .sam-mobile-nav__cta:hover { background: var(--sam-orange-dark); }
 
     /* ========================================
@@ -260,7 +260,7 @@
        WHITE ZONE: PERSONAS
        ======================================== */
 
-    .white-zone { background: var(--white); }
+    .white-zone { background: var(--seashell); }
 
     /* -- Personas -- */
     .personas__header { margin-bottom: var(--space-6); }
@@ -283,7 +283,7 @@
        Breaks the white monotony, creates rhythm
        ======================================== */
 
-    .method-zone { background: var(--seashell); }
+    .method-zone { background: var(--white); }
 
     .method__header { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: start; }
     .method__intro h2 { margin-bottom: var(--space-6); }
@@ -358,7 +358,7 @@
        SEASHELL ZONE B: SOCIAL PROOF + KNOWLEDGE BASE
        ======================================== */
 
-    .proof-zone { background: var(--seashell); }
+    .proof-zone { background: var(--white); }
     .knowledge-zone { background: var(--white); }
 
     /* -- Proof Stats: 6-column with payback stat included -- */
@@ -385,7 +385,7 @@
     .stats-zone .stat__number { color: var(--space-cadet); }
     .stats-zone .stat__label { color: var(--comet); }
     .stats-zone .stat__source { color: var(--comet); opacity: 0.6; }
-    .stats-zone .hero__link a { color: var(--blue); }
+    .stats-zone .hero__link a { color: var(--blue-600); }
     .proof__logos { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; padding: var(--space-4) 0; }
     .proof__logo { font-size: 14px; font-weight: 600; color: var(--comet); opacity: 0.5; transition: opacity var(--motion-normal) ease-out; white-space: nowrap; }
     .proof__logo:hover { opacity: 1; }
@@ -413,9 +413,7 @@
       transition: box-shadow var(--motion-normal) ease-out;
     }
     .knowledge-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
-    .knowledge-card__accent { height: 4px; background: var(--space-cadet); }
-    .knowledge-card__accent--blue { background: var(--blue-600); }
-    .knowledge-card__accent--orange { background: var(--orange); }
+    /* Accent borders removed — design system rule: no card accent borders */
     .knowledge-card__body { padding: var(--space-6) var(--space-8) var(--space-8); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
     .knowledge-card__tag { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--comet); padding: 4px 10px; background: var(--seashell); border-radius: var(--radius-full); display: inline-block; width: fit-content; }
     .knowledge-card__title { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
@@ -685,8 +683,8 @@
       <div class="hero__grid">
         <div class="hero__text">
           <p class="overline hero__overline">Inaccessible Asset Monitoring</p>
-          <h1 class="hero__headline">Your most critical assets are the ones no sensor can reach. They're already telling you what's wrong.</h1>
-          <p class="hero__subline">SAM4 reads electrical signatures at the motor control cabinet and monitors every AC motor 24/7. No sensors on the machine. No access to the asset.</p>
+          <h1 class="hero__headline">Every motor tells you what's wrong.</h1>
+          <p class="hero__subline">30-40% of critical rotating assets have no condition monitoring. SAM4 reads their electrical signatures at the motor control cabinet. No sensors on the machine. No access to the asset. 24/7.</p>
           <div class="hero__actions">
             <a href="/contact" class="btn btn--primary">Request a Demo</a>
             <a href="/technology/how-it-works" class="btn btn--ghost">See How ESA Works</a>
@@ -731,7 +729,7 @@
     <div class="container">
       <div class="hero__stats-heading">
         <h3>The cost of what you can't see</h3>
-        <p class="hero__stats-intro">Most plants rely on vibration sensors and manual rounds. That leaves thousands of critical assets — submerged pumps, ATEX motors, hard-to-reach drives — completely unmonitored. The numbers below show what that blind spot costs.</p>
+        <p class="hero__stats-intro">Most plants rely on vibration sensors and manual rounds. That leaves thousands of critical assets completely unmonitored: submerged pumps, ATEX motors, hard-to-reach drives. The numbers below show what that blind spot costs.</p>
       </div>
       <div class="hero__stats">
         <div class="stat">
@@ -740,8 +738,8 @@
           <div class="stat__source">Industry data</div>
         </div>
         <div class="stat">
-          <div class="stat__number data-number">&pound;390K</div>
-          <div class="stat__label">potential fine avoided from a single detection</div>
+          <div class="stat__number data-number">&euro;150K</div>
+          <div class="stat__label">potential fines avoided from a single detection</div>
           <div class="stat__source">Yorkshire Water</div>
         </div>
         <div class="stat">
@@ -763,43 +761,9 @@
 
 
   <!-- ============================================
-       WHITE ZONE: PERSONAS
-       Belief shift: "This is built for people like me"
-       ============================================ -->
-  <section class="white-zone section" aria-label="Personas">
-    <div class="container">
-      <div class="personas__header">
-        <h2>Built for the people who keep plants running</h2>
-        <p class="body personas__subtitle">SAM4 serves different roles in the maintenance and reliability chain. Find your question.</p>
-      </div>
-      <div class="personas__grid">
-        <a href="/platform/sam4" class="persona-card">
-          <span class="persona-card__tag">Reliability Manager</span>
-          <div class="persona-card__question">Does this solve a problem I can't solve today?</div>
-          <div class="persona-card__desc">You know 30-40% of your assets are blind. Vibration can't reach submerged pumps or ATEX zones. ESA monitors from the MCC, covering the assets sensors can't.</div>
-          <span class="persona-card__link">See the technology &rarr;</span>
-        </a>
-        <a href="/proof" class="persona-card">
-          <span class="persona-card__tag">Operations Director</span>
-          <div class="persona-card__question">What's the financial impact and how fast?</div>
-          <div class="persona-card__desc">Yorkshire Water: 70,000 inspection trips replaced. DuPont: 40% reduction in equipment downtime. Average payback: 8 months.</div>
-          <span class="persona-card__link">See the results &rarr;</span>
-        </a>
-        <a href="/platform/how-it-installs" class="persona-card">
-          <span class="persona-card__tag">Maintenance Engineer</span>
-          <div class="persona-card__question">Will this make my job easier or harder?</div>
-          <div class="persona-card__desc">Install in under 30 minutes per asset. No shutdown. Actionable alerts with severity scoring and recommended actions. Integrates with SAP PM and IBM Maximo.</div>
-          <span class="persona-card__link">See how it installs &rarr;</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================
-       SEASHELL ZONE A: METHOD + ESA STEPS + VALUE PROPS
+       WHITE ZONE: METHOD + ESA STEPS
        Belief shift: "There's a way to close it"
-       Background shift breaks the white monotony.
+       The guide enters — method before personas.
        ============================================ -->
   <section class="method-zone section" aria-label="How ESA works">
     <div class="container">
@@ -846,6 +810,40 @@
         <a href="/technology/esa" class="text-link">Learn the technical detail behind ESA &rarr;</a>
       </div>
 
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       WHITE ZONE: PERSONAS
+       Belief shift: "This is built for people like me"
+       ============================================ -->
+  <section class="white-zone section" aria-label="Personas">
+    <div class="container">
+      <div class="personas__header">
+        <h2>Built for the people who keep plants running</h2>
+        <p class="body personas__subtitle">SAM4 serves different roles in the maintenance and reliability chain. Find your question.</p>
+      </div>
+      <div class="personas__grid">
+        <a href="/platform/sam4" class="persona-card">
+          <span class="persona-card__tag">Reliability Manager</span>
+          <div class="persona-card__question">Does this solve a problem I can't solve today?</div>
+          <div class="persona-card__desc">You know 30-40% of your assets are blind. Vibration can't reach submerged pumps or ATEX zones. ESA monitors from the MCC, covering the assets sensors can't.</div>
+          <span class="persona-card__link">See the technology &rarr;</span>
+        </a>
+        <a href="/proof" class="persona-card">
+          <span class="persona-card__tag">Operations Director</span>
+          <div class="persona-card__question">What's the financial impact and how fast?</div>
+          <div class="persona-card__desc">Yorkshire Water: 70,000 inspection trips replaced. DuPont: 40% reduction in equipment downtime. Average payback: 8 months.</div>
+          <span class="persona-card__link">See the results &rarr;</span>
+        </a>
+        <a href="/platform/how-it-installs" class="persona-card">
+          <span class="persona-card__tag">Maintenance Engineer</span>
+          <div class="persona-card__question">Will this make my job easier or harder?</div>
+          <div class="persona-card__desc">Install in under 30 minutes per asset. No shutdown. Actionable alerts with severity scoring and recommended actions. Integrates with SAP PM and IBM Maximo.</div>
+          <span class="persona-card__link">See how it installs &rarr;</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -925,7 +923,7 @@
           </div>
         </a>
         <a href="/platform/what-we-monitor" class="asset-card">
-          <div class="asset-card__icon-bar" style="background: var(--orange);">
+          <div class="asset-card__icon-bar">
             <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="12"/><path d="M12 18h12M18 12v12"/></svg>
           </div>
           <div class="asset-card__body">
@@ -980,11 +978,11 @@
       <div class="proof__stats--bottom proof__stats">
         <div class="proof-stat">
           <div class="proof-stat__number data-number">90.8%</div>
-          <div class="proof-stat__label">Fault detection rate</div>
+          <div class="proof-stat__label">Fault detection rate <span style="display:block;font-size:11px;opacity:0.7;margin-top:4px;">1,874 resolved incidents, Jan 2024&ndash;Feb 2026</span></div>
         </div>
         <div class="proof-stat">
           <div class="proof-stat__number data-number">0.32%</div>
-          <div class="proof-stat__label">False positive rate</div>
+          <div class="proof-stat__label">False positive rate <span style="display:block;font-size:11px;opacity:0.7;margin-top:4px;">Zero false anomalies across 1,874 incidents</span></div>
         </div>
         <div class="proof-stat">
           <div class="proof-stat__number data-number">8 mo.</div>
@@ -1016,7 +1014,6 @@
         <h2>Go deeper on the technology</h2>
         <div class="knowledge__grid">
           <a href="/technology/esa" class="knowledge-card">
-            <div class="knowledge-card__accent"></div>
             <div class="knowledge-card__body">
               <span class="knowledge-card__tag">Technology</span>
               <div class="knowledge-card__title">How ESA detects faults</div>
@@ -1025,7 +1022,6 @@
             </div>
           </a>
           <a href="/technology/esa-vs-vibration" class="knowledge-card">
-            <div class="knowledge-card__accent knowledge-card__accent--blue"></div>
             <div class="knowledge-card__body">
               <span class="knowledge-card__tag">Comparison</span>
               <div class="knowledge-card__title">ESA and vibration: how they work together</div>
@@ -1034,7 +1030,6 @@
             </div>
           </a>
           <a href="/technology/how-it-works" class="knowledge-card">
-            <div class="knowledge-card__accent knowledge-card__accent--orange"></div>
             <div class="knowledge-card__body">
               <span class="knowledge-card__tag">Architecture</span>
               <div class="knowledge-card__title">What is Electrical Signature Analysis?</div>
