@@ -417,7 +417,9 @@
     .hero__logo-link:hover .hero__logo-img { opacity: 0.9; }
 
     /* -- Logo strip -- */
-    .logo-strip-zone { background: var(--white); padding: var(--space-10) 0; }
+    .logo-strip-zone { background: var(--white); padding: var(--space-4) 0; }
+    .logo-strip-zone .proof__logos { justify-content: center; gap: var(--space-8); opacity: 0.7; }
+    .logo-strip-zone .proof__logo-img { height: 24px; }
     .stats-zone { background: var(--seashell); }
     .stats-zone .hero__stats-heading { margin-top: 0; border-top: none; padding-top: 0; }
     .stats-zone .hero__stats-heading h3 { color: var(--space-cadet); }
@@ -722,12 +724,11 @@
     <div class="hero__bg"></div>
     <div class="container">
       <div class="hero__content">
-        <p class="overline hero__overline">Inaccessible Asset Monitoring</p>
-        <h1 class="hero__headline">Every motor tells you what's wrong.</h1>
-        <p class="hero__subline">30-40% of critical rotating assets have no condition monitoring. SAM4 reads their electrical signatures at the motor control cabinet. No sensors on the machine. No access to the asset. 24/7.</p>
+        <h1 class="hero__headline">Monitor the assets your sensors can't reach.</h1>
+        <p class="hero__subline">SAM4 reads the current and voltage signature at the motor control cabinet. No sensors on the machine. No access to the asset. 24/7 monitoring for the 30-40% of critical assets that have no condition data today.</p>
         <div class="hero__actions">
-          <a href="/contact" class="btn btn--primary">Request a Demo</a>
-          <a href="/technology/how-it-works" class="btn btn--ghost">See How ESA Works</a>
+          <a href="/contact?intent=demo" class="btn btn--primary">Request a Demo</a>
+          <a href="/technology/esa" class="btn btn--ghost">See How ESA Works</a>
         </div>
       </div>
     </div>
@@ -737,7 +738,7 @@
   <!-- ============================================
        WHITE: LOGO STRIP
        ============================================ -->
-  <section class="logo-strip-zone section" aria-label="Customer logos">
+  <section class="logo-strip-zone" aria-label="Customer logos">
     <div class="container">
       <div class="proof__logos" aria-label="Customer logos">
         <a href="/industries/water" class="proof__logo-link"><img src="/assets/images/logos/yorkshire-water.png" alt="Yorkshire Water" class="proof__logo-img" loading="lazy"></a>
@@ -764,7 +765,7 @@
     <div class="container">
       <div class="hero__stats-heading">
         <h3>The cost of what you can't see</h3>
-        <p class="hero__stats-intro">Most plants rely on vibration sensors and manual rounds. That leaves thousands of critical assets completely unmonitored: submerged pumps, ATEX motors, hard-to-reach drives. The numbers below show what that blind spot costs.</p>
+        <p class="hero__stats-intro">Most plants rely on vibration sensors and manual rounds. That leaves thousands of critical assets completely unmonitored: submerged pumps, ATEX motors, hard-to-reach drives.</p>
       </div>
       <div class="hero__stats">
         <div class="stat">
@@ -773,8 +774,8 @@
           <div class="stat__source">Industry data</div>
         </div>
         <div class="stat">
-          <div class="stat__number data-number">&euro;150K</div>
-          <div class="stat__label">potential fines avoided from a single detection</div>
+          <div class="stat__number data-number">&pound;390K</div>
+          <div class="stat__label">potential fine avoided from a single detection</div>
           <div class="stat__source">Yorkshire Water</div>
         </div>
         <div class="stat">
@@ -796,16 +797,28 @@
 
 
   <!-- ============================================
+       WHITE: WHY THE BLIND SPOT PERSISTS
+       Belief shift: "Current solutions can't fix this"
+       ============================================ -->
+  <section class="section" style="background: var(--white);" aria-label="Why the monitoring gap persists">
+    <div class="container">
+      <h2>The monitoring gap isn't a priority problem. It's a physics problem.</h2>
+      <p class="body" style="margin-top: var(--space-6); max-width: 720px;">Vibration sensors need physical access to the machine. For submerged pumps, enclosed drives, and hazardous-zone motors, that access doesn't exist. Per-asset sensor installation means shutdowns, scaffolding, and confined space entry. The economics don't scale. So plants monitor their most accessible assets and leave the rest to manual rounds and run-to-failure. The assets with the highest consequence of failure carry the least data.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================
        WHITE ZONE: METHOD + ESA STEPS
        Belief shift: "There's a way to close it"
-       The guide enters — method before personas.
+       The guide enters.
        ============================================ -->
   <section class="method-zone section" aria-label="How ESA works">
     <div class="container">
 
       <div class="method__intro-block">
         <p class="overline" style="margin-bottom: var(--space-3);">The Technology</p>
-        <h2>How ESA works</h2>
+        <h2>Monitor from the cabinet. Not the machine.</h2>
         <p class="method__body" style="margin-top: var(--space-6); max-width: 720px;">Every AC motor draws a unique current and voltage signature. When a bearing degrades, a coupling misaligns, or cavitation develops, the signature changes. SAM4 captures these changes at the motor control cabinet and diagnoses the fault before failure.</p>
       </div>
 
@@ -849,43 +862,9 @@
       </div>
 
       <div class="method__link">
-        <a href="/technology/esa" class="text-link">Learn the technical detail behind ESA &rarr;</a>
+        <a href="/technology/esa" class="text-link">How ESA detects faults &rarr;</a>
       </div>
 
-    </div>
-  </section>
-
-
-  <!-- ============================================
-       WHITE ZONE: PERSONAS
-       Belief shift: "This is built for people like me"
-       ============================================ -->
-  <section class="white-zone section" aria-label="Personas">
-    <div class="container">
-      <div class="personas__header">
-        <h2>Built for the people who keep plants running</h2>
-        <p class="body personas__subtitle">SAM4 serves different roles in the maintenance and reliability chain. Find your question.</p>
-      </div>
-      <div class="personas__grid">
-        <a href="/platform/sam4" class="persona-card">
-          <span class="persona-card__tag">Reliability Manager</span>
-          <div class="persona-card__question">Does this solve a problem I can't solve today?</div>
-          <div class="persona-card__desc">You know 30-40% of your assets are blind. Vibration can't reach submerged pumps or ATEX zones. ESA monitors from the MCC, covering the assets sensors can't.</div>
-          <span class="persona-card__link">See the technology &rarr;</span>
-        </a>
-        <a href="/proof" class="persona-card">
-          <span class="persona-card__tag">Operations Director</span>
-          <div class="persona-card__question">What's the financial impact and how fast?</div>
-          <div class="persona-card__desc">Yorkshire Water: 70,000 inspection trips replaced. DuPont: 40% reduction in equipment downtime. Average payback: 8 months.</div>
-          <span class="persona-card__link">See the results &rarr;</span>
-        </a>
-        <a href="/platform/how-it-installs" class="persona-card">
-          <span class="persona-card__tag">Maintenance Engineer</span>
-          <div class="persona-card__question">Will this make my job easier or harder?</div>
-          <div class="persona-card__desc">Install in under 30 minutes per asset. No shutdown. Actionable alerts with severity scoring and recommended actions. Integrates with SAP PM and IBM Maximo.</div>
-          <span class="persona-card__link">See how it installs &rarr;</span>
-        </a>
-      </div>
     </div>
   </section>
 
@@ -921,47 +900,9 @@
           <div class="asset-card__body">
             <div class="asset-card__title">Fans &amp; Blowers</div>
             <div class="asset-card__detects">Bearing failure &middot; Blade imbalance &middot; Blade erosion</div>
-            <div class="asset-card__proof">100% detection accuracy at Schiphol Airport. 9 out of 9 failures caught — including faults vibration monitoring missed.</div>
+            <div class="asset-card__proof">9 out of 9 failures detected at Schiphol Airport. Including faults vibration monitoring missed.</div>
             <div class="asset-card__source">Schiphol Airport</div>
             <span class="asset-card__link">See fan detections &rarr;</span>
-          </div>
-        </a>
-        <a href="/platform/what-we-monitor" class="asset-card">
-          <div class="asset-card__icon-bar">
-            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="14" width="28" height="8" rx="2"/><circle cx="10" cy="22" r="3"/><circle cx="26" cy="22" r="3"/></svg>
-          </div>
-          <div class="asset-card__body">
-            <div class="asset-card__title">Conveyors</div>
-            <div class="asset-card__detects">Gearbox degradation &middot; Belt slip &middot; Drive-end bearing failure</div>
-            <div class="asset-card__proof">Included in 90.8% fault detection rate across 1,874 resolved incidents. Gearbox tooth defects detected via gear mesh frequency analysis.</div>
-            <div class="asset-card__source">Metals &amp; mining deployments</div>
-            <span class="asset-card__link">See conveyor detections &rarr;</span>
-          </div>
-        </a>
-      </div>
-      <div class="asset-grid asset-grid--bottom">
-        <a href="/platform/what-we-monitor" class="asset-card">
-          <div class="asset-card__icon-bar">
-            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4v28"/><circle cx="18" cy="28" r="5"/><path d="M13 10h10M11 16h14"/></svg>
-          </div>
-          <div class="asset-card__body">
-            <div class="asset-card__title">ESPs</div>
-            <div class="asset-card__detects">Bearing failure &middot; Shaft wear &middot; Gas locking &middot; Electrical insulation breakdown</div>
-            <div class="asset-card__proof">Electrical Submersible Pumps operate kilometres underground with zero physical access. ESA monitors the full drivetrain from the surface switchgear.</div>
-            <div class="asset-card__source">Oil &amp; Gas deployments</div>
-            <span class="asset-card__link">See ESP detections &rarr;</span>
-          </div>
-        </a>
-        <a href="/platform/what-we-monitor" class="asset-card">
-          <div class="asset-card__icon-bar">
-            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 28L28 8"/><path d="M10 22c3-1 5-3 6-6M14 26c3-1 7-4 10-10M18 30c4-2 8-6 12-12"/></svg>
-          </div>
-          <div class="asset-card__body">
-            <div class="asset-card__title">Archimedes Screws</div>
-            <div class="asset-card__detects">Bearing failure &middot; Gearbox degradation &middot; Drive misalignment</div>
-            <div class="asset-card__proof">Slow-speed, high-torque drives in inlet works and storm tanks. Bearing and gearbox faults detected months before failure on assets with no vibration access.</div>
-            <div class="asset-card__source">Water &amp; Wastewater deployments</div>
-            <span class="asset-card__link">See screw detections &rarr;</span>
           </div>
         </a>
         <a href="/platform/what-we-monitor" class="asset-card">
@@ -970,8 +911,8 @@
           </div>
           <div class="asset-card__body">
             <div class="asset-card__title">More assets</div>
-            <div class="asset-card__detects">Crushers &middot; Mixers &middot; Agitators &middot; Cooling towers &middot; Compressors &middot; Any AC motor</div>
-            <div class="asset-card__proof">Every AC-motor-driven asset is a candidate for ESA monitoring. See the full detection matrix by asset type and fault mode.</div>
+            <div class="asset-card__detects">Conveyors &middot; ESPs &middot; Archimedes screws &middot; Crushers &middot; Mixers &middot; Agitators &middot; Compressors</div>
+            <div class="asset-card__proof">Any AC-motor-driven asset is a candidate for ESA monitoring. See the full detection matrix by asset type and fault mode.</div>
             <div class="asset-card__source">Full detection coverage</div>
             <span class="asset-card__link">See all monitored assets &rarr;</span>
           </div>
@@ -1075,55 +1016,35 @@
         </div>
       </div>
 
+      <!-- Mini case proof lines -->
+      <div style="display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-12); max-width: 720px;">
+        <p style="font-size: 15px; color: var(--space-cadet); line-height: 1.6; margin: 0;"><strong>Yorkshire Water:</strong> 70,000 inspection trips replaced per year.</p>
+        <p style="font-size: 15px; color: var(--space-cadet); line-height: 1.6; margin: 0;"><strong>ArcelorMittal:</strong> 27 failures detected. 31 hours of unplanned downtime prevented.</p>
+        <p style="font-size: 15px; color: var(--space-cadet); line-height: 1.6; margin: 0;"><strong>DuPont:</strong> 40% reduction in equipment downtime across 3 European sites.</p>
+      </div>
+
       <!-- Featured quote (C12) -->
       <div class="proof__quote">
-        <blockquote>"At first I was a bit sceptical about SAM4's ability to detect failures by analysing electrical waveforms, but the results speak for themselves: it just works."</blockquote>
-        <cite>DuPont</cite>
+        <blockquote>"SAM4 detected possible bearing damage to the gearbox motor, which we had not picked up through our vibration monitoring."</blockquote>
+        <cite>Schiphol Airport</cite>
+      </div>
+
+      <!-- Customer logos -->
+      <div class="proof__logos" style="margin-top: var(--space-10);" aria-label="Customer logos">
+        <a href="/industries/water" class="proof__logo-link"><img src="/assets/images/logos/yorkshire-water.png" alt="Yorkshire Water" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/metals-mining" class="proof__logo-link"><img src="/assets/images/logos/arcelormittal.png" alt="ArcelorMittal" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/chemicals" class="proof__logo-link"><img src="/assets/images/logos/dupont.png" alt="DuPont" class="proof__logo-img" loading="lazy"></a>
+        <a href="/proof/schiphol" class="proof__logo-link"><img src="/assets/images/logos/schiphol.png" alt="Schiphol Airport" class="proof__logo-img" loading="lazy"></a>
+        <a href="/proof/nyrstar" class="proof__logo-link"><img src="/assets/images/logos/nyrstar.png" alt="Nyrstar" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/metals-mining" class="proof__logo-link"><img src="/assets/images/logos/nucor.png" alt="Nucor" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/oil-gas" class="proof__logo-link"><img src="/assets/images/logos/totalenergies.png" alt="TotalEnergies" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/metals-mining" class="proof__logo-link"><img src="/assets/images/logos/tata.png" alt="Tata Steel" class="proof__logo-img" loading="lazy"></a>
       </div>
 
       <div class="proof__link">
         <a href="/proof" class="text-link">See all customer results &rarr;</a>
       </div>
 
-    </div>
-  </section>
-
-
-  <!-- ============================================
-       WHITE: KNOWLEDGE BASE
-       ============================================ -->
-  <section class="knowledge-zone section" aria-label="Knowledge base">
-    <div class="container">
-      <div class="knowledge">
-        <p class="overline knowledge__overline">From the knowledge base</p>
-        <h2>Go deeper on the technology</h2>
-        <div class="knowledge__grid">
-          <a href="/technology/esa" class="knowledge-card">
-            <div class="knowledge-card__body">
-              <span class="knowledge-card__tag">Technology</span>
-              <div class="knowledge-card__title">How ESA detects faults</div>
-              <div class="knowledge-card__desc">The physics behind Electrical Signature Analysis. How current and voltage patterns reveal bearing wear, cavitation, and misalignment.</div>
-              <span class="knowledge-card__link">Read more &rarr;</span>
-            </div>
-          </a>
-          <a href="/technology/esa-vs-vibration" class="knowledge-card">
-            <div class="knowledge-card__body">
-              <span class="knowledge-card__tag">Comparison</span>
-              <div class="knowledge-card__title">ESA and vibration: how they work together</div>
-              <div class="knowledge-card__desc">A technical comparison of detection methods. Where each excels, where each has limits, and why the combination covers more ground.</div>
-              <span class="knowledge-card__link">Read more &rarr;</span>
-            </div>
-          </a>
-          <a href="/technology/how-it-works" class="knowledge-card">
-            <div class="knowledge-card__body">
-              <span class="knowledge-card__tag">Architecture</span>
-              <div class="knowledge-card__title">What is Electrical Signature Analysis?</div>
-              <div class="knowledge-card__desc">A technical introduction to ESA. Signal acquisition, spectral processing, AI diagnostics, and the human-in-the-loop validation process.</div>
-              <span class="knowledge-card__link">Read more &rarr;</span>
-            </div>
-          </a>
-        </div>
-      </div>
     </div>
   </section>
 
