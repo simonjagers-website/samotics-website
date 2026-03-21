@@ -366,10 +366,23 @@
     .proof-stat__label { font-size: 14px; color: var(--comet); }
     .proof__stats--bottom { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-6); margin-bottom: var(--space-12); }
 
+    /* -- Hero logos -- */
+    .hero__logos { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-6); }
+    .hero__logo-link { display: inline-flex; align-items: center; text-decoration: none; transition: opacity 150ms ease-out; }
+    .hero__logo-link:hover { opacity: 0.85; }
+    .hero__logo-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+    .hero__logo-img { height: 24px; width: auto; filter: brightness(0) invert(1); opacity: 0.55; transition: opacity 150ms ease-out; }
+    .hero__logo-link:hover .hero__logo-img { opacity: 0.9; }
+
     /* -- Logo strip -- */
     .proof__logos { display: flex; align-items: center; gap: var(--space-10); flex-wrap: wrap; margin-bottom: var(--space-12); padding: var(--space-8) 0; border-top: 1px solid var(--border-grey); border-bottom: 1px solid var(--border-grey); }
     .proof__logo { font-size: 14px; font-weight: 600; color: var(--comet); opacity: 0.5; transition: opacity var(--motion-normal) ease-out; white-space: nowrap; }
     .proof__logo:hover { opacity: 1; }
+    .proof__logo-link { display: inline-flex; align-items: center; text-decoration: none; transition: opacity var(--motion-normal) ease-out; }
+    .proof__logo-link:hover { opacity: 0.85; }
+    .proof__logo-link:focus-visible { outline: 2px solid var(--space-cadet); outline-offset: 4px; }
+    .proof__logo-img { height: 32px; width: auto; filter: grayscale(100%); opacity: 0.5; transition: opacity var(--motion-normal) ease-out, filter var(--motion-normal) ease-out; }
+    .proof__logo-link:hover .proof__logo-img { filter: grayscale(0%); opacity: 1; }
 
     /* -- Quote (C12) -- */
     .proof__quote { border-left: 3px solid var(--space-cadet); padding-left: var(--space-8); max-width: 720px; }
@@ -666,6 +679,13 @@
           <div class="hero__actions">
             <a href="/contact" class="btn btn--primary">Request a Demo</a>
             <a href="/technology/how-it-works" class="btn btn--ghost">See How ESA Works</a>
+          </div>
+          <div class="hero__logos">
+            <a href="/industries/water" class="hero__logo-link"><img src="/assets/images/logos/yorkshire-water.png" alt="Yorkshire Water" class="hero__logo-img" loading="lazy"></a>
+            <a href="/industries/chemicals" class="hero__logo-link"><img src="/assets/images/logos/dupont.svg" alt="DuPont" class="hero__logo-img" loading="lazy"></a>
+            <a href="/industries/metals-mining" class="hero__logo-link"><img src="/assets/images/logos/arcelormittal.png" alt="ArcelorMittal" class="hero__logo-img" loading="lazy"></a>
+            <a href="/proof/schiphol" class="hero__logo-link"><img src="/assets/images/logos/schiphol.png" alt="Schiphol Airport" class="hero__logo-img" loading="lazy"></a>
+            <a href="/industries/oil-gas" class="hero__logo-link"><img src="/assets/images/logos/totalenergies.png" alt="TotalEnergies" class="hero__logo-img" loading="lazy"></a>
           </div>
         </div>
         <div class="hero__visual">
@@ -973,15 +993,18 @@
 
       <!-- Logo strip -->
       <div class="proof__logos" aria-label="Customer logos">
-        <span class="proof__logo">Yorkshire Water</span>
-        <span class="proof__logo">ArcelorMittal</span>
-        <span class="proof__logo">DuPont</span>
-        <span class="proof__logo">AstraZeneca</span>
-        <span class="proof__logo">Schiphol Airport</span>
-        <span class="proof__logo">Nyrstar</span>
-        <span class="proof__logo">Nucor</span>
-        <span class="proof__logo">Vitens</span>
-        <span class="proof__logo">ABB</span>
+        <a href="/industries/water" class="proof__logo-link"><img src="/assets/images/logos/yorkshire-water.png" alt="Yorkshire Water" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/metals-mining" class="proof__logo-link"><img src="/assets/images/logos/arcelormittal.png" alt="ArcelorMittal" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/chemicals" class="proof__logo-link"><img src="/assets/images/logos/dupont.svg" alt="DuPont" class="proof__logo-img" loading="lazy"></a>
+        <a href="/proof/schiphol" class="proof__logo-link"><img src="/assets/images/logos/schiphol.png" alt="Schiphol Airport" class="proof__logo-img" loading="lazy"></a>
+        <a href="/proof/nyrstar" class="proof__logo-link"><img src="/assets/images/logos/nyrstar.svg" alt="Nyrstar" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/metals-mining" class="proof__logo-link"><img src="/assets/images/logos/nucor.svg" alt="Nucor" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/oil-gas" class="proof__logo-link"><img src="/assets/images/logos/totalenergies.png" alt="TotalEnergies" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/metals-mining" class="proof__logo-link"><img src="/assets/images/logos/tata.png" alt="Tata Steel" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/water" class="proof__logo-link"><img src="/assets/images/logos/anglian-water.png" alt="Anglian Water" class="proof__logo-img" loading="lazy"></a>
+        <a href="/platform/integrations" class="proof__logo-link"><img src="/assets/images/logos/schneider.png" alt="Schneider Electric" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/chemicals" class="proof__logo-link"><img src="/assets/images/logos/engie.png" alt="Engie" class="proof__logo-img" loading="lazy"></a>
+        <a href="/industries/chemicals" class="proof__logo-link"><img src="/assets/images/logos/henkel.png" alt="Henkel" class="proof__logo-img" loading="lazy"></a>
       </div>
 
       <!-- Featured quote (C12) -->
