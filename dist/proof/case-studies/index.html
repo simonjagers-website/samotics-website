@@ -42,13 +42,13 @@
     :root {
       --sam-space-cadet: #1F1F33;
       --sam-orange: #FF5429;
-      --sam-orange-dark: #D7411B;
+      --sam-orange-dark: #E04A24;
       --sam-blue: #005CBA;
       --sam-white: #FFFFFF;
       --sam-seashell: #F8F5F2;
-      --sam-black: #111111;
+      --sam-black: #1F1F33;
       --sam-comet: #6B6B7F;
-      --sam-border-light: #E8E4E0;
+      --sam-border-light: #E5E7EB;
       --sam-header-bg: #1F1F33;
       --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --sam-header-h: 80px;
@@ -101,7 +101,7 @@
       font-family: var(--font-primary);
       color: var(--space-cadet);
       background: var(--white);
-      line-height: 1.6;
+      line-height: 1.75;
       font-size: 16px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -114,7 +114,7 @@
     }
 
     a:hover {
-      color: var(--orange);
+      color: #004A9A;
     }
 
     img {
@@ -124,7 +124,7 @@
     }
 
     /* ===== SKIP LINK ===== */
-    .sam-skip-link { position: absolute; top: -100%; left: 16px; z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 0; }
+    .sam-skip-link { position: absolute; top: -100%; left: 16px; z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 4px; }
     .sam-skip-link:focus { top: 8px; }
     .sam-header { position: sticky; top: 0; z-index: 1000; width: 100%; height: var(--sam-header-h); background: var(--sam-header-bg); transition: height var(--sam-transition), box-shadow var(--sam-transition); }
     .sam-header.is-scrolled { height: var(--sam-header-h-compact); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25); }
@@ -139,7 +139,7 @@
     .sam-nav__link[aria-current="page"]::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--sam-orange); }
     .sam-nav__chevron { transition: transform var(--sam-transition); flex-shrink: 0; }
     .sam-nav__item { position: relative; }
-    .sam-dropdown { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(-4px); min-width: 300px; background: var(--sam-white); border: 1px solid var(--sam-border-light); border-radius: 0; padding: 8px 0; opacity: 0; visibility: hidden; transition: opacity var(--sam-transition), visibility var(--sam-transition), transform var(--sam-transition); pointer-events: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+    .sam-dropdown { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(-4px); min-width: 300px; background: var(--sam-white); border: 1px solid var(--sam-border-light); border-radius: 4px; padding: 8px 0; opacity: 0; visibility: hidden; transition: opacity var(--sam-transition), visibility var(--sam-transition), transform var(--sam-transition); pointer-events: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
     .sam-nav__item--has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
     .sam-nav__item--has-dropdown:hover .sam-dropdown, .sam-nav__item--has-dropdown:focus-within .sam-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
     .sam-nav__item--has-dropdown:hover .sam-nav__chevron, .sam-nav__item--has-dropdown:focus-within .sam-nav__chevron { transform: rotate(180deg); }
@@ -147,11 +147,11 @@
     .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
     .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
     .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
-    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 0; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
-    .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; background: var(--sam-orange); color: #FFFFFF; font: 600 14px/1 var(--sam-font); letter-spacing: 0.02em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta:hover { background: #E04A24; color: #FFFFFF; }
     .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
     .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
-    .sam-hamburger__line { display: block; width: 24px; height: 2px; background: var(--sam-white); transition: transform 200ms ease-out, opacity 200ms ease-out; border-radius: 0; }
+    .sam-hamburger__line { display: block; width: 24px; height: 2px; background: var(--sam-white); transition: transform 200ms ease-out, opacity 200ms ease-out; border-radius: 4px; }
     .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) { opacity: 0; }
     .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -169,7 +169,7 @@
     .sam-mobile-nav__sub a { display: block; padding: 12px 0; font: 400 15px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; }
     .sam-mobile-nav__sub a:hover { color: var(--sam-orange); }
     .sam-mobile-nav__cta-wrap { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--sam-border-light); }
-    .sam-mobile-nav__cta { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px 0; background: var(--sam-orange); color: var(--sam-white); font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 0; transition: background-color var(--sam-transition); }
+    .sam-mobile-nav__cta { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px 0; background: var(--sam-orange); color: var(--sam-white); font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 4px; transition: background-color var(--sam-transition); }
     .sam-mobile-nav__cta:hover { background: var(--sam-orange-dark); }
 
     .sam-footer { background: var(--sam-space-cadet, #1F1F33); padding-top: 96px; }
@@ -281,11 +281,11 @@
     }
 
     h2 {
-      font-size: 40px;
-      font-weight: 700;
+      font-size: 36px;
+      font-weight: 600;
       line-height: 1.2;
       margin-bottom: var(--space-8);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
     }
 
     h3 {
@@ -344,7 +344,7 @@
       border: 1px solid var(--border-grey);
       border-radius: var(--radius-default);
       padding: var(--space-8);
-      transition: box-shadow var(--motion-fast) ease-out, transform var(--motion-fast) ease-out;
+      transition: box-shadow var(--motion-fast) ease-out;
     }
 
     .sam-card:hover {
@@ -950,18 +950,33 @@
 }
 .sam-case-studies__hero-content { max-width: 1120px; margin: 0 auto; }
 .sam-case-studies__hero-title {
-  font-size: 2.75rem;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--white);
   margin-bottom: 16px;
 }
 .sam-case-studies__hero .lead,
-.sam-case-studies__hero-content .lead {
+.sam-case-studies__hero-content .lead,
+.sam-case-studies__hero .sam-lead {
   font-size: 1.125rem;
   color: rgba(255,255,255,0.85);
   max-width: 640px;
+  line-height: 1.75;
+  font-weight: 400;
+}
+.sam-case-studies__hero .sam-overline {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+  display: inline-block;
 }
 .sam-case-studies__content {
-  padding: 48px 24px 96px;
+  padding: 96px 24px;
   background: var(--white);
 }
 .sam-case-studies__container { max-width: 1120px; margin: 0 auto; }
@@ -969,14 +984,15 @@
   display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
 }
 .sam-case-studies__filter-chip {
-  font: 500 0.8125rem/1 var(--font);
+  font: 600 0.875rem/1 var(--font-primary);
   padding: 8px 16px;
   border: 1px solid var(--border-grey);
-  border-radius: var(--radius);
+  border-radius: 9999px;
   background: var(--white);
   color: var(--comet);
   cursor: pointer;
-  transition: all 150ms ease-out;
+  text-decoration: none;
+  transition: border-color var(--motion-fast) ease-out, color var(--motion-fast) ease-out;
 }
 .sam-case-studies__filter-chip:hover { border-color: var(--space-cadet); color: var(--space-cadet); }
 .sam-case-studies__filter-chip--active {
@@ -994,39 +1010,45 @@
   flex-direction: column;
   background: var(--white);
   border: 1px solid var(--border-grey);
-  border-radius: var(--radius);
+  border-radius: var(--radius-default);
   padding: 32px;
   text-decoration: none;
   color: var(--space-cadet);
-  transition: box-shadow 150ms ease-out, transform 150ms ease-out;
+  transition: box-shadow var(--motion-fast) ease-out;
+  gap: 12px;
 }
 .sam-case-studies__card:hover {
   box-shadow: var(--shadow-sm);
-  transform: translateY(-2px);
   text-decoration: none;
 }
 .sam-case-studies__card-tag {
-  font: 500 0.75rem/1 var(--font);
+  font: 600 0.75rem/1 var(--font-primary);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--orange);
-  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+  color: var(--comet);
+  margin-bottom: 0;
 }
 .sam-case-studies__card-title {
-  font: 600 1.0625rem/1.35 var(--font);
-  margin: 0 0 8px;
+  font: 600 1.125rem/1.35 var(--font-primary);
+  margin: 0;
   color: var(--space-cadet);
-  flex-grow: 1;
+  flex-grow: 0;
 }
 .sam-case-studies__card-excerpt {
   font-size: 0.875rem;
   color: var(--comet);
-  margin: 0 0 12px;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
 }
 .sam-case-studies__card-link {
-  font: 600 0.875rem/1 var(--font);
-  color: var(--orange);
+  font: 600 0.875rem/1 var(--font-primary);
+  color: var(--blue-600);
   margin-top: auto;
+  text-decoration: none;
+}
+.sam-case-studies__card-link:hover {
+  color: #004A9A;
 }
 .sam-case-studies__cta-banner {
   background: var(--seashell);
@@ -1039,10 +1061,10 @@
   display: flex; justify-content: center; gap: 8px; margin-top: 48px;
 }
 .sam-case-studies__pagination-link {
-  font: 500 0.875rem/1 var(--font);
+  font: 600 0.875rem/1 var(--font-primary);
   padding: 8px 14px;
   border: 1px solid var(--border-grey);
-  border-radius: var(--radius);
+  border-radius: 4px;
   color: var(--comet);
   text-decoration: none;
 }
@@ -1785,7 +1807,8 @@
   .sam-proof-hero,
   .sam-hero--proof,
   .sam-accuracy-hero,
-  .sam-case-studies__hero { padding: 80px 20px 64px; }
+  .sam-case-studies__hero { padding: 64px 20px 48px; }
+  .sam-case-studies__content { padding: 48px 16px; }
 
   .sam-proof-hero h1,
   .sam-hero--proof h1,
@@ -2028,11 +2051,11 @@
   <!-- ──────────────────────────────────────────────────────
        SECTION 1: HERO
        ────────────────────────────────────────────────────── -->
-  <section class="sam-case-studies__hero" style="background: #F8F5F2;">
+  <section class="sam-case-studies__hero">
     <div class="sam-case-studies__hero-content">
-      <p class="overline" style="color: #FF5429;">Case Studies</p>
+      <p class="sam-overline">Case Studies</p>
       <h1 class="sam-case-studies__hero-title">Every detection. Documented.</h1>
-      <p class="lead" style="color: #1F1F33; max-width: 70ch;">Browse 35+ real-world fault detections across industries, asset types, and outcomes.</p>
+      <p class="sam-lead">Browse 35+ real-world fault detections across industries, asset types, and outcomes.</p>
     </div>
   </section>
 
@@ -2065,74 +2088,235 @@
 
       <!-- Case Study Cards Grid -->
       <div class="sam-case-studies__grid">
-        <!-- Example card 1 -->
-        <article class="sam-case-studies__card">
-          <div class="sam-case-studies__card-tag" style="background: #D6F5F1; color: #0098AC;">Water & Wastewater</div>
-          <h3 class="sam-case-studies__card-title">Detecting Bearing Failure in Municipal Pump Before Catastrophic Collapse</h3>
-          <p class="sam-case-studies__card-excerpt">A water treatment authority deployed SAM4 on their primary circulation pump and detected progressive bearing wear 6 weeks before failure was imminent.</p>
-          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
-        </article>
+        <a href="/proof/case-studies/how-arcelormittal-prevented-31-hours-of-downtime-by-detecting-27-failures-ahead-of-time/" class="sam-case-studies__card" data-category="metals-mining">
+          <span class="sam-case-studies__card-tag">Metals & Mining</span>
+          <h3 class="sam-case-studies__card-title">How ArcelorMittal prevented 31 hours of downtime by detecting 27 failures ahead of time</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
 
-        <!-- Example card 2 -->
-        <article class="sam-case-studies__card">
-          <div class="sam-case-studies__card-tag" style="background: #FFE8D6; color: #FF5429;">Oil &amp; Gas</div>
-          <h3 class="sam-case-studies__card-title">Predictive Detection of Cavitation in Offshore Transfer Pump</h3>
-          <p class="sam-case-studies__card-excerpt">Real-time electrical signatures revealed cavitation damage in an offshore platform pump, preventing an estimated $2M in unplanned maintenance costs.</p>
-          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
-        </article>
+        <a href="/proof/case-studies/southern-waters-success-story-preventing-3-failures-saving-748k-and-ensuring-resilience/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Southern Water: preventing three failures, saving GBP 748K</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
 
-        <!-- Example card 3 -->
-        <article class="sam-case-studies__card">
-          <div class="sam-case-studies__card-tag" style="background: #D9EFEF; color: #006C6C;">Metals & Mining</div>
-          <h3 class="sam-case-studies__card-title">Detecting Misalignment in Crusher Motor Before Gearbox Failure</h3>
-          <p class="sam-case-studies__card-excerpt">SAM4 identified angular misalignment in a crusher drive system's coupling. Preventive realignment avoided a projected 5-day production shutdown.</p>
-          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
-        </article>
+        <a href="/proof/case-studies/how-zinc-smelter-nyrstar-got-800-roi-in-11-months/" class="sam-case-studies__card" data-category="metals-mining">
+          <span class="sam-case-studies__card-tag">Metals & Mining</span>
+          <h3 class="sam-case-studies__card-title">How zinc smelter Nyrstar got 800% ROI in 11 months</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
 
-        <!-- Example card 4 -->
-        <article class="sam-case-studies__card">
-          <div class="sam-case-studies__card-tag" style="background: #E8F4FF; color: #005CBA;">Chemicals</div>
-          <h3 class="sam-case-studies__card-title">Real-Time Detection of Multi-Fault Condition in Reactor Feed Pump</h3>
-          <p class="sam-case-studies__card-excerpt">Three simultaneous faults detected in a critical process pump: bearing wear, belt slippage, and cavitation. each at different stages of development.</p>
-          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
-        </article>
+        <a href="/proof/case-studies/how-vitens-increased-operational-efficiency-by-7-through-real-time-asset-measurements/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">How Vitens increased operational efficiency by 7%</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
 
-        <!-- Example card 5 -->
-        <article class="sam-case-studies__card">
-          <div class="sam-case-studies__card-tag" style="background: #D6F5F1; color: #0098AC;">Water & Wastewater</div>
-          <h3 class="sam-case-studies__card-title">Preventive Detection of Blockage in Sewage Treatment Submersible</h3>
-          <p class="sam-case-studies__card-excerpt">ESA identified inlet blockage in a submersible pump before it stalled completely, enabling scheduled maintenance rather than emergency replacement.</p>
-          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
-        </article>
+        <a href="/proof/case-studies/how-schipol-airport-improved-reliability-of-its-current-baggage-handling-lines/" class="sam-case-studies__card" data-category="infrastructure">
+          <span class="sam-case-studies__card-tag">Infrastructure</span>
+          <h3 class="sam-case-studies__card-title">How Schiphol Airport improved baggage handling reliability</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
 
-        <!-- Example card 6 -->
-        <article class="sam-case-studies__card">
-          <div class="sam-case-studies__card-tag" style="background: #FFE8D6; color: #FF5429;">Oil &amp; Gas</div>
-          <h3 class="sam-case-studies__card-title">Monitoring Thermal Stress in High-Speed Compressor Motor</h3>
-          <p class="sam-case-studies__card-excerpt">Continuous electrical signature analysis revealed motor winding degradation that had been missed by traditional temperature monitoring.</p>
-          <a href="#" class="sam-case-studies__card-link">Read case study →</a>
-        </article>
+        <a href="/proof/case-studies/yorkshire-water-avoid-potential-fines-with-samotics/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">How Yorkshire Water saved GBP 390k in potential fines</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/hot-strip-mill-degrading-rollers/" class="sam-case-studies__card" data-category="metals-mining">
+          <span class="sam-case-studies__card-tag">Metals & Mining</span>
+          <h3 class="sam-case-studies__card-title">16x early alerts to degrading rollers save €650k in lost production</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/oxidation-ditch-rotor-fault-detection-case-study/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Early alerts on degrading oxidation ditch rotor prevent €900k in costs</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/prevent-exhaust-fan-failure-in-wood-manufacturing-case-study/" class="sam-case-studies__card" data-category="chemicals">
+          <span class="sam-case-studies__card-tag">Chemicals</span>
+          <h3 class="sam-case-studies__card-title">Six early alerts to degrading fans save €96k in unplanned downtime</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/heated-godet-roll-fault-detection-case-study/" class="sam-case-studies__card" data-category="chemicals">
+          <span class="sam-case-studies__card-tag">Chemicals</span>
+          <h3 class="sam-case-studies__card-title">Early warning of failing heated godet roll prevents $90k in production loss</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/aeration-blowers-energy-waste-reduction-case-study/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Control change reduces aeration blowers' energy cost by 5% overnight</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/avoid-sewage-water-pump-pollution-event-case-study/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Alert prevents pollution event and saves EUR 100k</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/booster-pump-energy-optimization-case-study/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Rerating booster pumps reduces energy cost by EUR 99k a year</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/reducing-wastewater-inlet-station-energy-costs/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Wastewater inlet station energy cost reduced by €42k per year</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/rightsizing-booster-pumps-to-save-wasted-energy/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Rightsizing booster pumps to save €121k a year in wasted energy</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/improving-submersible-pump-efficiency-at-sabesp/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Improving submersible pump efficiency at Sabesp</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/improving-baggage-handling-reliability-at-london-stansted/" class="sam-case-studies__card" data-category="infrastructure">
+          <span class="sam-case-studies__card-tag">Infrastructure</span>
+          <h3 class="sam-case-studies__card-title">Improving baggage handling reliability at London Stansted</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/identifying-and-fixing-a-broken-sine-wave-filter-in-electric-submersible-pumps/" class="sam-case-studies__card" data-category="oil-gas">
+          <span class="sam-case-studies__card-tag">Oil & Gas</span>
+          <h3 class="sam-case-studies__card-title">Identifying a broken sine wave filter in electric submersible pumps</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/bearing-failure-motor-roll/" class="sam-case-studies__card" data-category="metals-mining">
+          <span class="sam-case-studies__card-tag">Metals & Mining</span>
+          <h3 class="sam-case-studies__card-title">Roll motor bearing failure detected</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/belt-degradation-circulation-pump/" class="sam-case-studies__card" data-category="chemicals">
+          <span class="sam-case-studies__card-tag">Chemicals</span>
+          <h3 class="sam-case-studies__card-title">Belt degradation in circulation pump</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/belt-driven-assets/" class="sam-case-studies__card" data-category="chemicals">
+          <span class="sam-case-studies__card-tag">Chemicals</span>
+          <h3 class="sam-case-studies__card-title">Preventing downtime on belt-driven equipment</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/borehole-pump-detections/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Preventing downtime on borehole pumps</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/cardan-shaft-coupling-roller/" class="sam-case-studies__card" data-category="metals-mining">
+          <span class="sam-case-studies__card-tag">Metals & Mining</span>
+          <h3 class="sam-case-studies__card-title">Cardan shaft coupling fault detected</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/cavitation-anolyte-pump/" class="sam-case-studies__card" data-category="chemicals">
+          <span class="sam-case-studies__card-tag">Chemicals</span>
+          <h3 class="sam-case-studies__card-title">Anolyte pump saved from cavitation breakdown</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/cavitation-centrifugal-pump/" class="sam-case-studies__card" data-category="chemicals">
+          <span class="sam-case-studies__card-tag">Chemicals</span>
+          <h3 class="sam-case-studies__card-title">Centrifugal pump cavitation caught early</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/clogging-borehole-pump/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Borehole pump clogging detected</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/clogging-wastewater-pump/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Wastewater pump clogging detected</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/clogging-yorkshire-water-sewage/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Yorkshire Water sewage pump clogging detection</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/gearbox-misalignment-circulator-pump/" class="sam-case-studies__card" data-category="chemicals">
+          <span class="sam-case-studies__card-tag">Chemicals</span>
+          <h3 class="sam-case-studies__card-title">Gearbox misalignment: 7-month early warning</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/inlet-screw-monitoring/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Inlet screw fault detected</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/loose-belt-guard-shot-blasting/" class="sam-case-studies__card" data-category="metals-mining">
+          <span class="sam-case-studies__card-tag">Metals & Mining</span>
+          <h3 class="sam-case-studies__card-title">Loose belt guard caught early on shot blasting line</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/loose-cardan-joint-roll/" class="sam-case-studies__card" data-category="metals-mining">
+          <span class="sam-case-studies__card-tag">Metals & Mining</span>
+          <h3 class="sam-case-studies__card-title">Loose cardan joint detected on roll drive</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/missing-bolt-cooling-pump/" class="sam-case-studies__card" data-category="chemicals">
+          <span class="sam-case-studies__card-tag">Chemicals</span>
+          <h3 class="sam-case-studies__card-title">Missing bolt in 90 kW cooling pump</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/samotics-identifies-a-blockage-outside-of-the-pump/" class="sam-case-studies__card" data-category="water">
+          <span class="sam-case-studies__card-tag">Water & Wastewater</span>
+          <h3 class="sam-case-studies__card-title">Clogging detection identifies blockage outside of the pump</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/synthetic-fiber-production/" class="sam-case-studies__card" data-category="chemicals">
+          <span class="sam-case-studies__card-tag">Chemicals</span>
+          <h3 class="sam-case-studies__card-title">9x common faults detected in manufacturing</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
+
+        <a href="/proof/case-studies/three-faults-oil-transfer-pump/" class="sam-case-studies__card" data-category="oil-gas">
+          <span class="sam-case-studies__card-tag">Oil & Gas</span>
+          <h3 class="sam-case-studies__card-title">Oil transfer pump: 3 faults fixed before failure</h3>
+          <span class="sam-case-studies__card-link">Read case study →</span>
+        </a>
       </div>
 
-      <!-- Pagination (if using WordPress) -->
-      <div class="sam-case-studies__pagination" style="text-align: center; margin-top: var(--sp-10); padding-top: var(--sp-08); border-top: 1px solid var(--sam-border-light);">
-        <nav style="display: flex; gap: var(--sp-04); justify-content: center; align-items: center; flex-wrap: wrap;">
-          <a href="#" class="sam-case-studies__pagination-link" style="color: #6B6B7F; text-decoration: none; padding: 8px 12px; border: 1px solid var(--sam-border-light); border-radius: 4px; font-family: var(--sam-font);">← Previous</a>
-          <span style="color: #1F1F33; font-family: var(--sam-font); font-weight: 600;">Page 1 of 3</span>
-          <a href="#" class="sam-case-studies__pagination-link" style="color: var(--sam-orange); text-decoration: none; padding: 8px 12px; border: 1px solid var(--sam-orange); border-radius: 4px; font-family: var(--sam-font); font-weight: 600;">Next →</a>
-        </nav>
-      </div>
+
     </div>
   </section>
 
   <!-- ──────────────────────────────────────────────────────
        SECTION 3: CTA BANNER
        ────────────────────────────────────────────────────── -->
-  <section class="sam-case-studies__cta-banner" style="background: #1F1F33; padding: var(--sp-10) var(--sp-06);">
+  <section class="sam-case-studies__cta-banner" style="background: #1F1F33; padding: 96px 24px;">
     <div class="sam-case-studies__container" style="text-align: center;">
-      <h2 style="color: #FFFFFF; margin: 0 0 var(--sp-06) 0;">Want to add your name to this list?</h2>
-      <p style="color: #E8E4E0; font-size: 1rem; margin: 0 0 var(--sp-08) 0; max-width: 60ch; margin-left: auto; margin-right: auto;">See how SAM4 can prevent failures and optimize operations at your facility.</p>
-      <a href="/contact/" class="sam-btn sam-btn--primary" style="background: #FF5429; color: #111111;">Request Demo</a>
+      <h2 style="color: #FFFFFF; font-size: 36px; font-weight: 600; margin: 0 0 24px 0;">Want to add your name to this list?</h2>
+      <p style="color: rgba(255,255,255,0.85); font-size: 1rem; margin: 0 0 32px 0; max-width: 60ch; margin-left: auto; margin-right: auto;">See how SAM4 can prevent failures and optimize operations at your facility.</p>
+      <a href="/contact/" class="sam-cta">Request demo</a>
     </div>
   </section>
 </main>
@@ -2459,5 +2643,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+<script>
+// Case study filter chips
+(function() {
+  const chips = document.querySelectorAll('.sam-case-studies__filter-chip');
+  const cards = document.querySelectorAll('.sam-case-studies__card');
+
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function(e) {
+      e.preventDefault();
+      const filter = this.dataset.filter;
+
+      // Update active chip
+      chips.forEach(function(c) { c.classList.remove('sam-case-studies__filter-chip--active'); });
+      this.classList.add('sam-case-studies__filter-chip--active');
+
+      // Filter cards
+      cards.forEach(function(card) {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>
