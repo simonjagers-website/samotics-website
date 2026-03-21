@@ -355,6 +355,41 @@
     .industry-line__text a { color: var(--blue-600); font-weight: 600; }
 
     /* ========================================
+       INDUSTRY ROUTING
+       ======================================== */
+
+    .industry-zone { background: var(--white); }
+    .industry-zone h2 { margin-bottom: var(--space-3); }
+    .industry-zone__subtitle { color: var(--comet); max-width: 65ch; margin-bottom: var(--space-10); }
+    .industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+    .industry-grid--bottom { margin-top: var(--space-6); }
+    .industry-card {
+      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
+      padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-3);
+      text-decoration: none; color: inherit;
+      transition: box-shadow var(--motion-normal) ease-out;
+    }
+    .industry-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
+    .industry-card__title { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
+    .industry-card__proof { font-size: 14px; color: var(--comet); line-height: 1.6; flex: 1; }
+    .industry-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+
+    /* ========================================
+       PLATFORM PREVIEW
+       ======================================== */
+
+    .platform-zone { background: var(--space-cadet); color: var(--white); }
+    .platform-zone__grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: var(--space-12); align-items: center; }
+    .platform-zone__intro h2 { color: var(--white); margin-bottom: var(--space-6); }
+    .platform-zone__callouts { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+    .platform-zone__callout { font-size: 15px; color: var(--dark-blue-300); padding-left: var(--space-6); position: relative; line-height: 1.5; }
+    .platform-zone__callout::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+    .platform-zone__link { margin-top: var(--space-8); }
+    .platform-zone__link a { font-size: 14px; font-weight: 600; color: var(--dark-blue-300); }
+    .platform-zone__link a:hover { color: var(--white); opacity: 1; }
+    .platform-zone__visual { display: flex; align-items: center; justify-content: center; }
+
+    /* ========================================
        SEASHELL ZONE B: SOCIAL PROOF + KNOWLEDGE BASE
        ======================================== */
 
@@ -452,6 +487,9 @@
       .value-props { grid-template-columns: repeat(2, 1fr); }
       .asset-grid { grid-template-columns: repeat(2, 1fr); }
       .asset-grid--bottom { max-width: 100%; }
+      .industry-grid { grid-template-columns: repeat(2, 1fr); }
+      .platform-zone__grid { grid-template-columns: 1fr; }
+      .platform-zone__visual { margin-top: var(--space-8); }
       .proof__stats { grid-template-columns: repeat(3, 1fr); }
       .proof__stats--bottom { grid-template-columns: repeat(3, 1fr); }
       .knowledge__grid { grid-template-columns: repeat(2, 1fr); }
@@ -473,6 +511,7 @@
       .value-props { grid-template-columns: 1fr; }
       .asset-grid { grid-template-columns: 1fr; }
       .asset-grid--bottom { grid-template-columns: 1fr; }
+      .industry-grid { grid-template-columns: 1fr; }
       .proof__stats { grid-template-columns: 1fr 1fr; }
       .proof__stats--bottom { grid-template-columns: 1fr 1fr; }
       .proof-stat__number { font-size: 28px; }
@@ -857,7 +896,7 @@
     <div class="container">
 
       <h2>The assets SAM4 monitors</h2>
-      <p class="body assets__subtitle">Every AC-motor-driven asset is a candidate. These are the ones where ESA has the strongest track record.</p>
+      <p class="body assets__subtitle">Every AC-motor-driven asset is a candidate. These are the ones with the deepest deployment data.</p>
 
       <div class="asset-grid">
         <a href="/platform/what-we-monitor" class="asset-card">
@@ -953,9 +992,52 @@
 
 
   <!-- ============================================
-       SEASHELL ZONE B: SOCIAL PROOF + KNOWLEDGE BASE
-       Belief shift: "Others already trust it" +
-                     "I can go deeper"
+       SEASHELL: INDUSTRY ROUTING
+       Belief shift: "It works in my industry"
+       ============================================ -->
+  <section class="industry-zone section" aria-label="Industries we serve">
+    <div class="container">
+
+      <h2>Monitoring the assets your industry can't reach</h2>
+      <p class="body industry-zone__subtitle">SAM4 is deployed across five heavy industries. Each has assets that vibration sensors cannot access. Find yours.</p>
+
+      <div class="industry-grid">
+        <a href="/industries/water" class="industry-card">
+          <div class="industry-card__title">Water &amp; Wastewater</div>
+          <div class="industry-card__proof">1,000+ pumping stations monitored. 70,000 inspection trips replaced per year. Pollution events prevented before they reach the environment.</div>
+          <span class="industry-card__link">See water deployments &rarr;</span>
+        </a>
+        <a href="/industries/oil-gas" class="industry-card">
+          <div class="industry-card__title">Oil &amp; Gas</div>
+          <div class="industry-card__proof">ESPs monitored from surface switchgear. ATEX-zone motors covered without entering hazardous areas. Safe-zone monitoring from the MCC.</div>
+          <span class="industry-card__link">See oil &amp; gas deployments &rarr;</span>
+        </a>
+        <a href="/industries/metals-mining" class="industry-card">
+          <div class="industry-card__title">Metals &amp; Mining</div>
+          <div class="industry-card__proof">Bearing faults detected 5 months before failure on blast furnace cooling pumps. Conveyor gearbox defects caught via gear mesh frequency analysis.</div>
+          <span class="industry-card__link">See metals deployments &rarr;</span>
+        </a>
+      </div>
+      <div class="industry-grid industry-grid--bottom">
+        <a href="/industries/chemicals" class="industry-card">
+          <div class="industry-card__title">Chemicals</div>
+          <div class="industry-card__proof">40% reduction in equipment downtime across 3 European sites. 15+ failures detected in 3 years. Full fleet coverage in hours, not months.</div>
+          <span class="industry-card__link">See chemicals deployments &rarr;</span>
+        </a>
+        <a href="/industries/pulp-paper" class="industry-card">
+          <div class="industry-card__title">Pulp &amp; Paper</div>
+          <div class="industry-card__proof">7.1% pump efficiency improvement. Energy waste identified on drives operating below optimal load. Reliability and energy in one platform.</div>
+          <span class="industry-card__link">See pulp &amp; paper deployments &rarr;</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       WHITE: SOCIAL PROOF
+       Belief shift: "Others already trust it"
        ============================================ -->
   <section class="proof-zone section" aria-label="Social proof and resources">
     <div class="container">
@@ -1044,9 +1126,38 @@
 
 
   <!-- ============================================
-       DARK ZONE: PLATFORM + CTA (TERMINAL)
-       Belief shifts: "Here's what it looks like" +
-                      "Here's how to start"
+       DARK ZONE: PLATFORM PREVIEW
+       Belief shift: "Here's what it looks like"
+       No CTA in this section — earns trust, not clicks.
+       ============================================ -->
+  <section class="platform-zone section" aria-label="SAM4 platform preview">
+    <div class="container">
+      <div class="platform-zone__grid">
+        <div class="platform-zone__intro">
+          <p class="overline" style="margin-bottom: var(--space-3);">The Platform</p>
+          <h2>One platform. Every motor. 24/7.</h2>
+          <ul class="platform-zone__callouts">
+            <li class="platform-zone__callout">Fleet-level asset health dashboard</li>
+            <li class="platform-zone__callout">AI-driven anomaly detection and alerting</li>
+            <li class="platform-zone__callout">Diagnostic reports with recommended actions</li>
+            <li class="platform-zone__callout">CMMS integration: SAP PM, IBM Maximo</li>
+          </ul>
+          <div class="platform-zone__link">
+            <a href="/platform/sam4">Explore the SAM4 platform &rarr;</a>
+          </div>
+        </div>
+        <div class="platform-zone__visual">
+          <img src="/assets/images/sam4-dashboard.png" alt="SAM4 energy monitoring dashboard showing multi-screen asset health view" style="width:100%;height:auto;display:block;border-radius:4px;" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       DARK ZONE: TERMINAL CTA
+       Belief shift: "Here's how to start"
+       Continues dark from Platform Preview — no break.
        ============================================ -->
   <section class="terminal" aria-label="Call to action">
     <div class="container">
@@ -1061,10 +1172,6 @@
         <p class="terminal__escape">
           Not ready for a conversation? <a href="/platform/sam4">Explore the SAM4 platform &rarr;</a>
         </p>
-      </div>
-
-      <div class="terminal__visual">
-        <img src="/assets/images/sam4-dashboard.png" alt="SAM4 energy monitoring dashboard showing multi-screen asset health view" style="width:100%;height:auto;display:block;" loading="lazy">
       </div>
 
     </div>
