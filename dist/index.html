@@ -376,14 +376,23 @@
     .hero__logo-link:hover .hero__logo-img { opacity: 0.9; }
 
     /* -- Logo strip -- */
-    .proof__logos { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: var(--space-12); margin-bottom: var(--space-4); padding: var(--space-6) calc(50vw - 50%); background: rgba(255,255,255,0.06); border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .logo-strip-zone { background: var(--white); padding: var(--space-10) 0; }
+    .stats-zone { background: var(--seashell); }
+    .stats-zone .hero__stats-heading { margin-top: 0; border-top: none; padding-top: 0; }
+    .stats-zone .hero__stats-heading h3 { color: var(--space-cadet); }
+    .stats-zone .hero__stats-intro { color: var(--comet); }
+    .stats-zone .stat__number { color: var(--space-cadet); }
+    .stats-zone .stat__label { color: var(--comet); }
+    .stats-zone .stat__source { color: var(--comet); opacity: 0.6; }
+    .stats-zone .hero__link a { color: var(--blue); }
+    .proof__logos { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; padding: var(--space-4) 0; }
     .proof__logo { font-size: 14px; font-weight: 600; color: var(--comet); opacity: 0.5; transition: opacity var(--motion-normal) ease-out; white-space: nowrap; }
     .proof__logo:hover { opacity: 1; }
     .proof__logo-link { display: inline-flex; align-items: center; text-decoration: none; transition: opacity var(--motion-normal) ease-out; }
     .proof__logo-link:hover { opacity: 0.85; }
     .proof__logo-link:focus-visible { outline: 2px solid var(--space-cadet); outline-offset: 4px; }
-    .proof__logo-img { height: 28px; width: auto; filter: brightness(0) invert(1); opacity: 0.45; transition: opacity var(--motion-normal) ease-out; }
-    .proof__logo-link:hover .proof__logo-img { opacity: 0.85; }
+    .proof__logo-img { height: 32px; width: auto; filter: grayscale(100%); opacity: 0.5; transition: opacity var(--motion-normal) ease-out, filter var(--motion-normal) ease-out; }
+    .proof__logo-link:hover .proof__logo-img { filter: grayscale(0%); opacity: 1; }
 
     /* -- Quote (C12) -- */
     .proof__quote { border-left: 3px solid var(--space-cadet); padding-left: var(--space-8); max-width: 720px; }
@@ -681,22 +690,21 @@
             <a href="/contact" class="btn btn--primary">Request a Demo</a>
             <a href="/technology/how-it-works" class="btn btn--ghost">See How ESA Works</a>
           </div>
-          <div class="hero__logos">
-            <a href="/industries/water" class="hero__logo-link"><img src="/assets/images/logos/yorkshire-water.png" alt="Yorkshire Water" class="hero__logo-img" loading="lazy"></a>
-            <a href="/industries/chemicals" class="hero__logo-link"><img src="/assets/images/logos/dupont.png" alt="DuPont" class="hero__logo-img" loading="lazy"></a>
-            <a href="/industries/metals-mining" class="hero__logo-link"><img src="/assets/images/logos/arcelormittal.png" alt="ArcelorMittal" class="hero__logo-img" loading="lazy"></a>
-            <a href="/proof/schiphol" class="hero__logo-link"><img src="/assets/images/logos/schiphol.png" alt="Schiphol Airport" class="hero__logo-img" loading="lazy"></a>
-            <a href="/industries/oil-gas" class="hero__logo-link"><img src="/assets/images/logos/totalenergies.png" alt="TotalEnergies" class="hero__logo-img" loading="lazy"></a>
-          </div>
         </div>
         <div class="hero__visual">
-          <div class="hero__visual-placeholder">
-            [Hero image: industrial engineer at MCC cabinet, or SAM4 dashboard showing real asset health data and spectral graph]
-          </div>
+          <img src="/assets/images/hero-daq-mcc.jpg" alt="Samotics DAQ unit installed at a motor control cabinet" style="width:100%;height:auto;display:block;border-radius:4px;" loading="eager">
         </div>
       </div>
 
-      <!-- Logo strip -->
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       WHITE: LOGO STRIP
+       ============================================ -->
+  <section class="logo-strip-zone section" aria-label="Customer logos">
+    <div class="container">
       <div class="proof__logos" aria-label="Customer logos">
         <a href="/industries/water" class="proof__logo-link"><img src="/assets/images/logos/yorkshire-water.png" alt="Yorkshire Water" class="proof__logo-img" loading="lazy"></a>
         <a href="/industries/metals-mining" class="proof__logo-link"><img src="/assets/images/logos/arcelormittal.png" alt="ArcelorMittal" class="proof__logo-img" loading="lazy"></a>
@@ -711,8 +719,15 @@
         <a href="/industries/chemicals" class="proof__logo-link"><img src="/assets/images/logos/engie.png" alt="Engie" class="proof__logo-img" loading="lazy"></a>
         <a href="/industries/chemicals" class="proof__logo-link"><img src="/assets/images/logos/henkel.png" alt="Henkel" class="proof__logo-img" loading="lazy"></a>
       </div>
+    </div>
+  </section>
 
-      <!-- C02: Stats Bar — merged into hero dark section -->
+
+  <!-- ============================================
+       #F0F8F8: COST STATS
+       ============================================ -->
+  <section class="stats-zone section" aria-label="The cost of what you can't see">
+    <div class="container">
       <div class="hero__stats-heading">
         <h3>The cost of what you can't see</h3>
         <p class="hero__stats-intro">Most plants rely on vibration sensors and manual rounds. That leaves thousands of critical assets — submerged pumps, ATEX motors, hard-to-reach drives — completely unmonitored. The numbers below show what that blind spot costs.</p>
@@ -742,7 +757,6 @@
       <div class="hero__link">
         <a href="/problem">Understand the monitoring blind spot &rarr;</a>
       </div>
-
     </div>
   </section>
 
