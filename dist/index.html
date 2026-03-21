@@ -289,12 +289,20 @@
     .method__intro h2 { margin-bottom: var(--space-6); }
     .method__body { font-size: 16px; line-height: 1.75; max-width: 65ch; color: var(--space-cadet); }
     .method__diagram { display: flex; align-items: center; justify-content: center; }
-    .method__diagram-placeholder {
-      width: 100%; aspect-ratio: 16/10;
-      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--comet); font-size: 14px; padding: var(--space-6); text-align: center; line-height: 1.5;
+    .method__flow {
+      display: flex; align-items: center; gap: var(--space-4);
+      width: 100%; justify-content: center;
     }
+    .method__flow-step { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); text-align: center; flex: 0 1 160px; }
+    .method__flow-icon {
+      width: 96px; height: 96px; background: var(--seashell); border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center;
+      padding: 8px;
+    }
+    .method__flow-icon img { width: 80px; height: 80px; }
+    .method__flow-label { font-size: 14px; font-weight: 600; color: var(--space-cadet); }
+    .method__flow-desc { font-size: 13px; color: var(--comet); line-height: 1.4; }
+    .method__flow-arrow { display: flex; align-items: center; flex-shrink: 0; }
 
     /* -- ESA Step Flow (C11) -- */
     .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-top: var(--space-12); position: relative; }
@@ -482,6 +490,9 @@
       .personas__grid { grid-template-columns: repeat(2, 1fr); }
       .method__header { grid-template-columns: 1fr; }
       .method__diagram { margin-top: var(--space-8); }
+      .method__flow { flex-direction: column; gap: var(--space-6); }
+      .method__flow-arrow { transform: rotate(90deg); }
+      .method__flow-step { flex: none; }
       .steps { grid-template-columns: repeat(2, 1fr); }
       .steps::before { display: none; }
       .value-props { grid-template-columns: repeat(2, 1fr); }
@@ -815,8 +826,38 @@
           <p class="method__body" style="margin-top: var(--space-6);">Every AC motor draws a unique current and voltage signature. When a bearing degrades, a coupling misaligns, or cavitation develops, the signature changes. SAM4 captures these changes at the motor control cabinet and diagnoses the fault before failure.</p>
         </div>
         <div class="method__diagram">
-          <div class="method__diagram-placeholder">
-            [Diagram: MCC cabinet with split-core CTs → signal flow → cloud processing → SAM4 dashboard with health scores and spectral analysis]
+          <div class="method__flow">
+            <div class="method__flow-step">
+              <div class="method__flow-icon">
+                <img src="/assets/images/icons/icon-mcc-cabinet.svg" alt="Motor control cabinet" width="80" height="80">
+              </div>
+              <div class="method__flow-label">MCC cabinet</div>
+              <div class="method__flow-desc">CTs capture current &amp; voltage</div>
+            </div>
+            <div class="method__flow-arrow" aria-hidden="true">
+              <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
+                <path d="M0 12h40M34 6l8 6-8 6" stroke="#6B6B7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="method__flow-step">
+              <div class="method__flow-icon">
+                <img src="/assets/images/icons/icon-signal-analysis.svg" alt="Electrical signature analysis" width="80" height="80">
+              </div>
+              <div class="method__flow-label">Signal analysis</div>
+              <div class="method__flow-desc">AI detects fault signatures</div>
+            </div>
+            <div class="method__flow-arrow" aria-hidden="true">
+              <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
+                <path d="M0 12h40M34 6l8 6-8 6" stroke="#6B6B7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="method__flow-step">
+              <div class="method__flow-icon">
+                <img src="/assets/images/icons/icon-sam4-dashboard.svg" alt="SAM4 dashboard" width="80" height="80">
+              </div>
+              <div class="method__flow-label">SAM4 dashboard</div>
+              <div class="method__flow-desc">Alerts with recommended actions</div>
+            </div>
           </div>
         </div>
       </div>
