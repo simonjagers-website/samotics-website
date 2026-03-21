@@ -158,7 +158,7 @@
       color: var(--white);
       padding: var(--space-30) 0;
       position: relative;
-    }
+     background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; overflow: hidden;}
 
     .sam-hero__inner {
       display: flex;
@@ -291,6 +291,14 @@
     }
 
     /* Mobile: horizontal scroll */
+    
+    .sam-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+    .sam-hero__inner, .sam-hero .sam-section__inner { position: relative; z-index: 2; }
+
     @media (max-width: 767px) {
       .sam-process-nav {
         padding: var(--space-6) 0;
@@ -1397,7 +1405,8 @@
     <main id="main-content">
 
       <!-- HERO SECTION -->
-      <section class="sam-hero">
+      <section class="sam-hero" style="background-image: url('/assets/images/heroes/hero-technology.jpg');">
+    <div class="sam-hero__overlay"></div>
         <div class="sam-container">
           <div class="sam-hero__inner">
             <span class="sam-overline">Technical Deep Dive</span>

@@ -233,15 +233,22 @@
        SECTION 1: HERO + STAKES (DARK ZONE)
        ======================================== */
 
-    .hero { background: var(--space-cadet); padding: calc(var(--space-30) + var(--sam-header-h, 80px)) 0 var(--space-30); color: var(--white); }
-    .hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
-    .hero__text { max-width: 560px; }
+    .hero {
+      background: var(--space-cadet) url('/assets/images/heroes/hero-homepage.jpg') center/cover no-repeat;
+      padding: calc(var(--space-30) + var(--sam-header-h, 80px)) 0 var(--space-30);
+      color: var(--white); position: relative; overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+    .hero .container { position: relative; z-index: 2; }
+    .hero__content { max-width: 640px; }
     .hero__overline { margin-bottom: var(--space-4); }
     .hero__headline { color: var(--white); margin-bottom: var(--space-6); }
-    .hero__subline { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); max-width: 48ch; }
+    .hero__subline { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); max-width: 56ch; }
     .hero__actions { display: flex; gap: var(--space-3); align-items: center; }
-    .hero__visual { display: flex; align-items: center; justify-content: center; }
-    .hero__visual-placeholder { width: 100%; max-width: 520px; aspect-ratio: 4/3; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; color: var(--dark-blue-300); font-size: 14px; padding: var(--space-6); text-align: center; line-height: 1.5; }
 
     /* Stats bar */
     .hero__stats-heading { margin-top: var(--space-8); margin-bottom: var(--space-8); }
@@ -470,8 +477,7 @@
        ======================================== */
 
     @media (max-width: 1024px) {
-      .hero__grid { grid-template-columns: 1fr; }
-      .hero__visual { display: none; }
+      .hero { padding: calc(var(--space-16) + var(--sam-header-h-compact, 64px)) 0 var(--space-16); }
       .hero__stats { grid-template-columns: repeat(2, 1fr); }
       .personas__grid { grid-template-columns: repeat(2, 1fr); }
       .steps { grid-template-columns: repeat(3, 1fr); }
@@ -709,23 +715,17 @@
                       "It's bigger than you think"
        ============================================ -->
   <section class="hero" aria-label="Hero">
+    <div class="hero__bg"></div>
     <div class="container">
-
-      <div class="hero__grid">
-        <div class="hero__text">
-          <p class="overline hero__overline">Inaccessible Asset Monitoring</p>
-          <h1 class="hero__headline">Every motor tells you what's wrong.</h1>
-          <p class="hero__subline">30-40% of critical rotating assets have no condition monitoring. SAM4 reads their electrical signatures at the motor control cabinet. No sensors on the machine. No access to the asset. 24/7.</p>
-          <div class="hero__actions">
-            <a href="/contact" class="btn btn--primary">Request a Demo</a>
-            <a href="/technology/how-it-works" class="btn btn--ghost">See How ESA Works</a>
-          </div>
-        </div>
-        <div class="hero__visual">
-          <img src="/assets/images/hero-daq-mcc.jpg" alt="Samotics DAQ unit installed at a motor control cabinet" style="width:100%;height:auto;display:block;border-radius:4px;" loading="eager">
+      <div class="hero__content">
+        <p class="overline hero__overline">Inaccessible Asset Monitoring</p>
+        <h1 class="hero__headline">Every motor tells you what's wrong.</h1>
+        <p class="hero__subline">30-40% of critical rotating assets have no condition monitoring. SAM4 reads their electrical signatures at the motor control cabinet. No sensors on the machine. No access to the asset. 24/7.</p>
+        <div class="hero__actions">
+          <a href="/contact" class="btn btn--primary">Request a Demo</a>
+          <a href="/technology/how-it-works" class="btn btn--ghost">See How ESA Works</a>
         </div>
       </div>
-
     </div>
   </section>
 

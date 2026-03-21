@@ -444,7 +444,15 @@
 }
 
 /* ── Reduced Motion ── */
-@media (prefers-reduced-motion: reduce) {
+
+    .sam-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+    .sam-hero__inner, .sam-hero .sam-section__inner { position: relative; z-index: 2; }
+
+    @media (prefers-reduced-motion: reduce) {
   .sam-header,
   .sam-dropdown,
   .sam-nav__chevron,
@@ -870,7 +878,7 @@
   min-height: 480px;
   display: flex;
   align-items: center;
-}
+ background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; overflow: hidden;}
 .sam-hero__inner {
   max-width: 1584px;
   margin: 0 auto;
@@ -1365,7 +1373,8 @@
 <main id="main-content" class="sam-service">
 
   <!-- ─── 1. HERO ─── -->
-  <section class="sam-hero sam-hero--service">
+  <section class="sam-hero sam-hero--service" style="background-image: url('/assets/images/heroes/hero-sam4-platform.jpg');">
+    <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
       <div class="sam-hero__content">
         <p class="sam-hero__overline">Service Model</p>

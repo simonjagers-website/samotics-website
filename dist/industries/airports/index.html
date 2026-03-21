@@ -186,6 +186,14 @@
 
     .sam-nav__link:focus-visible, .sam-dropdown__item:focus-visible, .sam-cta:focus-visible, .sam-hamburger:focus-visible, .sam-mobile-nav__toggle:focus-visible, .sam-mobile-nav__link:focus-visible, .sam-mobile-nav__sub a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
     .sam-footer__col-links a:focus-visible, .sam-footer__social:focus-visible, .sam-footer__legal a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    
+    .sam-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+    .sam-section--hero .sam-section__inner { position: relative; z-index: 2; }
+
     @media (prefers-reduced-motion: reduce) { .sam-header, .sam-dropdown, .sam-nav__chevron, .sam-hamburger__line, .sam-mobile-nav__arrow, .sam-logo, .sam-footer__col-links a, .sam-footer__social, .sam-footer__legal a { transition: none !important; animation: none !important; } }
 
     @media (max-width: 991px) {
@@ -223,7 +231,7 @@
 
     .sam-section--hero,
     .sam-section--dark {
-      background: var(--space-cadet);
+      background: var(--space-cadet) url('/assets/images/heroes/hero-airports.jpg') center/cover no-repeat; position: relative; overflow: hidden;
       color: var(--white);
       padding: var(--space-30) var(--space-6);
     }
@@ -1374,6 +1382,7 @@
 
   <!-- ── Section 1: Hero ── -->
   <section class="sam-section sam-section--hero">
+    <div class="sam-hero-overlay"></div>
     <div class="sam-section__inner">
       <div class="sam-section__overline">Airports</div>
       <h1 class="sam-section__title">Keep baggage handling running. Every flight.</h1>

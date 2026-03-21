@@ -133,7 +133,7 @@
     }
 
     section.sam-section--hero {
-      background: var(--space-cadet);
+      background: var(--space-cadet) url('/assets/images/heroes/hero-technology.jpg') center/cover no-repeat; position: relative; overflow: hidden;
       color: var(--white);
       padding: var(--space-30) var(--space-6);
     }
@@ -270,6 +270,14 @@
     .sam-grid--2col {
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
+
+    
+    .sam-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+    .sam-section--hero .sam-section__inner { position: relative; z-index: 2; }
 
     @media (min-width: 768px) {
       .sam-grid--2col {
