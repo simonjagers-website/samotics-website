@@ -1,1 +1,1223 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samotics — Inaccessible Asset Monitoring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       SHARED TOKENS (sam- prefixed for header/footer)
+       ======================================== */
+
+    :root {
+      --sam-space-cadet: #1F1F33;
+      --sam-orange: #FF5429;
+      --sam-orange-dark: #D7411B;
+      --sam-blue: #005CBA;
+      --sam-white: #FFFFFF;
+      --sam-seashell: #F8F5F2;
+      --sam-black: #111111;
+      --sam-comet: #6B6B7F;
+      --sam-border-light: #E8E4E0;
+      --sam-header-bg: #1F1F33;
+      --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sam-header-h: 80px;
+      --sam-header-h-compact: 64px;
+      --sam-transition: 150ms ease-out;
+    }
+
+    /* ========================================
+       SHARED HEADER STYLES
+       ======================================== */
+
+    .sam-skip-link { position: absolute; top: -100%; left: 16px; z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 0; }
+    .sam-skip-link:focus { top: 8px; }
+    .sam-header { position: sticky; top: 0; z-index: 1000; width: 100%; height: var(--sam-header-h); background: var(--sam-header-bg); transition: height var(--sam-transition), box-shadow var(--sam-transition); }
+    .sam-header.is-scrolled { height: var(--sam-header-h-compact); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25); }
+    .sam-header__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px; }
+    .sam-header__logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .sam-logo { height: auto; transition: transform 200ms ease-out, filter 200ms ease-out; }
+    .sam-logo--dark { display: none; }
+    .sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+    .sam-nav { display: flex; align-items: center; gap: 28px; }
+    .sam-nav__link { font: 500 15px/1 var(--sam-font); color: rgba(255, 255, 255, 0.85); text-decoration: none; padding: 8px 0; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; position: relative; transition: color var(--sam-transition); white-space: nowrap; }
+    .sam-nav__link:hover, .sam-nav__link:focus-visible { color: var(--sam-white); }
+    .sam-nav__link[aria-current="page"]::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--sam-orange); }
+    .sam-nav__chevron { transition: transform var(--sam-transition); flex-shrink: 0; }
+    .sam-nav__item { position: relative; }
+    .sam-dropdown { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(-4px); min-width: 300px; background: var(--sam-white); border: 1px solid var(--sam-border-light); border-radius: 0; padding: 8px 0; opacity: 0; visibility: hidden; transition: opacity var(--sam-transition), visibility var(--sam-transition), transform var(--sam-transition); pointer-events: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+    .sam-nav__item--has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
+    .sam-nav__item--has-dropdown:hover .sam-dropdown, .sam-nav__item--has-dropdown:focus-within .sam-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    .sam-nav__item--has-dropdown:hover .sam-nav__chevron, .sam-nav__item--has-dropdown:focus-within .sam-nav__chevron { transform: rotate(180deg); }
+    .sam-dropdown__item { display: flex; flex-direction: column; padding: 12px 24px; text-decoration: none; transition: background-color 100ms ease-out; }
+    .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
+    .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
+    .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 0; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
+    .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+    .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .sam-hamburger__line { display: block; width: 24px; height: 2px; background: var(--sam-white); transition: transform 200ms ease-out, opacity 200ms ease-out; border-radius: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) { opacity: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .sam-mobile-menu { display: none; position: fixed; top: var(--sam-header-h-compact); left: 0; right: 0; bottom: 0; background: var(--sam-white); overflow-y: auto; z-index: 999; padding: 24px 16px; flex-direction: column; }
+    .sam-mobile-menu.is-open { display: flex; animation: samSlideIn 200ms ease-out; }
+    @keyframes samSlideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    .sam-mobile-nav__link { display: block; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__link:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__group { border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); background: none; border: none; cursor: pointer; }
+    .sam-mobile-nav__arrow { transition: transform 200ms ease-out; flex-shrink: 0; }
+    .sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow { transform: rotate(180deg); }
+    .sam-mobile-nav__sub { display: none; flex-direction: column; padding: 0 0 8px 16px; }
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__sub { display: flex; }
+    .sam-mobile-nav__sub a { display: block; padding: 12px 0; font: 400 15px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; }
+    .sam-mobile-nav__sub a:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__cta-wrap { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__cta { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px 0; background: var(--sam-orange); color: var(--sam-white); font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 0; transition: background-color var(--sam-transition); }
+    .sam-mobile-nav__cta:hover { background: var(--sam-orange-dark); }
+
+    /* ========================================
+       SHARED FOOTER STYLES
+       ======================================== */
+
+    .sam-footer { background: var(--sam-space-cadet, #1F1F33); padding-top: 96px; }
+    .sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; }
+    .sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
+    .sam-footer__logo { display: inline-flex; text-decoration: none; }
+    .sam-footer__logo img { width: 140px; height: auto; }
+    .sam-footer__tagline { font: 400 16px/1.6 var(--sam-font); color: rgba(255, 255, 255, 0.6); margin: 0; max-width: 360px; }
+    .sam-footer__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; margin-bottom: 64px; }
+    .sam-footer__col-heading { font: 600 14px/1 var(--sam-font); color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px 0; }
+    .sam-footer__col-links { display: flex; flex-direction: column; gap: 12px; }
+    .sam-footer__col-links a { font: 400 14px/1.4 var(--sam-font); color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__col-links a:hover, .sam-footer__col-links a:focus-visible { color: #FFFFFF; }
+    .sam-footer__divider { height: 1px; background: rgba(255, 255, 255, 0.15); }
+    .sam-footer__certs { display: flex; align-items: center; gap: 16px; padding: 24px 0; }
+    .sam-footer__certs a { display: block; opacity: 0.7; transition: opacity 150ms ease-out; }
+    .sam-footer__certs a:hover { opacity: 1; }
+    .sam-footer__certs img { display: block; background: var(--sam-white); border-radius: 4px; padding: 4px; }
+    .sam-footer__bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+    .sam-footer__bottom-left { display: flex; align-items: center; gap: 24px; }
+    .sam-footer__copyright { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); }
+    .sam-footer__social { display: inline-flex; align-items: center; color: rgba(255, 255, 255, 0.4); transition: color 150ms ease-out; }
+    .sam-footer__social:hover { color: #FFFFFF; }
+    .sam-footer__legal { display: flex; align-items: center; gap: 8px; }
+    .sam-footer__legal a { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__legal a:hover, .sam-footer__legal a:focus-visible { color: #FFFFFF; }
+    .sam-footer__legal-sep { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.2); }
+
+    /* Shared focus & accessibility */
+    .sam-nav__link:focus-visible, .sam-dropdown__item:focus-visible, .sam-cta:focus-visible, .sam-hamburger:focus-visible, .sam-mobile-nav__toggle:focus-visible, .sam-mobile-nav__link:focus-visible, .sam-mobile-nav__sub a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    .sam-footer__col-links a:focus-visible, .sam-footer__social:focus-visible, .sam-footer__legal a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { .sam-header, .sam-dropdown, .sam-nav__chevron, .sam-hamburger__line, .sam-mobile-nav__arrow, .sam-logo, .sam-footer__col-links a, .sam-footer__social, .sam-footer__legal a { transition: none !important; animation: none !important; } }
+
+    /* Shared responsive (header/footer) */
+    @media (max-width: 991px) {
+      .sam-header { height: var(--sam-header-h-compact); }
+      .sam-header__inner { padding: 0 16px; }
+      .sam-nav { display: none; }
+      .sam-hamburger { display: flex; }
+      .sam-cta { padding: 8px 16px; font-size: 13px; }
+      .sam-footer { padding-top: 64px; }
+      .sam-footer__inner { padding: 0 16px; }
+      .sam-footer__top { margin-bottom: 48px; }
+      .sam-footer__grid { grid-template-columns: 1fr; gap: 0; margin-bottom: 48px; }
+      .sam-footer__col { border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 0; }
+      .sam-footer__col-heading { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; margin: 0; cursor: pointer; }
+      .sam-footer__col-heading::after { content: ''; width: 10px; height: 10px; border-right: 2px solid rgba(255, 255, 255, 0.4); border-bottom: 2px solid rgba(255, 255, 255, 0.4); transform: rotate(45deg); transition: transform 200ms ease-out; flex-shrink: 0; }
+      .sam-footer__col.is-open .sam-footer__col-heading::after { transform: rotate(-135deg); }
+      .sam-footer__col-links { display: none; padding: 0 0 16px 0; }
+      .sam-footer__col.is-open .sam-footer__col-links { display: flex; }
+      .sam-footer__bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+
+    /* ========================================
+       SAMOTICS DESIGN SYSTEM — PAGE TOKENS
+       Confidence Whispers revision, March 2026
+       ======================================== */
+
+    :root {
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --dark-blue-300: #A0A0B8;
+
+      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-data: 'JetBrains Mono', 'Consolas', monospace;
+
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-30: 120px;
+
+      --radius-default: 4px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
+      --motion-fast: 100ms;
+      --motion-normal: 300ms;
+      --max-width: 1120px;
+      --max-width-wide: 1280px;
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-primary); font-weight: 400; line-height: 1.75; color: var(--space-cadet); background: var(--white); }
+    .sam-home, .sam-home * { font-family: var(--font-primary); }
+    img { max-width: 100%; display: block; }
+    a { color: var(--blue-600); text-decoration: none; transition: opacity var(--motion-fast) ease-out; }
+    a:hover { opacity: 0.85; }
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
+    .section { padding: var(--space-24) 0; }
+    .sub-section { padding-top: var(--space-24); }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+
+    h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+    h4 { font-size: 20px; font-weight: 600; line-height: 1.4; }
+    .body-large { font-size: 18px; line-height: 1.6; }
+    .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
+    .caption { font-size: 14px; color: var(--comet); }
+    .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); }
+    .data-number { font-family: var(--font-data); font-weight: 700; }
+    .text-link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+
+    .btn {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-primary); font-size: 14px; font-weight: 600;
+      padding: 8px 16px; border-radius: var(--radius-default);
+      border: 2px solid transparent; cursor: pointer;
+      transition: all var(--motion-fast) ease-out; text-decoration: none; white-space: nowrap;
+    }
+    .btn--primary { background: var(--orange); color: var(--white); border-color: var(--orange); }
+    .btn--primary:hover { opacity: 0.9; }
+    .btn--ghost { background: transparent; color: var(--white); border-color: var(--white); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+    .btn--ghost-dark { background: transparent; color: var(--space-cadet); border-color: var(--border-grey); }
+    .btn--ghost-dark:hover { background: var(--seashell); opacity: 1; }
+
+    /* Old nav removed — using shared sam-header */
+
+    /* ========================================
+       SECTION 1: HERO + STAKES (DARK ZONE)
+       ======================================== */
+
+    .hero { background: var(--space-cadet); padding: calc(var(--space-30) + var(--sam-header-h, 80px)) 0 var(--space-30); color: var(--white); }
+    .hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
+    .hero__text { max-width: 560px; }
+    .hero__overline { margin-bottom: var(--space-4); }
+    .hero__headline { color: var(--white); margin-bottom: var(--space-6); }
+    .hero__subline { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); max-width: 48ch; }
+    .hero__actions { display: flex; gap: var(--space-3); align-items: center; }
+    .hero__visual { display: flex; align-items: center; justify-content: center; }
+    .hero__visual-placeholder { width: 100%; max-width: 520px; aspect-ratio: 4/3; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; color: var(--dark-blue-300); font-size: 14px; padding: var(--space-6); text-align: center; line-height: 1.5; }
+
+    /* Stats bar */
+    .hero__stats-heading { margin-top: var(--space-12); padding-top: var(--space-12); border-top: 1px solid rgba(255,255,255,0.08); margin-bottom: var(--space-8); }
+    .hero__stats-heading h3 { color: var(--white); font-size: 24px; font-weight: 600; }
+    .hero__stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-10); }
+    .stat { text-align: left; }
+    .stat__number { font-family: var(--font-data); font-weight: 700; font-size: 48px; line-height: 1; color: var(--white); margin-bottom: var(--space-2); }
+    .stat__label { font-size: 14px; font-weight: 400; color: var(--dark-blue-300); line-height: 1.4; }
+    .stat__source { font-size: 12px; color: rgba(160,160,184,0.6); margin-top: 4px; }
+    .hero__link { margin-top: var(--space-8); }
+    .hero__link a { font-size: 14px; font-weight: 600; color: var(--dark-blue-300); }
+    .hero__link a:hover { color: var(--white); opacity: 1; }
+
+    /* ========================================
+       WHITE ZONE: PERSONAS
+       ======================================== */
+
+    .white-zone { background: var(--white); }
+
+    /* -- Personas -- */
+    .personas__header { margin-bottom: var(--space-6); }
+    .personas__subtitle { color: var(--comet); max-width: 65ch; margin-top: var(--space-3); }
+    .personas__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-8); }
+
+    .persona-card {
+      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
+      padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-3);
+      transition: box-shadow var(--motion-normal) ease-out; text-decoration: none; color: inherit;
+    }
+    .persona-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
+    .persona-card__tag { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--comet); padding: 4px 10px; background: var(--seashell); border-radius: var(--radius-full); display: inline-block; width: fit-content; }
+    .persona-card__question { font-size: 20px; font-weight: 600; color: var(--space-cadet); line-height: 1.3; }
+    .persona-card__desc { font-size: 14px; color: var(--comet); line-height: 1.6; flex: 1; }
+    .persona-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+
+    /* ========================================
+       SEASHELL ZONE A: METHOD + ESA STEPS + VALUE PROPS
+       Breaks the white monotony, creates rhythm
+       ======================================== */
+
+    .method-zone { background: var(--seashell); }
+
+    .method__header { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: start; }
+    .method__intro h2 { margin-bottom: var(--space-6); }
+    .method__body { font-size: 16px; line-height: 1.75; max-width: 65ch; color: var(--space-cadet); }
+    .method__diagram { display: flex; align-items: center; justify-content: center; }
+    .method__diagram-placeholder {
+      width: 100%; aspect-ratio: 16/10;
+      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--comet); font-size: 14px; padding: var(--space-6); text-align: center; line-height: 1.5;
+    }
+
+    /* -- ESA Step Flow (C11) -- */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-top: var(--space-12); position: relative; }
+    .steps::before { content: ''; position: absolute; top: 20px; left: 40px; right: 40px; height: 2px; background: var(--border-grey); z-index: 0; }
+    .step { position: relative; z-index: 1; text-align: center; }
+    .step__number { width: 40px; height: 40px; border-radius: 50%; background: var(--space-cadet); color: var(--white); font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); }
+    .step__title { font-size: 16px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-2); }
+    .step__desc { font-size: 14px; color: var(--comet); line-height: 1.5; }
+    .method__link { margin-top: var(--space-8); text-align: center; }
+
+    /* -- Value Props: horizontal, borderless, icon-led -- */
+    .value-props { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); padding-top: var(--space-12); border-top: 1px solid var(--border-grey); }
+    .value-prop { display: flex; gap: var(--space-4); align-items: flex-start; }
+    .value-prop__icon {
+      width: 48px; height: 48px; min-width: 48px;
+      background: var(--space-cadet); border-radius: var(--radius-default);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 20px; font-weight: 700;
+    }
+    .value-prop__content { flex: 1; }
+    .value-prop__title { font-size: 16px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-2); }
+    .value-prop__desc { font-size: 14px; color: var(--comet); line-height: 1.6; }
+    .value-prop__metric { font-family: var(--font-data); font-weight: 700; font-size: 28px; color: var(--space-cadet); line-height: 1; margin-bottom: var(--space-2); }
+
+    /* ========================================
+       WHITE ZONE: ASSET-TYPE ROUTING
+       Equipment-first routing. Engineers think
+       "I have pumps I can't reach" not "I'm in water."
+       ======================================== */
+
+    .assets { background: var(--white); }
+    .assets h2 { margin-bottom: var(--space-3); }
+    .assets__subtitle { color: var(--comet); max-width: 65ch; margin-bottom: var(--space-12); }
+    .asset-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+    .asset-grid--bottom { margin-top: var(--space-6); grid-template-columns: repeat(3, 1fr); }
+    .asset-card {
+      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
+      padding: 0; display: flex; flex-direction: column;
+      text-decoration: none; color: inherit; overflow: hidden;
+      transition: box-shadow var(--motion-normal) ease-out;
+    }
+    .asset-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
+    .asset-card__icon-bar {
+      height: 80px; background: var(--space-cadet);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 32px;
+    }
+    .asset-card__body { padding: var(--space-6) var(--space-8) var(--space-8); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
+    .asset-card__title { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
+    .asset-card__detects { font-size: 13px; color: var(--comet); line-height: 1.5; }
+    .asset-card__proof { font-size: 14px; color: var(--space-cadet); line-height: 1.5; font-weight: 500; flex: 1; }
+    .asset-card__source { font-size: 12px; color: var(--comet); }
+    .asset-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+
+    /* Industry deployment line */
+    .industry-line { margin-top: var(--space-12); padding-top: var(--space-8); border-top: 1px solid var(--border-grey); text-align: center; }
+    .industry-line__text { font-size: 14px; color: var(--comet); }
+    .industry-line__text a { color: var(--blue-600); font-weight: 600; }
+
+    /* ========================================
+       SEASHELL ZONE B: SOCIAL PROOF + KNOWLEDGE BASE
+       ======================================== */
+
+    .proof-zone { background: var(--seashell); }
+
+    /* -- Proof Stats: 6-column with payback stat included -- */
+    .proof__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-bottom: var(--space-12); }
+    .proof-stat { background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default); padding: var(--space-6) var(--space-8); text-align: center; }
+    .proof-stat__number { font-family: var(--font-data); font-weight: 700; font-size: 36px; line-height: 1; color: var(--space-cadet); margin-bottom: var(--space-2); }
+    .proof-stat__label { font-size: 14px; color: var(--comet); }
+    .proof__stats--bottom { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-6); margin-bottom: var(--space-12); }
+
+    /* -- Logo strip -- */
+    .proof__logos { display: flex; align-items: center; gap: var(--space-10); flex-wrap: wrap; margin-bottom: var(--space-12); padding: var(--space-8) 0; border-top: 1px solid var(--border-grey); border-bottom: 1px solid var(--border-grey); }
+    .proof__logo { font-size: 14px; font-weight: 600; color: var(--comet); opacity: 0.5; transition: opacity var(--motion-normal) ease-out; white-space: nowrap; }
+    .proof__logo:hover { opacity: 1; }
+
+    /* -- Quote (C12) -- */
+    .proof__quote { border-left: 3px solid var(--space-cadet); padding-left: var(--space-8); max-width: 720px; }
+    .proof__quote blockquote { font-size: 18px; font-style: italic; line-height: 1.6; color: var(--space-cadet); margin-bottom: var(--space-4); }
+    .proof__quote cite { font-size: 14px; font-style: normal; color: var(--comet); }
+    .proof__link { margin-top: var(--space-8); }
+
+    /* -- Knowledge Base: cards with coloured accent top -- */
+    .knowledge { margin-top: var(--space-24); border-top: 1px solid var(--border-grey); padding-top: var(--space-24); }
+    .knowledge__overline { margin-bottom: var(--space-3); }
+    .knowledge h2 { margin-bottom: var(--space-10); }
+    .knowledge__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+    .knowledge-card {
+      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
+      padding: 0; display: flex; flex-direction: column;
+      text-decoration: none; color: inherit; overflow: hidden;
+      transition: box-shadow var(--motion-normal) ease-out;
+    }
+    .knowledge-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
+    .knowledge-card__accent { height: 4px; background: var(--space-cadet); }
+    .knowledge-card__accent--blue { background: var(--blue-600); }
+    .knowledge-card__accent--orange { background: var(--orange); }
+    .knowledge-card__body { padding: var(--space-6) var(--space-8) var(--space-8); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
+    .knowledge-card__tag { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--comet); padding: 4px 10px; background: var(--seashell); border-radius: var(--radius-full); display: inline-block; width: fit-content; }
+    .knowledge-card__title { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
+    .knowledge-card__desc { font-size: 14px; color: var(--comet); line-height: 1.6; flex: 1; }
+    .knowledge-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+
+    /* ========================================
+       DARK ZONE: PLATFORM + CTA (TERMINAL)
+       ======================================== */
+
+    .terminal { background: var(--space-cadet); padding: var(--space-30) 0; color: var(--white); }
+    .terminal__content { text-align: center; max-width: 640px; margin: 0 auto var(--space-12); }
+    .terminal__headline { color: var(--white); margin-bottom: var(--space-6); }
+    .terminal__subline { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); }
+    .terminal__actions { display: flex; gap: var(--space-3); align-items: center; justify-content: center; margin-bottom: var(--space-4); }
+    .terminal__escape { font-size: 14px; color: var(--dark-blue-300); }
+    .terminal__escape a { color: var(--dark-blue-300); font-weight: 600; }
+    .terminal__escape a:hover { color: var(--white); opacity: 1; }
+    .terminal__visual { width: 100%; aspect-ratio: 16/9; max-width: 960px; margin: var(--space-12) auto 0; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; color: var(--dark-blue-300); font-size: 14px; padding: var(--space-6); text-align: center; }
+
+    /* Old footer removed — using shared sam-footer */
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+
+    @media (max-width: 1024px) {
+      .hero__grid { grid-template-columns: 1fr; }
+      .hero__visual { display: none; }
+      .hero__stats { grid-template-columns: repeat(2, 1fr); }
+      .personas__grid { grid-template-columns: repeat(2, 1fr); }
+      .method__header { grid-template-columns: 1fr; }
+      .method__diagram { margin-top: var(--space-8); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .steps::before { display: none; }
+      .value-props { grid-template-columns: repeat(2, 1fr); }
+      .asset-grid { grid-template-columns: repeat(2, 1fr); }
+      .asset-grid--bottom { max-width: 100%; }
+      .proof__stats { grid-template-columns: repeat(3, 1fr); }
+      .proof__stats--bottom { grid-template-columns: repeat(3, 1fr); }
+      .knowledge__grid { grid-template-columns: repeat(2, 1fr); }
+      .section { padding: var(--space-16) 0; }
+      .sub-section { padding-top: var(--space-16); }
+      .hero { padding: calc(var(--space-16) + var(--sam-header-h-compact, 64px)) 0 var(--space-16); }
+      .terminal { padding: var(--space-16) 0; }
+      /* footer handled by sam-footer responsive */
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 36px; }
+      h2 { font-size: 28px; }
+      h3 { font-size: 20px; }
+      .hero__stats { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+      .stat__number { font-size: 36px; }
+      .personas__grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .value-props { grid-template-columns: 1fr; }
+      .asset-grid { grid-template-columns: 1fr; }
+      .asset-grid--bottom { grid-template-columns: 1fr; }
+      .proof__stats { grid-template-columns: 1fr 1fr; }
+      .proof__stats--bottom { grid-template-columns: 1fr 1fr; }
+      .proof-stat__number { font-size: 28px; }
+      .knowledge__grid { grid-template-columns: 1fr; }
+      .section { padding: var(--space-12) 0; }
+      .sub-section { padding-top: var(--space-12); }
+      .knowledge { margin-top: var(--space-12); padding-top: var(--space-12); }
+      .hero { padding: calc(var(--space-12) + var(--sam-header-h-compact, 64px)) 0 var(--space-12); }
+      .terminal { padding: var(--space-12) 0; }
+      .terminal__actions { flex-direction: column; }
+      /* nav handled by sam-header responsive */
+      .footer__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body class="sam-home">
+
+  <!-- ======== SHARED HEADER (from _partials/header.html) ======== -->
+  <header class="sam-header" role="navigation" aria-label="Main navigation">
+  <a href="#main-content" class="sam-skip-link">Skip to content</a>
+  <div class="sam-header__inner">
+
+    <!-- Logo -->
+    <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--dark" width="140" height="32">
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="sam-nav" aria-label="Main navigation">
+
+      <a href="/problem" class="sam-nav__link">Problem</a>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Technology
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/technology/esa" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Electrical Signature Analysis</span>
+            <span class="sam-dropdown__desc">The science behind SAM4</span>
+          </a>
+          <a href="/technology/esa-vs-vibration" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">ESA &amp; Vibration</span>
+            <span class="sam-dropdown__desc">How ESA and vibration work together</span>
+          </a>
+          <a href="/technology/how-sam4-works" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Technical Deep Dive</span>
+            <span class="sam-dropdown__desc">Detection accuracy, methodology, and performance data</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Platform
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/platform/sam4" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">SAM4 Platform</span>
+            <span class="sam-dropdown__desc">Dashboard, diagnostics, and service model</span>
+          </a>
+          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">How It Installs</span>
+            <span class="sam-dropdown__desc">&lt;60 minutes, back online same shift</span>
+          </a>
+          <a href="/platform/security" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Security &amp; Compliance</span>
+            <span class="sam-dropdown__desc">ISO 27001, ISO 9001, NIS2 aligned, cellular architecture</span>
+          </a>
+          <a href="/platform/what-we-monitor" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">What We Monitor</span>
+            <span class="sam-dropdown__desc">Detection matrix by asset type and fault mode</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Industries
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/industries/water" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Water &amp; Wastewater</span>
+          </a>
+          <a href="/industries/oil-gas" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Oil &amp; Gas</span>
+          </a>
+          <a href="/industries/metals-mining" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Metals &amp; Mining</span>
+          </a>
+          <a href="/industries/chemicals" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Chemicals</span>
+          </a>
+          <a href="/industries/pulp-paper" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Pulp &amp; Paper</span>
+          </a>
+          <a href="/industries/airports" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Airports</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/proof" class="sam-nav__link">Proof</a>
+      <a href="/about" class="sam-nav__link">About</a>
+
+    </nav>
+
+    <div class="sam-header__actions">
+      <a href="/contact/asset-audit" class="sam-cta-secondary" style="font-family:var(--sam-font);font-size:14px;font-weight:500;color:var(--sam-white);text-decoration:none;opacity:0.8;white-space:nowrap;transition:opacity 150ms ease-out;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Asset Audit</a>
+      <a href="/contact?intent=demo" class="sam-cta">Request a Demo</a>
+      <button class="sam-hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="sam-mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <nav class="sam-mobile-nav" aria-label="Mobile navigation">
+
+      <a href="/problem" class="sam-mobile-nav__link">Problem</a>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Technology
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/technology/esa">Electrical Signature Analysis</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Platform
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Security &amp; Compliance</a>
+          <a href="/platform/what-we-monitor">What We Monitor</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Industries
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/industries/water">Water &amp; Wastewater</a>
+          <a href="/industries/oil-gas">Oil &amp; Gas</a>
+          <a href="/industries/metals-mining">Metals &amp; Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
+        </div>
+      </div>
+
+      <a href="/proof" class="sam-mobile-nav__link">Proof</a>
+      <a href="/about" class="sam-mobile-nav__link">About</a>
+
+      <div class="sam-mobile-nav__cta-wrap">
+        <a href="/contact?intent=demo" class="sam-mobile-nav__cta">Request a Demo</a>
+      </div>
+
+    </nav>
+  </div>
+
+</header>
+
+  <main id="main-content">
+
+
+  <!-- ============================================
+       DARK ZONE: HERO + STAKES
+       Belief shifts: "You have a blind spot" +
+                      "It's bigger than you think"
+       ============================================ -->
+  <section class="hero" aria-label="Hero">
+    <div class="container">
+
+      <div class="hero__grid">
+        <div class="hero__text">
+          <p class="overline hero__overline">Inaccessible Asset Monitoring</p>
+          <h1 class="hero__headline">Your most critical assets are the ones no sensor can reach. They're already telling you what's wrong.</h1>
+          <p class="hero__subline">SAM4 reads electrical signatures at the motor control cabinet and monitors every AC motor 24/7. No sensors on the machine. No access to the asset.</p>
+          <div class="hero__actions">
+            <a href="/contact" class="btn btn--primary">Request a Demo</a>
+            <a href="/technology/how-it-works" class="btn btn--ghost">See How ESA Works</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__visual-placeholder">
+            [Hero image: industrial engineer at MCC cabinet, or SAM4 dashboard showing real asset health data and spectral graph]
+          </div>
+        </div>
+      </div>
+
+      <!-- C02: Stats Bar — merged into hero dark section -->
+      <div class="hero__stats-heading">
+        <h3>The cost of what you can't see</h3>
+      </div>
+      <div class="hero__stats">
+        <div class="stat">
+          <div class="stat__number data-number">30-40%</div>
+          <div class="stat__label">of critical rotating assets go unmonitored</div>
+          <div class="stat__source">Industry data</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number data-number">&pound;390K</div>
+          <div class="stat__label">potential fine avoided from a single detection</div>
+          <div class="stat__source">Yorkshire Water</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number data-number">70,000</div>
+          <div class="stat__label">manual inspection trips replaced per year</div>
+          <div class="stat__source">Yorkshire Water</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number data-number">&euro;50K+</div>
+          <div class="stat__label">saved per avoided unplanned shutdown</div>
+          <div class="stat__source">ArcelorMittal</div>
+        </div>
+      </div>
+      <div class="hero__link">
+        <a href="/problem">Understand the monitoring blind spot &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       WHITE ZONE: PERSONAS
+       Belief shift: "This is built for people like me"
+       ============================================ -->
+  <section class="white-zone section" aria-label="Personas">
+    <div class="container">
+      <div class="personas__header">
+        <h2>Built for the people who keep plants running</h2>
+        <p class="body personas__subtitle">SAM4 serves different roles in the maintenance and reliability chain. Find your question.</p>
+      </div>
+      <div class="personas__grid">
+        <a href="/platform/sam4" class="persona-card">
+          <span class="persona-card__tag">Reliability Manager</span>
+          <div class="persona-card__question">Does this solve a problem I can't solve today?</div>
+          <div class="persona-card__desc">You know 30-40% of your assets are blind. Vibration can't reach submerged pumps or ATEX zones. ESA monitors from the MCC, covering the assets sensors can't.</div>
+          <span class="persona-card__link">See the technology &rarr;</span>
+        </a>
+        <a href="/proof" class="persona-card">
+          <span class="persona-card__tag">Operations Director</span>
+          <div class="persona-card__question">What's the financial impact and how fast?</div>
+          <div class="persona-card__desc">Yorkshire Water: 70,000 inspection trips replaced. DuPont: 40% reduction in equipment downtime. Average payback: 8 months.</div>
+          <span class="persona-card__link">See the results &rarr;</span>
+        </a>
+        <a href="/platform/how-it-installs" class="persona-card">
+          <span class="persona-card__tag">Maintenance Engineer</span>
+          <div class="persona-card__question">Will this make my job easier or harder?</div>
+          <div class="persona-card__desc">Install in under 30 minutes per asset. No shutdown. Actionable alerts with severity scoring and recommended actions. Integrates with SAP PM and IBM Maximo.</div>
+          <span class="persona-card__link">See how it installs &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SEASHELL ZONE A: METHOD + ESA STEPS + VALUE PROPS
+       Belief shift: "There's a way to close it"
+       Background shift breaks the white monotony.
+       ============================================ -->
+  <section class="method-zone section" aria-label="How ESA works">
+    <div class="container">
+
+      <!-- Two-column: text left, diagram right -->
+      <div class="method__header">
+        <div class="method__intro">
+          <p class="overline" style="margin-bottom: var(--space-3);">The Technology</p>
+          <h2>How ESA works</h2>
+          <p class="method__body" style="margin-top: var(--space-6);">Every AC motor draws a unique current and voltage signature. When a bearing degrades, a coupling misaligns, or cavitation develops, the signature changes. SAM4 captures these changes at the motor control cabinet and diagnoses the fault before failure.</p>
+        </div>
+        <div class="method__diagram">
+          <div class="method__diagram-placeholder">
+            [Diagram: MCC cabinet with split-core CTs → signal flow → cloud processing → SAM4 dashboard with health scores and spectral analysis]
+          </div>
+        </div>
+      </div>
+
+      <!-- C11: Step Flow -->
+      <div class="steps">
+        <div class="step">
+          <div class="step__number">1</div>
+          <div class="step__title">Signal capture</div>
+          <div class="step__desc">Split-core CTs clip onto cables at the MCC. Current and voltage sampled at high frequency.</div>
+        </div>
+        <div class="step">
+          <div class="step__number">2</div>
+          <div class="step__title">Pattern analysis</div>
+          <div class="step__desc">Spectral decomposition isolates frequency components linked to mechanical and electrical faults.</div>
+        </div>
+        <div class="step">
+          <div class="step__number">3</div>
+          <div class="step__title">AI classification</div>
+          <div class="step__desc">Machine learning models trained on thousands of confirmed faults identify anomalies and diagnose root cause.</div>
+        </div>
+        <div class="step">
+          <div class="step__number">4</div>
+          <div class="step__title">Expert validation</div>
+          <div class="step__desc">Samotics reliability engineers review alerts before they reach your team. 0.32% false positive rate.</div>
+        </div>
+      </div>
+
+      <div class="method__link">
+        <a href="/technology/esa" class="text-link">Learn the technical detail behind ESA &rarr;</a>
+      </div>
+
+      <!-- Value props: horizontal, icon-led, borderless — visually distinct from persona cards -->
+      <div class="value-props">
+        <div class="value-prop">
+          <div class="value-prop__icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 10 10-12h-9l1-10z"/></svg>
+          </div>
+          <div class="value-prop__content">
+            <div class="value-prop__title">No sensors on the machine</div>
+            <div class="value-prop__desc">Monitors from the MCC. Submerged pumps, ATEX zones, enclosed drives — all reachable. No permits, no scaffolding, no shutdown.</div>
+          </div>
+        </div>
+        <div class="value-prop">
+          <div class="value-prop__icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="value-prop__content">
+            <div class="value-prop__title">Install in under 30 minutes</div>
+            <div class="value-prop__desc">Current and voltage sensors clip onto existing cables at the motor control cabinet. No production interruption. No asset downtime.</div>
+          </div>
+        </div>
+        <div class="value-prop">
+          <div class="value-prop__icon" style="background: var(--orange);">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="value-prop__content">
+            <div class="value-prop__metric data-number">90.8%</div>
+            <div class="value-prop__title">Fault detection rate on core assets</div>
+            <div class="value-prop__desc">Bearing wear, imbalance, cavitation, misalignment. Detected weeks to months before failure. 1,874 resolved incidents. Jan 2024 to Feb 2026.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       WHITE ZONE: ASSET-TYPE ROUTING
+       Belief shift: "It monitors my equipment"
+       Engineers think equipment-first, industry second.
+       ============================================ -->
+  <section class="assets section" aria-label="Assets we monitor">
+    <div class="container">
+
+      <h2>The assets SAM4 monitors</h2>
+      <p class="body assets__subtitle">Every AC-motor-driven asset is a candidate. These are the ones where ESA has the strongest track record.</p>
+
+      <div class="asset-grid">
+        <a href="/platform/what-we-monitor" class="asset-card">
+          <div class="asset-card__icon-bar">
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="12"/><circle cx="18" cy="18" r="4"/><path d="M18 6v4M18 26v4M6 18h4M26 18h4"/></svg>
+          </div>
+          <div class="asset-card__body">
+            <div class="asset-card__title">Pumps</div>
+            <div class="asset-card__detects">Bearing failure &middot; Cavitation &middot; Impeller wear &middot; Dry running &middot; Seal degradation</div>
+            <div class="asset-card__proof">1,000+ pumping stations monitored. Bearing faults detected weeks before failure on submerged assets no vibration sensor can reach.</div>
+            <div class="asset-card__source">Yorkshire Water, Vitens, ArcelorMittal</div>
+            <span class="asset-card__link">See pump detections &rarr;</span>
+          </div>
+        </a>
+        <a href="/platform/what-we-monitor" class="asset-card">
+          <div class="asset-card__icon-bar">
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="12"/><path d="M18 18l-6-8M18 18l8-2M18 18l-2 10"/></svg>
+          </div>
+          <div class="asset-card__body">
+            <div class="asset-card__title">Fans &amp; Blowers</div>
+            <div class="asset-card__detects">Bearing failure &middot; Blade imbalance &middot; Blade erosion</div>
+            <div class="asset-card__proof">100% detection accuracy at Schiphol Airport. 9 out of 9 failures caught — including faults vibration monitoring missed.</div>
+            <div class="asset-card__source">Schiphol Airport</div>
+            <span class="asset-card__link">See fan detections &rarr;</span>
+          </div>
+        </a>
+        <a href="/platform/what-we-monitor" class="asset-card">
+          <div class="asset-card__icon-bar">
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="14" width="28" height="8" rx="2"/><circle cx="10" cy="22" r="3"/><circle cx="26" cy="22" r="3"/></svg>
+          </div>
+          <div class="asset-card__body">
+            <div class="asset-card__title">Conveyors</div>
+            <div class="asset-card__detects">Gearbox degradation &middot; Belt slip &middot; Drive-end bearing failure</div>
+            <div class="asset-card__proof">Included in 90.8% fault detection rate across 1,874 resolved incidents. Gearbox tooth defects detected via gear mesh frequency analysis.</div>
+            <div class="asset-card__source">Metals &amp; mining deployments</div>
+            <span class="asset-card__link">See conveyor detections &rarr;</span>
+          </div>
+        </a>
+      </div>
+      <div class="asset-grid asset-grid--bottom">
+        <a href="/platform/what-we-monitor" class="asset-card">
+          <div class="asset-card__icon-bar">
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4v28"/><circle cx="18" cy="28" r="5"/><path d="M13 10h10M11 16h14"/></svg>
+          </div>
+          <div class="asset-card__body">
+            <div class="asset-card__title">ESPs</div>
+            <div class="asset-card__detects">Bearing failure &middot; Shaft wear &middot; Gas locking &middot; Electrical insulation breakdown</div>
+            <div class="asset-card__proof">Electrical Submersible Pumps operate kilometres underground with zero physical access. ESA monitors the full drivetrain from the surface switchgear.</div>
+            <div class="asset-card__source">Oil &amp; Gas deployments</div>
+            <span class="asset-card__link">See ESP detections &rarr;</span>
+          </div>
+        </a>
+        <a href="/platform/what-we-monitor" class="asset-card">
+          <div class="asset-card__icon-bar">
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 28L28 8"/><path d="M10 22c3-1 5-3 6-6M14 26c3-1 7-4 10-10M18 30c4-2 8-6 12-12"/></svg>
+          </div>
+          <div class="asset-card__body">
+            <div class="asset-card__title">Archimedes Screws</div>
+            <div class="asset-card__detects">Bearing failure &middot; Gearbox degradation &middot; Drive misalignment</div>
+            <div class="asset-card__proof">Slow-speed, high-torque drives in inlet works and storm tanks. Bearing and gearbox faults detected months before failure on assets with no vibration access.</div>
+            <div class="asset-card__source">Water &amp; Wastewater deployments</div>
+            <span class="asset-card__link">See screw detections &rarr;</span>
+          </div>
+        </a>
+        <a href="/platform/what-we-monitor" class="asset-card">
+          <div class="asset-card__icon-bar" style="background: var(--orange);">
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="12"/><path d="M12 18h12M18 12v12"/></svg>
+          </div>
+          <div class="asset-card__body">
+            <div class="asset-card__title">More assets</div>
+            <div class="asset-card__detects">Crushers &middot; Mixers &middot; Agitators &middot; Cooling towers &middot; Compressors &middot; Any AC motor</div>
+            <div class="asset-card__proof">Every AC-motor-driven asset is a candidate for ESA monitoring. See the full detection matrix by asset type and fault mode.</div>
+            <div class="asset-card__source">Full detection coverage</div>
+            <span class="asset-card__link">See all monitored assets &rarr;</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Single industry deployment line -->
+      <div class="industry-line">
+        <p class="industry-line__text">
+          Deployed across
+          <a href="/industries/water">Water</a>,
+          <a href="/industries/oil-gas">Oil &amp; Gas</a>,
+          <a href="/industries/metals-mining">Metals &amp; Mining</a>,
+          <a href="/industries/chemicals">Chemicals</a>, and
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SEASHELL ZONE B: SOCIAL PROOF + KNOWLEDGE BASE
+       Belief shift: "Others already trust it" +
+                     "I can go deeper"
+       ============================================ -->
+  <section class="proof-zone section" aria-label="Social proof and resources">
+    <div class="container">
+
+      <!-- Aggregate stats: 2 rows of 3, cards on seashell -->
+      <div class="proof__stats">
+        <div class="proof-stat">
+          <div class="proof-stat__number data-number">10,000+</div>
+          <div class="proof-stat__label">Assets monitored</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat__number data-number">80+</div>
+          <div class="proof-stat__label">Customers</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat__number data-number">5</div>
+          <div class="proof-stat__label">Continents</div>
+        </div>
+      </div>
+      <div class="proof__stats--bottom proof__stats">
+        <div class="proof-stat">
+          <div class="proof-stat__number data-number">90.8%</div>
+          <div class="proof-stat__label">Fault detection rate</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat__number data-number">0.32%</div>
+          <div class="proof-stat__label">False positive rate</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat__number data-number">8 mo.</div>
+          <div class="proof-stat__label">Average payback</div>
+        </div>
+      </div>
+
+      <!-- Logo strip -->
+      <div class="proof__logos" aria-label="Customer logos">
+        <span class="proof__logo">Yorkshire Water</span>
+        <span class="proof__logo">ArcelorMittal</span>
+        <span class="proof__logo">DuPont</span>
+        <span class="proof__logo">AstraZeneca</span>
+        <span class="proof__logo">Schiphol Airport</span>
+        <span class="proof__logo">Nyrstar</span>
+        <span class="proof__logo">Nucor</span>
+        <span class="proof__logo">Vitens</span>
+        <span class="proof__logo">ABB</span>
+      </div>
+
+      <!-- Featured quote (C12) -->
+      <div class="proof__quote">
+        <blockquote>"At first I was a bit sceptical about SAM4's ability to detect failures by analysing electrical waveforms, but the results speak for themselves: it just works."</blockquote>
+        <cite>DuPont</cite>
+      </div>
+
+      <div class="proof__link">
+        <a href="/proof" class="text-link">See all customer results &rarr;</a>
+      </div>
+
+      <!-- KNOWLEDGE BASE: cards with coloured accent top bars -->
+      <div class="knowledge">
+        <p class="overline knowledge__overline">From the knowledge base</p>
+        <h2>Go deeper on the technology</h2>
+        <div class="knowledge__grid">
+          <a href="/technology/esa" class="knowledge-card">
+            <div class="knowledge-card__accent"></div>
+            <div class="knowledge-card__body">
+              <span class="knowledge-card__tag">Technology</span>
+              <div class="knowledge-card__title">How ESA detects faults</div>
+              <div class="knowledge-card__desc">The physics behind Electrical Signature Analysis. How current and voltage patterns reveal bearing wear, cavitation, and misalignment.</div>
+              <span class="knowledge-card__link">Read more &rarr;</span>
+            </div>
+          </a>
+          <a href="/technology/esa-vs-vibration" class="knowledge-card">
+            <div class="knowledge-card__accent knowledge-card__accent--blue"></div>
+            <div class="knowledge-card__body">
+              <span class="knowledge-card__tag">Comparison</span>
+              <div class="knowledge-card__title">ESA and vibration: how they work together</div>
+              <div class="knowledge-card__desc">A technical comparison of detection methods. Where each excels, where each has limits, and why the combination covers more ground.</div>
+              <span class="knowledge-card__link">Read more &rarr;</span>
+            </div>
+          </a>
+          <a href="/technology/how-it-works" class="knowledge-card">
+            <div class="knowledge-card__accent knowledge-card__accent--orange"></div>
+            <div class="knowledge-card__body">
+              <span class="knowledge-card__tag">Architecture</span>
+              <div class="knowledge-card__title">What is Electrical Signature Analysis?</div>
+              <div class="knowledge-card__desc">A technical introduction to ESA. Signal acquisition, spectral processing, AI diagnostics, and the human-in-the-loop validation process.</div>
+              <span class="knowledge-card__link">Read more &rarr;</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       DARK ZONE: PLATFORM + CTA (TERMINAL)
+       Belief shifts: "Here's what it looks like" +
+                      "Here's how to start"
+       ============================================ -->
+  <section class="terminal" aria-label="Call to action">
+    <div class="container">
+
+      <div class="terminal__content">
+        <h2 class="terminal__headline">Stop reacting to failures you could have seen coming.</h2>
+        <p class="terminal__subline">Request a demo and speak with one of our reliability engineers within 48 hours. No sales pitch. A technical conversation about your assets.</p>
+        <div class="terminal__actions">
+          <a href="/contact" class="btn btn--primary">Request a Demo</a>
+          <a href="/contact/asset-audit" class="btn btn--ghost">Start Your Asset Audit</a>
+        </div>
+        <p class="terminal__escape">
+          Not ready for a conversation? <a href="/platform/sam4">Explore the SAM4 platform &rarr;</a>
+        </p>
+      </div>
+
+      <div class="terminal__visual">
+        [SAM4 dashboard: fleet health view with asset cards, anomaly timeline, diagnostic report with spectral evidence and severity scores]
+      </div>
+
+    </div>
+  </section>
+
+
+  </main>
+
+  <!-- ======== SHARED FOOTER (from _partials/footer.html) ======== -->
+  <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <div class="sam-footer__inner">
+
+    <!-- Top: Logo + Tagline -->
+    <div class="sam-footer__top">
+      <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
+        <img src="/assets/samotics-logo-white.svg"
+             alt="Samotics" width="140" height="32">
+      </a>
+      <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
+    </div>
+
+    <!-- Nav Grid: 5 columns -->
+    <div class="sam-footer__grid">
+
+      <!-- Technology -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Technology</h3>
+        <div class="sam-footer__col-links">
+          <a href="/technology/esa">ESA Technology</a>
+          <a href="/technology/how-sam4-works">How SAM4 Works</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Platform</h3>
+        <div class="sam-footer__col-links">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/what-we-monitor">What We Monitor</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Trust & Security</a>
+          <a href="/platform/sam4-x">SAM4-X</a>
+        </div>
+      </div>
+
+      <!-- Industries -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Industries</h3>
+        <div class="sam-footer__col-links">
+          <a href="/industries/water">Water & Wastewater</a>
+          <a href="/industries/oil-gas">Oil &amp; Gas</a>
+          <a href="/industries/metals-mining">Metals & Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+        </div>
+      </div>
+
+      <!-- Proof -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Resources</h3>
+        <div class="sam-footer__col-links">
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Company</h3>
+        <div class="sam-footer__col-links">
+          <a href="/about">About</a>
+          <!-- Phase 2: <a href="/partners">Partners</a> -->
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="sam-footer__divider"></div>
+
+    <!-- Certification Badges -->
+    <div class="sam-footer__certs">
+      <a href="/platform/security" aria-label="ISO 27001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-27001.webp" alt="DNV ISO 27001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+      <a href="/platform/security" aria-label="ISO 9001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-9001.webp" alt="DNV ISO 9001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="sam-footer__bottom">
+
+      <div class="sam-footer__bottom-left">
+        <span class="sam-footer__copyright">&copy; 2026 Samotics &middot; Built in The Netherlands</span>
+
+        <a href="https://www.linkedin.com/company/samotics/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="sam-footer__social"
+           aria-label="Samotics on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sam-footer__legal">
+        <a href="/privacy">Privacy</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/terms">Terms</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/cookies">Cookies</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+  <!-- ======== SHARED HEADER/FOOTER JS ======== -->
+  <script>
+  (function () {
+    'use strict';
+    var header = document.querySelector('.sam-header');
+    if (!header) return;
+    var scrollThreshold = 20;
+    function onScroll() {
+      if (window.scrollY > scrollThreshold) { header.classList.add('is-scrolled'); }
+      else { header.classList.remove('is-scrolled'); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    var hamburger = header.querySelector('.sam-hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function () {
+        var isOpen = mobileMenu.classList.toggle('is-open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+    }
+    document.querySelectorAll('.sam-mobile-nav__toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var group = btn.closest('.sam-mobile-nav__group');
+        var isOpen = group.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    });
+    document.querySelectorAll('[data-footer-accordion]').forEach(function (col) {
+      var heading = col.querySelector('.sam-footer__col-heading');
+      if (!heading) return;
+      heading.addEventListener('click', function () {
+        if (window.innerWidth > 991) return;
+        col.classList.toggle('is-open');
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>
