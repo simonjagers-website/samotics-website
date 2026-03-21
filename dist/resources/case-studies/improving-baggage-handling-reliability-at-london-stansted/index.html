@@ -36,6 +36,15 @@
       font-display: swap;
       src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
     }
+  
+    .sam-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+    .sam-post__hero { position: relative; overflow: hidden; }
+    .sam-post__hero-inner, .sam-post__hero > div:not(.sam-hero-overlay) { position: relative; z-index: 2; }
   </style>
   <style>
 :root {
@@ -646,6 +655,7 @@
 
 <main id="main-content" class="sam-post">
   <section class="sam-post__hero" style="background: var(--space-cadet, #1F1F33) url('/assets/images/heroes/hero-airports.jpg') center/cover no-repeat; position: relative; overflow: hidden;">
+    <div class="sam-hero-overlay"></div>
     <div class="sam-post__hero-inner">
       <div class="sam-post__breadcrumb">
         <a href="/">Home</a>
