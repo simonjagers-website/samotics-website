@@ -102,8 +102,8 @@
   --sam-header-h-compact: 64px;
   --sam-transition: 150ms ease-out;
 }
-.sam-skip-link { position: absolute; top: -100%; left: 16px; z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; }
-.sam-skip-link:focus { top: 8px; }
+.sam-skip-link { position: fixed; top: 0; left: 16px; transform: translateY(-200%); z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; }
+.sam-skip-link:focus { top: 8px; transform: none; }
 .sam-header { position: sticky; top: 0; z-index: 1000; width: 100%; height: var(--sam-header-h); background: var(--sam-header-bg); transition: height var(--sam-transition), box-shadow var(--sam-transition); }
 .sam-header.is-scrolled { height: var(--sam-header-h-compact); box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
 .sam-header__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px; }
