@@ -285,32 +285,18 @@
 
     .method-zone { background: var(--white); }
 
-    .method__header { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: start; }
-    .method__intro h2 { margin-bottom: var(--space-6); }
-    .method__body { font-size: 16px; line-height: 1.75; max-width: 65ch; color: var(--space-cadet); }
-    .method__diagram { display: flex; align-items: center; justify-content: center; }
-    .method__flow {
-      display: flex; align-items: center; gap: var(--space-4);
-      width: 100%; justify-content: center;
-    }
-    .method__flow-step { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); text-align: center; flex: 0 1 160px; }
-    .method__flow-icon {
-      width: 96px; height: 96px; background: var(--seashell); border: 1px solid var(--border-grey);
-      border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center;
-      padding: 8px;
-    }
-    .method__flow-icon img { width: 80px; height: 80px; }
-    .method__flow-label { font-size: 14px; font-weight: 600; color: var(--space-cadet); }
-    .method__flow-desc { font-size: 13px; color: var(--comet); line-height: 1.4; }
-    .method__flow-arrow { display: flex; align-items: center; flex-shrink: 0; }
+    .method__intro-block { margin-bottom: var(--space-10); }
+    .method__body { font-size: 16px; line-height: 1.75; color: var(--space-cadet); }
 
     /* -- ESA Step Flow (C11) -- */
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-top: var(--space-12); position: relative; }
-    .steps::before { content: ''; position: absolute; top: 20px; left: 40px; right: 40px; height: 2px; background: var(--border-grey); z-index: 0; }
+    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-6); position: relative; }
+    .steps::before { content: ''; position: absolute; top: 36px; left: 40px; right: 40px; height: 2px; background: var(--border-grey); z-index: 0; }
     .step { position: relative; z-index: 1; text-align: center; }
+    .step__icon { width: 72px; height: 72px; background: var(--seashell); border: 1px solid var(--border-grey); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); }
+    .step__icon img { width: 56px; height: 56px; }
     .step__number { width: 40px; height: 40px; border-radius: 50%; background: var(--space-cadet); color: var(--white); font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); }
-    .step__title { font-size: 16px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-2); }
-    .step__desc { font-size: 14px; color: var(--comet); line-height: 1.5; }
+    .step__title { font-size: 14px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-2); }
+    .step__desc { font-size: 13px; color: var(--comet); line-height: 1.5; }
     .method__link { margin-top: var(--space-8); text-align: center; }
 
     /* -- Value Props: horizontal, borderless, icon-led -- */
@@ -488,12 +474,7 @@
       .hero__visual { display: none; }
       .hero__stats { grid-template-columns: repeat(2, 1fr); }
       .personas__grid { grid-template-columns: repeat(2, 1fr); }
-      .method__header { grid-template-columns: 1fr; }
-      .method__diagram { margin-top: var(--space-8); }
-      .method__flow { flex-direction: column; gap: var(--space-6); }
-      .method__flow-arrow { transform: rotate(90deg); }
-      .method__flow-step { flex: none; }
-      .steps { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); }
       .steps::before { display: none; }
       .value-props { grid-template-columns: repeat(2, 1fr); }
       .asset-grid { grid-template-columns: repeat(2, 1fr); }
@@ -818,71 +799,48 @@
   <section class="method-zone section" aria-label="How ESA works">
     <div class="container">
 
-      <!-- Two-column: text left, diagram right -->
-      <div class="method__header">
-        <div class="method__intro">
-          <p class="overline" style="margin-bottom: var(--space-3);">The Technology</p>
-          <h2>How ESA works</h2>
-          <p class="method__body" style="margin-top: var(--space-6);">Every AC motor draws a unique current and voltage signature. When a bearing degrades, a coupling misaligns, or cavitation develops, the signature changes. SAM4 captures these changes at the motor control cabinet and diagnoses the fault before failure.</p>
-        </div>
-        <div class="method__diagram">
-          <div class="method__flow">
-            <div class="method__flow-step">
-              <div class="method__flow-icon">
-                <img src="/assets/images/icons/icon-mcc-cabinet.svg" alt="Motor control cabinet" width="80" height="80">
-              </div>
-              <div class="method__flow-label">MCC cabinet</div>
-              <div class="method__flow-desc">CTs capture current &amp; voltage</div>
-            </div>
-            <div class="method__flow-arrow" aria-hidden="true">
-              <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
-                <path d="M0 12h40M34 6l8 6-8 6" stroke="#6B6B7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="method__flow-step">
-              <div class="method__flow-icon">
-                <img src="/assets/images/icons/icon-signal-analysis.svg" alt="Electrical signature analysis" width="80" height="80">
-              </div>
-              <div class="method__flow-label">Signal analysis</div>
-              <div class="method__flow-desc">AI detects fault signatures</div>
-            </div>
-            <div class="method__flow-arrow" aria-hidden="true">
-              <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
-                <path d="M0 12h40M34 6l8 6-8 6" stroke="#6B6B7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="method__flow-step">
-              <div class="method__flow-icon">
-                <img src="/assets/images/icons/icon-sam4-dashboard.svg" alt="SAM4 dashboard" width="80" height="80">
-              </div>
-              <div class="method__flow-label">SAM4 dashboard</div>
-              <div class="method__flow-desc">Alerts with recommended actions</div>
-            </div>
-          </div>
-        </div>
+      <div class="method__intro-block">
+        <p class="overline" style="margin-bottom: var(--space-3);">The Technology</p>
+        <h2>How ESA works</h2>
+        <p class="method__body" style="margin-top: var(--space-6); max-width: 720px;">Every AC motor draws a unique current and voltage signature. When a bearing degrades, a coupling misaligns, or cavitation develops, the signature changes. SAM4 captures these changes at the motor control cabinet and diagnoses the fault before failure.</p>
       </div>
 
-      <!-- C11: Step Flow -->
+      <!-- 5-step icon flow -->
       <div class="steps">
         <div class="step">
-          <div class="step__number">1</div>
+          <div class="step__icon">
+            <img src="/assets/images/icons/icon-mcc-cabinet.svg" alt="" width="56" height="56">
+          </div>
           <div class="step__title">Signal capture</div>
           <div class="step__desc">Split-core CTs clip onto cables at the MCC. Current and voltage sampled at high frequency.</div>
         </div>
         <div class="step">
-          <div class="step__number">2</div>
+          <div class="step__icon">
+            <img src="/assets/images/icons/icon-signal-analysis.svg" alt="" width="56" height="56">
+          </div>
           <div class="step__title">Pattern analysis</div>
           <div class="step__desc">Spectral decomposition isolates frequency components linked to mechanical and electrical faults.</div>
         </div>
         <div class="step">
-          <div class="step__number">3</div>
+          <div class="step__icon">
+            <img src="/assets/images/icons/icon-ai-classification.svg" alt="" width="56" height="56">
+          </div>
           <div class="step__title">AI classification</div>
           <div class="step__desc">Machine learning models trained on thousands of confirmed faults identify anomalies and diagnose root cause.</div>
         </div>
         <div class="step">
-          <div class="step__number">4</div>
+          <div class="step__icon">
+            <img src="/assets/images/icons/icon-expert-validation.svg" alt="" width="56" height="56">
+          </div>
           <div class="step__title">Expert validation</div>
           <div class="step__desc">Samotics reliability engineers review alerts before they reach your team. 0.32% false positive rate.</div>
+        </div>
+        <div class="step">
+          <div class="step__icon">
+            <img src="/assets/images/icons/icon-work-order.svg" alt="" width="56" height="56">
+          </div>
+          <div class="step__title">Work order creation</div>
+          <div class="step__desc">Diagnostic reports with recommended actions push directly to your CMMS. SAP PM and IBM Maximo supported.</div>
         </div>
       </div>
 
