@@ -128,7 +128,12 @@
 }
 
 /* ── Header Shell ── */
-.sam-header.is-scrolled {
+.sam-header {
+      position: sticky; top: 0; z-index: 1000; width: 100%;
+      height: var(--sam-header-h); background: var(--sam-header-bg);
+      transition: height var(--sam-transition), box-shadow var(--sam-transition);
+    }
+    .sam-header.is-scrolled {
   height: var(--sam-header-h-compact);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
