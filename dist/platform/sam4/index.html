@@ -1122,6 +1122,7 @@
         <div class="sam-section__inner">
           <span class="sam-overline">SAM4</span>
           <h1>Fleet condition monitoring from the electrical cabinet</h1>
+          <p class="sam-hero-claim" style="font-size: 1.35rem; color: rgba(255,255,255,0.9); margin: var(--space-4) 0 var(--space-6) 0; max-width: 55ch;">Monitor every motor-driven asset. No sensors on the asset required.</p>
           <p class="sam-lead">One platform for every AC motor. SAM4 captures electrical signatures at the motor control cabinet, detects developing faults with AI, validates every alert with a reliability engineer, and delivers actionable diagnostics to your maintenance team.</p>
 
           <div class="sam-stats" style="border-color: rgba(255,255,255,0.15); margin-bottom: 0; margin-top: var(--space-10);">
@@ -1189,6 +1190,12 @@
         </div>
       </section>
 
+      <!-- PROOF CALLOUT -->
+      <div style="max-width: 52ch; margin: 0 auto; padding: var(--space-10) var(--space-6); text-align: center;">
+        <blockquote style="font-size: 1.15rem; font-style: italic; color: var(--space-cadet); line-height: 1.6; margin: 0 0 var(--space-4) 0;">"SAM4 gave us precisely the insights we needed. Up to four months in advance, in some cases."</blockquote>
+        <div style="font-size: 0.9rem; color: var(--comet);">Andy Roegis, Industrial Digitalization Manager for Northern Europe, ArcelorMittal</div>
+      </div>
+
       <!-- WHAT YOU GET -->
       <section class="sam-section sam-section--alt">
         <div class="sam-section__inner--wide" style="max-width: var(--max-width-wide); margin: 0 auto;">
@@ -1203,11 +1210,11 @@
             </div>
             <div class="sam-card">
               <h3>Analytics Engine</h3>
-              <p>Spectral decomposition, AI classification, and fault-specific models trained on thousands of confirmed failures. Runs on edge hardware and in our cloud. No data science team required. No model training on your side.</p>
+              <p>Spectral decomposition, AI classification, and fault-specific models. Runs on edge hardware and in our cloud. Models arrive pre-trained. Your team sees results from day one.</p>
             </div>
             <div class="sam-card">
               <h3>SAM4 Platform</h3>
-              <p>Fleet dashboard, asset health scores, trend tracking, energy analytics. Browser-based. Integrates with SAP PM and IBM Maximo via CMMS connector or API.</p>
+              <p>Browser-based interface for asset health scores, energy analytics, and CMMS integration. Connects to SAP PM, IBM Maximo, and Infor EAM.</p>
             </div>
             <div class="sam-card">
               <h3>Reliability Engineers</h3>
@@ -1239,6 +1246,34 @@
             <div class="sam-card">
               <h3>Energy monitoring</h3>
               <p>Per-motor power consumption tracked continuously. Identify efficiency losses, abnormal consumption patterns, and load changes. No additional hardware.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY THIS MODEL SCALES -->
+      <section class="sam-section sam-section--alt">
+        <div class="sam-section__inner--wide" style="max-width: var(--max-width-wide); margin: 0 auto;">
+          <span class="sam-overline">Structural advantage</span>
+          <h2>Why this model scales</h2>
+          <p style="max-width: 65ch; color: var(--comet); margin-bottom: var(--space-10);">Sensor-based monitoring scales linearly with asset count. SAM4 does not.</p>
+
+          <div class="sam-card-grid sam-card-grid--4col">
+            <div class="sam-card">
+              <h3>No sensors on the asset</h3>
+              <p>Install at the motor control cabinet. Monitor assets in hazardous zones, submerged environments, and confined spaces. No physical access needed.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Single set of CT/VTs per asset</h3>
+              <p>Each motor monitored through one set of current and voltage clamps. Fleet-wide deployment without linear cost scaling.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Continuous monitoring, not periodic inspection</h3>
+              <p>24/7 data capture replaces scheduled routes. No gaps between inspections.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Human-validated alerts</h3>
+              <p>Every alert reviewed by a reliability engineer before delivery. 0.32% false communication rate.</p>
             </div>
           </div>
         </div>
@@ -1325,7 +1360,21 @@
           <div class="sam-card-grid sam-card-grid--3col">
             <div class="sam-card">
               <h3>CMMS work orders</h3>
-              <p>Validated findings pushed directly into SAP PM, Maximo, or Infor EAM as structured work orders. No manual re-entry. Asset ID, fault type, severity, and recommended action mapped to your fields.</p>
+              <p>Validated findings pushed directly into SAP PM, Maximo, or Infor EAM as structured work orders. No manual re-entry.</p>
+              <table class="sam-field-map" style="width: 100%; margin-top: var(--space-4); font-size: 0.85rem; border-collapse: collapse;">
+                <thead>
+                  <tr style="text-align: left; border-bottom: 1px solid rgba(0,0,0,0.1);">
+                    <th style="padding: 0.35rem 0; color: var(--comet);">SAM4 field</th>
+                    <th style="padding: 0.35rem 0; color: var(--comet);">CMMS field</th>
+                  </tr>
+                </thead>
+                <tbody style="color: var(--space-cadet);">
+                  <tr><td style="padding: 0.25rem 0;">Fault classification</td><td style="padding: 0.25rem 0;">Work Order Type</td></tr>
+                  <tr><td style="padding: 0.25rem 0;">Severity</td><td style="padding: 0.25rem 0;">Priority</td></tr>
+                  <tr><td style="padding: 0.25rem 0;">Asset ID</td><td style="padding: 0.25rem 0;">Functional Location</td></tr>
+                  <tr><td style="padding: 0.25rem 0;">Recommendation</td><td style="padding: 0.25rem 0;">Long Text Description</td></tr>
+                </tbody>
+              </table>
             </div>
             <div class="sam-card">
               <h3>REST API</h3>
@@ -1370,25 +1419,25 @@
       <section class="sam-section">
         <div class="sam-section__inner">
           <div class="sam-testimonial">
-            <blockquote>"SAM4 delivers clear and actionable insights that enable our teams to make swift, informed decisions."</blockquote>
-            <div class="sam-testimonial-source">Yorkshire Water</div>
+            <blockquote>"With SAM4, we stopped guessing. We had continuous visibility instead of a monthly snapshot."</blockquote>
+            <div class="sam-testimonial-source">John McCrystal, Reliability and Maintenance Specialist, DuPont</div>
           </div>
 
           <div class="sam-testimonial">
-            <blockquote>"At first I was a bit sceptical about SAM4's ability to detect failures by analysing electrical waveforms, but the results speak for themselves: it just works."</blockquote>
-            <div class="sam-testimonial-source">DuPont</div>
+            <blockquote>"We've chosen Samotics as our sole supplier for ESA technology for the coming years because they have shown strong performance in the water industry and are the only company able to deliver this technology at scale."</blockquote>
+            <div class="sam-testimonial-source">Matt Armitage, Dynamic Maintenance Transformation Lead, Yorkshire Water</div>
           </div>
         </div>
       </section>
 
       <!-- TERMINAL CTA -->
-      <section class="sam-section"                        style="padding: var(--space-30) var(--space-6);">
+      <section class="sam-section" style="background: var(--space-cadet); padding: var(--space-30) var(--space-6);">
         <div class="sam-section__inner" style="text-align: center;">
-          <h2 style="color: var(--space-cadet); max-width: 50ch; margin: 0 auto var(--space-6) auto;">See SAM4 on your assets</h2>
-          <p style="color: rgba(255,255,255,0.85); max-width: 60ch; margin: 0 auto var(--space-10) auto;">Whether you're evaluating condition monitoring for the first time or replacing an existing system.</p>
+          <h2 style="color: #FFFFFF; max-width: 50ch; margin: 0 auto var(--space-6) auto;">See SAM4 on your assets</h2>
+          <p style="color: rgba(255,255,255,0.85); max-width: 60ch; margin: 0 auto var(--space-10) auto;">Start with five assets. See the first validated findings within weeks.</p>
           <div style="display: flex; gap: var(--space-6); flex-wrap: wrap; justify-content: center;">
             <a href="/contact?intent=demo" class="sam-cta">Request a Demo</a>
-            <a href="/contact" class="sam-button-secondary" style="color: var(--space-cadet); border-color: rgba(255,255,255,0.3);">Talk to Us &rarr;</a>
+            <a href="/contact" class="sam-button-secondary" style="color: #FFFFFF; border-color: rgba(255,255,255,0.3);">Talk to Us &rarr;</a>
           </div>
         </div>
       </section>
@@ -1443,6 +1492,7 @@
           <a href="/industries/metals-mining">Metals & Mining</a>
           <a href="/industries/chemicals">Chemicals</a>
           <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
         </div>
       </div>
 
