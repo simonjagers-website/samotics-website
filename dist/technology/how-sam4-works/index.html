@@ -1262,8 +1262,8 @@
                 <div class="sam-hero__stat-label">Assets monitored today</div>
               </div>
               <div class="sam-hero__stat">
-                <div class="sam-hero__stat-value">5,300+</div>
-                <div class="sam-hero__stat-label">Validated findings delivered</div>
+                <div class="sam-hero__stat-value">1,874</div>
+                <div class="sam-hero__stat-label">Resolved incidents (Jan 2024 – Feb 2026)</div>
               </div>
               <div class="sam-hero__stat">
                 <div class="sam-hero__stat-value">0.32%</div>
@@ -1339,11 +1339,11 @@
           <div class="sam-card-grid sam-card-grid--2col">
             <div class="sam-card">
               <h3>Hardware</h3>
-              <p>Split-core CTs and voltage taps clamp around motor supply cables inside the MCC. No process shutdown. No mechanical modification. Under 60 minutes per asset.</p>
+              <p>Split-core CTs and voltage taps clamp around motor supply cables inside the MCC. Brief de-energisation at MCC. Back online same shift. No mechanical modification. Under 60 minutes per asset.</p>
             </div>
             <div class="sam-card">
               <h3>Sampling</h3>
-              <p>The SAM4 DAQ unit samples current and voltage at high frequency, capturing harmonic content needed to detect mechanical faults reflected in the electrical signature.</p>
+              <p>The SAM4 DAQ unit samples current and voltage at up to 96 kHz, capturing harmonic content needed to detect mechanical faults reflected in the electrical signature.</p>
             </div>
             <div class="sam-card">
               <h3>Edge processing</h3>
@@ -1436,7 +1436,7 @@
             </div>
             <div class="sam-pipeline__step">
               <h3>Engineer reviews</h3>
-              <p>Reliability engineer examines spectral data, reviews operating context, confirms or refines fault classification. Writes specific maintenance recommendation.</p>
+              <p>Reliability engineer examines spectral data, reviews operating context, confirms or refines fault classification. Assigns severity: routine, planned, or urgent. Writes specific maintenance recommendation with timeline.</p>
             </div>
             <div class="sam-pipeline__step">
               <h3>Critical escalation</h3>
@@ -1469,7 +1469,7 @@
             </div>
             <div class="sam-card">
               <h3>CMMS Integration</h3>
-              <p>Pushes alerts into SAP PM, Maximo, Ultimo as work orders. No manual re-entry.</p>
+              <p>Pushes alerts into SAP PM, Maximo, Ultimo as work orders. No manual re-entry. Integrates directly into existing maintenance workflows without process change.</p>
             </div>
             <div class="sam-card">
               <h3>REST API</h3>
@@ -1500,7 +1500,7 @@
             </div>
             <div class="sam-kpi-card">
               <div class="sam-kpi-card__value">0.32%</div>
-              <div class="sam-kpi-card__label">False communication rate. 6 false comms across 1,874 incidents. Zero false anomalies.</div>
+              <div class="sam-kpi-card__label">False communication rate. 6 out of 1,874 resolved incidents, fewer than 1 in 300.</div>
             </div>
             <div class="sam-kpi-card">
               <div class="sam-kpi-card__value">Weeks–months</div>
@@ -1551,9 +1551,9 @@
           <div style="margin-top: var(--space-10); background-color: var(--seashell); padding: var(--space-8); border-radius: var(--radius-default); border: 1px solid var(--border-grey);">
             <h3 style="margin-bottom: var(--space-4);">What these numbers don't tell you</h3>
             <ul style="margin-left: var(--space-6); color: var(--comet); line-height: 1.8;">
-              <li>Detection varies by fault type. Bearing and stator winding highest.</li>
+              <li>Detection varies by fault type. Blockage and mechanical unbalance highest. Bearing detection lower (45.9% overall) due to signal attenuation between bearing and MCC.</li>
               <li>Lead time isn't guaranteed. SAM4 is not trip protection.</li>
-              <li>New asset types need 4–8 weeks baseline data.</li>
+              <li>Baseline calibration takes 2 days to 2 weeks. Novel asset types not yet in the model library may require longer.</li>
             </ul>
           </div>
         </div>
@@ -1571,7 +1571,7 @@
             </div>
             <div class="sam-card">
               <h3>Cloud infrastructure</h3>
-              <p>Encryption at rest and in transit. Role-based access control. ISO 27001 certified.</p>
+              <p>Encryption at rest and in transit. Role-based access control. ISO 27001 and ISO 9001 certified. NIS2 aligned.</p>
             </div>
             <div class="sam-card">
               <h3>Network requirements</h3>
@@ -1618,7 +1618,7 @@
         <h3 class="sam-footer__col-heading">Technology</h3>
         <div class="sam-footer__col-links">
           <a href="/technology/esa">ESA Technology</a>
-          <a href="/technology/how-sam4-works">How SAM4 Works</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
           <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
         </div>
       </div>
@@ -1644,6 +1644,7 @@
           <a href="/industries/metals-mining">Metals & Mining</a>
           <a href="/industries/chemicals">Chemicals</a>
           <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
         </div>
       </div>
 
