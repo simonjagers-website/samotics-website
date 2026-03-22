@@ -809,7 +809,7 @@
         <div class="sam-section__inner">
           <p class="sam-overline">Technology</p>
           <h1>ESA & Vibration Monitoring</h1>
-          <p class="sam-subheading">Vibration monitoring has blind spots. ESA closes them.</p>
+          <p class="sam-subheading">Complementary methods. Different physics. Full fleet coverage.</p>
           <p class="sam-lead">Vibration is excellent for accessible rotating equipment. But 30-40% of a typical fleet sits beyond sensor reach — submerged pumps, sealed drives, hazardous zones. ESA monitors those assets from the motor control cabinet. The question isn't which is better. It's which assets need which method.</p>
           <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
             <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
@@ -822,7 +822,7 @@
       <section class="sam-section">
         <div class="sam-section__inner sam-section__inner--wide">
           <h2>Side by side</h2>
-          <p style="color: var(--comet); margin-bottom: var(--space-8);">The difference isn't which is better. It's where the sensor sits, what it can reach, and what it costs to deploy.</p>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">Each method detects through different physics. The question is which assets need which method.</p>
           
           <div class="sam-table-container">
             <table>
@@ -851,8 +851,13 @@
                 </tr>
                 <tr>
                   <td><strong>Production shutdown</strong></td>
-                  <td>None</td>
+                  <td>Brief de-energisation at MCC. Back online same shift.</td>
                   <td>Often required for mounting</td>
+                </tr>
+                <tr>
+                  <td><strong>Time to first insight</strong></td>
+                  <td>2 days to 2 weeks (baseline calibration)</td>
+                  <td>Immediate (first measurement)</td>
                 </tr>
                 <tr>
                   <td><strong>Monitoring mode</strong></td>
@@ -972,84 +977,109 @@
       <section class="sam-section sam-section--light" id="detection-matrix">
         <div class="sam-section__inner sam-section__inner--wide">
           <h2>Fault-by-fault detection matrix</h2>
-          <p style="color: var(--comet); margin-bottom: var(--space-8);">This is a coverage map, not a scorecard. Use both where they add value.</p>
+          <p style="color: var(--comet); margin-bottom: var(--space-4);">This is a coverage map, not a scorecard. Use both where they add value.</p>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">Select detection method by failure mode and asset accessibility, not by vendor preference. Where both methods show strength, the primary method depends on whether the asset is physically reachable.</p>
           
           <div class="sam-table-container">
             <table>
               <thead>
                 <tr>
-                  <th style="width: 25%;">Fault Class</th>
-                  <th style="width: 25%;">ESA (SAM4)</th>
-                  <th style="width: 25%;">Vibration</th>
-                  <th style="width: 25%;">Primary Method</th>
+                  <th style="width: 16%;">Fault Class</th>
+                  <th style="width: 12%;">ESA (SAM4)</th>
+                  <th style="width: 12%;">Vibration</th>
+                  <th style="width: 14%;">Primary Method</th>
+                  <th style="width: 26%;">Rationale</th>
+                  <th style="width: 20%;">Applicability Constraints</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>Bearing damage</strong></td>
-                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--moderate">Moderate</span></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td>Both (complementary)</td>
+                  <td>Vibration provides higher spectral resolution on accessible assets. ESA detects bearing faults on submerged or enclosed assets where vibration cannot be mounted.</td>
+                  <td>ESA detection rate: 45.9% overall. Vibration preferred when asset is physically reachable.</td>
                 </tr>
                 <tr>
-                  <td><strong>Misalignment/imbalance</strong></td>
+                  <td><strong>Misalignment / imbalance</strong></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td>Vibration (when accessible)</td>
+                  <td>Both methods detect the torque and load variations caused by mechanical misalignment. Vibration provides directional data (axial vs radial).</td>
+                  <td>ESA adds value on inaccessible assets or as a second confirmation signal.</td>
                 </tr>
                 <tr>
                   <td><strong>Stator winding degradation</strong></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td><span class="sam-strength sam-strength--none">Not detectable</span></td>
                   <td>ESA only</td>
+                  <td>Winding faults produce current asymmetry and harmonic shifts visible only in the electrical signature. No mechanical vibration produced until late-stage failure.</td>
+                  <td>ESA is the only non-invasive continuous method for this fault class.</td>
                 </tr>
                 <tr>
                   <td><strong>Rotor bar defects</strong></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td><span class="sam-strength sam-strength--limited">Limited</span></td>
                   <td>ESA primary</td>
+                  <td>Broken rotor bars produce characteristic sideband frequencies around the supply frequency. Vibration may detect secondary mechanical effects but not the root cause.</td>
+                  <td>ESA is the standard detection method for rotor bar faults in induction motors.</td>
                 </tr>
                 <tr>
                   <td><strong>Supply asymmetry</strong></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td><span class="sam-strength sam-strength--none">Not detectable</span></td>
                   <td>ESA only</td>
+                  <td>Voltage and current imbalance between phases is an electrical condition with no mechanical signature. Only visible in the power supply data.</td>
+                  <td>Relevant for all three-phase motors. Common root cause of premature winding failure.</td>
                 </tr>
                 <tr>
                   <td><strong>Cavitation</strong></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td><span class="sam-strength sam-strength--moderate">Moderate</span></td>
                   <td>ESA primary</td>
+                  <td>Cavitation causes load fluctuations that modulate the motor current signature. Vibration detects acoustic effects but often only at advanced stages.</td>
+                  <td>ESA detects earlier-stage cavitation on submerged pumps where vibration sensors cannot be mounted.</td>
                 </tr>
                 <tr>
-                  <td><strong>Clogging/blockage</strong></td>
+                  <td><strong>Clogging / blockage</strong></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td><span class="sam-strength sam-strength--limited">Limited</span></td>
                   <td>ESA primary</td>
+                  <td>Blockage changes the load profile and operating point of the pump. ESA detects the shift in power draw and current waveform. Vibration has limited sensitivity to hydraulic changes.</td>
+                  <td>97.4% detection rate across 545 confirmed cases. Strongest ESA fault class.</td>
                 </tr>
                 <tr>
                   <td><strong>Efficiency loss</strong></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td><span class="sam-strength sam-strength--none">Not detectable</span></td>
                   <td>ESA only</td>
+                  <td>Efficiency degradation is a power and energy measurement. No mechanical vibration signal produced. ESA tracks energy consumption and operating point deviation continuously.</td>
+                  <td>Requires baseline calibration period (2 days to 2 weeks) to establish reference efficiency.</td>
                 </tr>
                 <tr>
-                  <td><strong>Belt/coupling wear</strong></td>
+                  <td><strong>Belt / coupling wear</strong></td>
                   <td><span class="sam-strength sam-strength--moderate">Moderate</span></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td>Vibration primary</td>
+                  <td>Belt and coupling faults produce distinctive vibration patterns (belt frequency harmonics, coupling angular misalignment). Vibration provides direct mechanical measurement.</td>
+                  <td>Vibration preferred when sensor access to the coupling or belt guard is feasible.</td>
                 </tr>
                 <tr>
                   <td><strong>Loose foundation</strong></td>
                   <td><span class="sam-strength sam-strength--limited">Limited</span></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td>Vibration primary</td>
+                  <td>Foundation looseness produces characteristic sub-harmonic vibration patterns. This is a structural condition best measured at the machine base.</td>
+                  <td>Vibration sensors on the machine base or foundation bolt provide the clearest signal.</td>
                 </tr>
                 <tr>
                   <td><strong>Gear mesh faults</strong></td>
                   <td><span class="sam-strength sam-strength--limited">Limited</span></td>
                   <td><span class="sam-strength sam-strength--strong">Strong</span></td>
                   <td>Vibration primary</td>
+                  <td>Gear mesh frequencies and their sidebands are high-frequency mechanical phenomena. Vibration provides direct, high-resolution measurement of gear condition.</td>
+                  <td>Vibration is the established standard for gearbox diagnostics on accessible assets.</td>
                 </tr>
               </tbody>
             </table>
@@ -1078,19 +1108,48 @@
 
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-12);">
             <div style="padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default); text-align: center;">
-              <p style="font-weight: 500; color: var(--space-cadet);">Vibration monitors what sensors can reach.</p>
+              <p style="font-weight: 500; color: var(--space-cadet);">Vibration: direct mechanical data from accessible assets.</p>
             </div>
             <div style="padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default); text-align: center;">
-              <p style="font-weight: 500; color: var(--space-cadet);">ESA monitors what sensors cannot.</p>
+              <p style="font-weight: 500; color: var(--space-cadet);">ESA: full drivetrain data from the motor control cabinet.</p>
             </div>
             <div style="padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default); text-align: center;">
-              <p style="font-weight: 500; color: var(--space-cadet);">Together they cover the entire plant.</p>
+              <p style="font-weight: 500; color: var(--space-cadet);">Combined: coverage across the entire fleet.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 7: CUSTOMER EVIDENCE -->
+      <!-- SECTION 7: DECISION SHORTCUT -->
+      <section class="sam-section">
+        <div class="sam-section__inner">
+          <h2>When to use what</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">Select by asset condition and failure mode, not by vendor preference.</p>
+
+          <div class="sam-grid sam-grid--cols-2">
+            <div class="sam-card" style="border-left: 4px solid var(--orange);">
+              <h3>Use ESA when</h3>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Assets are submerged, enclosed, or in hazardous zones</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Physical sensor access is not feasible</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Fleet-wide coverage is needed at speed</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Electrical fault detection is required</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Continuous monitoring between vibration routes adds value</li>
+              </ul>
+            </div>
+            <div class="sam-card" style="border-left: 4px solid var(--blue-600);">
+              <h3>Use vibration when</h3>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Physical access to the asset is available</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">High-resolution mechanical diagnostics are needed (gear mesh, bearing envelope, foundation)</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">ISO 10816/20816 compliance is required</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: CUSTOMER EVIDENCE -->
       <section class="sam-section sam-section--light">
         <div class="sam-section__inner">
           <h2>Evidence from the field</h2>
@@ -1098,13 +1157,31 @@
           <div class="sam-grid sam-grid--cols-2">
             <div class="sam-case-study">
               <h3>Schiphol Airport</h3>
-              <p>"Bearing damage missed by vibration, caught by ESA. SAM4 detected developing bearing degradation through current signature analysis. Vibration sensors showed no alarm. Across the deployment, SAM4 caught all 9 confirmed faults."</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">What happened</p>
+              <p>Bearing degradation developing on baggage handling drives. Vibration sensors on the same assets showed no alarm.</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">How ESA detected it</p>
+              <p>Current signature analysis from the MCC identified characteristic bearing defect frequencies in the electrical signal.</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">Outcome</p>
+              <p>All 9 confirmed faults detected during deployment. Maintenance scheduled before breakdown.</p>
               <div class="sam-case-study__metric">9 / 9 faults detected</div>
+              <blockquote style="margin: var(--space-6) 0 0 0; padding-left: var(--space-4); border-left: 3px solid var(--border-grey); font-style: italic; color: var(--comet); font-size: 14px;">
+                "At first I was a bit skeptical about SAM4's ability to detect failures, but the results speak for themselves: It just works."
+                <footer style="font-style: normal; margin-top: var(--space-2); font-size: 13px;"><strong>Pieter Bakker</strong>, Baggage Service Manager, Schiphol Airport</footer>
+              </blockquote>
             </div>
             <div class="sam-case-study">
               <h3>DuPont</h3>
-              <p>"DuPont had a mature vibration programme. ESA found faults vibration had not flagged. Over three years, those detections prevented unplanned shutdowns worth an estimated €1.7M."</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">What happened</p>
+              <p>Mature vibration programme in place across the site. ESA found faults vibration had not flagged on pumps with no redundancy.</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">How ESA detected it</p>
+              <p>Continuous current monitoring detected developing issues months before failure on assets running 24/7.</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">Outcome</p>
+              <p>Detections prevented unplanned shutdowns worth €1.7M over three years.</p>
               <div class="sam-case-study__metric">€1.7M costs prevented</div>
+              <blockquote style="margin: var(--space-6) 0 0 0; padding-left: var(--space-4); border-left: 3px solid var(--border-grey); font-style: italic; color: var(--comet); font-size: 14px;">
+                "We invested heavily in condition-based maintenance — vibration, oil analysis, airflow, the lot. But those approaches can still be snapshots. SAM4 added continuous visibility, and that changes how confident you feel about what's happening."
+                <footer style="font-style: normal; margin-top: var(--space-2); font-size: 13px;"><strong>John McCrystal</strong>, Reliability and Maintenance Specialist, DuPont</footer>
+              </blockquote>
             </div>
           </div>
         </div>
@@ -1167,7 +1244,7 @@
               </button>
               <div class="sam-accordion-content">
                 <div class="sam-accordion-text">
-                  <p>Every alert is reviewed by a reliability engineer. Result: 0.32% false communication rate across 1,874 resolved incidents with zero false anomalies.</p>
+                  <p>Every alert is reviewed by a reliability engineer before delivery. 0.32% false communication rate across 1,874 resolved incidents — fewer than 1 in 300.</p>
                 </div>
               </div>
             </div>
@@ -1210,7 +1287,7 @@
         <h3 class="sam-footer__col-heading">Technology</h3>
         <div class="sam-footer__col-links">
           <a href="/technology/esa">ESA Technology</a>
-          <a href="/technology/how-sam4-works">How SAM4 Works</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
           <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
         </div>
       </div>
@@ -1236,6 +1313,7 @@
           <a href="/industries/metals-mining">Metals & Mining</a>
           <a href="/industries/chemicals">Chemicals</a>
           <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
         </div>
       </div>
 
