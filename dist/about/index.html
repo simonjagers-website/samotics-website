@@ -628,6 +628,26 @@
       letter-spacing: 0.05em;
     }
 
+    .sam-testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      border-left: 4px solid var(--orange);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sam-testimonial-card blockquote {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--space-cadet);
+      font-weight: 500;
+      margin-bottom: var(--space-6);
+      font-style: italic;
+    }
+
     /* ===== BADGES STRIP ===== */
     .sam-badges {
       display: flex;
@@ -892,7 +912,7 @@
 </header>
 
     <!-- MAIN CONTENT -->
-    <main id="main-content">
+    <main id="main-content" class="sam-page">
 
       <!-- SECTION 1: HERO -->
       <section class="sam-section sam-section--hero">
@@ -1117,16 +1137,26 @@
         </div>
       </section>
 
-      <!-- SECTION 8: PRESS & RECOGNITION -->
+      <!-- SECTION 8: WHAT OTHERS SAY -->
       <section class="sam-section sam-section--alt">
         <div class="sam-section__inner">
           <h2>What others say</h2>
-          <div class="sam-testimonial">
-            <blockquote>"Samotics has established a leading position in the market with proven capabilities to address a defining challenge of our time."</blockquote>
-            <div class="sam-testimonial-source">European Investment Bank, investment rationale</div>
+          <div class="sam-grid sam-grid--3" style="margin-top: var(--space-12);">
+            <div class="sam-testimonial-card">
+              <blockquote>"The Samotics representatives feel like an expert colleague with a genuine interest to assist you from a technical standpoint."</blockquote>
+              <div class="sam-testimonial-source">Kurt Spiteri, Water Services Corporation</div>
+            </div>
+            <div class="sam-testimonial-card">
+              <blockquote>"They consistently deliver high-quality work, communicate clearly, and proactively solve problems to minimise risk and disruption."</blockquote>
+              <div class="sam-testimonial-source">Tom Briggs, AstraZeneca</div>
+            </div>
+            <div class="sam-testimonial-card">
+              <blockquote>"Samotics personnel are first class and industry leading technology."</blockquote>
+              <div class="sam-testimonial-source">Philip Curran, DuPont</div>
+            </div>
           </div>
-          <div style="text-align: center;">
-            <h3 style="margin-bottom: var(--space-8); color: var(--comet); font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">As seen in</h3>
+          <div style="text-align: center; margin-top: var(--space-12);">
+            <h3 style="margin-bottom: var(--space-8); color: var(--comet); font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Recognised by</h3>
             <div class="sam-badges">
               <div class="sam-badge">European Investment Bank</div>
               <div class="sam-badge">ABB Technology Partner</div>
@@ -1137,10 +1167,10 @@
       </section>
 
       <!-- SECTION 9: TERMINAL CTA -->
-      <section class="sam-section sam-section--hero">
+      <section class="sam-section sam-section--dark" style="background: var(--space-cadet); color: var(--white);">
         <div class="sam-section__inner">
-          <h2>See what SAM4 finds in your plant.</h2>
-          <p class="sam-lead">Most customers identify their first finding within 30 days. Whether you're building a business case, planning a rollout, or assessing strategic fit: our team is ready.</p>
+          <h2 style="color: var(--white);">See what SAM4 finds in your plant.</h2>
+          <p class="sam-lead" style="color: var(--seashell); opacity: 0.85;">Most customers identify their first finding within 30 days. Whether you're building a business case, planning a rollout, or assessing strategic fit: our team is ready.</p>
           <div style="display: flex; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8);">
             <a href="/contact?intent=executive" class="sam-cta">Talk to Us</a>
             <a href="/proof" class="sam-link-arrow" style="color: var(--white); margin-top: 2px;">See customer results →</a>
