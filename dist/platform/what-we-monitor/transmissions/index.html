@@ -1077,7 +1077,7 @@
     /* ===== INSTALL SECTION ===== */
     .sam-spec-install {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-install__inner {
       max-width: var(--max-width);
@@ -1147,7 +1147,7 @@
     /* ===== DETECTION STORIES ===== */
     .sam-spec-stories {
       padding: var(--space-24) var(--space-6);
-      background: var(--seashell);
+      background: var(--white);
     }
     .sam-spec-stories__inner {
       max-width: var(--max-width);
@@ -1222,7 +1222,7 @@
     /* ===== RELATED ASSETS ===== */
     .sam-spec-related {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-related__inner {
       max-width: var(--max-width);
@@ -1344,10 +1344,149 @@
       line-height: 1.6;
     }
 
+    /* ===== MONITORING ARCHITECTURE (ESA vs VIBRATION) ===== */
+    .sam-spec-monitor {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-monitor__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-monitor__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-monitor__inner .lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-monitor__trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+    .sam-spec-monitor__col {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .sam-spec-monitor__col-header {
+      padding: var(--space-3) var(--space-4);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+    .sam-spec-monitor__col--esa .sam-spec-monitor__col-header { background: var(--orange); }
+    .sam-spec-monitor__col--overlap .sam-spec-monitor__col-header { background: var(--blue-600); }
+    .sam-spec-monitor__col--vibration .sam-spec-monitor__col-header { background: var(--space-cadet); }
+    .sam-spec-monitor__col-body {
+      padding: var(--space-6);
+    }
+    .sam-spec-monitor__col-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .sam-spec-monitor__col-body li {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--space-cadet);
+      padding-left: 20px;
+      position: relative;
+    }
+    .sam-spec-monitor__col-body li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .sam-spec-monitor__col--esa li::before { background: var(--orange); }
+    .sam-spec-monitor__col--overlap li::before { background: var(--blue-600); }
+    .sam-spec-monitor__col--vibration li::before { background: var(--space-cadet); }
+
+    /* Transmission-type matrix */
+    .sam-spec-monitor__matrix {
+      margin-bottom: var(--space-10);
+    }
+    .sam-spec-monitor__matrix h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+    }
+    .sam-spec-monitor__matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+    }
+    .sam-spec-monitor__matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .sam-spec-monitor__matrix-table th {
+      background: var(--space-cadet);
+      color: var(--white);
+      font-weight: 600;
+      padding: var(--space-3) var(--space-4);
+      text-align: left;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .sam-spec-monitor__matrix-table td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--border-grey);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .sam-spec-monitor__matrix-table td:first-child {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Rationale card */
+    .sam-spec-monitor__rationale {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-left: 4px solid var(--orange);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+    }
+    .sam-spec-monitor__rationale h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+    }
+    .sam-spec-monitor__rationale p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-monitor__rationale p:last-child {
+      margin-bottom: 0;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .sam-hero--spec { padding: var(--space-20) var(--space-6); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1357,7 +1496,7 @@
     }
     @media (max-width: 768px) {
       .sam-hero--spec { padding: var(--space-16) var(--space-4); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1368,6 +1507,9 @@
       .sam-spec-industries__grid,
       .sam-spec-stories__grid,
       .sam-spec-related__grid {
+        grid-template-columns: 1fr;
+      }
+      .sam-spec-monitor__trio {
         grid-template-columns: 1fr;
       }
       .sam-spec-energy__split,
@@ -1649,21 +1791,21 @@
               <td class="sam-spec-faults__td">Tooth wear, pitting, spalling, surface distress</td>
               <td class="sam-spec-faults__td">Gear mesh frequency and sidebands shift as tooth contact pattern changes</td>
               <td class="sam-spec-faults__td">4–10 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. Strong on single-stage gearboxes with small-to-medium motors. Sensitivity degrades with motor size, number of gear stages, and coupling compliance. On large motors (&gt;500 kW) with multi-stage gearboxes, vibration detects earlier.</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
               <td class="sam-spec-faults__td">Inner/outer race defects in gearbox bearings, rolling element wear</td>
               <td class="sam-spec-faults__td">Characteristic bearing fault frequencies appear in the motor current spectrum</td>
               <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. Motor bearings: detectable at moderate-to-severe stages. Gearbox bearings: signal must propagate through gear mesh and coupling to reach the motor, making early detection unreliable. Vibration envelope analysis is the primary method for gearbox bearing faults.</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Misalignment</td>
               <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and gearbox, or gearbox output</td>
               <td class="sam-spec-faults__td">2× running speed component in current spectrum, progressive increase over time</td>
               <td class="sam-spec-faults__td">2–6 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. ESA detects 1x/2x torque modulation but cannot distinguish misalignment from unbalance. Vibration phase analysis across the coupling provides definitive root-cause discrimination.</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Belt slip</td>
@@ -1677,7 +1819,7 @@
               <td class="sam-spec-faults__td">Worn or damaged elastomeric couplings, bolted coupling looseness</td>
               <td class="sam-spec-faults__td">Characteristic coupling frequencies in the current signature as backlash increases</td>
               <td class="sam-spec-faults__td">2–8 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. Coupling signatures overlap with alignment and bearing fault frequencies, reducing classification confidence. Fluid couplings are a hard boundary: ESA cannot detect faults downstream of a fluid coupling.</td>
             </tr>
           </tbody>
         </table>
@@ -1703,6 +1845,131 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ─── 3b. MONITORING ARCHITECTURE ─── seashell background -->
+  <section class="sam-spec-monitor">
+    <div class="sam-spec-monitor__inner">
+      <p class="overline">Monitoring architecture</p>
+      <h2>What ESA covers. What vibration covers. Where they overlap.</h2>
+      <p class="lead">Transmissions are the asset type where ESA and vibration monitoring have the most distinct roles. ESA reads load torque modulations from the motor control cabinet. Vibration measures mechanical response directly at the gearbox housing. Each technology has fault categories it sees first and fault categories it cannot see at all. For lubricated gearboxes, oil analysis fills the gaps neither technology reaches.</p>
+
+      <!-- Three-column overview -->
+      <div class="sam-spec-monitor__trio">
+
+        <!-- ESA leads -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--esa">
+          <div class="sam-spec-monitor__col-header">ESA leads</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Belt slip and wear (sub-synchronous frequencies transmit efficiently through motor)</li>
+              <li>Gross gear tooth damage (single-stage, small-to-medium motors)</li>
+              <li>Motor electrical faults (stator, rotor, power quality)</li>
+              <li>Load anomalies and overload trending</li>
+              <li>Energy waste from belt slip or mechanical inefficiency</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">ESA's strongest transmission application is belt drives, where belt-pass frequency is sub-synchronous and passes efficiently through the motor's mechanical filter.</p>
+          </div>
+        </div>
+
+        <!-- Both contribute -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--overlap">
+          <div class="sam-spec-monitor__col-header">Both contribute</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Gear tooth damage: vibration detects earlier, ESA confirms torque impact</li>
+              <li>Coupling misalignment: ESA detects modulation, vibration provides root-cause discrimination via phase analysis</li>
+              <li>Belt condition trending: complementary frequency-domain coverage</li>
+              <li>Overall drivetrain degradation: ESA sees load changes, vibration sees structural changes</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">When a fault appears in both spectra, it confirms the defect is affecting mechanical integrity, not just surface condition. This reduces diagnostic uncertainty.</p>
+          </div>
+        </div>
+
+        <!-- Vibration leads -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--vibration">
+          <div class="sam-spec-monitor__col-header">Vibration leads</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Gearbox bearing faults (64-76% of all gearbox failures)</li>
+              <li>Early localized tooth damage (pitting, micro-cracking)</li>
+              <li>Fault localisation in multi-stage gearboxes (via TSA)</li>
+              <li>Housing looseness and structural resonance</li>
+              <li>Misalignment vs unbalance discrimination (phase analysis)</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">Vibration has ~50 years of field-validated maturity on gearboxes. It detects bearing faults at Stage 2, where ESA typically requires Stage 3-4 severity.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Transmission-type matrix -->
+      <div class="sam-spec-monitor__matrix">
+        <h3>ESA capability varies by transmission type</h3>
+        <p class="lead" style="max-width:720px;margin-bottom:var(--space-6);">The mechanical transfer function between fault location and motor determines what ESA can see. Belt drives transmit torque modulations most efficiently. Multi-stage gearboxes attenuate them most severely.</p>
+
+        <div class="sam-spec-monitor__matrix-wrap">
+          <table class="sam-spec-monitor__matrix-table">
+            <thead>
+              <tr>
+                <th>Transmission type</th>
+                <th>ESA strength</th>
+                <th>Primary limitation</th>
+                <th>Best combined approach</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Belt drives</td>
+                <td>Strong. Belt-pass frequency is sub-synchronous and transmits efficiently. Belt slip is ESA's strongest transmission detection.</td>
+                <td>Sheave groove wear and tension problems have lower specificity.</td>
+                <td>ESA for fleet monitoring; periodic vibration and visual inspection on critical units.</td>
+              </tr>
+              <tr>
+                <td>Single-stage gearboxes</td>
+                <td>Moderate. Gear mesh sidebands detectable on small-to-medium motors with rigid or metallic couplings.</td>
+                <td>Motor inertia filters high-frequency modulations. Detection proven at 30 kW, failed at 2 MW.</td>
+                <td>Vibration as primary diagnostic; ESA for motor health and load trending.</td>
+              </tr>
+              <tr>
+                <td>Multi-stage gearboxes</td>
+                <td>Weak. Each stage adds inertia and compliance, attenuating fault signatures before they reach the motor.</td>
+                <td>Cannot isolate which gear stage carries the fault. Bearings (64-76% of failures) not reliably visible.</td>
+                <td>Vibration with TSA for diagnostics; oil analysis for bearing root causes; ESA for motor condition.</td>
+              </tr>
+              <tr>
+                <td>Planetary gearboxes</td>
+                <td>Weak. Complex frequency structure from multiple load paths. Requires ML classification.</td>
+                <td>Planet bearing failures (lubrication starvation at high carrier speeds) invisible to ESA.</td>
+                <td>Vibration and oil analysis essential. ESA adds motor electrical monitoring only.</td>
+              </tr>
+              <tr>
+                <td>Couplings</td>
+                <td>Moderate. Detects 1x/2x torque modulation from misalignment and element degradation.</td>
+                <td>Cannot distinguish misalignment from unbalance. Fluid couplings are a hard boundary.</td>
+                <td>Vibration for root-cause discrimination; ESA for trending and confirmation.</td>
+              </tr>
+              <tr>
+                <td>Chain drives</td>
+                <td>Weak. No published MCSA research. Physics inference only.</td>
+                <td>Polygonal action creates baseline torque ripple that reduces fault discrimination.</td>
+                <td>Visual inspection and elongation measurement remain primary methods.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);font-style:italic;">Capability ratings based on Combet (2015) industrial cases, Feki/Clerc/Velex (2012), Kia/Henao/Capolino (2015), Fernandez-Cavero et al. (2023), and NREL Gearbox Reliability Database.</p>
+      </div>
+
+      <!-- Rationale card -->
+      <div class="sam-spec-monitor__rationale">
+        <h3>ESA expands the monitored population, not the diagnostic ceiling</h3>
+        <p>The strongest argument for ESA on transmissions is not diagnostic superiority. It is deployability at scale. Comprehensive vibration monitoring on a three-stage gearbox requires 12-16 accelerometers. ESA requires one sensor set at the MCC. For a facility with 50-100 belt-driven or geared assets, the cost difference is an order of magnitude.</p>
+        <p>ESA brings continuous condition data to enclosed gearbox packages, hazardous-area equipment, and belt-driven fleet assets that would otherwise go unmonitored. For critical gearboxes, it complements but does not replace vibration and oil analysis. For belt-driven equipment fleets, it may offer the best cost-to-coverage ratio of any single technology.</p>
+      </div>
+
     </div>
   </section>
 
