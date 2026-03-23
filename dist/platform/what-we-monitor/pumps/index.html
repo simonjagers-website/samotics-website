@@ -905,7 +905,7 @@
     /* ===== FAULT TABLE ===== */
     .sam-spec-faults {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-faults__inner {
       max-width: var(--max-width);
@@ -961,6 +961,80 @@
       color: var(--comet);
       margin-top: var(--space-4);
       font-style: italic;
+    }
+
+
+    /* ===== PUMP CURVE SECTION ===== */
+    .sam-spec-curve {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-curve__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-curve__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-curve__split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      margin-top: var(--space-8);
+    }
+    .sam-spec-curve__block {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+    .sam-spec-curve__block:last-child {
+      margin-bottom: 0;
+    }
+    .sam-spec-curve__block-title {
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-curve__block-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+    .sam-spec-curve__visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sam-spec-curve__placeholder {
+      width: 100%;
+      min-height: 320px;
+      background: var(--seashell);
+      border: 2px dashed var(--border-grey);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sam-spec-curve__proof {
+      display: flex;
+      gap: var(--space-10);
+      margin-top: var(--space-8);
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--border-grey);
+    }
+    .sam-spec-curve__stat-value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--space-cadet);
+    }
+    .sam-spec-curve__stat-label {
+      font-size: 0.8125rem;
+      color: var(--comet);
+      margin-top: var(--space-1);
     }
 
     /* ===== ENERGY SECTION ===== */
@@ -1077,7 +1151,7 @@
     /* ===== INSTALL SECTION ===== */
     .sam-spec-install {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-install__inner {
       max-width: var(--max-width);
@@ -1147,7 +1221,7 @@
     /* ===== DETECTION STORIES ===== */
     .sam-spec-stories {
       padding: var(--space-24) var(--space-6);
-      background: var(--seashell);
+      background: var(--white);
     }
     .sam-spec-stories__inner {
       max-width: var(--max-width);
@@ -1222,7 +1296,7 @@
     /* ===== RELATED ASSETS ===== */
     .sam-spec-related {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-related__inner {
       max-width: var(--max-width);
@@ -1370,6 +1444,7 @@
       .sam-spec-related__grid {
         grid-template-columns: 1fr;
       }
+      .sam-spec-curve__split,
       .sam-spec-energy__split,
       .sam-spec-install__split {
         grid-template-columns: 1fr;
@@ -1590,8 +1665,8 @@
         <!-- Left: copy -->
         <div class="sam-hero__copy">
           <p class="sam-hero__overline">Asset type</p>
-          <h1 class="sam-hero__h1">Pump monitoring</h1>
-          <p class="sam-hero__lead">SAM4 monitors every pump type from the motor control cabinet. detecting bearing degradation, cavitation, blockage, seal wear, imbalance, and efficiency loss weeks before failure. No sensor on the pump. No site visit for installation.</p>
+          <h1 class="sam-hero__h1">Detect pump failures from the electrical cabinet</h1>
+          <p class="sam-hero__lead">SAM4 monitors every pump type from the motor control cabinet. Bearing degradation, cavitation, blockage, imbalance, and efficiency loss. Detected weeks before failure. No sensor on the pump.</p>
           <div class="sam-hero__ctas">
             <a href="/contact?intent=demo&asset=pumps" class="sam-btn sam-btn--primary">Talk to an engineer</a>
             <a href="#faults" class="sam-btn sam-btn--outline">See What We Detect</a>
@@ -1602,11 +1677,11 @@
     </div>
   </section>
 
-  <!-- ─── 2. WHY MONITOR THIS ASSET ─── white background -->
+  <!-- ─── 2. WHY MONITOR THIS ASSET ─── seashell background -->
   <section class="sam-spec-why">
     <div class="sam-spec-why__inner">
       <p class="overline">Why monitor pumps</p>
-      <h2>The most common rotating asset in industry. and the most likely to fail undetected</h2>
+      <h2>The most common rotating asset in industry, and the most likely to fail undetected</h2>
       <p class="lead sam-spec-why__lead">Pumps account for the majority of rotating equipment in water utilities, chemical plants, and refineries. They run continuously, degrade gradually, and often fail without warning. Most lack condition monitoring.</p>
 
       <div class="sam-spec-why__grid">
@@ -1626,7 +1701,50 @@
     </div>
   </section>
 
-  <!-- ─── 3. FAULT COVERAGE ─── seashell background -->
+
+  <!-- ─── 3. PUMP PERFORMANCE CURVE ─── white background -->
+  <section class="sam-spec-curve">
+    <div class="sam-spec-curve__inner">
+      <p class="overline">How SAM4 reads pump health</p>
+      <h2>Pump performance, visible in real time</h2>
+      <p class="lead" style="max-width:680px;">SAM4 measures current and voltage at the motor control cabinet. From those signals, it calculates a pump's instantaneous head and flow using affinity laws and the reference curve supplied by the customer. The result is a real-time pump performance curve showing where the pump operates relative to its best efficiency point.</p>
+
+      <div class="sam-spec-curve__split">
+        <div class="sam-spec-curve__copy">
+          <div class="sam-spec-curve__block">
+            <h3 class="sam-spec-curve__block-title">Fault detection from the curve</h3>
+            <p class="sam-spec-curve__block-desc">A pump drifting left of BEP signals cavitation risk. A curve shifting downward indicates impeller wear. SAM4 tracks these movements continuously and flags deviations before they cause damage.</p>
+          </div>
+          <div class="sam-spec-curve__block">
+            <h3 class="sam-spec-curve__block-title">Energy waste, quantified</h3>
+            <p class="sam-spec-curve__block-desc">SAM4 calculates the gap between actual and optimal operating points. It quantifies the deviation in kWh and currency, giving maintenance and energy teams the data to act.</p>
+          </div>
+          <div class="sam-spec-curve__block">
+            <h3 class="sam-spec-curve__block-title">Rightsizing with real data</h3>
+            <p class="sam-spec-curve__block-desc">Months of continuous pump curve data replace single-point measurements. Engineers can make impeller trimming and pump replacement decisions backed by operational evidence, not assumptions.</p>
+          </div>
+        </div>
+        <div class="sam-spec-curve__visual">
+          <div class="sam-spec-curve__placeholder">
+            <p style="font-family:var(--font,var(--sam-font));font-size:0.875rem;color:var(--comet,var(--sam-comet));text-align:center;">[ SAM4 pump performance curve screenshot ]</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sam-spec-curve__proof">
+        <div class="sam-spec-curve__stat">
+          <span class="sam-spec-curve__stat-value kpi-value">7.1%</span>
+          <span class="sam-spec-curve__stat-label">energy efficiency gain at Vitens using SAM4 pump curve data</span>
+        </div>
+        <div class="sam-spec-curve__stat">
+          <span class="sam-spec-curve__stat-value kpi-value">€99K/yr</span>
+          <span class="sam-spec-curve__stat-label">saved by hydraulically rerating a single booster station</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 4. FAULT COVERAGE ─── seashell background -->
   <section id="faults" class="sam-spec-faults">
     <div class="sam-spec-faults__inner">
       <p class="overline">What SAM4 detects on pumps</p>
@@ -1715,22 +1833,6 @@
           </div>
           <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-            <span><strong>Low-load operation (&lt;30% rated):</strong> Fault sidebands in the current signal are proportional to mechanical load. When a pump runs below ~30% of rated load, fault signatures weaken and may fall below the detection threshold. Pumps that cycle between low load and full load are still covered during loaded periods.</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
-            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-            <span><strong>Variable frequency drives (VFDs):</strong> VFDs change the supply frequency with motor speed. This requires additional signal processing (synchronous sampling, order tracking) to separate fault signatures from the varying fundamental. SAM4 supports VFD-driven pumps, but detection sensitivity can be lower than on direct-on-line motors, particularly at very low speeds.</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
-            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-            <span><strong>Electrical noise from adjacent equipment:</strong> In dense MCC environments, electrical noise from nearby VFDs, welding equipment, or large switchgear can mask low-amplitude fault signals. Signal quality assessment during commissioning identifies whether the installation meets detection thresholds.</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
-            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-            <span><strong>Unknown bearing model:</strong> Bearing fault detection works best when bearing geometry is known (number of rolling elements, pitch diameter, contact angle). Without this data, SAM4 relies on anomaly detection rather than specific fault frequency identification, which reduces accuracy for early-stage bearing defects.</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
-            <svg style="flex-shrink:0;width:20px;height:20px;margin-top:3px;color:#D97706;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
             <span><strong>Upstream pipe blockages:</strong> A blockage in the suction pipework upstream of the pump appears as increased head and reduced flow, a signature similar to impeller wear. ESA detects the load change but cannot always distinguish between these two root causes without process data.</span>
           </div>
         </div>
@@ -1745,7 +1847,7 @@
     </div>
   </section>
 
-  <!-- ─── 4. DETECTION STORIES ─── white background -->
+  <!-- ─── 5. DETECTION STORIES ─── white background -->
   <section class="sam-spec-stories">
     <div class="sam-spec-stories__inner">
       <p class="overline">Pump detections</p>
@@ -1819,7 +1921,7 @@
     </div>
   </section>
 
-  <!-- ─── 5. HOW SAM4 INSTALLS ─── seashell background -->
+  <!-- ─── 6. HOW SAM4 INSTALLS ─── seashell background -->
   <section class="sam-spec-install">
     <div class="sam-spec-install__inner">
       <p class="overline">Installation on pumps</p>
@@ -1867,45 +1969,8 @@
     </div>
   </section>
 
-  <!-- ─── 6. ENERGY MONITORING ─── white background -->
-  <section class="sam-spec-energy">
-    <div class="sam-spec-energy__inner">
-      <p class="overline">Energy monitoring</p>
-      <h2>Not just fault detection. Energy optimisation too.</h2>
 
-      <div class="sam-spec-energy__split">
-        <div class="sam-spec-energy__copy">
-          <p class="lead">Pumps are often the largest energy consumers in a facility. SAM4 continuously tracks power consumption against output, identifying pumps running below their best efficiency point, oversized motors, and degradation-driven efficiency losses.</p>
-          <div class="sam-spec-energy__metrics">
-            <div class="sam-spec-energy__metric">
-              <span class="sam-spec-energy__metric-value kpi-value">7.1%</span>
-              <span class="sam-spec-energy__metric-label">energy efficiency gain at Vitens using SAM4 pump curve data</span>
-            </div>
-            <div class="sam-spec-energy__metric">
-              <span class="sam-spec-energy__metric-value kpi-value">€99K/yr</span>
-              <span class="sam-spec-energy__metric-label">saved by hydraulically rerating a single booster station</span>
-            </div>
-          </div>
-        </div>
-        <div class="sam-spec-energy__features">
-          <div class="sam-spec-energy__feature">
-            <h3 class="sam-spec-energy__feature-title">Real-time pump curve</h3>
-            <p class="sam-spec-energy__feature-desc">SAM4 calculates the operating point on the pump curve continuously, showing where the pump runs relative to BEP and how that changes over time.</p>
-          </div>
-          <div class="sam-spec-energy__feature">
-            <h3 class="sam-spec-energy__feature-title">BEP deviation alerts</h3>
-            <p class="sam-spec-energy__feature-desc">Automatic alerts when a pump operates consistently outside its efficient range. Quantifies the energy waste in kWh and currency.</p>
-          </div>
-          <div class="sam-spec-energy__feature">
-            <h3 class="sam-spec-energy__feature-title">Rightsizing recommendations</h3>
-            <p class="sam-spec-energy__feature-desc">Data to support pump replacement or impeller trimming decisions: backed by months of continuous operating data, not a single-point measurement.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 7. INDUSTRIES ─── seashell background -->
+  <!-- ─── 7. INDUSTRIES ─── white background -->
   <section class="sam-spec-industries">
     <div class="sam-spec-industries__inner">
       <p class="overline">Where pumps are monitored</p>
@@ -1932,7 +1997,7 @@
     </div>
   </section>
 
-  <!-- ─── 8. RELATED ASSETS ─── white background -->
+  <!-- ─── 8. RELATED ASSETS ─── seashell background -->
   <section class="sam-spec-related">
     <div class="sam-spec-related__inner">
       <p class="overline">Related asset types</p>
