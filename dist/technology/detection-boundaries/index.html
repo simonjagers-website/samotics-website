@@ -1075,7 +1075,8 @@
       <div class="sam-section__inner">
         <span class="sam-section__overline">Detection Boundaries</span>
         <h1>What ESA detects. And what it doesn't.</h1>
-        <p>No condition monitoring technology detects everything. Vibration misses submerged assets. Thermography misses internal faults. ESA has boundaries too. This page explains them: the physics, the measurement constraints, and what Samotics does to work within them.</p>
+        <p>No condition monitoring technology detects everything. Vibration misses submerged assets. Thermography misses internal faults. ESA has boundaries too. This page documents every one: the physics, the measurement constraints, the algorithmic requirements, and what Samotics does to work within them.</p>
+        <p>Structured using a MECE framework: Electrical Preconditions, Mechanical and Operational Preconditions, Signal Quality Constraints, Installation and Measurement Constraints, and Algorithmic and Detection Constraints.</p>
         <div class="sam-section__ctas">
           <a href="/contact?intent=technical" class="sam-cta">Talk to an Engineer</a>
           <a href="/platform/what-we-monitor/" class="sam-cta" style="background: transparent; border: 2px solid var(--sam-white); opacity: 0.8;">See what we do detect →</a>
@@ -1083,110 +1084,198 @@
       </div>
     </section>
 
-    <!-- SECTION 2: GENERAL BOUNDARIES -->
+    <!-- SECTION 2: ELECTRICAL PRECONDITIONS -->
     <section class="sam-section">
       <div class="sam-section__inner">
-        <span class="sam-section__overline">General Boundaries</span>
-        <h2>Twelve constraints that apply to every deployment</h2>
-        <p class="sam-section__lead">These boundaries are inherent to Electrical Signature Analysis. They apply regardless of asset type, industry, or deployment size. Each includes what Samotics does to work within or around the constraint.</p>
+        <span class="sam-section__overline">1. Electrical Preconditions</span>
+        <h2>The electrical environment ESA requires</h2>
+        <p class="sam-section__lead">ESA treats the motor as a transducer. The electrical supply must be clean enough, balanced enough, and isolated enough for fault signatures to be distinguishable from supply artifacts.</p>
 
         <div class="sam-cards">
 
-          <!-- 1. Three-phase AC -->
           <div class="sam-card">
             <h3>Three-phase AC induction motors</h3>
-            <p>ESA is established and validated for three-phase AC induction motors. The diagnostic models, fault libraries, and signal processing are built around polyphase rotating fields. Single-phase and DC motors are not supported.</p>
-            <div class="sam-card__mitigation">What Samotics does: Covers >95% of industrial motors above 5 kW. Synchronous motors supported on request.</div>
+            <p>ESA diagnostic models are built around polyphase rotating fields in AC induction machines. The fault libraries, sideband calculations, and Park/Clarke vector features all assume three-phase symmetry. Single-phase and DC motors are not supported. Synchronous motors are supported with adapted fault models.</p>
+            <div class="sam-card__mitigation">What Samotics does: Covers >95% of industrial motors above 5 kW. Synchronous motor support on request.</div>
           </div>
 
-          <!-- 2. Minimum motor size -->
           <div class="sam-card">
-            <h3>Minimum motor size: 5 kW</h3>
-            <p>Below 5 kW, motor current is typically too low for standard industrial CTs to resolve fault signatures above the noise floor. The real constraint is signal-to-noise ratio at the measurement chain, not motor size itself.</p>
-            <div class="sam-card__mitigation">What Samotics does: SAM4 is optimised for motors 5 kW and above. Smaller motors may be supported with specialised CT sizing.</div>
+            <h3>Three-phase voltage and current measurement</h3>
+            <p>Full ESA requires 3-phase current and 3-phase voltage (3I+3V). Current alone (MCSA) supports a reduced fault set. Voltage enables power quality separation, negative-sequence analysis, and power signature features. Without voltage, supply-side artifacts can be misclassified as mechanical faults.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 measures 3I+3V as standard. Power quality is a separate detection class, not a confounding variable.</div>
           </div>
 
-          <!-- 3. Low speed -->
           <div class="sam-card">
-            <h3>Low-speed assets: reduced confidence below 300 RPM</h3>
-            <p>At low rotational speed, fault-related frequency components compress toward the supply frequency. Separating them requires longer analysis windows and higher frequency resolution. The real constraint is not RPM, but the spacing between fault sidebands and the fundamental.</p>
-            <div class="sam-card__mitigation">What Samotics does: Custom signal processing for low-speed assets. Detection at 80% for Archimedes screws, improving with each release.</div>
+            <h3>Supply voltage unbalance below 2%</h3>
+            <p>Voltage unbalance creates a negative-sequence current component that mimics or masks fault signatures. A 1% voltage unbalance can produce 6 to 10% current unbalance. Above 2%, eccentricity and stator diagnostics become unreliable. The NEMA/NREL recommendation is below 1% at motor terminals.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 measures voltage unbalance continuously and classifies power quality issues separately from asset health conditions.</div>
           </div>
 
-          <!-- 4. Load / slip -->
           <div class="sam-card">
-            <h3>Load above 30% of rated capacity</h3>
-            <p>Fault sidebands are proportional to motor slip, which increases with load. Below approximately 30% of rated load, slip is too low for classical spectral methods to separate fault signatures from the supply frequency.</p>
-            <div class="sam-card__mitigation">What Samotics does: SAM4 flags low-load periods and excludes them from diagnostic windows. Advanced methods extend detection to lower load ranges for specific fault types.</div>
+            <h3>Supply voltage THD below 5%</h3>
+            <p>Harmonic distortion from the grid, rectifiers, or neighbouring equipment creates spectral content that competes with fault signatures. IEEE 519 recommends below 5% THD-V at the point of common coupling for low-voltage systems. Above this, the background spectrum becomes dense enough to mask diagnostic sidebands.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 tracks harmonic distortion as a power quality feature. When THD is elevated, the system adjusts confidence thresholds and flags the environment.</div>
           </div>
 
-          <!-- 5. VFD switching noise -->
-          <div class="sam-card">
-            <h3>VFD switching noise</h3>
-            <p>Variable frequency drives introduce harmonics that can mask bearing fault frequencies and rotor bar sidebands. At low output frequencies (<30 Hz), classical spectral methods lose resolution. Detection confidence depends on VFD control mode and measurement location.</p>
-            <div class="sam-card__mitigation">What Samotics does: SAM4 compensates for known VFD topologies. For VFD-fed assets, performance is validated per installation during commissioning.</div>
-          </div>
-
-          <!-- 6. Drive train distance -->
-          <div class="sam-card">
-            <h3>Drive train complexity</h3>
-            <p>Mechanical faults must propagate as torque variations through the drivetrain to reach the motor current. Direct-coupled loads produce the strongest signatures. Gearboxes, long shafts, and compliant couplings attenuate or reshape fault energy. Multi-stage transmissions reduce confidence.</p>
-            <div class="sam-card__mitigation">What Samotics does: SAM4 maps each drive train at installation and sets detection expectations by topology: direct-coupled, single-stage gearbox, or multi-stage.</div>
-          </div>
-
-          <!-- 7. Supply voltage unbalance (NEW) -->
-          <div class="sam-card">
-            <h3>Supply voltage unbalance</h3>
-            <p>Voltage unbalance above 2% creates current asymmetry that mimics or masks fault signatures. A 1% voltage unbalance can produce 6 to 10% current unbalance. ESA diagnostics for eccentricity and stator health become unreliable under sustained unbalance.</p>
-            <div class="sam-card__mitigation">What Samotics does: SAM4 measures voltage and current on all three phases. Power quality issues are classified as a separate detection class, not confused with mechanical faults.</div>
-          </div>
-
-          <!-- 8. Dedicated feeder (NEW) -->
           <div class="sam-card">
             <h3>One motor per measurement channel</h3>
-            <p>ESA requires current measurement on an individual motor feeder. Shared feeders or parallel motors on one breaker create crosstalk. Fault signatures from one motor appear in signals from neighbouring motors, making attribution impossible.</p>
-            <div class="sam-card__mitigation">What Samotics does: SAM4 installation requires per-motor feeder access. This is verified during the coverage assessment before deployment.</div>
-          </div>
-
-          <!-- 9. CT class (NEW) -->
-          <div class="sam-card">
-            <h3>CT sizing and accuracy class</h3>
-            <p>Current transformers must have sufficient accuracy class and dynamic range for harmonic analysis. Protection-grade CTs are not suitable. Operating current must fall within the CT's guaranteed accuracy range, typically above 5% of rated primary current.</p>
-            <div class="sam-card__mitigation">What Samotics does: SAM4 uses measurement-grade CTs specified per installation. CT sizing is part of deployment engineering.</div>
-          </div>
-
-          <!-- 10. Steady-state (NEW) -->
-          <div class="sam-card">
-            <h3>Steady-state operating window</h3>
-            <p>High-resolution spectral analysis requires a minimum period of stable speed and load, typically 45 to 120 seconds. Assets that never reach steady state require adapted signal processing methods.</p>
-            <div class="sam-card__mitigation">What Samotics does: SAM4 classifies operating points automatically and selects stable windows. Time-frequency methods extend coverage to variable-duty assets.</div>
-          </div>
-
-          <!-- 11. Baseline period -->
-          <div class="sam-card">
-            <h3>Baseline period: operating envelope coverage</h3>
-            <p>SAM4 needs baseline data covering the machine's normal operating points before full detection capability. Duration depends on how quickly the asset cycles through its load and speed range. Continuous-duty assets baseline in hours. Variable-duty assets take longer.</p>
-            <div class="sam-card__mitigation">What Samotics does: Most deployments reach full detection within 48 hours of sufficient runtime across operating points.</div>
-          </div>
-
-          <!-- 12. Measurement access -->
-          <div class="sam-card">
-            <h3>Motor-specific measurement access</h3>
-            <p>Current transformers must be installed on an individual motor feeder. The most common location is the motor control cabinet (MCC). Alternatives include VFD-embedded measurement or switchgear-level access. Physical access is mandatory during installation.</p>
-            <div class="sam-card__mitigation">What Samotics does: After initial installation, all monitoring is remote. No ongoing site visits required.</div>
+            <p>ESA requires current measurement on an individual motor feeder. Shared feeders or parallel motors on one breaker create crosstalk: fault signatures from one motor appear in signals from neighbouring motors. Without per-motor isolation, fault attribution collapses. This is a knock-out criterion.</p>
+            <div class="sam-card__mitigation">What Samotics does: Per-motor feeder access is mandatory. Verified during the coverage assessment before deployment.</div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: ASSET-SPECIFIC BOUNDARIES -->
+    <!-- SECTION 3: MECHANICAL / OPERATIONAL PRECONDITIONS -->
     <section class="sam-section sam-section--alt">
       <div class="sam-section__inner">
-        <span class="sam-section__overline">Asset-Specific Boundaries</span>
-        <h2>Detection rates vary by asset type</h2>
-        <p class="sam-section__lead">The general boundaries above set the physics. But detection accuracy also depends on the asset being monitored. Some faults produce stronger electrical signatures than others.</p>
-        
+        <span class="sam-section__overline">2. Mechanical and Operational Preconditions</span>
+        <h2>The operating conditions ESA needs</h2>
+        <p class="sam-section__lead">These boundaries govern whether fault signatures are physically strong enough to detect. They depend on load, speed, slip, duty cycle, and drivetrain topology.</p>
+
+        <div class="sam-cards">
+
+          <div class="sam-card">
+            <h3>Slip and load: the real detection driver</h3>
+            <p>The primary variable for rotor fault detection is slip, not load percentage. Rotor bar sidebands sit at f<sub>1</sub>(1 &plusmn; 2s). When slip is small, sidebands compress toward the fundamental and become unresolvable. Load is a proxy for slip, but high-efficiency motors (IE3/IE4) have low full-load slip, making rotor bar detection harder even at 100% load. As a practical guideline: below 30% of rated load, classical spectral methods lose sensitivity for most fault types.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 estimates slip per motor and per operating point. Low-load and low-slip periods are flagged and excluded from diagnostic windows. Wavelet methods extend rotor fault detection to lower load ranges.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Speed, pole count, and frequency resolution</h3>
+            <p>The constraint is not RPM itself but the spacing between fault-related sidebands and the fundamental frequency. Low-speed, high-pole-count motors produce tightly spaced sidebands that require longer analysis windows (64 to 128 seconds at very low slip) and higher frequency resolution. Below approximately 300 RPM, or with VFD output below 20 to 30 Hz, classical FFT methods become fragile without frequency tracking or demodulation.</p>
+            <div class="sam-card__mitigation">What Samotics does: Custom signal processing for low-speed assets. Adaptive analysis window length based on estimated slip. Detection at 80% for Archimedes screws, improving with each release.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Steady-state window: 45 to 120 seconds</h3>
+            <p>High-resolution spectral analysis requires quasi-constant speed and load for the duration of the analysis window. The minimum depends on slip: low-slip motors need longer windows. If speed or load changes materially within the window, classical FFT produces smeared spectra. Assets that cycle rapidly or never reach steady state require time-frequency methods.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 classifies operating points automatically and selects stable windows. Time-frequency methods (wavelet, order tracking) extend coverage to variable-duty assets.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Duty cycle and run-time adequacy</h3>
+            <p>Assets that run briefly, rarely, or at a single narrow operating point yield limited data for baseline construction and trending. Practical thresholds: at least 5 minutes of continuous operation per diagnostic snapshot, and at least 20 operating cycles across each load/speed regime for a robust baseline. Intermittent assets (crushers, batch pumps) take longer to reach full detection confidence.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 tracks operating point coverage and reports when baseline data is insufficient. Confidence levels are visible per asset in the dashboard.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Drivetrain complexity and transfer path</h3>
+            <p>Mechanical faults must modulate motor torque to appear in the current signal. The torque transfer path determines how much fault energy reaches the motor. Direct-coupled loads produce the strongest signatures. Gearboxes attenuate and reshape fault energy. Multi-stage transmissions, compliant couplings, and long shafts reduce detection confidence. The constraint is transfer-path simplicity, not physical distance.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 maps each drivetrain topology at installation. Detection expectations are set per configuration: direct-coupled, single-stage gearbox, or multi-stage.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SIGNAL QUALITY CONSTRAINTS -->
+    <section class="sam-section">
+      <div class="sam-section__inner">
+        <span class="sam-section__overline">3. Signal Quality Constraints</span>
+        <h2>The signal integrity ESA demands</h2>
+        <p class="sam-section__lead">Even when the motor, load, and electrical supply meet all preconditions, the acquired signal must have sufficient dynamic range, frequency resolution, and freedom from interference to support diagnosis.</p>
+
+        <div class="sam-cards">
+
+          <div class="sam-card">
+            <h3>VFD switching noise and control artifacts</h3>
+            <p>Variable frequency drives introduce PWM harmonics, interharmonics, and control-loop artifacts that mask diagnostic sidebands. At low output frequencies (below 20 to 30 Hz), fault-related components compress toward the fundamental and VFD artifacts dominate. Slip-compensation control modes can suppress the rotor bar signatures that classical MCSA relies on. Detection confidence depends on carrier frequency, control mode, and measurement location (line-side vs. motor-side vs. embedded).</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 applies adaptive harmonic isolation per VFD topology. For VFD-fed assets, performance is validated per installation during commissioning.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Measurement chain dynamic range</h3>
+            <p>Fault signatures in motor current are typically 40 to 60 dB below the fundamental component. The CT, signal conditioning, and ADC must resolve these small nonfundamental components against the dominant fundamental. A minimum dynamic range of approximately 80 dB is required. If the measurement chain cannot deliver this, fault signatures disappear into the noise floor regardless of motor size or load.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 hardware is specified for >80 dB dynamic range across the diagnostic frequency band.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Environmental electromagnetic interference</h3>
+            <p>Adjacent VFDs, welding equipment, large power converters, and other EMI sources raise the noise floor in the measurement cabinet. When environmental noise correlates with fault frequency bands, false positives increase. When it raises the broadband floor, small fault signatures become undetectable.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 installation guidelines specify cable routing and shielding requirements. Operating point gating excludes periods of elevated environmental noise.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: INSTALLATION / MEASUREMENT CONSTRAINTS -->
+    <section class="sam-section sam-section--alt">
+      <div class="sam-section__inner">
+        <span class="sam-section__overline">4. Installation and Measurement Constraints</span>
+        <h2>The hardware and access ESA requires</h2>
+        <p class="sam-section__lead">These constraints define the physical installation: where to measure, what sensors to use, and what metadata is needed for accurate fault mapping.</p>
+
+        <div class="sam-cards">
+
+          <div class="sam-card">
+            <h3>Motor-specific measurement access</h3>
+            <p>Current transformers must be installed on an individual motor feeder. The most common location is the motor control cabinet (MCC). Alternatives include VFD-embedded measurement, switchgear-level access, or clamp-on CTs at the motor cable. For VFD-fed motors, motor-side or embedded measurement is preferred. Line-side measurement requires explicit harmonic isolation modelling. Physical access is mandatory during installation only.</p>
+            <div class="sam-card__mitigation">What Samotics does: After initial installation, all monitoring is remote. No ongoing site visits required.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>CT accuracy class and frequency response</h3>
+            <p>Protection-grade CTs (e.g. Class 10P10) lack the accuracy and harmonic fidelity required for ESA. Measurement-grade CTs with accuracy class 0.5S or better are required. Operating current must be above 5 to 10% of the CT's rated primary current; below this, accuracy is not guaranteed. CT frequency response must support the diagnostic band: minimum WB1 (3 kHz), preferred WB2 (20 kHz) for bearing and high-frequency content.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 uses measurement-grade CTs specified per installation. CT ratio, class, and frequency response are part of deployment engineering.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Nameplate metadata: pole count, rotor bars, bearings</h3>
+            <p>Accurate fault frequency calculation requires motor nameplate data. Rotor bar fault sidebands depend on pole count and slip. Bearing fault frequencies depend on bearing geometry (BPFO, BPFI, BSF, FTF). Without accurate metadata, the system cannot place expected fault frequencies and must rely on anomaly detection alone, reducing diagnostic specificity.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 onboarding captures nameplate data per asset. Where bearing geometry is unknown, SAM4 uses manufacturer databases or generic models with reduced specificity.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: ALGORITHMIC / DETECTION CONSTRAINTS -->
+    <section class="sam-section">
+      <div class="sam-section__inner">
+        <span class="sam-section__overline">5. Algorithmic and Detection Constraints</span>
+        <h2>What the software needs to know</h2>
+        <p class="sam-section__lead">These constraints are not physics limitations. They are requirements of the detection algorithms: what data they need, what assumptions they make, and where they have known blind spots.</p>
+
+        <div class="sam-cards">
+
+          <div class="sam-card">
+            <h3>Baseline: operating envelope coverage</h3>
+            <p>SAM4 needs baseline data covering the machine's normal operating points before full detection capability. Duration depends on how quickly the asset cycles through its load and speed range. Continuous-duty assets on fixed load baseline in hours. Variable-duty assets with multiple speed/load regimes require days to weeks. The baseline must span the machine's real operating envelope, not just a single state.</p>
+            <div class="sam-card__mitigation">What Samotics does: Most deployments reach full detection within 48 hours of sufficient runtime across operating points. SAM4 reports operating point coverage in the dashboard.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Fault-type-specific detection sensitivity</h3>
+            <p>ESA does not have a single detection threshold. Rotor bar faults, eccentricity, stator faults, bearing faults, hydraulic disturbances, and drivetrain faults each have different observability limits. Rotor faults need sufficient slip. Bearing faults need sufficient load and frequency response. Mechanical faults need a direct torque coupling. Detection confidence is always fault-class-dependent and operating-point-dependent.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 reports detection confidence per fault type per asset. The asset-specific detection table below reflects these differences.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Non-adjacent broken bar blind spot</h3>
+            <p>When two broken rotor bars are separated by exactly half a pole pitch (90 degrees electrical), their fault signatures can cancel in the stator current. This is the most documented false negative in MCSA literature. The motor appears healthy in the current spectrum despite having multiple broken bars. This applies to any ESA or MCSA system, not only SAM4.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 uses multiple diagnostic features beyond classical sideband amplitude (including power signature and negative-sequence analysis) to reduce this blind spot. It is not fully eliminated.</div>
+          </div>
+
+          <div class="sam-card">
+            <h3>Operating regime must match algorithm</h3>
+            <p>Steady-state FFT works for line-fed motors at constant load. VFD-fed motors with varying speed require order tracking or time-frequency methods. Transient machines need wavelet or AR-based preprocessing. If the algorithm family does not match the operating regime, the system produces either missed faults or false alarms.</p>
+            <div class="sam-card__mitigation">What Samotics does: SAM4 selects the analysis method per operating regime automatically. Operating point classification drives algorithm selection, not a one-size-fits-all approach.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: ASSET-SPECIFIC BOUNDARIES -->
+    <section class="sam-section sam-section--alt">
+      <div class="sam-section__inner">
+        <span class="sam-section__overline">Asset-Specific Detection Rates</span>
+        <h2>Detection varies by asset type and fault class</h2>
+        <p class="sam-section__lead">The five constraint categories above set the physics and engineering. Detection accuracy also depends on the asset being monitored and the specific fault type. Some faults produce stronger electrical signatures than others.</p>
+
         <div class="sam-table-wrapper">
           <table class="sam-table">
             <thead>
@@ -1208,13 +1297,13 @@
                 <td>LV Motors</td>
                 <td><span class="sam-table__data">67.4%</span></td>
                 <td>Misalignment, unbalance</td>
-                <td>Small motors (&lt;5 kW) limited</td>
+                <td>Small motors (&lt;5 kW): limited SNR</td>
               </tr>
               <tr>
                 <td>MV Motors</td>
                 <td><span class="sam-table__data">Strong</span></td>
                 <td>Insulation, rotor bar</td>
-                <td>Partial discharge indicative only, not diagnostic</td>
+                <td>Partial discharge: indicative only, not diagnostic</td>
               </tr>
               <tr>
                 <td>Fans &amp; Blowers</td>
@@ -1226,13 +1315,13 @@
                 <td>Conveyors</td>
                 <td><span class="sam-table__data">Good</span></td>
                 <td>Belt misalignment, bearing</td>
-                <td>Belt tension below threshold</td>
+                <td>Belt tension below detection threshold</td>
               </tr>
               <tr>
                 <td>Compressors</td>
                 <td><span class="sam-table__data">37.5%</span></td>
                 <td>Load profile changes</td>
-                <td>Active development area. Variable-load profiles challenging</td>
+                <td>Variable-load profiles limit steady-state windows</td>
               </tr>
               <tr>
                 <td>Transmissions</td>
@@ -1244,13 +1333,13 @@
                 <td>Archimedes Screws</td>
                 <td><span class="sam-table__data">80%</span></td>
                 <td>Bearing, unbalance</td>
-                <td>Low RPM weakens signatures. Trough wear below threshold</td>
+                <td>Low RPM requires extended analysis windows. Trough wear below threshold</td>
               </tr>
               <tr>
                 <td>Canned Motor Pumps</td>
                 <td><span class="sam-table__data">Early stage</span></td>
                 <td>Thermal, flow anomalies</td>
-                <td>No verified detection data yet. Sealed can attenuates signals</td>
+                <td>No verified detection data yet. Sealed can attenuates torque path</td>
               </tr>
               <tr>
                 <td>ESPs</td>
@@ -1266,12 +1355,12 @@
       </div>
     </section>
 
-    <!-- SECTION 4: WHAT ESA DOES NOT DETECT -->
+    <!-- SECTION 8: EXPLICIT NON-DETECTIONS -->
     <section class="sam-section">
       <div class="sam-section__inner">
         <span class="sam-section__overline">Explicit Non-Detections</span>
         <h2>Faults ESA cannot detect</h2>
-        <p class="sam-section__lead">Transparency builds trust. These fault types are outside ESA's detection capability, or require complementary technologies for reliable diagnosis.</p>
+        <p class="sam-section__lead">These fault types are outside ESA's detection capability, or require complementary technologies for reliable diagnosis.</p>
 
         <div class="sam-cards">
           <div class="sam-card">
@@ -1290,61 +1379,71 @@
           </div>
 
           <div class="sam-card">
-            <h3>Process conditions without electrical impact</h3>
+            <h3>Process conditions without torque impact</h3>
             <p>Pipe blockages, fluid temperature changes, and chemical composition shifts do not always produce detectable electrical signatures. Where they affect pump load, ESA detects the load change but cannot diagnose the process cause.</p>
           </div>
 
           <div class="sam-card">
-            <h3>Structural faults without torque impact</h3>
-            <p>A mechanical fault that does not create a cyclic torque variation on the motor shaft is invisible to ESA. Examples: structural resonance in a fan housing, foundation looseness that does not load the bearings cyclically.</p>
+            <h3>Structural faults without torque coupling</h3>
+            <p>A mechanical fault that does not create a cyclic torque variation on the motor shaft is invisible to ESA. Examples: structural resonance in a fan housing, foundation looseness that does not load the bearings cyclically, pipe-borne vibration that bypasses the drivetrain.</p>
           </div>
 
           <div class="sam-card">
             <h3>Incipient bearing defects (Stage 1-2)</h3>
-            <p>In the earliest stages of bearing failure, defect energy is primarily ultrasonic and does not modulate motor current detectably. ESA identifies bearing issues from Stage 3 onward. For early-stage detection on accessible assets, vibration analysis is more sensitive.</p>
+            <p>In the earliest stages of bearing failure, defect energy is primarily ultrasonic and does not modulate motor current detectably. ESA identifies bearing issues from Stage 3 onward. For early-stage detection on accessible, high-value assets, vibration analysis is more sensitive.</p>
           </div>
 
           <div class="sam-card">
-            <h3>Simultaneous faults at similar frequencies</h3>
-            <p>Two faults producing signatures at the same frequency can interfere destructively. This can cause underestimation of fault severity. SAM4's multi-feature approach reduces this risk but does not eliminate it.</p>
+            <h3>Dual-fault masking</h3>
+            <p>Two faults producing signatures at the same frequency can interfere destructively, causing underestimation of severity. A common case: belt-pass frequency coinciding with rotor bar sideband spacing. SAM4's multi-feature approach reduces this risk but does not eliminate it.</p>
+          </div>
+
+          <div class="sam-card">
+            <h3>Non-adjacent broken bars (half pole-pitch separation)</h3>
+            <p>Broken rotor bars separated by exactly half a pole pitch produce cancelling fault components in the stator current. The motor appears healthy in the spectrum. This blind spot is inherent to all current-based rotor bar diagnosis. SAM4 mitigates it with multi-feature analysis but cannot fully eliminate it.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4B: WHERE ESA EXTENDS BEYOND CLASSICAL LIMITS -->
+    <!-- SECTION 9: WHERE ESA EXTENDS BEYOND CLASSICAL LIMITS -->
     <section class="sam-section sam-section--alt">
       <div class="sam-section__inner">
         <span class="sam-section__overline">Pushing the Boundaries</span>
-        <h2>Where SAM4 extends beyond classical ESA limits</h2>
-        <p class="sam-section__lead">Classical ESA literature defines conservative boundaries. Samotics actively pushes them. Three areas where SAM4 operates beyond standard limits.</p>
+        <h2>Where SAM4 extends beyond classical limits</h2>
+        <p class="sam-section__lead">Classical MCSA literature defines conservative boundaries. Samotics actively pushes them. Four areas where SAM4 operates beyond standard textbook limits.</p>
 
-        <div class="sam-cards" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="sam-cards">
           <div class="sam-card">
-            <h3>Low-load detection</h3>
-            <p>Classical FFT methods fail below 30% load. SAM4 uses wavelet-based decomposition to isolate rotor fault signatures at lower load ranges by separating fault energy from the fundamental frequency component.</p>
+            <h3>Low-load rotor fault detection</h3>
+            <p>Classical FFT methods lose sensitivity below 30% load because sidebands merge with the fundamental's spectral leakage. SAM4 uses wavelet-based decomposition to isolate rotor fault signatures at lower load ranges by separating fault energy from the fundamental frequency component.</p>
           </div>
 
           <div class="sam-card">
             <h3>VFD harmonic isolation</h3>
-            <p>Standard spectral analysis struggles with VFD-fed motors. SAM4 applies adaptive harmonic isolation to subtract VFD carrier harmonics. This restores bearing and rotor bar detection in inverter environments.</p>
+            <p>Standard spectral analysis fails with VFD-fed motors because PWM harmonics and control artifacts dominate the spectrum. SAM4 applies adaptive harmonic isolation (including negative-sequence and Kalman filter methods) to subtract VFD carrier harmonics. This restores bearing and rotor bar detection in inverter environments.</p>
           </div>
 
           <div class="sam-card">
             <h3>Transient startup analysis</h3>
-            <p>During motor startup, the rotor passes through high slip values. Fault sidebands sweep across the frequency spectrum, making rotor bar defects visible in a 5 to 10 second window. SAM4 captures and analyses this transient.</p>
+            <p>During motor startup, the rotor passes through high slip values. Fault sidebands sweep across the frequency spectrum, making rotor bar defects visible in a 5 to 10 second window. SAM4 captures and analyses this transient, providing diagnostic information even when steady-state windows are unavailable.</p>
+          </div>
+
+          <div class="sam-card">
+            <h3>Low-speed frequency tracking</h3>
+            <p>At VFD output frequencies below 20 to 30 Hz, classical FFT-based MCSA is fragile. SAM4 uses frequency tracking and demodulation methods designed for low-frequency, low-slip conditions. This extends rotor and mechanical fault detection to assets that classical methods cannot cover.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5: ESA VS VIBRATION BOUNDARIES -->
+    <!-- SECTION 10: ESA VS VIBRATION BOUNDARIES -->
     <section class="sam-section">
       <div class="sam-section__inner">
         <span class="sam-section__overline">Complementary, Not Competitive</span>
         <h2>Where ESA leads. Where vibration leads.</h2>
         <p class="sam-section__lead">ESA and vibration are complementary technologies. Each has environments where it excels and environments where it struggles.</p>
-        
+
         <div class="sam-two-col">
           <div class="sam-two-col__col" style="background: var(--seashell);">
             <h3>ESA leads when:</h3>
@@ -1354,6 +1453,7 @@
               <li>Fleet-wide monitoring from a single MCC is needed</li>
               <li>Electrical faults (insulation, phase imbalance, rotor bar) matter most</li>
               <li>Continuous 24/7 monitoring without site visits is required</li>
+              <li>Power quality issues need to be separated from mechanical faults</li>
             </ul>
           </div>
 
@@ -1363,6 +1463,7 @@
               <li>Early-stage bearing defect classification (Stage 1-2) is critical</li>
               <li>The asset is directly accessible and sensor mounting is practical</li>
               <li>Structural resonance or foundation looseness needs diagnosis</li>
+              <li>Component-level isolation in multi-stage gearboxes is required</li>
               <li>Single high-value asset justifies dedicated instrumentation</li>
               <li>Historical vibration baselines already exist</li>
             </ul>
@@ -1370,17 +1471,17 @@
         </div>
 
         <div class="sam-two-col__callout">
-          <strong>Most Samotics customers deploy ESA alongside existing vibration programmes.</strong> ESA covers the assets vibration cannot reach. Together, they close the monitoring gap.
+          <strong>Most Samotics customers deploy ESA alongside existing vibration programmes.</strong> ESA covers the assets vibration cannot reach. Vibration provides component-level precision on accessible assets. Together, they close the monitoring gap.
         </div>
       </div>
     </section>
 
-    <!-- SECTION 6: TERMINAL CTA -->
+    <!-- SECTION 11: TERMINAL CTA -->
     <section class="sam-section sam-section--dark">
       <div class="sam-section__inner">
         <h2>Understand what SAM4 can detect in your plant.</h2>
-        <p class="sam-section__lead">Every deployment starts with a coverage assessment. Our engineers map your assets, identify which ones ESA can monitor, and set clear expectations on detection capability.</p>
-        
+        <p class="sam-section__lead">Every deployment starts with a coverage assessment. Our engineers map your assets against these boundary conditions, identify which ones ESA can monitor, and set clear expectations on detection capability per fault type.</p>
+
         <div class="sam-section__ctas">
           <a href="/contact?intent=coverage" class="sam-cta">Request a Coverage Assessment</a>
           <a href="/proof" class="sam-cta" style="background: transparent; border: 2px solid var(--sam-white); opacity: 0.8;">See detection accuracy data →</a>
