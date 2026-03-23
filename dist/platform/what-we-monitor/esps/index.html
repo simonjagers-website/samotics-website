@@ -1077,7 +1077,7 @@
     /* ===== INSTALL SECTION ===== */
     .sam-spec-install {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-install__inner {
       max-width: var(--max-width);
@@ -1147,7 +1147,7 @@
     /* ===== DETECTION STORIES ===== */
     .sam-spec-stories {
       padding: var(--space-24) var(--space-6);
-      background: var(--seashell);
+      background: var(--white);
     }
     .sam-spec-stories__inner {
       max-width: var(--max-width);
@@ -1222,7 +1222,7 @@
     /* ===== RELATED ASSETS ===== */
     .sam-spec-related {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-related__inner {
       max-width: var(--max-width);
@@ -1344,10 +1344,170 @@
       line-height: 1.6;
     }
 
+    /* ===== MONITORING ARCHITECTURE (ESA vs DOWNHOLE) ===== */
+    .sam-spec-monitor {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-monitor__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-monitor__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-monitor__inner .lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+
+    /* Three-column overview */
+    .sam-spec-monitor__trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+    .sam-spec-monitor__col {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .sam-spec-monitor__col-header {
+      padding: var(--space-3) var(--space-4);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+    .sam-spec-monitor__col--esa .sam-spec-monitor__col-header {
+      background: var(--orange);
+    }
+    .sam-spec-monitor__col--overlap .sam-spec-monitor__col-header {
+      background: var(--blue-600);
+    }
+    .sam-spec-monitor__col--downhole .sam-spec-monitor__col-header {
+      background: var(--space-cadet);
+    }
+    .sam-spec-monitor__col-body {
+      padding: var(--space-6);
+    }
+    .sam-spec-monitor__col-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .sam-spec-monitor__col-body li {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--space-cadet);
+      padding-left: 20px;
+      position: relative;
+    }
+    .sam-spec-monitor__col-body li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .sam-spec-monitor__col--esa li::before { background: var(--orange); }
+    .sam-spec-monitor__col--overlap li::before { background: var(--blue-600); }
+    .sam-spec-monitor__col--downhole li::before { background: var(--space-cadet); }
+
+    /* Gauge survival timeline */
+    .sam-spec-monitor__timeline {
+      margin-bottom: var(--space-10);
+    }
+    .sam-spec-monitor__timeline h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+    }
+    .sam-spec-monitor__timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+    }
+    .sam-spec-monitor__timeline-step {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+      position: relative;
+    }
+    .sam-spec-monitor__timeline-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .sam-spec-monitor__timeline-step--full::before { background: var(--blue-600); }
+    .sam-spec-monitor__timeline-step--degraded::before { background: #D97706; }
+    .sam-spec-monitor__timeline-step--esa::before { background: var(--orange); }
+    .sam-spec-monitor__timeline-label {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--space-cadet);
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-monitor__timeline-gauge {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--space-cadet);
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-monitor__timeline-desc {
+      font-size: 0.8125rem;
+      color: var(--comet);
+      line-height: 1.5;
+    }
+
+    /* Rationale card */
+    .sam-spec-monitor__rationale {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-left: 4px solid var(--orange);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+    }
+    .sam-spec-monitor__rationale h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+    }
+    .sam-spec-monitor__rationale p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-monitor__rationale p:last-child {
+      margin-bottom: 0;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .sam-hero--spec { padding: var(--space-20) var(--space-6); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1357,7 +1517,7 @@
     }
     @media (max-width: 768px) {
       .sam-hero--spec { padding: var(--space-16) var(--space-4); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1368,6 +1528,10 @@
       .sam-spec-industries__grid,
       .sam-spec-stories__grid,
       .sam-spec-related__grid {
+        grid-template-columns: 1fr;
+      }
+      .sam-spec-monitor__trio,
+      .sam-spec-monitor__timeline-grid {
         grid-template-columns: 1fr;
       }
       .sam-spec-energy__split,
@@ -1663,21 +1827,21 @@
               <td class="sam-spec-faults__td">Stage erosion, radial wear, thrust bearing degradation reducing pump efficiency</td>
               <td class="sam-spec-faults__td">Progressive decrease in mean current at equivalent wellhead conditions. Load trend analysis over weeks reveals declining hydraulic work output</td>
               <td class="sam-spec-faults__td">2–8 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. Detected via long-term power trending, not direct spectral signature. Downhole discharge pressure provides stronger direct measurement of pump head loss.</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Power cable degradation</td>
               <td class="sam-spec-faults__td">Downhole cable insulation breakdown, splice joint deterioration, or mechanical damage from installation</td>
               <td class="sam-spec-faults__td">Harmonic distortion changes and phase imbalance trends in surface current measurements. Cable faults produce asymmetric impedance detectable at the VSD</td>
               <td class="sam-spec-faults__td">2–8 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. Requires impedance trending over time. Downhole insulation resistance measurement provides more direct cable health data where gauge is functional.</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Broken rotor bars</td>
               <td class="sam-spec-faults__td">Cracked or broken bars in the downhole motor rotor cage from thermal fatigue or high starting currents</td>
               <td class="sam-spec-faults__td">Characteristic sidebands at (1±2s)f around supply frequency, where s is motor slip. Detectable at surface through the power cable</td>
               <td class="sam-spec-faults__td">4–8 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full. Induction motors only. Not applicable to permanent magnet motors, which are increasingly adopted for ESP applications.</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing wear</td>
@@ -1708,6 +1872,104 @@
         </div>
         
         <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:var(--sp-05) 0 0 0;">Based on 1,874 resolved incidents (Jan 2024 – Feb 2026). <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 3b. MONITORING ARCHITECTURE ─── seashell background -->
+  <section class="sam-spec-monitor">
+    <div class="sam-spec-monitor__inner">
+      <p class="overline">Monitoring architecture</p>
+      <h2>What ESA covers. What downhole sensors cover. Where they overlap.</h2>
+      <p class="lead">ESPs are the only motor-driven asset with zero physical access after installation. Every diagnostic insight must come from either surface instruments or downhole gauges. Electrical failures account for 50 to 61% of all ESP failures. ESA detects these from the surface. Downhole sensors see the hydraulic and reservoir conditions that ESA cannot. Neither technology alone covers the full failure population.</p>
+
+      <!-- Three-column overview -->
+      <div class="sam-spec-monitor__trio">
+
+        <!-- ESA leads -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--esa">
+          <div class="sam-spec-monitor__col-header">ESA leads</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Stator winding insulation degradation</li>
+              <li>Turn-to-turn shorts and phase-to-ground faults</li>
+              <li>Rotor bar damage (induction motors)</li>
+              <li>VSD output quality and power supply faults</li>
+              <li>Sine wave filter degradation</li>
+              <li>Supply voltage unbalance</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">These are the fault categories that downhole sensors either cannot detect or detect only through secondary thermal effects. They represent the majority of ESP failures.</p>
+          </div>
+        </div>
+
+        <!-- Both contribute -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--overlap">
+          <div class="sam-spec-monitor__col-header">Both contribute</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Gas locking: ESA sees load loss, downhole sees pressure collapse</li>
+              <li>Off-design operation: ESA sees power deviation, downhole locates pump operating point</li>
+              <li>Cavitation: ESA detects broadband noise increase, downhole confirms intake pressure below bubble point</li>
+              <li>Cable faults: ESA sees impedance change, downhole sees insulation resistance decline</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">Combined surface and downhole data provides both detection and root-cause discrimination. Neither alone gives the full picture.</p>
+          </div>
+        </div>
+
+        <!-- Downhole sensors lead -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--downhole">
+          <div class="sam-spec-monitor__col-header">Downhole sensors lead</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Pump stage degradation (direct pressure differential measurement)</li>
+              <li>Gas slugging characterisation (intake pressure instability)</li>
+              <li>Bearing wear (downhole vibration, where installed)</li>
+              <li>Motor thermal protection (winding temperature)</li>
+              <li>Reservoir monitoring (absolute pressure and temperature)</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">These are hydraulic, mechanical, and reservoir conditions that manifest most clearly in direct physical measurements at the pump.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Gauge survival timeline -->
+      <div class="sam-spec-monitor__timeline">
+        <h3>The gauge survival problem: monitoring degrades, ESA does not</h3>
+        <p class="lead" style="max-width:720px;margin-bottom:var(--space-6);">Downhole gauges operate in extreme conditions. Published reliability data shows a persistent survival ceiling that decades of industry investment have not broken through. ESA hardware sits in a benign surface environment and outlasts every ESP installation.</p>
+
+        <div class="sam-spec-monitor__timeline-grid">
+          <div class="sam-spec-monitor__timeline-step sam-spec-monitor__timeline-step--full">
+            <div class="sam-spec-monitor__timeline-label">At installation</div>
+            <div class="sam-spec-monitor__timeline-gauge">100%</div>
+            <p class="sam-spec-monitor__timeline-desc">Full downhole gauge data plus surface ESA. Maximum diagnostic visibility across all fault types.</p>
+          </div>
+          <div class="sam-spec-monitor__timeline-step sam-spec-monitor__timeline-step--degraded">
+            <div class="sam-spec-monitor__timeline-label">Year 1–2</div>
+            <div class="sam-spec-monitor__timeline-gauge">78–92%</div>
+            <p class="sam-spec-monitor__timeline-desc">10–22% of gauges have failed or lost communication. Cable ground faults cause data loss in ~15% of wells.</p>
+          </div>
+          <div class="sam-spec-monitor__timeline-step sam-spec-monitor__timeline-step--degraded">
+            <div class="sam-spec-monitor__timeline-label">Year 3–4</div>
+            <div class="sam-spec-monitor__timeline-gauge">72–80%</div>
+            <p class="sam-spec-monitor__timeline-desc">Significant minority of wells operating with degraded or absent downhole data. Sensor drift compounds the problem.</p>
+          </div>
+          <div class="sam-spec-monitor__timeline-step sam-spec-monitor__timeline-step--esa">
+            <div class="sam-spec-monitor__timeline-label">Year 5+</div>
+            <div class="sam-spec-monitor__timeline-gauge">69–75%</div>
+            <p class="sam-spec-monitor__timeline-desc">Industry survival ceiling. ESA transitions from complementary to primary diagnostic layer. Surface hardware: 100% operational.</p>
+          </div>
+        </div>
+
+        <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);font-style:italic;">Gauge survival data: Shell analysis of 952 permanent downhole gauge systems (SPE-57057). Cable ground fault rate: Baker Hughes field data.</p>
+      </div>
+
+      <!-- Rationale card -->
+      <div class="sam-spec-monitor__rationale">
+        <h3>At these stakes, single-layer monitoring is a coverage gap</h3>
+        <p>ESP workovers cost $150K to $500K onshore and $3M to $5M offshore. Deferred production adds $5K to $100K per day. The question is not whether to monitor, but how to maintain diagnostic coverage when downhole gauges degrade.</p>
+        <p>ESA is the only monitoring layer guaranteed to survive the full ESP run life. It directly addresses the dominant failure category: the 50 to 61% of failures that are electrical in origin. Downhole sensors are irreplaceable for hydraulic and reservoir monitoring where they function. Together, they cover the full failure population. As gauges age, ESA ensures the well never runs blind.</p>
       </div>
 
     </div>
