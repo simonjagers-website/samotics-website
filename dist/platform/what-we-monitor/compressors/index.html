@@ -966,7 +966,7 @@
     /* ===== ENERGY SECTION ===== */
     .sam-spec-energy {
       padding: var(--space-24) var(--space-6);
-      background: var(--seashell);
+      background: var(--white);
     }
     .sam-spec-energy__inner {
       max-width: var(--max-width);
@@ -1028,7 +1028,7 @@
     /* ===== INDUSTRIES SECTION ===== */
     .sam-spec-industries {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-industries__inner {
       max-width: var(--max-width);
@@ -1077,7 +1077,7 @@
     /* ===== INSTALL SECTION ===== */
     .sam-spec-install {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-install__inner {
       max-width: var(--max-width);
@@ -1147,7 +1147,7 @@
     /* ===== DETECTION STORIES ===== */
     .sam-spec-stories {
       padding: var(--space-24) var(--space-6);
-      background: var(--seashell);
+      background: var(--white);
     }
     .sam-spec-stories__inner {
       max-width: var(--max-width);
@@ -1344,10 +1344,132 @@
       line-height: 1.6;
     }
 
+    /* ===== MONITORING ARCHITECTURE (ESA vs VIBRATION) ===== */
+    .sam-spec-monitor {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-monitor__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-monitor__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-monitor__trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      margin: var(--space-8) 0;
+    }
+    .sam-spec-monitor__col {
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-monitor__col h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      padding-bottom: var(--space-3);
+      border-bottom: 2px solid var(--border-grey);
+    }
+    .sam-spec-monitor__col--esa h3 {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+    .sam-spec-monitor__col--overlap h3 {
+      color: var(--space-cadet);
+      border-color: var(--space-cadet);
+    }
+    .sam-spec-monitor__col--vib h3 {
+      color: var(--blue-600);
+      border-color: var(--blue-600);
+    }
+    .sam-spec-monitor__col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sam-spec-monitor__col li {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--comet);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--border-grey);
+    }
+    .sam-spec-monitor__col li:last-child {
+      border-bottom: none;
+    }
+    .sam-spec-monitor__matrix {
+      margin: var(--space-10) 0 var(--space-8);
+    }
+    .sam-spec-monitor__matrix-heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-6) 0;
+    }
+    .sam-spec-monitor__table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+    }
+    .sam-spec-monitor__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .sam-spec-monitor__th {
+      background: var(--space-cadet);
+      color: var(--white);
+      font-weight: 600;
+      padding: var(--space-3) var(--space-4);
+      text-align: left;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .sam-spec-monitor__td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--border-grey);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .sam-spec-monitor__td--label {
+      font-weight: 600;
+      color: var(--space-cadet);
+      white-space: nowrap;
+    }
+    .sam-spec-monitor__rationale {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+      border-left: 4px solid var(--orange);
+    }
+    .sam-spec-monitor__rationale h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-monitor__rationale p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-monitor__rationale p:last-child {
+      margin-bottom: 0;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .sam-hero--spec { padding: var(--space-20) var(--space-6); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1357,7 +1479,7 @@
     }
     @media (max-width: 768px) {
       .sam-hero--spec { padding: var(--space-16) var(--space-4); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1367,7 +1489,8 @@
       .sam-spec-why__grid,
       .sam-spec-industries__grid,
       .sam-spec-stories__grid,
-      .sam-spec-related__grid {
+      .sam-spec-related__grid,
+      .sam-spec-monitor__trio {
         grid-template-columns: 1fr;
       }
       .sam-spec-energy__split,
@@ -1647,23 +1770,23 @@
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing wear</td>
               <td class="sam-spec-faults__td">Rolling element degradation in motor and compressor bearings</td>
-              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies in the motor current spectrum</td>
+              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies in the motor current spectrum. Strongest on motor bearings. Compressor bearing detection depends on drivetrain coupling and load.</td>
               <td class="sam-spec-faults__td">3–10 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Valve faults</td>
               <td class="sam-spec-faults__td">Suction/discharge valve leakage or failure in reciprocating compressors</td>
-              <td class="sam-spec-faults__td">Cyclic load pattern anomalies detected in the current waveform</td>
+              <td class="sam-spec-faults__td">Cyclic load pattern anomalies detected in the current waveform. Reciprocating compressors with direct coupling only. Valve faults alter the torque profile per revolution.</td>
               <td class="sam-spec-faults__td">2–6 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Imbalance</td>
               <td class="sam-spec-faults__td">Rotor fouling, deposit buildup, or erosion causing rotational imbalance</td>
-              <td class="sam-spec-faults__td">1× running speed component increase in the current spectrum</td>
+              <td class="sam-spec-faults__td">1x running speed component increase in the current spectrum. Detectable where imbalance creates torque modulation (reciprocating, screw). On centrifugal compressors, imbalance produces radial force only and is not reliably visible via ESA.</td>
               <td class="sam-spec-faults__td">2–8 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Efficiency degradation</td>
@@ -1716,6 +1839,104 @@
         
         <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:var(--sp-05) 0 0 0;">Based on 1,874 resolved incidents (Jan 2024 – Feb 2026). <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
       </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 3b. ESA & VIBRATION ON COMPRESSORS ─── seashell background -->
+  <section class="sam-spec-monitor">
+    <div class="sam-spec-monitor__inner">
+      <p class="overline">Monitoring architecture</p>
+      <h2>What ESA covers. What vibration covers. Where they overlap.</h2>
+      <p class="lead">ESA and vibration detect different failure physics. On compressors, what each technology sees depends on the compressor type and the fault mode. Neither covers everything alone.</p>
+
+      <!-- Three-column overview -->
+      <div class="sam-spec-monitor__trio">
+
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--esa">
+          <h3>ESA leads</h3>
+          <ul>
+            <li>Broken rotor bars, stator winding faults, eccentricity</li>
+            <li>Power quality and VFD health</li>
+            <li>Energy consumption and efficiency trending</li>
+            <li>Load pattern anomalies and duty cycling</li>
+            <li>Fleet-wide screening from the MCC</li>
+            <li>Monitoring in ATEX/hazardous zones without field sensors</li>
+          </ul>
+        </div>
+
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--overlap">
+          <h3>Both contribute</h3>
+          <ul>
+            <li>Coupling misalignment (ESA: torque modulation. Vibration: 2x radial)</li>
+            <li>Gearbox faults (ESA: current as torque image. Vibration: mesh analysis)</li>
+            <li>Reciprocating valve faults (ESA: load profile. Vibration: crosshead accel)</li>
+            <li>Belt wear and looseness</li>
+            <li>Surge events on centrifugal compressors</li>
+          </ul>
+        </div>
+
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--vib">
+          <h3>Vibration leads</h3>
+          <ul>
+            <li>Motor and compressor bearing defects (envelope analysis, proximity probes)</li>
+            <li>Rotor unbalance on centrifugal compressors (radial force, no torque signal)</li>
+            <li>Subsynchronous instability and shaft bow</li>
+            <li>Seal degradation</li>
+            <li>Crosshead and wrist pin wear (reciprocating)</li>
+            <li>Internal rub, impeller cracking</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Compressor-type matrix -->
+      <div class="sam-spec-monitor__matrix">
+        <h3 class="sam-spec-monitor__matrix-heading">Detection capability by compressor type</h3>
+        <div class="sam-spec-monitor__table-wrap">
+          <table class="sam-spec-monitor__table">
+            <thead>
+              <tr>
+                <th class="sam-spec-monitor__th">Compressor type</th>
+                <th class="sam-spec-monitor__th">ESA compressor-side</th>
+                <th class="sam-spec-monitor__th">Vibration compressor-side</th>
+                <th class="sam-spec-monitor__th">Recommended stack</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sam-spec-monitor__td sam-spec-monitor__td--label">Reciprocating</td>
+                <td class="sam-spec-monitor__td"><strong>Strong.</strong> Valve faults alter cyclic torque profile. Load anomalies visible in current waveform. Published research supports valve leakage detection via motor current analysis.</td>
+                <td class="sam-spec-monitor__td"><strong>Strong.</strong> Crosshead accelerometers (API 670) locate faults to specific cylinders. Rod drop tracks piston ring and rider band wear.</td>
+                <td class="sam-spec-monitor__td">Both. ESA for motor health + valve trending from the MCC. Vibration for mechanical localisation. Discharge temperature per cylinder adds diagnostic depth.</td>
+              </tr>
+              <tr>
+                <td class="sam-spec-monitor__td sam-spec-monitor__td--label">Screw</td>
+                <td class="sam-spec-monitor__td"><strong>Moderate.</strong> Rotor meshing produces torque modulation at lobe-passing frequency. Energy and load screening is strong. Internal leakage detection is trending-level, not diagnostic.</td>
+                <td class="sam-spec-monitor__td"><strong>Strong.</strong> Bearing defect frequencies, rotor contact, timing gear mesh. Oil analysis critical for oil-injected units.</td>
+                <td class="sam-spec-monitor__td">Both. ESA for fleet screening + motor/drive faults + energy. Vibration for mechanical specificity. Oil analysis for wear mechanisms.</td>
+              </tr>
+              <tr>
+                <td class="sam-spec-monitor__td sam-spec-monitor__td--label">Centrifugal</td>
+                <td class="sam-spec-monitor__td"><strong>Motor/drive side only.</strong> Most compressor faults (unbalance, seal wear, impeller erosion, subsynchronous instability) produce no torque modulation. Exception: surge events create torque transients visible in current.</td>
+                <td class="sam-spec-monitor__td"><strong>Essential.</strong> Proximity probes (API 670) for orbit analysis, axial position, and shaft dynamics. The only method for rotor dynamics and bearing health on these machines.</td>
+                <td class="sam-spec-monitor__td">Vibration-led. API 670 proximity probes are mandatory for critical service. ESA adds motor/drive health and energy monitoring. Process data adds performance analytics.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Rationale card -->
+      <div class="sam-spec-monitor__rationale">
+        <h3>At these stakes, single-technology monitoring is a coverage gap</h3>
+        <p>Compressor downtime costs run from tens of thousands to hundreds of thousands of euros per event. At those stakes, the gap between what ESA sees and what vibration sees translates directly to risk exposure.</p>
+        <p>ESA covers what vibration cannot: electrical faults in the motor and drive, power quality issues, and energy performance. It installs in under 60 minutes at the MCC with no field sensor and no process shutdown. That makes it the most cost-effective way to screen compressor fleets and monitor assets in hazardous or hard-to-reach locations.</p>
+        <p>Vibration covers what ESA cannot: bearing defects, rotor dynamics, seal degradation, and the mechanical faults that dominate centrifugal compressor risk profiles. On critical compressors, it provides both diagnostics and automatic protection.</p>
+        <p>The overlap between the two technologies is narrow. The complementary coverage is wide. For compressor fleets where downtime carries real cost, both technologies working together close the monitoring gap that either leaves open alone.</p>
+      </div>
+
+      <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-6);font-style:italic;">Capability ratings based on published peer-reviewed research, API/ISO standards, and field deployment data. <a href="/technology/esa-vs-vibration" class="sam-text-link">Full ESA and vibration comparison &rarr;</a></p>
 
     </div>
   </section>
