@@ -730,6 +730,148 @@
       --font-mono: 'JetBrains Mono', 'Consolas', monospace;
     }
 
+    /* ===== HOW ESA MONITORS ===== */
+    .sam-spec-how {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-how__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-how__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-how__inner .lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-how__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-how__card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+    }
+    .sam-spec-how__card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+    }
+    .sam-spec-how__card p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ===== MONITORING ARCHITECTURE ===== */
+    .sam-spec-monitor {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-monitor__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-monitor__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-monitor__inner .lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-monitor__trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+    .sam-spec-monitor__col {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .sam-spec-monitor__col-header {
+      padding: var(--space-3) var(--space-4);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+    .sam-spec-monitor__col--esa .sam-spec-monitor__col-header { background: var(--orange); }
+    .sam-spec-monitor__col--overlap .sam-spec-monitor__col-header { background: var(--blue-600); }
+    .sam-spec-monitor__col--vibration .sam-spec-monitor__col-header { background: var(--space-cadet); }
+    .sam-spec-monitor__col-body {
+      padding: var(--space-6);
+    }
+    .sam-spec-monitor__col-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .sam-spec-monitor__col-body li {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--space-cadet);
+      padding-left: 20px;
+      position: relative;
+    }
+    .sam-spec-monitor__col-body li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .sam-spec-monitor__col--esa li::before { background: var(--orange); }
+    .sam-spec-monitor__col--overlap li::before { background: var(--blue-600); }
+    .sam-spec-monitor__col--vibration li::before { background: var(--space-cadet); }
+    .sam-spec-monitor__rationale {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-left: 4px solid var(--orange);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+    }
+    .sam-spec-monitor__rationale h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+    }
+    .sam-spec-monitor__rationale p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-monitor__rationale p:last-child {
+      margin-bottom: 0;
+    }
+
     /* ===== PAGE WRAPPER ===== */
     .sam-page,
     .sam-page * {
@@ -1028,7 +1170,7 @@
     /* ===== INDUSTRIES SECTION ===== */
     .sam-spec-industries {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-industries__inner {
       max-width: var(--max-width);
@@ -1147,7 +1289,7 @@
     /* ===== DETECTION STORIES ===== */
     .sam-spec-stories {
       padding: var(--space-24) var(--space-6);
-      background: var(--seashell);
+      background: var(--white);
     }
     .sam-spec-stories__inner {
       max-width: var(--max-width);
@@ -1347,7 +1489,7 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .sam-hero--spec { padding: var(--space-20) var(--space-6); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-how, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1357,7 +1499,7 @@
     }
     @media (max-width: 768px) {
       .sam-hero--spec { padding: var(--space-16) var(--space-4); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-how, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1365,6 +1507,8 @@
       }
       .sam-hero__h1 { font-size: 1.5rem; }
       .sam-spec-why__grid,
+      .sam-spec-how__grid,
+      .sam-spec-monitor__trio,
       .sam-spec-industries__grid,
       .sam-spec-stories__grid,
       .sam-spec-related__grid {
@@ -1638,10 +1782,10 @@
         <div class="sam-hero__copy">
           <p class="sam-hero__overline">Asset type</p>
           <h1 class="sam-hero__h1">Conveyor monitoring</h1>
-          <p class="sam-hero__lead">SAM4 monitors belt conveyors, screw conveyors, and chain conveyors from the motor control cabinet. detecting bearing degradation, misalignment, blockage, and overload conditions without sensors on the conveyor itself.</p>
+          <p class="sam-hero__lead">Conveyors span hundreds of metres, cross buildings, and run through environments where sensors don't survive. Most have no condition monitoring beyond an ammeter and a walk-past inspection. When they stop, the entire material handling chain stops with them.</p>
           <div class="sam-hero__ctas">
             <a href="/contact?intent=demo&asset=conveyors" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-            <a href="#faults" class="sam-btn sam-btn--outline">See What We Detect</a>
+            <a href="#faults" class="sam-btn sam-btn--outline">See what we detect</a>
           </div>
         </div>
       </div>
@@ -1649,12 +1793,12 @@
     </div>
   </section>
 
-  <!-- ─── 2. WHY MONITOR THIS ASSET ─── white background -->
+  <!-- ─── 2. WHY MONITOR THIS ASSET ─── seashell background -->
   <section class="sam-spec-why">
     <div class="sam-spec-why__inner">
       <p class="overline">Why monitor conveyors</p>
       <h2>When the conveyor stops, the entire process stops</h2>
-      <p class="lead sam-spec-why__lead">Conveyors are the arteries of bulk material handling. They connect crushers to screens, mills to stockpiles, and production lines to dispatch. A single conveyor failure can halt an entire processing chain. Most conveyors have no condition monitoring beyond visual inspection.</p>
+      <p class="lead sam-spec-why__lead">Conveyors are the arteries of bulk material handling. They connect crushers to screens, mills to stockpiles, and production lines to dispatch. A single conveyor failure halts an entire processing chain. Yet most conveyors run with no condition monitoring beyond an ammeter reading and a walk-past inspection.</p>
 
       <div class="sam-spec-why__grid">
         <div class="sam-spec-why__card">
@@ -1663,7 +1807,7 @@
         </div>
         <div class="sam-spec-why__card">
           <span class="sam-spec-why__card-stat kpi-value">35%</span>
-          <p class="sam-spec-why__card-desc">of conveyor drive failures are bearing-related and detectable weeks in advance through electrical signature analysis.</p>
+          <p class="sam-spec-why__card-desc">of conveyor drive failures are bearing-related — the kind of degradation that develops over weeks, not hours.</p>
         </div>
         <div class="sam-spec-why__card">
           <span class="sam-spec-why__card-stat kpi-value">4–8 hrs</span>
@@ -1673,11 +1817,36 @@
     </div>
   </section>
 
-  <!-- ─── 3. FAULT COVERAGE ─── seashell background -->
+  <!-- ─── 3. HOW ESA MONITORS CONVEYORS ─── white background -->
+  <section class="sam-spec-how">
+    <div class="sam-spec-how__inner">
+      <p class="overline">How ESA reads conveyor health</p>
+      <h2>One sensor location. The entire drivetrain visible.</h2>
+      <p class="lead">SAM4 measures current and voltage at the motor control cabinet — the same panel your electricians already access. From those signals, it extracts torque modulations, speed variations, and spectral patterns that reveal the condition of the motor, gearbox, coupling, and drive roller without a single sensor on the conveyor structure.</p>
+
+      <div class="sam-spec-how__grid">
+        <div class="sam-spec-how__card">
+          <h3>Load signature analysis</h3>
+          <p>A conveyor's motor current reflects the total mechanical load on the belt. Blockages, material buildup, belt tension changes, and overload conditions all shift the torque demand pattern. SAM4 tracks these shifts against a healthy baseline and flags deviations before they cause damage or spillage.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3>Drivetrain fault frequencies</h3>
+          <p>Bearing defects in the drive roller, idler bearings, and gearbox create characteristic fault frequencies (BPFO, BPFI) that modulate the motor current. Misalignment between motor, gearbox, and drive roller produces a 2× running speed component. SAM4 tracks these spectral signatures continuously.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3>Motor electrical health</h3>
+          <p>Stator winding degradation, broken rotor bars, and supply quality issues are detected directly from the electrical signature. These faults account for a significant share of conveyor drive failures and are invisible to vibration monitoring or visual inspection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 4–5. FAULT COVERAGE + DETECTION BOUNDARIES ─── seashell background -->
   <section id="faults" class="sam-spec-faults">
     <div class="sam-spec-faults__inner">
       <p class="overline">What SAM4 detects on conveyors</p>
-      <h2>Five fault types from one sensor location</h2>
+      <h2>Seven fault types from one sensor location</h2>
+      <p style="font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-comet);margin:0 0 var(--space-8) 0;">This is a non-exhaustive list. SAM4 may detect additional fault conditions depending on conveyor type, drive topology, and operating regime. The fault types below are the most common detections on conveyor systems.</p>
 
       <div class="sam-spec-faults__table-wrap">
         <table class="sam-spec-faults__table">
@@ -1703,7 +1872,7 @@
               <td class="sam-spec-faults__td">Drive shaft or coupling misalignment between motor, gearbox, and drive roller</td>
               <td class="sam-spec-faults__td">2× running speed component in the current spectrum, progressive increase as coupling or shaft alignment degrades</td>
               <td class="sam-spec-faults__td">2–6 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#D97706;" title="Detection strength depends on coupling type. Rigid and metallic couplings transmit the 2× signature efficiently. Fluid couplings attenuate it significantly.">Conditional*</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Overload</td>
@@ -1717,7 +1886,7 @@
               <td class="sam-spec-faults__td">Drive roller, idler, or gearbox bearing wear and lubrication breakdown</td>
               <td class="sam-spec-faults__td">Characteristic bearing fault frequencies (BPFO, BPFI sidebands) in the motor current spectrum, modulated by load zone position</td>
               <td class="sam-spec-faults__td">3–8 weeks</td>
-              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#D97706;">75.0%</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#D97706;" title="Detection depends on mechanical path length. Drive roller and gearbox bearings are more visible than remote idler bearings.">Conditional*</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Stator winding degradation</td>
@@ -1753,11 +1922,19 @@
 
           <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Electrical unbalance: 33.3% detection on conveyors</strong>. Supply-side anomalies can mask the fault signature.</span>
+            <span><strong>Idler bearing faults.</strong> Idler bearings are mechanically remote from the motor. The torque modulation they create is attenuated by the belt, multiple rollers, and the gearbox before reaching the motor current. ESA does not reliably detect individual idler bearing failures.</span>
           </div>
           <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Coupling unbalance</strong>. Often masked by other drivetrain dynamics in conveyor applications.</span>
+            <span><strong>Belt condition.</strong> Belt wear, splice degradation, and surface damage are not directly visible in the electrical signature. ESA detects the consequences (increased load, tracking issues) but not the root cause.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Misalignment through fluid couplings.</strong> Fluid couplings decouple the motor from the driven side, heavily attenuating the 2× running speed component that ESA uses to detect misalignment. Detection is unreliable when a fluid coupling is in the drivetrain.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>VFD-driven conveyors.</strong> Variable frequency drives introduce harmonic content that can mask fault signatures. Detection capability is reduced on VFD-driven conveyors, particularly for mechanical faults at low speeds.</span>
           </div>
         </div>
 
@@ -1767,8 +1944,74 @@
     </div>
   </section>
 
-  <!-- ─── 4. DETECTION STORIES ─── white background -->
-  <section class="sam-spec-stories">
+  <!-- ─── 6. MONITORING ARCHITECTURE ─── white background -->
+  <section class="sam-spec-monitor" style="background:var(--white);">
+    <div class="sam-spec-monitor__inner">
+      <p class="overline">Monitoring architecture</p>
+      <h2>What ESA covers. What vibration covers. Where they overlap.</h2>
+      <p class="lead">Conveyors are distributed systems. The motor, gearbox, and drive roller are accessible at one end. Hundreds of idler rollers, pulleys, and belt spans stretch across the rest. ESA monitors the powered end from the MCC. Vibration and belt monitoring technologies cover the distributed structure. Each fills gaps the other cannot reach.</p>
+
+      <!-- Three-column overview -->
+      <div class="sam-spec-monitor__trio">
+
+        <!-- ESA leads -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--esa">
+          <div class="sam-spec-monitor__col-header">ESA leads</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Motor electrical faults (stator winding, rotor bars, power quality)</li>
+              <li>Overload and blockage detection via load signature shift</li>
+              <li>Drive roller and gearbox bearing trends</li>
+              <li>Coupling condition through torque modulation</li>
+              <li>Energy waste from mechanical inefficiency or oversizing</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">ESA's strongest conveyor application is drive-end monitoring — the motor, gearbox, coupling, and drive roller — where torque modulations transmit efficiently to the current signature.</p>
+          </div>
+        </div>
+
+        <!-- Both contribute -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--overlap">
+          <div class="sam-spec-monitor__col-header">Both contribute</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Drive roller bearing degradation: ESA detects torque modulation, vibration confirms severity staging</li>
+              <li>Gearbox health: ESA sees load changes, vibration provides localised fault diagnosis</li>
+              <li>Misalignment: ESA detects 2× component, vibration discriminates misalignment from imbalance via phase</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">When both technologies flag the same fault, diagnostic confidence increases. ESA provides the early trend; vibration provides the root-cause discrimination.</p>
+          </div>
+        </div>
+
+        <!-- Vibration / belt monitoring leads -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--vibration">
+          <div class="sam-spec-monitor__col-header">Vibration / belt monitoring leads</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Idler bearing failures (mechanically remote from motor — invisible to ESA)</li>
+              <li>Belt condition: splice integrity, surface damage, cord breakage</li>
+              <li>Belt tracking and alignment along the full conveyor length</li>
+              <li>Pulley lagging wear and structural looseness</li>
+              <li>Chute wear, impact damage, and return side blockage</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">Vibration sensors and belt scanners cover the distributed structure — idlers, pulleys, and belt spans — that ESA cannot reach from the motor control cabinet.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Rationale card -->
+      <div class="sam-spec-monitor__rationale">
+        <h3>ESA monitors the drive. Belt monitoring covers the structure. Together they close the gap.</h3>
+        <p>Most conveyor monitoring programmes focus on belt condition — scanners, cord-break detectors, alignment sensors. These protect the belt, which is the highest-cost component. But they tell you nothing about the drive motor, gearbox, or coupling that power the system.</p>
+        <p>ESA fills that gap. One sensor set at the MCC monitors the entire powered drivetrain continuously. For a facility with 20–50 conveyors, ESA provides fleet-wide drive health at a fraction of the cost of accelerometers on each drive roller and gearbox.</p>
+        <p>Detecting an anomaly in the drive end still beats discovering a catastrophic gearbox failure during a belt change. Classification can follow from inspection.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 7. DETECTION STORIES ─── seashell background -->
+  <section class="sam-spec-stories" style="background:var(--seashell);">
     <div class="sam-spec-stories__inner">
       <p class="overline">Conveyor detections</p>
       <h2>Real faults caught on conveyors</h2>
@@ -1841,7 +2084,7 @@
     </div>
   </section>
 
-  <!-- ─── 5. HOW SAM4 INSTALLS ─── seashell background -->
+  <!-- ─── 8. HOW SAM4 INSTALLS ─── white background -->
   <section class="sam-spec-install">
     <div class="sam-spec-install__inner">
       <p class="overline">Installation on conveyors</p>
@@ -1889,7 +2132,7 @@
     </div>
   </section>
 
-  <!-- ─── 7. INDUSTRIES ─── seashell background -->
+  <!-- ─── 9. INDUSTRIES ─── seashell background -->
   <section class="sam-spec-industries">
     <div class="sam-spec-industries__inner">
       <p class="overline">Where conveyors are monitored</p>
@@ -1908,7 +2151,7 @@
     </div>
   </section>
 
-  <!-- ─── 8. RELATED ASSETS ─── white background -->
+  <!-- ─── 10. RELATED ASSETS ─── white background -->
   <section class="sam-spec-related">
     <div class="sam-spec-related__inner">
       <p class="overline">Related asset types</p>
@@ -1937,7 +2180,7 @@
     </div>
   </section>
 
-  <!-- ─── 9. CTA ─── dark background -->
+  <!-- ─── 11. CTA ─── dark background -->
   <section class="sam-cta-block sam-cta-block--spec">
     <div class="sam-cta-block__inner">
       <h2 class="sam-cta-block__heading">See SAM4 monitoring conveyors</h2>
