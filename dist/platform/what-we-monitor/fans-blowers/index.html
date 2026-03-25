@@ -730,6 +730,148 @@
       --font-mono: 'JetBrains Mono', 'Consolas', monospace;
     }
 
+    /* ===== HOW ESA MONITORS ===== */
+    .sam-spec-how {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-how__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-how__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-how__inner .lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-how__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-how__card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+    }
+    .sam-spec-how__card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+    }
+    .sam-spec-how__card p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ===== MONITORING ARCHITECTURE ===== */
+    .sam-spec-monitor {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-monitor__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-monitor__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-monitor__inner .lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-monitor__trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+    .sam-spec-monitor__col {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .sam-spec-monitor__col-header {
+      padding: var(--space-3) var(--space-4);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+    .sam-spec-monitor__col--esa .sam-spec-monitor__col-header { background: var(--orange); }
+    .sam-spec-monitor__col--overlap .sam-spec-monitor__col-header { background: var(--blue-600); }
+    .sam-spec-monitor__col--vibration .sam-spec-monitor__col-header { background: var(--space-cadet); }
+    .sam-spec-monitor__col-body {
+      padding: var(--space-6);
+    }
+    .sam-spec-monitor__col-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .sam-spec-monitor__col-body li {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--space-cadet);
+      padding-left: 20px;
+      position: relative;
+    }
+    .sam-spec-monitor__col-body li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .sam-spec-monitor__col--esa li::before { background: var(--orange); }
+    .sam-spec-monitor__col--overlap li::before { background: var(--blue-600); }
+    .sam-spec-monitor__col--vibration li::before { background: var(--space-cadet); }
+    .sam-spec-monitor__rationale {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-left: 4px solid var(--orange);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+    }
+    .sam-spec-monitor__rationale h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+    }
+    .sam-spec-monitor__rationale p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-monitor__rationale p:last-child {
+      margin-bottom: 0;
+    }
+
     /* ===== PAGE WRAPPER ===== */
     .sam-page,
     .sam-page * {
@@ -1347,7 +1489,7 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .sam-hero--spec { padding: var(--space-20) var(--space-6); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-how, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1357,7 +1499,7 @@
     }
     @media (max-width: 768px) {
       .sam-hero--spec { padding: var(--space-16) var(--space-4); }
-      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-why, .sam-spec-faults, .sam-spec-how, .sam-spec-monitor,
       .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
       .sam-spec-stories, .sam-spec-related, .sam-prefooter,
       .sam-cta-block--spec {
@@ -1365,6 +1507,8 @@
       }
       .sam-hero__h1 { font-size: 1.5rem; }
       .sam-spec-why__grid,
+      .sam-spec-how__grid,
+      .sam-spec-monitor__trio,
       .sam-spec-industries__grid,
       .sam-spec-stories__grid,
       .sam-spec-related__grid {
@@ -1638,7 +1782,7 @@
         <div class="sam-hero__copy">
           <p class="sam-hero__overline">Asset type</p>
           <h1 class="sam-hero__h1">Fan &amp; blower monitoring</h1>
-          <p class="sam-hero__lead">SAM4 monitors ventilation fans, cooling fans, process blowers, and aerators from the motor control cabinet. detecting imbalance, bearing degradation, belt issues, and efficiency loss without accessing the fan or ductwork.</p>
+          <p class="sam-hero__lead">Fans and blowers are everywhere — exhaust ducts, cooling towers, aeration basins, furnace draft systems. Most run with no condition monitoring beyond a walk-past inspection. When one fails, the process it serves fails with it.</p>
           <div class="sam-hero__ctas">
             <a href="/contact?intent=demo&asset=fans-blowers" class="sam-btn sam-btn--primary">Talk to an engineer</a>
             <a href="#faults" class="sam-btn sam-btn--outline">See What We Detect</a>
@@ -1649,12 +1793,12 @@
     </div>
   </section>
 
-  <!-- ─── 2. WHY MONITOR THIS ASSET ─── white background -->
+  <!-- ─── 2. WHY MONITOR THIS ASSET ─── seashell background -->
   <section class="sam-spec-why">
     <div class="sam-spec-why__inner">
       <p class="overline">Why monitor fans and blowers</p>
-      <h2>Critical for safety and process. Yet often monitored only by manual rounds.</h2>
-      <p class="lead sam-spec-why__lead">Fans and blowers maintain atmospheric conditions in mines, tunnels, and process buildings. They keep furnaces running, aeration systems active, and cooling circuits flowing. When they fail, the consequences range from production loss to safety shutdowns.</p>
+      <h2>Critical for process. Invisible to maintenance.</h2>
+      <p class="lead sam-spec-why__lead">Fans and blowers maintain atmospheric conditions, drive aeration, and keep cooling circuits flowing. They operate in hot exhaust ducts, corrosive atmospheres, and elevated positions — environments where mounting sensors is expensive and hazardous. Most plants have too many fans to justify per-asset vibration monitoring.</p>
 
       <div class="sam-spec-why__grid">
         <div class="sam-spec-why__card">
@@ -1662,8 +1806,8 @@
           <p class="sam-spec-why__card-desc">typical cost of an unplanned fan failure: including production loss, environmental non-compliance, and emergency repair.</p>
         </div>
         <div class="sam-spec-why__card">
-          <span class="sam-spec-why__card-stat kpi-value">45%</span>
-          <p class="sam-spec-why__card-desc">of fan failures are bearing-related and detectable weeks in advance through electrical signature changes.</p>
+          <span class="sam-spec-why__card-stat kpi-value">35–45%</span>
+          <p class="sam-spec-why__card-desc">of fan failures are bearing-related — degradation that develops over weeks, not hours.</p>
         </div>
         <div class="sam-spec-why__card">
           <span class="sam-spec-why__card-stat kpi-value">6–12%</span>
@@ -1673,11 +1817,36 @@
     </div>
   </section>
 
-  <!-- ─── 3. FAULT COVERAGE ─── seashell background -->
-  <section id="faults" class="sam-spec-faults">
+  <!-- ─── 3. HOW ESA MONITORS FANS ─── white background -->
+  <section class="sam-spec-how">
+    <div class="sam-spec-how__inner">
+      <p class="overline">How ESA reads fan and blower health</p>
+      <h2>One sensor location. The entire drivetrain visible.</h2>
+      <p class="lead">SAM4 measures current and voltage at the motor control cabinet. From those signals, it extracts torque modulations, speed variations, and spectral patterns that reveal the condition of the motor, bearings, belt system, and impeller — without a single sensor on the fan or ductwork.</p>
+
+      <div class="sam-spec-how__grid">
+        <div class="sam-spec-how__card">
+          <h3>Load signature analysis</h3>
+          <p>A fan's motor current reflects total aerodynamic and mechanical load. Fouling, erosion, damper issues, and system resistance changes all shift the torque demand pattern. SAM4 tracks these shifts against a healthy baseline and flags deviations before they cause efficiency loss or failure.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3>Belt and drivetrain frequencies</h3>
+          <p>Belt frequency, pulley order, and belt harmonic components are clearly visible in the current spectrum. This is one of ESA's most reliable detection categories. Bearing defects in the motor and fan bearings create characteristic fault frequencies (BPFO, BPFI) that modulate the motor current.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3>Motor electrical health</h3>
+          <p>Stator winding degradation, broken rotor bars, and supply quality issues are detected directly from the electrical signature. These faults account for 5–10% of fan failures and are invisible to vibration monitoring or visual inspection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 4–5. FAULT COVERAGE + DETECTION BOUNDARIES ─── seashell background -->
+  <section id="faults" class="sam-spec-faults" style="background:var(--seashell);">
     <div class="sam-spec-faults__inner">
       <p class="overline">What SAM4 detects on fans and blowers</p>
-      <h2>Five fault types from one sensor location</h2>
+      <h2>Nine fault types from one sensor location</h2>
+      <p style="font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-comet);margin:0 0 var(--space-8) 0;">This is a non-exhaustive list. SAM4 may detect additional fault conditions depending on fan type, drive topology, and operating regime. Based on 50 condition incidents across 8+ customers.</p>
 
       <div class="sam-spec-faults__table-wrap">
         <table class="sam-spec-faults__table">
@@ -1692,60 +1861,67 @@
           </thead>
           <tbody>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Imbalance</td>
-              <td class="sam-spec-faults__td">Deposit buildup, blade erosion, or foreign object damage causing rotational mass asymmetry</td>
-              <td class="sam-spec-faults__td">1× shaft rotation frequency sideband in the current spectrum. Amplitude increase tracks mass asymmetry from fouling, erosion, or deposit buildup</td>
-              <td class="sam-spec-faults__td">3–10 weeks</td>
-              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">100%</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Blade/vane unbalance</td>
+              <td class="sam-spec-faults__td">Deposit buildup, erosion, or damage causing rotational mass asymmetry</td>
+              <td class="sam-spec-faults__td">1× rotational frequency in current spectrum. Amplitude increase tracks mass asymmetry</td>
+              <td class="sam-spec-faults__td">Months</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--font-mono);font-weight:700;color:#16A34A;">Full</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Misalignment</td>
-              <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and fan, from thermal growth, foundation settlement, or installation error</td>
-              <td class="sam-spec-faults__td">2× running speed component in the current spectrum, progressive increase over time as coupling or shaft alignment degrades</td>
-              <td class="sam-spec-faults__td">2–6 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">Shaft, coupling, or pedestal misalignment from thermal growth, foundation settlement, or installation error</td>
+              <td class="sam-spec-faults__td">2× rotational frequency in current spectrum, progressive increase as alignment degrades</td>
+              <td class="sam-spec-faults__td">Weeks</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--font-mono);font-weight:700;color:#16A34A;">Full</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Belt wear</td>
-              <td class="sam-spec-faults__td">V-belt stretching, misalignment, or slippage on belt-driven fans</td>
-              <td class="sam-spec-faults__td">Belt frequency harmonics in the current spectrum. Belt fundamental = (π × pulley diameter × RPM) / belt length. Harmonic pattern shifts as belt tension or condition changes</td>
-              <td class="sam-spec-faults__td">2–6 weeks</td>
-              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#16A34A;">100%</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Impeller damage</td>
+              <td class="sam-spec-faults__td">Erosion, corrosion, or impact damage to fan impeller</td>
+              <td class="sam-spec-faults__td">Eccentricity + rotational frequencies related to impeller geometry</td>
+              <td class="sam-spec-faults__td">Months</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--font-mono);font-weight:700;color:#16A34A;">Full</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Stator winding degradation</td>
-              <td class="sam-spec-faults__td">Insulation breakdown in stator windings from thermal cycling, contamination, or voltage stress</td>
-              <td class="sam-spec-faults__td">Current imbalance between phases and rising negative sequence current components</td>
-              <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Belt system faults</td>
+              <td class="sam-spec-faults__td">V-belt wear, pulley unbalance, belt tracking issues on belt-driven fans</td>
+              <td class="sam-spec-faults__td">Belt frequency harmonics in current spectrum. Belt fundamental = (π × pulley diameter × RPM) / belt length. Harmonic shifts track tension and condition changes</td>
+              <td class="sam-spec-faults__td">Weeks–months</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--font-mono);font-weight:700;color:#16A34A;">Full</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Broken rotor bars</td>
-              <td class="sam-spec-faults__td">Cracked or broken bars in the rotor cage from thermal fatigue or high starting currents</td>
-              <td class="sam-spec-faults__td">Characteristic sidebands at (1±2s)f around supply frequency, where s is motor slip</td>
-              <td class="sam-spec-faults__td">4–8 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Mechanical unbalance</td>
+              <td class="sam-spec-faults__td">Fouling, wear, or broken blade causing mass imbalance in the rotating assembly</td>
+              <td class="sam-spec-faults__td">Eccentricity + rotational frequencies in current spectrum</td>
+              <td class="sam-spec-faults__td">Months</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--font-mono);font-weight:700;color:#16A34A;">Full</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
-              <td class="sam-spec-faults__td">Inner/outer race defects, rolling element wear, lubrication breakdown in motor or fan bearings</td>
-              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies (BPFO, BPFI sidebands) in the motor current spectrum, modulated by load zone position</td>
-              <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td" style="font-family:var(--sam-mono);font-weight:700;color:#DC2626;" title="Motor bearing detection is limited. Driven equipment bearing detection is higher.">50.0%*</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Motor stator/rotor faults</td>
+              <td class="sam-spec-faults__td">Insulation degradation, rotor bar damage from thermal cycling or voltage stress</td>
+              <td class="sam-spec-faults__td">Overcurrent, electrical unbalance, eccentricity. Broken rotor bar sidebands at (1±2s)f around supply frequency</td>
+              <td class="sam-spec-faults__td">Months</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--font-mono);font-weight:700;color:#16A34A;">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Cavitation (centrifugal fans)</td>
+              <td class="sam-spec-faults__td">Inlet restriction or surge causing unstable airflow in centrifugal fans</td>
+              <td class="sam-spec-faults__td">Spectral energy increase around supply frequency</td>
+              <td class="sam-spec-faults__td">Weeks</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--font-mono);font-weight:700;color:#16A34A;">Full</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Motor bearing — eccentricity faults</td>
+              <td class="sam-spec-faults__td">Bearing defects producing rotor eccentricity in motor or fan bearings</td>
+              <td class="sam-spec-faults__td">Eccentricity signature in rotor. Sensitivity reduces on VFD-driven fans and high-speed shafts</td>
+              <td class="sam-spec-faults__td">Weeks</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--font-mono);font-weight:700;color:#D97706;" title="Detects bearing faults producing rotor eccentricity. Sensitivity reduces on VFD-driven fans and high-speed shafts. Combine with vibration for comprehensive bearing coverage.">Conditional*</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Process deviations</td>
               <td class="sam-spec-faults__td">Abnormal airflow, damper issues, or system resistance changes affecting fan loading</td>
-              <td class="sam-spec-faults__td">Load signature deviations from established operating baseline. Step changes or progressive drift in mean current at equivalent conditions</td>
+              <td class="sam-spec-faults__td">Load signature deviations from established operating baseline. Step changes or progressive drift in mean current</td>
               <td class="sam-spec-faults__td">Days–weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--partial">Partial</td>
-            </tr>
-            <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Efficiency loss</td>
-              <td class="sam-spec-faults__td">Fan operating below design efficiency due to wear, fouling, or system changes</td>
-              <td class="sam-spec-faults__td">Power consumption deviation tracked against baseline at equivalent operating conditions</td>
-              <td class="sam-spec-faults__td">Continuous</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td" style="font-family:var(--font-mono);font-weight:700;color:#16A34A;">Full</td>
             </tr>
           </tbody>
         </table>
@@ -1760,95 +1936,148 @@
 
           <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Motor bearing degradation</strong>. Subtler ESA signatures than driven equipment bearings.</span>
+            <span><strong>High-speed shaft bearings on VFD-driven blowers.</strong> Variable-frequency drives introduce switching noise and variable-frequency operation that reduces bearing detection sensitivity. In CI-5443, a critical bearing failure on a VFD-driven aeration blower at Yorkshire Water produced no anomalies in SAM4 data. Torque modulation was too weak at high speed, and VFD noise masked the degradation signal. Combine with vibration sensors on bearing housings for VFD-driven assets.</span>
           </div>
           <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Fan blade defects</strong>. 66.7% detection. Variable depending on blade geometry and speed.</span>
+            <span><strong>Dual-speed operation.</strong> Fans running at dual speed (e.g., Invista air cooler fans) require separate baselines per speed setting. Speed switching can produce transient signatures that resemble faults. SAM4 handles this but detection may take longer to establish stable baselines.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Bearing grease degradation.</strong> Lubrication breakdown produces no electrical signature. Requires oil analysis or thermography.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Gradual blade fouling.</strong> Very slow process change, below detection threshold. Requires visual inspection or efficiency trending.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Duct/housing vibration and damper/actuator failure.</strong> Structural issues and damper failures have no electrical coupling to the motor. Requires vibration analysis or process control monitoring.</span>
           </div>
         </div>
 
-        <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:24px 0 0 0;">Based on 1,874 resolved incidents (Jan 2024 – Feb 2026). <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
+        <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:24px 0 0 0;">Based on 50 fan/blower condition incidents across 8+ customers. 4 known misses (~8% miss rate). <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
       </div>
 
     </div>
   </section>
 
-  <!-- ─── 4. DETECTION STORIES ─── white background -->
-  <section class="sam-spec-stories">
+  <!-- ─── 6. MONITORING ARCHITECTURE ─── white background -->
+  <section class="sam-spec-monitor" style="background:var(--white);">
+    <div class="sam-spec-monitor__inner">
+      <p class="overline">Monitoring architecture</p>
+      <h2>What ESA covers. What vibration covers. Where they overlap.</h2>
+      <p class="lead">Fans operate in hot exhaust ducts, corrosive atmospheres, and elevated positions. Mounting and maintaining vibration sensors on fan bearings in these environments is expensive and hazardous. ESA monitors from the motor control cabinet. Each technology fills gaps the other cannot reach.</p>
+
+      <!-- Three-column overview -->
+      <div class="sam-spec-monitor__trio">
+
+        <!-- ESA leads -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--esa">
+          <div class="sam-spec-monitor__col-header">ESA leads</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Impeller fouling and erosion (load change detection)</li>
+              <li>Belt system faults (belt frequency, pulley order, harmonics)</li>
+              <li>Motor electrical faults (stator winding, rotor bars, power quality)</li>
+              <li>Process deviations via load signature shift</li>
+              <li>Energy waste from mechanical inefficiency</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">Belt monitoring is one of ESA's most reliable detection categories. Belt frequency components are clearly visible in the current spectrum (IEEE 2022, ScienceDirect 2023).</p>
+          </div>
+        </div>
+
+        <!-- Both contribute -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--overlap">
+          <div class="sam-spec-monitor__col-header">Both contribute</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>Blade/vane unbalance: ESA detects via 1× component, vibration confirms severity and phase</li>
+              <li>Misalignment: ESA detects 2× component, vibration discriminates misalignment type</li>
+              <li>Mechanical unbalance: ESA sees load variation, vibration provides localised diagnosis</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">When both technologies flag the same fault, diagnostic confidence increases. ESA provides the early trend; vibration provides root-cause discrimination.</p>
+          </div>
+        </div>
+
+        <!-- Vibration leads -->
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--vibration">
+          <div class="sam-spec-monitor__col-header">Vibration leads</div>
+          <div class="sam-spec-monitor__col-body">
+            <ul>
+              <li>High-speed shaft bearing defects (insufficient torque modulation for ESA)</li>
+              <li>Foundation and structural vibration</li>
+              <li>Duct resonance and housing vibration</li>
+              <li>Bearing overheating (temperature-based, not electrical)</li>
+            </ul>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">Vibration sensors on fan bearings provide direct fault localisation that ESA cannot match — but require access to hot, elevated, or hazardous fan locations.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Rationale card -->
+      <div class="sam-spec-monitor__rationale">
+        <h3>ESA monitors the fleet. Vibration targets the critical few.</h3>
+        <p>Plants with 20+ fans face a scale problem. Per-asset vibration monitoring on every fan is prohibitively expensive — especially when fans sit in hot ducts, on rooftops, or in hazardous zones. ESA monitors every fan from the MCC at a fraction of the cost.</p>
+        <p>For the small number of truly critical fans — primary combustion air, mine ventilation, main process blowers — add vibration for bearing-level diagnosis. ESA covers the fleet. Vibration covers the exceptions.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 7. DETECTION STORIES ─── seashell background -->
+  <section class="sam-spec-stories" style="background:var(--seashell);">
     <div class="sam-spec-stories__inner">
       <p class="overline">Fan and blower detections</p>
       <h2>Real faults caught on fans and blowers</h2>
+      <p class="lead">50 condition incidents across 8+ customers. These are representative detections from the portfolio.</p>
 
       <div class="sam-spec-stories__grid">
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <div class="sam-spec-stories__card">
           <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Imbalance</span>
-            <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Imbalance detected on mine ventilation fan</h3>
-          <p class="sam-spec-stories__card-desc">Deposit buildup on fan blades caused progressive imbalance. Detected via current spectrum analysis. Cleaned during scheduled maintenance window.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Bearing</span>
+            <span class="sam-spec-stories__card-tag">Recurring detection</span>
             <span class="sam-spec-stories__card-industry">Chemicals</span>
           </div>
-          <h3 class="sam-spec-stories__card-title">Bearing degradation on cooling tower fan</h3>
-          <p class="sam-spec-stories__card-desc">Outer race defect identified 8 weeks before projected failure. Bearing replaced without interrupting cooling capacity.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
+          <h3 class="sam-spec-stories__card-title">Four detections on DuPont winder exhaust fan</h3>
+          <p class="sam-spec-stories__card-desc">Four separate detections on the same critical exhaust fan over multiple years. SAM4 tracked recurring degradation in a chemical plant environment — each time providing enough lead time for planned intervention.</p>
+        </div>
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <div class="sam-spec-stories__card">
           <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Belt wear</span>
+            <span class="sam-spec-stories__card-tag">Belt system</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Dual-speed fan detection at Invista</h3>
+          <p class="sam-spec-stories__card-desc">Multiple detections on dual-speed air cooler fans for NH3 recovery and converter intercooler. SAM4 adapted to separate baselines per speed setting and detected anomalies in process-critical applications.</p>
+        </div>
+
+        <div class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Heavy duty</span>
+            <span class="sam-spec-stories__card-industry">Steel</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Combustion blower fault at Liberty Steel</h3>
+          <p class="sam-spec-stories__card-desc">Detection on a primary air combustion blower in a steel plant. High-temperature, heavy-duty environment where ESA's remote measurement from the MCC provided access advantages over direct sensor placement.</p>
+        </div>
+
+        <div class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Aeration</span>
             <span class="sam-spec-stories__card-industry">Water &amp; Wastewater</span>
           </div>
-          <h3 class="sam-spec-stories__card-title">Belt slippage on aeration blower</h3>
-          <p class="sam-spec-stories__card-desc">Belt frequency changes flagged progressive slip. Belt tensioned and aligned before complete failure caused aeration loss.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Process</span>
-            <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Damper issue on induced draft fan</h3>
-          <p class="sam-spec-stories__card-desc">Load profile deviation revealed stuck damper affecting furnace draft. Corrected before production impact.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Bearing</span>
-            <span class="sam-spec-stories__card-industry">Pulp &amp; Paper</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Bearing fault on exhaust fan</h3>
-          <p class="sam-spec-stories__card-desc">Progressive bearing deterioration identified on a recovery boiler exhaust fan. Planned replacement avoided forced boiler shutdown.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Efficiency</span>
-            <span class="sam-spec-stories__card-industry">Water &amp; Wastewater</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Efficiency loss on aeration blower</h3>
-          <p class="sam-spec-stories__card-desc">Power consumption drift flagged blower running below design efficiency. Root cause traced to worn impeller clearances.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
+          <h3 class="sam-spec-stories__card-title">Aeration blower detection at Yorkshire Water</h3>
+          <p class="sam-spec-stories__card-desc">ASP blower detection in wastewater treatment. Demonstrates ESA capability in the water sector beyond pumps. Note: one VFD-driven blower at this site had a bearing miss — see detection boundaries above.</p>
+        </div>
 
       </div>
 
-      <a href="/resources/case-studies/" class="sam-text-link">See all detection stories &rarr;</a>
+      <a href="/resources/case-studies/" class="sam-text-link">See all detection stories →</a>
     </div>
   </section>
 
-  <!-- ─── 5. HOW SAM4 INSTALLS ─── seashell background -->
+  <!-- ─── 8. INSTALLATION ─── white background -->
   <section class="sam-spec-install">
     <div class="sam-spec-install__inner">
       <p class="overline">Installation on fans and blowers</p>
@@ -1896,7 +2125,7 @@
     </div>
   </section>
 
-  <!-- ─── 6. ENERGY MONITORING ─── white background -->
+  <!-- ─── 9. ENERGY MONITORING ─── seashell background -->
   <section class="sam-spec-energy">
     <div class="sam-spec-energy__inner">
       <p class="overline">Energy monitoring</p>
@@ -1934,7 +2163,7 @@
     </div>
   </section>
 
-  <!-- ─── 7. INDUSTRIES ─── seashell background -->
+  <!-- ─── 10. INDUSTRIES ─── white background -->
   <section class="sam-spec-industries">
     <div class="sam-spec-industries__inner">
       <p class="overline">Where fans and blowers are monitored</p>
@@ -1961,8 +2190,8 @@
     </div>
   </section>
 
-  <!-- ─── 8. RELATED ASSETS ─── white background -->
-  <section class="sam-spec-related">
+  <!-- ─── 11. RELATED ASSETS ─── seashell background -->
+  <section class="sam-spec-related" style="background:var(--seashell);">
     <div class="sam-spec-related__inner">
       <p class="overline">Related asset types</p>
       <h2>Other asset types SAM4 monitors</h2>
@@ -1990,11 +2219,11 @@
     </div>
   </section>
 
-  <!-- ─── 9. CTA ─── dark background -->
-  <section class="sam-cta-block sam-cta-block--spec">
+  <!-- ─── 12. CTA ─── dark background -->
+  <section class="sam-cta-block sam-cta-block--spec" style="background:var(--space-cadet);color:var(--white);">
     <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">See SAM4 monitoring fans and blowers</h2>
-      <p class="sam-cta-block__sub">A 30-minute demo shows SAM4 running on fans and blowers like yours with real fault data, real diagnostics, and real energy insights.</p>
+      <h2 class="sam-cta-block__heading" style="color:var(--white);">See SAM4 monitoring fans and blowers</h2>
+      <p class="sam-cta-block__sub" style="color:rgba(255,255,255,0.8);">A 30-minute demo shows SAM4 on your fan and blower fleet — real fault data, real diagnostics, real detection boundaries.</p>
       <div class="sam-cta-block__actions">
         <a href="/contact?intent=demo&asset=fans-blowers" class="sam-btn sam-btn--primary">Talk to an engineer</a>
         <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary-light">Start Your Asset Audit</a>
