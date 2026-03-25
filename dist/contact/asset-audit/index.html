@@ -36,3 +36,175 @@
       src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
     }
   </style>
+  <style>
+    /* Header CSS */
+    /* ============================================================
+   SAMOTICS HEADER — CSS
+   Paste into Bricks Code Element → CSS tab
+   =======================
+   */
+    header {
+      padding: 1rem 2rem;
+    }
+
+    header .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .header-logo {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .header-logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .header-nav {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 0.5rem;
+    }
+
+    .header-nav-item {
+      position: relative;
+    }
+
+    .header-nav-item > a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .header-nav-item > a:hover {
+      color: #0066cc;
+    }
+
+    .header-nav-item.active > a {
+      color: #0066cc;
+      border-bottom: 2px solid #0066cc;
+    }
+
+    .header-nav-item.submenu > a::after {
+      content: '▼';
+      margin-left: 0.5rem;
+      font-size: 0.7rem;
+    }
+
+    .header-nav-submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 0.25rem;
+      min-width: 200px;
+      list-style: none;
+      margin: 0.5rem 0 0 0;
+      padding: 0.5rem 0;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-nav-item.submenu:hover .header-nav-submenu {
+      display: block;
+    }
+
+    .header-nav-submenu li a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: inherit;
+      font-weight: 400;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .header-nav-submenu li a:hover {
+      color: #0066cc;
+      background: #f5f5f5;
+    }
+
+    .header-button {
+      flex: 0 0 auto;
+      padding: 0.5rem 1rem;
+      background: #0066cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 0.25rem;
+      font-weight: 500;
+      transition: background 0.2s ease;
+    }
+
+    .header-button:hover {
+      background: #0052a3;
+    }
+
+    @media (max-width: 768px) {
+      header .container {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .header-nav {
+        flex: 1 1 100%;
+        flex-direction: column;
+        gap: 0;
+      }
+      .header-nav-submenu {
+        position: static;
+        display: none;
+      }
+      .header-nav-item.submenu:hover .header-nav-submenu {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HTML Structure -->
+  <header>
+    <div class="container">
+      <a href="/" class="header-logo">
+        <img src="/logo.svg" alt="Samotics">
+      </a>
+      <nav>
+        <ul class="header-nav">
+          <li class="header-nav-item"><a href="/solutions/">Solutions</a></li>
+          <li class="header-nav-item"><a href="/industries/">Industries</a></li>
+          <li class="header-nav-item submenu">
+            <a href="/resources/">Resources</a>
+            <ul class="header-nav-submenu">
+              <li><a href="/resources/blog/">Blog</a></li>
+              <li><a href="/resources/case-studies/">Case Studies</a></li>
+              <li><a href="/resources/white-papers/">White Papers</a></li>
+            </ul>
+          </li>
+          <li class="header-nav-item"><a href="/about/">About</a></li>
+          <li class="header-nav-item"><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="/contact/" class="header-button">Get Started</a>
+    </div>
+  </header>
+</body>
+</html>
