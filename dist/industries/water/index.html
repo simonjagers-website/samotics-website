@@ -1156,6 +1156,57 @@
       text-align: left;
     }
 
+    /* ===== FAQ ACCORDION ===== */
+    .sam-faq-list {
+      max-width: 720px;
+    }
+    .sam-faq-item {
+      border-bottom: 1px solid var(--border-grey);
+    }
+    .sam-faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: var(--space-6) 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--space-cadet);
+      text-align: left;
+      line-height: 1.4;
+    }
+    .sam-faq-question:hover {
+      color: var(--orange);
+    }
+    .sam-faq-chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-left: var(--space-4);
+      transition: transform 0.2s ease;
+    }
+    .sam-faq-item.is-open .sam-faq-chevron {
+      transform: rotate(180deg);
+    }
+    .sam-faq-answer {
+      display: none;
+      padding: 0 0 var(--space-6) 0;
+    }
+    .sam-faq-answer p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0;
+    }
+    .sam-faq-item.is-open .sam-faq-answer {
+      display: block;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .sam-section {
@@ -1444,28 +1495,27 @@
     <div class="sam-section__inner">
       <div class="sam-section__overline">Water &amp; Wastewater</div>
       <h1 class="sam-section__title">Your critical pumps sit where sensors cannot go</h1>
-      <p class="sam-section__subtitle">Your highest-risk assets sit underground or in wet wells. SAM4 monitors pump health from the motor control cabinet using Electrical Signature Analysis. No sensors in the wet well.</p>
-      <p class="sam-section__category" style="font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--sam-white);opacity:0.7;margin-bottom:var(--space-8);">Sensorless condition monitoring. From the electrical cabinet.</p>
+      <p class="sam-section__subtitle">Submersible pumps in wet wells. Borehole pumps 200 metres underground. Aeration blowers behind confined-space barriers. SAM4 monitors them all from the motor control cabinet. No sensors on the asset.</p>
       <div class="sam-stats-bar">
           <div class="sam-stat">
-            <div class="sam-stat__value">&pound;20M+</div>
-            <div class="sam-stat__label">Documented benefits across water customers</div>
+            <div class="sam-stat__value">6</div>
+            <div class="sam-stat__label">Water utilities monitored</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">5,000+</div>
-            <div class="sam-stat__label">Pumps monitored</div>
+            <div class="sam-stat__value">1,000+</div>
+            <div class="sam-stat__label">Pumping stations</div>
           </div>
           <div class="sam-stat">
             <div class="sam-stat__value">0.32%</div>
             <div class="sam-stat__label">False communication rate</div>
           </div>
       </div>
-      <div class="sam-measurement-method" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-default);padding:var(--space-4) var(--space-6);margin-bottom:var(--space-8);max-width:640px;margin-left:auto;margin-right:auto;">
-        <p style="font-size:12px;color:rgba(255,255,255,0.7);margin:0;line-height:1.5;text-align:center;">Stats based on 1,874 resolved incidents across pumps, fans, and conveyors. January 2024 to February 2026. False communication rate measures alerts that did not correspond to a confirmed asset condition change.</p>
+      <div class="sam-measurement-method" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);padding:var(--space-4) var(--space-6);margin-bottom:var(--space-8);max-width:640px;">
+        <p style="font-size:12px;color:rgba(255,255,255,0.7);margin:0;line-height:1.5;">False communication rate based on 1,874 resolved incidents across pumps, fans, and conveyors. January 2024 to February 2026. Measures alerts that did not correspond to a confirmed asset condition change.</p>
       </div>
       <div class="sam-hero-actions">
         <a href="/contact" class="sam-btn sam-btn--primary">Request a demo</a>
-        <a href="#proof" class="sam-btn sam-btn--ghost">See results below</a>
+        <a href="#proof" class="sam-btn sam-btn--ghost">See the evidence</a>
       </div>
     </div>
   </section>
@@ -1475,74 +1525,76 @@
     <div class="sam-trust-bar__inner">
       <div class="sam-trust-bar__label">Trusted by leaders in water and wastewater</div>
       <div class="sam-trust-bar__logos">
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/yorkshire-water.png" alt="Yorkshire Water"></span>
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/northern-ireland-water.png" alt="Northern Ireland Water"></span>
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/vitens.png" alt="Vitens"></span>
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/logo-northumbrian-water.png" alt="Northumbrian Water"></span>
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/logo-southern-water.png" alt="Southern Water"></span>
+        <span class="sam-trust-bar__logo"><img src="/assets/images/logos/yorkshire-water.png" alt="Yorkshire Water"></span>
+        <span class="sam-trust-bar__logo"><img src="/assets/images/logos/thames-water.png" alt="Thames Water"></span>
+        <span class="sam-trust-bar__logo"><img src="/assets/images/logos/logo-southern-water.png" alt="Southern Water"></span>
+        <span class="sam-trust-bar__logo"><img src="/assets/images/logos/anglian-water.png" alt="Anglian Water"></span>
+        <span class="sam-trust-bar__logo"><img src="/assets/images/logos/northern-ireland-water.png" alt="Northern Ireland Water"></span>
+        <span class="sam-trust-bar__logo"><img src="/assets/images/logos/vitens.png" alt="Vitens"></span>
+        <span class="sam-trust-bar__logo"><img src="/assets/images/logos/logo-northumbrian-water.png" alt="Northumbrian Water"></span>
       </div>
     </div>
   </div>
 
-  <!-- ── Section 2b: Differentiator block ── -->
+  <!-- ── Section 3: Challenges (white) ── -->
   <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
-      <div class="sam-section__overline">Why SAM4</div>
-      <h2 class="sam-section__title">Why SAM4 works for water</h2>
-      <div class="sam-card-grid sam-card-grid--2col" style="margin-bottom:var(--space-12);">
-        <div class="sam-card">
-          <div class="sam-card__title">No sensors on the asset</div>
-          <div class="sam-card__body">SAM4 monitors from the motor control cabinet. No equipment in wet wells, boreholes, or confined spaces. No pull-outs for sensor installation.</div>
-        </div>
-        <div class="sam-card">
-          <div class="sam-card__title">Works across your full fleet</div>
-          <div class="sam-card__body">One technology covers pumps, blowers, agitators, and mixers. Any AC motor-driven asset, from 1 kW submersible pumps to large aeration blowers.</div>
-        </div>
-        <div class="sam-card">
-          <div class="sam-card__title">Detects what vibration cannot</div>
-          <div class="sam-card__body">Electrical Signature Analysis reads mechanical, hydraulic, and electrical faults from the current signal. Blockages, cavitation, seal wear, and efficiency loss included.</div>
-        </div>
-        <div class="sam-card">
-          <div class="sam-card__title">Deploys without downtime</div>
-          <div class="sam-card__body">Clip-on current transformers install in minutes. No asset shutdown, no confined-space entry, no ATEX considerations at the MCC.</div>
-        </div>
-      </div>
-      <p class="sam-section__contrast" style="text-align:center;font-size:15px;color:var(--comet);max-width:640px;margin:0 auto;">Traditional vibration sensors require physical access to the asset. For submerged, remote, or hazardous pump sets, that access does not exist.</p>
-    </div>
-  </section>
-
-  <!-- ── Section 3: Challenges ── -->
-  <section class="sam-section sam-section--seashell">
-    <div class="sam-section__inner">
       <div class="sam-section__overline">The problem</div>
-      <h2 class="sam-section__title">Water assets fail silently. And expensively.</h2>
-      <p class="sam-section__subtitle">Utilities operate thousands of pump sets across distributed networks. Most run unmonitored between scheduled maintenance rounds.</p>
+      <h2 class="sam-section__title">Water assets fail silently. The penalties do not.</h2>
+      <p class="sam-section__subtitle">Utilities operate thousands of pumping stations across distributed networks. Most run unmonitored between scheduled inspection rounds. When failure hits, the regulatory clock starts immediately.</p>
       <div class="sam-card-grid sam-card-grid--2col">
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.5"/></svg></div>
           <div class="sam-card__title">Sewage pump blockages</div>
-          <div class="sam-card__body">Blockages cause overflows and pollution incidents. By the time operators respond, the regulatory clock is already ticking.</div>
+          <div class="sam-card__body">Wet wipes cause 93% of fatberg material. 280,000 to 300,000 sewer blockages occur across England and Wales each year, costing utilities over &pound;100m in clearing alone. When rags and FOG reach the pump, flow stalls and CSO spill duration begins.</div>
         </div>
         <div class="sam-card">
-          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2v12m0 0l-4-4m4 4l4-4M3 18h14"/></svg></div>
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2v12m0 0l-4-4m4 4l4-4M3 18h14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></div>
           <div class="sam-card__title">Submerged asset access</div>
-          <div class="sam-card__body">Pulling a borehole pump for inspection costs thousands and takes the asset offline for days. Most go unmonitored between scheduled pulls.</div>
+          <div class="sam-card__body">Pulling a submersible pump for inspection costs &pound;650 to &pound;1,200 and takes the asset offline for 2 to 4 hours. While pulled, that station loses one unit of capacity. For single-pump installations, flow backs up into the sump.</div>
         </div>
         <div class="sam-card">
-          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2L1 18h18L10 2zm0 4l6.5 11h-13L10 6z"/><rect x="9" y="9" width="2" height="4" rx="0.5"/><rect x="9" y="14" width="2" height="2" rx="0.5"/></svg></div>
-          <div class="sam-card__title">Ageing infrastructure</div>
-          <div class="sam-card__body">Degrading rotors, worn seals, and failing bearings across pumping stations go unnoticed until they trigger environmental incidents and six-figure fines from Ofwat.</div>
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2L1 18h18L10 2zm0 4l6.5 11h-13L10 6z" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9" y="9" width="2" height="4" rx="0.5" fill="currentColor"/><rect x="9" y="14" width="2" height="2" rx="0.5" fill="currentColor"/></svg></div>
+          <div class="sam-card__title">Regulatory escalation</div>
+          <div class="sam-card__body">Ofwat imposed &pound;157.6m in underperformance penalties in 2023-24. The Water (Special Measures) Act 2025 bans executive bonuses for environmental failure and introduces unlimited fines. Nine of eleven companies reported pollution increases in 2023.</div>
         </div>
         <div class="sam-card">
-          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M11 1L4 12h5l-2 7 9-11h-5l2-7z"/></svg></div>
-          <div class="sam-card__title">Energy waste in plain sight</div>
-          <div class="sam-card__body">Oversized pumps and degraded impellers waste 10-35% of energy. In UK drinking water supply, 65% of energy consumption comes from distribution pumping alone (Carbon Trust).</div>
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M11 1L4 12h5l-2 7 9-11h-5l2-7z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="sam-card__title">Energy waste from degraded pumps</div>
+          <div class="sam-card__body">Pumping consumes up to 95% of clean water utility energy spend. Analysis of English and Welsh utilities found a 23.3% efficiency gap between actual and achievable consumption. As impellers erode, efficiency drops 5 to 15% per 5mm of wear-ring clearance increase.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 4: Assets monitored ── -->
+  <!-- ── Section 4: Why SAM4 (seashell) ── -->
+  <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">Why SAM4</div>
+      <h2 class="sam-section__title">Monitor from the MCC. Not the wet well.</h2>
+      <p class="sam-section__subtitle">Vibration sensors are technically infeasible on submerged pumps. Fluid damping changes coefficients by over 70%, masking fault signals. ESA bypasses the access problem entirely.</p>
+      <div class="sam-card-grid sam-card-grid--2col">
+        <div class="sam-card">
+          <div class="sam-card__title">No sensors on the asset</div>
+          <div class="sam-card__body">SAM4 monitors from the motor control cabinet. No equipment in wet wells, boreholes, or confined spaces. No pull-outs for sensor installation. No ATEX certification required at the MCC.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__title">Works across your full fleet</div>
+          <div class="sam-card__body">One technology covers submersible pumps, borehole pumps, booster pumps, aeration blowers, and oxidation ditch rotors. Any AC motor-driven asset in your network.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__title">Detects what vibration misses</div>
+          <div class="sam-card__body">Vibration sensors miss early mechanical seal wear, cavitation signatures above 10 kHz, efficiency loss from impeller erosion, and electrical stator faults. ESA reads all of these from the current signal.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__title">Deploys without shutdown</div>
+          <div class="sam-card__body">Clip-on current transformers install in minutes on the power cable. No asset shutdown, no confined-space entry. Critical for 24/7 water systems where unplanned pump outages cost US utilities an estimated $2.8bn annually.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 5: Assets monitored (white) ── -->
   <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">What we monitor</div>
@@ -1551,72 +1603,78 @@
       <div class="sam-card-grid sam-card-grid--3col">
         <a href="/platform/what-we-monitor/pumps" class="sam-card">
           <div class="sam-card__title">Pumps</div>
-          <div class="sam-card__body">Submersible, borehole, booster, sewage, and process pumps. SAM4 detects blockages, cavitation, bearing degradation, seal wear, and efficiency loss.</div>
+          <div class="sam-card__body">Submersible sewage pumps, borehole pumps, and clean water boosters. SAM4 detects blockages, cavitation, bearing wear, seal degradation, and efficiency loss. 60% of submersible pump failures are system-driven, not age-related.</div>
           <span class="sam-card__link">Pump monitoring details &rarr;</span>
         </a>
         <a href="/platform/what-we-monitor/fans-blowers" class="sam-card">
-          <div class="sam-card__title">Blowers &amp; fans</div>
-          <div class="sam-card__body">Aeration blowers and ventilation fans in treatment works. SAM4 tracks bearing condition, energy performance, and mechanical degradation.</div>
-          <span class="sam-card__link">Fan monitoring details &rarr;</span>
+          <div class="sam-card__title">Aeration blowers</div>
+          <div class="sam-card__body">Aeration consumes 50 to 60% of total WWTP energy. SAM4 tracks bearing condition, impeller balance, belt degradation, and energy performance. Early detection prevents loss of biological treatment capacity.</div>
+          <span class="sam-card__link">Blower monitoring details &rarr;</span>
         </a>
         <a href="/platform/what-we-monitor/agitators-mixers" class="sam-card">
           <div class="sam-card__title">Agitators &amp; mixers</div>
-          <div class="sam-card__body">Oxidation ditch rotors, mixers, and scrapers. SAM4 provides early warning of mechanical faults that visual inspection cannot catch.</div>
+          <div class="sam-card__body">Oxidation ditch rotors provide aeration and solids suspension simultaneously. Failure means instant loss of treatment capacity while incoming flow continues. SAM4 detects bearing wear, shaft misalignment, and rotor imbalance.</div>
           <span class="sam-card__link">Agitator monitoring details &rarr;</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 5: Proof ── -->
+  <!-- ── Section 6: Proof (seashell) ── -->
   <section class="sam-section sam-section--seashell" id="proof">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Proof</div>
-      <h2 class="sam-section__title">Water and wastewater case studies</h2>
+      <h2 class="sam-section__title">Named customers. Quantified outcomes.</h2>
       <div class="sam-proof-highlight">
         <div class="sam-proof-highlight__overline">Featured</div>
         <h3 class="sam-proof-highlight__title">Yorkshire Water: 70,000 inspection trips replaced</h3>
-        <p class="sam-proof-highlight__body">SAM4 monitors 1,000+ sewage pumping stations serving 5.2 million people. The system replaced 70,000 annual inspection trips, prevented 3 pollution events from a single detection, and avoided an estimated &pound;150K in potential fines.</p>
+        <p class="sam-proof-highlight__body">SAM4 monitors 1,000+ sewage pumping stations across Yorkshire, serving 5.2 million people. The system replaced 70,000 annual inspection trips, detected faults across the fleet, and avoided &pound;390k in potential regulatory fines from a single detection event.</p>
         <div class="sam-proof-highlight__stats">
           <div class="sam-stat">
-            <div class="sam-stat__value">&pound;748k</div>
-            <div class="sam-stat__label">Losses prevented</div>
+            <div class="sam-stat__value">1,000+</div>
+            <div class="sam-stat__label">Pumping stations</div>
           </div>
           <div class="sam-stat">
             <div class="sam-stat__value">70,000</div>
             <div class="sam-stat__label">Inspection trips replaced</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">1,000+</div>
-            <div class="sam-stat__label">Pumping stations</div>
+            <div class="sam-stat__value">&pound;390k</div>
+            <div class="sam-stat__label">Fine avoided (single event)</div>
           </div>
         </div>
-        <a href="/proof/yorkshire-water" class="sam-proof-highlight__link">Read the full Yorkshire Water case study &rarr;</a>
+        <a href="/proof/yorkshire-water" class="sam-proof-highlight__link">Read the full case study &rarr;</a>
       </div>
       <div class="sam-card-grid sam-card-grid--3col">
         <a href="/proof/southern-water" class="sam-proof-card">
-          <div class="sam-proof-card__kpi">&pound;150K</div>
+          <div class="sam-proof-card__kpi">63</div>
           <div class="sam-proof-card__customer">Southern Water</div>
-          <div class="sam-proof-card__body">Potential fines avoided from a single pump failure detection. SAM4 identified seal degradation weeks before the asset would have failed.</div>
+          <div class="sam-proof-card__body">Equipment failures detected in pilot phase. &pound;748k in documented savings. &pound;5M in potential damage avoided. Pilot converted to full rollout.</div>
           <span class="sam-proof-card__link">Read case study &rarr;</span>
         </a>
         <a href="/proof/northern-ireland-water" class="sam-proof-card">
-          <div class="sam-proof-card__kpi">1 bolt remaining</div>
-          <div class="sam-proof-card__customer">NI Water</div>
-          <div class="sam-proof-card__body">SAM4 detected a loosening coupling bolt on a critical sewage pump. On inspection, only one bolt remained. The pump was days from catastrophic failure.</div>
+          <div class="sam-proof-card__kpi">5+ months</div>
+          <div class="sam-proof-card__customer">Northern Ireland Water</div>
+          <div class="sam-proof-card__body">Early warning on critical sewage pump faults. 90% fault detection rate. One detection found a coupling with only one bolt remaining, days from catastrophic failure.</div>
           <span class="sam-proof-card__link">Read case study &rarr;</span>
         </a>
         <a href="/proof/vitens" class="sam-proof-card">
           <div class="sam-proof-card__kpi">7.1%</div>
           <div class="sam-proof-card__customer">Vitens</div>
-          <div class="sam-proof-card__body">Total pump station efficiency improvement. SAM4 identified inefficient operation that doubled failure risk and shortened asset lifespan.</div>
+          <div class="sam-proof-card__body">Pump station efficiency improvement on drinking water assets. Identified inefficient operation that doubled failure risk and shortened lifespan. &euro;2.5k annual savings per site.</div>
           <span class="sam-proof-card__link">Read case study &rarr;</span>
         </a>
+      </div>
+      <p style="font-size:0.875rem;color:var(--comet);margin-top:var(--space-4);">Also deployed at Thames Water (3-year exclusive contract) and Anglian Water (5-year contract, &pound;425k in avoided costs).</p>
+      <!-- Mid-page CTA -->
+      <div style="margin-top:var(--space-10);padding-top:var(--space-8);border-top:1px solid var(--border-grey);">
+        <p style="font-size:1rem;font-weight:500;color:var(--space-cadet);margin-bottom:var(--space-4);">Ready to see what SAM4 detects on your assets?</p>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--ghost-dark">Start your asset audit &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 6: Install ── -->
+  <!-- ── Section 7: Install (white) ── -->
   <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Installation</div>
@@ -1627,37 +1685,107 @@
           <div class="sam-install-step__num">1</div>
           <div class="sam-install-step__text">
             <strong>Clip on at the MCC</strong>
-            <span>SAM4 installs on the power cable inside the motor control cabinet. No shutdown required.</span>
+            <span>Current transformers clip around the phase wires inside the motor control cabinet. Non-intrusive. No asset shutdown required.</span>
           </div>
         </div>
         <div class="sam-install-step">
           <div class="sam-install-step__num">2</div>
           <div class="sam-install-step__text">
-            <strong>Connect to the network</strong>
-            <span>Cellular gateway sends data to the cloud. No IT integration needed for deployment.</span>
+            <strong>Connect via cellular gateway</strong>
+            <span>Data transmits over 4G/5G. No IT integration needed for deployment. Store-and-forward buffering handles remote connectivity gaps.</span>
           </div>
         </div>
         <div class="sam-install-step">
           <div class="sam-install-step__num">3</div>
           <div class="sam-install-step__text">
             <strong>Monitor from anywhere</strong>
-            <span>The SAM4 dashboard shows asset health, fault alerts, and energy performance within hours.</span>
+            <span>The SAM4 dashboard shows asset health, fault alerts, and energy performance. Integrates with existing SCADA via OPC-UA or REST API.</span>
           </div>
         </div>
         </div>
         <div class="sam-install-image">
-          <img src="/assets/images/install-sam4-water.jpg" alt="SAM4 hardware installed inside a motor control cabinet at a water utility pumping station" loading="lazy" style="width:100%;border-radius:var(--radius-default);">
+          <img src="/assets/images/install-sam4-water.jpg" alt="SAM4 hardware installed inside a motor control cabinet at a water utility pumping station" loading="lazy" style="width:100%;border-radius:var(--radius);">
         </div>
       </div>
-
-            <div class="sam-quote">
+      <div class="sam-quote">
         <p class="sam-quote__text">Pollution prevention through early failure mode detection on sewage pumping assets.</p>
         <div class="sam-quote__attr">Simon Herrington, Yorkshire Water</div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 7: Terminal CTA ── -->
+  <!-- ── Section 8: FAQ (seashell) ── -->
+  <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">FAQ</div>
+      <h2 class="sam-section__title">Common questions from water engineers</h2>
+      <div class="sam-faq-list">
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-question" aria-expanded="false">
+            Our pumps are underground. Nothing monitors them.
+            <svg class="sam-faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>ESA monitors from the motor control cabinet, not the pump. The measurement happens at the electrical connection in a safe, accessible location above ground. This approach is peer-reviewed and validated for submersible pumps and borehole pumps down to 150 to 200 metres without lifting equipment.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-question" aria-expanded="false">
+            We already do scheduled maintenance. Why change?
+            <svg class="sam-faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>Condition-based maintenance delivers up to 50% reduction in O&amp;M expenditures compared to time-based schedules. Scheduled rounds lead to premature overhauls on healthy pumps and missed faults on degrading ones. With distributed pumping stations, 20% of maintenance budget is lost to travel time alone.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-question" aria-expanded="false">
+            How accurate is ESA on submersible pumps?
+            <svg class="sam-faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>Peer-reviewed research confirms MCSA effectiveness on submersible pumps for winding insulation, phase imbalance, mechanical misalignment, and rotor bar defects. Southern Water's pilot detected 63 equipment failures on submersible sewage pumps, including blockages, air locks, and mechanical faults. SAM4's false communication rate across water deployments is 0.32%.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-question" aria-expanded="false">
+            Can it detect blockages before they cause overflows?
+            <svg class="sam-faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>Yes. ESA combined with machine learning detects pump blockages by analysing changes in the electrical signal as rags and FOG accumulate. Peer-reviewed research confirms detection via motor current analysis. One caveat: false alarm rate is higher in sewage applications due to variable solids content. SAM4 uses sewage-specific baseline models to account for this.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-question" aria-expanded="false">
+            Does it integrate with our SCADA and telemetry?
+            <svg class="sam-faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>SAM4 supports OPC-UA, REST APIs, and SQL connectors. No replacement of existing SCADA infrastructure required. A middleware connector handles the integration. Data flows into your existing operational dashboards alongside SCADA telemetry.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-question" aria-expanded="false">
+            How does it handle variable-speed drives?
+            <svg class="sam-faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>VFDs change output frequency, which complicates condition monitoring. SAM4 normalises baselines using VFD speed and load data, isolating mechanical faults from drive-induced harmonics. ESA has also detected VFD-specific faults in borehole pump systems, distinguishing drive issues from motor degradation.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 9: Terminal CTA (dark) ── -->
   <section class="sam-section sam-section--dark sam-terminal-cta">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Get started</div>
@@ -1665,7 +1793,7 @@
       <p class="sam-section__subtitle">Start with your highest-risk pumping stations. See results within weeks. Scale from there.</p>
       <div class="sam-hero-actions">
         <a href="/contact/asset-audit" class="sam-btn sam-btn--primary">Start your asset audit</a>
-        <a href="/contact" class="sam-btn sam-btn--ghost">Talk to a water engineer</a>
+        <a href="/contact" class="sam-btn sam-btn--ghost">Talk to a water specialist</a>
       </div>
     </div>
   </section>
@@ -1825,6 +1953,15 @@
         btn.addEventListener('click', function () {
           var group = btn.closest('.sam-mobile-nav__group');
           var isOpen = group.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+
+      // FAQ accordion
+      document.querySelectorAll('.sam-faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.sam-faq-item');
+          var isOpen = item.classList.toggle('is-open');
           btn.setAttribute('aria-expanded', isOpen);
         });
       });
