@@ -1148,12 +1148,81 @@
       color: var(--comet);
     }
 
+    /* ===== FAQ ACCORDION ===== */
+    .sam-faq-list {
+      max-width: 720px;
+    }
+    .sam-faq-item {
+      border-bottom: 1px solid var(--border-grey);
+    }
+    .sam-faq-item:first-child {
+      border-top: 1px solid var(--border-grey);
+    }
+    .sam-faq-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: var(--space-5) 0;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--space-cadet);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      gap: var(--space-4);
+      line-height: 1.4;
+    }
+    .sam-faq-toggle:hover {
+      color: var(--blue-600);
+    }
+    .sam-faq-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      transition: transform 0.2s ease;
+    }
+    .sam-faq-item.is-open .sam-faq-icon {
+      transform: rotate(45deg);
+    }
+    .sam-faq-answer {
+      display: none;
+      padding: 0 0 var(--space-5) 0;
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 640px;
+    }
+    .sam-faq-item.is-open .sam-faq-answer {
+      display: block;
+    }
+    .sam-faq-answer p {
+      margin-bottom: var(--space-3);
+      color: var(--comet);
+      font-size: 0.9375rem;
+    }
+    .sam-faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+
     /* ===== TERMINAL CTA ===== */
     .sam-terminal-cta {
       text-align: left;
     }
     .sam-terminal-cta .sam-section__title {
       text-align: left;
+    }
+    .sam-section--dark.sam-terminal-cta {
+      background: var(--space-cadet);
+      color: var(--white);
+    }
+    .sam-section--dark .sam-section__subtitle {
+      color: rgba(255,255,255,0.8);
+    }
+    .sam-section--dark .sam-section__title {
+      color: var(--white);
     }
 
     /* ===== RESPONSIVE ===== */
@@ -1437,21 +1506,29 @@
 </header>
 
   <!-- ── Section 1: Hero ── -->
+  <!-- ── Section 1: Hero ── -->
   <section class="sam-section sam-section--hero">
     <div class="sam-hero-overlay"></div>
     <div class="sam-section__inner">
       <div class="sam-section__overline">Pulp &amp; Paper</div>
-      <h1 class="sam-section__title">Detect faults before they stop the machine</h1>
-      <p class="sam-section__subtitle">Monitor pumps, presses, fans, and motors across your pulp and paper operations. Detect failures months in advance and cut energy waste. All from the motor control cabinet.</p>
+      <h1 class="sam-section__title">200+ motors per machine. Most run unmonitored.</h1>
+      <p class="sam-section__subtitle">A paper machine runs 120 metres long, 24/7, with hundreds of motors embedded across forming, press, dryer, and winder sections. 40&ndash;60% of those drives are physically inaccessible for vibration sensors. An unplanned stop costs $100,000&ndash;$750,000 in lost production.</p>
       <div class="sam-stats-bar">
           <div class="sam-stat">
-            <div class="sam-stat__value">&euro;96k</div>
-            <div class="sam-stat__label">Downtime costs saved at Pfleiderer</div>
+            <div class="sam-stat__value">200&ndash;500</div>
+            <div class="sam-stat__label">Motors per integrated mill</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">6 weeks</div>
-            <div class="sam-stat__label">Advance warning on fan bearing failure</div>
+            <div class="sam-stat__value">40&ndash;60%</div>
+            <div class="sam-stat__label">Inaccessible for physical sensors</div>
           </div>
+          <div class="sam-stat">
+            <div class="sam-stat__value">$30k/hr</div>
+            <div class="sam-stat__label">Documented hourly downtime cost</div>
+          </div>
+      </div>
+      <div class="sam-measurement-method" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-default);padding:var(--space-4) var(--space-6);margin-bottom:var(--space-8);max-width:640px;">
+        <p style="font-size:12px;color:rgba(255,255,255,0.7);margin:0;line-height:1.5;">Motor counts from ABB mill modernisation data (36 motors per machine) and Oxmaint (340 sensors across two Fourdrinier machines). Inaccessibility estimate from direct-drive and embedded roll motor configurations. Downtime cost from documented mid-sized mill case study.</p>
       </div>
       <div class="sam-hero-actions">
         <a href="/contact" class="sam-btn sam-btn--primary">Request a demo</a>
@@ -1466,142 +1543,259 @@
       <div class="sam-trust-bar__label">Trusted by leaders in pulp and paper</div>
       <div class="sam-trust-bar__logos">
         <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/pfleiderer.png" alt="Pfleiderer"></span>
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/sappi.png" alt="Sappi"></span>
         <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;font-size:0.8125rem;font-weight:600;color:var(--comet);opacity:0.7;">Lenzing</span>
       </div>
     </div>
   </div>
 
-  <!-- ── Section 3: Challenges ── -->
+  <!-- ── Section 3: Challenges (white) — no SAM4 or ESA mentions ── -->
   <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">The challenge</div>
-      <h2 class="sam-section__title">Harsh conditions and continuous production</h2>
-      <p class="sam-section__subtitle">Paper mills are hot, dusty, and chemical-heavy. These conditions degrade equipment fast. Unplanned stops cost tens of thousands per hour.</p>
+      <h2 class="sam-section__title">Four problems that cost paper mills millions</h2>
+      <p class="sam-section__subtitle">Paper machines run continuously between annual shutdowns. The equipment that keeps them running degrades in conditions that make monitoring difficult.</p>
       <div class="sam-card-grid sam-card-grid--2col">
         <div class="sam-card">
-          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 1L3 5v5c0 4.4 3 8.5 7 9.5 4-1 7-5.1 7-9.5V5l-7-4zm0 2.2L15 6.5v3.5c0 3.5-2.3 6.7-5 7.5-2.7-.8-5-4-5-7.5V6.5L10 3.2z"/><path d="M9 10l-2-2 1-1 1 1 3-3 1 1-4 4z"/></svg></div>
-          <div class="sam-card__title">Harsh operating environment</div>
-          <div class="sam-card__body">Heat, steam, chemicals, and dust make it difficult to place and maintain sensors on assets. SAM4 installs in the clean, dry motor control cabinet.</div>
-        </div>
-        <div class="sam-card">
-          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2L1 18h18L10 2zm0 4l6.5 11h-13L10 6z"/><rect x="9" y="9" width="2" height="4" rx="0.5"/><rect x="9" y="14" width="2" height="2" rx="0.5"/></svg></div>
-          <div class="sam-card__title">Continuous production pressure</div>
-          <div class="sam-card__body">Paper machines run 24/7 with planned shutdowns weeks apart. An unplanned stop means lost output and missed delivery windows. SAM4 provides advance warning.</div>
-        </div>
-        <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M11 1L4 12h5l-2 7 9-11h-5l2-7z"/></svg></div>
-          <div class="sam-card__title">Energy-intensive processes</div>
-          <div class="sam-card__body">Pulp and paper mills are among the most energy-intensive industries. SAM4 identifies 5-35% energy waste in pumps, fans, and drives with real-time data.</div>
+          <div class="sam-card__title">Energy is the second-highest cost</div>
+          <div class="sam-card__body">Energy accounts for 15&ndash;30% of total production costs. A typical mill consumes 250&ndash;550 kWh per tonne of finished paper. Fans alone use 20% of mill electricity. Degraded pumps and drives waste 2&ndash;3% more energy each year, compounding to 10&ndash;30% over five years.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 1L3 5v5c0 4.4 3 8.5 7 9.5 4-1 7-5.1 7-9.5V5l-7-4zm0 2.2L15 6.5v3.5c0 3.5-2.3 6.7-5 7.5-2.7-.8-5-4-5-7.5V6.5L10 3.2z"/><path d="M9 10l-2-2 1-1 1 1 3-3 1 1-4 4z"/></svg></div>
+          <div class="sam-card__title">Drying section is the reliability bottleneck</div>
+          <div class="sam-card__body">Bearing temperatures reach 120&deg;C. Saturated steam oxidises lubricant and degrades sensor adhesive. Felt rolls, vacuum pumps, and hood fans fail in an environment too hostile for most monitoring sensors. Bearings designed for 15&ndash;20 years last 5&ndash;10 in practice.</div>
         </div>
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.5"/></svg></div>
-          <div class="sam-card__title">Distributed asset base</div>
-          <div class="sam-card__body">Stock prep, paper machines, drying sections, and finishing lines each have dozens of motors. SAM4 monitors them all centrally from the MCC.</div>
+          <div class="sam-card__title">Hundreds of motors across a 150-metre machine</div>
+          <div class="sam-card__body">Direct-drive roll motors are integrated into the roll structure. Embedded motors sit flush with the machine frame. Pump and fan motors hide behind panels, in steam zones, or on rooftops. An estimated 40&ndash;60% of motors require a shutdown just to install a physical sensor.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2L1 18h18L10 2zm0 4l6.5 11h-13L10 6z"/><rect x="9" y="9" width="2" height="4" rx="0.5"/><rect x="9" y="14" width="2" height="2" rx="0.5"/></svg></div>
+          <div class="sam-card__title">Continuous process, no room for unplanned stops</div>
+          <div class="sam-card__body">Machines produce 300&ndash;3,200 tonnes per day at up to 1,800 m/min. A single bearing failure cascades through interdependent steam, cooling, and lubrication systems. One documented mill recorded 23 production breaks per month, averaging 6.2 hours each, costing $3.4M annually in lost output.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 4: Assets monitored ── -->
+  <!-- ── Section 4: Why SAM4 (seashell) ── -->
   <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">Why SAM4</div>
+      <h2 class="sam-section__title">Why traditional monitoring fails in paper mills</h2>
+      <p class="sam-section__subtitle">Vibration-based monitoring requires physical access to each asset. In a paper mill, that access often does not exist.</p>
+      <div class="sam-card-grid sam-card-grid--2col" style="margin-bottom:var(--space-12);">
+        <div class="sam-card">
+          <div class="sam-card__title">40&ndash;60% of motors are physically inaccessible</div>
+          <div class="sam-card__body">Direct-drive roll motors, embedded roll motors, and pump/fan motors in enclosed or rooftop locations cannot be reached with vibration sensors during operation. SAM4 monitors from the motor control cabinet. The motor does not need to be physically accessible.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__title">Vibration sensors cannot detect energy waste</div>
+          <div class="sam-card__body">Vibration measures mechanical force at bearing housings. Energy degradation occurs electrically or mechanically without proportional vibration change until the fault is advanced. ESA monitors motor current directly. A degraded pump draws more current for the same output.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__title">Fleet economics favour cabinet-based monitoring</div>
+          <div class="sam-card__body">Full vibration coverage for 100 motors costs $100,000&ndash;$200,000 and requires multiple shutdowns. ESA achieves 95%+ motor coverage from the MCC at roughly 1/5 the cost, with zero production interruption. Coverage scales linearly with MCC cabinets.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__title">Variable speed drives confound vibration analysis</div>
+          <div class="sam-card__body">Paper machines run at variable speeds. VFD harmonics overlap with bearing defect frequencies. Manual order tracking must be configured per machine and speed profile. ESA reads load and slip regardless of commanded speed. No order tracking or manual baseline adjustment needed.</div>
+        </div>
+      </div>
+      <p style="font-size:15px;color:var(--comet);max-width:640px;">All major competitors in pulp and paper use vibration-based monitoring. ESA is a different technology class: it reads the electrical signature at the MCC, not the mechanical vibration at the bearing housing.</p>
+    </div>
+  </section>
+
+  <!-- ── Section 5: Assets monitored (white) ── -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">What we monitor</div>
       <h2 class="sam-section__title">Critical assets in pulp and paper</h2>
-      <p class="sam-section__subtitle">SAM4 monitors any AC motor-driven equipment from the motor control cabinet.</p>
-      <div class="sam-card-grid sam-card-grid--3col">
+      <p class="sam-section__subtitle">SAM4 monitors any AC motor-driven equipment from the motor control cabinet. These are the asset types that matter most in a paper mill.</p>
+      <div class="sam-card-grid sam-card-grid--2col">
         <a href="/platform/what-we-monitor/pumps" class="sam-card">
           <div class="sam-card__title">Pumps</div>
-          <div class="sam-card__body">Stock, white water, and process pumps with cavitation detection, seal wear monitoring, and efficiency tracking.</div>
+          <div class="sam-card__body">Stock pumps, liquid ring vacuum pumps, process water pumps, shower pumps, and seal water pumps. ESA detects cavitation, bearing wear, seal leakage, and impeller damage. Cavitation detection is well documented in peer-reviewed literature.</div>
           <span class="sam-card__link">Pump monitoring details &rarr;</span>
         </a>
         <a href="/platform/what-we-monitor/fans-blowers" class="sam-card">
           <div class="sam-card__title">Fans &amp; blowers</div>
-          <div class="sam-card__body">Drying fans, ventilation systems, and exhaust fans with bearing failure detection and energy optimisation.</div>
+          <div class="sam-card__body">Hood ventilation fans, pocket ventilation, and combustion air systems. Fans consume ~20% of mill electricity. ESA detects bearing failure, imbalance, motor winding faults, and debris buildup. Bearing failure accounts for 40% of fan failures in paper mills.</div>
           <span class="sam-card__link">Fan monitoring details &rarr;</span>
         </a>
-        <a href="/platform/what-we-monitor/conveyors" class="sam-card">
-          <div class="sam-card__title">Conveyors</div>
-          <div class="sam-card__body">Material handling conveyors and press drives with belt degradation and motor fault alerts.</div>
-          <span class="sam-card__link">Conveyor monitoring details &rarr;</span>
+        <a href="/platform/what-we-monitor/agitators-mixers" class="sam-card">
+          <div class="sam-card__title">Refiners &amp; agitators</div>
+          <div class="sam-card__body">Disc refiners, high-consistency refiners, and chest agitators. Worn refiner plates create periodic load variations that modulate motor current. ESA detects this as harmonic sidebands. Agitator bearing wear and shaft misalignment are detectable through load irregularities.</div>
+          <span class="sam-card__link">Agitator monitoring details &rarr;</span>
         </a>
+        <div class="sam-card">
+          <div class="sam-card__title">Paper machine drives</div>
+          <div class="sam-card__body">Section drives across forming, press, dryer, and winder sections, often 1,000+ kW at 1200V. ESA detects bearing faults, gearbox tooth damage, coupling misalignment, and motor winding insulation degradation. Bearing fault frequencies (BPFO, BPFI, BSF) modulate the motor current spectrum.</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 5: Proof ── -->
-  <section class="sam-section sam-section--white" id="proof">
+  <!-- ── Section 6: Proof (seashell) ── -->
+  <section class="sam-section sam-section--seashell" id="proof">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Proof</div>
       <h2 class="sam-section__title">Pulp and paper results</h2>
 
+      <div class="sam-proof-highlight">
+        <div class="sam-proof-highlight__overline">Customer</div>
+        <h3 class="sam-proof-highlight__title">Pfleiderer: built-in drives monitored from the cabinet</h3>
+        <p class="sam-proof-highlight__body">SAM4 monitors drives embedded inside Pfleiderer's paper machines. These motors are physically inaccessible during operation. ESA reads their condition from the MCC without requiring a shutdown or physical sensor placement.</p>
+        <div class="sam-proof-highlight__stats">
+          <div class="sam-stat">
+            <div class="sam-stat__value">&euro;96k</div>
+            <div class="sam-stat__label">Downtime costs saved</div>
+          </div>
+          <div class="sam-stat">
+            <div class="sam-stat__value">6 weeks</div>
+            <div class="sam-stat__label">Advance warning on fan bearing</div>
+          </div>
+        </div>
+      </div>
+
       <div class="sam-card-grid sam-card-grid--2col">
-        <a href="/proof/pfleiderer" class="sam-proof-card">
-          <div class="sam-proof-card__kpi">&euro;96k</div>
-          <div class="sam-proof-card__customer">Pfleiderer</div>
-          <div class="sam-proof-card__body">Downtime costs saved. SAM4 detected a developing fan bearing failure 6 weeks before it would have caused an unplanned stop.</div>
+        <a href="/proof/heated-godet-roll" class="sam-proof-card">
+          <div class="sam-proof-card__kpi">Heated godet roll</div>
+          <div class="sam-proof-card__customer">Case study</div>
+          <div class="sam-proof-card__body">SAM4 detected a developing fault in a heated godet roll drive. The detection came from the electrical signature at the MCC, on an asset where physical sensor placement was not feasible.</div>
           <span class="sam-proof-card__link">Read case study &rarr;</span>
         </a>
-        <a href="/proof/pfleiderer" class="sam-proof-card">
-          <div class="sam-proof-card__kpi">6 weeks</div>
-          <div class="sam-proof-card__customer">Pfleiderer</div>
-          <div class="sam-proof-card__body">Advance warning on a critical fan bearing. Maintenance team scheduled the repair during a planned window.</div>
-          <span class="sam-proof-card__link">Read case study &rarr;</span>
-        </a>
+        <div class="sam-proof-card" style="background:var(--white);">
+          <div class="sam-proof-card__kpi">72%</div>
+          <div class="sam-proof-card__customer">Industry benchmark</div>
+          <div class="sam-proof-card__body">A mid-sized mill (850 t/day) reduced production breaks from 23/month to 6.4/month after deploying condition monitoring. Annual recovered production: $3.4M. Bearing failures caused 31% of all breaks.</div>
+          <span class="sam-proof-card__link" style="color:var(--comet);font-weight:400;font-size:0.8125rem;">Source: Oxmaint case study (2024)</span>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-8);">
+        <a href="/contact" class="sam-btn sam-btn--primary">Discuss your mill with an engineer</a>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 6: Install ── -->
-  <section class="sam-section sam-section--seashell">
+  <!-- ── Section 7: Install (white) ── -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Installation</div>
-      <h2 class="sam-section__title">No sensors in the production hall</h2>
+      <h2 class="sam-section__title">No sensors on the machine. No production stop.</h2>
       <div class="sam-install-grid">
         <div>
         <div class="sam-install-step">
           <div class="sam-install-step__num">1</div>
           <div class="sam-install-step__text">
             <strong>Clip on at the MCC</strong>
-            <span>SAM4 installs on the power cable inside the motor control cabinet. Outside the dusty, humid production environment.</span>
+            <span>CT clamps install on the power cable inside the motor control cabinet. 15&ndash;45 minutes per motor. No shutdown required. The sensor never enters the steam, heat, or moisture of the production environment.</span>
           </div>
         </div>
         <div class="sam-install-step">
           <div class="sam-install-step__num">2</div>
           <div class="sam-install-step__text">
             <strong>Connect to the network</strong>
-            <span>Cellular gateway sends data to the cloud. No plant network integration needed.</span>
+            <span>Cellular gateway sends data to the cloud. Paper mills already have DCS and Ethernet infrastructure. No separate network installation required in most modern facilities.</span>
           </div>
         </div>
         <div class="sam-install-step">
           <div class="sam-install-step__num">3</div>
           <div class="sam-install-step__text">
             <strong>Monitor from anywhere</strong>
-            <span>SAM4 dashboard shows asset health, fault alerts, and energy performance within hours.</span>
+            <span>SAM4 dashboard shows asset health, fault alerts, and energy performance. Covers direct-drive roll motors, embedded motors, and every pump and fan in the mill from a single installation point.</span>
           </div>
         </div>
         </div>
         <div class="sam-install-image">
-          <img src="/assets/images/install-sam4-mcc.jpg" alt="SAM4 hardware installed inside a motor control cabinet at a pulp and paper mill" loading="lazy" style="width:100%;border-radius:var(--radius-default);">
+          <img src="/assets/images/install-sam4-mcc.jpg" alt="SAM4 CT clamp hardware installed inside a motor control cabinet" loading="lazy" style="width:100%;border-radius:var(--radius-default);">
         </div>
-      </div>
-
-            <div class="sam-quote">
-        <p class="sam-quote__text">Very practical for drives that are very built-in, inside the machine. Very reliable.</p>
-        <div class="sam-quote__attr">Rene Kampmann, Pfleiderer</div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 7: Terminal CTA ── -->
-  <section class="sam-section sam-section--white sam-terminal-cta">
+  <!-- ── Section 8: FAQ (seashell) ── -->
+  <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">FAQ</div>
+      <h2 class="sam-section__title">Common questions from paper mill engineers</h2>
+      <div class="sam-faq-list">
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-toggle" aria-expanded="false">
+            Our machine has 200+ motors. Can ESA handle that scale?
+            <svg class="sam-faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 4v12M4 10h12"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>Yes. CT clamps installed in the MCC monitor each motor's electrical signature. No limit on motor count. Deployment scales linearly with MCC cabinets. A 200-motor deployment takes days, not months. All installation happens in the MCC, not on the machine.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-toggle" aria-expanded="false">
+            How does ESA handle variable-speed drives?
+            <svg class="sam-faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 4v12M4 10h12"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>ESA reads motor current directly, which reflects load and slip regardless of commanded speed. No order tracking or manual baseline adjustment needed. An Italian paper mill validated ESA detecting broken rotor bars on a VFD-controlled motor where speed fluctuated &plusmn;30%.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-toggle" aria-expanded="false">
+            Can it detect bearing faults on built-in drives we cannot physically access?
+            <svg class="sam-faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 4v12M4 10h12"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>This is ESA's strongest use case in paper. Direct-drive and embedded roll motors are 100% inaccessible for vibration sensors during operation. ESA monitors from the MCC. Bearing faults produce characteristic frequency modulations in motor current (BPFO, BPFI, BSF) detectable via current spectrum analysis. Peer-reviewed validation exists across motors up to 5 MW.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-toggle" aria-expanded="false">
+            We are focused on energy. Does ESA show efficiency degradation?
+            <svg class="sam-faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 4v12M4 10h12"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>ESA monitors power draw directly. A degraded pump or fan draws more current for the same output. ESA detects this as a trend before it becomes a mechanical failure. Vibration sensors cannot detect energy waste. No paper-mill-specific energy savings case study exists yet for ESA. The technology detects the degradation; the energy savings follow from acting on the data.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-toggle" aria-expanded="false">
+            How does this compare to what Valmet or Voith offer?
+            <svg class="sam-faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 4v12M4 10h12"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>Valmet and Voith offer vibration-based monitoring integrated with their DCS and process control systems. Their advantage is deep process integration. ESA's advantage: no physical sensors on the asset, full fleet coverage including inaccessible drives, energy efficiency monitoring, and zero shutdown for deployment. The approaches are complementary. ESA covers what vibration cannot reach.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq-item">
+          <button class="sam-faq-toggle" aria-expanded="false">
+            Can ESA detect refiner plate wear?
+            <svg class="sam-faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 4v12M4 10h12"/></svg>
+          </button>
+          <div class="sam-faq-answer">
+            <p>Worn refiner plates create periodic load variations (torque ripple) that modulate motor current. This produces detectable harmonic sidebands. The theoretical basis is sound. No peer-reviewed paper has specifically validated this for disc refiners yet. This is an active research area for Samotics.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 9: Terminal CTA (dark) ── -->
+  <section class="sam-section sam-section--dark sam-terminal-cta">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Get started</div>
-      <h2 class="sam-section__title">From your first motor to every line</h2>
-      <p class="sam-section__subtitle">Start with a pilot on your highest-risk assets. Scale across all production lines as results prove out.</p>
+      <h2 class="sam-section__title">Monitor every drive. No sensors on the machine.</h2>
+      <p class="sam-section__subtitle">Start with your highest-risk assets. Cover direct-drive roll motors, embedded drives, and auxiliary equipment from the MCC. Scale across all production lines.</p>
       <div class="sam-hero-actions">
         <a href="/contact/asset-audit" class="sam-btn sam-btn--primary">Start your asset audit</a>
-        <a href="/contact" class="sam-btn sam-btn--ghost-dark">Request a demo</a>
+        <a href="/contact" class="sam-btn sam-btn--ghost">Talk to a paper mill engineer</a>
       </div>
     </div>
   </section>
@@ -1724,7 +1918,6 @@
   </div>
 
   <script>
-  <script>
     (function () {
       'use strict';
 
@@ -1772,9 +1965,16 @@
           col.classList.toggle('is-open');
         });
       });
-    })();
-  </script>
 
+      // FAQ accordion
+      document.querySelectorAll('.sam-faq-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.sam-faq-item');
+          var isOpen = item.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+    })();
   </script>
 </body>
 </html>

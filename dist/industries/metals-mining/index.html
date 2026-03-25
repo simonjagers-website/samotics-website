@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Monitor hot strip mills, conveyors, crushers, and dewatering pumps from the motor control cabinet. Detect failures weeks to months before they stop production.">
-  <title>Keep Mills Running and Mines Dewatered | Samotics</title>
+  <meta name="description" content="Monitor conveyors, crushers, mills, pumps, and fans from the motor control cabinet. 300+ motors per mine site, most unmonitored. SAM4 detects failures weeks to months before they stop production.">
+  <title>Metals &amp; Mining Condition Monitoring | Samotics</title>
   <link rel="canonical" href="https://samoticstestpage.com/industries/metals-mining/">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>
@@ -190,14 +190,6 @@
 
     .sam-nav__link:focus-visible, .sam-dropdown__item:focus-visible, .sam-cta:focus-visible, .sam-hamburger:focus-visible, .sam-mobile-nav__toggle:focus-visible, .sam-mobile-nav__link:focus-visible, .sam-mobile-nav__sub a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
     .sam-footer__col-links a:focus-visible, .sam-footer__social:focus-visible, .sam-footer__legal a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
-    
-    .sam-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
-      z-index: 1;
-    }
-    .sam-section--hero .sam-section__inner { position: relative; z-index: 2; }
-
     @media (prefers-reduced-motion: reduce) { .sam-header, .sam-dropdown, .sam-nav__chevron, .sam-hamburger__line, .sam-mobile-nav__arrow, .sam-logo, .sam-footer__col-links a, .sam-footer__social, .sam-footer__legal a { transition: none !important; animation: none !important; } }
 
     @media (max-width: 991px) {
@@ -234,7 +226,6 @@
 
     .sam-section--hero,
     .sam-section--dark {
-      background: var(--space-cadet) url('/assets/images/heroes/hero-metals-mining.jpg') center/cover no-repeat; position: relative; overflow: hidden;
       color: var(--white);
       padding: var(--space-30) var(--space-6);
     }
@@ -710,7 +701,7 @@
     }
 
 
-    /* ===== INDUSTRY PAGE TOKENS ===== */
+    /* ===== ASSET PAGE DESIGN TOKENS ===== */
     :root {
       --space-cadet: #1F1F33;
       --white: #FFFFFF;
@@ -752,35 +743,44 @@
     }
 
     /* ===== CONTAINER ===== */
-    .sam-section__inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 var(--space-6);
-    }
+    .sam-section__inner,
     .sam-container {
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 var(--space-6);
     }
 
-    /* ===== SECTIONS ===== */
-    .sam-section {
-      padding: var(--space-24) var(--space-6);
+    /* ===== BREADCRUMB ===== */
+    .sam-spec-breadcrumb {
+      padding: var(--space-4) var(--space-6);
+      max-width: var(--max-width);
+      margin: 0 auto;
+      font-size: 0.8125rem;
+      color: var(--comet);
     }
-    .sam-section--hero,
-    .sam-section--dark {
+    .sam-spec-breadcrumb a {
+      color: var(--blue-600);
+      text-decoration: none;
+    }
+    .sam-spec-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== HERO (ASSET SPEC) ===== */
+    .sam-hero--spec {
+      position: relative;
+      overflow: hidden;
+      background: var(--space-cadet);
       color: var(--white);
       padding: var(--space-30) var(--space-6);
     }
-    .sam-section--seashell {
-      background: var(--seashell);
+    .sam-hero__inner {
+      position: relative; z-index: 2;
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
-    .sam-section--white {
-      background: var(--white);
-    }
-
-    /* ===== TYPOGRAPHY ===== */
-    .sam-section__overline {
+    .sam-hero__overline,
+    .overline {
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.1em;
@@ -788,63 +788,41 @@
       color: var(--orange);
       margin-bottom: var(--space-3);
     }
-    .sam-section--hero .sam-section__overline {
-      color: var(--orange);
-    }
-    .sam-section__title {
+    .sam-hero__h1 {
       font-size: 2.25rem;
       font-weight: 700;
       line-height: 1.15;
       margin: 0 0 var(--space-4) 0;
-      text-align: left;
+      color: var(--white);
     }
-    .sam-section__subtitle {
+    .sam-hero__lead {
       font-size: 1.125rem;
       font-weight: 400;
       line-height: 1.6;
-      color: var(--comet);
-      margin: 0 0 var(--space-10) 0;
-      max-width: 720px;
-      text-align: left;
-    }
-    .sam-section--hero .sam-section__subtitle {
       color: rgba(255,255,255,0.8);
+      max-width: 720px;
+      margin: 0 0 var(--space-8) 0;
     }
-    .sam-section--hero .sam-section__title {
-      color: var(--white);
+    .sam-hero__ctas {
+      display: flex;
+      gap: var(--space-4);
     }
-
-    /* ===== HERO STATS BAR ===== */
-    .sam-stats-bar {
+    .sam-hero__split {
       display: flex;
       gap: var(--space-10);
-      margin: var(--space-10) 0;
-      text-align: center;
     }
-    .sam-stat__value {
-      font-family: var(--font-mono);
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1;
-      color: var(--orange);
+    .sam-hero__copy {
+      flex: 1;
     }
-    .sam-stat__label {
-      font-size: 0.875rem;
-      font-weight: 400;
-      color: rgba(255,255,255,0.7);
-      margin-top: var(--space-2);
-    }
-    .sam-section--white .sam-stat__label,
-    .sam-section--seashell .sam-stat__label {
-      color: var(--comet);
-    }
-    .sam-section--white .sam-stat__value,
-    .sam-section--seashell .sam-stat__value {
-      color: var(--space-cadet);
+    .sam-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
     }
 
     /* ===== BUTTONS ===== */
-    .sam-btn {
+    .sam-cta {
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
@@ -853,273 +831,307 @@
       padding: var(--space-2) var(--space-4);
       border-radius: var(--radius);
       text-decoration: none;
-      transition: background 0.2s ease, color 0.2s ease;
+      transition: background 0.2s ease;
       cursor: pointer;
       border: none;
-    }
-    .sam-btn--primary {
       background: var(--orange);
       color: var(--white);
     }
-    .sam-btn--primary:hover {
-      background: #e04a24;
-    }
-    .sam-btn--ghost {
+    .sam-cta:hover { background: #e04a24; }
+    .sam-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 14px;
+      font-weight: 600;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      text-decoration: none;
       background: transparent;
       color: var(--white);
       border: 1px solid rgba(255,255,255,0.3);
     }
-    .sam-btn--ghost:hover {
-      border-color: rgba(255,255,255,0.6);
-    }
-    .sam-btn--ghost-dark {
-      background: transparent;
-      color: var(--space-cadet);
-      border: 1px solid var(--border-grey);
-    }
-    .sam-btn--ghost-dark:hover {
-      border-color: var(--comet);
-    }
-    .sam-hero-actions {
-      display: flex;
-      gap: var(--space-4);
-      margin-top: var(--space-8);
-    }
+    .sam-cta-secondary:hover { border-color: rgba(255,255,255,0.6); }
 
-    /* ===== TRUST BAR ===== */
-    .sam-trust-bar {
-      padding: var(--space-10) var(--space-6);
-      border-bottom: 1px solid var(--border-grey);
+    /* ===== WHY MONITOR ===== */
+    .sam-spec-why {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
     }
-    .sam-trust-bar__inner {
+    .sam-spec-why__inner {
       max-width: var(--max-width);
       margin: 0 auto;
     }
-    .sam-trust-bar__label {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--comet);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: var(--space-6);
+    .sam-spec-why__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 var(--space-4) 0;
       text-align: left;
     }
-    .sam-trust-bar__logos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-10);
-      align-items: center;
-    }
-    .sam-trust-bar__logo {
-      height: 36px;
-      display: flex;
-      align-items: center;
-      transition: opacity 0.3s ease;
-    }
-    .sam-trust-bar__logo img {
-      height: 28px;
-      width: auto;
-      opacity: 0.7;
-      filter: grayscale(100%);
-      transition: opacity 0.2s ease, filter 0.2s ease;
-    }
-    .sam-trust-bar__logo:hover img {
-      opacity: 1;
-      filter: grayscale(0);
-    }
-
-    /* ===== CARD GRID ===== */
-    .sam-card-grid {
-      display: grid;
-      gap: var(--space-6);
-    }
-    .sam-card-grid--2col {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .sam-card-grid--3col {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    /* ===== CARDS ===== */
-    .sam-card {
-      display: flex;
-      flex-direction: column;
-      background: var(--white);
-      border: 1px solid var(--border-grey);
-      border-radius: var(--radius);
-      padding: var(--space-8);
-      gap: var(--space-3);
-      transition: box-shadow 0.2s ease;
-      text-decoration: none;
-      color: inherit;
-    }
-    a.sam-card:hover {
-      box-shadow: var(--shadow-sm);
-    }
-    .sam-card__icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,84,41,0.08);
-      color: var(--orange);
-      flex-shrink: 0;
-    }
-    .sam-card__icon svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-    .sam-card__title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      line-height: 1.3;
-    }
-    .sam-card__body {
-      font-size: 0.9375rem;
-      font-weight: 400;
+    .sam-spec-why__inner .lead,
+    .sam-spec-why__lead {
+      font-size: 1.0625rem;
       color: var(--comet);
       line-height: 1.6;
-      flex: 1;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
     }
-    .sam-card__link {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--blue-600);
-      margin-top: auto;
+    .sam-spec-why__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
     }
-
-    /* Seashell section cards need white bg */
-    .sam-section--seashell .sam-card {
-      background: var(--white);
-    }
-
-    /* ===== PROOF SECTION (case studies) ===== */
-    .sam-proof-card {
-      display: flex;
-      flex-direction: column;
+    .sam-spec-why__card {
       background: var(--white);
       border: 1px solid var(--border-grey);
       border-radius: var(--radius);
       padding: var(--space-8);
-      gap: var(--space-3);
-      transition: box-shadow 0.2s ease;
-      text-decoration: none;
-      color: inherit;
     }
-    a.sam-proof-card:hover {
-      box-shadow: var(--shadow-sm);
-    }
-    .sam-proof-card__kpi {
+    .sam-spec-why__card-stat {
       font-family: var(--font-mono);
       font-size: 2rem;
       font-weight: 700;
       color: var(--space-cadet);
-      line-height: 1;
+      line-height: 1.2;
+      margin-bottom: var(--space-3);
     }
-    .sam-proof-card__customer {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--comet);
-    }
-    .sam-proof-card__body {
+    .sam-spec-why__card-desc {
       font-size: 0.9375rem;
       color: var(--comet);
       line-height: 1.6;
-      flex: 1;
-    }
-    .sam-proof-card__link {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--blue-600);
     }
 
-    /* ===== PROOF HIGHLIGHT (featured case) ===== */
-    .sam-proof-highlight {
+    /* ===== FAULT TABLE ===== */
+    .sam-spec-faults {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-faults__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-faults__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-faults__inner > p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-spec-faults__table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+    }
+    .sam-spec-faults__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .sam-spec-faults__th {
+      background: var(--space-cadet);
+      color: var(--white);
+      font-weight: 600;
+      padding: var(--space-3) var(--space-4);
+      text-align: left;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .sam-spec-faults__td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--border-grey);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .sam-spec-faults__td--label {
+      font-weight: 600;
+      color: var(--space-cadet);
+      white-space: nowrap;
+    }
+    .sam-spec-faults__td--yes {
+      color: var(--space-cadet);
+    }
+    .sam-spec-faults__note {
+      font-size: 0.8125rem;
+      color: var(--comet);
+      margin-top: var(--space-4);
+      font-style: italic;
+    }
+
+    /* ===== ENERGY SECTION ===== */
+    .sam-spec-energy {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-energy__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-energy__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-energy__split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      margin-top: var(--space-8);
+    }
+    .sam-spec-energy__copy p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+    .sam-spec-energy__metrics {
+      display: flex;
+      gap: var(--space-10);
+      margin-top: var(--space-6);
+    }
+    .sam-spec-energy__metric-value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--space-cadet);
+    }
+    .sam-spec-energy__metric-label {
+      font-size: 0.8125rem;
+      color: var(--comet);
+      margin-top: var(--space-1);
+    }
+    .sam-spec-energy__features {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+    .sam-spec-energy__feature {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+    }
+    .sam-spec-energy__feature-title {
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-energy__feature-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+    }
+
+    /* ===== INDUSTRIES SECTION ===== */
+    .sam-spec-industries {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-industries__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-industries__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-industries__inner .lead {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-spec-industries__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-industries__card {
+      display: flex;
+      flex-direction: column;
       background: var(--white);
       border: 1px solid var(--border-grey);
       border-radius: var(--radius);
       padding: var(--space-8);
-      margin-bottom: var(--space-10);
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s ease;
     }
-    .sam-proof-highlight__overline {
-      font-size: 0.75rem;
+    a.sam-spec-industries__card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .sam-spec-industries__card-title {
+      font-size: 1.125rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-2);
     }
-    .sam-proof-highlight__title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: var(--space-4);
-    }
-    .sam-proof-highlight__body {
+    .sam-spec-industries__card-desc {
       font-size: 0.9375rem;
       color: var(--comet);
-      line-height: 1.6;
-      margin-bottom: var(--space-6);
-      max-width: 720px;
-    }
-    .sam-proof-highlight__stats {
-      display: flex;
-      gap: var(--space-10);
-      margin-bottom: var(--space-6);
-    }
-    .sam-proof-highlight__link {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--blue-600);
-      text-decoration: none;
     }
 
     /* ===== INSTALL SECTION ===== */
-    .sam-install-grid {
+    .sam-spec-install {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-install__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-install__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-8) 0;
+      text-align: left;
+    }
+    .sam-spec-install__split {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--space-10);
       align-items: center;
     }
-    .sam-install-step {
+    .sam-spec-install__steps {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+    .sam-spec-install__step {
       display: flex;
       gap: var(--space-4);
-      margin-bottom: var(--space-6);
     }
-    .sam-install-step__num {
+    .sam-spec-install__step-num {
       flex-shrink: 0;
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: var(--space-cadet);
       color: var(--white);
-      font-size: 0.875rem;
-      font-weight: 600;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .sam-section--seashell .sam-install-step__num {
-      background: var(--space-cadet);
-      color: var(--white);
-    }
-    .sam-install-step__text strong {
-      display: block;
+    .sam-spec-install__step-title {
       font-weight: 600;
       margin-bottom: var(--space-1);
     }
-    .sam-install-step__text span {
+    .sam-spec-install__step-desc {
       font-size: 0.9375rem;
       color: var(--comet);
     }
-    .sam-install-image {
-      border-radius: var(--radius);
-      overflow: hidden;
+    .sam-spec-install__links {
+      margin-top: var(--space-6);
+    }
+    .sam-spec-install__image-placeholder {
       background: var(--border-grey);
+      border-radius: var(--radius);
       aspect-ratio: 4/3;
       display: flex;
       align-items: center;
@@ -1127,86 +1139,425 @@
       color: var(--comet);
       font-size: 0.875rem;
     }
+    .sam-spec-install__image img {
+      width: 100%;
+      border-radius: var(--radius);
+    }
 
-    /* ===== QUOTE BLOCK ===== */
-    .sam-quote {
-      max-width: 720px;
-      margin: var(--space-10) 0;
+    /* ===== DETECTION STORIES ===== */
+    .sam-spec-stories {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
     }
-    .sam-quote__text {
-      font-size: 1.125rem;
-      font-style: italic;
-      line-height: 1.6;
-      color: var(--space-cadet);
-      margin-bottom: var(--space-4);
+    .sam-spec-stories__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
-    .sam-quote__text::before { content: open-quote; }
-    .sam-quote__text::after { content: close-quote; }
-    .sam-quote__attr {
-      font-size: 0.875rem;
+    .sam-spec-stories__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-stories__inner .lead {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-spec-stories__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-stories__card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s ease;
+    }
+    a.sam-spec-stories__card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .sam-spec-stories__card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-3);
+    }
+    .sam-spec-stories__card-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .sam-spec-stories__card-industry {
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--comet);
     }
+    .sam-spec-stories__card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-stories__card-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .sam-spec-stories__card-link {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--blue-600);
+      margin-top: var(--space-4);
+    }
 
-    /* ===== TERMINAL CTA ===== */
-    .sam-terminal-cta {
+    /* ===== RELATED ASSETS ===== */
+    .sam-spec-related {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-related__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-related__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-8) 0;
       text-align: left;
     }
-    .sam-terminal-cta .sam-section__title {
+    .sam-spec-related__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-related__card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s ease;
+    }
+    a.sam-spec-related__card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .sam-spec-related__card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-related__card-desc {
+      font-size: 0.875rem;
+      color: var(--comet);
+    }
+
+    /* ===== PREFOOTER / TERMINAL CTA ===== */
+    .sam-prefooter {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-prefooter__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-prefooter__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
       text-align: left;
+    }
+    .sam-prefooter__sub {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-prefooter__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 14px;
+      font-weight: 600;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      text-decoration: none;
+      background: var(--orange);
+      color: var(--white);
+    }
+    .sam-prefooter__cta:hover { background: #e04a24; }
+
+    /* ===== CTA BLOCK ===== */
+    .sam-cta-block--spec {
+      background: var(--white);
+      padding: var(--space-24) var(--space-6);
+    }
+    .sam-cta-block__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-cta-block__heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      color: var(--space-cadet);
+    }
+    .sam-cta-block__sub {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-cta-block__actions {
+      display: flex;
+      gap: var(--space-4);
+    }
+    .sam-cta-block__actions .sam-cta-secondary {
+      color: var(--space-cadet);
+      border-color: var(--border-grey);
+    }
+
+    /* ===== TEXT LINK ===== */
+    .sam-text-link {
+      color: var(--blue-600);
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+    }
+    .sam-text-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== LEAD TEXT ===== */
+    .lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
     }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .sam-section {
+      .sam-hero--spec { padding: var(--space-20) var(--space-6); }
+      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
+      .sam-spec-stories, .sam-spec-related, .sam-prefooter,
+      .sam-cta-block--spec {
         padding: var(--space-16) var(--space-6);
       }
-      .sam-section--hero,
-      .sam-section--dark {
-        padding: var(--space-20) var(--space-6);
-      }
-      .sam-section__title {
-        font-size: 1.875rem;
-      }
+      .sam-hero__h1 { font-size: 1.875rem; }
     }
     @media (max-width: 768px) {
-      .sam-section {
+      .sam-hero--spec { padding: var(--space-16) var(--space-4); }
+      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
+      .sam-spec-stories, .sam-spec-related, .sam-prefooter,
+      .sam-cta-block--spec {
         padding: var(--space-12) var(--space-4);
       }
-      .sam-section--hero,
-      .sam-section--dark {
-        padding: var(--space-16) var(--space-4);
-      }
-      .sam-section__title {
-        font-size: 1.5rem;
-      }
-      .sam-card-grid--2col,
-      .sam-card-grid--3col {
+      .sam-hero__h1 { font-size: 1.5rem; }
+      .sam-spec-why__grid,
+      .sam-spec-industries__grid,
+      .sam-spec-stories__grid,
+      .sam-spec-related__grid {
         grid-template-columns: 1fr;
       }
-      .sam-stats-bar {
-        flex-direction: column;
-        gap: var(--space-6);
-        text-align: left;
-      }
-      .sam-stat__value {
-        font-size: 2rem;
-      }
-      .sam-install-grid {
+      .sam-spec-energy__split,
+      .sam-spec-install__split {
         grid-template-columns: 1fr;
       }
-      .sam-hero-actions {
+      .sam-hero__ctas {
         flex-direction: column;
       }
-      .sam-proof-highlight__stats {
+      .sam-hero__split {
         flex-direction: column;
-        gap: var(--space-6);
       }
-      .sam-trust-bar__logos {
-        gap: var(--space-6);
+      .sam-spec-energy__metrics {
+        flex-direction: column;
+      }
+      .sam-cta-block__actions {
+        flex-direction: column;
       }
     }
 
+
+    /* ===== HOW ESA MONITORS ===== */
+    .sam-spec-how {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-how__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-how__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-how__lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-how__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-how__card {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+    .sam-spec-how__card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+      color: var(--space-cadet);
+    }
+    .sam-spec-how__card p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ===== MONITORING ARCHITECTURE ===== */
+    .sam-spec-monitor {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-monitor__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-monitor__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-monitor__lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-monitor__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-6);
+    }
+    .sam-spec-monitor__col {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+    .sam-spec-monitor__col--overlap {
+      background: var(--white);
+      border: 2px solid var(--orange);
+    }
+    .sam-spec-monitor__col-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+    }
+    .sam-spec-monitor__col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .sam-spec-monitor__col li {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--space-cadet);
+      padding-left: 20px;
+      position: relative;
+    }
+    .sam-spec-monitor__col li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--comet);
+    }
+    .sam-spec-monitor__note {
+      font-size: 0.875rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin-top: var(--space-8);
+      max-width: 900px;
+    }
+
+    @media (max-width: 768px) {
+      .sam-spec-how__grid,
+      .sam-spec-monitor__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== FAQ ACCORDION ===== */
+    .sam-faq-list {
+      max-width: 720px;
+    }
+    .sam-faq-item {
+      border-bottom: 1px solid var(--border-grey);
+    }
+    .sam-faq-item summary {
+      font-size: 1.125rem;
+      font-weight: 600;
+      padding: var(--space-6) 0;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .sam-faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .sam-faq-item summary::after {
+      content: '+';
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--comet);
+      flex-shrink: 0;
+      transition: transform var(--motion-normal) ease;
+    }
+    .sam-faq-item[open] summary::after {
+      content: '−';
+    }
+    .sam-faq-item .sam-faq-answer {
+      padding: 0 0 var(--space-6) 0;
+      color: var(--comet);
+      line-height: 1.7;
+      max-width: 720px;
+      font-size: 0.9375rem;
+    }
   </style>
 </head>
 <body>
@@ -1441,8 +1792,8 @@
     <div class="sam-hero-overlay"></div>
     <div class="sam-section__inner">
       <div class="sam-section__overline">Metals &amp; Mining</div>
-      <h1 class="sam-section__title">Keep your mills running and mines dewatered</h1>
-      <p class="sam-section__subtitle">Monitor hot strip mills, runout tables, crushers, conveyors, and dewatering pumps from the motor control cabinet. Detect failures weeks to months before they stop production.</p>
+      <h1 class="sam-section__title">300+ motors per site. Most are unmonitored.</h1>
+      <p class="sam-section__subtitle">A large open-pit mine runs 300–600 electric motors across crushers, conveyors, mills, pumps, and fans. Only 26% of mining companies fully automate condition monitoring. The rest rely on manual rounds, quarterly inspections, or nothing at all.</p>
       <div class="sam-stats-bar">
           <div class="sam-stat">
             <div class="sam-stat__value">800%</div>
@@ -1453,8 +1804,8 @@
             <div class="sam-stat__label">Failures detected at ArcelorMittal</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">&euro;650k</div>
-            <div class="sam-stat__label">Downtime costs prevented</div>
+            <div class="sam-stat__value">31 hrs</div>
+            <div class="sam-stat__label">Downtime prevented at one steel mill</div>
           </div>
       </div>
       <div class="sam-hero-actions">
@@ -1467,7 +1818,7 @@
   <!-- ── Section 2: Trust bar ── -->
   <div class="sam-trust-bar">
     <div class="sam-trust-bar__inner">
-      <div class="sam-trust-bar__label">Trusted by leaders in metals and steel</div>
+      <div class="sam-trust-bar__label">Trusted in metals, mining, and smelting</div>
       <div class="sam-trust-bar__logos">
         <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/arcelormittal.png" alt="ArcelorMittal"></span>
         <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/nyrstar.png" alt="Nyrstar"></span>
@@ -1482,154 +1833,280 @@
     <div class="sam-section__inner">
       <div class="sam-section__overline">The challenge</div>
       <h2 class="sam-section__title">Every hour of downtime costs six figures</h2>
-      <p class="sam-section__subtitle">Steel mills run 24/7 and mines cannot stop dewatering. When a roller bearing fails or a borehole pump seizes, you face hours of lost production.</p>
+      <p class="sam-section__subtitle">Steel mills run 24/7. Mines cannot stop dewatering. When a conveyor drive fails or a SAG mill bearing seizes, the entire material flow stops.</p>
       <div class="sam-card-grid sam-card-grid--2col">
         <div class="sam-card">
-          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2L1 18h18L10 2zm0 4l6.5 11h-13L10 6z"/><rect x="9" y="9" width="2" height="4" rx="0.5"/><rect x="9" y="14" width="2" height="2" rx="0.5"/></svg></div>
-          <div class="sam-card__title">Hot strip mill reliability</div>
-          <div class="sam-card__body">Runout table rollers, cardan shafts, and mill motors operate under extreme stress. SAM4 detects bearing wear, coupling degradation, and electrical faults across the full drivetrain.</div>
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M2 4h16v10H2V4zm1 1v8h14V5H3zM2 16h16v1H2z" fill="currentColor"/></svg></div>
+          <div class="sam-card__title">Conveyor systems span kilometres</div>
+          <div class="sam-card__body">A single overland conveyor uses 4–8 drive motors at multiple stations. Gearbox failures account for 50% of conveyor drive breakdowns. A major belt failure at one mine caused $6–12M in losses. Distributed sensors along the belt route are expensive to install and hard to maintain.</div>
         </div>
         <div class="sam-card">
-          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2v12m0 0l-4-4m4 4l4-4M3 18h14"/></svg></div>
-          <div class="sam-card__title">Submerged dewatering pumps</div>
-          <div class="sam-card__body">Borehole pumps sit 150-180 metres deep. Pulling one for walk-down costs thousands and takes days. SAM4 monitors from the MCC without a crane.</div>
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 5v5l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="sam-card__title">Mill and crusher stops cost $50K–$380K per hour</div>
+          <div class="sam-card__body">SAG mills run motors up to 28 MW. Primary crushers handle 12,000+ tonnes per hour. Bearing failures cause 70% of gearbox breakdowns in mills. When they stop, everything downstream stops with them.</div>
         </div>
         <div class="sam-card">
-          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.5"/></svg></div>
-          <div class="sam-card__title">Conveyor and crusher uptime</div>
-          <div class="sam-card__body">Material flow depends on conveyors and crushers running continuously. SAM4 detects belt degradation, bearing failure, and motor faults before they halt production.</div>
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" fill="currentColor"/><path d="M10 5v5h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="sam-card__title">Equipment degrades 3–5x faster underground</div>
+          <div class="sam-card__body">Dust clogs cooling fins and raises motor temperatures 10–20.C above design. Operating 10.C above rated temperature halves motor insulation life. Sensors rated for clean environments fail in months. Underground mines add ventilation fans, hoists, and dewatering pumps that are difficult to access for inspection.</div>
         </div>
         <div class="sam-card">
-          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M11 1L4 12h5l-2 7 9-11h-5l2-7z"/></svg></div>
-          <div class="sam-card__title">High motor replacement costs</div>
-          <div class="sam-card__body">A medium voltage mill motor can cost &euro;50-200K to replace. SAM4 gives weeks of advance warning so you can plan the change-out during scheduled downtime.</div>
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 1C5.04 1 1 5.04 1 10s4.04 9 9 9 9-4.04 9-9-4.04-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/><path d="M9.5 5h1v5h-1zm0 6h1v1h-1z" fill="currentColor"/></svg></div>
+          <div class="sam-card__title">Remote sites, quarterly inspections</div>
+          <div class="sam-card__body">Typical mine sites sit 50–300 km from urban maintenance hubs. A vibration analyst visit costs $2,000–$10,000 per site and takes 5–8 days including travel. Bearing wear progresses in 4–8 weeks. Gearbox tooth fatigue develops in 2–4 months. Most faults develop faster than the inspection interval.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 4: Assets monitored ── -->
+  <!-- ── Section 4: Why SAM4 ── -->
   <section class="sam-section sam-section--seashell">
     <div class="sam-section__inner">
+      <div class="sam-section__overline">Why SAM4</div>
+      <h2 class="sam-section__title">Monitor from the MCC. Not from the mineshaft.</h2>
+      <p class="sam-section__subtitle">Electrical Signature Analysis reads motor health from the power signal at the motor control cabinet. No sensors on the asset. No access to harsh or remote locations required.</p>
+      <div class="sam-card-grid sam-card-grid--3col">
+        <div class="sam-card">
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M3 8h14v8H3V8zm1 1v6h12V9H4z" fill="currentColor"/><path d="M8 4h4v2H8z" fill="currentColor"/></svg></div>
+          <div class="sam-card__title">No sensors in dust, heat, or acid</div>
+          <div class="sam-card__body">Mining sensors need IP68 minimum, -40.C to +50.C range, and 50+ G vibration resistance. SAM4 installs inside the MCC: controlled temperature, no dust ingress, no replacement cycles. ArcelorMittal chose SAM4 specifically because high temperatures made vibration sensors unsuitable.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2L2 7v2h16V7l-8-5zm0 3.5L14.5 8H5.5L10 5.5z" fill="currentColor"/><rect x="3" y="10" width="2" height="7" fill="currentColor"/><rect x="7" y="10" width="2" height="7" fill="currentColor"/><rect x="11" y="10" width="2" height="7" fill="currentColor"/><rect x="15" y="10" width="2" height="7" fill="currentColor"/></svg></div>
+          <div class="sam-card__title">Fleet-wide coverage at a fraction of the cost</div>
+          <div class="sam-card__body">Per-motor vibration monitoring costs an estimated $20,000–$100,000 per asset. For a fleet of 300–600 motors, that is $6–60M. SAM4 monitors from existing power feeds. One installation point per motor. No additional hardware on the asset.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" fill="currentColor"/><path d="M9 8v4h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div>
+          <div class="sam-card__title">Detects what vibration misses</div>
+          <div class="sam-card__body">Motor winding insulation degradation produces zero vibration signature until catastrophic failure. Subsurface pump faults are invisible to vibration sensors mounted on motor bearings. Low-speed conveyor idler bearings generate weak vibration signals. ESA detects all three from the current signature at the MCC.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 5: Assets monitored ── -->
+  <section class="sam-section sam-section--white">
+    <div class="sam-section__inner">
       <div class="sam-section__overline">What we monitor</div>
-      <h2 class="sam-section__title">Critical assets in metals and mining</h2>
+      <h2 class="sam-section__title">From SAG mills to dewatering pumps</h2>
       <p class="sam-section__subtitle">SAM4 monitors any AC motor-driven equipment from the motor control cabinet.</p>
       <div class="sam-card-grid sam-card-grid--3col">
-        <a href="/platform/what-we-monitor/transmissions" class="sam-card">
-          <div class="sam-card__title">Crushers &amp; mills</div>
-          <div class="sam-card__body">Ball mills, SAG mills, and crushers with bearing, gearbox, and motor fault detection. Prevents costly production stops.</div>
-          <span class="sam-card__link">Mill monitoring details &rarr;</span>
-        </a>
-        <a href="/platform/what-we-monitor/conveyors" class="sam-card">
+        <a href="/platform/what-we-monitor/conveyors" class="sam-card" style="text-decoration:none;color:inherit;">
           <div class="sam-card__title">Conveyors</div>
-          <div class="sam-card__body">Belt conveyors and material handling systems with belt degradation alerts and drive system monitoring.</div>
-          <span class="sam-card__link">Conveyor monitoring details &rarr;</span>
+          <div class="sam-card__body">Belt conveyors and overland systems. Gearbox bearing wear, belt mis-tracking, motor winding degradation, and coupling failures.</div>
+          <span class="sam-card__link">Conveyor monitoring →</span>
         </a>
-        <a href="/platform/what-we-monitor/pumps" class="sam-card">
+        <a href="/platform/what-we-monitor/transmissions" class="sam-card" style="text-decoration:none;color:inherit;">
+          <div class="sam-card__title">Crushers &amp; mills</div>
+          <div class="sam-card__body">SAG mills, ball mills, gyratory and cone crushers. Bearing spalling, rotor bar breakage, trunnion wear, and drive misalignment.</div>
+          <span class="sam-card__link">Mill monitoring →</span>
+        </a>
+        <a href="/platform/what-we-monitor/pumps" class="sam-card" style="text-decoration:none;color:inherit;">
           <div class="sam-card__title">Pumps</div>
-          <div class="sam-card__body">Dewatering pumps, cooling water pumps, and process pumps. SAM4 detects bearing degradation, cavitation, and efficiency loss.</div>
-          <span class="sam-card__link">Pump monitoring details &rarr;</span>
+          <div class="sam-card__body">Slurry pumps, dewatering pumps, and process water pumps. Impeller erosion, bearing degradation, seal failure, and cavitation.</div>
+          <span class="sam-card__link">Pump monitoring →</span>
+        </a>
+        <a href="/platform/what-we-monitor/fans-blowers" class="sam-card" style="text-decoration:none;color:inherit;">
+          <div class="sam-card__title">Fans &amp; blowers</div>
+          <div class="sam-card__body">Main ventilation fans and process blowers. Blade imbalance, rotor eccentricity, bearing wear, and stator winding degradation.</div>
+          <span class="sam-card__link">Fan monitoring →</span>
+        </a>
+        <a href="/platform/what-we-monitor" class="sam-card" style="text-decoration:none;color:inherit;">
+          <div class="sam-card__title">Vibrating screens</div>
+          <div class="sam-card__body">Screening and classification equipment. Bearing spalling under cyclical load, spring fatigue, and rotor bar breakage.</div>
+          <span class="sam-card__link">All monitored assets →</span>
+        </a>
+        <a href="/platform/what-we-monitor" class="sam-card" style="text-decoration:none;color:inherit;">
+          <div class="sam-card__title">MV &amp; LV motors</div>
+          <div class="sam-card__body">Medium and low voltage motors across the general fleet. Winding insulation degradation, rotor bar faults, and bearing wear.</div>
+          <span class="sam-card__link">Motor monitoring →</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 5: Proof ── -->
-  <section class="sam-section sam-section--white" id="proof">
+  <!-- ── Section 6: Proof ── -->
+  <section class="sam-section sam-section--seashell" id="proof">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Proof</div>
-      <h2 class="sam-section__title">Metals and mining case studies</h2>
+      <h2 class="sam-section__title">Named customers. Quantified outcomes.</h2>
       <div class="sam-proof-highlight">
         <div class="sam-proof-highlight__overline">Featured</div>
-        <h3 class="sam-proof-highlight__title">ArcelorMittal: 27 failures detected, &euro;650k prevented</h3>
-        <p class="sam-proof-highlight__body">SAM4 monitors critical drivetrain assets across ArcelorMittal steel operations. Including hot strip mill rollers, overhead cranes, and process pumps. Over a 12-month deployment, the system detected 27 developing faults before they caused unplanned stops.</p>
+        <h3 class="sam-proof-highlight__title">ArcelorMittal: 27 failures detected, 31 hours downtime prevented</h3>
+        <p class="sam-proof-highlight__body">SAM4 monitors runout table rollers at the hot strip mill in Ghent, Belgium. High temperatures at the runout table made vibration sensors unsuitable. SAM4 installs in the MCC, away from the heat. Over a 12-month deployment, the system detected 27 developing faults. Some were flagged up to 7 months before they would have caused an unplanned stop.</p>
         <div class="sam-proof-highlight__stats">
           <div class="sam-stat">
             <div class="sam-stat__value">27</div>
             <div class="sam-stat__label">Failures detected</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">&euro;650k</div>
+            <div class="sam-stat__value">31 hrs</div>
             <div class="sam-stat__label">Downtime prevented</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">5 months</div>
-            <div class="sam-stat__label">Maximum advance warning</div>
+            <div class="sam-stat__value">7 months</div>
+            <div class="sam-stat__label">Maximum detection lead time</div>
           </div>
         </div>
-        <a href="/proof/arcelormittal" class="sam-proof-highlight__link">Read the full ArcelorMittal case study &rarr;</a>
+        <p style="margin-top:var(--space-8);"><a href="/case-studies/arcelormittal" class="sam-btn sam-btn--primary">Read the full ArcelorMittal case study →</a></p>
       </div>
-      <div class="sam-card-grid sam-card-grid--2col">
-        <a href="/proof/nyrstar" class="sam-proof-card">
-          <div class="sam-proof-card__kpi">800%</div>
-          <div class="sam-proof-card__customer">Nyrstar</div>
-          <div class="sam-proof-card__body">ROI achieved within 11 months of deployment at a zinc refining operation.</div>
-          <span class="sam-proof-card__link">Read case study &rarr;</span>
-        </a>
-        <a href="/proof/arcelormittal" class="sam-proof-card">
-          <div class="sam-proof-card__kpi">&euro;50K+</div>
-          <div class="sam-proof-card__customer">ArcelorMittal</div>
-          <div class="sam-proof-card__body">Saved from a single early bearing detection on a critical cooling water pump at a blast furnace. Five months advance warning.</div>
-          <span class="sam-proof-card__link">Read case study &rarr;</span>
-        </a>
+      <div class="sam-card-grid sam-card-grid--2col" style="margin-top:var(--space-16);">
+        <div class="sam-card">
+          <div class="sam-stat" style="text-align:left;margin-bottom:var(--space-6);">
+            <div class="sam-stat__value">800%</div>
+            <div class="sam-stat__label">ROI at Nyrstar in 11 months</div>
+          </div>
+          <div class="sam-card__body">ROI achieved within 11 months at a zinc smelter processing 300,000+ tonnes annually. SAM4 detected pump drive misalignment within 1.5 months of deployment, allowing scheduled replacement.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-stat" style="text-align:left;margin-bottom:var(--space-6);">
+            <div class="sam-stat__value">€50K+</div>
+            <div class="sam-stat__label">Saved from single bearing detection</div>
+          </div>
+          <div class="sam-card__body">Saved from a single early bearing detection on a critical cooling water pump at a blast furnace. Five months advance warning.</div>
+        </div>
       </div>
+      <p style="margin-top:var(--space-8);text-align:center;"><a href="/contact" class="sam-btn sam-btn--primary">Discuss your site →</a></p>
     </div>
   </section>
 
-  <!-- ── Section 6: Install ── -->
-  <section class="sam-section sam-section--seashell">
+  <!-- ── Section 7: Installation ── -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Installation</div>
-      <h2 class="sam-section__title">No sensors on the asset</h2>
-      <div class="sam-install-grid">
-        <div>
+      <h2 class="sam-section__title">Under 60 minutes, back online same shift</h2>
+      <p class="sam-section__subtitle">SAM4 installs directly at the motor control cabinet. No asset shutdown needed.</p>
+      <div class="sam-install-steps">
         <div class="sam-install-step">
           <div class="sam-install-step__num">1</div>
-          <div class="sam-install-step__text">
-            <strong>Clip on at the MCC</strong>
-            <span>SAM4 installs on the power cable inside the motor control cabinet. No asset shutdown. No crane.</span>
-          </div>
+          <div class="sam-install-step__title">Connect to the power signal</div>
+          <div class="sam-install-step__body">Attach current transformers to the motor control circuit. Takes 20-30 minutes. No power interruption required.</div>
         </div>
         <div class="sam-install-step">
           <div class="sam-install-step__num">2</div>
-          <div class="sam-install-step__text">
-            <strong>Connect to the network</strong>
-            <span>Cellular gateway sends data to the cloud. No plant network integration needed for deployment.</span>
-          </div>
+          <div class="sam-install-step__title">Configure the gateway</div>
+          <div class="sam-install-step__body">Place the SAM4 gateway in the cabinet. Connect to your network (Ethernet, cellular, or hybrid). Takes 10-15 minutes.</div>
         </div>
         <div class="sam-install-step">
           <div class="sam-install-step__num">3</div>
-          <div class="sam-install-step__text">
-            <strong>Monitor from anywhere</strong>
-            <span>The SAM4 dashboard shows asset health, fault alerts, and energy performance within hours.</span>
-          </div>
-        </div>
-        </div>
-        <div class="sam-install-image">
-          <img src="/assets/images/install-sam4-mcc.jpg" alt="SAM4 hardware installed inside a motor control cabinet at a metals and mining site" loading="lazy" style="width:100%;border-radius:var(--radius-default);">
+          <div class="sam-install-step__title">Dashboard live</div>
+          <div class="sam-install-step__body">Start receiving health data in real time. Historic baseline establishes within 1-2 weeks. Alarms activate after that period.</div>
         </div>
       </div>
-
-            <div class="sam-quote">
-        <p class="sam-quote__text">The invisible pain points become visible.</p>
-        <div class="sam-quote__attr">Patrick Emmers, Nyrstar</div>
+      <div class="sam-testimonial" style="margin-top:var(--space-16);">
+        <blockquote>"Integrating ESA technology in high power drives enables monitoring of motors, pumps, fans, mixers and conveyors operating in hot, toxic or hard-to-access environments, previously regarded as unmonitorable."</blockquote>
+        <div class="sam-testimonial-source">ABB Press Release, 2024</div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 7: Terminal CTA ── -->
-  <section class="sam-section sam-section--white sam-terminal-cta">
+  <!-- ── Section 8: FAQ ── -->
+  <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">FAQ</div>
+      <h2 class="sam-section__title">Common questions from mining operations</h2>
+      <dl class="sam-faq-list">
+        <details class="sam-faq-item">
+          <summary>Our conveyors are kilometres long. How does monitoring from the MCC help?</summary>
+          <div class="sam-faq-answer">Faults in the mechanical load cause torque oscillations that change the motor current signature. Belt mis-tracking, idler bearing wear, and gearbox degradation all produce detectable harmonic patterns in the current at the MCC. A 2023 peer-reviewed study validated MCSA for detecting belt mis-tracking via harmonic modulation. One monitoring point at the MCC replaces distributed sensors along the full conveyor run.</div>
+        </details>
+        <details class="sam-faq-item">
+          <summary>We already have vibration on our critical mills and crushers. Why add ESA?</summary>
+          <div class="sam-faq-answer">ESA and vibration monitor different physics. Vibration detects mechanical motion. ESA detects electrical load changes. Motor winding insulation degradation produces zero vibration signature until catastrophic failure. Subsurface pump faults are invisible to vibration sensors mounted on motor bearings. ESA typically detects faults earlier because the electrical signal changes before the mechanical force is large enough to move the machine structure. The strongest approach is both: ESA finds problems early, vibration confirms mechanical severity.</div>
+        </details>
+        <details class="sam-faq-item">
+          <summary>Can ESA detect gearbox faults?</summary>
+          <div class="sam-faq-answer">Yes. Multiple IEEE papers (2016–2023) validate motor current analysis for gear tooth damage, bearing damage inside gearboxes, and lubrication issues. A 2023 study specifically validated MCSA for mine scraper conveyor gearbox fault diagnosis. The method is non-intrusive and requires no sensor installation on the gearbox itself.</div>
+        </details>
+        <details class="sam-faq-item">
+          <summary>How does ESA handle the harsh mining environment?</summary>
+          <div class="sam-faq-answer">It bypasses it entirely. ESA sensors install inside the motor control cabinet: a controlled, dust-free, temperature-stable enclosure. No sensors are mounted on the asset. No wireless sensors are exposed to dust, moisture, vibration, or corrosive chemicals. ArcelorMittal adopted SAM4 specifically because high temperatures at the hot strip mill made conventional sensors unsuitable.</div>
+        </details>
+        <details class="sam-faq-item">
+          <summary>What is the deployment timeline for a multi-site mining operation?</summary>
+          <div class="sam-faq-answer">Typical phased approach: pilot on highest-risk assets (1–3 months), expand to plant-wide coverage (3–6 months), then roll out across additional sites (6–18 months). Nyrstar achieved 800% ROI within 11 months of initial deployment. Each motor takes under 60 minutes to connect at the MCC. No asset shutdown required.</div>
+        </details>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ── Section 9: Terminal CTA ── -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Get started</div>
       <h2 class="sam-section__title">From your first motor to every site</h2>
       <p class="sam-section__subtitle">Start with a pilot on your highest-risk assets. Scale to full fleet monitoring as results prove out.</p>
-      <div class="sam-hero-actions">
+      <div class="sam-hero-actions" style="justify-content:center;margin-top:var(--space-12);">
         <a href="/contact/asset-audit" class="sam-btn sam-btn--primary">Start your asset audit</a>
-        <a href="/contact" class="sam-btn sam-btn--ghost-dark">Request a demo</a>
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--ghost">Request a demo</a>
       </div>
     </div>
   </section>
 
+        <a href="/cookies">Cookies</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Header scroll state
+      var header = document.querySelector('.sam-header');
+      if (header) {
+        var scrollThreshold = 20;
+        function onScroll() {
+          if (window.scrollY > scrollThreshold) {
+            header.classList.add('is-scrolled');
+          } else {
+            header.classList.remove('is-scrolled');
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      // Hamburger menu
+      var hamburger = document.querySelector('.sam-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function () {
+          var isOpen = mobileMenu.classList.toggle('is-open');
+          hamburger.setAttribute('aria-expanded', isOpen);
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+      }
+
+      // Mobile nav toggles
+      document.querySelectorAll('.sam-mobile-nav__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var group = btn.closest('.sam-mobile-nav__group');
+          var isOpen = group.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+
+      // Footer accordion (mobile)
+      document.querySelectorAll('[data-footer-accordion]').forEach(function (col) {
+        var heading = col.querySelector('.sam-footer__col-heading');
+        if (!heading) return;
+        heading.addEventListener('click', function () {
+          if (window.innerWidth > 991) return;
+          col.classList.toggle('is-open');
+        });
+      });
+    })();
+  </script>
+
+  </script>
+</body>
 <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
   <div class="sam-footer__inner">
 
