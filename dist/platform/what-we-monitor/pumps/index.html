@@ -24,6 +24,1625 @@
     }
   </style>
   <style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pump predictive maintenance: SAM4 detects cavitation, wear rings, and bearing issues via ESA. All pump types supported. Proven on 3,000+ monitored assets.">
+  <title>Pump monitoring | Samotics</title>
+  <link rel="canonical" href="https://samoticstestpage.com/platform/what-we-monitor/pumps/">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+    }
+  </style>
+  <style>
+    /* ===== SHARED DESIGN TOKENS ===== */
+    :root {
+      --sam-space-cadet: #1F1F33;
+      --sam-orange: #FF5429;
+      --sam-orange-dark: #D7411B;
+      --sam-blue: #005CBA;
+      --sam-white: #FFFFFF;
+      --sam-seashell: #F8F5F2;
+      --sam-black: #111111;
+      --sam-comet: #6B6B7F;
+      --sam-border-light: #E8E4E0;
+      --sam-header-bg: #1F1F33;
+      --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sam-header-h: 80px;
+      --sam-header-h-compact: 64px;
+      --sam-transition: 150ms ease-out;
+    }
+
+    :root {
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --dark-blue-300: #A0A0B8;
+      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-data: 'JetBrains Mono', 'Consolas', monospace;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-30: 120px;
+      --radius-default: 4px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
+      --motion-fast: 100ms;
+      --motion-normal: 300ms;
+      --max-width: 1120px;
+      --max-width-wide: 1280px;
+    }
+
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      color: var(--space-cadet);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: var(--blue-600);
+      text-decoration: none;
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    a:hover {
+      color: var(--orange);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .sam-skip-link { position: fixed; top: 0; left: 16px; transform: translateY(-200%); z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 4px; }
+    .sam-skip-link:focus { top: 8px; transform: none; }
+    .sam-header {
+      position: sticky; top: 0; z-index: 1000; width: 100%;
+      height: var(--sam-header-h); background: var(--sam-header-bg);
+      transition: height var(--sam-transition), box-shadow var(--sam-transition);
+    }
+    .sam-header.is-scrolled { height: var(--sam-header-h-compact); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25); }
+    .sam-header__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
+    .sam-header__logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .sam-logo { height: auto; transition: transform 200ms ease-out, filter 200ms ease-out; }
+    .sam-logo--dark { display: none; }
+    .sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+    .sam-nav { display: flex; align-items: center; justify-content: center; gap: 28px; flex: 1; }
+    .sam-nav__link { font: 500 15px/1 var(--sam-font); color: rgba(255, 255, 255, 0.85); text-decoration: none; padding: 8px 0; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; position: relative; transition: color var(--sam-transition); white-space: nowrap; }
+    .sam-nav__link:hover, .sam-nav__link:focus-visible { color: var(--sam-white); }
+    .sam-nav__link[aria-current="page"]::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--sam-orange); }
+    .sam-nav__chevron { transition: transform var(--sam-transition); flex-shrink: 0; }
+    .sam-nav__item { position: relative; }
+    .sam-dropdown { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(-4px); min-width: 300px; background: var(--sam-white); border: 1px solid var(--sam-border-light); border-radius: 0; padding: 8px 0; opacity: 0; visibility: hidden; transition: opacity var(--sam-transition), visibility var(--sam-transition), transform var(--sam-transition); pointer-events: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+    .sam-nav__item--has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
+    .sam-nav__item--has-dropdown:hover .sam-dropdown, .sam-nav__item--has-dropdown:focus-within .sam-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    .sam-nav__item--has-dropdown:hover .sam-nav__chevron, .sam-nav__item--has-dropdown:focus-within .sam-nav__chevron { transform: rotate(180deg); }
+    .sam-dropdown__item { display: flex; flex-direction: column; padding: 12px 24px; text-decoration: none; transition: background-color 100ms ease-out; }
+    .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
+    .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
+    .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
+    .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+    .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .sam-hamburger__line { display: block; width: 24px; height: 2px; background: var(--sam-white); transition: transform 200ms ease-out, opacity 200ms ease-out; border-radius: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) { opacity: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .sam-mobile-menu { display: none; position: fixed; top: var(--sam-header-h-compact); left: 0; right: 0; bottom: 0; background: var(--sam-white); overflow-y: auto; z-index: 999; padding: 24px 16px; flex-direction: column; }
+    .sam-mobile-menu.is-open { display: flex; animation: samSlideIn 200ms ease-out; }
+    @keyframes samSlideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    .sam-mobile-nav__link { display: block; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__link:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__group { border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); background: none; border: none; cursor: pointer; }
+    .sam-mobile-nav__arrow { transition: transform 200ms ease-out; flex-shrink: 0; }
+    .sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow { transform: rotate(180deg); }
+    .sam-mobile-nav__sub { display: none; flex-direction: column; padding: 0 0 8px 16px; }
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__sub { display: flex; }
+    .sam-mobile-nav__sub a { display: block; padding: 12px 0; font: 400 15px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; }
+    .sam-mobile-nav__sub a:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__cta-wrap { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__cta { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px 0; background: var(--sam-orange); color: var(--sam-white); font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 0; transition: background-color var(--sam-transition); }
+    .sam-mobile-nav__cta:hover { background: var(--sam-orange-dark); }
+
+    .sam-footer { background: var(--sam-space-cadet, #1F1F33); padding-top: 96px; }
+    .sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
+    .sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
+    .sam-footer__logo { display: inline-flex; text-decoration: none; }
+    .sam-footer__logo img { width: 140px; height: auto; }
+    .sam-footer__tagline { font: 400 16px/1.6 var(--sam-font); color: rgba(255, 255, 255, 0.6); margin: 0; max-width: 360px; }
+    .sam-footer__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; margin-bottom: 64px; }
+    .sam-footer__col-heading { font: 600 14px/1 var(--sam-font); color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px 0; }
+    .sam-footer__col-links { display: flex; flex-direction: column; gap: 12px; }
+    .sam-footer__col-links a { font: 400 14px/1.4 var(--sam-font); color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__col-links a:hover, .sam-footer__col-links a:focus-visible { color: #FFFFFF; }
+    .sam-footer__divider { height: 1px; background: rgba(255, 255, 255, 0.15); }
+    .sam-footer__certs { display: flex; align-items: center; gap: 16px; padding: 24px 0; }
+    .sam-footer__certs a { display: block; opacity: 0.7; transition: opacity 150ms ease-out; }
+    .sam-footer__certs a:hover { opacity: 1; }
+    .sam-footer__certs img { display: block; background: var(--sam-white); border-radius: 4px; padding: 4px; }
+    .sam-footer__bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+    .sam-footer__bottom-left { display: flex; align-items: center; gap: 24px; }
+    .sam-footer__copyright { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); }
+    .sam-footer__social { display: inline-flex; align-items: center; color: rgba(255, 255, 255, 0.4); transition: color 150ms ease-out; }
+    .sam-footer__social:hover { color: #FFFFFF; }
+    .sam-footer__legal { display: flex; align-items: center; gap: 8px; }
+    .sam-footer__legal a { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__legal a:hover, .sam-footer__legal a:focus-visible { color: #FFFFFF; }
+    .sam-footer__legal-sep { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.2); }
+
+    .sam-nav__link:focus-visible, .sam-dropdown__item:focus-visible, .sam-cta:focus-visible, .sam-hamburger:focus-visible, .sam-mobile-nav__toggle:focus-visible, .sam-mobile-nav__link:focus-visible, .sam-mobile-nav__sub a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    .sam-footer__col-links a:focus-visible, .sam-footer__social:focus-visible, .sam-footer__legal a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { .sam-header, .sam-dropdown, .sam-nav__chevron, .sam-hamburger__line, .sam-mobile-nav__arrow, .sam-logo, .sam-footer__col-links a, .sam-footer__social, .sam-footer__legal a { transition: none !important; animation: none !important; } }
+
+    @media (max-width: 991px) {
+      .sam-header { height: var(--sam-header-h-compact); }
+      .sam-header__inner { padding: 0 16px; }
+      .sam-nav { display: none; }
+      .sam-hamburger { display: flex; }
+      .sam-cta { padding: 8px 16px; font-size: 13px; }
+      .sam-footer { padding-top: 64px; }
+      .sam-footer__inner { padding: 0 16px; }
+      .sam-footer__top { margin-bottom: 48px; }
+      .sam-footer__grid { grid-template-columns: 1fr; gap: 0; margin-bottom: 48px; }
+      .sam-footer__col { border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 0; }
+      .sam-footer__col-heading { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; margin: 0; cursor: pointer; }
+      .sam-footer__col-heading::after { content: ''; width: 10px; height: 10px; border-right: 2px solid rgba(255, 255, 255, 0.4); border-bottom: 2px solid rgba(255, 255, 255, 0.4); transform: rotate(45deg); transition: transform 200ms ease-out; flex-shrink: 0; }
+      .sam-footer__col.is-open .sam-footer__col-heading::after { transform: rotate(-135deg); }
+      .sam-footer__col-links { display: none; padding: 0 0 16px 0; }
+      .sam-footer__col.is-open .sam-footer__col-links { display: flex; }
+      .sam-footer__bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+
+    .sam-page {
+      min-height: 100vh;
+    }
+
+    main {
+      display: block;
+    }
+
+    /* ===== SECTIONS ===== */
+    .sam-section {
+      padding: var(--space-24) var(--space-6);
+    }
+
+    .sam-section--hero,
+    .sam-section--dark {
+      color: var(--white);
+      padding: var(--space-30) var(--space-6);
+    }
+
+    .sam-section--alt {
+      background: var(--seashell);
+    }
+
+    .sam-section__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .sam-section__inner--wide {
+      max-width: var(--max-width-wide);
+    }
+
+    /* ===== OVERLINES ===== */
+    .sam-overline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+      display: inline-block;
+    }
+
+    .sam-section--hero .sam-overline,
+    .sam-section--dark .sam-overline {
+      color: var(--orange);
+    }
+
+    /* ===== HEADINGS ===== */
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-6);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-8);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: var(--space-2);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+    }
+
+    /* ===== PARAGRAPHS & TEXT ===== */
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+      color: var(--space-cadet);
+    }
+
+    .sam-section--hero p,
+    .sam-section--dark p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .sam-lead {
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 500;
+      color: var(--space-cadet);
+      max-width: 680px;
+    }
+
+    .sam-section--hero .sam-lead,
+    .sam-section--dark .sam-lead {
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 100%;
+    }
+
+    .sam-small {
+      font-size: 14px;
+      color: var(--comet);
+      line-height: 1.5;
+    }
+
+    /* ===== CARDS ===== */
+    .sam-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      transition: box-shadow var(--motion-fast) ease-out, transform var(--motion-fast) ease-out;
+    }
+
+    .sam-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-card h3 {
+      margin-bottom: var(--space-4);
+      color: var(--space-cadet);
+    }
+
+    .sam-card p {
+      margin-bottom: 0;
+      color: var(--comet);
+    }
+
+    /* ===== GRIDS ===== */
+    .sam-grid {
+      display: grid;
+      gap: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .sam-grid--2 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .sam-grid--3 {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .sam-grid--6 {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    @media (min-width: 768px) {
+      .sam-grid--3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .sam-grid--6 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .sam-grid--6 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ===== STATS BAR ===== */
+    .sam-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-6);
+      padding: var(--space-8) 0;
+      border-top: 1px solid var(--border-grey);
+      border-bottom: 1px solid var(--border-grey);
+      margin-bottom: var(--space-24);
+    }
+
+    .sam-stat {
+      text-align: center;
+    }
+
+    .sam-stat__value {
+      font-family: var(--font-data);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1.2;
+      margin-bottom: var(--space-2);
+      letter-spacing: -0.01em;
+    }
+
+    .sam-stat__label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--comet);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .sam-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sam-stat__value {
+        font-size: 24px;
+      }
+    }
+
+    /* ===== TIMELINE CARDS ===== */
+    .sam-timeline-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      position: relative;
+    }
+
+    .sam-timeline-card::before {
+      content: attr(data-year);
+      display: block;
+      font-family: var(--font-data);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: var(--space-3);
+    }
+
+    .sam-timeline-card h3 {
+      margin-bottom: var(--space-4);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* ===== PARTNER CARDS ===== */
+    .sam-partner-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+
+    .sam-partner-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-partner-card .sam-partner-role {
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: var(--space-4);
+      letter-spacing: 0.05em;
+    }
+
+    .sam-partner-card p {
+      margin-bottom: var(--space-4);
+      color: var(--comet);
+      font-size: 14px;
+    }
+
+    .sam-partner-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--blue-600);
+    }
+
+    /* ===== LEADER CARDS ===== */
+    .sam-leader-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      text-align: center;
+    }
+
+    .sam-leader-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-leader-role {
+      font-size: 13px;
+      color: var(--comet);
+      font-weight: 500;
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sam-leader-bio {
+      font-size: 14px;
+      color: var(--space-cadet);
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+
+    .sam-leader-social {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-4);
+    }
+
+    .sam-leader-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-default);
+      background: var(--seashell);
+      color: var(--space-cadet);
+      transition: background var(--motion-fast) ease-out, color var(--motion-fast) ease-out;
+    }
+
+    .sam-leader-social a:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .sam-leader-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ===== ADVISOR CARDS ===== */
+    .sam-advisor-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+
+    .sam-advisor-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-advisor-card p {
+      margin-bottom: 0;
+      color: var(--comet);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== CULTURE CARDS ===== */
+    .sam-culture-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+
+    .sam-culture-card h3 {
+      margin-bottom: var(--space-4);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-culture-card p {
+      margin-bottom: 0;
+      color: var(--comet);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== TESTIMONIAL ===== */
+    .sam-testimonial {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      border-left: 4px solid var(--orange);
+      margin-bottom: var(--space-8);
+    }
+
+    .sam-testimonial blockquote {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--space-cadet);
+      font-weight: 500;
+      margin-bottom: var(--space-4);
+      font-style: italic;
+    }
+
+    .sam-testimonial-source {
+      font-size: 13px;
+      color: var(--comet);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== BADGES STRIP ===== */
+    .sam-badges {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: var(--space-8) 0;
+    }
+
+    .sam-badge {
+      display: inline-block;
+      padding: var(--space-3) var(--space-6);
+      background: var(--seashell);
+      border-radius: var(--radius-default);
+      font-size: 13px;
+      color: var(--comet);
+      text-align: center;
+    }
+
+    /* ===== SECONDARY BUTTON ===== */
+    .sam-button-secondary {
+      display: inline-block;
+      padding: var(--space-3) var(--space-6);
+      background: transparent;
+      border: 1px solid var(--border-grey);
+      color: var(--space-cadet);
+      text-decoration: none;
+      border-radius: var(--radius-default);
+      font-size: 14px;
+      font-weight: 600;
+      transition: background var(--motion-fast) ease-out, color var(--motion-fast) ease-out, border-color var(--motion-fast) ease-out;
+    }
+
+    .sam-button-secondary:hover {
+      background: var(--seashell);
+      border-color: var(--space-cadet);
+      color: var(--orange);
+    }
+
+    /* ===== LINK WITH ARROW ===== */
+    .sam-link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--blue-600);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: gap var(--motion-fast) ease-out;
+    }
+
+    .sam-link-arrow:hover {
+      gap: var(--space-3);
+      color: var(--orange);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sam-section {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .sam-section--hero,
+    .sam-section--dark {
+        padding: var(--space-24) var(--space-6);
+      }
+    }
+
+    /* ===== FOCUS & ACCESSIBILITY ===== */
+    *:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+
+    /* ===== ASSET PAGE DESIGN TOKENS ===== */
+    :root {
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --radius: 4px;
+      --shadow-sm: 0 1px 3px rgba(31,31,51,0.08);
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+      --space-24: 96px;
+      --space-30: 120px;
+      --max-width: 1120px;
+      --font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+    }
+
+    /* ===== PAGE WRAPPER ===== */
+    .sam-page,
+    .sam-page * {
+      font-family: var(--font);
+      box-sizing: border-box;
+    }
+    .sam-page {
+      color: var(--space-cadet);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== CONTAINER ===== */
+    .sam-section__inner,
+    .sam-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    /* ===== BREADCRUMB ===== */
+    .sam-spec-breadcrumb {
+      padding: var(--space-4) var(--space-6);
+      max-width: var(--max-width);
+      margin: 0 auto;
+      font-size: 0.8125rem;
+      color: var(--comet);
+    }
+    .sam-spec-breadcrumb a {
+      color: var(--blue-600);
+      text-decoration: none;
+    }
+    .sam-spec-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== HERO (ASSET SPEC) ===== */
+    .sam-hero--spec {
+      position: relative;
+      overflow: hidden;
+      background: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-30) var(--space-6);
+    }
+    .sam-hero__inner {
+      position: relative; z-index: 2;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-hero__overline,
+    .overline {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--space-3);
+    }
+    .sam-hero__h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 var(--space-4) 0;
+      color: var(--white);
+    }
+    .sam-hero__lead {
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.8);
+      max-width: 720px;
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-hero__ctas {
+      display: flex;
+      gap: var(--space-4);
+    }
+    .sam-hero__split {
+      display: flex;
+      gap: var(--space-10);
+    }
+    .sam-hero__copy {
+      flex: 1;
+    }
+    .sam-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+
+    /* ===== BUTTONS ===== */
+    .sam-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 14px;
+      font-weight: 600;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: background 0.2s ease;
+      cursor: pointer;
+      border: none;
+      background: var(--orange);
+      color: var(--white);
+    }
+    .sam-cta:hover { background: #e04a24; }
+    .sam-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 14px;
+      font-weight: 600;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      text-decoration: none;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .sam-cta-secondary:hover { border-color: rgba(255,255,255,0.6); }
+
+    /* ===== WHY MONITOR ===== */
+    .sam-spec-why {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-why__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-why__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-why__inner .lead,
+    .sam-spec-why__lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-why__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-why__card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+    }
+    .sam-spec-why__card-stat {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--space-cadet);
+      line-height: 1.2;
+      margin-bottom: var(--space-3);
+    }
+    .sam-spec-why__card-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+
+    /* ===== FAULT TABLE ===== */
+    .sam-spec-faults {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-faults__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-faults__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-faults__inner > p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-spec-faults__table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+    }
+    .sam-spec-faults__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .sam-spec-faults__th {
+      background: var(--space-cadet);
+      color: var(--white);
+      font-weight: 600;
+      padding: var(--space-3) var(--space-4);
+      text-align: left;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .sam-spec-faults__td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--border-grey);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .sam-spec-faults__td--label {
+      font-weight: 600;
+      color: var(--space-cadet);
+      white-space: nowrap;
+    }
+    .sam-spec-faults__td--yes {
+      color: var(--space-cadet);
+    }
+    .sam-spec-faults__note {
+      font-size: 0.8125rem;
+      color: var(--comet);
+      margin-top: var(--space-4);
+      font-style: italic;
+    }
+
+
+    /* ===== PUMP CURVE SECTION ===== */
+    .sam-spec-curve {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-curve__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-curve__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-curve__split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      margin-top: var(--space-8);
+    }
+    .sam-spec-curve__block {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+    .sam-spec-curve__block:last-child {
+      margin-bottom: 0;
+    }
+    .sam-spec-curve__block-title {
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-curve__block-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+    .sam-spec-curve__visual {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .sam-spec-curve__visual img {
+      width: 100%;
+      height: auto;
+    }
+    .sam-spec-curve__proof {
+      display: flex;
+      gap: var(--space-10);
+      margin-top: var(--space-8);
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--border-grey);
+    }
+    .sam-spec-curve__stat-value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--space-cadet);
+    }
+    .sam-spec-curve__stat-label {
+      font-size: 0.8125rem;
+      color: var(--comet);
+      margin-top: var(--space-1);
+    }
+
+    /* ===== ENERGY SECTION ===== */
+    .sam-spec-energy {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-energy__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-energy__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-energy__split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      margin-top: var(--space-8);
+    }
+    .sam-spec-energy__copy p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+    .sam-spec-energy__metrics {
+      display: flex;
+      gap: var(--space-10);
+      margin-top: var(--space-6);
+    }
+    .sam-spec-energy__metric-value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--space-cadet);
+    }
+    .sam-spec-energy__metric-label {
+      font-size: 0.8125rem;
+      color: var(--comet);
+      margin-top: var(--space-1);
+    }
+    .sam-spec-energy__features {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+    .sam-spec-energy__feature {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+    }
+    .sam-spec-energy__feature-title {
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-energy__feature-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+    }
+
+    /* ===== INDUSTRIES SECTION ===== */
+    .sam-spec-industries {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-industries__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-industries__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-industries__inner .lead {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-spec-industries__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-industries__card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s ease;
+    }
+    a.sam-spec-industries__card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .sam-spec-industries__card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-industries__card-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+    }
+
+    /* ===== INSTALL SECTION ===== */
+    .sam-spec-install {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-install__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-install__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-8) 0;
+      text-align: left;
+    }
+    .sam-spec-install__split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      align-items: center;
+    }
+    .sam-spec-install__steps {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+    .sam-spec-install__step {
+      display: flex;
+      gap: var(--space-4);
+    }
+    .sam-spec-install__step-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--space-cadet);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sam-spec-install__step-title {
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+    .sam-spec-install__step-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+    }
+    .sam-spec-install__links {
+      margin-top: var(--space-6);
+    }
+    .sam-spec-install__image-placeholder {
+      background: var(--border-grey);
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--comet);
+      font-size: 0.875rem;
+    }
+    .sam-spec-install__image img {
+      width: 100%;
+      border-radius: var(--radius);
+    }
+
+    /* ===== DETECTION STORIES ===== */
+    .sam-spec-stories {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-stories__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-stories__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-spec-stories__inner .lead {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-spec-stories__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-stories__card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s ease;
+    }
+    a.sam-spec-stories__card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .sam-spec-stories__card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-3);
+    }
+    .sam-spec-stories__card-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .sam-spec-stories__card-industry {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--comet);
+    }
+    .sam-spec-stories__card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-stories__card-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .sam-spec-stories__card-link {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--blue-600);
+      margin-top: var(--space-4);
+    }
+
+    /* ===== RELATED ASSETS ===== */
+    .sam-spec-related {
+      padding: var(--space-24) var(--space-6);
+      background: var(--seashell);
+    }
+    .sam-spec-related__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-related__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-8) 0;
+      text-align: left;
+    }
+    .sam-spec-related__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-related__card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s ease;
+    }
+    a.sam-spec-related__card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .sam-spec-related__card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-related__card-desc {
+      font-size: 0.875rem;
+      color: var(--comet);
+    }
+
+    /* ===== PREFOOTER / TERMINAL CTA ===== */
+    .sam-prefooter {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-prefooter__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-prefooter__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      text-align: left;
+    }
+    .sam-prefooter__sub {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-prefooter__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 14px;
+      font-weight: 600;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      text-decoration: none;
+      background: var(--orange);
+      color: var(--white);
+    }
+    .sam-prefooter__cta:hover { background: #e04a24; }
+
+    /* ===== CTA BLOCK ===== */
+    .sam-cta-block--spec {
+      background: var(--white);
+      padding: var(--space-24) var(--space-6);
+    }
+    .sam-cta-block__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-cta-block__heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+      color: var(--space-cadet);
+    }
+    .sam-cta-block__sub {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-cta-block__actions {
+      display: flex;
+      gap: var(--space-4);
+    }
+    .sam-cta-block__actions .sam-cta-secondary {
+      color: var(--space-cadet);
+      border-color: var(--border-grey);
+    }
+
+    /* ===== TEXT LINK ===== */
+    .sam-text-link {
+      color: var(--blue-600);
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+    }
+    .sam-text-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== LEAD TEXT ===== */
+    .lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .sam-hero--spec { padding: var(--space-20) var(--space-6); }
+      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
+      .sam-spec-stories, .sam-spec-related, .sam-prefooter,
+      .sam-cta-block--spec {
+        padding: var(--space-16) var(--space-6);
+      }
+      .sam-hero__h1 { font-size: 1.875rem; }
+    }
+    @media (max-width: 768px) {
+      .sam-hero--spec { padding: var(--space-16) var(--space-4); }
+      .sam-spec-why, .sam-spec-faults,
+      .sam-spec-energy, .sam-spec-industries, .sam-spec-install,
+      .sam-spec-stories, .sam-spec-related, .sam-prefooter,
+      .sam-cta-block--spec {
+        padding: var(--space-12) var(--space-4);
+      }
+      .sam-hero__h1 { font-size: 1.5rem; }
+      .sam-spec-why__grid,
+      .sam-spec-industries__grid,
+      .sam-spec-stories__grid,
+      .sam-spec-related__grid {
+        grid-template-columns: 1fr;
+      }
+      .sam-spec-curve__split,
+      .sam-spec-energy__split,
+      .sam-spec-install__split {
+        grid-template-columns: 1fr;
+      }
+      .sam-hero__ctas {
+        flex-direction: column;
+      }
+      .sam-hero__split {
+        flex-direction: column;
+      }
+      .sam-spec-energy__metrics {
+        flex-direction: column;
+      }
+      .sam-cta-block__actions {
+        flex-direction: column;
+      }
+    }
+
+  </style>
+
+    /* ===== SUBMERSIBLE PUMPS SECTION ===== */
+    .sam-spec-submersible {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-submersible__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-submersible__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-submersible__stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      padding: var(--space-8) 0;
+      border-top: 1px solid var(--border-grey);
+      border-bottom: 1px solid var(--border-grey);
+      margin: var(--space-8) 0;
+    }
+    .sam-spec-submersible__stat-value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--space-cadet);
+      line-height: 1.2;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-submersible__stat-label {
+      font-size: 0.8125rem;
+      color: var(--comet);
+      line-height: 1.4;
+    }
+    .sam-spec-submersible__proof-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .sam-spec-submersible__proof-card {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius, 4px);
+      padding: var(--space-8);
+    }
+    .sam-spec-submersible__proof-customer {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-3);
+    }
+    .sam-spec-submersible__proof-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-submersible__proof-desc {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+    }
+    .sam-spec-submersible__proof-kpi {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--space-cadet);
+      margin-top: var(--space-4);
+    }
+
+    /* ===== OTHER PUMPS SECTION ===== */
+    .sam-spec-other-pumps {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-other-pumps__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-other-pumps__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-other-pumps__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .sam-spec-other-pumps__card {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius, 4px);
+      padding: var(--space-6);
+    }
+    .sam-spec-other-pumps__card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+    .sam-spec-other-pumps__card p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .sam-spec-submersible, .sam-spec-other-pumps {
+        padding: var(--space-16) var(--space-6);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sam-spec-submersible__stats {
+        grid-template-columns: 1fr;
+      }
+      .sam-spec-submersible__proof-grid {
+        grid-template-columns: 1fr;
+      }
+      .sam-spec-other-pumps__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pump predictive maintenance: SAM4 detects cavitation, wear rings, and bearing issues via ESA. All pump types supported. Proven on 3,000+ monitored assets.">
+  <title>Pump monitoring | Samotics</title>
+  <link rel="canonical" href="https://samoticstestpage.com/platform/what-we-monitor/pumps/">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+    }
+  </style>
+  <style>
     /* ===== SHARED DESIGN TOKENS ===== */
     :root {
       --sam-space-cadet: #1F1F33;
@@ -1688,9 +3307,10 @@
 
 <!-- ===================== PHP & HTML ===================== -->
 
+
 <main id="main-content" class="sam-spec">
 
-  <!-- ─── 1. HERO ─── dark background -->
+  <!-- ─── 1. HERO ─── dark background (space-cadet) -->
   <section class="sam-hero sam-hero--spec" style="background-image: url('/assets/images/heroes/hero-pumps.jpg'); background-color: var(--sam-space-cadet);">
     <div class="sam-hero__overlay"></div>
     <div class="sam-hero__inner">
@@ -1705,12 +3325,12 @@
       <div class="sam-hero__split">
         <!-- Left: copy -->
         <div class="sam-hero__copy">
-          <p class="sam-hero__overline">Asset type</p>
-          <h1 class="sam-hero__h1">Detect pump failures from the electrical cabinet</h1>
-          <p class="sam-hero__lead">SAM4 monitors every pump type from the motor control cabinet. Bearing degradation, cavitation, blockage, imbalance, and efficiency loss. Detected weeks before failure. No sensor on the pump.</p>
+          <p class="sam-hero__overline">Centrifugal pump monitoring</p>
+          <h1 class="sam-hero__h1">Detect centrifugal pump failures from the electrical cabinet</h1>
+          <p class="sam-hero__lead">SAM4 monitors centrifugal pumps from the motor control cabinet. Bearing degradation, cavitation, blockage, imbalance, and efficiency loss. Detected weeks before failure. No sensor on the pump.</p>
           <div class="sam-hero__ctas">
-            <a href="/contact?intent=demo&asset=pumps" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-            <a href="#faults" class="sam-btn sam-btn--outline">See What We Detect</a>
+            <a href="/contact?intent=demo&amp;asset=pumps" class="sam-btn sam-btn--primary">Talk to an engineer</a>
+            <a href="#faults" class="sam-btn sam-btn--outline">See what we detect</a>
           </div>
         </div>
       </div>
@@ -1718,12 +3338,12 @@
     </div>
   </section>
 
-  <!-- ─── 2. WHY MONITOR THIS ASSET ─── seashell background -->
+  <!-- ─── 2. WHY MONITOR CENTRIFUGAL PUMPS ─── seashell background -->
   <section class="sam-spec-why">
     <div class="sam-spec-why__inner">
-      <p class="overline">Why monitor pumps</p>
-      <h2>The most common rotating asset in industry, and the most likely to fail undetected</h2>
-      <p class="lead sam-spec-why__lead">Pumps account for the majority of rotating equipment in water utilities, chemical plants, and refineries. They run continuously, degrade gradually, and often fail without warning. Most lack condition monitoring.</p>
+      <p class="overline">Why monitor centrifugal pumps</p>
+      <h2>The most common rotating asset in industry. The most likely to fail undetected.</h2>
+      <p class="lead sam-spec-why__lead">Centrifugal pumps account for the majority of rotating equipment in water utilities, chemical plants, and refineries. They run continuously, degrade gradually, and most lack condition monitoring.</p>
 
       <div class="sam-spec-why__grid">
         <div class="sam-spec-why__card">
@@ -1741,7 +3361,6 @@
       </div>
     </div>
   </section>
-
 
   <!-- ─── 3. PUMP PERFORMANCE CURVE ─── white background -->
   <section class="sam-spec-curve">
@@ -1887,8 +3506,60 @@
     </div>
   </section>
 
-  <!-- ─── 5. DETECTION STORIES ─── white background -->
-  <section class="sam-spec-stories">
+  <!-- ─── 5. SUBMERSIBLE PUMPS ─── white background -->
+  <section class="sam-spec-submersible">
+    <div class="sam-spec-submersible__inner">
+      <p class="overline">Submersible pump monitoring</p>
+      <h2>The UK's largest submersible pump monitoring programme runs on SAM4</h2>
+      <p class="lead">Submersible pumps sit underground, in wet wells, and at the bottom of boreholes. Physical sensors cannot reach them. SAM4 monitors from the motor control cabinet above ground, detecting blockages, seal degradation, and efficiency loss without entering the wet well.</p>
+
+      <div class="sam-spec-submersible__stats">
+        <div>
+          <div class="sam-spec-submersible__stat-value">£20M+</div>
+          <div class="sam-spec-submersible__stat-label">documented benefits across UK water utilities</div>
+        </div>
+        <div>
+          <div class="sam-spec-submersible__stat-value">5,000+</div>
+          <div class="sam-spec-submersible__stat-label">pumps monitored across wastewater and clean water networks</div>
+        </div>
+        <div>
+          <div class="sam-spec-submersible__stat-value">97.4%</div>
+          <div class="sam-spec-submersible__stat-label">blockage detection accuracy on sewage pumps</div>
+        </div>
+      </div>
+
+      <div class="sam-spec-submersible__proof-grid">
+        <div class="sam-spec-submersible__proof-card">
+          <div class="sam-spec-submersible__proof-customer">Yorkshire Water</div>
+          <h3 class="sam-spec-submersible__proof-title">£10M contract. 1,000+ stations. 70,000 inspection trips replaced per year.</h3>
+          <p class="sam-spec-submersible__proof-desc">Yorkshire Water deployed SAM4 across its entire sewage pumping network. The system detects blockages, mechanical faults, and efficiency loss on submersible pumps that were previously unmonitored. Result: £390K in potential Ofwat fines avoided in the first year.</p>
+          <div class="sam-spec-submersible__proof-kpi">£390K fines avoided</div>
+          <a href="/resources/case-studies/how-yorkshire-water-saved-390k-in-potential-fine-with-samotics/" class="sam-text-link">Read the case study &rarr;</a>
+        </div>
+
+        <div class="sam-spec-submersible__proof-card">
+          <div class="sam-spec-submersible__proof-customer">Southern Water</div>
+          <h3 class="sam-spec-submersible__proof-title">£7M asset monitoring deal. Three failures prevented in first months.</h3>
+          <p class="sam-spec-submersible__proof-desc">Southern Water selected SAM4 to monitor submersible pumps across its wastewater network. Three equipment failures were detected and prevented before causing pollution incidents.</p>
+          <div class="sam-spec-submersible__proof-kpi">£748K losses prevented</div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-10);padding:var(--space-8);border-left:4px solid var(--orange);background:var(--seashell);border-radius:0 var(--radius,4px) var(--radius,4px) 0;">
+        <blockquote style="font-size:1.125rem;line-height:1.7;color:var(--space-cadet);font-weight:500;font-style:italic;margin:0 0 var(--space-4) 0;">
+          "Pollution prevention through early failure mode detection on sewage pumping assets."
+        </blockquote>
+        <span style="font-size:0.8125rem;color:var(--comet);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Simon Herrington, Yorkshire Water</span>
+      </div>
+
+      <p style="margin-top:var(--space-8);font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-comet);">On submersible pumps, SAM4 detects blockages and clogging (97.4% accuracy), mechanical imbalance, seal degradation through progressive load changes, and efficiency loss through continuous power monitoring. Motor winding faults are detected through stator current analysis. Bearing detection is lower on submersibles than surface pumps due to the distance between the motor and measurement point.</p>
+
+      <a href="/industries/water" class="sam-text-link" style="display:inline-block;margin-top:var(--space-4);">See SAM4 in Water &amp; Wastewater &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ─── 6. DETECTION STORIES ─── seashell background -->
+  <section class="sam-spec-stories" style="background:var(--seashell);">
     <div class="sam-spec-stories__inner">
       <p class="overline">Pump detections</p>
       <h2>Real faults caught on pumps</h2>
@@ -1961,7 +3632,38 @@
     </div>
   </section>
 
-  <!-- ─── 6. HOW SAM4 INSTALLS ─── seashell background -->
+  <!-- ─── 7. OTHER PUMP TYPES ─── white background -->
+  <section class="sam-spec-other-pumps">
+    <div class="sam-spec-other-pumps__inner">
+      <p class="overline">Other pump types</p>
+      <h2>SAM4 also monitors non-centrifugal pumps</h2>
+      <p class="lead">ESA-based monitoring works on any electric-motor-driven pump. Detection coverage varies by pump type. On non-centrifugal designs, SAM4 reliably detects motor health, power consumption, and mechanical conditions. Pump-specific hydraulic monitoring (like performance curves) is available only on centrifugal types.</p>
+
+      <div class="sam-spec-other-pumps__grid">
+        <div class="sam-spec-other-pumps__card">
+          <h3>Positive displacement pumps</h3>
+          <p>Gear pumps, lobe pumps, progressive cavity pumps. ESA detects motor health, bearing conditions, and load anomalies. Pump-specific fault detection depends on how strongly the fault modulates motor current.</p>
+        </div>
+        <div class="sam-spec-other-pumps__card">
+          <h3>Screw pumps</h3>
+          <p>Archimedean screws and twin-screw pumps. ESA detects bearing wear, imbalance, and efficiency loss. Effective for remote, unmanned installations where physical access is limited.</p>
+        </div>
+        <div class="sam-spec-other-pumps__card">
+          <h3>Diaphragm pumps</h3>
+          <p>Motor-driven diaphragm and peristaltic pumps. Motor health monitoring is full. Diaphragm-specific wear detection is not available through ESA.</p>
+        </div>
+        <div class="sam-spec-other-pumps__card">
+          <h3>Vertical turbine pumps</h3>
+          <p>Long-shaft vertical turbine and borehole pumps. ESA detects motor faults and major mechanical conditions. Bearing detection is limited by shaft length between motor and pump end.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:var(--space-8);font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-comet);">For detailed detection coverage on a specific pump type, contact our engineering team.</p>
+      <a href="/contact?intent=demo&amp;asset=pumps" class="sam-text-link" style="display:inline-block;margin-top:var(--space-3);">Talk to an engineer &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ─── 8. INSTALLATION ─── seashell background -->
   <section class="sam-spec-install">
     <div class="sam-spec-install__inner">
       <p class="overline">Installation on pumps</p>
@@ -2007,36 +3709,8 @@
     </div>
   </section>
 
-
-  <!-- ─── 7. INDUSTRIES ─── white background -->
-  <section class="sam-spec-industries">
-    <div class="sam-spec-industries__inner">
-      <p class="overline">Where pumps are monitored</p>
-      <h2>Industries using SAM4 on pumps</h2>
-
-      <div class="sam-spec-industries__grid">
-        <a href="/industries/water" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Water &amp; Wastewater</h3>
-          <p class="sam-spec-industries__card-desc">Booster pumps, submersible pumps, distribution pumps. Blockage and efficiency monitoring across the network.</p>
-        </a>
-        <a href="/industries/chemicals" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Chemicals</h3>
-          <p class="sam-spec-industries__card-desc">Process pumps, transfer pumps, circulation pumps. Monitoring in hazardous zones without physical access.</p>
-        </a>
-        <a href="/industries/oil-gas" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Oil &amp; Gas</h3>
-          <p class="sam-spec-industries__card-desc">Transfer pumps, injection pumps, cooling water pumps. ATEX-compatible monitoring from the MCC.</p>
-        </a>
-        <a href="/industries/metals-mining" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Metals &amp; Mining</h3>
-          <p class="sam-spec-industries__card-desc">Cooling pumps, slurry pumps, dewatering pumps. Harsh environments where pump access is restricted.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 8. RELATED ASSETS ─── seashell background -->
-  <section class="sam-spec-related">
+  <!-- ─── 9. RELATED ASSETS ─── white background -->
+  <section class="sam-spec-related" style="background:var(--white);">
     <div class="sam-spec-related__inner">
       <p class="overline">Related asset types</p>
       <h2>Other asset types SAM4 monitors</h2>
@@ -2064,19 +3738,21 @@
     </div>
   </section>
 
-  <!-- ─── 9. CTA ─── dark background -->
-  <section class="sam-cta-block sam-cta-block--spec">
+  <!-- ─── 10. CTA ─── dark background (space-cadet) -->
+  <section class="sam-cta-block sam-cta-block--spec" style="background:var(--space-cadet);color:var(--white);">
     <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">See SAM4 monitoring pumps</h2>
-      <p class="sam-cta-block__sub">A 30-minute demo shows SAM4 running on pumps like yours with real fault data, real diagnostics, and real energy insights.</p>
+      <h2 class="sam-cta-block__heading" style="color:var(--white);">See SAM4 monitoring pumps</h2>
+      <p class="sam-cta-block__sub" style="color:rgba(255,255,255,0.8);">A 30-minute demo shows SAM4 running on pumps like yours. Real fault data. Real diagnostics. Real energy insights.</p>
       <div class="sam-cta-block__actions">
-        <a href="/contact?intent=demo&asset=pumps" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-        <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary-light">Start Your Asset Audit</a>
+        <a href="/contact?intent=demo&amp;asset=pumps" class="sam-cta">Talk to an engineer</a>
+        <a href="/contact/asset-audit" class="sam-cta-secondary">Start your asset audit</a>
       </div>
     </div>
   </section>
 
 </main>
+
+
   <!-- ===================== PHP & HTML ===================== -->
 
 <!-- Pre-footer CTA -->
@@ -2209,7 +3885,6 @@
   </div>
 
   <script>
-  <script>
     (function () {
       'use strict';
 
@@ -2260,6 +3935,5 @@
     })();
   </script>
 
-  </script>
 </body>
 </html>
