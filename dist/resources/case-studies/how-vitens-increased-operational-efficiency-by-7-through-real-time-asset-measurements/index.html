@@ -4,15 +4,951 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="How Vitens increased operational efficiency by 7% through real-time asset measurements">
-  <title>Vitens Case Study | Samotics</title>
+  <title>Vitens: 7% Efficiency Gain | Samotics</title>
   <link rel="canonical" href="https://samoticstestpage.com/resources/case-studies/how-vitens-increased-operational-efficiency-by-7-through-real-time-asset-measurements/">
-  <meta property="og:title" content="Vitens Case Study | Samotics">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: italic;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: italic;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
+    }
+  
+    .sam-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+    .sam-post__hero { position: relative; overflow: hidden; }
+    .sam-post__hero-inner, .sam-post__hero > div:not(.sam-hero-overlay) { position: relative; z-index: 2; }
+  </style>
+  <style>
+:root {
+  /* Core Palette */
+  --sam-space-cadet:     #1F1F33;
+  --sam-orange:          #FF5429;
+  --sam-orange-dark:     #D7411B;
+  --sam-orange-deep:     #A33013;
+  --sam-blue:            #005CBA;
+  --sam-blue-dark:       #004179;
+  --sam-blue-light:      #B3DAFF;
+  --sam-teal:            #0098AC;
+  --sam-teal-dark:       #006C6C;
+  --sam-white:           #FFFFFF;
+  --sam-seashell:        #F8F5F2;
+  --sam-black:           #111111;
+  --sam-comet:           #6B6B7F;
+  --sam-muted-dark:      #B0B0C8;
+  --sam-border-light:    #E8E4E0;
+  --sam-dark-elevated:   #2A2A42;
+  --sam-gold:            #FAC91F;
+
+  /* Fonts */
+  --sam-font:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sam-mono:  'JetBrains Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Spacing */
+  --sp-01: 2px;
+  --sp-02: 4px;
+  --sp-03: 8px;
+  --sp-04: 12px;
+  --sp-05: 16px;
+  --sp-06: 24px;
+  --sp-07: 32px;
+  --sp-08: 48px;
+  --sp-09: 64px;
+  --sp-10: 96px;
+  --sp-11: 128px;
+  --sp-12: 160px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md:  0 4px 12px rgba(31,31,51,0.10);
+  --shadow-lg:  0 12px 32px rgba(31,31,51,0.14);
+  --shadow-cta: 0 4px 16px rgba(255,84,41,0.25);
+
+  /* Transitions */
+  --ease: 150ms ease-out;
+}
+
+:root {
+  --sam-space-cadet: #1F1F33;
+  --sam-orange: #FF5429;
+  --sam-orange-dark: #D7411B;
+  --sam-blue: #005CBA;
+  --sam-teal: #0098AC;
+  --sam-white: #FFFFFF;
+  --sam-seashell: #F8F5F2;
+  --sam-black: #111111;
+  --sam-comet: #6B6B7F;
+  --sam-border-light: #E8E4E0;
+  --sam-header-bg: #1F1F33;
+  --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sam-header-h: 80px;
+  --sam-header-h-compact: 64px;
+  --sam-transition: 150ms ease-out;
+}
+
+/* ── Skip Link ── */
+.sam-skip-link {
+  position: absolute; top: -100%; left: 16px; z-index: 10001;
+  padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white);
+  font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 0;
+}
+.sam-skip-link:focus { top: 8px; transform: none; }
+
+/* ── Header ── */
+.sam-header {
+  position: sticky; top: 0; z-index: 1000; width: 100%;
+  height: var(--sam-header-h); background: var(--sam-header-bg);
+  transition: height var(--sam-transition), box-shadow var(--sam-transition);
+}
+.sam-header.is-scrolled {
+  height: var(--sam-header-h-compact);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.sam-header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px;
+}
+.sam-header__logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+.sam-logo { height: auto; transition: transform 200ms ease-out; }
+.sam-logo--white {  }
+.sam-logo--dark { display: none; }
+.sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+
+/* ── Desktop Nav ── */
+.sam-nav { display: flex; align-items: center; justify-content: center; gap: 28px; flex: 1; }
+.sam-nav__link {
+  display: flex; align-items: center; gap: 5px;
+  padding: 8px 0; font: 500 15px/1 var(--sam-font);
+  color: rgba(255,255,255,0.85); text-decoration: none;
+  background: none; border: none; cursor: pointer;
+  position: relative; transition: color var(--sam-transition); white-space: nowrap;
+}
+.sam-nav__link:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.sam-nav__chevron { transition: transform 200ms ease-out; }
+.sam-nav__item--has-dropdown { position: relative; }
+.sam-dropdown {
+  display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  min-width: 280px; background: var(--sam-white); border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12); padding: 8px; z-index: 100;
+}
+.sam-nav__item--has-dropdown:hover .sam-dropdown { display: block; }
+.sam-nav__item--has-dropdown:hover .sam-nav__chevron { transform: rotate(180deg); }
+.sam-dropdown__item {
+  display: block; padding: 10px 14px; border-radius: 8px; text-decoration: none;
+  transition: background 120ms ease-out;
+}
+.sam-dropdown__item:hover { background: var(--sam-seashell); }
+.sam-dropdown__label { display: block; font: 500 14px/1.3 var(--sam-font); color: var(--sam-space-cadet); }
+.sam-dropdown__desc { display: block; font: 400 12px/1.3 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
+
+/* ── CTA Button ── */
+.sam-header__cta {
+  margin-left: 16px; padding: 10px 22px;
+  background: var(--sam-orange); color: var(--sam-white);
+  font: 600 14px/1 var(--sam-font); text-decoration: none;
+  border-radius: 4px; transition: background 150ms ease-out;
+}
+.sam-header__cta:hover { background: var(--sam-orange-dark); }
+
+/* ── Hamburger ── */
+.sam-hamburger {
+  display: none; background: none; border: none; padding: 8px;
+  cursor: pointer; color: #fff;
+}
+.sam-hamburger svg { display: block; }
+@media (max-width: 991px) {
+  .sam-nav, .sam-header__cta { display: none; }
+  .sam-hamburger { display: flex; }
+}
+
+/* ── Mobile Nav ── */
+.sam-mobile-nav {
+  display: none; position: fixed; top: var(--sam-header-h); left: 0; right: 0; bottom: 0;
+  background: var(--sam-header-bg); z-index: 999; overflow-y: auto; padding: 16px;
+}
+.sam-mobile-nav.is-open { display: block; }
+.sam-mobile-nav__link {
+  display: block; padding: 14px 0; font: 500 16px/1 var(--sam-font);
+  color: rgba(255,255,255,0.85); text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.sam-mobile-nav__group { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sam-mobile-nav__toggle {
+  display: flex; justify-content: space-between; align-items: center; width: 100%;
+  padding: 14px 0; background: none; border: none; cursor: pointer;
+  font: 500 16px/1 var(--sam-font); color: rgba(255,255,255,0.85);
+}
+.sam-mobile-nav__arrow { transition: transform 200ms; }
+.sam-mobile-nav__group.is-open .sam-mobile-nav__arrow { transform: rotate(180deg); }
+.sam-mobile-nav__sub {
+  display: none; padding: 0 0 8px 16px;
+}
+.sam-mobile-nav__group.is-open .sam-mobile-nav__sub { display: block; }
+.sam-mobile-nav__sub a {
+  display: block; padding: 10px 0; font: 400 14px/1.4 var(--sam-font);
+  color: rgba(255,255,255,0.6); text-decoration: none;
+}
+.sam-mobile-nav__cta-wrap { padding: 24px 0; }
+.sam-mobile-nav__cta {
+  display: block; text-align: center; padding: 14px;
+  background: var(--sam-orange); color: var(--sam-white);
+  font: 600 15px/1 var(--sam-font); text-decoration: none; border-radius: 8px;
+}
+
+/* ═══════════════════════════════════════════════
+   BLOG POST STYLES
+   ═══════════════════════════════════════════════ */
+.sam-post { padding: 0 0 96px; }
+.sam-post__hero {
+  padding: 96px 32px 64px;
+}
+.sam-post__hero-inner {
+  max-width: 800px; margin: 0 auto;
+}
+.sam-post__breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font: 400 13px/1 var(--sam-font); margin-bottom: 24px;
+}
+.sam-post__breadcrumb a {
+  color: rgba(255,255,255,0.7); text-decoration: none;
+}
+.sam-post__breadcrumb a:hover { color: var(--sam-white); }
+.sam-post__breadcrumb-sep { color: rgba(255,255,255,0.4); }
+.sam-post__category {
+  display: inline-block;
+  font: 600 12px/1 var(--sam-font);
+  color: #0098AC;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.sam-post__title {
+  font: 600 2.5rem/1.15 var(--sam-font);
+  color: var(--sam-white);
+  margin: 0 0 20px;
+}
+.sam-post__meta {
+  display: flex; align-items: center; gap: 16px;
+  font: 400 14px/1 var(--sam-font); color: rgba(255,255,255,0.7);
+}
+.sam-post__meta-dot {
+  width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.4);
+}
+
+/* ── Post Content ── */
+.sam-post__content {
+  max-width: 800px; margin: 0 auto;
+  padding: 48px 32px 0;
+}
+.sam-post__content h2 {
+  font: 600 1.5rem/1.25 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 48px 0 16px;
+}
+.sam-post__content h3 {
+  font: 600 1.2rem/1.3 var(--sam-font);
+  color: var(--sam-space-cadet);
+  margin: 36px 0 12px;
+}
+.sam-post__content p {
+  font: 400 1.0625rem/1.7 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 0 20px;
+}
+.sam-post__content ul, .sam-post__content ol {
+  font: 400 1.0625rem/1.7 var(--sam-font);
+  color: var(--sam-comet);
+  margin: 0 0 20px;
+  padding-left: 24px;
+}
+.sam-post__content li {
+  margin-bottom: 8px;
+}
+.sam-post__content strong {
+  font-weight: 600;
+  color: var(--sam-space-cadet);
+}
+.sam-post__content a {
+  color: var(--sam-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sam-post__content a:hover {
+  color: var(--sam-orange);
+}
+.sam-post__content blockquote {
+  border-left: 3px solid var(--sam-orange);
+  margin: 24px 0;
+  padding: 16px 24px;
+  background: var(--sam-seashell);
+  border-radius: 0 8px 8px 0;
+}
+.sam-post__content blockquote p {
+  margin: 0;
+  color: var(--sam-comet);
+  font-style: italic;
+}
+.sam-post__content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font: 400 0.9375rem/1.5 var(--sam-font);
+}
+.sam-post__content th {
+  background: var(--sam-seashell);
+  font-weight: 600;
+  color: var(--sam-space-cadet);
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--sam-border-light);
+}
+.sam-post__content td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--sam-border-light);
+  color: var(--sam-comet);
+}
+
+/* ── Image Placeholder ── */
+.sam-post__image-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; background: var(--sam-seashell); border: 2px dashed var(--sam-border-light);
+  border-radius: 8px; padding: 48px 24px; margin: 24px 0;
+}
+.sam-post__image-placeholder svg {
+  width: 48px; height: 48px; color: var(--sam-comet); opacity: 0.4;
+}
+.sam-post__image-placeholder span {
+  font: 400 12px/1.4 var(--sam-font); color: var(--sam-comet); opacity: 0.5;
+  text-align: center; max-width: 300px;
+}
+
+/* ── Post Footer ── */
+.sam-post__footer {
+  max-width: 800px; margin: 48px auto 0;
+  padding: 32px 32px 0;
+  border-top: 1px solid var(--sam-border-light);
+}
+.sam-post__cta-banner {
+  background: var(--sam-space-cadet);
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+}
+.sam-post__cta-title {
+  font: 600 1.5rem/1.25 var(--sam-font);
+  color: var(--sam-white);
+  margin: 0 0 12px;
+}
+.sam-post__cta-text {
+  font: 400 1rem/1.6 var(--sam-font);
+  color: rgba(255,255,255,0.7);
+  margin: 0 0 24px;
+  max-width: 480px;
+  margin-left: auto; margin-right: auto;
+}
+.sam-post__cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--sam-orange);
+  color: var(--sam-white);
+  font: 600 15px/1 var(--sam-font);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 150ms ease-out;
+}
+.sam-post__cta-btn:hover {
+  background: var(--sam-orange-dark);
+}
+
+/* ── Prefooter ── */
+.sam-prefooter {
+  background: var(--sam-seashell); padding: 80px 0; text-align: center;
+}
+.sam-prefooter__inner {
+  max-width: 1584px; margin: 0 auto; padding: 0 32px;
+}
+.sam-prefooter__sub {
+  font: 400 1.125rem/1.6 var(--sam-font); color: var(--sam-comet); margin: 0 0 32px;
+}
+.sam-prefooter__cta {
+  display: inline-block; padding: 16px 36px;
+  background: var(--sam-orange); color: var(--sam-white);
+  font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 8px;
+  transition: background 150ms ease-out;
+}
+.sam-prefooter__cta:hover { background: var(--sam-orange-dark); }
+
+/* ── Footer ── */
+.sam-footer { background: var(--sam-space-cadet); padding-top: 96px; }
+.sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
+.sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
+.sam-footer__logo { display: inline-flex; text-decoration: none; }
+.sam-footer__logo img { width: 140px; height: auto; }
+.sam-footer__tagline { font: 400 16px/1.6 var(--sam-font); color: rgba(255,255,255,0.6); margin: 0; max-width: 360px; }
+.sam-footer__grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 32px; margin-bottom: 64px; }
+.sam-footer__col-heading { font: 600 14px/1 var(--sam-font); color: #fff; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px; }
+.sam-footer__col-links { display: flex; flex-direction: column; gap: 12px; }
+.sam-footer__col-links a { font: 400 14px/1.4 var(--sam-font); color: rgba(255,255,255,0.6); text-decoration: none; transition: color 150ms ease-out; }
+.sam-footer__col-links a:hover { color: #fff; }
+.sam-footer__divider { height: 1px; background: rgba(255,255,255,0.15); }
+.sam-footer__bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+.sam-footer__bottom-left { display: flex; align-items: center; gap: 24px; }
+.sam-footer__copyright { font: 400 13px/1 var(--sam-font); color: rgba(255,255,255,0.4); }
+.sam-footer__social { display: inline-flex; align-items: center; color: rgba(255,255,255,0.4); transition: color 150ms ease-out; }
+.sam-footer__social:hover { color: #fff; }
+.sam-footer__legal { display: flex; align-items: center; gap: 8px; }
+.sam-footer__legal a { font: 400 13px/1 var(--sam-font); color: rgba(255,255,255,0.4); text-decoration: none; transition: color 150ms ease-out; }
+.sam-footer__legal a:hover { color: #fff; }
+.sam-footer__legal-sep { font: 400 13px/1 var(--sam-font); color: rgba(255,255,255,0.2); }
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .sam-post__hero { padding: 80px 16px 48px; }
+  .sam-post__title { font-size: 2rem; }
+  .sam-post__content { padding: 32px 16px 0; }
+  .sam-post__footer { padding: 24px 16px 0; }
+  .sam-post__cta-banner { padding: 32px 24px; }
+  .sam-prefooter { padding: 64px 0; }
+  .sam-footer { padding-top: 64px; }
+  .sam-footer__inner { padding: 0 16px; }
+  .sam-footer__grid { grid-template-columns: 1fr; gap: 0; }
+  .sam-footer__col { border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .sam-footer__col-heading {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0; margin: 0; cursor: pointer;
+  }
+  .sam-footer__col-heading::after {
+    content: ''; width: 10px; height: 10px;
+    border-right: 2px solid rgba(255,255,255,0.4);
+    border-bottom: 2px solid rgba(255,255,255,0.4);
+    transform: rotate(45deg); transition: transform 200ms ease-out;
+  }
+  .sam-footer__col.is-open .sam-footer__col-heading::after { transform: rotate(-135deg); }
+  .sam-footer__col-links { display: none; padding: 0 0 16px; }
+  .sam-footer__col.is-open .sam-footer__col-links { display: flex; }
+  .sam-footer__bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+@media (max-width: 671px) {
+  .sam-post__hero { padding: 64px 16px 40px; }
+  .sam-post__title { font-size: 1.6rem; }
+  .sam-post__meta { flex-wrap: wrap; gap: 8px; }
+}
+  
+.sam-post__hero-image { max-width: 800px; margin: -32px auto 0; padding: 0 32px; }
+.sam-post__hero-image img { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+.sam-post__content pre { white-space: pre-wrap; word-wrap: break-word; overflow-x: auto; max-width: 100%; }
+@media (max-width: 671px) { .sam-post__hero-image { padding: 0 16px; margin-top: -24px; } }
+
+figure.sam-post__image { margin: 32px 0; }
+figure.sam-post__image img { width: 100%; height: auto; border-radius: 4px; }
+figure.sam-post__image figcaption { font-size: 0.8125rem; color: var(--comet, #6B6B7F); margin-top: 8px; line-height: 1.5; }
+</style>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vitens: 7% Efficiency Gain | Samotics">
   <meta property="og:description" content="How Vitens increased operational efficiency by 7% through real-time asset measurements">
-  <meta property="og:image" content="https://samoticstestpage.com/open-graph/case-study.jpg">
   <meta property="og:url" content="https://samoticstestpage.com/resources/case-studies/how-vitens-increased-operational-efficiency-by-7-through-real-time-asset-measurements/">
-  <link rel="stylesheet" href="/css/style.css">
+  <meta property="og:image" content="https://samoticstestpage.com/assets/images/og-default.png">
+  <meta property="og:site_name" content="Samotics">
 </head>
 <body>
-  <p>Case study content goes here.</p>
+
+<header class="sam-header" role="navigation" aria-label="Main navigation">
+  <a href="#main-content" class="sam-skip-link">Skip to content</a>
+  <div class="sam-header__inner">
+
+    <!-- Logo -->
+    <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--dark" width="140" height="32">
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="sam-nav" aria-label="Main navigation">
+
+      <a href="/problem" class="sam-nav__link">Problem</a>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Technology
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/technology/esa" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Electrical Signature Analysis</span>
+            <span class="sam-dropdown__desc">The science behind SAM4</span>
+          </a>
+          <a href="/technology/esa-vs-vibration" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">ESA &amp; Vibration</span>
+            <span class="sam-dropdown__desc">How ESA and vibration work together</span>
+          </a>
+          <a href="/technology/how-sam4-works" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Technical Deep Dive</span>
+            <span class="sam-dropdown__desc">Detection accuracy, methodology, and performance data</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Assets
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/platform/what-we-monitor/pumps" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Pumps</span>
+            <span class="sam-dropdown__desc">Centrifugal, submersible, borehole, and canned motor</span>
+          </a>
+          <a href="/platform/what-we-monitor/compressors" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Compressors</span>
+            <span class="sam-dropdown__desc">Reciprocating, screw, and centrifugal</span>
+          </a>
+          <a href="/platform/what-we-monitor/fans-blowers" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Fans &amp; Blowers</span>
+            <span class="sam-dropdown__desc">Axial, centrifugal, and process air</span>
+          </a>
+          <a href="/platform/what-we-monitor/conveyors" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Conveyors</span>
+            <span class="sam-dropdown__desc">Belt, screw, and chain conveyors</span>
+          </a>
+          <a href="/platform/what-we-monitor/transmissions" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Transmissions</span>
+            <span class="sam-dropdown__desc">Gearboxes, couplings, and belt drives</span>
+          </a>
+          <a href="/platform/what-we-monitor" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">All Assets &amp; Motors</span>
+            <span class="sam-dropdown__desc">Full detection matrix by asset type and fault mode</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Platform
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/platform/sam4" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">SAM4 Platform</span>
+            <span class="sam-dropdown__desc">Dashboard, diagnostics, and service model</span>
+          </a>
+          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">How It Installs</span>
+            <span class="sam-dropdown__desc">&lt;60 minutes, back online same shift</span>
+          </a>
+          <a href="/platform/security" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Security &amp; Compliance</span>
+            <span class="sam-dropdown__desc">ISO 27001, ISO 9001, NIS2 aligned, cellular architecture</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Industries
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/industries/water" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Water &amp; Wastewater</span>
+          </a>
+          <a href="/industries/oil-gas" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Oil &amp; Gas</span>
+          </a>
+          <a href="/industries/metals-mining" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Metals &amp; Mining</span>
+          </a>
+          <a href="/industries/chemicals" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Chemicals</span>
+          </a>
+          <a href="/industries/pulp-paper" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Pulp &amp; Paper</span>
+          </a>
+          <a href="/industries/airports" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Airports</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/proof" class="sam-nav__link">Proof</a>
+      <a href="/about" class="sam-nav__link">About</a>
+
+    </nav>
+
+    <div class="sam-header__actions">
+      <a href="/contact/asset-audit" class="sam-cta-secondary" style="font-family:var(--sam-font);font-size:14px;font-weight:500;color:var(--sam-white);text-decoration:none;opacity:0.8;white-space:nowrap;transition:opacity 150ms ease-out;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Asset Audit</a>
+      <a href="/contact?intent=demo" class="sam-cta">Request a Demo</a>
+      <button class="sam-hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="sam-mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <nav class="sam-mobile-nav" aria-label="Mobile navigation">
+
+      <a href="/problem" class="sam-mobile-nav__link">Problem</a>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Technology
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/technology/esa">Electrical Signature Analysis</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Assets
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/what-we-monitor/pumps">Pumps</a>
+          <a href="/platform/what-we-monitor/compressors">Compressors</a>
+          <a href="/platform/what-we-monitor/fans-blowers">Fans &amp; Blowers</a>
+          <a href="/platform/what-we-monitor/conveyors">Conveyors</a>
+          <a href="/platform/what-we-monitor/transmissions">Transmissions</a>
+          <a href="/platform/what-we-monitor">All Assets &amp; Motors</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Platform
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Security &amp; Compliance</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Industries
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/industries/water">Water &amp; Wastewater</a>
+          <a href="/industries/oil-gas">Oil &amp; Gas</a>
+          <a href="/industries/metals-mining">Metals &amp; Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
+        </div>
+      </div>
+
+      <a href="/proof" class="sam-mobile-nav__link">Proof</a>
+      <a href="/about" class="sam-mobile-nav__link">About</a>
+
+      <div class="sam-mobile-nav__cta-wrap">
+        <a href="/contact?intent=demo" class="sam-mobile-nav__cta">Request a Demo</a>
+      </div>
+
+    </nav>
+  </div>
+
+</header>
+
+<main id="main-content" class="sam-post">
+  <section class="sam-post__hero" style="background: var(--space-cadet, #1F1F33) url('/assets/images/blog/how-vitens-increased-operational-efficiency-by-7-through-real-time-asset-measurements-hero.webp') center/cover no-repeat; position: relative; overflow: hidden;">
+    <div class="sam-hero-overlay"></div>
+    <div class="sam-post__hero-inner">
+      <div class="sam-post__breadcrumb">
+        <a href="/">Home</a>
+        <span class="sam-post__breadcrumb-sep">/</span>
+        <a href="/resources/case-studies/">Case Study</a>
+        <span class="sam-post__breadcrumb-sep">/</span>
+        <span style="color:rgba(255,255,255,0.7)">How Vitens increased operational efficiency by 7% through real-time asset measurements</span>
+      </div>
+      <span class="sam-post__category">Case Study</span>
+      <h1 class="sam-post__title">How Vitens increased operational efficiency by 7% through real-time asset measurements</h1>
+      <div class="sam-post__meta">
+        <span>September 12, 2024</span>
+        <span class="sam-post__meta-dot"></span>
+        <span>7 min read</span>
+      </div>
+    </div>
+  </section>
+
+
+  <article class="sam-post__content">
+<h2>Vitens’ ambitious strategy to improve sustainability with industrial efficiency</h2>
+<p>“Every Drop Sustainable,” that’s the vision at the heart of Vitens, the largest drinking water company in The Netherlands. The utility delivers high-quality drinking water to 5.6 million people and companies in 7 of the 12 Dutch provinces. Vitens understands that reliable drinking water is a necessity for our health and well-being, and securing the supply of this essential resource has to be sustainable and cost effective. As a company that places global responsibility at the heart of its long-term vision, Vitens is committed to creating a sustainable water ecosystem by 2030.</p>
+<div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
+<p>In Spannenburg, Vitens Water purifies 25 billion liters of drinking water annually.</p>
+<p>To this end, Vitens is investing in innovative solutions, using data smartly to improve its operational performance. Through continuous (real-time) measurement and the use of algorithms, model calculations and scenario analysis, a more constant and reliable drinking water quality and quantity can be produced and delivered. This sets Vitens at the forefront of water industry innovation to improve efficiency and sustainability. Reducing energy consumption and emissions plays a key role in this journey for Vitens, especially in light of climate change issues, a volatile energy market and rising energy prices. Pumps are the lifeblood of  Vitens’ daily operations with majority of electricity consumption used in groundwater extraction and clean water distribution. Improving pump performance and efficiency will therefore have a positive impact on Vitens’ operations in reducing energy consumption, costs and environmental impact.</p>
+<p>Vitens partnered with Samotics to undertake a proof-of-value pilot at one of the production facilities. The aim of this pilot was to demonstrate the ability of Samotics’ continuous asset monitoring solutions to improve the performance and energy efficiency of critical pumps. Samotics was chosen due to the performance they have shown in this area in the water industry. This case study highlights how this pilot improved the operational efficiency of a Vitens pumping station by more than 7% with the implementation of simple process changes.</p>
+<p>[</p>
+<div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
+<figure class="sam-post__image"><img src="https://samotics.com/wp-content/uploads/2024/09/vitens-success-story-building.png" alt="" loading="lazy"></figure>
+<h2>Analyzing an important part of a vast water network</h2>
+<p>To be able to continuously supply reliable and affordable drinking water, Vitens requires a vast drinking water infrastructure. 117 extraction fields with 1,250 extraction wells for groundwater extraction, 100 water treatment works, 49,000 kilometres of water mains and 1,400 employees are needed to deliver 350 million m³ water annually across a large area of The Netherlands. At the heart of this are thousands of pumps including borehole pumps and clean water distribution pumps. In 2021, energy consumption across the Vitens network amounted to 171 GWh. Vitens has ambitious plans to reduce this level of energy consumption as part of their 2030 sustainability goals. It has been estimated that across industry globally up to 40% of energy used by industrial equipment driven by electric motors is wasted due to operational inefficiencies, process-machine mismatches, and developing damage. This therefore provides quite a large scope for efficiency improvements across all industries.</p>
+<p>The Vitens production facility in Hoenderloo, in the Dutch province of Gelderland, was chosen as the optimal location to perform this proof-of-value pilot with Samotics. At this facility, Vitens pumps water to the surface using a group of borehole pumps. After being treated, the clean water is distributed further to three locations via dedicated pump stations on site.</p>
+<h2>Implementing an advanced analytics solution that can integrate with Vitens’ systems</h2>
+<p>Since 2010, Vitens has been working on the innovation program SLIMM, which stands for Self Learning Integrated Model based Management. The aim of this project is to digitize and automate water network management processes, so that the quality of the drinking water produced and distributed can be continuously controlled, and as efficiently and effectively as possible. One key element of the Hoenderloo pilot was to determine if Samotics advanced analytics solution could be integrated with Vitens SLIMM system. This was successful.</p>
+<p>A combined Samotics analytics solution was implemented for continuous monitoring of all 17 pumps at the Hoenderloo production facility (nine borehole pumps and eight clean water distribution pumps). This consisted of: energy sensors, which were installed inside the motor control cabinet for the pumps to gather electrical data; a gateway for initial signal processing<br />
+and distribution; and access to Samotics’ benchmark analytics platform to transform this electrical data into asset performance/efficiency recommendations. With no sensors needing to be installed on any of the pumps themselves, the installation could be performed quickly and data analytics could commence.</p>
+<p>[</p>
+<div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
+<figure class="sam-post__image"><img src="https://samotics.com/wp-content/uploads/2024/09/vitens-success-story-sam4-how-it-works.png" alt="" loading="lazy"></figure>
+<p>A key element of this total solution, specifically covering energy efficiency, is called SAM4, the results of which are covered in this case study. The solution was implemented to determine its ability to locate and diagnose energy waste for the pumps and generate solutions to these issues to help Vitens lower energy consumption, costs and associated emissions for these pumps. At a broader level, SAM4 focuses on the full efficiency of the pump motor set-up in the field, distinguishing motor and pump efficiency per asset (component efficiency), looking at asset efficiency (full pump set-up) and higher level<br />
+efficiency (like pumping stations with co-located pumps).</p>
+<p>By incorporating advanced analytics into their water management strategy and systems, Vitens was aiming to determine where these pumps were not running under the most efficient modes of operation (as close to best efficiency point as possible) or could potentially be outsized for purpose.</p>
+<h2>Locating pump energy inefficiencies and generating solutions</h2>
+<p>During the pilot, a focus was placed on three clean water distribution pumps that form the core of a pumping station that distributes clean water to Otterlo/Ede located not far from the Hoenderloo production facility. These pumps are critical to the supply of water to customers during both peak and non-peak times. It is quite common to have multiple pumps of different sizes to work together in specific locations to meet demand variations. The three clean water distribution pumps include two larger 55 kW distribution pumps (RNP8 and RNP9) and a smaller 11 kW distribution pump (RNP7). See the illustration below for an overview of the set-up.</p>
+<p>[</p>
+<div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
+<figure class="sam-post__image"><img src="https://samotics.com/wp-content/uploads/2024/09/vitens-success-story-pumping-station-setup.png" alt="" loading="lazy"></figure>
+<p>Following sensor installation, the SAM4 platform informed Vitens that the two larger pumps (RNP8 and RNP9) were often used inefficiently to supply flow rates that could be independently covered far more efficiently by the smaller pump. SAM4 further determined that a significant part of the energy losses were due to the mode of operation introducing operational efficiency losses in the pump and associated electric motor accounting for about 10% of total efficiency losses.</p>
+<p>[</p>
+<div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
+<figure class="sam-post__image"><img src="https://samotics.com/wp-content/uploads/2024/09/vitens-success-story-sam4-dashboard-pump-curve.png" alt="" loading="lazy"></figure>
+<p>Pump curve (top) showing areas of operation far away from the pump’s best efficiency point of pump RNP8 in February 2022 (RNP9 showed similar inefficient operation). It can be seen in the metrics (bottom) generated by SAM4 Energy that the efficiency of both these two 55kW pumps is around 69%, below what is classed as efficient operation.</p>
+<p>[</p>
+<div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
+<figure class="sam-post__image"><img src="https://samotics.com/wp-content/uploads/2024/09/vitens-success-story-sam4-dashboard-energy-savings.png" alt="" loading="lazy"></figure>
+<p>The operational losses of pumps RNP8 and RNP9 account for about 10% total efficiency losses. These losses can be reduced by improving the operation of the pumps.</p>
+<h2>Putting generated advice into practice and tracking pump improvements</h2>
+<p>Vitens implemented two simple setting changes advised by the SAM4 platform to achieve more efficient pumping during low-flow periods. In phase one of these activities, the changeover flow threshold was adjusted: the flow threshold at which the 11kW pump delivered flow was increased, as the 11kW pump could deliver the low flow independently and more efficiently than two 55kW pumps. The resulting flow, energy consumption and efficiency was thereafter tracked using the SAM4 platform.</p>
+<p>The second phase of this operational change increased the speed of the 11kW pump in order to further widen the useful operating range of the smaller pump to deliver increased flow at the required pressure. This was performed by increasing the supply frequency of the VFD, without exceeding the motor’s nominal power and pump’s capabilities. This resulted in a larger feasible flow range for the 11kW pump, only switching on the larger pumps when this was truly necessary.</p>
+<p>[</p>
+<div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
+<figure class="sam-post__image"><img src="https://samotics.com/wp-content/uploads/2024/09/vitens-success-story-energy-savings-graph.png" alt="" loading="lazy"></figure>
+<p>The two simple process changes implemented had a significant effect on the efficiency of the three pumps at one of the pumping stations at the Hoenderloo production facility. When taking the distribution of running time, pressure and flow into account in the old and new situations, the pumping station’s overall electrical efficiency increased by 7.1%.</p>
+<p>[</p>
+<div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
+<figure class="sam-post__image"><img src="https://samotics.com/wp-content/uploads/2024/09/vitens-success-story-sam4-dashboard-pump-curve-2.png" alt="" loading="lazy"></figure>
+<p>Following implementation of the two process changes, each pump was operating to a greater degree under more efficient operating conditions (green zones) and less under more inefficient conditions (red zones). Here is the situation of one of the larger 55kW pumps before (left) and after (right) the process changes were implemented.</p>
+<h2>Validating results</h2>
+<p>Once these simple process changes were implemented, the improvement in the situation could be seen immediately via the SAM4 platform in the energy monitor and the generated pump curve. The relatively simple operational changes could be made without additional investment and resulted in all three pumps operating closer to their best efficiency points. This increased pump efficiency and reliability. The total pump station efficiency improved by 7.1%, taking into account the distribution of running time, pressure and flow in the old and new situations.</p>
+<p>This translates to yearly electricity savings of €2,500 across the three pumps and an associated reduction of 9.2 tonnes of CO2 based on energy reduction alone. An additional point of significance is the fact that inefficient operation can double the chance of failure and shorten lifespan of industrial equipment. This implies that further savings can be accrued from improved operational health.</p>
+<p>[</p>
+<div class="sam-post__image-placeholder"><svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="56" height="44" rx="4"/><circle cx="20" cy="26" r="6"/><path d="M4 44l16-16 12 12 8-8 20 12"/></svg><span>Image</span></div>
+<figure class="sam-post__image"><img src="https://samotics.com/wp-content/uploads/2024/09/vitens-success-story-vitens-yearly-savings.png" alt="" loading="lazy"></figure>
+<blockquote>
+<p>We are seeing that most energy is consumed at Vitens by pumps to distribute clean water to our customers. We have seen very quickly from this SAM4 pilot that there is a lot to gain from improving the pumps’ operational efficiency and thereby reduce their energy consumption while still meeting demand.</p>
+<p><strong>Rein Wuestman</strong>, Process Engineer, Vitens</p>
+</blockquote>
+<h2>A bright outlook for sustainable water supply</h2>
+<p>In order to deliver water to its customers in a more sustainable way, Vitens is looking for more innovative means to meet the challenges it faces in the run up to 2030 and beyond. With the increasing costs and volatility associated with the energy market, it is becoming even more of a focus to reduce energy consumption from both a cost and sustainability perspective.</p>
+<p>For Vitens, working together with Samotics has demonstrated that using advanced analytics on energy data at one of their pumping stations has secured recurring yearly savings in energy consumption, costs and a reduction in associated emissions. The method used for realizing energy savings in this assessment is also extremely translatable to other pumps across the Vitens network.</p>
+<p>Undertaking this SAM4 proof-of-value pilot has proven a positive experience for Vitens and Samotics. It has demonstrated how electrical efficiency can be significantly improved, and in a short time frame, by locating energy inefficiencies in industrial pumps, generating concrete solutions to these inefficiencies and implementing simple process changes that involve no additional investment.</p>
+<p>It also demonstrated that implementing such a system can be performed quickly and be able to integrate with Vitens’ own systems. For Vitens, this means that moving towards a more sustainable water ecosystem is that much closer.</p>
+  </article>
+
+  <div class="sam-post__footer">
+    <div class="sam-post__cta-banner">
+      <h2 class="sam-post__cta-title">See SAM4 in action</h2>
+      <p class="sam-post__cta-text">Discover how real-time asset health monitoring can protect your operations.</p>
+      <a href="/contact/" class="sam-post__cta-btn">Talk to an engineer</a>
+    </div>
+  </div>
+</main>
+
+<section class="sam-prefooter">
+  <div class="sam-prefooter__inner">
+    <p class="sam-prefooter__sub">See how SAM4 monitors the assets your sensors can't reach.</p>
+    <a href="/contact/" class="sam-prefooter__cta">Talk to an engineer</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <div class="sam-footer__inner">
+
+    <!-- Top: Logo + Tagline -->
+    <div class="sam-footer__top">
+      <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
+        <img src="/assets/samotics-logo-white.svg"
+             alt="Samotics" width="140" height="32">
+      </a>
+      <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
+    </div>
+
+    <!-- Nav Grid: 5 columns -->
+    <div class="sam-footer__grid">
+
+      <!-- Technology -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Technology</h3>
+        <div class="sam-footer__col-links">
+          <a href="/technology/esa">ESA Technology</a>
+          <a href="/technology/how-sam4-works">How SAM4 Works</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Platform</h3>
+        <div class="sam-footer__col-links">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/what-we-monitor">What We Monitor</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Trust & Security</a>
+          <a href="/platform/sam4-x">SAM4-X</a>
+        </div>
+      </div>
+
+      <!-- Industries -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Industries</h3>
+        <div class="sam-footer__col-links">
+          <a href="/industries/water">Water & Wastewater</a>
+          <a href="/industries/oil-gas">Oil &amp; Gas</a>
+          <a href="/industries/metals-mining">Metals & Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+        </div>
+      </div>
+
+      <!-- Proof -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Resources</h3>
+        <div class="sam-footer__col-links">
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Company</h3>
+        <div class="sam-footer__col-links">
+          <a href="/about">About</a>
+          <!-- Phase 2: <a href="/partners">Partners</a> -->
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="sam-footer__divider"></div>
+
+    <!-- Certification Badges -->
+    <div class="sam-footer__certs">
+      <a href="/platform/security" aria-label="ISO 27001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-27001.webp" alt="DNV ISO 27001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+      <a href="/platform/security" aria-label="ISO 9001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-9001.webp" alt="DNV ISO 9001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="sam-footer__bottom">
+
+      <div class="sam-footer__bottom-left">
+        <span class="sam-footer__copyright">&copy; 2026 Samotics &middot; Built in The Netherlands</span>
+
+        <a href="https://www.linkedin.com/company/samotics/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="sam-footer__social"
+           aria-label="Samotics on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sam-footer__legal">
+        <a href="/privacy">Privacy</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/terms">Terms</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/cookies">Cookies</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var h=document.querySelector('.sam-header');if(!h)return;
+  window.addEventListener('scroll',function(){h.classList.toggle('is-scrolled',window.scrollY>20);},{passive:true});
+  var hb=h.querySelector('.sam-hamburger'),mm=document.getElementById('sam-mobile-menu');
+  if(hb&&mm)hb.addEventListener('click',function(){
+    var o=hb.getAttribute('aria-expanded')==='true';
+    hb.setAttribute('aria-expanded',String(!o));mm.classList.toggle('is-open');
+    mm.setAttribute('aria-hidden',String(o));document.body.style.overflow=o?'':'hidden';
+  });
+  h.querySelectorAll('.sam-mobile-nav__toggle').forEach(function(t){
+    t.addEventListener('click',function(){
+      var g=this.closest('.sam-mobile-nav__group'),o=g.classList.contains('is-open');
+      h.querySelectorAll('.sam-mobile-nav__group.is-open').forEach(function(x){if(x!==g)x.classList.remove('is-open');});
+      g.classList.toggle('is-open');this.setAttribute('aria-expanded',String(!o));
+    });
+  });
+  document.querySelectorAll('[data-footer-accordion]').forEach(function(col){
+    var hd=col.querySelector('.sam-footer__col-heading');if(!hd)return;
+    hd.addEventListener('click',function(){
+      if(window.innerWidth>991)return;
+      document.querySelectorAll('[data-footer-accordion]').forEach(function(c){if(c!==col)c.classList.remove('is-open');});
+      col.classList.toggle('is-open');
+    });
+  });
+})();
+</script>
 </body>
 </html>

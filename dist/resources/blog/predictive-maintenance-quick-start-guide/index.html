@@ -1,1 +1,1707 @@
-loaded
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The quick-start guide to predictive maintenance 4.0">
+  <title>Predictive Maintenance Quick Start | Samotics</title>
+  <link rel="canonical" href="https://samoticstestpage.com/resources/blog/predictive-maintenance-quick-start-guide/">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: normal;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pB4dqzDjftXmSUWz_3A.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-style: italic;
+      font-weight: 100 700;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/ibmplexsans/v19/zYX7KVElMYYaJe8bpLHnCwDKhdzeDaVwdO_pB4dqzDjftXmSUWz_3KzXpg.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: italic;
+      font-weight: 100 800;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbX2o-flEEny0FZhsfKu5WU4xD-IQ-PuZJJXxfpAO-Lf1OQk6OThhvAWV8.woff2') format('woff2');
+    }
+  </style>
+    <style>
+    /* ===== SHARED DESIGN TOKENS ===== */
+    :root {
+      --sam-space-cadet: #1F1F33;
+      --sam-orange: #FF5429;
+      --sam-orange-dark: #D7411B;
+      --sam-blue: #005CBA;
+      --sam-white: #FFFFFF;
+      --sam-seashell: #F8F5F2;
+      --sam-black: #111111;
+      --sam-comet: #6B6B7F;
+      --sam-border-light: #E8E4E0;
+      --sam-header-bg: #1F1F33;
+      --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sam-header-h: 80px;
+      --sam-header-h-compact: 64px;
+      --sam-transition: 150ms ease-out;
+    }
+
+    :root {
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --dark-blue-300: #A0A0B8;
+      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-data: 'JetBrains Mono', 'Consolas', monospace;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-30: 120px;
+      --radius-default: 4px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
+      --motion-fast: 100ms;
+      --motion-normal: 300ms;
+      --max-width: 1120px;
+      --max-width-wide: 1280px;
+    }
+
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      color: var(--space-cadet);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: var(--blue-600);
+      text-decoration: none;
+      transition: color var(--motion-fast) ease-out;
+    }
+
+    a:hover {
+      color: var(--orange);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .sam-skip-link { position: fixed; top: 0; left: 16px; transform: translateY(-200%); z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 4px; }
+    .sam-skip-link:focus { top: 8px; transform: none; }
+    .sam-header {
+      position: sticky; top: 0; z-index: 1000; width: 100%;
+      height: var(--sam-header-h); background: var(--sam-header-bg);
+      transition: height var(--sam-transition), box-shadow var(--sam-transition);
+    }
+    .sam-header.is-scrolled { height: var(--sam-header-h-compact); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25); }
+    .sam-header__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
+    .sam-header__logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .sam-logo { height: auto; transition: transform 200ms ease-out, filter 200ms ease-out; }
+    .sam-logo--dark { display: none; }
+    .sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+    .sam-nav { display: flex; align-items: center; justify-content: center; gap: 28px; flex: 1; }
+    .sam-nav__link { font: 500 15px/1 var(--sam-font); color: rgba(255, 255, 255, 0.85); text-decoration: none; padding: 8px 0; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; position: relative; transition: color var(--sam-transition); white-space: nowrap; }
+    .sam-nav__link:hover, .sam-nav__link:focus-visible { color: var(--sam-white); }
+    .sam-nav__link[aria-current="page"]::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--sam-orange); }
+    .sam-nav__chevron { transition: transform var(--sam-transition); flex-shrink: 0; }
+    .sam-nav__item { position: relative; }
+    .sam-dropdown { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(-4px); min-width: 300px; background: var(--sam-white); border: 1px solid var(--sam-border-light); border-radius: 0; padding: 8px 0; opacity: 0; visibility: hidden; transition: opacity var(--sam-transition), visibility var(--sam-transition), transform var(--sam-transition); pointer-events: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+    .sam-nav__item--has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
+    .sam-nav__item--has-dropdown:hover .sam-dropdown, .sam-nav__item--has-dropdown:focus-within .sam-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    .sam-nav__item--has-dropdown:hover .sam-nav__chevron, .sam-nav__item--has-dropdown:focus-within .sam-nav__chevron { transform: rotate(180deg); }
+    .sam-dropdown__item { display: flex; flex-direction: column; padding: 12px 24px; text-decoration: none; transition: background-color 100ms ease-out; }
+    .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
+    .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
+    .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
+    .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+    .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .sam-hamburger__line { display: block; width: 24px; height: 2px; background: var(--sam-white); transition: transform 200ms ease-out, opacity 200ms ease-out; border-radius: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) { opacity: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .sam-mobile-menu { display: none; position: fixed; top: var(--sam-header-h-compact); left: 0; right: 0; bottom: 0; background: var(--sam-white); overflow-y: auto; z-index: 999; padding: 24px 16px; flex-direction: column; }
+    .sam-mobile-menu.is-open { display: flex; animation: samSlideIn 200ms ease-out; }
+    @keyframes samSlideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    .sam-mobile-nav__link { display: block; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__link:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__group { border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); background: none; border: none; cursor: pointer; }
+    .sam-mobile-nav__arrow { transition: transform 200ms ease-out; flex-shrink: 0; }
+    .sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow { transform: rotate(180deg); }
+    .sam-mobile-nav__sub { display: none; flex-direction: column; padding: 0 0 8px 16px; }
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__sub { display: flex; }
+    .sam-mobile-nav__sub a { display: block; padding: 12px 0; font: 400 15px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; }
+    .sam-mobile-nav__sub a:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__cta-wrap { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__cta { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px 0; background: var(--sam-orange); color: var(--sam-white); font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 0; transition: background-color var(--sam-transition); }
+    .sam-mobile-nav__cta:hover { background: var(--sam-orange-dark); }
+
+    .sam-footer { background: var(--sam-space-cadet, #1F1F33); padding-top: 96px; }
+    .sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
+    .sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
+    .sam-footer__logo { display: inline-flex; text-decoration: none; }
+    .sam-footer__logo img { width: 140px; height: auto; }
+    .sam-footer__tagline { font: 400 16px/1.6 var(--sam-font); color: rgba(255, 255, 255, 0.6); margin: 0; max-width: 360px; }
+    .sam-footer__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; margin-bottom: 64px; }
+    .sam-footer__col-heading { font: 600 14px/1 var(--sam-font); color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px 0; }
+    .sam-footer__col-links { display: flex; flex-direction: column; gap: 12px; }
+    .sam-footer__col-links a { font: 400 14px/1.4 var(--sam-font); color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__col-links a:hover, .sam-footer__col-links a:focus-visible { color: #FFFFFF; }
+    .sam-footer__divider { height: 1px; background: rgba(255, 255, 255, 0.15); }
+    .sam-footer__certs { display: flex; align-items: center; gap: 16px; padding: 24px 0; }
+    .sam-footer__certs a { display: block; opacity: 0.7; transition: opacity 150ms ease-out; }
+    .sam-footer__certs a:hover { opacity: 1; }
+    .sam-footer__certs img { display: block; background: var(--sam-white); border-radius: 4px; padding: 4px; }
+    .sam-footer__bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+    .sam-footer__bottom-left { display: flex; align-items: center; gap: 24px; }
+    .sam-footer__copyright { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); }
+    .sam-footer__social { display: inline-flex; align-items: center; color: rgba(255, 255, 255, 0.4); transition: color 150ms ease-out; }
+    .sam-footer__social:hover { color: #FFFFFF; }
+    .sam-footer__legal { display: flex; align-items: center; gap: 8px; }
+    .sam-footer__legal a { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__legal a:hover, .sam-footer__legal a:focus-visible { color: #FFFFFF; }
+    .sam-footer__legal-sep { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.2); }
+
+    .sam-nav__link:focus-visible, .sam-dropdown__item:focus-visible, .sam-cta:focus-visible, .sam-hamburger:focus-visible, .sam-mobile-nav__toggle:focus-visible, .sam-mobile-nav__link:focus-visible, .sam-mobile-nav__sub a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    .sam-footer__col-links a:focus-visible, .sam-footer__social:focus-visible, .sam-footer__legal a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    
+    .sam-post__hero > *:not(.sam-hero-overlay) { position: relative; z-index: 2; }
+    .sam-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+    .sam-section--hero .sam-section__inner { position: relative; z-index: 2; }
+
+    @media (prefers-reduced-motion: reduce) { .sam-header, .sam-dropdown, .sam-nav__chevron, .sam-hamburger__line, .sam-mobile-nav__arrow, .sam-logo, .sam-footer__col-links a, .sam-footer__social, .sam-footer__legal a { transition: none !important; animation: none !important; } }
+
+    @media (max-width: 991px) {
+      .sam-header { height: var(--sam-header-h-compact); }
+      .sam-header__inner { padding: 0 16px; }
+      .sam-nav { display: none; }
+      .sam-hamburger { display: flex; }
+      .sam-cta { padding: 8px 16px; font-size: 13px; }
+      .sam-footer { padding-top: 64px; }
+      .sam-footer__inner { padding: 0 16px; }
+      .sam-footer__top { margin-bottom: 48px; }
+      .sam-footer__grid { grid-template-columns: 1fr; gap: 0; margin-bottom: 48px; }
+      .sam-footer__col { border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 0; }
+      .sam-footer__col-heading { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; margin: 0; cursor: pointer; }
+      .sam-footer__col-heading::after { content: ''; width: 10px; height: 10px; border-right: 2px solid rgba(255, 255, 255, 0.4); border-bottom: 2px solid rgba(255, 255, 255, 0.4); transform: rotate(45deg); transition: transform 200ms ease-out; flex-shrink: 0; }
+      .sam-footer__col.is-open .sam-footer__col-heading::after { transform: rotate(-135deg); }
+      .sam-footer__col-links { display: none; padding: 0 0 16px 0; }
+      .sam-footer__col.is-open .sam-footer__col-links { display: flex; }
+      .sam-footer__bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+
+    .sam-page {
+      min-height: 100vh;
+    }
+
+    main {
+      display: block;
+    }
+
+    /* ===== SECTIONS ===== */
+    .sam-section {
+      padding: var(--space-24) var(--space-6);
+    }
+
+    .sam-section--hero,
+    .sam-section--dark {
+      background: var(--space-cadet) url('/assets/images/heroes/hero-blog.jpg') center/cover no-repeat; position: relative; overflow: hidden;
+      color: var(--white);
+      padding: var(--space-30) var(--space-6);
+    }
+
+    .sam-section--alt {
+      background: var(--seashell);
+    }
+
+    .sam-section__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .sam-section__inner--wide {
+      max-width: var(--max-width-wide);
+    }
+
+    /* ===== OVERLINES ===== */
+    .sam-overline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+      display: inline-block;
+    }
+
+    .sam-section--hero .sam-overline,
+    .sam-section--dark .sam-overline {
+      color: var(--orange);
+    }
+
+    /* ===== HEADINGS ===== */
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-6);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-8);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: var(--space-2);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+    }
+
+    /* ===== PARAGRAPHS & TEXT ===== */
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+      color: var(--space-cadet);
+    }
+
+    .sam-section--hero p,
+    .sam-section--dark p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .sam-lead {
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 500;
+      color: var(--space-cadet);
+      max-width: 680px;
+    }
+
+    .sam-section--hero .sam-lead,
+    .sam-section--dark .sam-lead {
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 100%;
+    }
+
+    .sam-small {
+      font-size: 14px;
+      color: var(--comet);
+      line-height: 1.5;
+    }
+
+    /* ===== CARDS ===== */
+    .sam-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      transition: box-shadow var(--motion-fast) ease-out, transform var(--motion-fast) ease-out;
+    }
+
+    .sam-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-card h3 {
+      margin-bottom: var(--space-4);
+      color: var(--space-cadet);
+    }
+
+    .sam-card p {
+      margin-bottom: 0;
+      color: var(--comet);
+    }
+
+    /* ===== GRIDS ===== */
+    .sam-grid {
+      display: grid;
+      gap: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .sam-grid--2 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .sam-grid--3 {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .sam-grid--6 {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    @media (min-width: 768px) {
+      .sam-grid--3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .sam-grid--6 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .sam-grid--6 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ===== STATS BAR ===== */
+    .sam-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-6);
+      padding: var(--space-8) 0;
+      border-top: 1px solid var(--border-grey);
+      border-bottom: 1px solid var(--border-grey);
+      margin-bottom: var(--space-24);
+    }
+
+    .sam-stat {
+      text-align: center;
+    }
+
+    .sam-stat__value {
+      font-family: var(--font-data);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1.2;
+      margin-bottom: var(--space-2);
+      letter-spacing: -0.01em;
+    }
+
+    .sam-stat__label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--comet);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .sam-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sam-stat__value {
+        font-size: 24px;
+      }
+    }
+
+    /* ===== TIMELINE CARDS ===== */
+    .sam-timeline-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      position: relative;
+    }
+
+    .sam-timeline-card::before {
+      content: attr(data-year);
+      display: block;
+      font-family: var(--font-data);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: var(--space-3);
+    }
+
+    .sam-timeline-card h3 {
+      margin-bottom: var(--space-4);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* ===== PARTNER CARDS ===== */
+    .sam-partner-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+
+    .sam-partner-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-partner-card .sam-partner-role {
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: var(--space-4);
+      letter-spacing: 0.05em;
+    }
+
+    .sam-partner-card p {
+      margin-bottom: var(--space-4);
+      color: var(--comet);
+      font-size: 14px;
+    }
+
+    .sam-partner-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--blue-600);
+    }
+
+    /* ===== LEADER CARDS ===== */
+    .sam-leader-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      text-align: center;
+    }
+
+    .sam-leader-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-leader-role {
+      font-size: 13px;
+      color: var(--comet);
+      font-weight: 500;
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sam-leader-bio {
+      font-size: 14px;
+      color: var(--space-cadet);
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+
+    .sam-leader-social {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-4);
+    }
+
+    .sam-leader-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-default);
+      background: var(--seashell);
+      color: var(--space-cadet);
+      transition: background var(--motion-fast) ease-out, color var(--motion-fast) ease-out;
+    }
+
+    .sam-leader-social a:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .sam-leader-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ===== ADVISOR CARDS ===== */
+    .sam-advisor-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+
+    .sam-advisor-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-advisor-card p {
+      margin-bottom: 0;
+      color: var(--comet);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== CULTURE CARDS ===== */
+    .sam-culture-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+
+    .sam-culture-card h3 {
+      margin-bottom: var(--space-4);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .sam-culture-card p {
+      margin-bottom: 0;
+      color: var(--comet);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== TESTIMONIAL ===== */
+    .sam-testimonial {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      border-left: 4px solid var(--orange);
+      margin-bottom: var(--space-8);
+    }
+
+    .sam-testimonial blockquote {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--space-cadet);
+      font-weight: 500;
+      margin-bottom: var(--space-4);
+      font-style: italic;
+    }
+
+    .sam-testimonial-source {
+      font-size: 13px;
+      color: var(--comet);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== BADGES STRIP ===== */
+    .sam-badges {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: var(--space-8) 0;
+    }
+
+    .sam-badge {
+      display: inline-block;
+      padding: var(--space-3) var(--space-6);
+      background: var(--seashell);
+      border-radius: var(--radius-default);
+      font-size: 13px;
+      color: var(--comet);
+      text-align: center;
+    }
+
+    /* ===== SECONDARY BUTTON ===== */
+    .sam-button-secondary {
+      display: inline-block;
+      padding: var(--space-3) var(--space-6);
+      background: transparent;
+      border: 1px solid var(--border-grey);
+      color: var(--space-cadet);
+      text-decoration: none;
+      border-radius: var(--radius-default);
+      font-size: 14px;
+      font-weight: 600;
+      transition: background var(--motion-fast) ease-out, color var(--motion-fast) ease-out, border-color var(--motion-fast) ease-out;
+    }
+
+    .sam-button-secondary:hover {
+      background: var(--seashell);
+      border-color: var(--space-cadet);
+      color: var(--orange);
+    }
+
+    /* ===== LINK WITH ARROW ===== */
+    .sam-link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--blue-600);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: gap var(--motion-fast) ease-out;
+    }
+
+    .sam-link-arrow:hover {
+      gap: var(--space-3);
+      color: var(--orange);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sam-section {
+        padding: var(--space-16) var(--space-6);
+      }
+
+      .sam-section--hero,
+    .sam-section--dark {
+        padding: var(--space-24) var(--space-6);
+      }
+    }
+
+    /* ===== FOCUS & ACCESSIBILITY ===== */
+    *:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+  </style>
+  <style>
+/* ═══════════════════════════════════════════════════════════
+   RESOURCES / BLOG / NEWS — Confidence Whispers Design System
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --space-cadet: #1F1F33;
+  --white: #FFFFFF;
+  --seashell: #F8F5F2;
+  --orange: #FF5429;
+  --orange-dark: #D7411B;
+  --comet: #6B6B7F;
+  --border-grey: #E5E7EB;
+  --blue-600: #005CBA;
+  --font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', Consolas, monospace;
+  --radius: 4px;
+  --shadow-sm: 0 1px 3px rgba(31,31,51,0.08);
+  --shadow-md: 0 4px 12px rgba(31,31,51,0.10);
+}
+
+/* ── Global ── */
+.sam-page { font-family: var(--font); color: var(--space-cadet); line-height: 1.6; }
+.sam-page *, .sam-page *::before, .sam-page *::after { box-sizing: border-box; }
+.sam-page h1, .sam-page h2, .sam-page h3, .sam-page h4 { font-weight: 700; line-height: 1.15; margin: 0 0 16px; }
+.sam-page p { margin: 0 0 16px; }
+.sam-page main a { color: var(--blue-600); text-decoration: none; }
+.sam-page main a:hover { text-decoration: underline; }
+.sam-page img { max-width: 100%; height: auto; }
+.sam-page main { overflow: hidden; }
+
+/* ── Overline ── */
+.overline,
+.sam-listing__overline {
+  font: 600 0.8125rem/1.4 var(--font);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--orange);
+  margin: 0 0 8px;
+}
+
+/* ── Buttons ── */
+.sam-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font: 600 0.9375rem/1 var(--font);
+  padding: 14px 28px; border-radius: var(--radius);
+  text-decoration: none; cursor: pointer;
+  transition: all 150ms ease-out; border: none;
+}
+.sam-btn--primary { background: var(--orange); color: var(--white); }
+.sam-btn--primary:hover { background: var(--orange-dark); text-decoration: none; }
+.sam-btn--outline { background: transparent; color: var(--space-cadet); border: 1.5px solid var(--border-grey); }
+.sam-btn--outline:hover { border-color: var(--space-cadet); text-decoration: none; }
+
+/* ═══════════════════════════════════════════════
+   1. RESOURCES HUB (resources/index.html)
+   ═══════════════════════════════════════════════ */
+.sam-resources { color: var(--space-cadet); }
+
+.sam-resources__hero{
+  padding: 120px 24px 96px;
+  color: var(--white);
+}
+.sam-resources__hero-content {
+  max-width: 1120px; margin: 0 auto;
+}
+.sam-resources__hero-title {
+  font-size: 2.75rem; color: var(--white); margin-bottom: 16px;
+}
+.sam-resources__hero .lead,
+.sam-resources__hero-content .lead {
+  font-size: 1.125rem; color: rgba(255,255,255,0.85); max-width: 640px;
+}
+
+.sam-resources__container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* Featured section */
+.sam-resources__featured {
+  padding: 64px 24px;
+  background: var(--white);
+}
+.sam-resources__featured h2 { font-size: 1.5rem; margin-bottom: 24px; }
+.sam-resources__featured-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+}
+.sam-resources__featured-card {
+  display: flex; flex-direction: column;
+  background: var(--white); border: 1px solid var(--border-grey);
+  border-radius: var(--radius); padding: 32px;
+  text-decoration: none; color: var(--space-cadet);
+  transition: box-shadow 150ms ease-out, transform 150ms ease-out;
+}
+.sam-resources__featured-card:hover {
+  box-shadow: var(--shadow-sm); transform: translateY(-2px); text-decoration: none;
+}
+.sam-resources__featured-badge {
+  font: 500 0.75rem/1 var(--font); text-transform: uppercase;
+  letter-spacing: 0.03em; color: var(--orange); margin-bottom: 8px;
+}
+
+/* Type cards */
+.sam-resources__types {
+  padding: 64px 24px;
+  background: var(--seashell);
+}
+.sam-resources__types h2 { font-size: 1.5rem; margin-bottom: 24px; }
+.sam-resources__types-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.sam-resources__type-card {
+  display: flex; flex-direction: column;
+  background: var(--white); border: 1px solid var(--border-grey);
+  border-radius: var(--radius); padding: 32px;
+  text-decoration: none; color: var(--space-cadet);
+  transition: box-shadow 150ms ease-out, transform 150ms ease-out;
+}
+.sam-resources__type-card:hover {
+  box-shadow: var(--shadow-sm); transform: translateY(-2px); text-decoration: none;
+}
+.sam-resources__type-badge {
+  font: 500 0.75rem/1 var(--font); text-transform: uppercase;
+  letter-spacing: 0.03em; color: var(--blue-600); margin-bottom: 8px;
+}
+.sam-resources__type-title {
+  font: 600 1.125rem/1.3 var(--font); margin: 0 0 8px;
+}
+.sam-resources__type-desc {
+  font-size: 0.875rem; color: var(--comet); margin: 0 0 12px; flex-grow: 1;
+}
+.sam-resources__type-meta {
+  display: flex; align-items: center; gap: 8px; margin-top: auto;
+}
+.sam-resources__type-number {
+  font: 700 1rem/1 var(--mono); color: var(--orange);
+}
+.sam-resources__type-arrow {
+  font: 600 0.875rem/1 var(--font); color: var(--orange);
+}
+
+/* Newsletter */
+.sam-resources__newsletter {
+  padding: 64px 24px; background: var(--white);
+}
+.sam-resources__newsletter-box {
+  max-width: 600px; margin: 0 auto; text-align: center;
+}
+.sam-resources__newsletter-box h2 { font-size: 1.5rem; margin-bottom: 12px; }
+.sam-resources__newsletter-form {
+  display: flex; gap: 8px; margin-top: 16px;
+}
+.sam-resources__newsletter-form input {
+  flex: 1; font: 400 0.9375rem/1.4 var(--font);
+  padding: 12px 16px; border: 1px solid var(--border-grey);
+  border-radius: var(--radius); background: var(--white);
+}
+.sam-resources__newsletter-form button {
+  font: 600 0.9375rem/1 var(--font);
+  padding: 12px 24px; background: var(--orange); color: var(--white);
+  border: none; border-radius: var(--radius); cursor: pointer;
+  transition: background 150ms ease-out;
+}
+.sam-resources__newsletter-form button:hover { background: var(--orange-dark); }
+
+/* CTA banner */
+.sam-resources__cta-banner {
+  background: var(--seashell); border-radius: var(--radius);
+  padding: 48px; text-align: center; margin: 48px 0;
+}
+
+/* ═══════════════════════════════════════════════
+   2. LISTING PAGES (blog/index, news/index)
+   ═══════════════════════════════════════════════ */
+.sam-listing { color: var(--space-cadet); }
+
+.sam-listing__hero{
+  padding: 120px 24px 96px;
+  color: var(--white);
+}
+.sam-listing__hero-inner { max-width: 1120px; margin: 0 auto; }
+.sam-listing__title {
+  font-size: 2.75rem; color: var(--white); margin-bottom: 16px;
+}
+.sam-listing__subtitle {
+  font-size: 1.125rem; color: rgba(255,255,255,0.85); max-width: 640px; margin: 0;
+}
+.sam-listing__count {
+  font-size: 0.875rem; color: var(--comet); margin-top: 8px;
+}
+
+.sam-listing__grid-wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+.sam-listing__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+
+/* Blog / News card */
+.sam-blog-card {
+  display: flex; flex-direction: column;
+  background: var(--white); border: 1px solid var(--border-grey);
+  border-radius: var(--radius);
+  text-decoration: none; color: var(--space-cadet);
+  overflow: hidden;
+  transition: box-shadow 150ms ease-out, transform 150ms ease-out;
+}
+.sam-blog-card:hover {
+  box-shadow: var(--shadow-sm); transform: translateY(-2px); text-decoration: none;
+}
+.sam-blog-card__thumbnail {
+  width: 100%; height: 180px; object-fit: cover;
+  background: var(--seashell);
+}
+.sam-blog-card__body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.sam-blog-card__category {
+  font: 500 0.75rem/1 var(--font); text-transform: uppercase;
+  letter-spacing: 0.03em; color: var(--orange); margin-bottom: 8px;
+}
+.sam-blog-card__title {
+  font: 600 1.0625rem/1.35 var(--font); margin: 0 0 8px; flex-grow: 1;
+}
+.sam-blog-card__excerpt {
+  font-size: 0.875rem; color: var(--comet); margin: 0 0 12px;
+}
+.sam-blog-card__meta {
+  font-size: 0.8125rem; color: var(--comet); margin-top: auto;
+}
+.sam-blog-card__dot { margin: 0 6px; }
+
+/* ═══════════════════════════════════════════════
+   3. INDIVIDUAL POSTS (blog/*, news/*)
+   ═══════════════════════════════════════════════ */
+.sam-post { color: var(--space-cadet); }
+
+.sam-post__hero{
+  padding: 96px 24px 64px;
+  color: var(--white);
+}
+.sam-post__hero-inner { max-width: 720px; margin: 0 auto; }
+
+/* Breadcrumb */
+.sam-post__breadcrumb {
+  font-size: 0.875rem; margin-bottom: 24px;
+}
+.sam-post__breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
+.sam-post__breadcrumb a:hover { color: var(--white); }
+.sam-post__breadcrumb-sep { margin: 0 8px; color: rgba(255,255,255,0.4); }
+
+.sam-post__category {
+  font: 600 0.8125rem/1 var(--font); text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--orange); margin-bottom: 12px;
+  display: inline-block;
+}
+.sam-post__title {
+  font-size: 2.25rem; color: var(--white); margin-bottom: 16px;
+  line-height: 1.15;
+}
+.sam-post__meta {
+  font-size: 0.875rem; color: rgba(255,255,255,0.7);
+}
+.sam-post__meta-dot { margin: 0 8px; }
+
+/* Hero image */
+.sam-post__hero-image {
+  max-width: 720px; margin: -48px auto 0; padding: 0 24px;
+  position: relative; z-index: 3;
+}
+.sam-post__hero-image img {
+  width: 100%; max-height: 480px; object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* Content area */
+.sam-post__content {
+  max-width: 720px; margin: 0 auto;
+  padding: 64px 24px 96px;
+  font-size: 1.0625rem; line-height: 1.7;
+  color: var(--space-cadet);
+}
+.sam-post__content h2 {
+  font-size: 1.5rem; margin: 48px 0 16px;
+}
+.sam-post__content h3 {
+  font-size: 1.25rem; margin: 32px 0 12px;
+}
+.sam-post__content p { margin: 0 0 20px; }
+.sam-post__content ul, .sam-post__content ol {
+  margin: 0 0 20px; padding-left: 24px;
+}
+.sam-post__content li { margin-bottom: 8px; }
+.sam-post__content blockquote {
+  border-left: 3px solid var(--orange);
+  padding: 12px 0 12px 24px;
+  margin: 24px 0;
+  color: var(--comet);
+  font-style: italic;
+}
+.sam-post__content a { color: var(--blue-600); text-decoration: underline; }
+.sam-post__content a:hover { color: var(--orange); }
+figure.sam-post__image { margin: 32px 0; }
+figure.sam-post__image img { width: 100%; height: auto; border-radius: 4px; }
+figure.sam-post__image figcaption { font-size: 0.8125rem; color: var(--comet, #6B6B7F); margin-top: 8px; line-height: 1.5; }
+.sam-post__content strong { font-weight: 600; }
+.sam-post__content code {
+  font-family: var(--mono); font-size: 0.875em;
+  background: var(--seashell); padding: 2px 6px;
+  border-radius: var(--radius);
+}
+.sam-post__content table {
+  width: 100%; border-collapse: collapse; margin: 24px 0;
+}
+.sam-post__content th {
+  background: var(--space-cadet); color: var(--white);
+  font: 600 0.8125rem/1.4 var(--font); text-transform: uppercase;
+  letter-spacing: 0.03em; padding: 12px 16px; text-align: left;
+}
+.sam-post__content td {
+  padding: 12px 16px; border-bottom: 1px solid var(--border-grey);
+  font-size: 0.9375rem;
+}
+
+/* Image placeholder */
+.sam-post__image,
+.sam-post__image-placeholder {
+  width: 100%; border-radius: var(--radius);
+  margin: 24px 0;
+  background: var(--seashell);
+  border: 1px solid var(--border-grey);
+}
+.sam-post__image-placeholder {
+  padding: 48px; text-align: center;
+  color: var(--comet); font-size: 0.875rem;
+}
+
+/* CTA banner inside post */
+.sam-post__cta-banner {
+  background: var(--seashell);
+  border-radius: var(--radius);
+  padding: 48px; text-align: center;
+  margin: 48px 0;
+}
+.sam-post__cta-title {
+  font: 700 1.25rem/1.3 var(--font);
+  margin: 0 0 8px;
+}
+.sam-post__cta-text {
+  font-size: 0.9375rem; color: var(--comet);
+  margin: 0 0 16px;
+}
+.sam-post__cta-btn {
+  display: inline-flex; align-items: center;
+  font: 600 0.9375rem/1 var(--font);
+  padding: 12px 24px; background: var(--orange); color: var(--white);
+  border-radius: var(--radius); text-decoration: none;
+  transition: background 150ms ease-out;
+}
+.sam-post__cta-btn:hover { background: var(--orange-dark); text-decoration: none; }
+
+/* Post footer */
+.sam-post__footer {
+  max-width: 720px; margin: 0 auto;
+  padding: 0 24px 64px;
+  border-top: 1px solid var(--border-grey);
+  padding-top: 32px;
+}
+
+/* ═══════════════════════════════════════════════
+   SHARED: Prefooter / Terminal CTA
+   ═══════════════════════════════════════════════ */
+.sam-prefooter {
+  background: var(--white);
+  padding: 96px 24px;
+  text-align: center;
+}
+.sam-prefooter__inner { max-width: 1120px; margin: 0 auto; }
+.sam-prefooter h2 { font-size: 1.75rem; margin-bottom: 12px; }
+.sam-prefooter__sub {
+  color: var(--comet); max-width: 600px; margin: 0 auto 24px;
+}
+.sam-prefooter__cta {
+  display: inline-flex; align-items: center;
+  font: 600 0.9375rem/1 var(--font);
+  padding: 14px 28px; background: var(--orange); color: var(--white);
+  border-radius: var(--radius); text-decoration: none;
+  transition: background 150ms ease-out;
+}
+.sam-prefooter__cta:hover { background: var(--orange-dark); text-decoration: none; }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .sam-listing__grid,
+  .sam-resources__types-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .sam-resources__hero,
+  .sam-listing__hero,
+  .sam-post__hero { padding: 80px 20px 64px; }
+
+  .sam-resources__hero-title,
+  .sam-listing__title { font-size: 2rem; }
+  .sam-post__title { font-size: 1.75rem; }
+
+  .sam-listing__grid,
+  .sam-resources__types-grid,
+  .sam-resources__featured-grid { grid-template-columns: 1fr; }
+
+  .sam-post__content { padding: 48px 20px 64px; }
+
+  .sam-resources__newsletter-form { flex-direction: column; }
+
+  .sam-prefooter,
+  .sam-resources__featured,
+  .sam-resources__types,
+  .sam-resources__newsletter { padding: 64px 20px; }
+}
+</style>
+</head>
+<body class="sam-page">
+<header class="sam-header" role="navigation" aria-label="Main navigation">
+  <a href="#main-content" class="sam-skip-link">Skip to content</a>
+  <div class="sam-header__inner">
+
+    <!-- Logo -->
+    <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--dark" width="140" height="32">
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="sam-nav" aria-label="Main navigation">
+
+      <a href="/problem" class="sam-nav__link">Problem</a>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Technology
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/technology/esa" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Electrical Signature Analysis</span>
+            <span class="sam-dropdown__desc">The science behind SAM4</span>
+          </a>
+          <a href="/technology/esa-vs-vibration" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">ESA &amp; Vibration</span>
+            <span class="sam-dropdown__desc">How ESA and vibration work together</span>
+          </a>
+          <a href="/technology/how-sam4-works" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Technical Deep Dive</span>
+            <span class="sam-dropdown__desc">Detection accuracy, methodology, and performance data</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Assets
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/platform/what-we-monitor/pumps" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Pumps</span>
+            <span class="sam-dropdown__desc">Centrifugal, submersible, borehole, and canned motor</span>
+          </a>
+          <a href="/platform/what-we-monitor/compressors" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Compressors</span>
+            <span class="sam-dropdown__desc">Reciprocating, screw, and centrifugal</span>
+          </a>
+          <a href="/platform/what-we-monitor/fans-blowers" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Fans &amp; Blowers</span>
+            <span class="sam-dropdown__desc">Axial, centrifugal, and process air</span>
+          </a>
+          <a href="/platform/what-we-monitor/conveyors" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Conveyors</span>
+            <span class="sam-dropdown__desc">Belt, screw, and chain conveyors</span>
+          </a>
+          <a href="/platform/what-we-monitor/transmissions" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Transmissions</span>
+            <span class="sam-dropdown__desc">Gearboxes, couplings, and belt drives</span>
+          </a>
+          <a href="/platform/what-we-monitor" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">All Assets &amp; Motors</span>
+            <span class="sam-dropdown__desc">Full detection matrix by asset type and fault mode</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Platform
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/platform/sam4" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">SAM4 Platform</span>
+            <span class="sam-dropdown__desc">Dashboard, diagnostics, and service model</span>
+          </a>
+          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">How It Installs</span>
+            <span class="sam-dropdown__desc">&lt;60 minutes, back online same shift</span>
+          </a>
+          <a href="/platform/security" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Security &amp; Compliance</span>
+            <span class="sam-dropdown__desc">ISO 27001, ISO 9001, NIS2 aligned, cellular architecture</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Industries
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/industries/water" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Water &amp; Wastewater</span>
+          </a>
+          <a href="/industries/oil-gas" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Oil &amp; Gas</span>
+          </a>
+          <a href="/industries/metals-mining" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Metals &amp; Mining</span>
+          </a>
+          <a href="/industries/chemicals" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Chemicals</span>
+          </a>
+          <a href="/industries/pulp-paper" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Pulp &amp; Paper</span>
+          </a>
+          <a href="/industries/airports" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Airports</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/proof" class="sam-nav__link">Proof</a>
+      <a href="/about" class="sam-nav__link">About</a>
+
+    </nav>
+
+    <div class="sam-header__actions">
+      <a href="/contact/asset-audit" class="sam-cta-secondary" style="font-family:var(--sam-font);font-size:14px;font-weight:500;color:var(--sam-white);text-decoration:none;opacity:0.8;white-space:nowrap;transition:opacity 150ms ease-out;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Asset Audit</a>
+      <a href="/contact?intent=demo" class="sam-cta">Request a Demo</a>
+      <button class="sam-hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="sam-mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <nav class="sam-mobile-nav" aria-label="Mobile navigation">
+
+      <a href="/problem" class="sam-mobile-nav__link">Problem</a>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Technology
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/technology/esa">Electrical Signature Analysis</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Assets
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/what-we-monitor/pumps">Pumps</a>
+          <a href="/platform/what-we-monitor/compressors">Compressors</a>
+          <a href="/platform/what-we-monitor/fans-blowers">Fans &amp; Blowers</a>
+          <a href="/platform/what-we-monitor/conveyors">Conveyors</a>
+          <a href="/platform/what-we-monitor/transmissions">Transmissions</a>
+          <a href="/platform/what-we-monitor">All Assets &amp; Motors</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Platform
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Security &amp; Compliance</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Industries
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/industries/water">Water &amp; Wastewater</a>
+          <a href="/industries/oil-gas">Oil &amp; Gas</a>
+          <a href="/industries/metals-mining">Metals &amp; Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
+        </div>
+      </div>
+
+      <a href="/proof" class="sam-mobile-nav__link">Proof</a>
+      <a href="/about" class="sam-mobile-nav__link">About</a>
+
+      <div class="sam-mobile-nav__cta-wrap">
+        <a href="/contact?intent=demo" class="sam-mobile-nav__cta">Request a Demo</a>
+      </div>
+
+    </nav>
+  </div>
+
+</header>
+  <main id="main-content" class="sam-post">
+  <section class="sam-post__hero" style="background: var(--space-cadet, #1F1F33) url('/assets/images/heroes/hero-blog.jpg') center/cover no-repeat; position: relative; overflow: hidden;">
+    <div class="sam-hero-overlay"></div>
+    <div class="sam-post__hero-inner">
+      <div class="sam-post__breadcrumb">
+        <a href="/">Home</a>
+        <span class="sam-post__breadcrumb-sep">/</span>
+        <a href="/resources/blog/">Blog</a>
+        <span class="sam-post__breadcrumb-sep">/</span>
+        <span style="color:var(--sam-space-cadet)">The quick-start guide to predictive maintenance 4.0</span>
+      </div>
+      <span class="sam-post__category">Blog</span>
+      <h1 class="sam-post__title">The quick-start guide to predictive maintenance 4.0</h1>
+      <div class="sam-post__meta">
+        <span>April 12, 2022</span>
+        <span class="sam-post__meta-dot"></span>
+        <span>10 min read</span>
+      </div>
+    </div>
+  </section>
+  <div class="sam-post__hero-image">
+    <img src="/assets/images/blog/predictive-maintenance-quick-start-guide-hero.png" alt="Predictive Maintenance Quick Start Guide" loading="eager">
+  </div>
+
+  <article class="sam-post__content">
+<p>6 concrete steps to take your predictive maintenance program from idea to launch.</p>
+<p>We wrote this guide for anyone who's planning to implement a predictive maintenance program. Whether you're in maintenance, operations, innovation or management, you can use the tools here from any angle.</p>
+<p>You already know why you want to implement a predictive maintenance program: most commonly, it's to raise uptime, lower costs, reduce risk and extend asset lifetime. But knowing why doesn't help you with how. That's where this guide comes in. It's designed to walk you through the concrete steps from idea to implementation. You'll still have to do the heavy lifting yourself. from gathering the numbers to talking with vendors to persuading reluctant colleagues, but our hope is that the worksheets here will equip you to do all of that, quickly and well. We're rooting for you! Before we jump into the worksheets, let's look at some definitions and principles that will guide you throughout.</p>
+<h2>What makes it predictive maintenance 4.0?</h2>
+<p>All maintenance has one ultimate target: to make the best tradeoff between resources spent, such as the cost of parts and labor, and resources gained, such as production uptime and energy savings. Terms like reactive, preventive and predictive are shorthand for <a href="https://roadtoreliability.com/types-of-maintenance/">specific strategies</a> (sometimes overlapping) to help us achieve this ultimate target. So what’s the strategy that is captured in the word predictive?</p>
+<h3>Data + analysis + forecasting = predictive</h3>
+<p>By regularly collecting machine health data, you can identify patterns that help you predict future failure, early enough to prevent it. This is what we mean by predictive. The strategy has been around for a very long time. since at least 1939, when the first research paper suggested using machine vibrations to provide advance warning of failure. Predictive maintenance (PdM) is usually contrasted with running to failure (reactive / corrective maintenance) and with time-based (preventive) maintenance, which works to a schedule. Predictive maintenance is largely synonymous with <a href="/resources/blog/what-is-condition-monitoring">condition-based maintenance</a>, and it can include prescriptive, where recommended actions are included with the system’s alerts.</p>
+<h3>AI + IIoT = 4.0</h3>
+<p>As technology gives us better tools, our ability to reach the ultimate target grows. Recent advances in artificial intelligence (AI) and the industrial internet of things (IIoT) now let us analyze massive amounts of data in near real-time, which make it possible to find developing faults earlier, to automate root cause analysis, and to apply the technique at scale. That’s what makes it predictive maintenance 4.0.</p>
+<blockquote>
+<p>"Maintenance 4.0 is a machine-assisted digital version of all the things we have been doing for the past forty years as humans to ensure our assets deliver value for our organization."</p>
+</blockquote>
+<p>Terrence O'Hanlon, Reliability Leadership Foundation</p>
+<h2>Guiding principles</h2>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_visual_2.png" alt="Article image" loading="lazy"></div>
+
+<h3>Start small.</h3>
+<p>Full-fledged predictive maintenance 4.0 affects the whole company and its culture. That’s a big change. And like all big changes, it makes sense to start small and scale upon success. Starting small lets you work out details while they are at a manageable level, and exposes the places where your organization will need to add skills or change its culture for predictive maintenance to work. It also helps convince your company’s critics to give predictive maintenance a try, by lowering both the barrier to starting and the perceived loss of time, effort and money if it doesn’t work out. That said, don’t start too small. Some critical mass is required to see real benefits.</p>
+<h3>Be specific.</h3>
+<p>The only way to know if predictive maintenance 4.0 (or any other project) helps your company is to have clearly worded goals plus hard data that tells you whether or not you’ve met them. At every step of your journey to predictive maintenance 4.0, ask yourself what you want to accomplish, and how you’ll measure whether you’ve done so. Concrete objectives backed by hard evidence of results are also the single best way to turn the critics who initially resisted your pilot into advocates for scaling it up.</p>
+<h3>Do your homework.</h3>
+<p>Guides like this one can help you organize your thoughts, but no guide, however thorough, can pick the right predictive maintenance system for your specific setup. Be prepared to spend time listening to colleagues, researching technologies and vendors, and even revisiting earlier steps in the process to refine your choices as you learn more.</p>
+<h3>Make it a team effort.</h3>
+<p>The best way to kill a great project is to go it alone. No one likes to be told someone else has decided what’s best for them, without bothering to ask for input. What’s more, your company has a gold mine of valuable information stored in those biological archives called brains. Colleagues and departments who are consulted in the planning phase of a predictive maintenance project are not only more likely to support it; their input will also help you craft better goals and ways to evaluate them.</p>
+<h2>Step 1: Who needs to be convinced?</h2>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_visual_3.png" alt="Article image" loading="lazy"></div>
+
+<p>No matter how fabulous you know <a href="https://www.pwc.nl/nl/assets/documents/pwc-predictive-maintenance-beyond-the-hype-40.pdf">predictive maintenance 4.0</a> can be for your company, you can’t make it happen alone. In this step, you’ll list all the people who need to love the idea of this project, or at least think they might grow to love it, and what it will take to convince them. Then, as you walk through the following steps, you’ll use this information to help focus, inform and quantify your predictive maintenance pilot to give it the greatest chance of succeeding.</p>
+<h3>Tip 1: List only the must-have people, and only their #1 driver.</h3>
+<p>You’re going to show how the predictive maintenance project will tangibly address each driver you list, which can blow up fast. Most of the time, if you can show someone that your idea will help fix their biggest problem, they’ll jump on board. And once they’re enthusiastic, they’ll help convince their teammates.</p>
+<blockquote>
+<p>"It doesn't matter if your predictive maintenance plan looks good on paper if you don't have buy-in from the people who are doing the work."</p>
+</blockquote>
+<p>Jason Afara, Fiix Software</p>
+<h3>Tip 2: Make those drivers specific.</h3>
+<p>Common goals like “improve efficiency” and “lower costs” may be accurate, but they’re too generic to help you here. For each person on your list, ask yourself what specific problem they most want to solve.</p>
+<h3>Tip 3: Don't forget the human side.</h3>
+<p>It’s harder to quantify than time and money, but just as important. Is anyone afraid of being replaced by technology? Historically slow to change? Are there interpersonal or inter-team hostilities that, however unrelated, will get in the way? You won’t confront these problems head-on, but you need to know what canvas you’re working on when you paint the predictive maintenance picture for each colleague.</p>
+<p><strong>Recommended reading:</strong> <a href="/resources/blog/predictive-maintenance-quick-start-guide/">The business case for predictive maintenance (pdf download)</a></p>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_worksheet_1.png" alt="Article image" loading="lazy"></div>
+
+<ul>
+<li>[Download the step 1 worksheet](https://f.hubspotusercontent10.net/hubfs/3777718/PdM%20quick%20start%20guide/QSGPDM4%20Step%201%20Worksheet.docx)</li>
+</ul>
+<p>We've listed three examples in the worksheet to help you get started.</p>
+<h2>Step 2: Choose your assets</h2>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_visual_4.png" alt="Article image" loading="lazy"></div>
+
+<p>Chances are you already had specific machines in mind when you first picked up this guide. Nothing wrong with that, but they may not be the assets that will best help you prove the worth of predictive maintenance 4.0 to the rest of the company. In this step, you’ll combine hard data on your company’s bad actors with the value drivers from step 1 to select a group of machines for your pilot.</p>
+<h3>Tip 1: Choose 15-50 assets.</h3>
+<p>You need enough machines in the pilot to see results, but not so many that it seems hard to justify, implement or evaluate. Once the value has been proven, you can scale up and branch out to include more (and more kinds of) equipment.</p>
+<h3>Tip 2: Use in-house expertise.</h3>
+<p>Your maintenance technicians and machine operators know firsthand which equipment is most prone to fail and takes the most time to repair. If your company has performed a <a href="https://www.reliableplant.com/criticality-analysis-31830">criticality analysis</a> before, use that to inform your choices. (If not, check this <a href="https://www.maintworld.com/Asset-Management/The-criticality-spectrum-a-means-to-focus-our-attention-where-it-is-warranted">recommended article </a>to help get you started.)</p>
+<h3>Tip 3: Require past data.</h3>
+<p>You’ll need it when it comes time to evaluate your results. Choose assets with history going back at least 6 months for metrics that can answer the value drivers from step 1. We’ve put some examples in the worksheet below to get you started.</p>
+<h4>Hot strip mill case study</h4>
+<p>A hot strip mill has 300 coilers and rollers. The mill’s computerized maintenance management system (CMMS), installed two years ago, contains full maintenance records for all 300 assets. In consultation with the maintenance and operations teams, the company picks 25 rollers for the mill’s predictive maintenance 4.0 pilot: the critical ones in the runout table after the last finishing stand.</p>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_worksheet_2.png" alt="Article image" loading="lazy"></div>
+
+<ul>
+<li>[Download the step 2 worksheet](https://f.hubspotusercontent10.net/hubfs/3777718/PdM%20quick%20start%20guide/QSGPDM4%20Step%202%20Worksheet.docx)</li>
+</ul>
+<p>We've listed three examples in the worksheet to help you get started.</p>
+<h2>Step 3: Choose your failure modes</h2>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_visual_05a.png" alt="Article image" loading="lazy"></div>
+
+<p>As in step 2, you may already have some specific failures in mind. In this step, you’ll see how well they mesh with the value drivers from step 1, and see what other failures might be worth including, or leaving out.</p>
+<h3>Tip 1: Use data to make your decision.</h3>
+<p>In step 2 you picked critical assets for which you have at least 6 months of CMMS data. Use that to identify the failures whose elimination would have the greatest impact on the value drivers you listed in step 1.</p>
+<h3>Tip 2: Choose something for everyone.</h3>
+<p>In step 6, you’ll evaluate the project’s results against the drivers you listed in step 1. Make sure you’ll have fodder to convince everyone on that list.</p>
+<h3>Tip 3: Pick all that you need, but no more.</h3>
+<p>Predictive maintenance 4.0 depends on high-quality data from a physical signal such as vibration, current or temperature. These signals carry different information, which means there’s no one-size-fits-all condition monitoring technology. The fewer failure modes your predictive maintenance project must detect, the more chance the system you choose in step 4 will perform with flying colors.</p>
+<p><strong>Recommended reading: </strong><a href="/resources/blog/what-is-condition-monitoring/"><strong>The condition monitoring comparison guide (pdf download)</strong></a></p>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_worksheet_3.png" alt="Article image" loading="lazy"></div>
+
+<ul>
+<li>[Download the step 3 worksheet](https://f.hubspotusercontent10.net/hubfs/3777718/PdM%20quick%20start%20guide/QSGPDM4%20Step%203%20Worksheet.docx)</li>
+</ul>
+<p>We've listed three examples in the worksheet to help get you started.</p>
+<h2>Step 4: Choose your vendor</h2>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_visual_5.png" alt="Article image" loading="lazy"></div>
+
+<p>Now that you know what machines and failures you want to monitor, it’s time to shop around for a provider. Here, you’ll compare vendors on both your high-level requirements and the nitty-gritty financial picture.</p>
+<h3>Tip 1: Your predictive maintenance is only as good as your data.</h3>
+<p>Unless you have high-quality data from existing sensors, you’ll need to pick a vendor whose offering includes hardware (rather than a platform that analyzes your existing data). Many OEMs are starting to include high-quality sensors in their equipment (such as current and voltage sensors built into VFDs), so your newer machines might already be equipped.</p>
+<h3>Tip 2: Don't forget your existing suppliers.</h3>
+<p>If you already use an industrial digital platform like IBM’s Maximo or ABB Ability, you may have access to condition monitoring technology built into that system.</p>
+<h3>Use the first worksheet (step 4a) to narrow the field.</h3>
+<p>Comparing vendors on your high-level requirements will let you quickly narrow down the list, before you spend time diving into the details of their offerings. You should be able to find most of this information on the vendor’s website.</p>
+<h3>Use the second worksheet (step 4b) to engage with your shortlist.</h3>
+<p>The second worksheet is a detailed value assessment you can use to quantify vendors in detail. The points here will serve as valuable input for your conversations with them.</p>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_worksheet_4a.png" alt="Article image" loading="lazy"></div>
+
+<ul>
+<li>[Download the step 4a worksheet](https://f.hubspotusercontent10.net/hubfs/3777718/PdM%20quick%20start%20guide/QSGPDM4%20Step%204a%20Worksheet.docx)</li>
+</ul>
+<p>We've listed several examples in the worksheet to help get you started.</p>
+<ul>
+<li>[Download the step 4b worksheet](https://f.hubspotusercontent10.net/hubfs/3777718/PdM%20quick%20start%20guide/Step%204b%20Worksheet.xlsx)</li>
+</ul>
+<p>We've listed several examples in the worksheet to help get you started.</p>
+<h2>Step 5: Review what you have so far</h2>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_visual_6.png" alt="Article image" loading="lazy"></div>
+
+<h3>Failure modes</h3>
+<p>Now that you’ve gotten a close look at several condition monitoring systems, it’s time to revisit the previous worksheets. Maybe there’s a failure mode you included in step 3 that your chosen system doesn’t handle well. You could select a second vendor to take up that slack, but that will make your pilot more complex and expensive. Instead, see if there’s a different failure mode you could use to replace that one, or maybe you don’t even need it, because the remaining failure modes already cover all the value drivers from step 1.</p>
+<h3>Nice-to-haves</h3>
+<p>Similarly, you might have learned that your chosen system is great at something you didn’t include earlier, because you were keeping things simple. Now is the time to add in any such nice-to-haves where your chosen system shines. (Just make sure the new items are also SMART: specific, measurable, achievable, relevant and time-bound.)</p>
+<h3>Assets</h3>
+<p>It’s also possible that after learning about the systems that are out there, you’ve decided there’s a better set of assets you could choose for your pilot. The great thing about this process is that it’s not too late to go back to the drawing board. No money has been spent, but a lot has been learned, and with just a few more hours of effort, your predictive maintenance plan will be 10x better.</p>
+<h2>Step 6: Deploy. and don't give up</h2>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_visual_7.png" alt="Article image" loading="lazy"></div>
+
+<p>You’ve done all the prep work, and now you’re ready to roll! You’ll work closely with your vendor here to install and commission the new system. It may surprise you, but once your system is up and running there’s a stumbling block ahead. In short, this new initiative to help your company work smarter may seem to make things worse before it makes them better. Your task now is to take your company through this journey, when the short view says the project is making things harder, but remember that it will lead to large long-term wins.</p>
+<h3>Tip 1: Remind your stakeholders that everything's on track.</h3>
+<p>In step 1, you listed the people whose approval was crucial in bringing predictive maintenance 4.0 to your company. Remind them that right now, you’re gathering data, and it’s too soon to judge how the new system will affect uptime, effort and cost once it’s an established part of your maintenance strategy.</p>
+<h3>Tip 2: Use the incoming data to raise confidence.</h3>
+<p>Make a point of telling your stakeholders about any immediate wins, such as when the system prevents a failure that would have gone unnoticed without it. It’s not a bad idea to send out a regular update on how the system is performing. Especially if predictive maintenance 4.0 is shifting your company’s whole approach to maintenance, use concrete results to reinforce the message that the unfamiliar changes now (which may feel like more effort, instead of less) will lead to large wins in efficiency later.</p>
+<h2>Evaluate and scale up</h2>
+<div class="sam-post__image"><img src="/assets/images/blog/tqsg_webpage_visual_8.png" alt="Article image" loading="lazy"></div>
+
+<p>Six to twelve months have passed. Because you set up your predictive maintenance project right, you’ve now got hard, quantified evidence that it works. You’ve made it through the valley of worse-before-better, and everyone who needs to sign off in order to scale up can see in black and white that this project is helping to solve their most pressing problems.</p>
+<p>If the worksheets in this guide have been useful to you, then use them again to scale up your predictive maintenance 4.0 efforts with new assets, failure modes and systems that best fit them.</p>
+  </article>
+
+  <div class="sam-post__footer">
+    <div class="sam-post__cta-banner">
+      <h2 class="sam-post__cta-title">See SAM4 in action</h2>
+      <p class="sam-post__cta-text">Discover how real-time asset health monitoring can protect your operations.</p>
+      <a href="/contact/" class="sam-post__cta-btn">Talk to an engineer</a>
+    </div>
+  </div>
+</main>
+
+<section class="sam-prefooter">
+  <div class="sam-prefooter__inner">
+    <p class="sam-prefooter__sub">See how SAM4 monitors the assets your sensors can't reach.</p>
+    <a href="/contact/" class="sam-prefooter__cta">Talk to an engineer</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <div class="sam-footer__inner">
+
+    <!-- Top: Logo + Tagline -->
+    <div class="sam-footer__top">
+      <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
+        <img src="/assets/samotics-logo-white.svg"
+             alt="Samotics" width="140" height="32">
+      </a>
+      <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
+    </div>
+
+    <!-- Nav Grid: 5 columns -->
+    <div class="sam-footer__grid">
+
+      <!-- Technology -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Technology</h3>
+        <div class="sam-footer__col-links">
+          <a href="/technology/esa">ESA Technology</a>
+          <a href="/technology/how-sam4-works">How SAM4 Works</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Platform</h3>
+        <div class="sam-footer__col-links">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/what-we-monitor">What We Monitor</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Trust & Security</a>
+          <a href="/platform/sam4-x">SAM4-X</a>
+        </div>
+      </div>
+
+      <!-- Industries -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Industries</h3>
+        <div class="sam-footer__col-links">
+          <a href="/industries/water">Water & Wastewater</a>
+          <a href="/industries/oil-gas">Oil &amp; Gas</a>
+          <a href="/industries/metals-mining">Metals & Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+        </div>
+      </div>
+
+      <!-- Proof -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Resources</h3>
+        <div class="sam-footer__col-links">
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Company</h3>
+        <div class="sam-footer__col-links">
+          <a href="/about">About</a>
+          <!-- Phase 2: <a href="/partners">Partners</a> -->
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="sam-footer__divider"></div>
+
+    <!-- Certification Badges -->
+    <div class="sam-footer__certs">
+      <a href="/platform/security" aria-label="ISO 27001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-27001.webp" alt="DNV ISO 27001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+      <a href="/platform/security" aria-label="ISO 9001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-9001.webp" alt="DNV ISO 9001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="sam-footer__bottom">
+
+      <div class="sam-footer__bottom-left">
+        <span class="sam-footer__copyright">&copy; 2026 Samotics &middot; Built in The Netherlands</span>
+
+        <a href="https://www.linkedin.com/company/samotics/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="sam-footer__social"
+           aria-label="Samotics on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sam-footer__legal">
+        <a href="/privacy">Privacy</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/terms">Terms</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/cookies">Cookies</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+  <script>
+    (function () {
+      'use strict';
+
+      // Header scroll state
+      var header = document.querySelector('.sam-header');
+      if (header) {
+        var scrollThreshold = 20;
+        function onScroll() {
+          if (window.scrollY > scrollThreshold) {
+            header.classList.add('is-scrolled');
+          } else {
+            header.classList.remove('is-scrolled');
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      // Hamburger menu
+      var hamburger = document.querySelector('.sam-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function () {
+          var isOpen = mobileMenu.classList.toggle('is-open');
+          hamburger.setAttribute('aria-expanded', isOpen);
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+      }
+
+      // Mobile nav toggles
+      document.querySelectorAll('.sam-mobile-nav__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var group = btn.closest('.sam-mobile-nav__group');
+          var isOpen = group.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+
+      // Footer accordion (mobile)
+      document.querySelectorAll('[data-footer-accordion]').forEach(function (col) {
+        var heading = col.querySelector('.sam-footer__col-heading');
+        if (!heading) return;
+        heading.addEventListener('click', function () {
+          if (window.innerWidth > 991) return;
+          col.classList.toggle('is-open');
+        });
+      });
+    })();
+  </script>
+
+
+</body>
+</html>

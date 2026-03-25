@@ -1,1 +1,1498 @@
-test5
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vibration covers accessible assets. ESA covers the 30-40% your sensors can't reach. A fault-by-fault comparison to help you decide where each technology fits.">
+  <title>ESA & Vibration: Which Assets Need Which Method | Samotics</title>
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="ESA & Vibration Monitoring: Coverage Comparison">
+  <meta property="og:description" content="Vibration covers accessible assets. ESA covers the 30-40% your sensors can't reach.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samotics.com/technology/esa-vs-vibration/">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Shared header/footer tokens */
+      --sam-space-cadet: #1F1F33;
+      --sam-orange: #FF5429;
+      --sam-orange-dark: #D7411B;
+      --sam-blue: #005CBA;
+      --sam-white: #FFFFFF;
+      --sam-seashell: #F8F5F2;
+      --sam-black: #111111;
+      --sam-comet: #6B6B7F;
+      --sam-border-light: #E8E4E0;
+      --sam-header-bg: #1F1F33;
+      --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sam-header-h: 80px;
+      --sam-header-h-compact: 64px;
+      --sam-transition: 150ms ease-out;
+
+      /* Page tokens */
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --orange-dark: #D7411B;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --dark-blue-300: #A0A0B8;
+      
+      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-data: 'JetBrains Mono', 'Consolas', monospace;
+      
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-30: 120px;
+      
+      --radius-default: 4px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
+      --motion-fast: 100ms;
+      --motion-normal: 300ms;
+      
+      --max-width: 1120px;
+      --max-width-wide: 1280px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--space-cadet);
+      background: var(--white);
+    }
+
+    /* Page-specific header overrides removed — shared header block handles all */
+
+    /* Page-specific mobile nav removed — shared block handles all */
+
+    .sam-mobile-nav__cta {
+      display: block;
+      padding: var(--space-4);
+      background: var(--orange);
+      color: var(--white);
+      text-align: center;
+      text-decoration: none;
+      border-radius: var(--radius-default);
+      font-weight: 500;
+      font-family: var(--font-primary);
+    }
+
+    .sam-skip-link { position: fixed; top: 0; left: 16px; transform: translateY(-200%); z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 4px; }
+    .sam-skip-link:focus { top: 8px; transform: none; }
+
+    .sam-header__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
+    .sam-header__logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .sam-logo { height: auto; transition: transform 200ms ease-out, filter 200ms ease-out; }
+    .sam-logo--dark { display: none; }
+    .sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+    .sam-nav { display: flex; align-items: center; justify-content: center; gap: 28px; flex: 1; }
+    .sam-nav__link { font: 500 15px/1 var(--sam-font); color: rgba(255, 255, 255, 0.85); text-decoration: none; padding: 8px 0; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; position: relative; transition: color var(--sam-transition); white-space: nowrap; }
+    .sam-nav__link:hover, .sam-nav__link:focus-visible { color: var(--sam-white); }
+    .sam-nav__link[aria-current="page"]::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--sam-orange); }
+    .sam-nav__chevron { transition: transform var(--sam-transition); flex-shrink: 0; }
+    .sam-nav__item { position: relative; }
+    .sam-dropdown { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(-4px); min-width: 300px; background: var(--sam-white); border: 1px solid var(--sam-border-light); border-radius: 0; padding: 8px 0; opacity: 0; visibility: hidden; transition: opacity var(--sam-transition), visibility var(--sam-transition), transform var(--sam-transition); pointer-events: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+    .sam-nav__item--has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
+    .sam-nav__item--has-dropdown:hover .sam-dropdown, .sam-nav__item--has-dropdown:focus-within .sam-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    .sam-nav__item--has-dropdown:hover .sam-nav__chevron, .sam-nav__item--has-dropdown:focus-within .sam-nav__chevron { transform: rotate(180deg); }
+    .sam-dropdown__item { display: flex; flex-direction: column; padding: 12px 24px; text-decoration: none; transition: background-color 100ms ease-out; }
+    .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
+    .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
+    .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
+    .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+    .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .sam-hamburger__line { display: block; width: 24px; height: 2px; background: var(--sam-white); transition: transform 200ms ease-out, opacity 200ms ease-out; border-radius: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) { opacity: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .sam-mobile-menu { display: none; position: fixed; top: var(--sam-header-h-compact); left: 0; right: 0; bottom: 0; background: var(--sam-white); overflow-y: auto; z-index: 999; padding: 24px 16px; flex-direction: column; }
+    .sam-mobile-menu.is-open { display: flex; animation: samSlideIn 200ms ease-out; }
+    @keyframes samSlideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    .sam-mobile-nav__link { display: block; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__link:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__group { border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); background: none; border: none; cursor: pointer; }
+    .sam-mobile-nav__arrow { transition: transform 200ms ease-out; flex-shrink: 0; }
+    .sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow { transform: rotate(180deg); }
+    .sam-mobile-nav__sub { display: none; flex-direction: column; padding: 0 0 8px 16px; }
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__sub { display: flex; }
+    .sam-mobile-nav__sub a { display: block; padding: 12px 0; font: 400 15px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; }
+    .sam-mobile-nav__sub a:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__cta-wrap { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__cta { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px 0; background: var(--sam-orange); color: var(--sam-white); font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 0; transition: background-color var(--sam-transition); }
+    .sam-mobile-nav__cta:hover { background: var(--sam-orange-dark); }
+
+    .sam-footer { background: var(--sam-space-cadet, #1F1F33); padding-top: 96px; }
+    .sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
+    .sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
+    .sam-footer__logo { display: inline-flex; text-decoration: none; }
+    .sam-footer__logo img { width: 140px; height: auto; }
+    .sam-footer__tagline { font: 400 16px/1.6 var(--sam-font); color: rgba(255, 255, 255, 0.6); margin: 0; max-width: 360px; }
+    .sam-footer__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; margin-bottom: 64px; }
+    .sam-footer__col-heading { font: 600 14px/1 var(--sam-font); color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px 0; }
+    .sam-footer__col-links { display: flex; flex-direction: column; gap: 12px; }
+    .sam-footer__col-links a { font: 400 14px/1.4 var(--sam-font); color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__col-links a:hover, .sam-footer__col-links a:focus-visible { color: #FFFFFF; }
+    .sam-footer__divider { height: 1px; background: rgba(255, 255, 255, 0.15); }
+    .sam-footer__certs { display: flex; align-items: center; gap: 16px; padding: 24px 0; }
+    .sam-footer__certs a { display: block; opacity: 0.7; transition: opacity 150ms ease-out; }
+    .sam-footer__certs a:hover { opacity: 1; }
+    .sam-footer__certs img { display: block; background: var(--sam-white); border-radius: 4px; padding: 4px; }
+    .sam-footer__bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+    .sam-footer__bottom-left { display: flex; align-items: center; gap: 24px; }
+    .sam-footer__copyright { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); }
+    .sam-footer__social { display: inline-flex; align-items: center; color: rgba(255, 255, 255, 0.4); transition: color 150ms ease-out; }
+    .sam-footer__social:hover { color: #FFFFFF; }
+    .sam-footer__legal { display: flex; align-items: center; gap: 8px; }
+    .sam-footer__legal a { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__legal a:hover, .sam-footer__legal a:focus-visible { color: #FFFFFF; }
+    .sam-footer__legal-sep { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.2); }
+
+    .sam-nav__link:focus-visible, .sam-dropdown__item:focus-visible, .sam-cta:focus-visible, .sam-hamburger:focus-visible, .sam-mobile-nav__toggle:focus-visible, .sam-mobile-nav__link:focus-visible, .sam-mobile-nav__sub a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    .sam-footer__col-links a:focus-visible, .sam-footer__social:focus-visible, .sam-footer__legal a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    
+    .sam-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      z-index: 1;
+    }
+    .sam-section--hero .sam-section__inner { position: relative; z-index: 2; }
+
+    @media (prefers-reduced-motion: reduce) { .sam-header, .sam-dropdown, .sam-nav__chevron, .sam-hamburger__line, .sam-mobile-nav__arrow, .sam-logo, .sam-footer__col-links a, .sam-footer__social, .sam-footer__legal a { transition: none !important; animation: none !important; } }
+
+    @media (max-width: 991px) {
+      .sam-header { height: var(--sam-header-h-compact); }
+      .sam-header__inner { padding: 0 16px; }
+      .sam-nav { display: none; }
+      .sam-hamburger { display: flex; }
+      .sam-cta { padding: 8px 16px; font-size: 13px; }
+      .sam-footer { padding-top: 64px; }
+      .sam-footer__inner { padding: 0 16px; }
+      .sam-footer__top { margin-bottom: 48px; }
+      .sam-footer__grid { grid-template-columns: 1fr; gap: 0; margin-bottom: 48px; }
+      .sam-footer__col { border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 0; }
+      .sam-footer__col-heading { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; margin: 0; cursor: pointer; }
+      .sam-footer__col-heading::after { content: ''; width: 10px; height: 10px; border-right: 2px solid rgba(255, 255, 255, 0.4); border-bottom: 2px solid rgba(255, 255, 255, 0.4); transform: rotate(45deg); transition: transform 200ms ease-out; flex-shrink: 0; }
+      .sam-footer__col.is-open .sam-footer__col-heading::after { transform: rotate(-135deg); }
+      .sam-footer__col-links { display: none; padding: 0 0 16px 0; }
+      .sam-footer__col.is-open .sam-footer__col-links { display: flex; }
+      .sam-footer__bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+
+    .sam-page {
+    }
+
+    main {
+      width: 100%;
+    }
+
+    #main-content {
+      display: block;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      width: 100%;
+    }
+
+    .sam-section {
+      padding: var(--space-24) var(--space-4);
+    }
+
+    .sam-section--hero {
+      background: var(--space-cadet) url('/assets/images/heroes/hero-technology.jpg') center/cover no-repeat; position: relative; overflow: hidden;
+      color: var(--white);
+      padding: var(--space-30) var(--space-4);
+    }
+
+    .sam-section--dark {
+      background: var(--space-cadet);
+      color: var(--white);
+      padding: var(--space-24) var(--space-4);
+    }
+
+    .sam-section--light {
+      background: var(--seashell);
+    }
+
+    .sam-section__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .sam-section__inner--wide {
+      max-width: var(--max-width-wide);
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1 {
+      font-size: 48px;
+      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+    }
+
+    h2 {
+      font-size: 36px;
+      line-height: 1.3;
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+    }
+
+    h3 {
+      font-size: 20px;
+      line-height: 1.4;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+    }
+
+    p {
+      margin-bottom: var(--space-4);
+    }
+
+    .sam-overline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+    }
+
+    .sam-lead {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--comet);
+      margin-bottom: var(--space-8);
+    }
+
+    .sam-section--hero .sam-lead {
+      color: var(--white);
+      opacity: 0.95;
+    }
+
+    .sam-subheading {
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: var(--comet);
+      margin-bottom: var(--space-6);
+    }
+
+    .sam-section--hero .sam-subheading {
+      color: var(--white);
+      opacity: 0.9;
+    }
+
+    /* ===== BUTTONS ===== */
+    .sam-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-default);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-primary);
+      transition: all var(--motion-fast);
+    }
+
+    .sam-btn--primary {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .sam-btn--primary:hover {
+      background: var(--orange-dark);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-btn--secondary {
+      background: transparent;
+      color: var(--space-cadet);
+      border: 1px solid var(--border-grey);
+    }
+
+    .sam-btn--secondary:hover {
+      border-color: var(--space-cadet);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-section--hero .sam-btn--secondary {
+      color: var(--white);
+      border-color: var(--white);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .sam-section--hero .sam-btn--secondary:hover {
+      border-color: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ===== GRID ===== */
+    .sam-grid {
+      display: grid;
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .sam-grid--cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sam-grid--cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      .sam-grid--cols-2,
+      .sam-grid--cols-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== CARDS ===== */
+    .sam-card {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      transition: all var(--motion-fast);
+    }
+
+    .sam-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sam-card h3 {
+      margin-bottom: var(--space-3);
+    }
+
+    /* ===== TABLES ===== */
+    .sam-table-container {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-default);
+      border: 1px solid var(--border-grey);
+      margin-bottom: var(--space-12);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      font-family: var(--font-primary);
+    }
+
+    thead {
+      background: var(--space-cadet);
+      color: var(--white);
+    }
+
+    th {
+      padding: var(--space-4) var(--space-6);
+      text-align: left;
+      font-weight: 600;
+      border: none;
+    }
+
+    td {
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--border-grey);
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--seashell);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ===== STRENGTH BADGES ===== */
+    .sam-strength {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: var(--radius-default);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .sam-strength--strong {
+      background: rgba(76, 175, 80, 0.2);
+      color: #2e7d32;
+    }
+
+    .sam-strength--moderate {
+      background: rgba(255, 152, 0, 0.2);
+      color: #e65100;
+    }
+
+    .sam-strength--limited {
+      background: rgba(255, 193, 7, 0.2);
+      color: #f57f17;
+    }
+
+    .sam-strength--none {
+      background: rgba(158, 158, 158, 0.2);
+      color: #616161;
+    }
+
+    /* ===== CALLOUT ===== */
+    .sam-callout {
+      background: var(--seashell);
+      border-left: 4px solid var(--orange);
+      padding: var(--space-6);
+      border-radius: var(--radius-default);
+      margin: var(--space-8) 0;
+    }
+
+    /* ===== ACCORDION ===== */
+    .sam-accordion-item {
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      margin-bottom: var(--space-4);
+      overflow: hidden;
+    }
+
+    .sam-accordion-button {
+      width: 100%;
+      padding: var(--space-6);
+      background: var(--white);
+      border: none;
+      text-align: left;
+      font-family: var(--font-primary);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background var(--motion-fast);
+    }
+
+    .sam-accordion-button:hover {
+      background: var(--seashell);
+    }
+
+    .sam-accordion-button.is-open {
+      background: var(--seashell);
+    }
+
+    .sam-accordion-chevron {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      transition: transform var(--motion-normal);
+    }
+
+    .sam-accordion-button.is-open .sam-accordion-chevron {
+      transform: rotate(180deg);
+    }
+
+    .sam-accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--motion-normal) ease-out;
+    }
+
+    .sam-accordion-content.is-open {
+      max-height: 500px;
+    }
+
+    .sam-accordion-text {
+      padding: 0 var(--space-6) var(--space-6);
+      line-height: 1.7;
+    }
+
+    /* ===== COMPARISON BAR ===== */
+    .sam-comparison-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+      margin: var(--space-12) 0;
+    }
+
+    .sam-comparison-bar__item {
+      background: var(--seashell);
+      padding: var(--space-8);
+      border-radius: var(--radius-default);
+    }
+
+    .sam-comparison-bar__item h3 {
+      color: var(--orange);
+      margin-bottom: var(--space-2);
+    }
+
+    .sam-comparison-bar__item p {
+      font-size: 14px;
+      color: var(--comet);
+    }
+
+    @media (max-width: 768px) {
+      .sam-comparison-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== CASE STUDIES ===== */
+    .sam-case-study {
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+      text-align: left;
+    }
+
+    .sam-case-study h3 {
+      margin-bottom: var(--space-3);
+    }
+
+    .sam-case-study p {
+      font-size: 14px;
+      color: var(--comet);
+      margin-bottom: var(--space-4);
+    }
+
+    .sam-case-study__metric {
+      font-family: var(--font-data);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--orange);
+      margin-top: var(--space-6);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .sam-lead {
+        font-size: 16px;
+      }
+
+      .sam-section {
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .sam-section--hero {
+        padding: var(--space-24) var(--space-4);
+      }
+
+      table {
+        font-size: 12px;
+      }
+
+      th, td {
+        padding: var(--space-3) var(--space-4);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sam-page">
+    <!-- HEADER -->
+    <header class="sam-header" role="navigation" aria-label="Main navigation">
+  <a href="#main-content" class="sam-skip-link">Skip to content</a>
+  <div class="sam-header__inner">
+
+    <!-- Logo -->
+    <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+      <img src="/assets/samotics-logo-white.svg"
+           alt="Samotics" class="sam-logo sam-logo--dark" width="140" height="32">
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="sam-nav" aria-label="Main navigation">
+
+      <a href="/problem" class="sam-nav__link">Problem</a>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Technology
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/technology/esa" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Electrical Signature Analysis</span>
+            <span class="sam-dropdown__desc">The science behind SAM4</span>
+          </a>
+          <a href="/technology/esa-vs-vibration" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">ESA &amp; Vibration</span>
+            <span class="sam-dropdown__desc">How ESA and vibration work together</span>
+          </a>
+          <a href="/technology/how-sam4-works" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Technical Deep Dive</span>
+            <span class="sam-dropdown__desc">Detection accuracy, methodology, and performance data</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Assets
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/platform/what-we-monitor/pumps" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Pumps</span>
+            <span class="sam-dropdown__desc">Centrifugal, submersible, borehole, and canned motor</span>
+          </a>
+          <a href="/platform/what-we-monitor/compressors" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Compressors</span>
+            <span class="sam-dropdown__desc">Reciprocating, screw, and centrifugal</span>
+          </a>
+          <a href="/platform/what-we-monitor/fans-blowers" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Fans &amp; Blowers</span>
+            <span class="sam-dropdown__desc">Axial, centrifugal, and process air</span>
+          </a>
+          <a href="/platform/what-we-monitor/conveyors" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Conveyors</span>
+            <span class="sam-dropdown__desc">Belt, screw, and chain conveyors</span>
+          </a>
+          <a href="/platform/what-we-monitor/transmissions" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Transmissions</span>
+            <span class="sam-dropdown__desc">Gearboxes, couplings, and belt drives</span>
+          </a>
+          <a href="/platform/what-we-monitor" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">All Assets &amp; Motors</span>
+            <span class="sam-dropdown__desc">Full detection matrix by asset type and fault mode</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Platform
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/platform/sam4" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">SAM4 Platform</span>
+            <span class="sam-dropdown__desc">Dashboard, diagnostics, and service model</span>
+          </a>
+          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">How It Installs</span>
+            <span class="sam-dropdown__desc">&lt;60 minutes, back online same shift</span>
+          </a>
+          <a href="/platform/security" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Security &amp; Compliance</span>
+            <span class="sam-dropdown__desc">ISO 27001, ISO 9001, NIS2 aligned, cellular architecture</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">
+          Industries
+          <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/industries/water" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Water &amp; Wastewater</span>
+          </a>
+          <a href="/industries/oil-gas" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Oil &amp; Gas</span>
+          </a>
+          <a href="/industries/metals-mining" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Metals &amp; Mining</span>
+          </a>
+          <a href="/industries/chemicals" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Chemicals</span>
+          </a>
+          <a href="/industries/pulp-paper" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Pulp &amp; Paper</span>
+          </a>
+          <a href="/industries/airports" class="sam-dropdown__item" role="menuitem">
+            <span class="sam-dropdown__label">Airports</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/proof" class="sam-nav__link">Proof</a>
+      <a href="/about" class="sam-nav__link">About</a>
+
+    </nav>
+
+    <div class="sam-header__actions">
+      <a href="/contact/asset-audit" class="sam-cta-secondary" style="font-family:var(--sam-font);font-size:14px;font-weight:500;color:var(--sam-white);text-decoration:none;opacity:0.8;white-space:nowrap;transition:opacity 150ms ease-out;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Asset Audit</a>
+      <a href="/contact?intent=demo" class="sam-cta">Request a Demo</a>
+      <button class="sam-hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="sam-mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <nav class="sam-mobile-nav" aria-label="Mobile navigation">
+
+      <a href="/problem" class="sam-mobile-nav__link">Problem</a>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Technology
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/technology/esa">Electrical Signature Analysis</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Assets
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/what-we-monitor/pumps">Pumps</a>
+          <a href="/platform/what-we-monitor/compressors">Compressors</a>
+          <a href="/platform/what-we-monitor/fans-blowers">Fans &amp; Blowers</a>
+          <a href="/platform/what-we-monitor/conveyors">Conveyors</a>
+          <a href="/platform/what-we-monitor/transmissions">Transmissions</a>
+          <a href="/platform/what-we-monitor">All Assets &amp; Motors</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Platform
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Security &amp; Compliance</a>
+        </div>
+      </div>
+
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">
+          Industries
+          <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/industries/water">Water &amp; Wastewater</a>
+          <a href="/industries/oil-gas">Oil &amp; Gas</a>
+          <a href="/industries/metals-mining">Metals &amp; Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
+        </div>
+      </div>
+
+      <a href="/proof" class="sam-mobile-nav__link">Proof</a>
+      <a href="/about" class="sam-mobile-nav__link">About</a>
+
+      <div class="sam-mobile-nav__cta-wrap">
+        <a href="/contact?intent=demo" class="sam-mobile-nav__cta">Request a Demo</a>
+      </div>
+
+    </nav>
+  </div>
+
+</header>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+
+      <!-- SECTION 1: HERO -->
+      <section class="sam-section sam-section--hero">
+    <div class="sam-hero-overlay"></div>
+        <div class="sam-section__inner">
+          <p class="sam-overline">Technology</p>
+          <h1>ESA & Vibration Monitoring</h1>
+          <p class="sam-subheading">Complementary methods. Different physics. Full fleet coverage.</p>
+          <p class="sam-lead">Vibration is excellent for accessible rotating equipment. But 30-40% of a typical fleet sits beyond sensor reach — submerged pumps, sealed drives, hazardous zones. ESA monitors those assets from the motor control cabinet. The question isn't which is better. It's which assets need which method.</p>
+          <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+            <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+            <a href="#detection-matrix" class="sam-btn sam-btn--secondary">See Detection Matrix ↓</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: SIDE BY SIDE -->
+      <section class="sam-section">
+        <div class="sam-section__inner sam-section__inner--wide">
+          <h2>Side by side</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">Each method detects through different physics. The question is which assets need which method.</p>
+          
+          <div class="sam-table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 30%;">Criteria</th>
+                  <th style="width: 35%;">ESA (SAM4)</th>
+                  <th style="width: 35%;">Vibration Monitoring</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Sensor location</strong></td>
+                  <td>Motor control cabinet (MCC)</td>
+                  <td>On or near the asset</td>
+                </tr>
+                <tr>
+                  <td><strong>Physical access</strong></td>
+                  <td>Not required</td>
+                  <td>Required</td>
+                </tr>
+                <tr>
+                  <td><strong>Installation time</strong></td>
+                  <td>&lt;60 minutes per machine</td>
+                  <td>Hours to days</td>
+                </tr>
+                <tr>
+                  <td><strong>Production shutdown</strong></td>
+                  <td>Brief de-energisation at MCC. Back online same shift.</td>
+                  <td>Often required for mounting</td>
+                </tr>
+                <tr>
+                  <td><strong>Time to first insight</strong></td>
+                  <td>2 days to 2 weeks (baseline calibration)</td>
+                  <td>Immediate (first measurement)</td>
+                </tr>
+                <tr>
+                  <td><strong>Monitoring mode</strong></td>
+                  <td>Continuous 24/7</td>
+                  <td>Continuous or periodic (route-based)</td>
+                </tr>
+                <tr>
+                  <td><strong>Submerged assets</strong></td>
+                  <td>Monitored from MCC</td>
+                  <td>Cannot mount sensor</td>
+                </tr>
+                <tr>
+                  <td><strong>ATEX/hazardous zones</strong></td>
+                  <td>No ATEX cert needed</td>
+                  <td>Requires ATEX-rated equipment</td>
+                </tr>
+                <tr>
+                  <td><strong>Enclosed/sealed assets</strong></td>
+                  <td>No disassembly needed</td>
+                  <td>Requires access to housing</td>
+                </tr>
+                <tr>
+                  <td><strong>Bearing fault detection</strong></td>
+                  <td>Detected</td>
+                  <td>High resolution</td>
+                </tr>
+                <tr>
+                  <td><strong>Misalignment/imbalance</strong></td>
+                  <td>Detected</td>
+                  <td>High resolution</td>
+                </tr>
+                <tr>
+                  <td><strong>Electrical faults</strong></td>
+                  <td>Primary strength</td>
+                  <td>Not detectable</td>
+                </tr>
+                <tr>
+                  <td><strong>Process deviations</strong></td>
+                  <td>Cavitation, clogging, efficiency</td>
+                  <td>Limited</td>
+                </tr>
+                <tr>
+                  <td><strong>Fleet scalability</strong></td>
+                  <td>Rapid deployment (1,000+ assets)</td>
+                  <td>Per-asset installation</td>
+                </tr>
+                <tr>
+                  <td><strong>Cost per monitoring point</strong></td>
+                  <td>Lower (MCC install)</td>
+                  <td>Higher for hard-to-reach assets</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: BEYOND VIBRATION'S REACH -->
+      <section class="sam-section sam-section--light">
+        <div class="sam-section__inner">
+          <h2>Beyond vibration's reach</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">ESA's defining advantage is reach. These scenarios add coverage that vibration physically cannot provide.</p>
+          
+          <div class="sam-grid sam-grid--cols-3">
+            <div class="sam-card">
+              <h3>Submerged or enclosed</h3>
+              <p>Submersible pumps, sealed compressors, enclosed blowers. ESA monitors from the control cabinet. No disassembly.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Hazardous zones</h3>
+              <p>ATEX areas, confined spaces, flammable atmospheres. ESA sensors stay in the MCC. No explosion risk.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Remote sites</h3>
+              <p>Off-grid pumping stations, remote production lines. ESA transmits via cellular. No site visits.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Electrical faults</h3>
+              <p>Stator winding degradation, rotor bar defects, insulation breakdown. ESA detects these. Vibration cannot.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Between vibration rounds</h3>
+              <p>Continuous 24/7 monitoring catches faults between scheduled vibration routes.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Fleet-scale speed</h3>
+              <p>Deploy across 1,000+ assets in weeks. MCC installation &lt;60 minutes per asset.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: VIBRATION'S STRENGTHS -->
+      <section class="sam-section">
+        <div class="sam-section__inner">
+          <h2>Where vibration has the edge</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">Vibration monitoring has decades of field validation. For certain faults on accessible assets, it provides resolution ESA doesn't match.</p>
+          
+          <div class="sam-grid sam-grid--cols-2">
+            <div class="sam-card">
+              <h3>High-resolution mechanical diagnostics</h3>
+              <p>Vibration sensors mounted on machinery provide direct mechanical data. Bearing defect frequencies, gear mesh patterns, resonance analysis. For accessible assets, vibration delivers finer spectral detail.</p>
+            </div>
+            <div class="sam-card">
+              <h3>Established standards</h3>
+              <p>Decades of ISO 10816, ISO 20816 validation. Industry standards. Widespread expertise. If your fleet is 60-70% accessible, mature vibration is proven and familiar.</p>
+            </div>
+          </div>
+
+          <div class="sam-callout">
+            <strong>Caveat:</strong> These advantages apply to accessible assets. Once a motor sits beyond physical reach, you need ESA.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: FAULT-BY-FAULT MATRIX -->
+      <section class="sam-section sam-section--light" id="detection-matrix">
+        <div class="sam-section__inner sam-section__inner--wide">
+          <h2>Fault-by-fault detection matrix</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-4);">This is a coverage map, not a scorecard. Use both where they add value.</p>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">Select detection method by failure mode and asset accessibility, not by vendor preference. Where both methods show strength, the primary method depends on whether the asset is physically reachable.</p>
+          
+          <div class="sam-table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 16%;">Fault Class</th>
+                  <th style="width: 12%;">ESA (SAM4)</th>
+                  <th style="width: 12%;">Vibration</th>
+                  <th style="width: 14%;">Primary Method</th>
+                  <th style="width: 26%;">Rationale</th>
+                  <th style="width: 20%;">Applicability Constraints</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Bearing damage</strong></td>
+                  <td><span class="sam-strength sam-strength--moderate">Moderate</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Both (complementary)</td>
+                  <td>Vibration provides higher spectral resolution on accessible assets. ESA detects bearing faults on submerged or enclosed assets where vibration cannot be mounted.</td>
+                  <td>ESA detection rate: 45.9% overall. Vibration preferred when asset is physically reachable.</td>
+                </tr>
+                <tr>
+                  <td><strong>Misalignment / imbalance</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Vibration (when accessible)</td>
+                  <td>Both methods detect the torque and load variations caused by mechanical misalignment. Vibration provides directional data (axial vs radial).</td>
+                  <td>ESA adds value on inaccessible assets or as a second confirmation signal.</td>
+                </tr>
+                <tr>
+                  <td><strong>Stator winding degradation</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--none">Not detectable</span></td>
+                  <td>ESA only</td>
+                  <td>Winding faults produce current asymmetry and harmonic shifts visible only in the electrical signature. No mechanical vibration produced until late-stage failure.</td>
+                  <td>ESA is the only non-invasive continuous method for this fault class.</td>
+                </tr>
+                <tr>
+                  <td><strong>Rotor bar defects</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--limited">Limited</span></td>
+                  <td>ESA primary</td>
+                  <td>Broken rotor bars produce characteristic sideband frequencies around the supply frequency. Vibration may detect secondary mechanical effects but not the root cause.</td>
+                  <td>ESA is the standard detection method for rotor bar faults in induction motors.</td>
+                </tr>
+                <tr>
+                  <td><strong>Supply asymmetry</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--none">Not detectable</span></td>
+                  <td>ESA only</td>
+                  <td>Voltage and current imbalance between phases is an electrical condition with no mechanical signature. Only visible in the power supply data.</td>
+                  <td>Relevant for all three-phase motors. Common root cause of premature winding failure.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cavitation</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--moderate">Moderate</span></td>
+                  <td>ESA primary</td>
+                  <td>Cavitation causes load fluctuations that modulate the motor current signature. Vibration detects acoustic effects but often only at advanced stages.</td>
+                  <td>ESA detects earlier-stage cavitation on submerged pumps where vibration sensors cannot be mounted.</td>
+                </tr>
+                <tr>
+                  <td><strong>Clogging / blockage</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--limited">Limited</span></td>
+                  <td>ESA primary</td>
+                  <td>Blockage changes the load profile and operating point of the pump. ESA detects the shift in power draw and current waveform. Vibration has limited sensitivity to hydraulic changes.</td>
+                  <td>97.4% detection rate across 545 confirmed cases. Strongest ESA fault class.</td>
+                </tr>
+                <tr>
+                  <td><strong>Efficiency loss</strong></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td><span class="sam-strength sam-strength--none">Not detectable</span></td>
+                  <td>ESA only</td>
+                  <td>Efficiency degradation is a power and energy measurement. No mechanical vibration signal produced. ESA tracks energy consumption and operating point deviation continuously.</td>
+                  <td>Requires baseline calibration period (2 days to 2 weeks) to establish reference efficiency.</td>
+                </tr>
+                <tr>
+                  <td><strong>Belt / coupling wear</strong></td>
+                  <td><span class="sam-strength sam-strength--moderate">Moderate</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Vibration primary</td>
+                  <td>Belt and coupling faults produce distinctive vibration patterns (belt frequency harmonics, coupling angular misalignment). Vibration provides direct mechanical measurement.</td>
+                  <td>Vibration preferred when sensor access to the coupling or belt guard is feasible.</td>
+                </tr>
+                <tr>
+                  <td><strong>Loose foundation</strong></td>
+                  <td><span class="sam-strength sam-strength--limited">Limited</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Vibration primary</td>
+                  <td>Foundation looseness produces characteristic sub-harmonic vibration patterns. This is a structural condition best measured at the machine base.</td>
+                  <td>Vibration sensors on the machine base or foundation bolt provide the clearest signal.</td>
+                </tr>
+                <tr>
+                  <td><strong>Gear mesh faults</strong></td>
+                  <td><span class="sam-strength sam-strength--limited">Limited</span></td>
+                  <td><span class="sam-strength sam-strength--strong">Strong</span></td>
+                  <td>Vibration primary</td>
+                  <td>Gear mesh frequencies and their sidebands are high-frequency mechanical phenomena. Vibration provides direct, high-resolution measurement of gear condition.</td>
+                  <td>Vibration is the established standard for gearbox diagnostics on accessible assets.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: BETTER TOGETHER -->
+      <section class="sam-section">
+        <div class="sam-section__inner">
+          <h2>Better together</h2>
+          <p class="sam-subheading">100% of your fleet. Not 60–70%.</p>
+          
+          <div class="sam-comparison-bar">
+            <div class="sam-comparison-bar__item">
+              <h3>60–70%</h3>
+              <p>Accessible assets covered by vibration</p>
+            </div>
+            <div class="sam-comparison-bar__item" style="background: rgba(255, 84, 41, 0.1);">
+              <h3 style="color: var(--orange);">30–40%</h3>
+              <p>Previously invisible assets now monitored by ESA</p>
+            </div>
+          </div>
+
+          <p style="margin-top: var(--space-8); color: var(--comet);">Vibration and ESA detect faults through different physics. Vibration reads mechanical motion. ESA reads electrical current signature. When both methods cover the same asset, you get two independent signals. The overlap isn't duplication — it's validation.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-12);">
+            <div style="padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default); text-align: center;">
+              <p style="font-weight: 500; color: var(--space-cadet);">Vibration: direct mechanical data from accessible assets.</p>
+            </div>
+            <div style="padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default); text-align: center;">
+              <p style="font-weight: 500; color: var(--space-cadet);">ESA: full drivetrain data from the motor control cabinet.</p>
+            </div>
+            <div style="padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default); text-align: center;">
+              <p style="font-weight: 500; color: var(--space-cadet);">Combined: coverage across the entire fleet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: DECISION SHORTCUT -->
+      <section class="sam-section">
+        <div class="sam-section__inner">
+          <h2>When to use what</h2>
+          <p style="color: var(--comet); margin-bottom: var(--space-8);">Select by asset condition and failure mode, not by vendor preference.</p>
+
+          <div class="sam-grid sam-grid--cols-2">
+            <div class="sam-card" style="border-left: 4px solid var(--orange);">
+              <h3>Use ESA when</h3>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Assets are submerged, enclosed, or in hazardous zones</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Physical sensor access is not feasible</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Fleet-wide coverage is needed at speed</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Electrical fault detection is required</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Continuous monitoring between vibration routes adds value</li>
+              </ul>
+            </div>
+            <div class="sam-card" style="border-left: 4px solid var(--blue-600);">
+              <h3>Use vibration when</h3>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: var(--space-2) 0; color: var(--comet);">Physical access to the asset is available</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">High-resolution mechanical diagnostics are needed (gear mesh, bearing envelope, foundation)</li>
+                <li style="padding: var(--space-2) 0; color: var(--comet);">ISO 10816/20816 compliance is required</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: CUSTOMER EVIDENCE -->
+      <section class="sam-section sam-section--light">
+        <div class="sam-section__inner">
+          <h2>Evidence from the field</h2>
+          
+          <div class="sam-grid sam-grid--cols-2">
+            <div class="sam-case-study">
+              <h3>Schiphol Airport</h3>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">What happened</p>
+              <p>Bearing degradation developing on baggage handling drives. Vibration sensors on the same assets showed no alarm.</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">How ESA detected it</p>
+              <p>Current signature analysis from the MCC identified characteristic bearing defect frequencies in the electrical signal.</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">Outcome</p>
+              <p>All 9 confirmed faults detected during deployment. Maintenance scheduled before breakdown.</p>
+              <div class="sam-case-study__metric">9 / 9 faults detected</div>
+              <blockquote style="margin: var(--space-6) 0 0 0; padding-left: var(--space-4); border-left: 3px solid var(--border-grey); font-style: italic; color: var(--comet); font-size: 14px;">
+                "At first I was a bit skeptical about SAM4's ability to detect failures, but the results speak for themselves: It just works."
+                <footer style="font-style: normal; margin-top: var(--space-2); font-size: 13px;"><strong>Pieter Bakker</strong>, Baggage Service Manager, Schiphol Airport</footer>
+              </blockquote>
+            </div>
+            <div class="sam-case-study">
+              <h3>DuPont</h3>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">What happened</p>
+              <p>Mature vibration programme in place across the site. ESA found faults vibration had not flagged on pumps with no redundancy.</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">How ESA detected it</p>
+              <p>Continuous current monitoring detected developing issues months before failure on assets running 24/7.</p>
+              <p style="font-size: 13px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">Outcome</p>
+              <p>Detections prevented unplanned shutdowns worth €1.7M over three years.</p>
+              <div class="sam-case-study__metric">€1.7M costs prevented</div>
+              <blockquote style="margin: var(--space-6) 0 0 0; padding-left: var(--space-4); border-left: 3px solid var(--border-grey); font-style: italic; color: var(--comet); font-size: 14px;">
+                "We invested heavily in condition-based maintenance — vibration, oil analysis, airflow, the lot. But those approaches can still be snapshots. SAM4 added continuous visibility, and that changes how confident you feel about what's happening."
+                <footer style="font-style: normal; margin-top: var(--space-2); font-size: 13px;"><strong>John McCrystal</strong>, Reliability and Maintenance Specialist, DuPont</footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: FAQ -->
+      <section class="sam-section">
+        <div class="sam-section__inner">
+          <h2>Common questions from reliability teams</h2>
+          
+          <div style="max-width: 800px;">
+            <div class="sam-accordion-item">
+              <button class="sam-accordion-button" type="button">
+                <span>Does SAM4 replace my vibration sensors?</span>
+                <svg class="sam-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="sam-accordion-content">
+                <div class="sam-accordion-text">
+                  <p>No. SAM4 extends your monitoring programme to assets vibration can't reach. Submerged pumps, sealed blowers, ATEX zones, remote sites. Where vibration delivers value, keep it. SAM4 covers the 30–40% with zero visibility. Many customers run both.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sam-accordion-item">
+              <button class="sam-accordion-button" type="button">
+                <span>Can ESA detect everything vibration detects?</span>
+                <svg class="sam-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="sam-accordion-content">
+                <div class="sam-accordion-text">
+                  <p>Not everything. For high-resolution mechanical diagnostics on accessible assets, vibration provides finer spectral detail. ESA adds electrical faults and process deviations that vibration doesn't see.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sam-accordion-item">
+              <button class="sam-accordion-button" type="button">
+                <span>What if I already have a mature vibration programme?</span>
+                <svg class="sam-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="sam-accordion-content">
+                <div class="sam-accordion-text">
+                  <p>Good. That means 60–70% of your fleet is covered. SAM4 targets the remaining 30–40%. It also adds continuous monitoring between vibration routes.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sam-accordion-item">
+              <button class="sam-accordion-button" type="button">
+                <span>How does SAM4 handle false positives?</span>
+                <svg class="sam-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="sam-accordion-content">
+                <div class="sam-accordion-text">
+                  <p>Every alert is reviewed by a reliability engineer before delivery. 0.32% false communication rate across 1,874 resolved incidents — fewer than 1 in 300.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TERMINAL CTA -->
+      <section class="sam-section sam-section--dark">
+        <div class="sam-section__inner">
+          <h2>See what ESA detects on your assets</h2>
+          <p style="font-size: 18px; color: rgba(255, 255, 255, 0.9); margin-bottom: var(--space-8);">Request a demo and speak with a reliability engineer within 48 hours. Real data from real assets. No slides.</p>
+          <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+            <a href="/contact?intent=demo" class="sam-btn sam-btn--primary">Request a Demo</a>
+            <a href="/proof" class="sam-btn sam-btn--secondary" style="--sam-white: var(--white);">See customer results →</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <div class="sam-footer__inner">
+
+    <!-- Top: Logo + Tagline -->
+    <div class="sam-footer__top">
+      <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
+        <img src="/assets/samotics-logo-white.svg"
+             alt="Samotics" width="140" height="32">
+      </a>
+      <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
+    </div>
+
+    <!-- Nav Grid: 5 columns -->
+    <div class="sam-footer__grid">
+
+      <!-- Technology -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Technology</h3>
+        <div class="sam-footer__col-links">
+          <a href="/technology/esa">ESA Technology</a>
+          <a href="/technology/how-sam4-works">Technical Deep Dive</a>
+          <a href="/technology/esa-vs-vibration">ESA &amp; Vibration</a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Platform</h3>
+        <div class="sam-footer__col-links">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/what-we-monitor">What We Monitor</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Trust & Security</a>
+          <a href="/platform/sam4-x">SAM4-X</a>
+        </div>
+      </div>
+
+      <!-- Industries -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Industries</h3>
+        <div class="sam-footer__col-links">
+          <a href="/industries/water">Water & Wastewater</a>
+          <a href="/industries/oil-gas">Oil &amp; Gas</a>
+          <a href="/industries/metals-mining">Metals & Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
+          <a href="/industries/airports">Airports</a>
+        </div>
+      </div>
+
+      <!-- Proof -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Resources</h3>
+        <div class="sam-footer__col-links">
+          <a href="/resources/blog/">Blog</a>
+          <a href="/resources/case-studies/">Case Studies</a>
+          <a href="/resources/knowledge-base/">Knowledge Base</a>
+          <a href="/resources/news/">News &amp; Press</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Company</h3>
+        <div class="sam-footer__col-links">
+          <a href="/about">About</a>
+          <!-- Phase 2: <a href="/partners">Partners</a> -->
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="sam-footer__divider"></div>
+
+    <!-- Certification Badges -->
+    <div class="sam-footer__certs">
+      <a href="/platform/security" aria-label="ISO 27001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-27001.webp" alt="DNV ISO 27001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+      <a href="/platform/security" aria-label="ISO 9001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-9001.webp" alt="DNV ISO 9001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="sam-footer__bottom">
+
+      <div class="sam-footer__bottom-left">
+        <span class="sam-footer__copyright">&copy; 2026 Samotics &middot; Built in The Netherlands</span>
+
+        <a href="https://www.linkedin.com/company/samotics/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="sam-footer__social"
+           aria-label="Samotics on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sam-footer__legal">
+        <a href="/privacy">Privacy</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/terms">Terms</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/cookies">Cookies</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Header scroll effect
+      var header = document.querySelector('.sam-header');
+      if (header) {
+        var scrollThreshold = 20;
+        function onScroll() {
+          if (window.scrollY > scrollThreshold) {
+            header.classList.add('is-scrolled');
+          } else {
+            header.classList.remove('is-scrolled');
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      // Mobile menu toggle
+      var hamburger = document.querySelector('.sam-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function () {
+          var isOpen = mobileMenu.classList.toggle('is-open');
+          hamburger.setAttribute('aria-expanded', isOpen);
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+      }
+
+      // Mobile nav submenus
+      document.querySelectorAll('.sam-mobile-nav__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var group = btn.closest('.sam-mobile-nav__group');
+          var isOpen = group.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+
+      // Footer accordions (mobile)
+      document.querySelectorAll('[data-footer-accordion]').forEach(function (col) {
+        var heading = col.querySelector('.sam-footer__col-heading');
+        if (!heading) return;
+        heading.addEventListener('click', function () {
+          if (window.innerWidth > 991) return;
+          col.classList.toggle('is-open');
+        });
+      });
+
+      // FAQ accordions
+      document.querySelectorAll('.sam-accordion-button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.sam-accordion-item');
+          var content = item.querySelector('.sam-accordion-content');
+          var isOpen = btn.classList.toggle('is-open');
+          content.classList.toggle('is-open', isOpen);
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
