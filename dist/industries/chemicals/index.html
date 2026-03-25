@@ -1207,6 +1207,109 @@
       }
     }
 
+  
+    /* ===== FAQ ACCORDION ===== */
+    .sam-faq {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .sam-faq__item {
+      border-bottom: 1px solid var(--border-grey);
+    }
+    .sam-faq__item:first-child {
+      border-top: 1px solid var(--border-grey);
+    }
+    .sam-faq__question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--space-cadet);
+      text-align: left;
+      line-height: 1.4;
+    }
+    .sam-faq__icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-left: 16px;
+      transition: transform var(--motion-normal) ease-out;
+      color: var(--comet);
+    }
+    .sam-faq__item.is-open .sam-faq__icon {
+      transform: rotate(45deg);
+    }
+    .sam-faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--motion-normal) ease-out;
+    }
+    .sam-faq__item.is-open .sam-faq__answer {
+      max-height: 500px;
+    }
+    .sam-faq__answer p {
+      padding: 0 0 24px;
+      color: var(--comet);
+      line-height: 1.6;
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+
+    /* ===== MEASUREMENT METHOD BOX ===== */
+    .sam-measurement-method {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius, 4px);
+      padding: 12px 20px;
+      max-width: 640px;
+      margin-top: var(--space-4);
+    }
+    .sam-measurement-method p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .sam-section--seashell .sam-measurement-method,
+    .sam-section--white .sam-measurement-method {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+    }
+    .sam-section--seashell .sam-measurement-method p,
+    .sam-section--white .sam-measurement-method p {
+      color: var(--comet);
+    }
+
+    /* ===== MID-PAGE CTA ===== */
+    .sam-midpage-cta {
+      text-align: center;
+      margin-top: var(--space-10);
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--border-grey);
+    }
+    .sam-midpage-cta a {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--blue-600);
+    }
+
+    /* ===== SECTION CONTRAST LINE ===== */
+    .sam-section__contrast {
+      text-align: center;
+      font-size: 15px;
+      color: var(--comet);
+      max-width: 640px;
+      margin: var(--space-8) auto 0;
+      line-height: 1.6;
+    }
+
   </style>
 </head>
 <body>
@@ -1436,198 +1539,366 @@
 
 </header>
 
-  <!-- ── Section 1: Hero ── -->
-  <section class="sam-section sam-section--hero">
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 1: Hero (Dark overlay on industry image)          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--hero" id="main-content">
     <div class="sam-hero-overlay"></div>
     <div class="sam-section__inner">
-      <div class="sam-section__overline">Chemicals</div>
-      <h1 class="sam-section__title">Monitor ATEX zone equipment without entering them</h1>
-      <p class="sam-section__subtitle">Detect faults across pumps, fans, compressors, and centrifuges in your chemical plants. SAM4 installs in the motor control cabinet, safely outside hazardous areas.</p>
+      <div class="sam-section__overline">Chemicals &amp; Process Industries</div>
+      <h1 class="sam-section__title">Your most critical assets sit where sensors cannot survive</h1>
+      <p class="sam-section__subtitle">Chemical plants demand continuous monitoring. ATEX zones, corrosive atmospheres, and non-stop processes make physical sensors expensive, short-lived, or impossible. ESA monitors every motor-driven asset from the electrical cabinet.</p>
       <div class="sam-stats-bar">
-          <div class="sam-stat">
-            <div class="sam-stat__value">&euro;1.7M</div>
-            <div class="sam-stat__label">Cost prevented over 3 years at DuPont</div>
-          </div>
-          <div class="sam-stat">
-            <div class="sam-stat__value">40%</div>
-            <div class="sam-stat__label">Downtime reduction at DuPont</div>
-          </div>
-          <div class="sam-stat">
-            <div class="sam-stat__value">15+</div>
-            <div class="sam-stat__label">Failures detected across 3 sites</div>
-          </div>
+        <div class="sam-stat">
+          <div class="sam-stat__value">$125k/hr</div>
+          <div class="sam-stat__label">Median unplanned downtime cost</div>
+        </div>
+        <div class="sam-stat">
+          <div class="sam-stat__value">70%+</div>
+          <div class="sam-stat__label">Pump failures from seals and bearings</div>
+        </div>
+        <div class="sam-stat">
+          <div class="sam-stat__value">3&ndash;5&times;</div>
+          <div class="sam-stat__label">ATEX sensor cost vs safe-area install</div>
+        </div>
+      </div>
+      <div class="sam-measurement-method">
+        <p>Downtime cost: ABB 2023 survey (3,215 respondents across process industries). Pump failure mode split: ATS Lab rotating equipment failure analysis. ATEX cost multiplier: industry component cost comparison, ATEX Zone 1 fully installed vs non-hazardous area.</p>
       </div>
       <div class="sam-hero-actions">
-        <a href="/contact" class="sam-btn sam-btn--primary">Request a demo</a>
-        <a href="#proof" class="sam-btn sam-btn--ghost">See results below</a>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--primary">Start your asset audit</a>
+        <a href="#proof" class="sam-btn sam-btn--ghost">See chemical industry results</a>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 2: Trust bar ── -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 2: Trust bar (inherits background)                -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <div class="sam-trust-bar">
     <div class="sam-trust-bar__inner">
       <div class="sam-trust-bar__label">Trusted by leaders in chemicals and materials</div>
       <div class="sam-trust-bar__logos">
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/dupont.png" alt="DuPont"></span>
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/dsm-firmenich.jpg" alt="DSM-Firmenich"></span>
+        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/dupont.png" alt="DuPont" loading="lazy"></span>
+        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/dsm-firmenich.jpg" alt="DSM-Firmenich" loading="lazy"></span>
         <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;font-size:0.8125rem;font-weight:600;color:var(--comet);opacity:0.7;">OCI</span>
       </div>
     </div>
   </div>
 
-  <!-- ── Section 3: Challenges ── -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 3: Challenges (White) — NO SAM4/ESA mentions      -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
-      <div class="sam-section__overline">The challenge</div>
-      <h2 class="sam-section__title">ATEX zones leave little room for surprises</h2>
-      <p class="sam-section__subtitle">Chemical plants run 24/7 in explosive atmospheres where equipment cannot be easily instrumented.</p>
+      <div class="sam-section__overline">The problem</div>
+      <h2 class="sam-section__title">Chemical plants monitor their most dangerous assets the least</h2>
+      <p class="sam-section__subtitle">The equipment most critical to process safety is the hardest to instrument.</p>
       <div class="sam-card-grid sam-card-grid--2col">
+
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 1L3 5v5c0 4.4 3 8.5 7 9.5 4-1 7-5.1 7-9.5V5l-7-4zm0 2.2L15 6.5v3.5c0 3.5-2.3 6.7-5 7.5-2.7-.8-5-4-5-7.5V6.5L10 3.2z"/><path d="M9 10l-2-2 1-1 1 1 3-3 1 1-4 4z"/></svg></div>
-          <div class="sam-card__title">Hazardous area monitoring</div>
-          <div class="sam-card__body">ATEX-rated zones prohibit many sensor types. SAM4 installs on power cables in the motor control cabinet. No entry into classified zones required.</div>
+          <div class="sam-card__title">ATEX zones block sensor access</div>
+          <div class="sam-card__body">SEVESO III mandates equipment integrity monitoring. But the motors driving reactor agitators, process pumps, and compressors sit in ATEX Zone 1 or Zone 2. Installing certified sensors requires specialist contractors, process shutdown, and 3&ndash;5&times; the cost of a standard measurement point.</div>
         </div>
+
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2L1 18h18L10 2zm0 4l6.5 11h-13L10 6z"/><rect x="9" y="9" width="2" height="4" rx="0.5"/><rect x="9" y="14" width="2" height="2" rx="0.5"/></svg></div>
-          <div class="sam-card__title">Continuous process disruption</div>
-          <div class="sam-card__body">An unplanned pump or compressor failure can stop an entire production line. SAM4 gives weeks-to-months advance warning so you can schedule repairs during planned STOs.</div>
+          <div class="sam-card__title">Continuous processes cannot stop for inspection</div>
+          <div class="sam-card__body">Polymerisation reactors risk runaway on shutdown. Distillation columns take hours to days to restart. Catalyst beds deactivate. At $125,000 per hour, an 8-hour planned shutdown costs $1 million before accounting for off-quality product and extended recovery.</div>
         </div>
+
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M11 1L4 12h5l-2 7 9-11h-5l2-7z"/></svg></div>
-          <div class="sam-card__title">Energy waste in rotating equipment</div>
-          <div class="sam-card__body">Oversized pumps, inefficient blowers, and poorly matched drives waste 5-35% of energy. SAM4 identifies waste with real-time performance data.</div>
+          <div class="sam-card__title">Corrosive environments destroy sensors</div>
+          <div class="sam-card__body">Acid vapours, caustic splash zones, and temperature cycling degrade conventional sensors to a 1&ndash;3 year lifespan. Vibration probes, cable insulation, and connector materials all suffer pitting, swelling, and dimensional loss. Replacement cycles add ongoing cost and downtime.</div>
         </div>
+
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 1a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"/><path d="M8.5 12.5l-2.5-2.5 1-1 1.5 1.5 4-4 1 1-5 5z"/></svg></div>
-          <div class="sam-card__title">Compliance and safety pressure</div>
-          <div class="sam-card__body">SEVESO regulations and MOC procedures demand documented evidence of asset condition. SAM4 provides continuous monitoring records for process safety management.</div>
+          <div class="sam-card__title">Thousands of motors run unmonitored</div>
+          <div class="sam-card__body">A large chemical site operates 500 to 2,000+ motors. Vibration monitoring typically covers only the top-tier critical assets. The rest run until failure. Mechanical seal and bearing faults account for 70%+ of pump downtime, and most develop between inspection rounds.</div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── Section 4: Assets monitored ── -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 4: Why SAM4 (Seashell) — differentiators          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">Why SAM4</div>
+      <h2 class="sam-section__title">Why SAM4 works for chemicals</h2>
+      <p class="sam-section__subtitle">Electrical Signature Analysis monitors motors and driven equipment from the motor control cabinet. No sensors on the asset. No entry into hazardous zones.</p>
+      <div class="sam-card-grid sam-card-grid--2col">
+
+        <div class="sam-card">
+          <div class="sam-card__title">No sensors on the asset</div>
+          <div class="sam-card__body">SAM4 clips onto power cables inside the MCC. The monitoring point sits in the safe area, outside ATEX classification boundaries. No explosion-proof housings, no certified cable glands, no intrinsically safe barriers.</div>
+        </div>
+
+        <div class="sam-card">
+          <div class="sam-card__title">Full fleet coverage from one location</div>
+          <div class="sam-card__body">Every motor-driven asset connected to the MCC is monitored: reactor agitators, process pumps, compressors, fans, centrifuges. One installation point per motor. No per-asset sensor economics limiting coverage.</div>
+        </div>
+
+        <div class="sam-card">
+          <div class="sam-card__title">Detects faults vibration cannot</div>
+          <div class="sam-card__body">ESA catches cavitation onset, dry running, mechanical seal degradation, and blockages through motor current modulation. These process-driven faults produce no vibration signature until damage is advanced. ESA detects them weeks earlier.</div>
+        </div>
+
+        <div class="sam-card">
+          <div class="sam-card__title">Deploys without process shutdown</div>
+          <div class="sam-card__body">Clip-on current transformers install in minutes during normal operation. No confined-space entry, no hot work permit, no process isolation. Continuous chemical processes stay running throughout deployment.</div>
+        </div>
+
+      </div>
+      <p class="sam-section__contrast">In chemical plants, the assets most critical to process safety are the ones you cannot safely instrument. ESA bypasses that constraint entirely.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 5: Assets monitored (White)                       -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">What we monitor</div>
       <h2 class="sam-section__title">Critical assets in chemical plants</h2>
-      <p class="sam-section__subtitle">SAM4 monitors any AC motor-driven equipment from the MCC.</p>
+      <p class="sam-section__subtitle">SAM4 monitors any AC motor-driven equipment from the MCC. These are the asset types that matter most in chemical processing.</p>
       <div class="sam-card-grid sam-card-grid--3col">
+
         <a href="/platform/what-we-monitor/pumps" class="sam-card">
           <div class="sam-card__title">Pumps</div>
-          <div class="sam-card__body">Process, transfer, and circulation pumps. SAM4 detects cavitation, seal wear, bearing degradation, and efficiency loss across all voltage ranges.</div>
+          <div class="sam-card__body">Process, transfer, and circulation pumps including canned motor and magnetic drive types. SAM4 detects cavitation, seal degradation, bearing wear, dry running, and blockages across centrifugal, dosing, and vertical turbine designs.</div>
           <span class="sam-card__link">Pump monitoring details &rarr;</span>
         </a>
+
+        <a href="/platform/what-we-monitor/agitators-mixers" class="sam-card">
+          <div class="sam-card__title">Agitators &amp; mixers</div>
+          <div class="sam-card__body">Reactor agitators, blending mixers, and crystallisation stirrers. SAM4 detects seal degradation, bearing wear, shaft misalignment, impeller damage, and gearbox faults. Early detection prevents batch loss and thermal runaway risk.</div>
+          <span class="sam-card__link">Agitator monitoring details &rarr;</span>
+        </a>
+
         <a href="/platform/what-we-monitor/compressors" class="sam-card">
           <div class="sam-card__title">Compressors</div>
-          <div class="sam-card__body">Gas and air compressors with bearing, coupling, and driver fault detection for continuous chemical processes.</div>
+          <div class="sam-card__body">Process gas, refrigeration, and instrument air compressors. SAM4 detects valve inefficiency, liquid slugging, bearing wear, and oil degradation. Loss of compression in refrigeration compressors can trigger thermal runaway in exothermic reactors.</div>
           <span class="sam-card__link">Compressor monitoring details &rarr;</span>
         </a>
-        <a href="/platform/what-we-monitor/fans-blowers" class="sam-card">
-          <div class="sam-card__title">Fans &amp; blowers</div>
-          <div class="sam-card__body">Ventilation fans and process blowers with energy optimisation and early degradation alerts.</div>
-          <span class="sam-card__link">Fan monitoring details &rarr;</span>
-        </a>
+
       </div>
     </div>
   </section>
 
-  <!-- ── Section 5: Proof ── -->
-  <section class="sam-section sam-section--white" id="proof">
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 6: Proof (Seashell)                               -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--seashell" id="proof">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Proof</div>
       <h2 class="sam-section__title">Chemical industry results</h2>
+
+      <!-- Featured case study -->
       <div class="sam-proof-highlight">
-        <div class="sam-proof-highlight__overline">Featured</div>
-        <h3 class="sam-proof-highlight__title">DuPont: &euro;1.7M in costs prevented over 3 years</h3>
-        <p class="sam-proof-highlight__body">SAM4 detected 15+ failures across 3 European DuPont sites. The system covers 6 failure modes across pumps, fans, and compressors. Overall equipment downtime reduced by 40%.</p>
+        <div class="sam-proof-highlight__overline">Featured case study</div>
+        <h3 class="sam-proof-highlight__title">Circulator pump: misalignment detected 7 months before failure</h3>
+        <p class="sam-proof-highlight__body">SAM4 detected developing radial and axial misalignment on a circulator pump at a chemical processing site. The customer's preventive maintenance programme confirmed degraded coupling blocks and misalignment during the next planned intervention. Without early detection, the failure would have required an emergency shutdown.</p>
         <div class="sam-proof-highlight__stats">
           <div class="sam-stat">
-            <div class="sam-stat__value">&euro;1.7M</div>
-            <div class="sam-stat__label">Costs prevented</div>
+            <div class="sam-stat__value">7 months</div>
+            <div class="sam-stat__label">Advance warning</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">40%</div>
-            <div class="sam-stat__label">Downtime reduction</div>
-          </div>
-          <div class="sam-stat">
-            <div class="sam-stat__value">15+</div>
-            <div class="sam-stat__label">Failures detected</div>
+            <div class="sam-stat__value">Confirmed</div>
+            <div class="sam-stat__label">By customer's own maintenance</div>
           </div>
         </div>
-        <a href="/proof/dupont" class="sam-proof-highlight__link">Read the full DuPont case study &rarr;</a>
+        <div class="sam-measurement-method">
+          <p>Detection confirmed via customer maintenance records. Misalignment and coupling block degradation verified during planned intervention.</p>
+        </div>
+        <a href="/case-studies/condition-monitoring-circulator-pump-misalignment-gearbox" class="sam-proof-highlight__link" style="display:inline-block;margin-top:var(--space-4);">Read the full case study &rarr;</a>
       </div>
-      <div class="sam-card-grid sam-card-grid--2col">
-        <a href="/proof/dupont" class="sam-proof-card">
-          <div class="sam-proof-card__kpi">$90k</div>
-          <div class="sam-proof-card__customer">DuPont</div>
-          <div class="sam-proof-card__body">Production loss prevented on a heated godet roll. SAM4 detected bearing degradation 6 weeks before planned shutdown.</div>
+
+      <!-- Supporting proof cards -->
+      <div class="sam-card-grid sam-card-grid--3col">
+
+        <a href="/case-studies/condition-monitoring-centrifugal-pump" class="sam-proof-card">
+          <div class="sam-proof-card__kpi">Weeks early</div>
+          <div class="sam-proof-card__customer">Chemical process pump</div>
+          <div class="sam-proof-card__body">SAM4 detected cavitation onset on a VFD-controlled centrifugal pump via noise floor rise at supply frequency. The customer's vibration system did not flag the fault.</div>
           <span class="sam-proof-card__link">Read case study &rarr;</span>
         </a>
-        <a href="/proof/dupont" class="sam-proof-card">
-          <div class="sam-proof-card__kpi">&euro;121k/yr</div>
-          <div class="sam-proof-card__customer">DuPont</div>
-          <div class="sam-proof-card__body">Annual savings from predictive maintenance across monitored assets. Replacing reactive repairs with planned interventions.</div>
-          <span class="sam-proof-card__link">Read case study &rarr;</span>
+
+        <a href="/proof" class="sam-proof-card">
+          <div class="sam-proof-card__kpi">70&ndash;75%</div>
+          <div class="sam-proof-card__customer">Industry benchmark</div>
+          <div class="sam-proof-card__body">Failure reduction achieved with condition-based monitoring programmes across chemical and process industry operations.</div>
+          <span class="sam-proof-card__link">See all results &rarr;</span>
         </a>
+
+        <a href="/proof" class="sam-proof-card">
+          <div class="sam-proof-card__kpi">35&ndash;45%</div>
+          <div class="sam-proof-card__customer">Industry benchmark</div>
+          <div class="sam-proof-card__body">Downtime reduction documented across condition monitoring deployments in continuous process environments.</div>
+          <span class="sam-proof-card__link">See all results &rarr;</span>
+        </a>
+
       </div>
+
+      <div class="sam-measurement-method" style="margin-top:var(--space-6);">
+        <p>Industry benchmarks: MaintainX condition monitoring techniques survey and Tractian 2025 condition monitoring report. Samotics-specific: triple-digit annual ROI with 2&ndash;14 month payback documented across deployments.</p>
+      </div>
+
+      <!-- Mid-page CTA -->
+      <div class="sam-midpage-cta">
+        <a href="/contact?intent=demo">Ready to see what SAM4 finds in your plant? Request a demo &rarr;</a>
+      </div>
+
     </div>
   </section>
 
-  <!-- ── Section 6: Install ── -->
-  <section class="sam-section sam-section--seashell">
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 7: Installation (White)                           -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Installation</div>
-      <h2 class="sam-section__title">No entry into hazardous zones</h2>
+      <h2 class="sam-section__title">No process shutdown required</h2>
+      <p class="sam-section__subtitle">SAM4 installs in the motor control cabinet, in the safe area outside ATEX zones. No hot work permits. No confined-space entry. No process interruption.</p>
       <div class="sam-install-grid">
         <div>
-        <div class="sam-install-step">
-          <div class="sam-install-step__num">1</div>
-          <div class="sam-install-step__text">
-            <strong>Clip on at the MCC</strong>
-            <span>SAM4 installs on the power cable inside the motor control cabinet. Outside ATEX zones. No hot work permit.</span>
+          <div class="sam-install-step">
+            <div class="sam-install-step__num">1</div>
+            <div class="sam-install-step__text">
+              <strong>Clip on at the MCC</strong>
+              <span>Clip-on current transformers attach to the motor power cable inside the cabinet. Standard maintenance access only. Minutes per motor.</span>
+            </div>
           </div>
-        </div>
-        <div class="sam-install-step">
-          <div class="sam-install-step__num">2</div>
-          <div class="sam-install-step__text">
-            <strong>Connect to the network</strong>
-            <span>Cellular gateway sends data to the cloud. No plant network integration needed for deployment.</span>
+          <div class="sam-install-step">
+            <div class="sam-install-step__num">2</div>
+            <div class="sam-install-step__text">
+              <strong>Connect to the network</strong>
+              <span>Secure 4G cellular gateway transmits data to the cloud. No plant network integration required for initial deployment. Wi-Fi and Ethernet also supported.</span>
+            </div>
           </div>
-        </div>
-        <div class="sam-install-step">
-          <div class="sam-install-step__num">3</div>
-          <div class="sam-install-step__text">
-            <strong>Monitor from anywhere</strong>
-            <span>The SAM4 dashboard shows asset health, fault alerts, and energy performance within hours.</span>
+          <div class="sam-install-step">
+            <div class="sam-install-step__num">3</div>
+            <div class="sam-install-step__text">
+              <strong>Monitor from anywhere</strong>
+              <span>The SAM4 dashboard shows asset health, fault progression, and energy performance. CMMS integration enables automatic work order generation from alerts.</span>
+            </div>
           </div>
-        </div>
         </div>
         <div class="sam-install-image">
-          <img src="/assets/images/install-sam4-mcc.jpg" alt="SAM4 hardware installed inside a motor control cabinet at a chemical processing plant" loading="lazy" style="width:100%;border-radius:var(--radius-default);">
+          <img src="/assets/images/install-sam4-mcc.jpg" alt="SAM4 clip-on current transformers installed inside a motor control cabinet at a chemical processing facility" loading="lazy" style="width:100%;border-radius:var(--radius, 4px);">
         </div>
       </div>
 
-            <div class="sam-quote">
-        <p class="sam-quote__text">The results speak for themselves: it just works.</p>
-        <div class="sam-quote__attr">DuPont case study</div>
+      <!-- Safe area vs process area comparison -->
+      <div style="margin-top:var(--space-10);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);">
+        <div class="sam-card">
+          <div class="sam-card__title">Safe area (MCC room)</div>
+          <div class="sam-card__body">Standard maintenance access. Standard workwear. Sensor installs in minutes. No permits beyond standard electrical lockout/tagout.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__title">Process area (ATEX Zone 1)</div>
+          <div class="sam-card__body">Permit to work, gas testing, LEL monitoring. Full chemical PPE, possibly SCBA. Hot work permits, confined-space protocols. Sensor installation takes hours to days.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 8: FAQ (Seashell)                                 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">Common questions</div>
+      <h2 class="sam-section__title">Chemical industry monitoring FAQ</h2>
+
+      <div class="sam-faq">
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            Can ESA work in ATEX Zone 1?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>Yes. ESA sensors install in the motor control cabinet, which sits in the safe area outside the ATEX classification boundary. They monitor motors and driven equipment operating in Zone 1 or Zone 2 without any hardware in the classified zone. No explosion-proof housings, no certified cable glands, no intrinsically safe barriers required at the monitoring point.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            We already have vibration on critical assets. Why add ESA?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>Vibration typically covers 5&ndash;20% of the motor fleet. The cost and complexity of ATEX-certified sensors make full coverage prohibitive. ESA covers every motor connected to the MCC. It also detects process-driven faults (cavitation, dry running, blockages, seal degradation) that produce no vibration signature until damage is advanced. ESA complements vibration rather than replacing it.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            How does ESA handle variable-frequency drives?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>SAM4 synthesises AC current from VFD pulse-width modulated signals. It detects mechanical and electrical faults through electrical data even with varying frequencies. ABB has integrated SAM4 directly into its ACS880 VFD platform, confirming VFD compatibility at the drive manufacturer level.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            Can ESA detect seal failures on reactor agitators?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>Yes. Misalignment is the primary precursor to seal failure, and SAM4 has detected it 7 months in advance in a documented case study. As seal condition deteriorates, friction changes modulate the motor current signature. Patents exist for MCSA-based detection of pump and agitator seal failure via current analysis (US Patent 7389278).</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            We are a SEVESO upper-tier site. Does ESA help with compliance?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>SAM4 is not a safety-instrumented system and does not meet SIL requirements per IEC 61511. However, early fault detection on pumps, agitators, and compressors prevents the loss-of-containment events (reactor rupture, seal failure, compressor explosion) that trigger SEVESO reporting obligations. Position it as operational resilience that supports your Safety Management System.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            Does SAM4 integrate with our DCS and CMMS?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>SAM4 integrates with CMMS systems to generate automatic work orders from fault alerts. The platform transmits data via secure 4G, Wi-Fi, or Ethernet. DCS integration for alarm routing follows standard process plant architecture. Initial deployment requires no plant network integration.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── Section 7: Terminal CTA ── -->
-  <section class="sam-section sam-section--white sam-terminal-cta">
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 9: Terminal CTA (Dark / Space Cadet)              -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--dark sam-terminal-cta" style="background:var(--space-cadet);padding:var(--space-30) var(--space-6);">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Get started</div>
-      <h2 class="sam-section__title">From your first site to every plant</h2>
-      <p class="sam-section__subtitle">Start with a pilot on your highest-risk assets. Scale to full fleet monitoring as results prove out.</p>
+      <h2 class="sam-section__title" style="color:var(--white);">Monitor every pump, agitator, and compressor. No sensors in the ATEX zone.</h2>
+      <p class="sam-section__subtitle" style="color:rgba(255,255,255,0.75);">Start with your highest-risk process area. See results within weeks. Scale to full fleet monitoring across every plant.</p>
       <div class="sam-hero-actions">
         <a href="/contact/asset-audit" class="sam-btn sam-btn--primary">Start your asset audit</a>
-        <a href="/contact" class="sam-btn sam-btn--ghost-dark">Request a demo</a>
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--ghost">Talk to a chemicals engineer</a>
       </div>
     </div>
   </section>
+
 
 <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
   <div class="sam-footer__inner">
@@ -1747,7 +2018,6 @@
   </div>
 
   <script>
-  <script>
     (function () {
       'use strict';
 
@@ -1798,6 +2068,17 @@
     })();
   </script>
 
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.sam-faq__question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.sam-faq__item');
+        var isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.sam-faq__item').forEach(function(i) { i.classList.remove('is-open'); });
+        if (!isOpen) item.classList.add('is-open');
+      });
+    });
   </script>
+
 </body>
 </html>
