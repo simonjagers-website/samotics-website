@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Offshore platforms, ATEX zones, ESPs underground. SAM4 monitors them all from the motor control cabinet. No sensors on the asset. No permits required.">
-  <title>Monitor Assets Your Sensors Cannot Reach | Samotics</title>
+  <meta name="description" content="ATEX zones restrict sensor access. ESPs fail underground. SAM4 monitors from the motor control cabinet. No sensors on the asset. No hazardous-area permits. 61% of ESP failures are electrical. ESA detects them from surface.">
+  <title>Oil &amp; Gas Condition Monitoring from the MCC | Samotics</title>
   <link rel="canonical" href="https://samoticstestpage.com/industries/oil-gas/">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>
@@ -1148,6 +1148,55 @@
     .sam-terminal-cta .sam-section__title {
       text-align: left;
     }
+    .sam-terminal-cta.sam-section--dark {
+      background-image: none !important;
+    }
+
+    /* ===== FAQ ACCORDION ===== */
+    .sam-faq {
+      max-width: 800px;
+    }
+    .sam-faq__item {
+      border-bottom: 1px solid var(--border-grey);
+    }
+    .sam-faq__item:first-child {
+      border-top: 1px solid var(--border-grey);
+    }
+    .sam-faq__question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: var(--space-6) 0;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--space-cadet);
+      cursor: pointer;
+      list-style: none;
+    }
+    .sam-faq__question::-webkit-details-marker {
+      display: none;
+    }
+    .sam-faq__question::after {
+      content: '+';
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--comet);
+      flex-shrink: 0;
+      margin-left: var(--space-4);
+    }
+    .sam-faq__item[open] .sam-faq__question::after {
+      content: '\2212';
+    }
+    .sam-faq__answer {
+      padding: 0 0 var(--space-6) 0;
+    }
+    .sam-faq__answer p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.7;
+      margin: 0;
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
@@ -1434,16 +1483,20 @@
     <div class="sam-hero-overlay"></div>
     <div class="sam-section__inner">
       <div class="sam-section__overline">Oil &amp; Gas</div>
-      <h1 class="sam-section__title">Detect faults in assets your sensors cannot reach</h1>
-      <p class="sam-section__subtitle">Offshore platforms, ATEX zones, ESPs kilometres underground, nacelles 100 metres up. SAM4 monitors them all from the motor control cabinet. No sensors on the asset. No permits required.</p>
+      <h1 class="sam-section__title">Monitor assets in the zones sensors cannot reach</h1>
+      <p class="sam-section__subtitle">ATEX zones restrict sensor access. ESPs sit kilometres underground. Offshore platforms limit physical inspection to quarterly routes. SAM4 monitors from the motor control cabinet. No sensors on the asset. No hazardous-area permits.</p>
       <div class="sam-stats-bar">
           <div class="sam-stat">
-            <div class="sam-stat__value">90.8%</div>
-            <div class="sam-stat__label">Fault detection rate on core assets</div>
+            <div class="sam-stat__value">61%</div>
+            <div class="sam-stat__label">Of ESP failures are electrical</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">0.32%</div>
-            <div class="sam-stat__label">False positive rate</div>
+            <div class="sam-stat__value">$38M</div>
+            <div class="sam-stat__label">Avg. annual offshore downtime cost</div>
+          </div>
+          <div class="sam-stat">
+            <div class="sam-stat__value">45%</div>
+            <div class="sam-stat__label">Of rotating assets run unmonitored</div>
           </div>
       </div>
       <div class="sam-hero-actions">
@@ -1453,135 +1506,239 @@
     </div>
   </section>
 
-  <!-- ── Section 2: Trust bar ── -->
+  <!-- ── Section 2: Trust bar (pending O&G customer logos) ── -->
 
 
-  <!-- ── Section 3: Challenges ── -->
+  <!-- ── Section 3: Challenges (no SAM4 mentions) ── -->
   <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">The challenge</div>
-      <h2 class="sam-section__title">Energy assets operate where sensors cannot go</h2>
-      <p class="sam-section__subtitle">ATEX zones, nacelles, ESPs underground. Vibration sensors cannot reach these assets.</p>
+      <h2 class="sam-section__title">Critical assets operate where monitoring cannot follow</h2>
+      <p class="sam-section__subtitle">ATEX certification, subsurface access, offshore logistics, and distributed infrastructure create monitoring blind spots across upstream and downstream operations.</p>
       <div class="sam-card-grid sam-card-grid--2col">
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 1L3 5v5c0 4.4 3 8.5 7 9.5 4-1 7-5.1 7-9.5V5l-7-4zm0 2.2L15 6.5v3.5c0 3.5-2.3 6.7-5 7.5-2.7-.8-5-4-5-7.5V6.5L10 3.2z"/><path d="M9 10l-2-2 1-1 1 1 3-3 1 1-4 4z"/></svg></div>
-          <div class="sam-card__title">ATEX zone access constraints</div>
-          <div class="sam-card__body">Placing sensors on assets in explosive atmospheres is dangerous and often prohibited. SAM4 monitors from the motor control cabinet, safely outside hazardous zones.</div>
+          <div class="sam-card__title">ATEX zones block sensor access</div>
+          <div class="sam-card__body">Zone 1 and Zone 2 environments require ATEX Category 2G or 3G certified equipment. A single hazardous-area monitoring point costs $5,000 to $12,000: certified IS sensor, galvanic isolator, and certified technician labour. That is 4 to 5x the cost of non-hazardous installation. Most auxiliary pumps, cooling fans, and secondary motors never get monitored.</div>
         </div>
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2v12m0 0l-4-4m4 4l4-4M3 18h14"/></svg></div>
-          <div class="sam-card__title">ESP failures underground</div>
-          <div class="sam-card__body">ESPs operate deep underground with no physical access. Failures mean lost production and expensive workovers. SAM4 monitors the full ESP drivetrain from surface.</div>
+          <div class="sam-card__title">ESPs fail underground with limited visibility</div>
+          <div class="sam-card__body">Electrical faults cause 61% of ESP failures. Downhole monitoring gauges have a 5-year survival rate of 69%. In high-vibration offshore wells, gauge lifespan drops to 12 to 15 months. When gauges fail, production drops by up to 25%. Workovers cost $3M to $15M offshore, $30M+ subsea.</div>
         </div>
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2L1 18h18L10 2zm0 4l6.5 11h-13L10 6z"/><rect x="9" y="9" width="2" height="4" rx="0.5"/><rect x="9" y="14" width="2" height="2" rx="0.5"/></svg></div>
-          <div class="sam-card__title">Unplanned downtime costs</div>
-          <div class="sam-card__body">A single compressor failure can halt an entire processing train. SAM4 provides weeks-to-months advance warning on developing faults across the full drivetrain.</div>
+          <div class="sam-card__title">Offshore downtime scales with oil price</div>
+          <div class="sam-card__body">Average unplanned downtime costs $38M per year per offshore platform. High-end facilities report $149M. A single compressor trip can halt an entire processing train. Planned shutdowns to install monitoring hardware cost $10M to $100M for medium-to-large offshore assets.</div>
         </div>
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.5"/></svg></div>
-          <div class="sam-card__title">Offshore access limitations</div>
-          <div class="sam-card__body">Seawater lift pumps, injection pumps, and cooling systems operate in corrosive environments with limited physical access. SAM4 detects degradation from the MCC. No subsea intervention.</div>
+          <div class="sam-card__title">Distributed assets run blind</div>
+          <div class="sam-card__body">A typical offshore platform runs 50 to 200+ motors. Onshore processing runs 100 to 500+. An estimated 40 to 70% sit in hazardous-area classifications. Vibration analysts visit quarterly at best, limited by weather windows and vessel availability. Between visits, non-critical assets run to failure.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 4: Assets monitored ── -->
+  <!-- ── Section 4: Why SAM4 (mechanism bridge) ── -->
   <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">Why SAM4</div>
+      <h2 class="sam-section__title">Monitor from the MCC. Not from the asset.</h2>
+      <p class="sam-section__subtitle">Electrical Signature Analysis reads current and voltage at the motor control cabinet. The asset stays untouched. No entry into hazardous zones. No shutdown required.</p>
+      <div class="sam-card-grid sam-card-grid--2col">
+        <div class="sam-card">
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 1L3 5v5c0 4.4 3 8.5 7 9.5 4-1 7-5.1 7-9.5V5l-7-4z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="sam-card__title">No ATEX certification needed</div>
+          <div class="sam-card__body">MCCs sit in safe, non-hazardous areas by design standard. SAM4 sensors clip onto the power cable inside the cabinet. No IS wiring, no Ex d enclosures, no certified installer. Standard electrical work permit only.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2v12m0 0l-4-4m4 4l4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="sam-card__title">Outlasts downhole sensors</div>
+          <div class="sam-card__body">Surface-based ESA continues monitoring after downhole gauges degrade. ESA covers the 61% of ESP failures caused by electrical faults: motor burnout, stator winding shorts, broken rotor bars, voltage imbalance. Downhole gauges are stronger on pressure-based phenomena. The combination yields the widest fault coverage.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="sam-card__title">Zero-shutdown installation</div>
+          <div class="sam-card__body">Planned shutdowns cost $10M to $100M for medium-to-large offshore assets. SAM4 installs while equipment operates normally. No production interruption. Standalone systems deploy in days. Full SCADA integration takes weeks, depending on weather windows and platform engineering review.</div>
+        </div>
+        <div class="sam-card">
+          <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M2 14l4-4 3 3 4-4 3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="sam-card__title">Detects what vibration misses</div>
+          <div class="sam-card__body">ESA catches faults vibration cannot detect: broken rotor bars, stator winding shorts, voltage imbalance, and phase loss. It detects bearing wear days to weeks before vibration shows symptoms. ESA and vibration together cover the full fault spectrum. ESA is complementary, not a replacement.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 5: Assets monitored ── -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">What we monitor</div>
       <h2 class="sam-section__title">Critical assets across energy production</h2>
-      <p class="sam-section__subtitle">SAM4 monitors any AC motor-driven equipment from the motor control cabinet.</p>
+      <p class="sam-section__subtitle">SAM4 monitors any AC motor-driven asset from the motor control cabinet. These are the primary asset types in oil and gas operations.</p>
       <div class="sam-card-grid sam-card-grid--3col">
         <a href="/platform/what-we-monitor/esps" class="sam-card">
           <div class="sam-card__title">ESPs</div>
-          <div class="sam-card__body">Electric submersible pumps monitored from surface. SAM4 detects motor degradation, cable faults, and pump wear without downhole access.</div>
+          <div class="sam-card__body">Electric submersible pumps monitored from surface. Detects motor degradation, broken rotor bars, stator winding faults, and cable deterioration. Covers the 61% of ESP failures caused by electrical faults, without downhole access.</div>
           <span class="sam-card__link">ESP monitoring details &rarr;</span>
-        </a>
-        <a href="/platform/what-we-monitor/compressors" class="sam-card">
-          <div class="sam-card__title">Compressors</div>
-          <div class="sam-card__body">Gas and process compressors with bearing, coupling, and gearbox fault detection. Critical for continuous production.</div>
-          <span class="sam-card__link">Compressor monitoring details &rarr;</span>
         </a>
         <a href="/platform/what-we-monitor/pumps" class="sam-card">
           <div class="sam-card__title">Pumps</div>
-          <div class="sam-card__body">Injection, transfer, boiler feed, and cooling water pumps with cavitation detection, seal wear alerts, and efficiency monitoring.</div>
+          <div class="sam-card__body">Injection pumps, transfer pumps, boiler feed pumps, seawater lift pumps, and cooling water pumps. Detects bearing wear, cavitation, seal degradation, and coupling misalignment from the MCC.</div>
           <span class="sam-card__link">Pump monitoring details &rarr;</span>
         </a>
+        <a href="/platform/what-we-monitor" class="sam-card">
+          <div class="sam-card__title">Hazardous-area motors</div>
+          <div class="sam-card__body">MV and LV motors in ATEX Zone 1 and Zone 2 environments. Detects stator winding breakdown, air-gap eccentricity, bearing wear, phase loss, and locked rotor conditions. No sensor on the asset. No hazardous-area entry.</div>
+          <span class="sam-card__link">Motor monitoring details &rarr;</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 5: Proof ── -->
-  <section class="sam-section sam-section--white" id="proof">
+  <!-- ── Section 6: Proof ── -->
+  <section class="sam-section sam-section--seashell" id="proof">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Proof</div>
-      <h2 class="sam-section__title">Oil and gas results</h2>
+      <h2 class="sam-section__title">Detection performance and partner validation</h2>
 
-      <div class="sam-card-grid sam-card-grid--2col">
-        <a href="/technology/technical-deep-dive" class="sam-proof-card">
+      <div class="sam-proof-highlight">
+        <div class="sam-proof-highlight__overline">Technology partner</div>
+        <div class="sam-proof-highlight__title">ABB and Samotics: ESA at industrial scale</div>
+        <div class="sam-proof-highlight__body">ABB acquired a 10% stake in Samotics in September 2022 and is integrating SAM4 into ABB Ability. ABB Motion Services co-published an ESA whitepaper validating the technology for industrial condition monitoring. The partnership extends SAM4 deployment through ABB's global service network.</div>
+        <div class="sam-proof-highlight__stats">
+          <div class="sam-stat">
+            <div class="sam-stat__value">10%</div>
+            <div class="sam-stat__label">ABB equity stake</div>
+          </div>
+          <div class="sam-stat">
+            <div class="sam-stat__value">2022</div>
+            <div class="sam-stat__label">Partnership established</div>
+          </div>
+        </div>
+        <a href="/about#partners" class="sam-proof-highlight__link">ABB partnership details &rarr;</a>
+      </div>
+
+      <div class="sam-card-grid sam-card-grid--3col">
+        <a href="/technology/how-sam4-works" class="sam-proof-card">
           <div class="sam-proof-card__kpi">90.8%</div>
-          <div class="sam-proof-card__customer">Samotics verified</div>
-          <div class="sam-proof-card__body">Fault detection rate across 1,874 resolved incidents on core assets (pumps, fans, conveyors). Measured January 2024 to February 2026.</div>
+          <div class="sam-proof-card__customer">SAM4 platform-wide</div>
+          <div class="sam-proof-card__body">Fault detection rate across 1,874 resolved incidents on core assets. Measured January 2024 to February 2026.</div>
           <span class="sam-proof-card__link">See methodology &rarr;</span>
         </a>
-        <a href="/technology/technical-deep-dive" class="sam-proof-card">
+        <a href="/technology/how-sam4-works" class="sam-proof-card">
           <div class="sam-proof-card__kpi">0.32%</div>
-          <div class="sam-proof-card__customer">Samotics verified</div>
-          <div class="sam-proof-card__body">False positive rate across the same dataset. Zero false anomalies. Expert-validated model.</div>
+          <div class="sam-proof-card__customer">SAM4 platform-wide</div>
+          <div class="sam-proof-card__body">False positive rate across the same dataset. Expert-validated model with zero false anomalies.</div>
           <span class="sam-proof-card__link">See methodology &rarr;</span>
         </a>
+        <div class="sam-proof-card">
+          <div class="sam-proof-card__kpi">3&ndash;5%</div>
+          <div class="sam-proof-card__customer">Industry benchmark</div>
+          <div class="sam-proof-card__body">EBITDA increase per 1% reduction in unplanned downtime across industrial operations. McKinsey analysis.</div>
+          <span class="sam-proof-card__link">McKinsey industrial benchmarks</span>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:var(--space-10);">
+        <a href="/contact" class="sam-btn sam-btn--primary">Talk to an engineer</a>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 6: Install ── -->
-  <section class="sam-section sam-section--seashell">
+  <!-- ── Section 7: Installation ── -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Installation</div>
       <h2 class="sam-section__title">No entry into hazardous zones</h2>
+      <p class="sam-section__subtitle">SAM4 installs at the motor control cabinet in the safe area. Standard electrical work permit. No hot work. No ATEX certification for the monitoring hardware.</p>
       <div class="sam-install-grid">
         <div>
-        <div class="sam-install-step">
-          <div class="sam-install-step__num">1</div>
-          <div class="sam-install-step__text">
-            <strong>Clip on at the MCC</strong>
-            <span>SAM4 installs on the power cable inside the motor control cabinet. Outside ATEX zones. No hot work permit.</span>
+          <div class="sam-install-step">
+            <div class="sam-install-step__num">1</div>
+            <div class="sam-install-step__text">
+              <strong>Clip on at the MCC</strong>
+              <span>Current and voltage sensors clip onto the power cable inside the motor control cabinet. Outside ATEX zones. No hot work permit. No production interruption.</span>
+            </div>
           </div>
-        </div>
-        <div class="sam-install-step">
-          <div class="sam-install-step__num">2</div>
-          <div class="sam-install-step__text">
-            <strong>Connect via cellular</strong>
-            <span>Cellular gateway sends data to the cloud. No OT network integration needed for deployment.</span>
+          <div class="sam-install-step">
+            <div class="sam-install-step__num">2</div>
+            <div class="sam-install-step__text">
+              <strong>Connect via cellular</strong>
+              <span>Cellular gateway sends data to the cloud. No OT network integration needed for initial deployment. SCADA integration available for full platform rollout.</span>
+            </div>
           </div>
-        </div>
-        <div class="sam-install-step">
-          <div class="sam-install-step__num">3</div>
-          <div class="sam-install-step__text">
-            <strong>Monitor from anywhere</strong>
-            <span>Onshore control rooms, offshore platforms, or your phone. SAM4 dashboard shows asset health within hours.</span>
+          <div class="sam-install-step">
+            <div class="sam-install-step__num">3</div>
+            <div class="sam-install-step__text">
+              <strong>Monitor from anywhere</strong>
+              <span>Onshore control rooms, offshore platforms, or mobile. SAM4 dashboard shows asset health within hours of installation.</span>
+            </div>
           </div>
-        </div>
         </div>
         <div class="sam-install-image">
-          <img src="/assets/images/install-sam4-mcc.jpg" alt="SAM4 hardware installed inside a motor control cabinet at an oil and gas facility" loading="lazy" style="width:100%;border-radius:var(--radius-default);">
+          <img src="/assets/images/install-sam4-mcc.jpg" alt="SAM4 hardware installed inside a motor control cabinet at an oil and gas facility" loading="lazy" style="width:100%;border-radius:var(--radius);">
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ── Section 7: Terminal CTA ── -->
-  <section class="sam-section sam-section--white sam-terminal-cta">
+  <!-- ── Section 8: FAQ ── -->
+  <section class="sam-section sam-section--seashell">
     <div class="sam-section__inner">
+      <div class="sam-section__overline">FAQ</div>
+      <h2 class="sam-section__title">Questions from reliability engineers</h2>
+      <div class="sam-faq">
+        <details class="sam-faq__item">
+          <summary class="sam-faq__question">We already have vibration monitoring on critical assets. Why add ESA?</summary>
+          <div class="sam-faq__answer">
+            <p>ESA detects faults vibration cannot: broken rotor bars, stator winding shorts, voltage imbalance, and phase loss. It detects bearing wear days to weeks earlier than vibration. Together they cover the full fault spectrum. ESA is not a replacement for vibration on your critical assets. It fills the gaps vibration leaves open and extends monitoring to the non-critical assets that have no vibration sensors at all.</p>
+          </div>
+        </details>
+        <details class="sam-faq__item">
+          <summary class="sam-faq__question">Can ESA work in ATEX Zone 1?</summary>
+          <div class="sam-faq__answer">
+            <p>Yes. The monitoring point is at the MCC in a safe area, not on the asset in the hazardous zone. No ATEX certification is required for the sensors. The asset remains unmodified. This sidesteps ATEX requirements entirely.</p>
+          </div>
+        </details>
+        <details class="sam-faq__item">
+          <summary class="sam-faq__question">How does ESA compare to downhole gauges for ESP monitoring?</summary>
+          <div class="sam-faq__answer">
+            <p>Complementary, not competing. Surface ESA excels at electrical faults (61% of ESP failures): motor burnout, stator shorts, broken rotor bars, voltage imbalance. Downhole gauges are stronger on pressure-based phenomena: gas locking, seal leakage, corrosion, and scale buildup. ESA sensors outlast the ESP itself. Downhole gauges have a 5-year survival rate of 69% and drop to 12 to 15 months in high-vibration offshore wells. The strongest monitoring approach combines both.</p>
+          </div>
+        </details>
+        <details class="sam-faq__item">
+          <summary class="sam-faq__question">What about compressor monitoring?</summary>
+          <div class="sam-faq__answer">
+            <p>ESA monitors the electric motor driving the compressor. It detects motor-side faults: bearing wear, winding degradation, coupling misalignment. It does not detect compressor-specific faults like valve leakage, surge, fouling, or packing leaks. For reciprocating compressors, vibration and PV analysis remain the standard. For centrifugal compressors, API 670 vibration monitoring is the primary method. ESA adds a layer of motor protection. It does not replace compressor-specific monitoring.</p>
+          </div>
+        </details>
+        <details class="sam-faq__item">
+          <summary class="sam-faq__question">Is ESA SIL-rated?</summary>
+          <div class="sam-faq__answer">
+            <p>No. ESA is a condition monitoring tool, not a Safety Instrumented Function. SIL applies to systems that must fail safely: ESD valves, pressure relief logic, fire and gas detection. ESA flags developing faults for scheduled maintenance. It is predictive maintenance, not safety interlock. For safety-critical applications, dedicated SIL-rated instrumentation remains required per IEC 61508.</p>
+          </div>
+        </details>
+        <details class="sam-faq__item">
+          <summary class="sam-faq__question">How does ESA handle VFD-driven motors?</summary>
+          <div class="sam-faq__answer">
+            <p>ESA works on VFD-driven motors. VFD waveform complexity requires parameter tuning during setup. A study of 67 motors found 19 with winding stress signatures, all caused by incorrect drive settings. Motors with correct settings showed no issues. ESA accuracy on VFD-driven motors depends on proper tuning during commissioning.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 9: Terminal CTA ── -->
+  <section class="sam-section sam-section--dark sam-terminal-cta">
+    <div class="sam-section__inner" style="position:relative;z-index:2;">
       <div class="sam-section__overline">Get started</div>
-      <h2 class="sam-section__title">From your first asset to fleet-wide coverage</h2>
-      <p class="sam-section__subtitle">Start with a pilot on your highest-risk assets. Scale across platforms and sites as results prove out.</p>
+      <h2 class="sam-section__title">Start with your highest-risk assets</h2>
+      <p class="sam-section__subtitle">Pilot on 5 to 10 motors. No shutdown. No ATEX permits. Results within weeks. Scale across platforms as the data proves out.</p>
       <div class="sam-hero-actions">
         <a href="/contact" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-        <a href="/contact" class="sam-btn sam-btn--ghost-dark">Request a demo</a>
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--ghost">Request a demo</a>
       </div>
     </div>
   </section>
@@ -1704,7 +1861,6 @@
   </div>
 
   <script>
-  <script>
     (function () {
       'use strict';
 
@@ -1753,8 +1909,6 @@
         });
       });
     })();
-  </script>
-
   </script>
 </body>
 </html>
