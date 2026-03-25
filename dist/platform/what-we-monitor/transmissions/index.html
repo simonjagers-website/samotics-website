@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Transmission monitoring with SAM4: detect gear wear, bearing degradation, and shaft misalignment via ESA. Prevent catastrophic transmission failures.">
+  <meta name="description" content="ESA-based transmission monitoring: strong on belt drives, conditional on gearboxes, honest about limits. See detection capability by transmission type — belt drives, gearboxes, chain drives, couplings.">
   <title>Transmission monitoring | Samotics</title>
   <link rel="canonical" href="https://samoticstestpage.com/platform/what-we-monitor/transmissions/">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1761,6 +1761,7 @@
 
 <!-- ===================== PHP & HTML ===================== -->
 
+
 <main id="main-content" class="sam-spec">
 
   <!-- ─── 1. HERO ─── dark background -->
@@ -1780,10 +1781,10 @@
         <div class="sam-hero__copy">
           <p class="sam-hero__overline">Asset type</p>
           <h1 class="sam-hero__h1">Transmission monitoring</h1>
-          <p class="sam-hero__lead">SAM4 monitors gearboxes, couplings, belt drives, and chain drives from the motor control cabinet. Faults anywhere in the mechanical transmission path (from motor shaft to driven load) leave signatures in the electrical current.</p>
+          <p class="sam-hero__lead">Belt drives, gearboxes, chain drives, and couplings each fail differently &mdash; and respond differently to monitoring technologies. The challenge is matching the right technology to the right transmission type. No single method covers them all.</p>
           <div class="sam-hero__ctas">
-            <a href="/contact?intent=demo&asset=transmissions" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-            <a href="#faults" class="sam-btn sam-btn--outline">See What We Detect</a>
+            <a href="/contact?intent=demo&asset=transmissions" class="sam-cta">Talk to an engineer</a>
+            <a href="#faults" class="sam-cta-secondary">See what we detect</a>
           </div>
         </div>
       </div>
@@ -1791,119 +1792,349 @@
     </div>
   </section>
 
-  <!-- ─── 2. WHY MONITOR THIS ASSET ─── white background -->
+  <!-- ─── 2. WHY HARD TO MONITOR ─── seashell background -->
   <section class="sam-spec-why">
     <div class="sam-spec-why__inner">
-      <p class="overline">Why monitor transmissions</p>
-      <h2>"The drivetrain is only as strong as its weakest link"</h2>
-      <p class="lead sam-spec-why__lead">Transmission components are the most common point of mechanical failure in industrial systems. Faults in gearboxes, couplings, and belts propagate quickly and lead to expensive catastrophic failures. Belt slippage alone accounts for 5–10% energy waste.</p>
+      <p class="overline">Why transmissions are hard to monitor</p>
+      <h2>The most diverse failure landscape in any drivetrain</h2>
+      <p class="lead sam-spec-why__lead">Transmissions span the widest range of mechanical configurations in industrial systems. Each type has its own dominant failure modes, signal characteristics, and monitoring blind spots. Treating them as one category leads to missed faults and false confidence.</p>
 
       <div class="sam-spec-why__grid">
         <div class="sam-spec-why__card">
-          <span class="sam-spec-why__card-stat kpi-value">40%</span>
-          <p class="sam-spec-why__card-desc">of drivetrain failures originate in the transmission rather than the motor.</p>
+          <span class="sam-spec-why__card-stat kpi-value">76%</span>
+          <p class="sam-spec-why__card-desc">of gearbox failures originate in bearings &mdash; not gears. Lubrication inefficiency is the root cause in over 60% of those bearing failures. (NREL Gearbox Reliability Database, 750 records)</p>
         </div>
         <div class="sam-spec-why__card">
-          <span class="sam-spec-why__card-stat kpi-value">5–10%</span>
-          <p class="sam-spec-why__card-desc">energy waste from belt slip. recoverable with early detection and maintenance.</p>
+          <span class="sam-spec-why__card-stat kpi-value">~80%</span>
+          <p class="sam-spec-why__card-desc">of machine wear is particle-induced. Contamination particles as small as 5&nbsp;&mu;m act as abrasives inside gearboxes and bearings. Oil cleanliness determines gear life more than load does.</p>
         </div>
         <div class="sam-spec-why__card">
-          <span class="sam-spec-why__card-stat kpi-value">&euro;10–50K</span>
-          <p class="sam-spec-why__card-desc">typical gearbox replacement cost, excluding downtime and emergency labor.</p>
+          <span class="sam-spec-why__card-stat kpi-value">6 types</span>
+          <p class="sam-spec-why__card-desc">of transmission &mdash; belt drives, single-stage gearboxes, multi-stage gearboxes, planetary gearboxes, chain drives, and couplings &mdash; each with fundamentally different failure physics and monitoring requirements.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 3. FAULT COVERAGE ─── seashell background -->
-  <section id="faults" class="sam-spec-faults">
-    <div class="sam-spec-faults__inner">
-      <p class="overline">What SAM4 detects on transmissions</p>
-      <h2>Five fault types from one sensor location</h2>
+  <!-- ─── 3. HOW ESA MONITORS TRANSMISSIONS ─── white background -->
+  <section style="padding:var(--space-24) var(--space-6);background:var(--white);">
+    <div style="max-width:var(--max-width);margin:0 auto;">
+      <p class="overline">How ESA works on transmissions</p>
+      <h2 style="font-size:1.75rem;font-weight:700;line-height:1.2;margin:0 0 var(--space-4) 0;">The motor as transducer: reading mechanical faults through electrical current</h2>
+      <p class="lead" style="max-width:720px;margin:0 0 var(--space-10) 0;">Any mechanical event that modulates the torque seen by the motor creates sidebands in the stator current spectrum. The motor converts torque fluctuations into speed fluctuations, which change the back-EMF, which modulate the current. ESA reads these modulations from the motor control cabinet.</p>
 
-      <div class="sam-spec-faults__table-wrap">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);">
+
+        <div style="background:var(--seashell);border:1px solid var(--border-grey);border-radius:var(--radius-default,4px);padding:var(--space-8);">
+          <h3 style="font-size:1.125rem;font-weight:600;margin:0 0 var(--space-4) 0;color:var(--space-cadet);">Motor inertia as low-pass filter</h3>
+          <p style="font-size:0.9375rem;color:var(--comet);line-height:1.6;margin:0;">The motor rotor&rsquo;s moment of inertia determines the mechanical bandwidth. High-frequency torque fluctuations are smoothed before they reach the electrical signature. Low-frequency fluctuations pass through. This single physics principle explains why ESA detects some transmission faults and misses others.</p>
+        </div>
+
+        <div style="background:var(--seashell);border:1px solid var(--border-grey);border-radius:var(--radius-default,4px);padding:var(--space-8);">
+          <h3 style="font-size:1.125rem;font-weight:600;margin:0 0 var(--space-4) 0;color:var(--orange);">Belt-pass frequency: ESA&rsquo;s sweet spot</h3>
+          <p style="font-size:0.9375rem;color:var(--comet);line-height:1.6;margin:0;">Belt faults produce torque modulation at the belt-pass frequency, which is always <strong>sub-synchronous</strong> &mdash; below motor running speed. This sits well below the motor inertia cutoff and transmits efficiently through the motor with minimal attenuation, regardless of motor size. Belt drives are ESA&rsquo;s strongest transmission application. (IEEE 2022, MDPI 2023 &mdash; peer-reviewed)</p>
+        </div>
+
+        <div style="background:var(--seashell);border:1px solid var(--border-grey);border-radius:var(--radius-default,4px);padding:var(--space-8);">
+          <h3 style="font-size:1.125rem;font-weight:600;margin:0 0 var(--space-4) 0;color:var(--space-cadet);">Gear mesh frequency: motor-size dependent</h3>
+          <p style="font-size:0.9375rem;color:var(--comet);line-height:1.6;margin:0;">Gear mesh frequency = teeth &times; shaft RPM. For most gearboxes, this is <strong>super-synchronous</strong>. Motor inertia attenuates it. Detection proven at 30&nbsp;kW (Combet 2015), fails at 2&nbsp;MW. Practical limit: motors &le;200&nbsp;kW with single-stage gearboxes where mesh frequency stays below ~200&nbsp;Hz.</p>
+        </div>
+
+      </div>
+
+      <div style="margin-top:var(--space-10);background:var(--white);border:1px solid var(--border-grey);border-left:4px solid var(--orange);border-radius:var(--radius-default,4px);padding:var(--space-8);">
+        <h3 style="font-size:1.125rem;font-weight:600;margin:0 0 var(--space-4) 0;">The scaling rule</h3>
+        <p style="font-size:0.9375rem;color:var(--comet);line-height:1.6;margin:0;">Motor inertia scales approximately as J &prop; P<sup>5/4</sup>. As motors get larger, the mechanical cutoff frequency drops. Small motors (&le;30&nbsp;kW) can detect gear mesh up to ~200&nbsp;Hz. Medium motors (30&ndash;200&nbsp;kW) become unreliable above ~100&nbsp;Hz. Large motors (&gt;500&nbsp;kW) pass only sub-synchronous frequencies. At 2&nbsp;MW, even single-stage gear mesh detection fails. This boundary is structural &mdash; not a software limitation.</p>
+      </div>
+
+      <!-- Responsive: stack cards on mobile -->
+      <style>
+        @media (max-width: 768px) {
+          .sam-spec [style*="grid-template-columns:repeat(3"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      </style>
+    </div>
+  </section>
+
+  <!-- ─── 4/5. FAULT TABLE + DETECTION BOUNDARIES ─── seashell background -->
+  <section id="faults" class="sam-spec-faults" style="background:var(--seashell);">
+    <div class="sam-spec-faults__inner">
+      <p class="overline">What ESA detects on transmissions</p>
+      <h2>Detection capability varies dramatically by transmission type</h2>
+      <p style="font-size:0.9375rem;color:var(--comet);margin:0 0 var(--space-8) 0;max-width:720px;">This is the most important section on this page. ESA&rsquo;s effectiveness depends on the signal path between the fault and the motor. Belt drives sit in ESA&rsquo;s sweet spot. Multi-stage gearboxes sit in its weakest zone.</p>
+
+      <!-- ── Belt Drives ── -->
+      <h3 style="font-size:1.125rem;font-weight:600;margin:0 0 var(--space-4) 0;color:var(--orange);">Belt drives</h3>
+      <p style="font-size:0.875rem;color:var(--comet);margin:0 0 var(--space-4) 0;">Sub-synchronous frequencies. ESA&rsquo;s strongest transmission application. Peer-reviewed evidence (IEEE 2022, MDPI 2023).</p>
+      <div class="sam-spec-faults__table-wrap" style="margin-bottom:var(--space-10);">
         <table class="sam-spec-faults__table">
           <thead>
             <tr>
-              <th class="sam-spec-faults__th">Fault type</th>
-              <th class="sam-spec-faults__th">What's happening</th>
-              <th class="sam-spec-faults__th">How SAM4 detects it</th>
-              <th class="sam-spec-faults__th">Typical lead time</th>
+              <th class="sam-spec-faults__th">Fault</th>
               <th class="sam-spec-faults__th">Confidence</th>
+              <th class="sam-spec-faults__th">How ESA detects it</th>
+              <th class="sam-spec-faults__th">Conditions</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Gear wear</td>
-              <td class="sam-spec-faults__td">Tooth wear, pitting, spalling, surface distress</td>
-              <td class="sam-spec-faults__td">Gear mesh frequency and sidebands shift as tooth contact pattern changes</td>
-              <td class="sam-spec-faults__td">4–10 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. Strong on single-stage gearboxes with small-to-medium motors. Sensitivity degrades with motor size, number of gear stages, and coupling compliance. On large motors (&gt;500 kW) with multi-stage gearboxes, vibration detects earlier.</td>
-            </tr>
-            <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
-              <td class="sam-spec-faults__td">Inner/outer race defects in gearbox bearings, rolling element wear</td>
-              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies appear in the motor current spectrum</td>
-              <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. Motor bearings: detectable at moderate-to-severe stages. Gearbox bearings: signal must propagate through gear mesh and coupling to reach the motor, making early detection unreliable. Vibration envelope analysis is the primary method for gearbox bearing faults.</td>
-            </tr>
-            <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Misalignment</td>
-              <td class="sam-spec-faults__td">Shaft or coupling misalignment between motor and gearbox, or gearbox output</td>
-              <td class="sam-spec-faults__td">2× running speed component in current spectrum, progressive increase over time</td>
-              <td class="sam-spec-faults__td">2–6 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. ESA detects 1x/2x torque modulation but cannot distinguish misalignment from unbalance. Vibration phase analysis across the coupling provides definitive root-cause discrimination.</td>
-            </tr>
-            <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Belt slip</td>
-              <td class="sam-spec-faults__td">Worn or loose belts losing traction with pulleys</td>
-              <td class="sam-spec-faults__td">Slip frequency detection in motor current: belt speed drops below synchronous speed</td>
-              <td class="sam-spec-faults__td">Days–weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Belt wear &amp; deterioration</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">Belt-pass frequency amplitude changes in demodulated current spectrum</td>
+              <td class="sam-spec-faults__td">All motor sizes</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Coupling faults</td>
-              <td class="sam-spec-faults__td">Worn or damaged elastomeric couplings, bolted coupling looseness</td>
-              <td class="sam-spec-faults__td">Characteristic coupling frequencies in the current signature as backlash increases</td>
-              <td class="sam-spec-faults__td">2–8 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional. Coupling signatures overlap with alignment and bearing fault frequencies, reducing classification confidence. Fluid couplings are a hard boundary: ESA cannot detect faults downstream of a fluid coupling.</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Belt tension loss</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">Belt-pass frequency shift and amplitude change</td>
+              <td class="sam-spec-faults__td">All motor sizes</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Belt misalignment</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">Asymmetric belt-pass harmonics</td>
+              <td class="sam-spec-faults__td">All motor sizes</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Sheave / pulley wear</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">Running speed modulation, belt-pass changes</td>
+              <td class="sam-spec-faults__td">All motor sizes</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Belt slip / glazing</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">Speed variation and efficiency loss signature</td>
+              <td class="sam-spec-faults__td">Continuous monitoring advantage over periodic inspection</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="sam-spec-faults__note">Detection capability depends on drive topology, sampling rate, load variation, and operating conditions. <a href="/technology/esa-vs-vibration#limits" class="sam-text-link">See ESA detection constraints.</a></p>
+      <!-- ── Single-Stage Gearboxes ── -->
+      <h3 style="font-size:1.125rem;font-weight:600;margin:0 0 var(--space-4) 0;">Single-stage gearboxes</h3>
+      <p style="font-size:0.875rem;color:var(--comet);margin:0 0 var(--space-4) 0;">Moderate capability on small-to-medium motors. Proven at 30&nbsp;kW (Combet 2015, peer-reviewed). Degrades with motor size.</p>
+      <div class="sam-spec-faults__table-wrap" style="margin-bottom:var(--space-10);">
+        <table class="sam-spec-faults__table">
+          <thead>
+            <tr>
+              <th class="sam-spec-faults__th">Fault</th>
+              <th class="sam-spec-faults__th">Confidence</th>
+              <th class="sam-spec-faults__th">How ESA detects it</th>
+              <th class="sam-spec-faults__th">Conditions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Gear tooth pitting (early)</td>
+              <td class="sam-spec-faults__td">Conditional</td>
+              <td class="sam-spec-faults__td">Gear mesh frequency sidebands in current spectrum</td>
+              <td class="sam-spec-faults__td">Motor &le;200&nbsp;kW. Mesh frequency &lt;200&nbsp;Hz. Requires advanced signal processing.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Gear tooth breakage</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">Sudden torque spike and load change</td>
+              <td class="sam-spec-faults__td">Any motor size. Catastrophic event detection.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Input shaft bearing</td>
+              <td class="sam-spec-faults__td">Conditional</td>
+              <td class="sam-spec-faults__td">BPFO sidebands in current spectrum</td>
+              <td class="sam-spec-faults__td">Motor &le;100&nbsp;kW preferred. Short signal path helps. Low-to-moderate confidence.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Output shaft bearing</td>
+              <td class="sam-spec-faults__td">Conditional</td>
+              <td class="sam-spec-faults__td">Signal must traverse gear mesh + coupling</td>
+              <td class="sam-spec-faults__td">Typically detects at Stage 3&ndash;4 only. Vibration detects at Stage 1&ndash;2.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Shaft misalignment</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">2&times; running speed component in current</td>
+              <td class="sam-spec-faults__td">All motor sizes. Well-established ESA signature.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Lubrication degradation</td>
+              <td class="sam-spec-faults__td" style="color:var(--comet);">None</td>
+              <td class="sam-spec-faults__td">No electrical signature</td>
+              <td class="sam-spec-faults__td">Oil analysis required. Invisible to ESA.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
+      <!-- ── Multi-Stage & Planetary Gearboxes ── -->
+      <h3 style="font-size:1.125rem;font-weight:600;margin:0 0 var(--space-4) 0;">Multi-stage &amp; planetary gearboxes</h3>
+      <p style="font-size:0.875rem;color:var(--comet);margin:0 0 var(--space-4) 0;">ESA&rsquo;s weakest zone. Each stage adds inertia and compliance, attenuating fault signatures before they reach the motor. No validated gearbox CIs in the past 18 months (SAM4 Detection Accuracy Report, March 2026).</p>
+      <div class="sam-spec-faults__table-wrap" style="margin-bottom:var(--space-10);">
+        <table class="sam-spec-faults__table">
+          <thead>
+            <tr>
+              <th class="sam-spec-faults__th">Fault</th>
+              <th class="sam-spec-faults__th">Confidence</th>
+              <th class="sam-spec-faults__th">How ESA detects it</th>
+              <th class="sam-spec-faults__th">Conditions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">High-speed stage gear faults</td>
+              <td class="sam-spec-faults__td">Conditional</td>
+              <td class="sam-spec-faults__td">Gear mesh sidebands from stage closest to motor</td>
+              <td class="sam-spec-faults__td">Motor &le;200&nbsp;kW. First stage only realistic. Low-to-moderate confidence.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Intermediate / low-speed stage faults</td>
+              <td class="sam-spec-faults__td" style="color:var(--comet);">None to minimal</td>
+              <td class="sam-spec-faults__td">Signal attenuated through multiple stages</td>
+              <td class="sam-spec-faults__td">Below practical detection threshold. Motor inertia + multi-stage attenuation.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Intermediate &amp; output bearings</td>
+              <td class="sam-spec-faults__td" style="color:var(--comet);">None</td>
+              <td class="sam-spec-faults__td">Maximum signal attenuation path</td>
+              <td class="sam-spec-faults__td">No published industrial success. Vibration + oil analysis required.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Planetary gear / bearing faults</td>
+              <td class="sam-spec-faults__td" style="color:var(--comet);">None</td>
+              <td class="sam-spec-faults__td">Distributed load paths average out individual fault signals</td>
+              <td class="sam-spec-faults__td">Not detectable via ESA. Vibration + oil analysis are primary methods.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Overall load / efficiency change</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">Power consumption trending</td>
+              <td class="sam-spec-faults__td">All motor sizes. Detects degradation, not specific fault location.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Motor-gearbox misalignment</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">2&times; running speed in current</td>
+              <td class="sam-spec-faults__td">All motor sizes. Strong ESA application.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ── Chain Drives & Couplings ── -->
+      <h3 style="font-size:1.125rem;font-weight:600;margin:0 0 var(--space-4) 0;">Chain drives &amp; couplings</h3>
+      <p style="font-size:0.875rem;color:var(--comet);margin:0 0 var(--space-4) 0;">Chain drives have no published ESA detection evidence. Couplings are mixed &mdash; misalignment is strong, but fluid couplings are a hard boundary.</p>
+      <div class="sam-spec-faults__table-wrap" style="margin-bottom:var(--space-10);">
+        <table class="sam-spec-faults__table">
+          <thead>
+            <tr>
+              <th class="sam-spec-faults__th">Fault</th>
+              <th class="sam-spec-faults__th">Confidence</th>
+              <th class="sam-spec-faults__th">How ESA detects it</th>
+              <th class="sam-spec-faults__th">Conditions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Chain elongation / wear</td>
+              <td class="sam-spec-faults__td" style="color:var(--comet);">Not validated</td>
+              <td class="sam-spec-faults__td">No published evidence</td>
+              <td class="sam-spec-faults__td">Chain-pass frequencies are super-synchronous. Motor inertia filters them. No ESA research exists.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Sprocket wear / link failure</td>
+              <td class="sam-spec-faults__td" style="color:var(--comet);">Not validated</td>
+              <td class="sam-spec-faults__td">No published evidence</td>
+              <td class="sam-spec-faults__td">Broadband noise, not clean spectral peaks. Visual inspection remains primary.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Coupling misalignment</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">2&times; running speed in current spectrum</td>
+              <td class="sam-spec-faults__td">All motor sizes. All coupling types (except downstream of fluid couplings).</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Elastomer degradation</td>
+              <td class="sam-spec-faults__td">Conditional</td>
+              <td class="sam-spec-faults__td">Torsional natural frequency shift</td>
+              <td class="sam-spec-faults__td">Limited field evidence. Detectable as system-level change.</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Faults downstream of fluid coupling</td>
+              <td class="sam-spec-faults__td" style="color:var(--comet);font-weight:600;">Hard boundary</td>
+              <td class="sam-spec-faults__td">No mechanical signal propagation through fluid medium</td>
+              <td class="sam-spec-faults__td">Absolute ESA limitation. Fluid couplings block all mechanical information. By design.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="sam-spec-faults__note">Confidence ratings based on Combet &amp; Gelman (2015), Blodt et al., Benbouzid, IEEE (2022), MDPI (2023), NREL Gearbox Reliability Database (750 records), and SAM4 Detection Accuracy Report (March 2026 &mdash; 0 gearbox CIs in 18-month window). <a href="/technology/esa-vs-vibration#limits" class="sam-text-link">See ESA detection constraints.</a></p>
+
+      <!-- Detection Boundaries -->
       <div style="margin-top:48px;">
         <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1.125rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 16px 0;">Detection boundaries</h3>
-        <p style="font-family:var(--sam-font);font-weight:400;font-size:0.875rem;line-height:1.5;color:var(--sam-comet);margin:0 0 32px 0;">No condition monitoring technology detects everything. These are the known limitations for ESA-based monitoring on transmission systems.</p>
+        <p style="font-family:var(--sam-font);font-weight:400;font-size:0.875rem;line-height:1.5;color:var(--sam-comet);margin:0 0 32px 0;">No condition monitoring technology detects everything. These are the known limitations for ESA-based monitoring on transmission systems &mdash; stated here because engineers need them to make informed decisions.</p>
         <div style="display:flex;flex-direction:column;gap:24px;">
 
           <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Coupling unbalance detection: 57.1%</strong>. The SAM4 Detection Accuracy Report (March 2026) shows 57.1% confirmed detection rate for coupling-related faults. Coupling signatures overlap with alignment and bearing fault frequencies, reducing classification confidence. Performance improves with stable load conditions.</span>
+            <span><strong>Fluid couplings: hard boundary.</strong> Fluid couplings transmit torque through hydraulic fluid, not mechanical contact. High-frequency mechanical signals dissipate as heat. ESA cannot detect any fault downstream of a fluid coupling. This is an absolute limitation, not a sensitivity one. Prevalent in conveyors, crushers, and large centrifugal equipment (estimated 20&ndash;40% of large drives in mining and cement).</span>
           </div>
+
           <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Gearbox fault specificity</strong>. ESA detects gear mesh frequency modulation and overall transmission degradation, but isolating the specific damaged gear stage requires additional context. Multi-stage gearboxes produce overlapping harmonic patterns that reduce fault localisation accuracy.</span>
+            <span><strong>Motor size scaling boundary.</strong> Gear mesh detection is proven at 30&nbsp;kW (Combet 2015, peer-reviewed, industrial validation). At 2&nbsp;MW, detection fails. Practical rule: ESA gear mesh detection is viable only for motors &le;200&nbsp;kW with single-stage gearboxes where mesh frequency is below ~200&nbsp;Hz. This boundary is structural &mdash; set by rotor inertia physics, not by software.</span>
           </div>
+
           <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Low-load operation (&lt;30% rated)</strong>. Fault sidebands in the current signal are proportional to mechanical load. When a transmission system runs below ~30% of rated load, fault signatures weaken and may fall below the detection threshold.</span>
+            <span><strong>Multi-stage gearbox attenuation.</strong> Each gear mesh interface adds impedance mismatch. Each intermediate shaft adds inertia. The signal path: fault location &rarr; intermediate shafts &rarr; coupling &rarr; motor shaft &rarr; electrical signature. For gearboxes with 3+ stages, intermediate and output-stage faults fall below the ESA noise floor.</span>
           </div>
+
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Planetary gearbox limitations.</strong> Planet gears mesh simultaneously with sun and ring gears, creating complex distributed load paths that average out individual fault signals. High inertia damps torque fluctuations before they reach the motor. ESA adds marginal value beyond motor health and gross load trending. Vibration + oil analysis are the primary monitoring methods for planetary gearboxes.</span>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Gearbox bearing detection staging.</strong> ESA typically requires bearing faults to reach Stage 3&ndash;4 (advanced degradation with significant material loss) before detection. Vibration envelope analysis detects at Stage 1&ndash;2. Oil analysis detects wear particle generation even earlier. ESA is not a substitute for vibration or oil analysis on gearbox bearings.</span>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Chain drives: not validated.</strong> No published ESA research on chain fault detection exists after extensive literature search. Chain-pass frequencies are super-synchronous, subject to motor inertia filtering. Chain impacts produce broadband noise rather than clean spectral peaks. Evidence is insufficient to make detection claims.</span>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Oil-related failures: invisible to ESA.</strong> Contamination, oil degradation, additive depletion, and progressive wear from lubrication failure produce no direct electrical signature. Oil analysis detects threatening wear conditions up to 15&times; earlier than vibration (Monash University). For lubricated gearboxes, oil analysis is irreplaceable &mdash; neither ESA nor vibration can substitute.</span>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Low-load operation (&lt;30% rated).</strong> Fault sidebands in the current signal are proportional to mechanical load. Below ~30% of rated load, fault signatures weaken and may fall below the detection threshold.</span>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Gearbox detection accuracy: low historical maturity.</strong> The SAM4 Detection Accuracy Report (March 2026) recorded zero gearbox CIs in the 18-month analysis window. Historical all-time data shows ~6 CIs with a 33&ndash;50% miss rate. This is insufficient to support standalone gearbox detection claims. Gearbox diagnostics should be positioned as part of drive-train analysis, not as a distinct capability.</span>
+          </div>
+
         </div>
 
-        <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:24px 0 0 0;">Based on 1,874 resolved incidents (Jan 2024 – Feb 2026). <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
+        <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:24px 0 0 0;">Based on SAM4 Detection Accuracy Report (March 2026), Combet &amp; Gelman (2015), NREL Gearbox Reliability Database, Monash University oil analysis research, and peer-reviewed ESA literature. <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
       </div>
     </div>
   </section>
 
-  <!-- ─── 3b. MONITORING ARCHITECTURE ─── seashell background -->
-  <section class="sam-spec-monitor">
+  <!-- ─── 6. MONITORING ARCHITECTURE ─── white background -->
+  <section class="sam-spec-monitor" style="background:var(--white);">
     <div class="sam-spec-monitor__inner">
       <p class="overline">Monitoring architecture</p>
-      <h2>What ESA covers. What vibration covers. Where they overlap.</h2>
-      <p class="lead">Transmissions are the asset type where ESA and vibration monitoring have the most distinct roles. ESA reads load torque modulations from the motor control cabinet. Vibration measures mechanical response directly at the gearbox housing. Each technology has fault categories it sees first and fault categories it cannot see at all. For lubricated gearboxes, oil analysis fills the gaps neither technology reaches.</p>
+      <h2>ESA, vibration, and oil analysis: three technologies, distinct roles</h2>
+      <p class="lead">Transmissions are the asset type where ESA and vibration have the most distinct roles &mdash; and where oil analysis fills gaps neither technology reaches. Each method sees different fault types first. The monitoring question is coverage, not competition.</p>
 
       <!-- Three-column overview -->
       <div class="sam-spec-monitor__trio">
@@ -1913,13 +2144,12 @@
           <div class="sam-spec-monitor__col-header">ESA leads</div>
           <div class="sam-spec-monitor__col-body">
             <ul>
-              <li>Belt slip and wear (sub-synchronous frequencies transmit efficiently through motor)</li>
-              <li>Gross gear tooth damage (single-stage, small-to-medium motors)</li>
-              <li>Motor electrical faults (stator, rotor, power quality)</li>
-              <li>Load anomalies and overload trending</li>
-              <li>Energy waste from belt slip or mechanical inefficiency</li>
+              <li>Belt slip, wear, tension loss, and misalignment (sub-synchronous, all motor sizes)</li>
+              <li>Motor electrical faults &mdash; stator winding, rotor bar, supply quality</li>
+              <li>Load anomalies, overload trending, efficiency loss</li>
+              <li>Fleet-scale screening from MCC &mdash; no per-unit sensor cost</li>
             </ul>
-            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">ESA's strongest transmission application is belt drives, where belt-pass frequency is sub-synchronous and passes efficiently through the motor's mechanical filter.</p>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">ESA&rsquo;s strongest transmission application is belt drives, where belt-pass frequency transmits efficiently through the motor regardless of motor size.</p>
           </div>
         </div>
 
@@ -1928,27 +2158,26 @@
           <div class="sam-spec-monitor__col-header">Both contribute</div>
           <div class="sam-spec-monitor__col-body">
             <ul>
-              <li>Gear tooth damage: vibration detects earlier, ESA confirms torque impact</li>
-              <li>Coupling misalignment: ESA detects modulation, vibration provides root-cause discrimination via phase analysis</li>
-              <li>Belt condition trending: complementary frequency-domain coverage</li>
-              <li>Overall drivetrain degradation: ESA sees load changes, vibration sees structural changes</li>
+              <li>Gear tooth damage (vibration detects earlier; ESA confirms torque impact)</li>
+              <li>Coupling misalignment (ESA detects modulation; vibration provides phase-based root cause)</li>
+              <li>Overall drivetrain degradation &mdash; ESA sees load changes, vibration sees structural changes</li>
             </ul>
-            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">When a fault appears in both spectra, it confirms the defect is affecting mechanical integrity, not just surface condition. This reduces diagnostic uncertainty.</p>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">When a fault appears in both spectra, it confirms the defect is affecting mechanical integrity. This reduces diagnostic uncertainty.</p>
           </div>
         </div>
 
-        <!-- Vibration leads -->
+        <!-- Vibration + oil analysis leads -->
         <div class="sam-spec-monitor__col sam-spec-monitor__col--vibration">
-          <div class="sam-spec-monitor__col-header">Vibration leads</div>
+          <div class="sam-spec-monitor__col-header">Vibration + oil analysis lead</div>
           <div class="sam-spec-monitor__col-body">
             <ul>
-              <li>Gearbox bearing faults (64-76% of all gearbox failures)</li>
-              <li>Early localized tooth damage (pitting, micro-cracking)</li>
-              <li>Fault localisation in multi-stage gearboxes (via TSA)</li>
-              <li>Housing looseness and structural resonance</li>
-              <li>Misalignment vs unbalance discrimination (phase analysis)</li>
+              <li>Gearbox bearing faults &mdash; 76% of all gearbox failures (envelope analysis at Stage 1&ndash;2)</li>
+              <li>Early localised tooth damage &mdash; pitting, micro-cracking (TSA)</li>
+              <li>Intermediate/output stage faults in multi-stage gearboxes</li>
+              <li>Oil contamination, degradation, progressive wear (oil analysis detects 15&times; earlier)</li>
+              <li>All faults downstream of fluid couplings</li>
             </ul>
-            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">Vibration has ~50 years of field-validated maturity on gearboxes. It detects bearing faults at Stage 2, where ESA typically requires Stage 3-4 severity.</p>
+            <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);margin-bottom:0;">Vibration has ~50 years of field-validated maturity on gearboxes. Oil analysis catches lubrication-driven failures that neither ESA nor vibration can see early enough.</p>
           </div>
         </div>
 
@@ -1956,15 +2185,15 @@
 
       <!-- Transmission-type matrix -->
       <div class="sam-spec-monitor__matrix">
-        <h3>ESA capability varies by transmission type</h3>
-        <p class="lead" style="max-width:720px;margin-bottom:var(--space-6);">The mechanical transfer function between fault location and motor determines what ESA can see. Belt drives transmit torque modulations most efficiently. Multi-stage gearboxes attenuate them most severely.</p>
+        <h3>Optimal monitoring architecture by transmission type</h3>
+        <p class="lead" style="max-width:720px;margin-bottom:var(--space-6);">The right monitoring stack depends on the transmission type. For belt drives, ESA is primary. For multi-stage and planetary gearboxes, vibration and oil analysis are primary. ESA fills gaps on the assets that would otherwise go unmonitored.</p>
 
         <div class="sam-spec-monitor__matrix-wrap">
           <table class="sam-spec-monitor__matrix-table">
             <thead>
               <tr>
                 <th>Transmission type</th>
-                <th>ESA strength</th>
+                <th>ESA role</th>
                 <th>Primary limitation</th>
                 <th>Best combined approach</th>
               </tr>
@@ -1972,60 +2201,60 @@
             <tbody>
               <tr>
                 <td>Belt drives</td>
-                <td>Strong. Belt-pass frequency is sub-synchronous and transmits efficiently. Belt slip is ESA's strongest transmission detection.</td>
-                <td>Sheave groove wear and tension problems have lower specificity.</td>
-                <td>ESA for fleet monitoring; periodic vibration and visual inspection on critical units.</td>
+                <td><strong>Primary.</strong> Belt-pass frequency, wear, tension, alignment &mdash; fleet-wide from MCC.</td>
+                <td>Sheave groove wear has lower specificity.</td>
+                <td>ESA for fleet monitoring. Periodic laser alignment + tension measurement on critical units.</td>
               </tr>
               <tr>
                 <td>Single-stage gearboxes</td>
-                <td>Moderate. Gear mesh sidebands detectable on small-to-medium motors with rigid or metallic couplings.</td>
-                <td>Motor inertia filters high-frequency modulations. Detection proven at 30 kW, failed at 2 MW.</td>
-                <td>Vibration as primary diagnostic; ESA for motor health and load trending.</td>
+                <td><strong>Co-primary</strong> (&le;200&nbsp;kW). Motor health, load trending, first-stage gear/bearing.</td>
+                <td>Motor inertia filters gear mesh on larger motors. Proven at 30&nbsp;kW, fails at 2&nbsp;MW.</td>
+                <td>ESA + vibration. Oil analysis monthly&ndash;quarterly on critical units.</td>
               </tr>
               <tr>
                 <td>Multi-stage gearboxes</td>
-                <td>Weak. Each stage adds inertia and compliance, attenuating fault signatures before they reach the motor.</td>
-                <td>Cannot isolate which gear stage carries the fault. Bearings (64-76% of failures) not reliably visible.</td>
-                <td>Vibration with TSA for diagnostics; oil analysis for bearing root causes; ESA for motor condition.</td>
+                <td><strong>Secondary.</strong> Motor health, efficiency trending, misalignment only.</td>
+                <td>Cannot isolate gear stage. Bearings (76% of failures) not reliably visible.</td>
+                <td>Vibration (TSA + envelope) primary. Oil analysis for progressive wear. ESA for motor condition.</td>
               </tr>
               <tr>
                 <td>Planetary gearboxes</td>
-                <td>Weak. Complex frequency structure from multiple load paths. Requires ML classification.</td>
-                <td>Planet bearing failures (lubrication starvation at high carrier speeds) invisible to ESA.</td>
-                <td>Vibration and oil analysis essential. ESA adds motor electrical monitoring only.</td>
+                <td><strong>Tertiary.</strong> Motor health and gross load trending only.</td>
+                <td>Complex distributed load paths. Planet bearing failures invisible to ESA.</td>
+                <td>Vibration + oil analysis essential. ESA adds motor electrical monitoring only.</td>
               </tr>
               <tr>
-                <td>Couplings</td>
-                <td>Moderate. Detects 1x/2x torque modulation from misalignment and element degradation.</td>
-                <td>Cannot distinguish misalignment from unbalance. Fluid couplings are a hard boundary.</td>
-                <td>Vibration for root-cause discrimination; ESA for trending and confirmation.</td>
+                <td>Couplings (mechanical)</td>
+                <td><strong>Complementary.</strong> Misalignment is a strong ESA application.</td>
+                <td>Cannot distinguish misalignment from unbalance. Fluid couplings: hard boundary.</td>
+                <td>Vibration for root-cause discrimination. ESA for trending and confirmation.</td>
               </tr>
               <tr>
                 <td>Chain drives</td>
-                <td>Weak. No published MCSA research. Physics inference only.</td>
-                <td>Polygonal action creates baseline torque ripple that reduces fault discrimination.</td>
-                <td>Visual inspection and elongation measurement remain primary methods.</td>
+                <td><strong>Not recommended.</strong> Evidence insufficient.</td>
+                <td>No published MCSA research. Super-synchronous frequencies filtered by motor inertia.</td>
+                <td>Visual inspection + elongation measurement. Vibration on critical units.</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);font-style:italic;">Capability ratings based on Combet (2015) industrial cases, Feki/Clerc/Velex (2012), Kia/Henao/Capolino (2015), Fernandez-Cavero et al. (2023), and NREL Gearbox Reliability Database.</p>
+        <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-4);font-style:italic;">Architecture recommendations based on Combet (2015), NREL Gearbox Reliability Database (750 records), Monash University oil analysis research, ISO 10816/13373, and SAM4 field deployment data.</p>
       </div>
 
       <!-- Rationale card -->
       <div class="sam-spec-monitor__rationale">
         <h3>ESA expands the monitored population, not the diagnostic ceiling</h3>
-        <p>The strongest argument for ESA on transmissions is not diagnostic superiority. It is deployability at scale. Comprehensive vibration monitoring on a three-stage gearbox requires 12-16 accelerometers. ESA requires one sensor set at the MCC. For a facility with 50-100 belt-driven or geared assets, the cost difference is an order of magnitude.</p>
-        <p>ESA brings continuous condition data to enclosed gearbox packages, hazardous-area equipment, and belt-driven fleet assets that would otherwise go unmonitored. For critical gearboxes, it complements but does not replace vibration and oil analysis. For belt-driven equipment fleets, it may offer the best cost-to-coverage ratio of any single technology.</p>
+        <p>The strongest argument for ESA on transmissions is not diagnostic superiority &mdash; it is deployability at scale. Comprehensive vibration monitoring on a three-stage gearbox requires 12&ndash;16 accelerometers. Oil analysis requires sampling logistics and lab turnaround. ESA requires one sensor set at the MCC.</p>
+        <p>For a facility with 50&ndash;100 belt-driven or geared assets, ESA brings continuous condition data to enclosed gearbox packages, hazardous-area equipment, and belt-driven fleet assets that would otherwise go unmonitored. For critical multi-stage gearboxes, it complements but does not replace vibration and oil analysis. For belt-driven equipment fleets, it offers the best cost-to-coverage ratio of any single technology.</p>
         <p>On complex gearboxes where ESA sensitivity is limited, detecting an anomaly still beats discovering a failure. Classification can follow from inspection.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- ─── 4. DETECTION STORIES ─── white background -->
-  <section class="sam-spec-stories">
+  <!-- ─── 7. DETECTION STORIES ─── seashell background -->
+  <section class="sam-spec-stories" style="background:var(--seashell);">
     <div class="sam-spec-stories__inner">
       <p class="overline">Transmission detections</p>
       <h2>Real faults caught in transmission systems</h2>
@@ -2034,31 +2263,11 @@
 
         <a href="/resources/case-studies/" class="sam-spec-stories__card">
           <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Gear wear</span>
-            <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Gearbox wear detected on conveyor drive</h3>
-          <p class="sam-spec-stories__card-desc">Gear mesh frequency sidebands indicated progressive tooth wear. Gearbox replaced during planned maintenance window.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Belt slip</span>
+            <span class="sam-spec-stories__card-tag">Belt wear</span>
             <span class="sam-spec-stories__card-industry">Pulp &amp; Paper</span>
           </div>
-          <h3 class="sam-spec-stories__card-title">Belt slip detected on cooling fan</h3>
-          <p class="sam-spec-stories__card-desc">Slip frequency signatures appeared in the current signature indicating worn belt. Belt replaced before complete loss of drive torque.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Coupling fault</span>
-            <span class="sam-spec-stories__card-industry">Chemicals</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Coupling wear detected on pump drive</h3>
-          <p class="sam-spec-stories__card-desc">Increased backlash in elastomeric coupling identified through characteristic frequency signatures. Coupling replaced preventing shaft damage.</p>
+          <h3 class="sam-spec-stories__card-title">Belt slip detected on cooling fan drive</h3>
+          <p class="sam-spec-stories__card-desc">Belt-pass frequency signatures in the current spectrum indicated progressive belt wear and tension loss. Belt replaced during planned maintenance before complete loss of drive torque.</p>
           <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
         </a>
 
@@ -2067,8 +2276,28 @@
             <span class="sam-spec-stories__card-tag">Misalignment</span>
             <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
           </div>
-          <h3 class="sam-spec-stories__card-title">Gearbox input misalignment on mill motor</h3>
-          <p class="sam-spec-stories__card-desc">2× running speed rise in the current signature flagged increasing misalignment. Corrected before bearing damage progressed.</p>
+          <h3 class="sam-spec-stories__card-title">Gearbox input misalignment on conveyor drive</h3>
+          <p class="sam-spec-stories__card-desc">Progressive 2&times; running speed rise in the current signature flagged increasing misalignment between motor and gearbox input shaft. Corrected before bearing damage progressed.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Coupling fault</span>
+            <span class="sam-spec-stories__card-industry">Chemicals</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Elastomeric coupling degradation on pump drive</h3>
+          <p class="sam-spec-stories__card-desc">Torsional natural frequency shift and increased backlash signature identified through characteristic frequency changes. Coupling replaced before shaft damage.</p>
+          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
+        </a>
+
+        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+          <div class="sam-spec-stories__card-top">
+            <span class="sam-spec-stories__card-tag">Load anomaly</span>
+            <span class="sam-spec-stories__card-industry">Water &amp; Wastewater</span>
+          </div>
+          <h3 class="sam-spec-stories__card-title">Drivetrain efficiency loss on aeration blower</h3>
+          <p class="sam-spec-stories__card-desc">Power consumption trending showed progressive efficiency loss on belt-driven blower. Investigation revealed belt tension degradation and sheave wear. Preventive replacement avoided unplanned blower shutdown.</p>
           <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
         </a>
 
@@ -2078,8 +2307,8 @@
     </div>
   </section>
 
-  <!-- ─── 5. HOW SAM4 INSTALLS ─── seashell background -->
-  <section class="sam-spec-install">
+  <!-- ─── 8. HOW SAM4 INSTALLS ─── white background -->
+  <section class="sam-spec-install" style="background:var(--white);">
     <div class="sam-spec-install__inner">
       <p class="overline">Installation on transmission systems</p>
       <h2>Under 60 minutes. No transmission access required.</h2>
@@ -2091,14 +2320,14 @@
             <span class="sam-spec-install__step-num kpi-value">1</span>
             <div class="sam-spec-install__step-body">
               <h3 class="sam-spec-install__step-title">Open the motor control cabinet</h3>
-              <p class="sam-spec-install__step-desc">SAM4 installs at the MCC, the same panel your electricians already access. No access to gearbox, back online same shift, no process interruption.</p>
+              <p class="sam-spec-install__step-desc">SAM4 installs at the MCC &mdash; the same panel your electricians already access. No access to the gearbox, coupling, or belt drive required. Back online same shift, no process interruption.</p>
             </div>
           </div>
           <div class="sam-spec-install__step">
             <span class="sam-spec-install__step-num kpi-value">2</span>
             <div class="sam-spec-install__step-body">
               <h3 class="sam-spec-install__step-title">Clip sensor onto motor supply cables</h3>
-              <p class="sam-spec-install__step-desc">Current and voltage sensors clip directly onto the existing cabling. No wiring changes. No interruption to the transmission's operation.</p>
+              <p class="sam-spec-install__step-desc">Current and voltage sensors clip directly onto existing cabling. No wiring changes. No interruption to the transmission&rsquo;s operation. This is why ESA scales to fleet-size deployments &mdash; the same installation covers belts, gearboxes, and couplings in the drivetrain.</p>
             </div>
           </div>
           <div class="sam-spec-install__step">
@@ -2121,56 +2350,33 @@
 
       <div class="sam-spec-install__links">
         <a href="/platform/how-it-installs" class="sam-text-link">Full installation guide &rarr;</a>
-        <a href="/platform/security" class="sam-text-link">Security &amp; network architecture &rarr;</a>
+        <a href="/platform/security" class="sam-text-link" style="margin-left:var(--space-6);">Security &amp; network architecture &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- ─── 6. INDUSTRIES ─── seashell background -->
-  <section class="sam-spec-industries">
-    <div class="sam-spec-industries__inner">
-      <p class="overline">Where transmissions are monitored</p>
-      <h2>Industries using SAM4 on transmission systems</h2>
-
-      <div class="sam-spec-industries__grid">
-        <a href="/industries/metals-mining" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Metals &amp; Mining</h3>
-          <p class="sam-spec-industries__card-desc">Conveyor drives, crusher gearboxes, fan drives. High-torque applications in severe duty.</p>
-        </a>
-        <a href="/industries/pulp-paper" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Pulp &amp; Paper</h3>
-          <p class="sam-spec-industries__card-desc">Paper machine drives, pump gearboxes, fan drive systems. Energy-intensive operations with complex drivetrain.</p>
-        </a>
-        <a href="/industries/chemicals" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Chemicals</h3>
-          <p class="sam-spec-industries__card-desc">Agitator gearboxes, reactor drives, process pump transmissions. Equipment in demanding chemical environments.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 7. RELATED ASSETS ─── white background -->
-  <section class="sam-spec-related">
+  <!-- ─── 9. RELATED ASSETS ─── seashell background -->
+  <section class="sam-spec-related" style="background:var(--seashell);">
     <div class="sam-spec-related__inner">
       <p class="overline">Related asset types</p>
       <h2>Other asset types SAM4 monitors</h2>
 
       <div class="sam-spec-related__grid">
-        <a href="/platform/what-we-monitor/conveyors" class="sam-spec-related__card">
-          <h3 class="sam-spec-related__card-title">Conveyors</h3>
-          <p class="sam-spec-related__card-desc">Belt, screw, and chain conveyors in materials handling</p>
-        </a>
         <a href="/platform/what-we-monitor/fans-blowers" class="sam-spec-related__card">
           <h3 class="sam-spec-related__card-title">Fans &amp; Blowers</h3>
-          <p class="sam-spec-related__card-desc">Ventilation fans, cooling fans, process blowers</p>
+          <p class="sam-spec-related__card-desc">Belt-driven fans are ESA&rsquo;s strongest fleet-scale application. Ventilation, cooling, and process air.</p>
         </a>
-        <a href="/platform/what-we-monitor/lv-motors" class="sam-spec-related__card">
-          <h3 class="sam-spec-related__card-title">Low Voltage Motors</h3>
-          <p class="sam-spec-related__card-desc">AC induction motors up to 1kV</p>
+        <a href="/platform/what-we-monitor/conveyors" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">Conveyors</h3>
+          <p class="sam-spec-related__card-desc">Belt, screw, and chain conveyors in materials handling. Motor + gearbox health on distributed systems.</p>
+        </a>
+        <a href="/platform/what-we-monitor/pumps" class="sam-spec-related__card">
+          <h3 class="sam-spec-related__card-title">Pumps</h3>
+          <p class="sam-spec-related__card-desc">Centrifugal, submersible, borehole, and canned motor pumps. Broadest fault detection portfolio.</p>
         </a>
         <a href="/platform/what-we-monitor/agitators-mixers" class="sam-spec-related__card">
           <h3 class="sam-spec-related__card-title">Agitators &amp; Mixers</h3>
-          <p class="sam-spec-related__card-desc">Chemical reactors, blending vessels, mixing tanks</p>
+          <p class="sam-spec-related__card-desc">Geared drives in chemical reactors, blending vessels, and mixing tanks. Variable load baseline challenge.</p>
         </a>
       </div>
 
@@ -2178,14 +2384,14 @@
     </div>
   </section>
 
-  <!-- ─── 8. CTA ─── dark background -->
-  <section class="sam-cta-block sam-cta-block--spec">
+  <!-- ─── TERMINAL CTA ─── white background -->
+  <section class="sam-cta-block sam-cta-block--spec" style="background:var(--white);">
     <div class="sam-cta-block__inner">
       <h2 class="sam-cta-block__heading">See SAM4 monitoring transmissions</h2>
-      <p class="sam-cta-block__sub">A 30-minute demo shows SAM4 running on transmission systems like yours, with real fault data, real diagnostics, and real early warning.</p>
+      <p class="sam-cta-block__sub">A 30-minute demo shows SAM4 running on transmission systems like yours &mdash; with real fault data, real diagnostics, and honest detection boundaries.</p>
       <div class="sam-cta-block__actions">
-        <a href="/contact?intent=demo&asset=transmissions" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-        <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary-light">Start Your Asset Audit</a>
+        <a href="/contact?intent=demo&asset=transmissions" class="sam-cta">Talk to an engineer</a>
+        <a href="/contact/asset-audit" class="sam-cta-secondary" style="color:var(--space-cadet);border-color:var(--border-grey);">Start your asset audit</a>
       </div>
     </div>
   </section>
@@ -2323,7 +2529,6 @@
   </div>
 
   <script>
-  <script>
     (function () {
       'use strict';
 
@@ -2372,8 +2577,6 @@
         });
       });
     })();
-  </script>
-
   </script>
 </body>
 </html>
