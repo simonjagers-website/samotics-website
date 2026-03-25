@@ -1207,6 +1207,109 @@
       }
     }
 
+  
+    /* ===== FAQ ACCORDION ===== */
+    .sam-faq {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .sam-faq__item {
+      border-bottom: 1px solid var(--border-grey);
+    }
+    .sam-faq__item:first-child {
+      border-top: 1px solid var(--border-grey);
+    }
+    .sam-faq__question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--space-cadet);
+      text-align: left;
+      line-height: 1.4;
+    }
+    .sam-faq__icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-left: 16px;
+      transition: transform var(--motion-normal) ease-out;
+      color: var(--comet);
+    }
+    .sam-faq__item.is-open .sam-faq__icon {
+      transform: rotate(45deg);
+    }
+    .sam-faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--motion-normal) ease-out;
+    }
+    .sam-faq__item.is-open .sam-faq__answer {
+      max-height: 500px;
+    }
+    .sam-faq__answer p {
+      padding: 0 0 24px;
+      color: var(--comet);
+      line-height: 1.6;
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+
+    /* ===== MEASUREMENT METHOD BOX ===== */
+    .sam-measurement-method {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius, 4px);
+      padding: 12px 20px;
+      max-width: 640px;
+      margin-top: var(--space-4);
+    }
+    .sam-measurement-method p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .sam-section--seashell .sam-measurement-method,
+    .sam-section--white .sam-measurement-method {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+    }
+    .sam-section--seashell .sam-measurement-method p,
+    .sam-section--white .sam-measurement-method p {
+      color: var(--comet);
+    }
+
+    /* ===== MID-PAGE CTA ===== */
+    .sam-midpage-cta {
+      text-align: center;
+      margin-top: var(--space-10);
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--border-grey);
+    }
+    .sam-midpage-cta a {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--blue-600);
+    }
+
+    /* ===== SECTION CONTRAST LINE ===== */
+    .sam-section__contrast {
+      text-align: center;
+      font-size: 15px;
+      color: var(--comet);
+      max-width: 640px;
+      margin: var(--space-8) auto 0;
+      line-height: 1.6;
+    }
+
   </style>
 </head>
 <body>
@@ -1436,184 +1539,364 @@
 
 </header>
 
-  <!-- ── Section 1: Hero ── -->
-  <section class="sam-section sam-section--hero">
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 1: Hero (Dark overlay on industry image)          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--hero" id="main-content">
     <div class="sam-hero-overlay"></div>
     <div class="sam-section__inner">
       <div class="sam-section__overline">Airports</div>
-      <h1 class="sam-section__title">Keep baggage handling running. Every flight.</h1>
-      <p class="sam-section__subtitle">Prevent unexpected breakdowns in conveyor systems, sorting equipment, and baggage handling lines. SAM4 monitors drive systems from the motor control cabinet and alerts you weeks before failure.</p>
+      <h1 class="sam-section__title">Hundreds of motors. One missed bag starts a cascade.</h1>
+      <p class="sam-section__subtitle">Baggage handling systems run 16 to 20 hours a day with zero tolerance for failure. Most conveyor motors have no condition monitoring at all. ESA detects bearing wear, gearbox faults, and belt degradation from the motor control cabinet, weeks before breakdown.</p>
       <div class="sam-stats-bar">
-          <div class="sam-stat">
-            <div class="sam-stat__value">9 / 9</div>
-            <div class="sam-stat__label">Faults detected at Schiphol</div>
-          </div>
-          <div class="sam-stat">
-            <div class="sam-stat__value">0</div>
-            <div class="sam-stat__label">Unplanned disruptions</div>
-          </div>
-          <div class="sam-stat">
-            <div class="sam-stat__value">5+ days</div>
-            <div class="sam-stat__label">Average advance warning</div>
-          </div>
+        <div class="sam-stat">
+          <div class="sam-stat__value">9 / 9</div>
+          <div class="sam-stat__label">Faults detected at Schiphol Airport</div>
+        </div>
+        <div class="sam-stat">
+          <div class="sam-stat__value">&gt;5 hrs</div>
+          <div class="sam-stat__label">Baggage belt downtime saved</div>
+        </div>
+        <div class="sam-stat">
+          <div class="sam-stat__value">&gt;90%</div>
+          <div class="sam-stat__label">Faults prevented at Stansted</div>
+        </div>
+      </div>
+      <div class="sam-measurement-method">
+        <p>Schiphol: 12-month trial on baggage handling conveyors (Samotics published case study). Stansted: deployment across arrival and departure hall BHS systems (Samotics/Aviation Week, 2025).</p>
       </div>
       <div class="sam-hero-actions">
-        <a href="/contact" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-        <a href="#proof" class="sam-btn sam-btn--ghost">See results below</a>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--primary">Start your asset audit</a>
+        <a href="#proof" class="sam-btn sam-btn--ghost">See airport results</a>
       </div>
     </div>
   </section>
 
-  <!-- ── Section 2: Trust bar ── -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 2: Trust bar (inherits background)                -->
+  <!-- Note: Only 2 named airport customers. Framework says 3    -->
+  <!-- minimum. Keeping for now but flagged for review.          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <div class="sam-trust-bar">
     <div class="sam-trust-bar__inner">
       <div class="sam-trust-bar__label">Trusted by leading airports</div>
       <div class="sam-trust-bar__logos">
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/schiphol.png" alt="Schiphol Airport"></span>
-        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/london-stansted.png" alt="London Stansted Airport"></span>
+        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/schiphol.png" alt="Schiphol Airport" loading="lazy"></span>
+        <span class="sam-trust-bar__logo" style="height:36px;padding:0 16px;display:flex;align-items:center;"><img src="/assets/images/logos/london-stansted.png" alt="London Stansted Airport" loading="lazy"></span>
       </div>
     </div>
   </div>
 
-  <!-- ── Section 3: Challenges ── -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 3: Challenges (White) - NO SAM4/ESA mentions      -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
-      <div class="sam-section__overline">The challenge</div>
-      <h2 class="sam-section__title">Downtime is measured in missed flights</h2>
-      <p class="sam-section__subtitle">Airport conveyor systems run thousands of hours per year under constant load. A single motor failure can delay flights and strand luggage.</p>
+      <div class="sam-section__overline">The problem</div>
+      <h2 class="sam-section__title">Downtime is measured in missed flights and stranded bags</h2>
+      <p class="sam-section__subtitle">Airport equipment runs near-continuously in environments that make condition monitoring harder than any factory.</p>
       <div class="sam-card-grid sam-card-grid--2col">
+
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2L1 18h18L10 2zm0 4l6.5 11h-13L10 6z"/><rect x="9" y="9" width="2" height="4" rx="0.5"/><rect x="9" y="14" width="2" height="2" rx="0.5"/></svg></div>
-          <div class="sam-card__title">Zero tolerance for disruption</div>
-          <div class="sam-card__body">Passengers expect bags to arrive. A conveyor breakdown at peak hour cascades into flight delays, lost bags, and reputational damage. SAM4 gives advance warning.</div>
+          <div class="sam-card__title">Baggage handling runs until it breaks</div>
+          <div class="sam-card__body">A large airport operates 500 to 1,000+ conveyor motors across check-in, sorting, screening, and reclaim. Bearing wear causes 51 to 67% of motor failures. SCADA detects a stopped conveyor. It does not detect the bearing that will fail in three weeks. One motor failure cascades upstream and downstream, choking hundreds of connected units.</div>
         </div>
+
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="1.5"/></svg></div>
-          <div class="sam-card__title">Narrow maintenance windows</div>
-          <div class="sam-card__body">Baggage systems operate around the clock. Planned maintenance must fit between flights. SAM4 identifies which assets need attention so you prioritise the right repairs.</div>
+          <div class="sam-card__title">Maintenance windows measured in hours</div>
+          <div class="sam-card__body">All preventive work must fit between the last departure and first morning check-in. That is 4 to 6 hours. Sensor installation on running conveyors is not feasible. When maintenance is deferred because windows are too short, equipment degrades past the point of quick repair. Emergency maintenance costs 3 to 5 times more than planned.</div>
         </div>
+
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M10 2v12m0 0l-4-4m4 4l4-4M3 18h14"/></svg></div>
-          <div class="sam-card__title">Scale and complexity</div>
-          <div class="sam-card__body">Large airports have hundreds of conveyor motors and drives spread across terminals. SAM4 monitors them all centrally from motor control cabinets.</div>
+          <div class="sam-card__title">Motors spread across terminals</div>
+          <div class="sam-card__body">BHS drives, HVAC fans, escalators, and walkway motors are distributed across multiple buildings and levels. Route-based vibration collection requires technicians to visit each asset monthly. Travel between assets dominates analyst time. For widely spaced equipment, this is slow, expensive, and incomplete.</div>
         </div>
+
         <div class="sam-card">
           <div class="sam-card__icon"><svg viewBox="0 0 20 20"><path d="M11 1L4 12h5l-2 7 9-11h-5l2-7z"/></svg></div>
-          <div class="sam-card__title">HVAC criticality</div>
-          <div class="sam-card__body">Terminal HVAC systems serve millions of passengers. A chiller or AHU failure in summer disrupts operations and comfort. SAM4 detects degradation before it reaches that point.</div>
+          <div class="sam-card__title">Noise floor defeats vibration baselines</div>
+          <div class="sam-card__body">Airports generate vibration from aircraft, passenger traffic, HVAC systems, and structural resonance in multi-storey buildings. This creates baseline variability that makes vibration monitoring harder than in a purpose-built industrial plant. Distinguishing a developing fault from environmental noise requires careful baseline establishment that most programmes lack.</div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── Section 4: Assets monitored ── -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 4: Why SAM4 (Seashell) - differentiators          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
   <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">Why SAM4</div>
+      <h2 class="sam-section__title">Why SAM4 works for airports</h2>
+      <p class="sam-section__subtitle">Electrical Signature Analysis monitors every motor-driven asset from the motor control cabinet. No sensors on the conveyors, escalators, or fans.</p>
+      <div class="sam-card-grid sam-card-grid--2col">
+
+        <div class="sam-card">
+          <div class="sam-card__title">No sensors on the asset</div>
+          <div class="sam-card__body">SAM4 clips onto power cables inside the MCC in the electrical room. No work on conveyor infrastructure, no access to passenger areas, no disruption to baggage flow. Install while the BHS is running.</div>
+        </div>
+
+        <div class="sam-card">
+          <div class="sam-card__title">Every motor from one location</div>
+          <div class="sam-card__body">Hundreds of conveyor drives, AHU fans, escalator motors, and walkway drives monitored from per-zone electrical rooms. No technician routes across terminals. No per-asset sensor economics limiting fleet coverage.</div>
+        </div>
+
+        <div class="sam-card">
+          <div class="sam-card__title">Detects what SCADA and vibration miss</div>
+          <div class="sam-card__body">SCADA detects operational faults. Vibration struggles with airport noise floors and small conveyor motors. ESA detects bearing wear, gearbox degradation, belt slippage, and rotor bar defects through motor current modulation. Weeks of advance warning, not hours.</div>
+        </div>
+
+        <div class="sam-card">
+          <div class="sam-card__title">Works on small BHS motors</div>
+          <div class="sam-card__body">Baggage handling motors range from 0.55 to 5.6 kW. Vibration monitoring economics break down at this scale. ESA is highly effective on small motors because high current density produces clear fault signatures. No per-point cost barrier.</div>
+        </div>
+
+      </div>
+      <p class="sam-section__contrast">Vibration route collection visits each motor monthly. ESA monitors every motor continuously. For airports running 16 to 20 hours a day, that difference is the gap between detecting a fault and missing a flight.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 5: Assets monitored (White)                       -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">What we monitor</div>
       <h2 class="sam-section__title">Critical assets in airport operations</h2>
-      <p class="sam-section__subtitle">SAM4 monitors any AC motor-driven equipment from the motor control cabinet.</p>
+      <p class="sam-section__subtitle">SAM4 monitors any AC motor-driven equipment from the MCC. These are the asset types that matter most at airports.</p>
       <div class="sam-card-grid sam-card-grid--3col">
+
         <a href="/platform/what-we-monitor/conveyors" class="sam-card">
-          <div class="sam-card__title">Conveyors</div>
-          <div class="sam-card__body">Baggage handling conveyors and sortation systems. Belt drive monitoring, motor fault detection, and bearing degradation alerts.</div>
+          <div class="sam-card__title">Baggage handling conveyors</div>
+          <div class="sam-card__body">Check-in, sorting, screening, and reclaim conveyors. SAM4 detects bearing wear, gearbox faults, belt slippage, rotor bar defects, and motor overload across tilt-tray, cross-belt, and DCV systems.</div>
           <span class="sam-card__link">Conveyor monitoring details &rarr;</span>
         </a>
+
         <a href="/platform/what-we-monitor/fans-blowers" class="sam-card">
-          <div class="sam-card__title">Fans &amp; blowers</div>
-          <div class="sam-card__body">HVAC and ventilation fans across terminal buildings. Energy optimisation and predictive maintenance alerts.</div>
+          <div class="sam-card__title">HVAC and ventilation fans</div>
+          <div class="sam-card__body">Air handling units, exhaust fans, pressurisation fans, and cooling tower motors. HVAC accounts for 40 to 60% of terminal energy. SAM4 detects bearing wear, belt degradation, and stator winding faults across 24/7 systems.</div>
           <span class="sam-card__link">Fan monitoring details &rarr;</span>
         </a>
-        <a href="/platform/what-we-monitor/pumps" class="sam-card">
-          <div class="sam-card__title">Pumps</div>
-          <div class="sam-card__body">De-icing, fuel transfer, and utility pumps across airside operations. Remote condition monitoring from the MCC.</div>
-          <span class="sam-card__link">Pump monitoring details &rarr;</span>
+
+        <a href="/platform/what-we-monitor/transmissions" class="sam-card">
+          <div class="sam-card__title">Escalators and moving walkways</div>
+          <div class="sam-card__body">Drive motor, worm gear reducer, and chain drive assemblies. SAM4 detects motor bearing wear, gearbox worm wear, brake drag, and chain elongation. Step chain and roller bearing wear account for 35% of escalator shutdowns.</div>
+          <span class="sam-card__link">Transmission monitoring details &rarr;</span>
         </a>
+
       </div>
     </div>
   </section>
 
-  <!-- ── Section 5: Proof ── -->
-  <section class="sam-section sam-section--white" id="proof">
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 6: Proof (Seashell)                               -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--seashell" id="proof">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Proof</div>
       <h2 class="sam-section__title">Airport case studies</h2>
+
+      <!-- Featured: Schiphol -->
       <div class="sam-proof-highlight">
-        <div class="sam-proof-highlight__overline">Featured</div>
-        <h3 class="sam-proof-highlight__title">Schiphol Airport: 9 of 9 faults detected, zero disruptions</h3>
-        <p class="sam-proof-highlight__body">SAM4 monitors baggage handling conveyors and HVAC systems across Schiphol Airport. During the initial deployment, the system detected all 9 developing faults before any caused unplanned downtime. Each alert gave the maintenance team days to weeks of advance warning.</p>
+        <div class="sam-proof-highlight__overline">Featured case study</div>
+        <h3 class="sam-proof-highlight__title">Schiphol Airport: 9 of 9 faults detected in 12-month trial</h3>
+        <p class="sam-proof-highlight__body">During a 12-month trial on baggage handling conveyors, SAM4 detected all 9 developing faults before any caused unplanned downtime. More than 5 hours of baggage belt downtime saved. Schiphol expanded deployment across the full production system based on trial results.</p>
         <div class="sam-proof-highlight__stats">
           <div class="sam-stat">
             <div class="sam-stat__value">9 / 9</div>
-            <div class="sam-stat__label">Faults detected</div>
+            <div class="sam-stat__label">Faults detected in advance</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">0</div>
-            <div class="sam-stat__label">Unplanned disruptions</div>
+            <div class="sam-stat__value">&gt;5 hrs</div>
+            <div class="sam-stat__label">Belt downtime saved</div>
           </div>
           <div class="sam-stat">
-            <div class="sam-stat__value">5+ days</div>
-            <div class="sam-stat__label">Average advance warning</div>
+            <div class="sam-stat__value">Full deploy</div>
+            <div class="sam-stat__label">Expanded after trial</div>
           </div>
         </div>
-        <a href="/proof/schiphol" class="sam-proof-highlight__link">Read the full Schiphol case study &rarr;</a>
+        <div class="sam-measurement-method">
+          <p>12-month trial on baggage handling conveyor drives at Amsterdam Airport Schiphol. Fault detection confirmed against maintenance records. Published Samotics case study.</p>
+        </div>
+        <a href="/case-studies/how-schipol-airport-improved-reliability-of-its-current-baggage-handling-lines" class="sam-proof-highlight__link" style="display:inline-block;margin-top:var(--space-4);">Read the full Schiphol case study &rarr;</a>
+      </div>
+
+      <!-- Supporting proof cards -->
+      <div class="sam-card-grid sam-card-grid--3col">
+
+        <a href="/news/london-stansted-airport-and-samotics-collaboration-announcement/" class="sam-proof-card">
+          <div class="sam-proof-card__kpi">&gt;90%</div>
+          <div class="sam-proof-card__customer">London Stansted Airport</div>
+          <div class="sam-proof-card__body">SAM4 deployed across dozens of baggage handling systems in arrival and departure halls. 80% of downtime was mechanical. SAM4 identifies and prevents over 90% of potential faults up to 5 months in advance.</div>
+          <span class="sam-proof-card__link">Read announcement &rarr;</span>
+        </a>
+
+        <a href="/proof" class="sam-proof-card">
+          <div class="sam-proof-card__kpi">30&ndash;50%</div>
+          <div class="sam-proof-card__customer">Industry benchmark</div>
+          <div class="sam-proof-card__body">Reduction in unplanned downtime documented across airport predictive maintenance programmes. Emergency maintenance costs 3 to 5 times more than planned interventions.</div>
+          <span class="sam-proof-card__link">See all results &rarr;</span>
+        </a>
+
+        <a href="/proof" class="sam-proof-card">
+          <div class="sam-proof-card__kpi">10:1&ndash;30:1</div>
+          <div class="sam-proof-card__customer">Airport PdM ROI</div>
+          <div class="sam-proof-card__body">Return on investment within 12 to 18 months for airport condition monitoring programmes. At $10,000 to $100,000 per hour of BHS downtime, a single prevented failure covers the annual monitoring cost.</div>
+          <span class="sam-proof-card__link">See all results &rarr;</span>
+        </a>
+
+      </div>
+
+      <div class="sam-measurement-method" style="margin-top:var(--space-6);">
+        <p>Stansted: Samotics announcement and Aviation Week (2025). Industry benchmarks: OxMaint airport PdM analysis, FAA delay cost estimates ($100/minute), EASA ground delay estimates. ROI ranges from vendor and trade sources.</p>
+      </div>
+
+      <!-- Mid-page CTA -->
+      <div class="sam-midpage-cta">
+        <a href="/contact?intent=demo">Ready to see what SAM4 finds at your airport? Request a demo &rarr;</a>
       </div>
 
     </div>
   </section>
 
-  <!-- ── Section 6: Install ── -->
-  <section class="sam-section sam-section--seashell">
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 7: Installation (White)                           -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--white">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Installation</div>
-      <h2 class="sam-section__title">No sensors on the belts</h2>
+      <h2 class="sam-section__title">No sensors on the belts. No work in passenger areas.</h2>
+      <p class="sam-section__subtitle">SAM4 installs in the electrical room. MCC cabinets sit in staff-only basement plant rooms or per-zone electrical rooms. No disruption to passengers or baggage operations.</p>
       <div class="sam-install-grid">
         <div>
-        <div class="sam-install-step">
-          <div class="sam-install-step__num">1</div>
-          <div class="sam-install-step__text">
-            <strong>Clip on at the MCC</strong>
-            <span>SAM4 installs on the power cable inside the motor control cabinet. No work on conveyor infrastructure.</span>
+          <div class="sam-install-step">
+            <div class="sam-install-step__num">1</div>
+            <div class="sam-install-step__text">
+              <strong>Clip on at the MCC</strong>
+              <span>Clip-on current transformers attach to the motor power cable inside the cabinet. Install while the BHS is running. Minutes per motor. No conveyor shutdown.</span>
+            </div>
           </div>
-        </div>
-        <div class="sam-install-step">
-          <div class="sam-install-step__num">2</div>
-          <div class="sam-install-step__text">
-            <strong>Connect to the network</strong>
-            <span>Cellular gateway sends data to the cloud. No airport IT integration needed for deployment.</span>
+          <div class="sam-install-step">
+            <div class="sam-install-step__num">2</div>
+            <div class="sam-install-step__text">
+              <strong>Connect to the network</strong>
+              <span>Secure cellular gateway transmits data to the cloud. No airport IT network integration required for initial deployment. Wi-Fi and Ethernet also supported.</span>
+            </div>
           </div>
-        </div>
-        <div class="sam-install-step">
-          <div class="sam-install-step__num">3</div>
-          <div class="sam-install-step__text">
-            <strong>Monitor from anywhere</strong>
-            <span>Facilities team sees asset health, fault alerts, and energy data on the SAM4 dashboard within hours.</span>
+          <div class="sam-install-step">
+            <div class="sam-install-step__num">3</div>
+            <div class="sam-install-step__text">
+              <strong>Monitor from anywhere</strong>
+              <span>The SAM4 dashboard shows asset health, fault progression, and energy performance. Pilot 20 to 30 priority motors in the first week. Full fleet in 4 to 6 weeks.</span>
+            </div>
           </div>
-        </div>
         </div>
         <div class="sam-install-image">
-          <img src="/assets/images/install-sam4-mcc.jpg" alt="SAM4 hardware installed inside a motor control cabinet at an airport baggage handling facility" loading="lazy" style="width:100%;border-radius:var(--radius-default);">
+          <img src="/assets/images/install-sam4-mcc.jpg" alt="SAM4 clip-on current transformers installed inside a motor control cabinet at an airport facility" loading="lazy" style="width:100%;border-radius:var(--radius, 4px);">
         </div>
       </div>
 
-            <div class="sam-quote">
-        <p class="sam-quote__text">SAM4 detected possible bearing damage to the gearbox motor, which we had not picked up through our vibration monitoring.</p>
-        <div class="sam-quote__attr">Schiphol Airport case study</div>
+      <div class="sam-quote">
+        <p class="sam-quote__text">The results speak for themselves: it just works.</p>
+        <div class="sam-quote__attr">Marcel den Blanken, Baggage Service Manager, Schiphol Airport</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 8: FAQ (Seashell)                                 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--seashell">
+    <div class="sam-section__inner">
+      <div class="sam-section__overline">Common questions</div>
+      <h2 class="sam-section__title">Airport monitoring FAQ</h2>
+
+      <div class="sam-faq">
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            Our BHS already has SCADA monitoring. Why add ESA?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>SCADA detects operational faults: conveyor stopped, motor overheating. ESA detects degradation: bearing wear developing over weeks, gearbox tooth damage progressing toward failure. 51 to 67% of motor failures are bearing-related. SCADA misses nearly all of them in early stages.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            We only have 4 hours overnight for maintenance. How does monitoring help?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>Predictive monitoring shifts the paradigm. Instead of firefighting at midnight, you know 3 to 4 weeks in advance which motor needs attention. You schedule the repair into the next available window rather than reacting to a failure. Emergency maintenance costs 3 to 5 times more than planned work.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            Can ESA detect faults on small 1 to 5 kW conveyor motors?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>Yes. ESA is highly effective on small motors. High current density produces clear fault signatures. Unlike vibration sensors, ESA requires no physical access to the motor and no per-point sensor economics. This makes it ideal for BHS fleets where hundreds of small motors need coverage.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            How does SAM4 integrate with our BMS or CMMS?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>SAM4 runs independently with optional API integration into BMS or CMMS. Fault alerts can trigger automatic work orders in your maintenance system. No dependency on existing SCADA infrastructure. Initial deployment requires no airport IT network integration.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            We have OEM escalator maintenance contracts. Why add monitoring?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>OEM contracts provide scheduled preventive maintenance and emergency repair. They do not provide continuous early detection between visits. ESA adds the monitoring layer that reduces emergency callouts and prevents the 30 to 50% of unplanned downtime that develops between scheduled service intervals.</p>
+          </div>
+        </div>
+
+        <div class="sam-faq__item">
+          <button class="sam-faq__question">
+            What is the cybersecurity posture for critical infrastructure?
+            <svg class="sam-faq__icon" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+          <div class="sam-faq__answer">
+            <p>SAM4 reads electrical signatures from the MCC. It is read-only with no commands to equipment. The system runs on an isolated network segment, separate from baggage SCADA. Samotics holds ISO 27001 and ISO 9001 certification. Data transmission uses secure cellular connectivity by default.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── Section 7: Terminal CTA ── -->
-  <section class="sam-section sam-section--white sam-terminal-cta">
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Section 9: Terminal CTA (Dark / Space Cadet)              -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="sam-section sam-section--dark sam-terminal-cta" style="background:var(--space-cadet);padding:var(--space-30) var(--space-6);">
     <div class="sam-section__inner">
       <div class="sam-section__overline">Get started</div>
-      <h2 class="sam-section__title">From your first terminal to every site</h2>
-      <p class="sam-section__subtitle">Start with a pilot on your baggage handling or HVAC systems. Scale across all terminals as results prove out.</p>
+      <h2 class="sam-section__title" style="color:var(--white);">Monitor every conveyor, fan, and escalator. No sensors on the belts.</h2>
+      <p class="sam-section__subtitle" style="color:rgba(255,255,255,0.75);">Start with your highest-traffic baggage handling line. See results within weeks. Scale across every terminal.</p>
       <div class="sam-hero-actions">
-        <a href="/contact" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-        <a href="/contact" class="sam-btn sam-btn--ghost-dark">Request a demo</a>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--primary">Start your asset audit</a>
+        <a href="/contact?intent=demo" class="sam-btn sam-btn--ghost">Talk to an airport engineer</a>
       </div>
     </div>
   </section>
+
 
 <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
   <div class="sam-footer__inner">
@@ -1733,7 +2016,6 @@
   </div>
 
   <script>
-  <script>
     (function () {
       'use strict';
 
@@ -1784,6 +2066,17 @@
     })();
   </script>
 
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.sam-faq__question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.sam-faq__item');
+        var isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.sam-faq__item').forEach(function(i) { i.classList.remove('is-open'); });
+        if (!isOpen) item.classList.add('is-open');
+      });
+    });
   </script>
+
 </body>
 </html>
