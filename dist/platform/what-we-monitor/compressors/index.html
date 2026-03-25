@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Compressor predictive maintenance: SAM4 detects valve wear, bearing degradation, and imbalance via ESA. Core three asset detection rate: 90.8%.">
+  <meta name="description" content="Compressor monitoring via ESA: what it detects, what it misses, and where it fits alongside vibration and process monitoring. Honest capability by compressor type.">
   <title>Compressor monitoring | Samotics</title>
   <link rel="canonical" href="https://samoticstestpage.com/platform/what-we-monitor/compressors/">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -905,7 +905,7 @@
     /* ===== FAULT TABLE ===== */
     .sam-spec-faults {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-faults__inner {
       max-width: var(--max-width);
@@ -1347,7 +1347,7 @@
     /* ===== MONITORING ARCHITECTURE (ESA vs VIBRATION) ===== */
     .sam-spec-monitor {
       padding: var(--space-24) var(--space-6);
-      background: var(--seashell);
+      background: var(--white);
     }
     .sam-spec-monitor__inner {
       max-width: var(--max-width);
@@ -1511,6 +1511,106 @@
       }
     }
 
+
+    /* ===== HOW ESA MONITORS (NEW SECTION) ===== */
+    .sam-spec-how {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-how__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-how__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-how__lead {
+      font-size: 1rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-spec-how__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .sam-spec-how__card {
+      padding: var(--space-6);
+      background: var(--sam-seashell);
+      border-radius: var(--radius-default);
+      border-left: 3px solid var(--sam-orange);
+    }
+    .sam-spec-how__card-title {
+      font-family: var(--sam-font);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--sam-space-cadet);
+      margin: 0 0 12px 0;
+    }
+    .sam-spec-how__card p {
+      font-family: var(--sam-font);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--sam-black);
+      margin: 0;
+    }
+
+    /* ===== NON-DETECTABLE FAULTS TABLE ===== */
+    .sam-spec-faults__table--blind .sam-spec-faults__td--label {
+      color: var(--comet);
+    }
+    .sam-spec-faults__section-label {
+      font-family: var(--sam-font);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: var(--space-8) 0 var(--space-4) 0;
+    }
+    .sam-spec-faults__section-label--detect {
+      color: var(--space-cadet);
+    }
+    .sam-spec-faults__section-label--blind {
+      color: var(--comet);
+    }
+
+    /* ===== INSTALL SECTION ===== */
+    .sam-spec-install {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-install__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-install__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-install__inner .lead {
+      font-size: 1rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0 0 var(--space-8) 0;
+    }
+    .sam-spec-install__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .sam-spec-install__card {
+      padding: var(--space-6);
+      background: var(--white);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+    }
   </style>
 </head>
 <body>
@@ -1761,10 +1861,10 @@
         <div class="sam-hero__copy">
           <p class="sam-hero__overline">Asset type</p>
           <h1 class="sam-hero__h1">Compressor monitoring</h1>
-          <p class="sam-hero__lead">SAM4 monitors gas, air, and process compressors from the motor control cabinet. detecting bearing wear, valve faults, imbalance, and efficiency degradation without accessing the compressor skid. No sensor on the machine. No process shutdown for installation.</p>
+          <p class="sam-hero__lead">Six types of compressors. Six different failure modes. No single monitoring technology covers them all. Reciprocating units produce strong torque pulsations ideal for electrical signature analysis. Centrifugal compressors have smooth aerodynamic loads where vibration and process monitoring dominate. Understanding which compressor type you're protecting determines the right monitoring strategy.</p>
           <div class="sam-hero__ctas">
             <a href="/contact?intent=demo&asset=compressors" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-            <a href="#faults" class="sam-btn sam-btn--outline">See What We Detect</a>
+            <a href="#boundaries" class="sam-btn sam-btn--outline">See detection coverage</a>
           </div>
         </div>
       </div>
@@ -1772,130 +1872,215 @@
     </div>
   </section>
 
-  <!-- ─── 2. WHY MONITOR THIS ASSET ─── white background -->
+  <!-- ─── 2. WHY HARD TO MONITOR ─── seashell background -->
   <section class="sam-spec-why">
     <div class="sam-spec-why__inner">
-      <p class="overline">Why monitor compressors</p>
-      <h2>High-value assets in hard-to-reach locations. Often running without condition monitoring.</h2>
-      <p class="lead sam-spec-why__lead">Compressors drive critical gas and air supply in refineries, chemical plants, and mining operations. They operate in hazardous zones, often behind blast walls or in ATEX areas, making physical access for routine inspection costly and infrequent.</p>
+      <p class="overline">The monitoring challenge</p>
+      <h2>Compressors are harder to monitor than pumps or fans</h2>
+      <p class="lead sam-spec-why__lead">Six distinct compressor types operate in your fleet. Reciprocating, screw, centrifugal, axial, lobe, and scroll machines fail differently and require different monitoring methods. Pulsating loads, variable capacity controls, belt drives, gearboxes, and ATEX locations create layers of complexity. A single external sensor cannot see the same failure modes on all of them.</p>
 
       <div class="sam-spec-why__grid">
         <div class="sam-spec-why__card">
-          <span class="sam-spec-why__card-stat kpi-value">€50–200K</span>
-          <p class="sam-spec-why__card-desc">typical cost of an unplanned compressor failure: including equipment damage, lost production, and emergency mobilisation.</p>
+          <span class="sam-spec-why__card-stat kpi-value">40–50%</span>
+          <p class="sam-spec-why__card-desc">of compressor failures originate in components invisible to external electrical monitoring: internal valves, screw elements, oil systems, seals.</p>
         </div>
         <div class="sam-spec-why__card">
-          <span class="sam-spec-why__card-stat kpi-value">40–60%</span>
-          <p class="sam-spec-why__card-desc">of compressor failures are preceded by detectable changes in the electrical signature weeks before the event.</p>
+          <span class="sam-spec-why__card-stat kpi-value">6</span>
+          <p class="sam-spec-why__card-desc">distinct compressor types in a typical industrial fleet — each with different failure physics, different torque profiles, and different monitoring requirements.</p>
         </div>
         <div class="sam-spec-why__card">
-          <span class="sam-spec-why__card-stat kpi-value">72 hrs</span>
-          <p class="sam-spec-why__card-desc">average lead time from compressor trip to full restart in a refinery: including isolation, repair, and recommissioning.</p>
+          <span class="sam-spec-why__card-stat kpi-value">~60%</span>
+          <p class="sam-spec-why__card-desc">of reciprocating compressor shutdowns are valve-related — the single largest failure mode across the compressor landscape.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 3. FAULT COVERAGE ─── seashell background -->
+  <!-- ─── 3. HOW ESA MONITORS COMPRESSORS ─── white background -->
+  <section class="sam-spec-how">
+    <div class="sam-spec-how__inner">
+      <p class="overline">How ESA works on compressors</p>
+      <h2>Not all compressors are created equal</h2>
+      <p class="lead sam-spec-how__lead">ESA detects faults that modulate motor torque. Reciprocating compressors create strong torque pulsations — excellent ESA visibility. Centrifugal compressors produce smooth continuous torque — poor ESA visibility for mechanical faults. The right monitoring approach depends on which compressor type you're protecting.</p>
+
+      <div class="sam-spec-how__grid">
+        <div class="sam-spec-how__card">
+          <h3 class="sam-spec-how__card-title">Strong ESA candidates: reciprocating + Roots blowers</h3>
+          <p>High torque pulsation from discrete compression strokes and lobe engagements. Valve faults, bearing defects, and liquid slugging produce distinct current signatures. Published peer-reviewed evidence supports detection. Direct coupling and solid drivetrain connections maximize signal fidelity.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3 class="sam-spec-how__card-title">Moderate ESA candidates: screw compressors</h3>
+          <p>Moderate torque pulsation from lobe meshing. Bearing detection and motor health work reliably. But lobe wear, seal degradation, and oil system faults are invisible to ESA. Fleet screening from the motor control cabinet is the strongest value case.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3 class="sam-spec-how__card-title">Limited ESA candidates: centrifugal compressors</h3>
+          <p>Smooth aerodynamic torque. Most mechanical faults (blade erosion, bearing wear, seal degradation) produce no torque modulation. ESA covers motor health and surge detection only. Vibration monitoring (API 670) is primary and mandatory.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3 class="sam-spec-how__card-title">Hard boundaries</h3>
+          <p>Fluid couplings block all downstream signal. Belt drives severely attenuate. VFD with slip compensation eliminates rotor bar detection below 50% load. Below ~3 kW, signal-to-noise is too poor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 4. FAULT TABLE + DETECTION BOUNDARIES ─── seashell background -->
   <section id="faults" class="sam-spec-faults">
     <div class="sam-spec-faults__inner">
-      <p class="overline">What SAM4 detects on compressors</p>
-      <h2>Five fault types from one sensor location</h2>
+      <p class="overline">Detection coverage</p>
+      <h2>What ESA detects on compressors — and what it misses</h2>
 
       <div class="sam-spec-faults__table-wrap">
+        <div class="sam-spec-faults__section-label sam-spec-faults__section-label--detect">Detectable faults</div>
         <table class="sam-spec-faults__table">
           <thead>
             <tr>
-              <th class="sam-spec-faults__th">Fault type</th>
+              <th class="sam-spec-faults__th">Fault mode</th>
               <th class="sam-spec-faults__th">What's happening</th>
-              <th class="sam-spec-faults__th">How SAM4 detects it</th>
-              <th class="sam-spec-faults__th">Typical lead time</th>
+              <th class="sam-spec-faults__th">How ESA detects it</th>
               <th class="sam-spec-faults__th">Confidence</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing wear</td>
-              <td class="sam-spec-faults__td">Rolling element degradation in motor and compressor bearings</td>
-              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies in the motor current spectrum. Strongest on motor bearings. Compressor bearing detection depends on drivetrain coupling and load.</td>
-              <td class="sam-spec-faults__td">3–10 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Motor electrical faults (stator, rotor bar)</td>
+              <td class="sam-spec-faults__td">Winding degradation, rotor bar cracking</td>
+              <td class="sam-spec-faults__td">Phase imbalance, slip frequency sidebands. Electromagnetic — independent of compressor type.</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full*</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Valve faults (reciprocating only)</td>
+              <td class="sam-spec-faults__td">Suction/discharge valve leakage, plate fracture</td>
+              <td class="sam-spec-faults__td">Load pulse asymmetry per compression stroke. Requires direct coupling.</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Valve faults</td>
-              <td class="sam-spec-faults__td">Suction/discharge valve leakage or failure in reciprocating compressors</td>
-              <td class="sam-spec-faults__td">Cyclic load pattern anomalies detected in the current waveform. Reciprocating compressors with direct coupling only. Valve faults alter the torque profile per revolution.</td>
-              <td class="sam-spec-faults__td">2–6 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing wear (rolling element)</td>
+              <td class="sam-spec-faults__td">Spalling, wear in motor or driven-end bearings</td>
+              <td class="sam-spec-faults__td">Bearing defect frequency sidebands. Signal weaker on compressors than pumps due to pulsation noise.</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Imbalance</td>
-              <td class="sam-spec-faults__td">Rotor fouling, deposit buildup, or erosion causing rotational imbalance</td>
-              <td class="sam-spec-faults__td">1x running speed component increase in the current spectrum. Detectable where imbalance creates torque modulation (reciprocating, screw). On centrifugal compressors, imbalance produces radial force only and is not reliably visible via ESA.</td>
-              <td class="sam-spec-faults__td">2–8 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Surge events (centrifugal)</td>
+              <td class="sam-spec-faults__td">Rapid pressure/flow reversal creating mechanical shock</td>
+              <td class="sam-spec-faults__td">Motor current spike from torque transient. Rate of change can reach -39%/sec.</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Efficiency degradation</td>
-              <td class="sam-spec-faults__td">Compressor operating below design efficiency due to wear or fouling</td>
-              <td class="sam-spec-faults__td">Power consumption deviation from baseline at equivalent operating conditions</td>
-              <td class="sam-spec-faults__td">Continuous</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--partial">Partial</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Liquid slugging (reciprocating)</td>
+              <td class="sam-spec-faults__td">Incompressible liquid enters cylinder</td>
+              <td class="sam-spec-faults__td">Sudden current spike from impact load. Large and unambiguous.</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Stator winding degradation</td>
-              <td class="sam-spec-faults__td">Insulation breakdown in stator windings from thermal cycling, contamination, or voltage stress</td>
-              <td class="sam-spec-faults__td">Current unbalance between phases and rising negative sequence current components</td>
-              <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Imbalance (reciprocating, screw)</td>
+              <td class="sam-spec-faults__td">Rotor fouling, deposit buildup</td>
+              <td class="sam-spec-faults__td">1× shaft frequency sideband. Not reliably visible on centrifugal (radial force only).</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Conditional</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Broken rotor bars</td>
-              <td class="sam-spec-faults__td">Cracked or broken bars in the rotor cage from thermal fatigue or high starting currents</td>
-              <td class="sam-spec-faults__td">Characteristic sidebands at (1±2s)f around supply frequency, where s is motor slip</td>
-              <td class="sam-spec-faults__td">4–8 weeks</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Supply-side anomalies</td>
+              <td class="sam-spec-faults__td">Voltage imbalance, harmonics, VFD issues</td>
+              <td class="sam-spec-faults__td">Direct power measurement. Independent of compressor type.</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
             </tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.8125rem;color:var(--sam-comet);margin:12px 0 0 0;">*VFD with slip compensation reduces rotor bar detection below 50% load.</p>
+      </div>
+
+      <div class="sam-spec-faults__table-wrap" style="margin-top:48px;">
+        <div class="sam-spec-faults__section-label sam-spec-faults__section-label--blind">Non-detectable faults (ESA blind spots)</div>
+        <table class="sam-spec-faults__table sam-spec-faults__table--blind">
+          <thead>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Supply quality issues</td>
-              <td class="sam-spec-faults__td">Voltage imbalance, harmonic distortion, or VFD-related interference affecting motor performance</td>
-              <td class="sam-spec-faults__td">Voltage and current harmonic spectrum analysis, power factor deviation, and supply-synchronous patterns</td>
-              <td class="sam-spec-faults__td">Continuous</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <th class="sam-spec-faults__th">Fault mode</th>
+              <th class="sam-spec-faults__th">Why ESA can't see it</th>
+              <th class="sam-spec-faults__th">What monitors it instead</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Internal valve faults (screw, centrifugal)</td>
+              <td class="sam-spec-faults__td">No backpropagation to motor current</td>
+              <td class="sam-spec-faults__td">Valve temperature, ultrasound, P-V diagrams</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Screw element wear / internal leakage</td>
+              <td class="sam-spec-faults__td">Thermodynamic fault, gradual efficiency loss</td>
+              <td class="sam-spec-faults__td">Performance monitoring, vibration</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Oil system faults (separator, cooler, viscosity)</td>
+              <td class="sam-spec-faults__td">No periodic electrical signature</td>
+              <td class="sam-spec-faults__td">Oil analysis, temperature monitoring</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Seal degradation</td>
+              <td class="sam-spec-faults__td">Gradual leakage, no torque signature</td>
+              <td class="sam-spec-faults__td">Seal dP monitoring, oil analysis</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Blade erosion (centrifugal)</td>
+              <td class="sam-spec-faults__td">Gradual aerodynamic change</td>
+              <td class="sam-spec-faults__td">Vibration, performance monitoring</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Packing degradation (reciprocating)</td>
+              <td class="sam-spec-faults__td">Gradual gas leakage</td>
+              <td class="sam-spec-faults__td">Pressure-based monitoring</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Piping vibration fatigue</td>
+              <td class="sam-spec-faults__td">No motor load connection</td>
+              <td class="sam-spec-faults__td">Piping accelerometers</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="sam-spec-faults__note">Detection capability depends on drive topology, sampling rate, load variation, and operating conditions. <a href="/technology/esa-vs-vibration#limits" class="sam-text-link">See ESA detection constraints.</a></p>
-
-      <div style="margin-top:48px;">
+      <div id="boundaries" style="margin-top:48px;">
         <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1.125rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 16px 0;">Detection boundaries</h3>
-        <p style="font-family:var(--sam-font);font-weight:400;font-size:0.875rem;line-height:1.5;color:var(--sam-comet);margin:0 0 32px 0;">No condition monitoring technology detects everything. These are the known limitations for ESA-based monitoring on compressors.</p>
         <div style="display:flex;flex-direction:column;gap:24px;">
 
           <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Reciprocating and variable-load profiles</strong>. Compressors differ significantly from SAM4's primary training set. Detection accuracy is 37.5% across 8 cases. This is an active development area.</span>
+            <span><strong>60% miss rate across 10 compressor incidents</strong> (Sep 2024 – Mar 2026). Compressor detection performance is significantly below fleet-wide norms. The sample is small but the pattern is clear: compressors are a conditional ESA application, not a primary one.</span>
           </div>
           <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
             <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Valve faults</strong>. Compressor valve issues create complex load signatures that current algorithms don't reliably distinguish from normal operation.</span>
+            <span><strong>Belt-driven compressors attenuate fault signals.</strong> Mechanical faults in the compressor head do not propagate sharply back to the motor terminal through belt drives. Multiple missed detections on belt-driven rotary screw units confirm this limitation.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Fluid couplings are a hard detection boundary.</strong> Hydraulic couplings isolate the motor electrically from the compressor. ESA monitors motor health only — no compressor fault visibility downstream of a fluid coupling.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>40–50% of compressor failure modes are invisible to ESA.</strong> Internal valves, screw element wear, oil system faults, seal degradation, and mechanical looseness do not produce motor current signatures.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Centrifugal compressors are torque-opaque.</strong> Smooth aerodynamic compression produces no discrete torque events. ESA detection is limited to motor health and surge events. Vibration monitoring (API 670) is primary and mandatory.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>VFD with slip compensation eliminates rotor bar detection below 50% load.</strong> Standard FFT-based MCSA fails on half-broken rotor bars under VFD operation.</span>
           </div>
         </div>
 
-        <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:24px 0 0 0;">Based on 1,874 resolved incidents (Jan 2024 – Feb 2026). <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
+        <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:24px 0 0 0;">Based on 10 resolved compressor incidents (Sep 2024 – Mar 2026) and published peer-reviewed research. <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report →</a></p>
       </div>
 
     </div>
   </section>
 
-  <!-- ─── 3b. ESA & VIBRATION ON COMPRESSORS ─── seashell background -->
+  <!-- ─── 5. MONITORING ARCHITECTURE ─── white background -->
   <section class="sam-spec-monitor">
     <div class="sam-spec-monitor__inner">
       <p class="overline">Monitoring architecture</p>
       <h2>What ESA covers. What vibration covers. Where they overlap.</h2>
-      <p class="lead">Compressors are the asset type where monitoring architecture matters most. Unlike pumps and fans, where ESA covers a consistent set of fault modes across subtypes, compressor capability varies significantly between reciprocating, screw, and centrifugal machines. The failure physics are different. The torque signatures are different. The right monitoring stack depends on which compressor you're protecting.</p>
+      <p class="lead">Compressors are where monitoring architecture matters most. For compressors, vibration analysis is structurally superior for mechanical fault detection. ESA adds motor and drive health — a blind spot for vibration — and fleet screening economics.</p>
 
       <!-- Three-column overview -->
       <div class="sam-spec-monitor__trio">
@@ -1952,267 +2137,133 @@
             </thead>
             <tbody>
               <tr>
-                <td class="sam-spec-monitor__td sam-spec-monitor__td--label">Reciprocating</td>
-                <td class="sam-spec-monitor__td"><strong>Strong.</strong> Valve faults alter cyclic torque profile. Load anomalies visible in current waveform. Published research supports valve leakage detection via motor current analysis.</td>
-                <td class="sam-spec-monitor__td"><strong>Strong.</strong> Crosshead accelerometers (API 670) locate faults to specific cylinders. Rod drop tracks piston ring and rider band wear.</td>
-                <td class="sam-spec-monitor__td">Both. ESA for motor health + valve trending from the MCC. Vibration for mechanical localisation. Discharge temperature per cylinder adds diagnostic depth.</td>
+                <td class="sam-spec-monitor__td--label"><strong>Reciprocating</strong></td>
+                <td class="sam-spec-monitor__td"><strong>Good</strong><br>Valve faults, imbalance, liquid slugging</td>
+                <td class="sam-spec-monitor__td"><strong>Excellent</strong><br>Crosshead, packing, bearing wear</td>
+                <td class="sam-spec-monitor__td">ESA + Vibration</td>
               </tr>
               <tr>
-                <td class="sam-spec-monitor__td sam-spec-monitor__td--label">Screw</td>
-                <td class="sam-spec-monitor__td"><strong>Moderate.</strong> Rotor meshing produces torque modulation at lobe-passing frequency. Energy and load screening is strong. Internal leakage detection is trending-level, not diagnostic.</td>
-                <td class="sam-spec-monitor__td"><strong>Strong.</strong> Bearing defect frequencies, rotor contact, timing gear mesh. Oil analysis critical for oil-injected units.</td>
-                <td class="sam-spec-monitor__td">Both. ESA for fleet screening + motor/drive faults + energy. Vibration for mechanical specificity. Oil analysis for wear mechanisms.</td>
+                <td class="sam-spec-monitor__td--label"><strong>Screw</strong></td>
+                <td class="sam-spec-monitor__td"><strong>Good</strong><br>Motor health, bearing detection, fleet screening</td>
+                <td class="sam-spec-monitor__td"><strong>Excellent</strong><br>Lobe wear, seal degradation, element defects</td>
+                <td class="sam-spec-monitor__td">ESA + Vibration</td>
               </tr>
               <tr>
-                <td class="sam-spec-monitor__td sam-spec-monitor__td--label">Centrifugal</td>
-                <td class="sam-spec-monitor__td"><strong>Motor/drive side only.</strong> Most compressor faults (unbalance, seal wear, impeller erosion, subsynchronous instability) produce no torque modulation. Exception: surge events create torque transients visible in current.</td>
-                <td class="sam-spec-monitor__td"><strong>Essential.</strong> Proximity probes (API 670) for orbit analysis, axial position, and shaft dynamics. The only method for rotor dynamics and bearing health on these machines.</td>
-                <td class="sam-spec-monitor__td">Vibration-led. API 670 proximity probes are mandatory for critical service. ESA adds motor/drive health and energy monitoring. Process data adds performance analytics.</td>
+                <td class="sam-spec-monitor__td--label"><strong>Centrifugal</strong></td>
+                <td class="sam-spec-monitor__td"><strong>Limited</strong><br>Motor health, surge detection only</td>
+                <td class="sam-spec-monitor__td"><strong>Mandatory</strong><br>Blade erosion, bearing wear, imbalance</td>
+                <td class="sam-spec-monitor__td">Vibration + ESA (secondary)</td>
+              </tr>
+              <tr>
+                <td class="sam-spec-monitor__td--label"><strong>Axial</strong></td>
+                <td class="sam-spec-monitor__td"><strong>Limited</strong><br>Motor health only</td>
+                <td class="sam-spec-monitor__td"><strong>Mandatory</strong><br>Blade, bearing, thrust defects</td>
+                <td class="sam-spec-monitor__td">Vibration + ESA (secondary)</td>
+              </tr>
+              <tr>
+                <td class="sam-spec-monitor__td--label"><strong>Lobe / Roots</strong></td>
+                <td class="sam-spec-monitor__td"><strong>Good-Excellent</strong><br>Bearing defects, pulsation anomalies</td>
+                <td class="sam-spec-monitor__td"><strong>Excellent</strong><br>Lobe wear, timing gear faults</td>
+                <td class="sam-spec-monitor__td">ESA + Vibration</td>
+              </tr>
+              <tr>
+                <td class="sam-spec-monitor__td--label"><strong>Scroll</strong></td>
+                <td class="sam-spec-monitor__td"><strong>Poor</strong><br>Below signal threshold on small motors</td>
+                <td class="sam-spec-monitor__td"><strong>Good</strong><br>Bearing, scroll wear, gas leakage</td>
+                <td class="sam-spec-monitor__td">Vibration + Process monitoring</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Rationale card -->
-      <div class="sam-spec-monitor__rationale">
-        <h3>At these stakes, single-technology monitoring is a coverage gap</h3>
-        <p>Compressor downtime costs run from tens of thousands to hundreds of thousands of euros per event. At those stakes, the gap between what ESA sees and what vibration sees translates directly to risk exposure.</p>
-        <p>ESA covers what vibration cannot: electrical faults in the motor and drive, power quality issues, and energy performance. It installs in under 60 minutes at the MCC with no field sensor and no process shutdown. That makes it the most cost-effective way to screen compressor fleets and monitor assets in hazardous or hard-to-reach locations.</p>
-        <p>Vibration covers what ESA cannot: bearing defects, rotor dynamics, seal degradation, and the mechanical faults that dominate centrifugal compressor risk profiles. On critical compressors, it provides both diagnostics and automatic protection.</p>
-        <p>The overlap between the two technologies is narrow. The complementary coverage is wide. For compressor fleets where downtime carries real cost, both technologies working together close the monitoring gap that either leaves open alone.</p>
-        <p>Even where ESA cannot classify the specific fault mode, it detects that degradation is present. That is enough to trigger an inspection window before the failure window closes.</p>
-      </div>
-
-      <p style="font-size:0.8125rem;color:var(--comet);margin-top:var(--space-6);font-style:italic;">Capability ratings based on published peer-reviewed research, API/ISO standards, and field deployment data. <a href="/technology/esa-vs-vibration" class="sam-text-link">Full ESA and vibration comparison &rarr;</a></p>
-
     </div>
   </section>
 
-  <!-- ─── 4. DETECTION STORIES ─── white background -->
-  <section class="sam-spec-stories">
-    <div class="sam-spec-stories__inner">
-      <p class="overline">Compressor detections</p>
-      <h2>Real faults caught on compressors</h2>
+  <!-- ─── 6. DETECTION STORIES ─── seashell background -->
+  <section class="sam-spec-why" style="background:var(--sam-seashell);">
+    <div class="sam-spec-why__inner">
+      <p class="overline">Field performance</p>
+      <h2>Compressor detection: what the data shows</h2>
+      <p class="lead sam-spec-why__lead">Compressor detection accuracy is below fleet-wide norms. Over 18 months, SAM4 detected 4 of 10 confirmed compressor incidents — a 40% detection rate against a fleet-wide baseline above 90%. We publish this because understanding where ESA works and where it doesn't is what separates useful monitoring from false confidence.</p>
 
-      <div class="sam-spec-stories__grid">
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Bearing wear</span>
-            <span class="sam-spec-stories__card-industry">Oil &amp; Gas</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Bearing degradation on gas compressor</h3>
-          <p class="sam-spec-stories__card-desc">Progressive bearing wear detected via current spectrum analysis. Maintenance planned during next scheduled turnaround, avoiding unplanned trip.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Valve fault</span>
-            <span class="sam-spec-stories__card-industry">Chemicals</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Discharge valve fault on reciprocating compressor</h3>
-          <p class="sam-spec-stories__card-desc">Cyclic load anomaly flagged valve leakage. Valve replaced during planned shutdown. avoiding catastrophic rod failure.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Imbalance</span>
-            <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Rotor imbalance on instrument air compressor</h3>
-          <p class="sam-spec-stories__card-desc">Fouling-induced imbalance detected early. Cleaning performed at next maintenance window. Avoided secondary bearing damage.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Electrical</span>
-            <span class="sam-spec-stories__card-industry">Oil &amp; Gas</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Stator degradation on compressor motor</h3>
-          <p class="sam-spec-stories__card-desc">Phase imbalance trend flagged developing stator fault. Motor replaced during turnaround instead of emergency rewind.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Efficiency</span>
-            <span class="sam-spec-stories__card-industry">Chemicals</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Efficiency loss on screw compressor</h3>
-          <p class="sam-spec-stories__card-desc">Power consumption drift identified against baseline. Root cause traced to internal leakage from worn rotors.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Mechanical</span>
-            <span class="sam-spec-stories__card-industry">Metals &amp; Mining</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Coupling wear on process compressor</h3>
-          <p class="sam-spec-stories__card-desc">Progressive coupling deterioration identified through load signature changes. Replaced before complete failure during operation.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
-
+      <div class="sam-spec-why__grid">
+        <div class="sam-spec-why__card">
+          <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 12px 0;">Where ESA detected</h3>
+          <p style="font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-black);margin:0;">Motor electrical faults (stator, rotor bar) and bearing wear on direct-coupled units produced clear signatures. These detections are consistent with ESA physics: electromagnetic faults propagate directly through the power cable regardless of compressor type.</p>
+        </div>
+        <div class="sam-spec-why__card">
+          <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 12px 0;">Where ESA missed</h3>
+          <p style="font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-black);margin:0;">Belt-driven screw compressors dominated the misses. Internal mechanical faults (screw element wear, block failure) did not propagate sharply to motor current. Load-correlated trends existed but were confounded by facility demand changes.</p>
+        </div>
+        <div class="sam-spec-why__card">
+          <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 12px 0;">The lesson</h3>
+          <p style="font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-black);margin:0;">Compressors require multi-technology monitoring. ESA covers motor and drive health comprehensively. For compressor-side faults — especially on belt-driven, centrifugal, or internally complex machines — vibration analysis, oil monitoring, and process instrumentation remain essential.</p>
+        </div>
       </div>
 
-      <a href="/resources/case-studies/" class="sam-text-link">See all detection stories &rarr;</a>
+      <div style="margin-top:48px;text-align:center;">
+        <a href="/proof/detection-accuracy" style="font-family:var(--sam-font);font-size:0.9375rem;color:var(--sam-blue);text-decoration:none;font-weight:500;">See detection accuracy across all asset types →</a>
+      </div>
     </div>
   </section>
 
-  <!-- ─── 5. HOW SAM4 INSTALLS ─── seashell background -->
+  <!-- ─── 7. INSTALLATION ─── white background -->
   <section class="sam-spec-install">
     <div class="sam-spec-install__inner">
-      <p class="overline">Installation on compressors</p>
-      <h2>Under 60 minutes. No access to the compressor skid required.</h2>
+      <p class="overline">Installation</p>
+      <h2>How SAM4 deploys on compressors</h2>
+      <p class="lead">No compressor access required. No sensor on the motor shaft. No process interruption.</p>
 
-      <div class="sam-spec-install__split">
-
-        <div class="sam-spec-install__steps">
-          <div class="sam-spec-install__step">
-            <span class="sam-spec-install__step-num kpi-value">1</span>
-            <div class="sam-spec-install__step-body">
-              <h3 class="sam-spec-install__step-title">Open the motor control cabinet</h3>
-              <p class="sam-spec-install__step-desc">SAM4 installs at the MCC: the same panel your electricians already access. No confined space entry, no scaffolding, no process shutdown.</p>
-            </div>
-          </div>
-          <div class="sam-spec-install__step">
-            <span class="sam-spec-install__step-num kpi-value">2</span>
-            <div class="sam-spec-install__step-body">
-              <h3 class="sam-spec-install__step-title">Clip sensor onto motor supply cables</h3>
-              <p class="sam-spec-install__step-desc">Current and voltage sensors clip directly onto the existing cabling. No wiring changes. No interruption to the asset's operation.</p>
-            </div>
-          </div>
-          <div class="sam-spec-install__step">
-            <span class="sam-spec-install__step-num kpi-value">3</span>
-            <div class="sam-spec-install__step-body">
-              <h3 class="sam-spec-install__step-title">Connect and commission</h3>
-              <p class="sam-spec-install__step-desc">The SAM4 gateway connects via cellular (4G/LTE). No dependency on your IT network. Monitoring starts immediately. First diagnostic results within 48 hours.</p>
-            </div>
-          </div>
+      <div class="sam-spec-install__grid">
+        <div class="sam-spec-install__card">
+          <div class="sam-spec-install__icon" style="background:var(--sam-seashell);width:64px;height:64px;border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--sam-space-cadet);font-size:28px;">⚡</div>
+          <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 12px 0;">Power connection</h3>
+          <p style="font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-black);margin:0;">Two clip-on current transformers on the motor supply lines in the MCC. No breaking of circuits. 3-phase power monitoring starts immediately.</p>
         </div>
-
-        <!-- Image placeholder -->
-        <div class="sam-spec-install__image">
-          <div class="sam-spec-install__image-placeholder" aria-hidden="true">
-            <span>Installation photo: SAM4 sensor clipped onto compressor motor supply cables in an MCC</span>
-          </div>
+        <div class="sam-spec-install__card">
+          <div class="sam-spec-install__icon" style="background:var(--sam-seashell);width:64px;height:64px;border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--sam-space-cadet);font-size:28px;">📡</div>
+          <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 12px 0;">Data transmission</h3>
+          <p style="font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-black);margin:0;">Wired (Ethernet) or wireless (4G/LTE) from the SAM4 gateway. Data flows to the cloud every 15 minutes. No continuous sampling load on your network.</p>
         </div>
-
-      </div>
-
-      <div class="sam-spec-install__links">
-        <a href="/platform/how-it-installs" class="sam-text-link">Full installation guide &rarr;</a>
-        <a href="/platform/security" class="sam-text-link">Security &amp; network architecture &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 6. ENERGY MONITORING ─── white background -->
-  <section class="sam-spec-energy">
-    <div class="sam-spec-energy__inner">
-      <p class="overline">Energy monitoring</p>
-      <h2>Not just fault detection. Energy optimisation too.</h2>
-
-      <div class="sam-spec-energy__split">
-        <div class="sam-spec-energy__copy">
-          <p class="lead">Compressors are among the highest energy consumers in industrial facilities. Often they account for 20–30% of total plant electricity use. SAM4 tracks power consumption continuously, identifying compressors running below design efficiency due to fouling, wear, or control issues.</p>
-          <div class="sam-spec-energy__metrics">
-            <div class="sam-spec-energy__metric">
-              <span class="sam-spec-energy__metric-value kpi-value">20–30%</span>
-              <span class="sam-spec-energy__metric-label">of plant electricity typically consumed by compressed air and gas systems</span>
-            </div>
-            <div class="sam-spec-energy__metric">
-              <span class="sam-spec-energy__metric-value kpi-value">5–15%</span>
-              <span class="sam-spec-energy__metric-label">energy savings achievable by identifying and correcting efficiency losses</span>
-            </div>
-          </div>
-        </div>
-        <div class="sam-spec-energy__features">
-          <div class="sam-spec-energy__feature">
-            <h3 class="sam-spec-energy__feature-title">Power baseline tracking</h3>
-            <p class="sam-spec-energy__feature-desc">SAM4 establishes a power consumption baseline for each compressor and tracks deviations over time, flagging when efficiency drops below acceptable thresholds.</p>
-          </div>
-          <div class="sam-spec-energy__feature">
-            <h3 class="sam-spec-energy__feature-title">Load profile analysis</h3>
-            <p class="sam-spec-energy__feature-desc">Continuous monitoring of load patterns reveals compressors running at suboptimal points, enabling scheduling and staging optimisation.</p>
-          </div>
-          <div class="sam-spec-energy__feature">
-            <h3 class="sam-spec-energy__feature-title">Maintenance-driven efficiency recovery</h3>
-            <p class="sam-spec-energy__feature-desc">By linking efficiency losses to specific fault signatures, SAM4 provides data to justify and prioritise maintenance actions that recover energy performance.</p>
-          </div>
+        <div class="sam-spec-install__card">
+          <div class="sam-spec-install__icon" style="background:var(--sam-seashell);width:64px;height:64px;border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--sam-space-cadet);font-size:28px;">🔒</div>
+          <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 12px 0;">ATEX / Hazardous zones</h3>
+          <p style="font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-black);margin:0;">SAM4 gateways are available in ATEX II 2G certified variants for Zone 1 and Zone 2 deployments. All monitoring conducted outside the hazard area.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 7. INDUSTRIES ─── seashell background -->
-  <section class="sam-spec-industries">
-    <div class="sam-spec-industries__inner">
-      <p class="overline">Where compressors are monitored</p>
-      <h2>Industries using SAM4 on compressors</h2>
-
-      <div class="sam-spec-industries__grid">
-        <a href="/industries/oil-gas" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Oil &amp; Gas</h3>
-          <p class="sam-spec-industries__card-desc">Gas compressors, process compressors, injection compressors. Hazardous zone monitoring from the MCC.</p>
+  <!-- ─── 8. RELATED ASSETS ─── seashell background -->
+  <section style="background:var(--sam-seashell);padding:var(--space-12) var(--space-4);margin:var(--space-12) 0;">
+    <div style="max-width:var(--max-width);margin:0 auto;padding:0 var(--space-4);">
+      <h2 style="font-family:var(--sam-font);font-weight:600;font-size:1.5rem;line-height:1.2;color:var(--sam-space-cadet);margin:0 0 var(--space-6) 0;">Related assets</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-6);">
+        <a href="/platform/what-we-monitor/pumps" style="display:block;padding:var(--space-4);background:var(--sam-white);border-radius:4px;text-decoration:none;transition:box-shadow 100ms ease-out;">
+          <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1rem;color:var(--sam-space-cadet);margin:0 0 8px 0;">Centrifugal pumps</h3>
+          <p style="font-family:var(--sam-font);font-size:0.875rem;color:var(--sam-comet);margin:0;">Cavitation, bearing wear, impeller erosion</p>
         </a>
-        <a href="/industries/chemicals" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Chemicals</h3>
-          <p class="sam-spec-industries__card-desc">Process air compressors, refrigeration compressors. Monitoring without entering classified areas.</p>
+        <a href="/platform/what-we-monitor/motors" style="display:block;padding:var(--space-4);background:var(--sam-white);border-radius:4px;text-decoration:none;transition:box-shadow 100ms ease-out;">
+          <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1rem;color:var(--sam-space-cadet);margin:0 0 8px 0;">Motors</h3>
+          <p style="font-family:var(--sam-font);font-size:0.875rem;color:var(--sam-comet);margin:0;">Rotor bars, stator faults, winding degradation</p>
         </a>
-        <a href="/industries/metals-mining" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Metals &amp; Mining</h3>
-          <p class="sam-spec-industries__card-desc">Instrument air compressors, process gas compressors. Remote and harsh environment deployments.</p>
-        </a>
-        <a href="/industries/pulp-paper" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Pulp &amp; Paper</h3>
-          <p class="sam-spec-industries__card-desc">Air compressors, process compressors. Continuous monitoring across mill operations.</p>
+        <a href="/platform/what-we-monitor/fans" style="display:block;padding:var(--space-4);background:var(--sam-white);border-radius:4px;text-decoration:none;transition:box-shadow 100ms ease-out;">
+          <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1rem;color:var(--sam-space-cadet);margin:0 0 8px 0;">Fans</h3>
+          <p style="font-family:var(--sam-font);font-size:0.875rem;color:var(--sam-comet);margin:0;">Blade wear, bearing defects, imbalance</p>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ─── 8. RELATED ASSETS ─── white background -->
-  <section class="sam-spec-related">
-    <div class="sam-spec-related__inner">
-      <p class="overline">Related asset types</p>
-      <h2>Other asset types SAM4 monitors</h2>
-
-      <div class="sam-spec-related__grid">
-        <a href="/platform/what-we-monitor/pumps" class="sam-spec-related__card">
-          <h3 class="sam-spec-related__card-title">Pumps</h3>
-          <p class="sam-spec-related__card-desc">Submersible, booster, process, and transfer pumps</p>
-        </a>
-        <a href="/platform/what-we-monitor/fans-blowers" class="sam-spec-related__card">
-          <h3 class="sam-spec-related__card-title">Fans &amp; Blowers</h3>
-          <p class="sam-spec-related__card-desc">Ventilation fans, cooling fans, process blowers</p>
-        </a>
-        <a href="/platform/what-we-monitor/transmissions" class="sam-spec-related__card">
-          <h3 class="sam-spec-related__card-title">Transmissions</h3>
-          <p class="sam-spec-related__card-desc">Gearboxes, couplings, belt drives, chain drives</p>
-        </a>
-        <a href="/platform/what-we-monitor/esps" class="sam-spec-related__card">
-          <h3 class="sam-spec-related__card-title">ESPs</h3>
-          <p class="sam-spec-related__card-desc">Electrical submersible pumps in oil &amp; gas production</p>
-        </a>
-      </div>
-
-      <a href="/platform/what-we-monitor" class="sam-text-link">See all asset types &rarr;</a>
-    </div>
-  </section>
-
-  <!-- ─── 9. CTA ─── dark background -->
-  <section class="sam-cta-block sam-cta-block--spec">
-    <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">See SAM4 monitoring compressors</h2>
-      <p class="sam-cta-block__sub">A 30-minute demo shows SAM4 running on compressors like yours with real fault data, real diagnostics, and real energy insights.</p>
-      <div class="sam-cta-block__actions">
+  <!-- ─── 9. TERMINAL CTA ─── white background -->
+  <section style="background:var(--sam-white);padding:var(--space-12) var(--space-4);text-align:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <h2 style="font-family:var(--sam-font);font-weight:600;font-size:1.5rem;line-height:1.2;color:var(--sam-space-cadet);margin:0 0 16px 0;">Understand which compressors benefit from ESA</h2>
+      <p style="font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-comet);margin:0 0 32px 0;">Not all compressors are equal ESA candidates. Talk to an engineer about your specific fleet — compressor types, drive arrangements, and coupling configurations — and we'll map where ESA adds value and where you need additional monitoring.</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
         <a href="/contact?intent=demo&asset=compressors" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-        <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary-light">Start Your Asset Audit</a>
+        <a href="/platform/asset-audit" class="sam-btn sam-btn--outline">Start your asset audit</a>
       </div>
     </div>
   </section>
