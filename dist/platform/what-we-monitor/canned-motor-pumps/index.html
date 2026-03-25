@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Canned motor pump monitoring: SAM4 detects cavitation and bearing wear without opening pump casings. Continuous monitoring from MCC installation point.">
+  <meta name="description" content="Canned motor pump monitoring via Electrical Signature Analysis. Non-intrusive condition monitoring for sealed pump-motor units — from the MCC, without breaking containment.">
   <title>Canned motor pump monitoring | Samotics</title>
   <link rel="canonical" href="https://samoticstestpage.com/platform/what-we-monitor/canned-motor-pumps/">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -905,7 +905,7 @@
     /* ===== FAULT TABLE ===== */
     .sam-spec-faults {
       padding: var(--space-24) var(--space-6);
-      background: var(--white);
+      background: var(--seashell);
     }
     .sam-spec-faults__inner {
       max-width: var(--max-width);
@@ -1388,6 +1388,136 @@
       }
     }
 
+
+    /* ===== HOW ESA MONITORS ===== */
+    .sam-spec-how {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-how__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-how__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-how__lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-how__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+    .sam-spec-how__card {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+    .sam-spec-how__card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+      color: var(--space-cadet);
+    }
+    .sam-spec-how__card p {
+      font-size: 0.9375rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ===== MONITORING ARCHITECTURE ===== */
+    .sam-spec-monitor {
+      padding: var(--space-24) var(--space-6);
+      background: var(--white);
+    }
+    .sam-spec-monitor__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .sam-spec-monitor__inner h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 var(--space-4) 0;
+    }
+    .sam-spec-monitor__lead {
+      font-size: 1.0625rem;
+      color: var(--comet);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 0 var(--space-10) 0;
+    }
+    .sam-spec-monitor__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-6);
+    }
+    .sam-spec-monitor__col {
+      background: var(--seashell);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      padding: var(--space-8);
+    }
+    .sam-spec-monitor__col--overlap {
+      background: var(--white);
+      border: 2px solid var(--orange);
+    }
+    .sam-spec-monitor__col-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--orange);
+      margin-bottom: var(--space-4);
+    }
+    .sam-spec-monitor__col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .sam-spec-monitor__col li {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--space-cadet);
+      padding-left: 20px;
+      position: relative;
+    }
+    .sam-spec-monitor__col li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--comet);
+    }
+    .sam-spec-monitor__note {
+      font-size: 0.875rem;
+      color: var(--comet);
+      line-height: 1.6;
+      margin-top: var(--space-8);
+      max-width: 900px;
+    }
+
+    @media (max-width: 768px) {
+      .sam-spec-how__grid,
+      .sam-spec-monitor__grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1638,10 +1768,10 @@
         <div class="sam-hero__copy">
           <p class="sam-hero__overline">Asset type</p>
           <h1 class="sam-hero__h1">Canned motor pump monitoring</h1>
-          <p class="sam-hero__lead">SAM4 is the only practical condition monitoring system for canned motor pumps. These sealless pumps encapsulate the motor rotor inside the process fluid. making vibration sensors impossible. ESA monitors the full unit from the motor control cabinet.</p>
+          <p class="sam-hero__lead">Sealed pump-motor units with process-lubricated bearings and no sensor access. The motor is inside the can. Vibration sensors cannot mount. Bearings cannot be inspected. The only measurement point that doesn't break containment is the power cable.</p>
           <div class="sam-hero__ctas">
             <a href="/contact?intent=demo&asset=canned-motor-pumps" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-            <a href="#faults" class="sam-btn sam-btn--outline">See What We Detect</a>
+            <a href="#detection" class="sam-btn sam-btn--outline">See detection coverage</a>
           </div>
         </div>
       </div>
@@ -1649,159 +1779,236 @@
     </div>
   </section>
 
-  <!-- ─── 2. WHY MONITOR THIS ASSET ─── white background -->
+  <!-- ─── 2. WHY MONITOR THIS ASSET ─── seashell background -->
   <section class="sam-spec-why">
     <div class="sam-spec-why__inner">
-      <p class="overline">Why monitor canned motor pumps</p>
-      <h2>"The only monitoring option for sealless pumps"</h2>
-      <p class="lead sam-spec-why__lead">Canned motor pumps have no external shaft seal. The motor and pump are a single sealed unit. You cannot attach vibration sensors. You cannot inspect the rotor. You cannot measure bearing condition without draining the system. ESA is the only technology that provides condition data on these critical assets.</p>
+      <p class="overline">The monitoring challenge</p>
+      <h2>Why canned motor pumps are hard to monitor</h2>
+      <p class="lead sam-spec-why__lead">Sealless design means no external shaft seal — and no access to vibration sensors, bearing condition, or rotor position. The sealed can separates the motor windings from the process fluid, but also blocks mechanical and thermal inspection. Failures cascade: bearing wear drives eccentricity, which stresses the can, which fails and floods the motor within hours.</p>
 
       <div class="sam-spec-why__grid">
         <div class="sam-spec-why__card">
           <span class="sam-spec-why__card-stat kpi-value">0</span>
-          <p class="sam-spec-why__card-desc">alternative monitoring technologies available for canned motor pumps. ESA is the only practical approach.</p>
+          <p class="sam-spec-why__card-desc">alternative non-intrusive monitoring options for sealed pump-motor units without embedded sensors</p>
         </div>
         <div class="sam-spec-why__card">
-          <span class="sam-spec-why__card-stat kpi-value">&euro;30–80K</span>
-          <p class="sam-spec-why__card-desc">typical replacement cost: plus process disruption and potential product loss from emergency shutdown.</p>
+          <span class="sam-spec-why__card-stat kpi-value">40–60%</span>
+          <p class="sam-spec-why__card-desc">of canned motor pump failures originate in the sleeve bearings — the component hardest to monitor without embedded position or temperature sensors</p>
         </div>
         <div class="sam-spec-why__card">
-          <span class="sam-spec-why__card-stat kpi-value">4–12 weeks</span>
-          <p class="sam-spec-why__card-desc">SAM4 detection lead time: sufficient to plan replacement and avoid emergency maintenance.</p>
+          <span class="sam-spec-why__card-stat kpi-value">0.2–1.0 mm</span>
+          <p class="sam-spec-why__card-desc">can thickness separating process fluid from motor windings — when it fails, the motor fails within hours</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── 3. FAULT COVERAGE ─── seashell background -->
-  <section id="faults" class="sam-spec-faults">
+  <!-- ─── 3. HOW ESA MONITORS THIS ASSET ─── white background -->
+  <section class="sam-spec-how">
+    <div class="sam-spec-how__inner">
+      <p class="overline">How ESA works on canned motor pumps</p>
+      <h2>Monitoring through the power cable</h2>
+      <p class="sam-spec-how__lead">ESA measures electrical current and voltage at the motor control cabinet — upstream of the sealed unit. The electrical signal travels via the power cable unaffected by sealed construction. The can material (Hastelloy, Inconel) is non-magnetic; magnetic flux penetrates it. The shorter drivetrain (no coupling, no gearbox) means cleaner baseline spectra. Hydraulic events couple directly from impeller disturbance to rotor rotation to stator current variation.</p>
+
+      <div class="sam-spec-how__grid">
+        <div class="sam-spec-how__card">
+          <h3>Electrical faults</h3>
+          <p>Rotor bar breakage and stator winding degradation produce sidebands at characteristic frequencies. Electromagnetic coupling is unaffected by the can.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3>Load profiling</h3>
+          <p>Dry running, cavitation, and efficiency loss show as step changes or trend deviations in motor current. Direct torque-to-current pathway makes load anomalies visible.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3>Eccentricity trending</h3>
+          <p>Rotor slot harmonics are sensitive to air gap changes. Small nominal gaps (0.6–1.0 mm) may amplify eccentricity signals relative to standard motors.</p>
+        </div>
+        <div class="sam-spec-how__card">
+          <h3>What ESA cannot see</h3>
+          <p>Sleeve bearing specific defects (no characteristic frequencies exist), can material degradation, bearing contamination, or thermal gradients in sealed construction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 4. FAULT TABLE & DETECTION BOUNDARIES ─── seashell background -->
+  <section id="detection" class="sam-spec-faults">
     <div class="sam-spec-faults__inner">
-      <p class="overline">What SAM4 detects on canned motor pumps</p>
-      <h2>Five fault types from one sensor location</h2>
+      <p class="overline">Detection coverage</p>
+      <h2>What ESA detects — and what it doesn't</h2>
 
       <div class="sam-spec-faults__table-wrap">
         <table class="sam-spec-faults__table">
           <thead>
             <tr>
-              <th class="sam-spec-faults__th">Fault type</th>
+              <th class="sam-spec-faults__th">Fault</th>
               <th class="sam-spec-faults__th">What's happening</th>
-              <th class="sam-spec-faults__th">How SAM4 detects it</th>
-              <th class="sam-spec-faults__th">Typical lead time</th>
+              <th class="sam-spec-faults__th">How ESA detects it</th>
               <th class="sam-spec-faults__th">Confidence</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Bearing degradation</td>
-              <td class="sam-spec-faults__td">Process-lubricated bearing wear, raceway damage, contamination</td>
-              <td class="sam-spec-faults__td">Characteristic bearing fault frequencies appear in the motor current spectrum</td>
-              <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
-            </tr>
-            <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Rotor eccentricity</td>
-              <td class="sam-spec-faults__td">Rotor wear in the can, thermal distortion, mechanical damage</td>
-              <td class="sam-spec-faults__td">Eccentricity frequency sidebands appear in the current spectrum as air gap irregularity increases</td>
-              <td class="sam-spec-faults__td">4–10 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
-            </tr>
-            <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Internal recirculation</td>
-              <td class="sam-spec-faults__td">Flow path changes from impeller wear, internal leakage, wear ring clearance increase</td>
-              <td class="sam-spec-faults__td">Load profile deviation: power consumption vs. flow changes as recirculation increases</td>
-              <td class="sam-spec-faults__td">Weeks–months</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--partial">Partial</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Broken rotor bars</td>
+              <td class="sam-spec-faults__td">Rotor bar cracking or breakage</td>
+              <td class="sam-spec-faults__td">Sidebands at supply ± 2×slip frequency. Electromagnetic fault — unaffected by can construction.</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--partial">Conditional*</td>
             </tr>
             <tr>
               <td class="sam-spec-faults__td sam-spec-faults__td--label">Stator winding degradation</td>
-              <td class="sam-spec-faults__td">Insulation breakdown from harsh process environment, contamination, or thermal stress in sealed construction</td>
-              <td class="sam-spec-faults__td">Current imbalance between phases and rising negative sequence current components</td>
-              <td class="sam-spec-faults__td">4–12 weeks</td>
-              <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
+              <td class="sam-spec-faults__td">Insulation breakdown from thermal stress, chemical attack, or can perforation</td>
+              <td class="sam-spec-faults__td">Phase current imbalance and negative sequence components. Electromagnetic — works regardless of sealed housing.</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--partial">Conditional*</td>
             </tr>
             <tr>
-              <td class="sam-spec-faults__td sam-spec-faults__td--label">Efficiency loss</td>
-              <td class="sam-spec-faults__td">Impeller and rotor wear reducing effective head, increased internal friction and recirculation</td>
-              <td class="sam-spec-faults__td">Power consumption vs. output deviation tracked continuously</td>
-              <td class="sam-spec-faults__td">Continuous</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Dry running</td>
+              <td class="sam-spec-faults__td">Loss of process fluid — bearing lubrication and cooling fail simultaneously</td>
+              <td class="sam-spec-faults__td">Step change in motor current within seconds. Load change is large and unambiguous.</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--partial">Conditional*</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Rotor eccentricity</td>
+              <td class="sam-spec-faults__td">Bearing wear increases clearance, changing air gap geometry</td>
+              <td class="sam-spec-faults__td">Eccentricity harmonics in rotor slot frequency pattern. Small nominal gap (0.6–1.0 mm) may amplify sensitivity.</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--partial">Conditional*</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Cavitation</td>
+              <td class="sam-spec-faults__td">Insufficient NPSH causes vapour collapse on impeller</td>
+              <td class="sam-spec-faults__td">Broadband noise elevation in current spectrum. Direct coupling (no mechanical seal losses) may improve signal transfer.</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--partial">Conditional*</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Efficiency degradation</td>
+              <td class="sam-spec-faults__td">Impeller wear, internal recirculation, wear ring clearance increase</td>
+              <td class="sam-spec-faults__td">Power-to-load ratio trending over time.</td>
+              <td class="sam-spec-faults__td sam-spec-faults__td--partial">Conditional*</td>
+            </tr>
+            <tr>
+              <td class="sam-spec-faults__td sam-spec-faults__td--label">Supply-side anomalies</td>
+              <td class="sam-spec-faults__td">Voltage imbalance, harmonics, power quality issues</td>
+              <td class="sam-spec-faults__td">Direct measurement from power supply. Independent of motor construction.</td>
               <td class="sam-spec-faults__td sam-spec-faults__td--yes">Full</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="sam-spec-faults__note">Detection capability depends on drive topology, sampling rate, load variation, and operating conditions. <a href="/technology/esa-vs-vibration#limits" class="sam-text-link">See ESA detection constraints.</a></p>
+      <p class="sam-spec-faults__note" style="margin-bottom: 0;"><strong>*Conditional note:</strong> Proven ESA detection physics. Field validation on canned motor pump installations is in progress. Zero confirmed incidents (CIs) to date — confidence ratings reflect theoretical capability, not field-validated performance.</p>
 
       <div style="margin-top:48px;">
         <h3 style="font-family:var(--sam-font);font-weight:600;font-size:1.125rem;line-height:1.3;color:var(--sam-space-cadet);margin:0 0 16px 0;">Detection boundaries</h3>
-        <p style="font-family:var(--sam-font);font-weight:400;font-size:0.875rem;line-height:1.5;color:var(--sam-comet);margin:0 0 32px 0;">No condition monitoring technology detects everything. These are the known limitations for ESA-based monitoring on canned motor pumps.</p>
-        <div style="display:flex;flex-direction:column;gap:24px;">
+        <div style="display:flex;flex-direction:column;gap:20px;">
 
-          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
-            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>No verified detection data</strong>. Canned motor pumps are not yet represented in the SAM4 Detection Accuracy Report (March 2026). Detection capability is based on ESA physics and early field observations. Verified accuracy figures will be published as the monitored fleet grows.</span>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-space-cadet);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>No field-validated detection data.</strong> Canned motor pumps have zero entries in the SAM4 Detection Accuracy Report. All confidence ratings are based on ESA physics applied to sealed motor designs. Verified accuracy will be published as the monitored fleet grows.</span>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
-            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Sealed construction limits fault specificity</strong>. The sealed can between rotor and stator attenuates some mechanical signatures. Impeller erosion and internal recirculation produce weaker load modulation than in conventional pumps. ESA detects overall degradation trends, but fault-specific classification may require longer observation periods.</span>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-space-cadet);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Sleeve bearings have no characteristic defect frequencies.</strong> All canned motor pump bearings are journal/sleeve type. BPFO, BPFI, BSF signatures do not exist. ESA detects eccentricity trends and instability — not specific bearing defects.</span>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:1rem;line-height:1.6;color:var(--sam-black);">
-            <span style="flex-shrink:0;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--sam-comet);"></span>
-            <span><strong>Low-load operation (&lt;30% rated)</strong>. Fault sidebands in the current signal are proportional to mechanical load. When a pump runs below ~30% of rated load, fault signatures weaken and may fall below the detection threshold.</span>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-space-cadet);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Can wear is outside ESA's detection capability.</strong> Progressive thinning of the containment can (0.2–1.0 mm Hastelloy or Inconel) does not produce validated electrical signatures. ESA detects the consequences of can failure (winding degradation, current imbalance) but not the precursor.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-space-cadet);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Reduced sensitivity below 5 kW.</strong> Most canned motor pumps are 5–50 kW. Below 5 kW, fault sideband amplitudes fall closer to the noise floor. Detection is limited to gross faults and operating condition anomalies.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;font-family:var(--sam-font);font-size:0.9375rem;line-height:1.6;color:var(--sam-space-cadet);">
+            <span style="flex-shrink:0;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--sam-comet);"></span>
+            <span><strong>Larger effective air gap weakens mechanical signatures.</strong> The can increases the effective air gap to 0.5–1.5 mm. Mechanical events on the rotor produce proportionally weaker current modulations than in standard motors.</span>
           </div>
         </div>
 
-        <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:24px 0 0 0;">Based on 1,874 resolved incidents (Jan 2024 – Feb 2026). <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
+        <p style="font-family:var(--sam-font);font-size:0.8125rem;color:var(--sam-comet);margin:24px 0 0 0;">Based on ESA physics extrapolated from validated detection on standard induction motors. No canned-motor-specific field data. <a href="/proof/detection-accuracy" style="color:var(--sam-blue);text-decoration:none;font-weight:500;">See full detection transparency report &rarr;</a></p>
       </div>
     </div>
   </section>
 
-  <!-- ─── 4. DETECTION STORIES ─── white background -->
+  <!-- ─── 5. MONITORING ARCHITECTURE ─── white background -->
+  <section class="sam-spec-monitor">
+    <div class="sam-spec-monitor__inner">
+      <p class="overline">Monitoring architecture</p>
+      <h2>ESA alongside existing canned motor pump instrumentation</h2>
+      <p class="sam-spec-monitor__lead">No single technology covers all failure modes on a sealed pump-motor unit. The question is which combination provides the best coverage for your risk profile.</p>
+
+      <div class="sam-spec-monitor__grid">
+        <div class="sam-spec-monitor__col">
+          <div class="sam-spec-monitor__col-title">ESA (from MCC)</div>
+          <ul class="sam-spec-monitor__col">
+            <li>Broken rotor bar detection (only non-intrusive method)</li>
+            <li>Stator winding trending (continuous vs periodic testing)</li>
+            <li>Retrofittable to any canned motor pump — no access to sealed unit required</li>
+            <li>Load profiling and efficiency tracking</li>
+            <li>Eccentricity trending via rotor slot harmonics</li>
+          </ul>
+        </div>
+
+        <div class="sam-spec-monitor__col sam-spec-monitor__col--overlap">
+          <div class="sam-spec-monitor__col-title">Overlap</div>
+          <ul class="sam-spec-monitor__col">
+            <li>Dry running detection (ESA current step-change + process flow/pressure)</li>
+            <li>Operating condition monitoring (ESA load profiling + process parameters)</li>
+            <li>Eccentricity trending (ESA harmonics + embedded position sensors where fitted)</li>
+            <li>Cavitation signatures (ESA noise floor + hydraulic performance metrics)</li>
+          </ul>
+        </div>
+
+        <div class="sam-spec-monitor__col">
+          <div class="sam-spec-monitor__col-title">Embedded sensors & Process monitoring</div>
+          <ul class="sam-spec-monitor__col">
+            <li>Precise bearing wear measurement (E-Monitor, MAP position sensors)</li>
+            <li>Can integrity monitoring (barrier fluid conductivity)</li>
+            <li>Winding temperature (embedded RTDs)</li>
+            <li>Process fluid condition (moisture, particle count)</li>
+            <li>Pressure and flow rate</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="sam-spec-monitor__note">ESA does not replace embedded sensors on safety-critical applications. It provides continuous electrical monitoring that fills gaps — especially on units without E-Monitor or MAP systems, and on failure modes (rotor bars, winding condition) that no embedded sensor detects.</p>
+    </div>
+  </section>
+
+  <!-- ─── 6. DETECTION STORIES ─── seashell background -->
   <section class="sam-spec-stories">
     <div class="sam-spec-stories__inner">
-      <p class="overline">Pump detections</p>
-      <h2>Real faults caught on canned motor pumps</h2>
+      <p class="overline">Field validation</p>
+      <h2>Building the evidence base</h2>
+      <p class="lead" style="font-size: 1.0625rem; color: var(--comet); line-height: 1.6; max-width: 720px; margin: 0 0 var(--space-10) 0;">Canned motor pumps are SAM4's newest asset class. Field validation is underway. No confirmed detection incidents have been published yet for this asset type.</p>
 
       <div class="sam-spec-stories__grid">
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <div class="sam-spec-stories__card" style="cursor: default; pointer-events: none;">
           <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Bearing degradation</span>
-            <span class="sam-spec-stories__card-industry">Chemicals</span>
+            <span class="sam-spec-stories__card-tag">Rotor bars</span>
+            <span class="sam-spec-stories__card-industry">Physics</span>
           </div>
-          <h3 class="sam-spec-stories__card-title">Bearing fault detected in chemical circulation pump</h3>
-          <p class="sam-spec-stories__card-desc">Bearing fault frequencies identified through ESA weeks before mechanical failure. Pump replacement scheduled during planned maintenance window.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarr;</span>
-        </a>
+          <h3 class="sam-spec-stories__card-title">Why we're confident</h3>
+          <p class="sam-spec-stories__card-desc">ESA detection of rotor bars, winding degradation, and dry running is validated on thousands of standard motors. The physics transfers: these are electromagnetic faults detected through the power cable, unaffected by sealed construction.</p>
+          <span class="sam-spec-stories__card-link" style="color: var(--comet);">Based on proven ESA capability</span>
+        </div>
 
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
+        <div class="sam-spec-stories__card" style="cursor: default; pointer-events: none;">
           <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Rotor eccentricity</span>
-            <span class="sam-spec-stories__card-industry">Oil &amp; Gas</span>
+            <span class="sam-spec-stories__card-tag">Validation</span>
+            <span class="sam-spec-stories__card-industry">In progress</span>
           </div>
-          <h3 class="sam-spec-stories__card-title">Rotor eccentricity detected in canned pump</h3>
-          <p class="sam-spec-stories__card-desc">Air gap asymmetry signatures identified through current analysis. Rotor contact with can prevented through planned replacement.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarrow;</span>
-        </a>
-
-        <a href="/resources/case-studies/" class="sam-spec-stories__card">
-          <div class="sam-spec-stories__card-top">
-            <span class="sam-spec-stories__card-tag">Winding faults</span>
-            <span class="sam-spec-stories__card-industry">Chemicals</span>
-          </div>
-          <h3 class="sam-spec-stories__card-title">Winding insulation degradation in canned pump motor</h3>
-          <p class="sam-spec-stories__card-desc">Progressive current asymmetry detected indicating insulation breakdown. Pump replaced before catastrophic failure in harsh process environment.</p>
-          <span class="sam-spec-stories__card-link">Read detection story &rarrow;</span>
-        </a>
+          <h3 class="sam-spec-stories__card-title">What we're validating</h3>
+          <p class="sam-spec-stories__card-desc">Eccentricity trending on sleeve bearings, cavitation detection through the can, and the sensitivity threshold for small (5–50 kW) canned motor pumps. Pilot installations are building the dataset.</p>
+          <span class="sam-spec-stories__card-link" style="color: var(--comet);">Fleet data coming 2026</span>
+        </div>
 
       </div>
 
-      <a href="/resources/case-studies/" class="sam-text-link">See all detection stories &rarrow;</a>
+      <a href="/platform/what-we-monitor" class="sam-text-link">See detection accuracy across all asset types &rarr;</a>
     </div>
   </section>
 
-  <!-- ─── 5. HOW SAM4 INSTALLS ─── seashell background -->
-  <section class="sam-spec-install">
+  <!-- ─── 7. INSTALLATION ─── white background -->
+  <section class="sam-spec-install" style="background: var(--white);">
     <div class="sam-spec-install__inner">
       <p class="overline">Installation on canned motor pumps</p>
       <h2>Under 60 minutes. No pump access required.</h2>
@@ -1813,7 +2020,7 @@
             <span class="sam-spec-install__step-num kpi-value">1</span>
             <div class="sam-spec-install__step-body">
               <h3 class="sam-spec-install__step-title">Open the motor control cabinet</h3>
-              <p class="sam-spec-install__step-desc">SAM4 installs at the MCC: the same panel your electricians already access. No process access needed. No system shutdown.</p>
+              <p class="sam-spec-install__step-desc">ESA sensors install at the MCC: the same panel your electricians already access. No process access needed. No system shutdown.</p>
             </div>
           </div>
           <div class="sam-spec-install__step">
@@ -1827,7 +2034,7 @@
             <span class="sam-spec-install__step-num kpi-value">3</span>
             <div class="sam-spec-install__step-body">
               <h3 class="sam-spec-install__step-title">Connect and commission</h3>
-              <p class="sam-spec-install__step-desc">The SAM4 gateway connects via cellular (4G/LTE). No dependency on your IT network. Monitoring starts immediately. First diagnostic results within 48 hours.</p>
+              <p class="sam-spec-install__step-desc">The gateway connects via cellular (4G/LTE). No dependency on your IT network. Monitoring starts immediately. First diagnostic results within 48 hours.</p>
             </div>
           </div>
         </div>
@@ -1835,43 +2042,24 @@
         <!-- Image placeholder -->
         <div class="sam-spec-install__image">
           <div class="sam-spec-install__image-placeholder" aria-hidden="true">
-            <span>Installation photo: SAM4 sensor clipped onto motor supply cables inside an MCC panel</span>
+            <span>Installation photo: ESA sensor clipped onto motor supply cables inside an MCC panel</span>
           </div>
         </div>
 
       </div>
 
       <div class="sam-spec-install__links">
-        <a href="/platform/how-it-installs" class="sam-text-link">Full installation guide &rarrow;</a>
-        <a href="/platform/security" class="sam-text-link">Security &amp; network architecture &rarrow;</a>
+        <a href="/platform/how-it-installs" class="sam-text-link">Full installation guide &rarr;</a>
+        <a href="/platform/security" class="sam-text-link">Security &amp; network architecture &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- ─── 6. INDUSTRIES ─── seashell background -->
-  <section class="sam-spec-industries">
-    <div class="sam-spec-industries__inner">
-      <p class="overline">Where canned motor pumps are monitored</p>
-      <h2>Industries using SAM4 on canned motor pumps</h2>
-
-      <div class="sam-spec-industries__grid">
-        <a href="/industries/chemicals" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Chemicals</h3>
-          <p class="sam-spec-industries__card-desc">Circulation pumps, process transfer pumps, reactor cooling. Sealless design eliminates leakage in hazardous chemical environments.</p>
-        </a>
-        <a href="/industries/oil-gas" class="sam-spec-industries__card">
-          <h3 class="sam-spec-industries__card-title">Oil &amp; Gas</h3>
-          <p class="sam-spec-industries__card-desc">Crude transfer, injection pump motors, thermal fluid circulation. High-pressure and high-temperature applications requiring sealed motor design.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 7. RELATED ASSETS ─── white background -->
-  <section class="sam-spec-related">
+  <!-- ─── 8. RELATED ASSETS ─── seashell background -->
+  <section class="sam-spec-related" style="background: var(--seashell);">
     <div class="sam-spec-related__inner">
       <p class="overline">Related asset types</p>
-      <h2>Other asset types SAM4 monitors</h2>
+      <h2>Other asset types ESA monitors</h2>
 
       <div class="sam-spec-related__grid">
         <a href="/platform/what-we-monitor/pumps" class="sam-spec-related__card">
@@ -1896,14 +2084,14 @@
     </div>
   </section>
 
-  <!-- ─── 8. CTA ─── dark background -->
+  <!-- ─── 9. TERMINAL CTA ─── white background -->
   <section class="sam-cta-block sam-cta-block--spec">
     <div class="sam-cta-block__inner">
-      <h2 class="sam-cta-block__heading">See SAM4 monitoring canned motor pumps</h2>
-      <p class="sam-cta-block__sub">A 30-minute demo shows SAM4 running on sealless pumps like yours with real fault data and real early warning before failure.</p>
+      <h2 class="sam-cta-block__heading">Explore ESA monitoring for your canned motor pumps</h2>
+      <p class="sam-cta-block__sub">Talk to an engineer about how ESA works alongside your existing instrumentation. We'll map your fleet, identify monitoring gaps, and show where ESA adds coverage.</p>
       <div class="sam-cta-block__actions">
         <a href="/contact?intent=demo&asset=canned-motor-pumps" class="sam-btn sam-btn--primary">Talk to an engineer</a>
-        <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary-light">Start Your Asset Audit</a>
+        <a href="/contact/asset-audit" class="sam-btn sam-btn--secondary-light">Start your asset audit</a>
       </div>
     </div>
   </section>
@@ -2040,7 +2228,6 @@
 
   </div>
 
-  <script>
   <script>
     (function () {
       'use strict';
