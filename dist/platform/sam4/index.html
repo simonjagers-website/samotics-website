@@ -862,6 +862,45 @@
       box-shadow: 0 4px 16px rgba(31, 31, 51, 0.12);
     }
 
+    .sam-screenshot-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    .sam-screenshot-showcase--reverse {
+      direction: rtl;
+    }
+
+    .sam-screenshot-showcase--reverse > * {
+      direction: ltr;
+    }
+
+    .sam-screenshot-showcase__image {
+      width: 100%;
+      border-radius: var(--radius-default);
+      border: 1px solid var(--border-grey);
+      box-shadow: 0 4px 16px rgba(31, 31, 51, 0.12);
+    }
+
+    .sam-screenshot-showcase__caption {
+      font-size: 12px;
+      color: var(--comet);
+      margin-top: var(--space-2);
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .sam-screenshot-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .sam-screenshot-showcase--reverse {
+        direction: ltr;
+      }
+    }
+
     .sam-callout {
       background: var(--seashell);
       border-left: 4px solid var(--orange);
@@ -1277,22 +1316,55 @@
           <span class="sam-overline">What SAM4 monitors</span>
           <h2>Four capabilities. One managed service.</h2>
 
-          <div class="sam-card-grid sam-card-grid--4col">
-            <div class="sam-card">
+          <!-- Asset health + operational profile -->
+          <div class="sam-screenshot-showcase" style="margin-bottom: var(--space-16);">
+            <div>
+              <img class="sam-screenshot-showcase__image" src="/assets/images/screenshots/sam4-asset-operations.png" alt="SAM4 asset operations dashboard showing operational profile, running hours, and harmful operations analysis" loading="lazy">
+              <p class="sam-screenshot-showcase__caption">Asset operations view — operational profile and harmful operations analysis</p>
+            </div>
+            <div>
               <h3>Asset health monitoring</h3>
               <p>Continuous condition assessment across your full motor fleet. Each asset scored against its own baseline. Trends tracked automatically.</p>
+              <p>The operations view shows running time, start counts, and harmful operation patterns — giving your team the full picture of how each asset is being used, not just whether it's healthy.</p>
             </div>
-            <div class="sam-card">
+          </div>
+
+          <!-- Anomaly detection -->
+          <div class="sam-screenshot-showcase sam-screenshot-showcase--reverse" style="margin-bottom: var(--space-16);">
+            <div>
+              <img class="sam-screenshot-showcase__image" src="/assets/images/screenshots/sam4-condition-incidents.png" alt="SAM4 condition incidents table showing severity, fault classification, and resolution status across a fleet" loading="lazy">
+              <p class="sam-screenshot-showcase__caption">Condition incidents — full fleet view with severity, classification, and status</p>
+            </div>
+            <div>
               <h3>Anomaly detection</h3>
               <p>AI models flag deviations from normal behaviour. Bearing damage, misalignment, imbalance, cavitation, stator faults. Detected weeks to months before failure.</p>
+              <p>Every incident tracked from first detection through resolution. Your team sees severity, fault classification, and recommended action — not a firehose of notifications.</p>
             </div>
-            <div class="sam-card">
+          </div>
+
+          <!-- Fleet management -->
+          <div class="sam-screenshot-showcase" style="margin-bottom: var(--space-16);">
+            <div>
+              <img class="sam-screenshot-showcase__image" src="/assets/images/screenshots/sam4-asset-map.png" alt="SAM4 asset map showing geographic distribution of monitored assets with health status indicators" loading="lazy">
+              <p class="sam-screenshot-showcase__caption">Asset map — geographic fleet view with real-time health status</p>
+            </div>
+            <div>
               <h3>Fleet management</h3>
               <p>Single dashboard across sites, regions, asset classes. Fleet-level analytics show where risk concentrates. Multi-site rollouts from one platform.</p>
+              <p>The asset map gives your operations team a geographic view of every monitored asset. Red, amber, and green indicators show where attention is needed — across hundreds of sites.</p>
             </div>
-            <div class="sam-card">
+          </div>
+
+          <!-- Energy monitoring -->
+          <div class="sam-screenshot-showcase sam-screenshot-showcase--reverse">
+            <div>
+              <img class="sam-screenshot-showcase__image" src="/assets/images/screenshots/sam4-energy-fleet.png" alt="SAM4 energy savings dashboard showing consumption, efficiency, and savings across a fleet of assets" loading="lazy">
+              <p class="sam-screenshot-showcase__caption">Energy savings — fleet-level consumption, efficiency, and savings tracking</p>
+            </div>
+            <div>
               <h3>Energy monitoring</h3>
               <p>Per-motor power consumption tracked continuously. Identify efficiency losses, abnormal consumption patterns, and load changes. No additional hardware.</p>
+              <p>The energy view ranks assets by consumption and efficiency. Your team sees where energy is wasted — and quantifies the savings from acting on it.</p>
             </div>
           </div>
         </div>
@@ -1372,7 +1444,7 @@
 
           <div class="sam-two-col">
             <div>
-              <img class="sam-alert-screenshot" src="/assets/images/screenshots/alert-resolution-v4.png" alt="SAM4 alert resolution screen showing fault classification, severity, activity log, and recommended action" loading="lazy">
+              <img class="sam-alert-screenshot" src="/assets/images/screenshots/sam4-asset-detail-alert.png" alt="SAM4 single-asset detail view showing downstream health indicators, failure timeline, and recommended maintenance actions" loading="lazy">
             </div>
             <div>
               <h3>Every alert includes:</h3>
@@ -1440,6 +1512,11 @@
         <div class="sam-section__inner">
           <span class="sam-overline">Enterprise scale</span>
           <h2>Built for multi-site, multi-team operations</h2>
+
+          <div style="margin-bottom: var(--space-10);">
+            <img class="sam-screenshot-showcase__image" src="/assets/images/screenshots/sam4-asset-map.png" alt="SAM4 asset map showing multi-site fleet monitoring with geographic health indicators across hundreds of locations" loading="lazy">
+            <p class="sam-screenshot-showcase__caption">Multi-site asset map — one view across all locations, with real-time health status per asset</p>
+          </div>
 
           <div class="sam-card-grid sam-card-grid--2col">
             <div class="sam-card">
