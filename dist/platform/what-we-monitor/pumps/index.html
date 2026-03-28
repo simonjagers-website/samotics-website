@@ -1576,6 +1576,13 @@
       border-radius: var(--radius, 4px);
       padding: var(--space-8);
     }
+    .sam-spec-how__card-icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: var(--space-3);
+      color: var(--comet);
+      fill: currentColor;
+    }
     .sam-spec-how__card h3 {
       font-size: 1.125rem;
       font-weight: 600;
@@ -1745,6 +1752,13 @@
     }
     .sam-spec-monitor__col--overlap {
       background: var(--seashell);
+    }
+    .sam-spec-monitor__col-icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: var(--space-3);
+      color: var(--comet);
+      fill: currentColor;
     }
     .sam-spec-monitor__col-title {
       font-size: 1rem;
@@ -2191,18 +2205,22 @@
 
       <div class="sam-spec-how__grid">
         <div class="sam-spec-how__card">
+          <svg class="sam-spec-how__card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"><path d="M19,19h-2v-6h2v6ZM4,10h-2v12h2v-12ZM14,10h-2v12h2v-12ZM24,10h-2v12h2v-12ZM9,6h-2v20h2V6ZM29,6h-2v20h2V6Z"/></svg>
           <h3>Cavitation</h3>
           <p>Vapour bubble collapse at the impeller creates broadband mechanical noise. This noise modulates the motor current, producing a detectable increase in the electrical signature's noise floor above baseline.</p>
         </div>
         <div class="sam-spec-how__card">
+          <svg class="sam-spec-how__card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"><path d="M18,28H14a2,2,0,0,1-2-2V18.41L4.59,11A2,2,0,0,1,4,9.59V6A2,2,0,0,1,6,4H26a2,2,0,0,1,2,2V9.59A2,2,0,0,1,27.41,11L20,18.41V26A2,2,0,0,1,18,28ZM6,6V9.59l8,8V26h4V17.59l8-8V6Z"/></svg>
           <h3>Blockage and clogging</h3>
           <p>Rag, debris, or sediment restricting flow changes the pump's load profile. ESA detects the torque pattern shift relative to the healthy baseline. On sewage pumps, this is SAM4's strongest detection category: 97.4% accuracy.</p>
         </div>
         <div class="sam-spec-how__card">
+          <svg class="sam-spec-how__card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"><path d="M17.91,26.82l.35,2a12.9,12.9,0,0,0,4.24-1.54l-1-1.73A10.88,10.88,0,0,1,17.91,26.82Z"/><path d="M24.42,23.07,26,24.35a13,13,0,0,0,2.24-3.91l-1.87-.68A11,11,0,0,1,24.42,23.07Z"/><path d="M9.5,27.25a12.9,12.9,0,0,0,4.24,1.54l.35-2a10.88,10.88,0,0,1-3.59-1.3Z"/><path d="M5.67,19.76l-1.87.68A13,13,0,0,0,6,24.35l.32-.26,1.22-1h0a11,11,0,0,1-1.91-3.31Z"/><path d="M29,16a12.85,12.85,0,0,0-.8-4.44l-1.87.68A11.18,11.18,0,0,1,27,16Z"/><path d="M26,7.65a13,13,0,0,0-20,0V4H4v8h8V10H6.81A11,11,0,0,1,24.42,8.93Z"/></svg>
           <h3>Misalignment and imbalance</h3>
           <p>Shaft misalignment produces a 2x running speed component in the current spectrum. Impeller imbalance produces a 1x component. Both are progressive. SAM4 tracks their growth over weeks and flags deviation before damage escalates.</p>
         </div>
         <div class="sam-spec-how__card">
+          <svg class="sam-spec-how__card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"><path d="M12,29a1,1,0,0,1-.92-.62L6.33,17H2V15H7a1,1,0,0,1,.92.62L12,25.28,20.06,3.65A1,1,0,0,1,21,3a1,1,0,0,1,.93.68L25.72,15H30v2H25a1,1,0,0,1-.95-.68L21,7,12.94,28.35A1,1,0,0,1,12,29Z"/></svg>
           <h3>Bearing wear</h3>
           <p>Bearing defect frequencies appear in the motor current spectrum as the defect modulates air-gap torque. Detection is strongest on driven-equipment bearings. Motor bearings produce subtler signatures (30.8% detection rate).</p>
         </div>
@@ -2343,6 +2361,7 @@
 
       <div class="sam-spec-monitor__grid">
         <div class="sam-spec-monitor__col sam-spec-monitor__col--esa">
+          <svg class="sam-spec-monitor__col-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"><path d="M11.61,29.92a1,1,0,0,1-.6-1.07L12.83,17H8a1,1,0,0,1-1-1.23l3-13A1,1,0,0,1,11,2H21a1,1,0,0,1,.78.37,1,1,0,0,1,.2.85L20.25,11H25a1,1,0,0,1,.9.56,1,1,0,0,1-.11,1l-13,17A1,1,0,0,1,12,30,1.09,1.09,0,0,1,11.61,29.92ZM17.75,13l2-9H11.8L9.26,15h5.91L13.58,25.28,23,13Z"/></svg>
           <h3 class="sam-spec-monitor__col-title">ESA from the MCC</h3>
           <ul class="sam-spec-monitor__list">
             <li>Electrical faults (stator winding, supply quality)</li>
@@ -2353,6 +2372,7 @@
           </ul>
         </div>
         <div class="sam-spec-monitor__col sam-spec-monitor__col--overlap">
+          <svg class="sam-spec-monitor__col-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"><path d="M22,24H18V22h4V18h2v4A2.0021,2.0021,0,0,1,22,24Z"/><path d="M10,14H8V10a2.0022,2.0022,0,0,1,2-2h4v2H10Z"/><path d="M28,8H24V4a2.0023,2.0023,0,0,0-2-2H4A2.0023,2.0023,0,0,0,2,4V22a2.0023,2.0023,0,0,0,2,2H8v4a2.0023,2.0023,0,0,0,2,2H28a2.0023,2.0023,0,0,0,2-2V10A2.0023,2.0023,0,0,0,28,8Zm0,20H10V24h4V22H10V18H8v4H4V4H22V8H18v2h4v4h2V10h4Z"/></svg>
           <h3 class="sam-spec-monitor__col-title">Both detect</h3>
           <ul class="sam-spec-monitor__list">
             <li>Misalignment</li>
@@ -2362,6 +2382,7 @@
           </ul>
         </div>
         <div class="sam-spec-monitor__col sam-spec-monitor__col--vib">
+          <svg class="sam-spec-monitor__col-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"><path d="M15 12H17V30H15z"/><path d="M11.33,18.22a7,7,0,0,1,0-10.44l1.34,1.49a5,5,0,0,0,0,7.46Z"/><path d="M20.67,18.22l-1.34-1.49a5,5,0,0,0,0-7.46l1.34-1.49a7,7,0,0,1,0,10.44Z"/><path d="M8.4,21.8a11,11,0,0,1,0-17.6L9.6,5.8a9,9,0,0,0,0,14.4Z"/><path d="M23.6,21.8l-1.2-1.6a9,9,0,0,0,0-14.4l1.2-1.6a11,11,0,0,1,0,17.6Z"/></svg>
           <h3 class="sam-spec-monitor__col-title">Vibration on the asset</h3>
           <ul class="sam-spec-monitor__list">
             <li>High-frequency bearing defects</li>
