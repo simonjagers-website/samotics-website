@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samotics for Operations Leaders — ROI from Condition Monitoring</title>
+  <title>Samotics for IT/OT Security Leaders — Zero Network Footprint. Full Asset Visibility.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
@@ -93,7 +93,7 @@
     .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
     .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
     .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
-    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
     .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
     .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
     .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
@@ -122,7 +122,7 @@
        SHARED FOOTER STYLES
        ======================================== */
 
-    .sam-footer { background: var(--sam-space-cadet); padding-top: 96px; }
+    .sam-footer { background: var(--sam-space-cadet, #1F1F33); padding-top: 96px; }
     .sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
     .sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
     .sam-footer__logo { display: inline-flex; text-decoration: none; }
@@ -180,79 +180,38 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { font-size: 16px; -webkit-font-smoothing: antialiased; }
     body { font-family: var(--font-primary); font-weight: 400; line-height: 1.75; color: var(--space-cadet); background: var(--white); }
-    img { max-width: 100%; display: block; height: auto; }
+    img { max-width: 100%; display: block; }
     a { color: var(--blue-600); text-decoration: none; transition: opacity var(--motion-fast) ease-out; }
     a:hover { opacity: 0.85; }
 
     /* ========================================
-       TYPOGRAPHY
-       ======================================== */
-
-    h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
-    h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
-    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
-    .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: var(--space-3); }
-    .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
-    .data-number { font-family: var(--font-data); font-weight: 700; }
-
-    /* ========================================
-       BUTTONS
-       ======================================== */
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 24px;
-      font-family: var(--font-primary);
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: var(--radius-default);
-      border: 2px solid transparent;
-      cursor: pointer;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: all var(--motion-fast) ease-out;
-    }
-
-    .btn--primary {
-      background: var(--orange);
-      color: var(--white);
-    }
-    .btn--primary:hover {
-      opacity: 0.9;
-    }
-
-    .btn--ghost {
-      background: transparent;
-      color: var(--white);
-      border-color: var(--white);
-    }
-    .btn--ghost:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .btn--ghost-dark {
-      background: transparent;
-      color: var(--space-cadet);
-      border-color: var(--border-grey);
-    }
-    .btn--ghost-dark:hover {
-      background: var(--seashell);
-    }
-
-    /* ========================================
-       CONTAINER & SECTIONS
+       TYPOGRAPHY & LAYOUT
        ======================================== */
 
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
     .section { padding: var(--space-24) 0; }
-    @media (max-width: 991px) {
-      .section { padding: var(--space-16) 0; }
+
+    h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+    h4 { font-size: 20px; font-weight: 600; line-height: 1.4; }
+    .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
+    .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); }
+    .data-number { font-family: var(--font-data); font-weight: 700; }
+
+    .btn {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-primary); font-size: 14px; font-weight: 600;
+      padding: 10px 24px; border-radius: var(--radius-default);
+      border: 2px solid transparent; cursor: pointer;
+      transition: all var(--motion-fast) ease-out; text-decoration: none; white-space: nowrap;
     }
-    @media (max-width: 640px) {
-      .section { padding: var(--space-12) 0; }
-    }
+    .btn--primary { background: var(--orange); color: var(--white); border-color: var(--orange); }
+    .btn--primary:hover { opacity: 0.9; }
+    .btn--ghost { background: transparent; color: var(--white); border-color: var(--white); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+    .btn--ghost-dark { background: transparent; color: var(--space-cadet); border-color: var(--border-grey); }
+    .btn--ghost-dark:hover { background: var(--seashell); opacity: 1; }
 
     /* ========================================
        BREADCRUMB
@@ -266,7 +225,7 @@
     .breadcrumb__current { color: var(--comet); }
 
     /* ========================================
-       PERSONA PAGE SECTIONS
+       PERSONA PAGE SECTIONS (FP- prefix)
        ======================================== */
 
     /* Hero */
@@ -294,43 +253,89 @@
     .fp-problem h2 { margin-bottom: var(--space-6); }
     .fp-problem .body { margin-bottom: 0; }
 
-    /* Results Section */
-    .fp-results { padding: var(--space-24) 0; }
-    .fp-results h2 { margin-bottom: var(--space-6); }
-    .fp-results__intro { font-size: 16px; line-height: 1.75; max-width: 65ch; margin-bottom: var(--space-16); color: var(--space-cadet); }
-    .fp-results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
-    .fp-results-card {
+    /* Risk Cards */
+    .fp-risk { padding: var(--space-24) 0; }
+    .fp-risk h2 { margin-bottom: var(--space-6); }
+    .fp-risk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
+    .fp-risk-card {
       background: var(--white); border: 1px solid var(--border-grey);
       border-radius: var(--radius-default); padding: var(--space-8);
       display: flex; flex-direction: column; gap: var(--space-4);
     }
-    .fp-results-card h3 { font-size: 18px; color: var(--space-cadet); }
-    .fp-results-card p { font-size: 15px; color: var(--comet); line-height: 1.6; }
-
-    /* KPI Row */
-    .fp-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-top: var(--space-16); }
-    .fp-kpi-stat {
-      background: var(--seashell); border: 1px solid var(--border-grey);
-      border-radius: var(--radius-default); padding: var(--space-8);
-      text-align: center; display: flex; flex-direction: column; gap: var(--space-3);
+    .fp-risk-card__icon {
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
     }
-    .fp-kpi-stat__number { font-family: var(--font-data); font-weight: 700; font-size: 40px; line-height: 1; color: var(--orange); }
-    .fp-kpi-stat__label { font-size: 14px; font-weight: 500; color: var(--space-cadet); line-height: 1.3; }
+    .fp-risk-card h3 { font-size: 18px; color: var(--space-cadet); }
+    .fp-risk-card p { font-size: 15px; color: var(--comet); line-height: 1.6; }
 
-    /* Journey Section */
-    .fp-journey { padding: var(--space-24) 0; }
-    .fp-journey h2 { margin-bottom: var(--space-6); }
-    .fp-journey__intro { font-size: 16px; line-height: 1.75; max-width: 65ch; margin-bottom: var(--space-16); color: var(--space-cadet); }
-    .fp-journey-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
-    .fp-journey-step {
+    /* Architecture Section */
+    .fp-architecture { padding: var(--space-24) 0; }
+    .fp-architecture h2 { margin-bottom: var(--space-6); }
+    .fp-arch-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
+    .fp-arch-step {
       background: var(--white); border: 1px solid var(--border-grey);
       border-radius: var(--radius-default); padding: var(--space-8);
       display: flex; flex-direction: column; gap: var(--space-4);
-      position: relative;
     }
-    .fp-journey-step__num { font-family: var(--font-data); font-weight: 700; font-size: 32px; color: var(--orange); margin-bottom: var(--space-2); }
-    .fp-journey-step h3 { font-size: 18px; color: var(--space-cadet); }
-    .fp-journey-step p { font-size: 15px; color: var(--comet); line-height: 1.6; }
+    .fp-arch-step__num { font-family: var(--font-data); font-weight: 700; font-size: 32px; color: var(--orange); margin-bottom: var(--space-2); }
+    .fp-arch-step h3 { font-size: 18px; color: var(--space-cadet); }
+    .fp-arch-step p { font-size: 15px; color: var(--comet); line-height: 1.6; }
+
+    /* Security Specs */
+    .fp-specs { padding: var(--space-24) 0; }
+    .fp-specs h2 { margin-bottom: var(--space-6); }
+    .fp-specs-table {
+      width: 100%; border-collapse: collapse; margin-top: var(--space-16);
+      border: 1px solid var(--border-grey); border-radius: var(--radius-default); overflow: hidden;
+    }
+    .fp-specs-table thead {
+      background: var(--seashell);
+    }
+    .fp-specs-table th {
+      font: 600 14px/1 var(--font-primary); color: var(--space-cadet);
+      padding: var(--space-6); text-align: left; border-bottom: 1px solid var(--border-grey);
+    }
+    .fp-specs-table td {
+      padding: var(--space-6); border-bottom: 1px solid var(--border-grey);
+      font-size: 15px; color: var(--comet); line-height: 1.6;
+    }
+    .fp-specs-table tr:last-child td {
+      border-bottom: none;
+    }
+    .fp-specs-table td:first-child {
+      font-weight: 600; color: var(--space-cadet); width: 25%;
+    }
+
+    /* Q&A Section */
+    .fp-qa { padding: var(--space-24) 0; }
+    .fp-qa h2 { margin-bottom: var(--space-6); }
+    .fp-qa-list { display: flex; flex-direction: column; gap: var(--space-8); margin-top: var(--space-16); }
+    .fp-qa-item {
+      background: var(--white); border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default); padding: var(--space-8);
+    }
+    .fp-qa-item h3 {
+      font-size: 18px; color: var(--space-cadet); margin-bottom: var(--space-4);
+    }
+    .fp-qa-item p {
+      font-size: 15px; color: var(--comet); line-height: 1.6;
+    }
+
+    /* Compliance Section */
+    .fp-compliance { padding: var(--space-24) 0; }
+    .fp-compliance h2 { margin-bottom: var(--space-6); }
+    .fp-compliance-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
+    .fp-compliance-card {
+      background: var(--white); border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default); padding: var(--space-8); text-align: center;
+    }
+    .fp-compliance-card h3 { font-size: 18px; color: var(--space-cadet); margin-bottom: var(--space-4); }
+    .fp-compliance-card p { font-size: 14px; color: var(--comet); line-height: 1.5; }
+    .fp-compliance__note {
+      margin-top: var(--space-16); padding: var(--space-8);
+      background: var(--seashell); border-radius: var(--radius-default);
+      font-size: 15px; color: var(--space-cadet); line-height: 1.6;
+    }
 
     /* Terminal CTA */
     .fp-terminal { padding: var(--space-30) 0; text-align: center; }
@@ -344,9 +349,9 @@
        ======================================== */
 
     @media (max-width: 1024px) {
-      .fp-results-grid { grid-template-columns: repeat(2, 1fr); }
-      .fp-journey-steps { grid-template-columns: repeat(2, 1fr); }
-      .fp-kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .fp-risk-grid { grid-template-columns: repeat(2, 1fr); }
+      .fp-arch-steps { grid-template-columns: repeat(2, 1fr); }
+      .fp-compliance-cards { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 640px) {
@@ -356,17 +361,23 @@
       .fp-hero__actions { flex-direction: column; }
       .fp-hero__actions .btn { width: 100%; }
       .section { padding: var(--space-12) 0; }
-      .fp-results-grid { grid-template-columns: 1fr; }
-      .fp-journey-steps { grid-template-columns: 1fr; }
-      .fp-kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .fp-risk-grid { grid-template-columns: 1fr; }
+      .fp-arch-steps { grid-template-columns: 1fr; }
+      .fp-compliance-cards { grid-template-columns: 1fr; }
       .fp-terminal { padding: var(--space-16) 0; }
       .fp-terminal__actions { flex-direction: column; }
       .fp-terminal__actions .btn { width: 100%; }
+      .fp-specs-table {
+        font-size: 14px;
+      }
+      .fp-specs-table th, .fp-specs-table td {
+        padding: var(--space-4);
+      }
     }
   </style>
 </head>
 
-<body>
+<body class="sam-home">
 
   <!-- ======== SHARED HEADER ======== -->
   <header class="sam-header" role="navigation" aria-label="Main navigation">
@@ -385,7 +396,7 @@
         <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">Platform <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="sam-dropdown" role="menu">
           <a href="/platform/sam4" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">SAM4 Platform</span><span class="sam-dropdown__desc">Dashboard, diagnostics, and analytics</span></a>
-          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How It Installs</span><span class="sam-dropdown__desc">Less than 60 minutes, back online same shift</span></a>
+          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How It Installs</span><span class="sam-dropdown__desc">&lt;60 minutes, back online same shift</span></a>
           <a href="/platform/security" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Security & Compliance</span><span class="sam-dropdown__desc">ISO 27001, ISO 9001, NIS2 aligned, cellular architecture</span></a>
           <a href="/platform/integrations" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Integrations</span><span class="sam-dropdown__desc">CMMS, SCADA, and API connectivity</span></a>
           <a href="/platform/sam4/#service-model" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Service Model</span><span class="sam-dropdown__desc">Managed monitoring, not just software</span></a>
@@ -404,7 +415,7 @@
       <div class="sam-nav__item sam-nav__item--has-dropdown">
         <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">How It Works <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="sam-dropdown" role="menu">
-          <a href="/blind-spot" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">The Monitoring Blind Spot</span><span class="sam-dropdown__desc">Why 30-40% of critical assets go unmonitored</span></a>
+          <a href="/blind-spot" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">The Monitoring Blind Spot</span><span class="sam-dropdown__desc">Why 30–40% of critical assets go unmonitored</span></a>
           <a href="/technology/esa" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Electrical Signature Analysis</span><span class="sam-dropdown__desc">The science behind SAM4</span></a>
           <a href="/technology/esa-vs-vibration" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">ESA & Vibration</span><span class="sam-dropdown__desc">How ESA and vibration work together</span></a>
           <a href="/technology/how-sam4-works" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How SAM4 Works</span><span class="sam-dropdown__desc">Detection accuracy, methodology, and performance data</span></a>
@@ -462,110 +473,209 @@
       <ul class="breadcrumb__list">
         <li><a href="/" class="breadcrumb__link">Home</a></li>
         <li class="breadcrumb__sep">/</li>
-        <li class="breadcrumb__current">For Operations Leaders</li>
+        <li class="breadcrumb__current">For IT/OT Security Leaders</li>
       </ul>
     </nav>
 
-    <!-- Section 1: Hero -->
+    <!-- Section 1: Hero (dark) -->
     <section class="fp-hero">
       <div class="container">
         <div class="fp-hero__content">
-          <div class="fp-hero__overline">For Plant Directors & Operations Managers</div>
-          <h1 class="fp-hero__headline">Stop paying for failures you could have prevented.</h1>
-          <p class="fp-hero__subline">SAM4 detects rotating asset failures 4-8 weeks early. Eliminate unplanned downtime, recover lost capacity, and prove 800% ROI to the board.</p>
+          <div class="fp-hero__overline">For IT/OT Security Leaders</div>
+          <h1 class="fp-hero__headline">Zero Network Footprint. Full Asset Visibility.</h1>
+          <p class="fp-hero__subline">SAM4 monitors rotating assets from the motor control cabinet. No OT network connection. No sensors on machines. No attack surface expansion.</p>
           <div class="fp-hero__actions">
-            <a href="/tools/roi-calculator" class="btn btn--primary">Calculate Your ROI</a>
-            <a href="/proof" class="btn btn--ghost">See How Companies Like Yours Saved</a>
+            <a href="/resources/security-architecture-brief" class="btn btn--primary">Download the Security Architecture Brief</a>
+            <a href="/contact?intent=security-review" class="btn btn--ghost">Schedule a Security Review</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 2: The Problem (white) -->
+    <!-- Section 2: The Security Problem (white) -->
     <section class="fp-section-white section">
       <div class="container fp-problem">
-        <h2>Every unplanned shutdown has a price. Most plants pay it repeatedly.</h2>
-        <p class="body">Average cost per failure: 50,000 euros or more. Most industrial plants run blind to 30-40% of critical assets. A single preventable shutdown can erase a year's margin. SAM4 changes that by giving operations teams the foresight to act before motors fail, bearings seize, or gearboxes break.</p>
+        <h2>Condition Monitoring Usually Means Network Risk</h2>
+        <p class="body">Most condition monitoring systems require OT network access, wireless sensor gateways, cloud connectivity from the plant floor, and ongoing firmware updates. Each creates an attack vector. IT/OT teams push back, rightly, and projects stall.</p>
       </div>
     </section>
 
-    <!-- Section 3: Named Results (seashell) -->
+    <!-- Section 3: Risk Cards (seashell) -->
     <section class="fp-section-seashell section">
-      <div class="container fp-results">
-        <h2>Named customers. Quantified outcomes.</h2>
-        <div class="fp-results-grid">
-          <div class="fp-results-card">
-            <h3>Yorkshire Water</h3>
-            <p>35 pollution incidents prevented. 70,000 manual inspections replaced. 10 million pounds avoided.</p>
+      <div class="container fp-risk">
+        <h2>The Architecture Problem</h2>
+        <div class="fp-risk-grid">
+          <div class="fp-risk-card">
+            <div class="fp-risk-card__icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <path d="M16 2C8.268 2 2 8.268 2 16c0 7.732 6.268 14 14 14s14-6.268 14-14S23.732 2 16 2zm0 24c-5.523 0-10-4.477-10-10s4.477-10 10-10 10 4.477 10 10-4.477 10-10 10zm3-10H13v2h6v-2z" fill="currentColor" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Traditional Monitoring</h3>
+            <p>Requires wireless gateways on OT side. Real-time cloud sync. Firmware patches pushed to plant network.</p>
           </div>
-          <div class="fp-results-card">
-            <h3>Schiphol Airport</h3>
-            <p>Baggage handling motor bearing degradation caught months early. Unplanned downtime reduced from 3+ hours to zero.</p>
+          <div class="fp-risk-card">
+            <div class="fp-risk-card__icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M16 10v6m0 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>SAM4 Approach</h3>
+            <p>Current/voltage sensors connect only to MCC. Edge device stays local. Outbound IT network only.</p>
           </div>
-          <div class="fp-results-card">
-            <h3>Nyrstar</h3>
-            <p>Critical smelter asset failures detected weeks early. Avoided 2.1 million euros in emergency repairs.</p>
-          </div>
-        </div>
-
-        <div class="fp-kpi-row">
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">800%</div>
-            <div class="fp-kpi-stat__label">ROI (first 3 years)</div>
-          </div>
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">6-12 mo</div>
-            <div class="fp-kpi-stat__label">payback period</div>
-          </div>
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">50K+</div>
-            <div class="fp-kpi-stat__label">saved per detection</div>
-          </div>
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">4-8 wks</div>
-            <div class="fp-kpi-stat__label">early warning</div>
+          <div class="fp-risk-card">
+            <div class="fp-risk-card__icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <path d="M28 14h-4v-2h4v2zm-8-8h2v4h-2V6zm8 10c0 6.627-5.373 12-12 12S4 22.627 4 16 9.373 4 16 4s12 5.373 12 12z" fill="currentColor" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>No Attack Surface</h3>
+            <p>Separated from SCADA, DCS, PLCs. No inbound connections. No remote shell access.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 4: Your Journey (white) -->
+    <!-- Section 4: Architecture Overview (white) -->
     <section class="fp-section-white section">
-      <div class="container fp-journey">
-        <h2>From pilot to fleet. Here's how it works.</h2>
-        <div class="fp-journey-steps">
-          <div class="fp-journey-step">
-            <div class="fp-journey-step__num">1</div>
-            <h3>Install</h3>
-            <p>Clip sensors onto power cables at the motor control cabinet. Less than 60 minutes. Same-shift deployment.</p>
+      <div class="container fp-architecture">
+        <h2>How SAM4 Connects and What It Doesn't Touch</h2>
+        <div class="fp-arch-steps">
+          <div class="fp-arch-step">
+            <div class="fp-arch-step__num">1</div>
+            <h3>Sensors</h3>
+            <p>Current and voltage sensors clip onto power cables at the motor control cabinet (MCC).</p>
           </div>
-          <div class="fp-journey-step">
-            <div class="fp-journey-step__num">2</div>
-            <h3>Baseline</h3>
-            <p>Platform learns asset signatures over 2-4 weeks.</p>
+          <div class="fp-arch-step">
+            <div class="fp-arch-step__num">2</div>
+            <h3>Edge Processing</h3>
+            <p>Hardened Linux device processes signals locally. No cloud dependency for monitoring or diagnostics.</p>
           </div>
-          <div class="fp-journey-step">
-            <div class="fp-journey-step__num">3</div>
-            <h3>Detect</h3>
-            <p>Anomaly alerts 4-8 weeks before failure. Every alert reviewed by a Samotics engineer.</p>
+          <div class="fp-arch-step">
+            <div class="fp-arch-step__num">3</div>
+            <h3>IT Network Only</h3>
+            <p>Data transmitted via standard HTTPS outbound only (port 443). No connection to OT network, PLCs, SCADA, or DCS.</p>
           </div>
-          <div class="fp-journey-step">
-            <div class="fp-journey-step__num">4</div>
-            <h3>Act</h3>
-            <p>Maintenance plans the shutdown on your schedule, not the asset's.</p>
+          <div class="fp-arch-step">
+            <div class="fp-arch-step__num">4</div>
+            <h3>Physical Separation</h3>
+            <p>SAM4 sits on the electrical supply side, physically isolated from OT control systems.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 5: Terminal CTA (dark) -->
+    <!-- Section 5: Security Specifications (seashell) -->
+    <section class="fp-section-seashell section">
+      <div class="container fp-specs">
+        <h2>Security by Architecture, Not Just Policy</h2>
+        <table class="fp-specs-table">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Specification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Network</td>
+              <td>Outbound HTTPS only (port 443). No inbound connections. No OT network access. Zero trust architecture.</td>
+            </tr>
+            <tr>
+              <td>Data Transmitted</td>
+              <td>Current and voltage waveforms only. No process data, no PII, no production secrets, no configuration files.</td>
+            </tr>
+            <tr>
+              <td>Authentication</td>
+              <td>SSO/SAML support. Multi-factor authentication. Role-based access control (RBAC). API token-based auth.</td>
+            </tr>
+            <tr>
+              <td>Infrastructure</td>
+              <td>AWS hosted (EU region available). SOC 2 Type II certified. ISO 27001 certified. NIS2 aligned.</td>
+            </tr>
+            <tr>
+              <td>Edge Device</td>
+              <td>Hardened Linux. No remote shell access. Automatic security updates. Regular penetration testing.</td>
+            </tr>
+            <tr>
+              <td>Data Residency</td>
+              <td>EU or US hosting. Customer choice. GDPR compliant. No third-party data transfer.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 6: Q&A (white) -->
+    <section class="fp-section-white section">
+      <div class="container fp-qa">
+        <h2>Questions We Hear From Every CISO</h2>
+        <div class="fp-qa-list">
+          <div class="fp-qa-item">
+            <h3>Does SAM4 need OT network access?</h3>
+            <p>No. It connects to the IT network only. Outbound HTTPS. There is no OT-side component that requires access to the control network.</p>
+          </div>
+          <div class="fp-qa-item">
+            <h3>What data leaves the plant?</h3>
+            <p>Current and voltage waveforms only. No process variables, no PII, no alarm histories, no configuration data. The electrical signature is anonymized before transmission.</p>
+          </div>
+          <div class="fp-qa-item">
+            <h3>Can we host on-premises?</h3>
+            <p>Not currently. SAM4 is cloud-hosted on AWS. We offer EU data residency for compliance. Private cloud options are under evaluation.</p>
+          </div>
+          <div class="fp-qa-item">
+            <h3>What happens if the connection drops?</h3>
+            <p>The edge device buffers data locally. Monitoring continues without interruption. Data syncs automatically when the connection restores. No loss of detection capability.</p>
+          </div>
+          <div class="fp-qa-item">
+            <h3>How do you handle vulnerability management?</h3>
+            <p>Regular penetration testing by third-party firms. Automated patching on edge devices. Responsible disclosure programme. Vulnerability assessment reports available on request.</p>
+          </div>
+          <div class="fp-qa-item">
+            <h3>Is there an API?</h3>
+            <p>Yes. RESTful API with token-based authentication. CMMS and EAM integration. Webhook support for custom workflows. Full API documentation provided.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Compliance & Certifications (seashell) -->
+    <section class="fp-section-seashell section">
+      <div class="container fp-compliance">
+        <h2>Built for Regulated Environments</h2>
+        <div class="fp-compliance-cards">
+          <div class="fp-compliance-card">
+            <h3>SOC 2 Type II</h3>
+            <p>Security, availability, and confidentiality controls independently audited and validated.</p>
+          </div>
+          <div class="fp-compliance-card">
+            <h3>ISO 27001</h3>
+            <p>Information security management system certified. Continuous compliance monitoring.</p>
+          </div>
+          <div class="fp-compliance-card">
+            <h3>GDPR Compliant</h3>
+            <p>Data processing agreements in place. Residency options. Right to deletion and portability.</p>
+          </div>
+          <div class="fp-compliance-card">
+            <h3>NIS2 Aligned</h3>
+            <p>Critical infrastructure framework. Operates in water utilities, pharmaceuticals, and oil and gas.</p>
+          </div>
+        </div>
+        <div class="fp-compliance__note">
+          <strong>Real-world deployment:</strong> SAM4 operates in NIS2 critical infrastructure (water utilities), GxP-regulated environments (pharmaceuticals), and ATEX zones (oil and gas). Security review documentation and architecture diagrams available on request. Customer due diligence packages available for your procurement process.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Terminal CTA (dark) -->
     <section class="fp-section-dark section fp-terminal">
       <div class="container">
-        <h2 class="fp-terminal__headline">See what SAM4 saves your plant.</h2>
-        <p class="fp-terminal__subline">Book a demo to see live detection data. Then run a free ROI estimate for your critical assets.</p>
+        <h2 class="fp-terminal__headline">Ready to Review the Architecture?</h2>
+        <p class="fp-terminal__subline">We'll share our network architecture diagram, data flow documentation, penetration test summary, and API specifications for your security review.</p>
         <div class="fp-terminal__actions">
-          <a href="/tools/roi-calculator" class="btn btn--primary">Calculate Your ROI</a>
-          <a href="/proof/" class="btn btn--ghost">See How Companies Like Yours Saved</a>
+          <a href="/resources/security-architecture-brief" class="btn btn--primary">Download the Security Architecture Brief</a>
+          <a href="/contact?intent=security-review" class="btn btn--ghost">Schedule a Security Review</a>
         </div>
       </div>
     </section>
@@ -663,7 +773,7 @@
     <div class="sam-footer__bottom">
 
       <div class="sam-footer__bottom-left">
-        <span class="sam-footer__copyright">&copy; 2026 Samotics. Built in The Netherlands.</span>
+        <span class="sam-footer__copyright">&copy; 2026 Samotics &middot; Built in The Netherlands</span>
 
         <a href="https://www.linkedin.com/company/samotics/"
            target="_blank"

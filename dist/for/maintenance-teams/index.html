@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samotics for Operations Leaders — ROI from Condition Monitoring</title>
+  <title>Samotics for Maintenance Teams — Predictive Alerts & Work Order Integration</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/@carbon/icons@11.52.0/css/carbon-icons.min.css">
   <style>
     /* ========================================
        SHARED TOKENS (sam- prefixed for header/footer)
@@ -93,7 +92,7 @@
     .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
     .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
     .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
-    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
     .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
     .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
     .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
@@ -122,7 +121,7 @@
        SHARED FOOTER STYLES
        ======================================== */
 
-    .sam-footer { background: var(--sam-space-cadet); padding-top: 96px; }
+    .sam-footer { background: var(--sam-space-cadet, #1F1F33); padding-top: 96px; }
     .sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
     .sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
     .sam-footer__logo { display: inline-flex; text-decoration: none; }
@@ -180,79 +179,38 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { font-size: 16px; -webkit-font-smoothing: antialiased; }
     body { font-family: var(--font-primary); font-weight: 400; line-height: 1.75; color: var(--space-cadet); background: var(--white); }
-    img { max-width: 100%; display: block; height: auto; }
+    img { max-width: 100%; display: block; }
     a { color: var(--blue-600); text-decoration: none; transition: opacity var(--motion-fast) ease-out; }
     a:hover { opacity: 0.85; }
 
     /* ========================================
-       TYPOGRAPHY
-       ======================================== */
-
-    h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
-    h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
-    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
-    .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: var(--space-3); }
-    .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
-    .data-number { font-family: var(--font-data); font-weight: 700; }
-
-    /* ========================================
-       BUTTONS
-       ======================================== */
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 24px;
-      font-family: var(--font-primary);
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: var(--radius-default);
-      border: 2px solid transparent;
-      cursor: pointer;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: all var(--motion-fast) ease-out;
-    }
-
-    .btn--primary {
-      background: var(--orange);
-      color: var(--white);
-    }
-    .btn--primary:hover {
-      opacity: 0.9;
-    }
-
-    .btn--ghost {
-      background: transparent;
-      color: var(--white);
-      border-color: var(--white);
-    }
-    .btn--ghost:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .btn--ghost-dark {
-      background: transparent;
-      color: var(--space-cadet);
-      border-color: var(--border-grey);
-    }
-    .btn--ghost-dark:hover {
-      background: var(--seashell);
-    }
-
-    /* ========================================
-       CONTAINER & SECTIONS
+       TYPOGRAPHY & LAYOUT
        ======================================== */
 
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
     .section { padding: var(--space-24) 0; }
-    @media (max-width: 991px) {
-      .section { padding: var(--space-16) 0; }
+
+    h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+    h4 { font-size: 20px; font-weight: 600; line-height: 1.4; }
+    .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
+    .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); }
+    .data-number { font-family: var(--font-data); font-weight: 700; }
+
+    .btn {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-primary); font-size: 14px; font-weight: 600;
+      padding: 10px 24px; border-radius: var(--radius-default);
+      border: 2px solid transparent; cursor: pointer;
+      transition: all var(--motion-fast) ease-out; text-decoration: none; white-space: nowrap;
     }
-    @media (max-width: 640px) {
-      .section { padding: var(--space-12) 0; }
-    }
+    .btn--primary { background: var(--orange); color: var(--white); border-color: var(--orange); }
+    .btn--primary:hover { opacity: 0.9; }
+    .btn--ghost { background: transparent; color: var(--white); border-color: var(--white); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+    .btn--ghost-dark { background: transparent; color: var(--space-cadet); border-color: var(--border-grey); }
+    .btn--ghost-dark:hover { background: var(--seashell); opacity: 1; }
 
     /* ========================================
        BREADCRUMB
@@ -266,7 +224,7 @@
     .breadcrumb__current { color: var(--comet); }
 
     /* ========================================
-       PERSONA PAGE SECTIONS
+       PERSONA PAGE SECTIONS (FP- prefix)
        ======================================== */
 
     /* Hero */
@@ -289,48 +247,54 @@
     .fp-section-seashell { background: var(--seashell); }
     .fp-section-dark { background: var(--space-cadet); color: var(--white); }
 
-    /* Problem Section */
-    .fp-problem { padding: var(--space-24) 0; }
-    .fp-problem h2 { margin-bottom: var(--space-6); }
-    .fp-problem .body { margin-bottom: 0; }
+    /* Less Firefighting */
+    .fp-less-firefighting { padding: var(--space-24) 0; }
+    .fp-less-firefighting h2 { margin-bottom: var(--space-6); }
+    .fp-less-firefighting .body { margin-bottom: 0; }
 
-    /* Results Section */
-    .fp-results { padding: var(--space-24) 0; }
-    .fp-results h2 { margin-bottom: var(--space-6); }
-    .fp-results__intro { font-size: 16px; line-height: 1.75; max-width: 65ch; margin-bottom: var(--space-16); color: var(--space-cadet); }
-    .fp-results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
-    .fp-results-card {
+    /* How Alerts Work */
+    .fp-alerts { padding: var(--space-24) 0; }
+    .fp-alerts h2 { margin-bottom: var(--space-6); }
+    .fp-alerts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
+    .fp-alerts-card {
       background: var(--white); border: 1px solid var(--border-grey);
       border-radius: var(--radius-default); padding: var(--space-8);
       display: flex; flex-direction: column; gap: var(--space-4);
     }
-    .fp-results-card h3 { font-size: 18px; color: var(--space-cadet); }
-    .fp-results-card p { font-size: 15px; color: var(--comet); line-height: 1.6; }
+    .fp-alerts-card__icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+    .fp-alerts-card h3 { font-size: 18px; color: var(--space-cadet); }
+    .fp-alerts-card p { font-size: 15px; color: var(--comet); line-height: 1.6; }
 
-    /* KPI Row */
-    .fp-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-top: var(--space-16); }
-    .fp-kpi-stat {
+    /* Installation */
+    .fp-installation { padding: var(--space-24) 0; }
+    .fp-installation h2 { margin-bottom: var(--space-6); }
+    .fp-installation .body { margin-bottom: var(--space-8); }
+    .fp-installation__link { margin-top: var(--space-8); }
+    .fp-installation__link a { font-weight: 600; color: var(--blue-600); }
+    .fp-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-bottom: var(--space-16); }
+    .fp-kpi {
       background: var(--seashell); border: 1px solid var(--border-grey);
-      border-radius: var(--radius-default); padding: var(--space-8);
+      border-radius: var(--radius-default); padding: var(--space-6);
       text-align: center; display: flex; flex-direction: column; gap: var(--space-3);
     }
-    .fp-kpi-stat__number { font-family: var(--font-data); font-weight: 700; font-size: 40px; line-height: 1; color: var(--orange); }
-    .fp-kpi-stat__label { font-size: 14px; font-weight: 500; color: var(--space-cadet); line-height: 1.3; }
+    .fp-kpi__number { font-family: var(--font-data); font-weight: 700; font-size: 32px; line-height: 1; color: var(--space-cadet); }
+    .fp-kpi__label { font-size: 14px; font-weight: 500; color: var(--space-cadet); line-height: 1.4; }
 
-    /* Journey Section */
-    .fp-journey { padding: var(--space-24) 0; }
-    .fp-journey h2 { margin-bottom: var(--space-6); }
-    .fp-journey__intro { font-size: 16px; line-height: 1.75; max-width: 65ch; margin-bottom: var(--space-16); color: var(--space-cadet); }
-    .fp-journey-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
-    .fp-journey-step {
-      background: var(--white); border: 1px solid var(--border-grey);
-      border-radius: var(--radius-default); padding: var(--space-8);
-      display: flex; flex-direction: column; gap: var(--space-4);
-      position: relative;
-    }
-    .fp-journey-step__num { font-family: var(--font-data); font-weight: 700; font-size: 32px; color: var(--orange); margin-bottom: var(--space-2); }
-    .fp-journey-step h3 { font-size: 18px; color: var(--space-cadet); }
-    .fp-journey-step p { font-size: 15px; color: var(--comet); line-height: 1.6; }
+    /* Day in the Life */
+    .fp-timeline { padding: var(--space-24) 0; }
+    .fp-timeline h2 { margin-bottom: var(--space-6); }
+    .fp-timeline-list { display: flex; flex-direction: column; gap: var(--space-6); margin-bottom: var(--space-8); }
+    .fp-timeline-item { display: flex; gap: var(--space-6); align-items: flex-start; padding: var(--space-6); background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default); }
+    .fp-timeline-item__time { flex-shrink: 0; font-family: var(--font-data); font-weight: 700; font-size: 16px; color: var(--orange); width: 60px; }
+    .fp-timeline-item__content { flex: 1; display: flex; flex-direction: column; gap: var(--space-2); }
+    .fp-timeline-item__title { font-weight: 600; color: var(--space-cadet); font-size: 15px; }
+    .fp-timeline-item__desc { font-size: 15px; color: var(--comet); line-height: 1.6; }
+    .fp-timeline__summary { font-size: 16px; line-height: 1.75; max-width: 65ch; color: var(--space-cadet); padding: var(--space-6); background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default); }
+
+    /* Honest About Limits */
+    .fp-limits { padding: var(--space-24) 0; }
+    .fp-limits h2 { margin-bottom: var(--space-6); }
+    .fp-limits .body { margin-bottom: 0; }
 
     /* Terminal CTA */
     .fp-terminal { padding: var(--space-30) 0; text-align: center; }
@@ -344,8 +308,7 @@
        ======================================== */
 
     @media (max-width: 1024px) {
-      .fp-results-grid { grid-template-columns: repeat(2, 1fr); }
-      .fp-journey-steps { grid-template-columns: repeat(2, 1fr); }
+      .fp-alerts-grid { grid-template-columns: repeat(2, 1fr); }
       .fp-kpi-row { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -356,9 +319,10 @@
       .fp-hero__actions { flex-direction: column; }
       .fp-hero__actions .btn { width: 100%; }
       .section { padding: var(--space-12) 0; }
-      .fp-results-grid { grid-template-columns: 1fr; }
-      .fp-journey-steps { grid-template-columns: 1fr; }
-      .fp-kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .fp-alerts-grid { grid-template-columns: 1fr; }
+      .fp-kpi-row { grid-template-columns: 1fr; }
+      .fp-timeline-item { flex-direction: column; }
+      .fp-timeline-item__time { width: auto; }
       .fp-terminal { padding: var(--space-16) 0; }
       .fp-terminal__actions { flex-direction: column; }
       .fp-terminal__actions .btn { width: 100%; }
@@ -366,7 +330,7 @@
   </style>
 </head>
 
-<body>
+<body class="sam-home">
 
   <!-- ======== SHARED HEADER ======== -->
   <header class="sam-header" role="navigation" aria-label="Main navigation">
@@ -385,7 +349,7 @@
         <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">Platform <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="sam-dropdown" role="menu">
           <a href="/platform/sam4" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">SAM4 Platform</span><span class="sam-dropdown__desc">Dashboard, diagnostics, and analytics</span></a>
-          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How It Installs</span><span class="sam-dropdown__desc">Less than 60 minutes, back online same shift</span></a>
+          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How It Installs</span><span class="sam-dropdown__desc">&lt;60 minutes, back online same shift</span></a>
           <a href="/platform/security" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Security & Compliance</span><span class="sam-dropdown__desc">ISO 27001, ISO 9001, NIS2 aligned, cellular architecture</span></a>
           <a href="/platform/integrations" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Integrations</span><span class="sam-dropdown__desc">CMMS, SCADA, and API connectivity</span></a>
           <a href="/platform/sam4/#service-model" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Service Model</span><span class="sam-dropdown__desc">Managed monitoring, not just software</span></a>
@@ -404,7 +368,7 @@
       <div class="sam-nav__item sam-nav__item--has-dropdown">
         <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">How It Works <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="sam-dropdown" role="menu">
-          <a href="/blind-spot" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">The Monitoring Blind Spot</span><span class="sam-dropdown__desc">Why 30-40% of critical assets go unmonitored</span></a>
+          <a href="/blind-spot" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">The Monitoring Blind Spot</span><span class="sam-dropdown__desc">Why 30–40% of critical assets go unmonitored</span></a>
           <a href="/technology/esa" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Electrical Signature Analysis</span><span class="sam-dropdown__desc">The science behind SAM4</span></a>
           <a href="/technology/esa-vs-vibration" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">ESA & Vibration</span><span class="sam-dropdown__desc">How ESA and vibration work together</span></a>
           <a href="/technology/how-sam4-works" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How SAM4 Works</span><span class="sam-dropdown__desc">Detection accuracy, methodology, and performance data</span></a>
@@ -462,7 +426,7 @@
       <ul class="breadcrumb__list">
         <li><a href="/" class="breadcrumb__link">Home</a></li>
         <li class="breadcrumb__sep">/</li>
-        <li class="breadcrumb__current">For Operations Leaders</li>
+        <li class="breadcrumb__current">For Maintenance Teams</li>
       </ul>
     </nav>
 
@@ -470,102 +434,147 @@
     <section class="fp-hero">
       <div class="container">
         <div class="fp-hero__content">
-          <div class="fp-hero__overline">For Plant Directors & Operations Managers</div>
-          <h1 class="fp-hero__headline">Stop paying for failures you could have prevented.</h1>
-          <p class="fp-hero__subline">SAM4 detects rotating asset failures 4-8 weeks early. Eliminate unplanned downtime, recover lost capacity, and prove 800% ROI to the board.</p>
+          <div class="fp-hero__overline">For Maintenance Technicians & Operators</div>
+          <h1 class="fp-hero__headline">Alerts you can trust. Actions you can plan.</h1>
+          <p class="fp-hero__subline">SAM4 doesn't add noise to your day. Every alert is reviewed by a Samotics diagnostics engineer before it reaches you. When an alert arrives, it tells you what's wrong, how urgent it is, and what to do next.</p>
           <div class="fp-hero__actions">
-            <a href="/tools/roi-calculator" class="btn btn--primary">Calculate Your ROI</a>
-            <a href="/proof" class="btn btn--ghost">See How Companies Like Yours Saved</a>
+            <a href="/platform/sam4" class="btn btn--primary">See How It Works</a>
+            <a href="/proof" class="btn btn--ghost">View Alert Examples</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 2: The Problem (white) -->
+    <!-- Section 2: Less Firefighting (white) -->
     <section class="fp-section-white section">
-      <div class="container fp-problem">
-        <h2>Every unplanned shutdown has a price. Most plants pay it repeatedly.</h2>
-        <p class="body">Average cost per failure: 50,000 euros or more. Most industrial plants run blind to 30-40% of critical assets. A single preventable shutdown can erase a year's margin. SAM4 changes that by giving operations teams the foresight to act before motors fail, bearings seize, or gearboxes break.</p>
+      <div class="container fp-less-firefighting">
+        <h2>Less firefighting. More planned work.</h2>
+        <p class="body">SAM4 monitors your rotating assets 24/7 from the motor control cabinet. When a bearing starts degrading, a pump begins cavitating, or an electrical fault develops, the system catches it weeks before failure. You get time to plan the repair, order the parts, and schedule the outage. No emergency call-outs. No weekend shutdowns.</p>
       </div>
     </section>
 
-    <!-- Section 3: Named Results (seashell) -->
+    <!-- Section 3: How Alerts Work (seashell) -->
     <section class="fp-section-seashell section">
-      <div class="container fp-results">
-        <h2>Named customers. Quantified outcomes.</h2>
-        <div class="fp-results-grid">
-          <div class="fp-results-card">
-            <h3>Yorkshire Water</h3>
-            <p>35 pollution incidents prevented. 70,000 manual inspections replaced. 10 million pounds avoided.</p>
+      <div class="container fp-alerts">
+        <h2>What an alert looks like.</h2>
+
+        <div class="fp-alerts-grid">
+          <div class="fp-alerts-card">
+            <div class="fp-alerts-card__icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2"/>
+                <path d="M24 12V24M24 28H24.02" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>SAM4 detects</h3>
+            <p>The AI identifies an anomaly in the electrical signature of a monitored asset. Could be bearing wear, cavitation, misalignment, or an electrical fault.</p>
           </div>
-          <div class="fp-results-card">
-            <h3>Schiphol Airport</h3>
-            <p>Baggage handling motor bearing degradation caught months early. Unplanned downtime reduced from 3+ hours to zero.</p>
+          <div class="fp-alerts-card">
+            <div class="fp-alerts-card__icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 26L18 33L37 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Engineer validates</h3>
+            <p>A Samotics diagnostics engineer reviews the detection before any alert reaches you. False positives are filtered out. Only validated findings are delivered.</p>
           </div>
-          <div class="fp-results-card">
-            <h3>Nyrstar</h3>
-            <p>Critical smelter asset failures detected weeks early. Avoided 2.1 million euros in emergency repairs.</p>
+          <div class="fp-alerts-card">
+            <div class="fp-alerts-card__icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 28L12 32M16 28L20 24M16 28V16H28M36 12H24V24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>You act</h3>
+            <p>The alert arrives in your CMMS as a work order. It includes: what's wrong, which asset, severity level, and recommended action. You plan the repair on your schedule.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Installation (white) -->
+    <section class="fp-section-white section">
+      <div class="container fp-installation">
+        <h2>Installation takes less time than a coffee break.</h2>
 
         <div class="fp-kpi-row">
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">800%</div>
-            <div class="fp-kpi-stat__label">ROI (first 3 years)</div>
+          <div class="fp-kpi">
+            <div class="fp-kpi__number">30 min</div>
+            <div class="fp-kpi__label">per asset</div>
           </div>
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">6-12 mo</div>
-            <div class="fp-kpi-stat__label">payback period</div>
+          <div class="fp-kpi">
+            <div class="fp-kpi__number">Zero</div>
+            <div class="fp-kpi__label">production downtime</div>
           </div>
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">50K+</div>
-            <div class="fp-kpi-stat__label">saved per detection</div>
+          <div class="fp-kpi">
+            <div class="fp-kpi__number">MCC only</div>
+            <div class="fp-kpi__label">no access to asset needed</div>
           </div>
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">4-8 wks</div>
-            <div class="fp-kpi-stat__label">early warning</div>
+          <div class="fp-kpi">
+            <div class="fp-kpi__number">Read-only</div>
+            <div class="fp-kpi__label">no control system connection</div>
           </div>
+        </div>
+
+        <p class="body">SAM4 hardware connects at the motor control cabinet. Current transformers clamp around existing cables. Voltage taps connect to supply terminals. No modifications to the motor, pump, or driven equipment. No scaffolding. No production shutdown. The asset keeps running throughout.</p>
+
+        <div class="fp-installation__link">
+          <a href="/platform/how-it-installs">See the install guide →</a>
         </div>
       </div>
     </section>
 
-    <!-- Section 4: Your Journey (white) -->
+    <!-- Section 5: Day in the Life (seashell) -->
+    <section class="fp-section-seashell section">
+      <div class="container fp-timeline">
+        <h2>A normal Tuesday with SAM4.</h2>
+
+        <div class="fp-timeline-list">
+          <div class="fp-timeline-item">
+            <div class="fp-timeline-item__time">07:00</div>
+            <div class="fp-timeline-item__content">
+              <div class="fp-timeline-item__title">Start shift. SAM4 dashboard shows fleet status. Green across 47 assets. One amber alert on Pump 12.</div>
+            </div>
+          </div>
+          <div class="fp-timeline-item">
+            <div class="fp-timeline-item__time">07:15</div>
+            <div class="fp-timeline-item__content">
+              <div class="fp-timeline-item__title">Open the alert. Bearing inner race defect developing. Severity: moderate. Recommended action: schedule replacement within 4 weeks.</div>
+            </div>
+          </div>
+          <div class="fp-timeline-item">
+            <div class="fp-timeline-item__time">07:30</div>
+            <div class="fp-timeline-item__content">
+              <div class="fp-timeline-item__title">Create work order in CMMS. Order bearing. Schedule for next planned outage in 2 weeks.</div>
+            </div>
+          </div>
+          <div class="fp-timeline-item">
+            <div class="fp-timeline-item__time">14:00</div>
+            <div class="fp-timeline-item__content">
+              <div class="fp-timeline-item__title">Planned replacement completed during scheduled maintenance window. No emergency. No overtime.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fp-timeline__summary">That's it. SAM4 caught it. You planned it. The plant kept running.</div>
+      </div>
+    </section>
+
+    <!-- Section 6: Honest About Limits (white) -->
     <section class="fp-section-white section">
-      <div class="container fp-journey">
-        <h2>From pilot to fleet. Here's how it works.</h2>
-        <div class="fp-journey-steps">
-          <div class="fp-journey-step">
-            <div class="fp-journey-step__num">1</div>
-            <h3>Install</h3>
-            <p>Clip sensors onto power cables at the motor control cabinet. Less than 60 minutes. Same-shift deployment.</p>
-          </div>
-          <div class="fp-journey-step">
-            <div class="fp-journey-step__num">2</div>
-            <h3>Baseline</h3>
-            <p>Platform learns asset signatures over 2-4 weeks.</p>
-          </div>
-          <div class="fp-journey-step">
-            <div class="fp-journey-step__num">3</div>
-            <h3>Detect</h3>
-            <p>Anomaly alerts 4-8 weeks before failure. Every alert reviewed by a Samotics engineer.</p>
-          </div>
-          <div class="fp-journey-step">
-            <div class="fp-journey-step__num">4</div>
-            <h3>Act</h3>
-            <p>Maintenance plans the shutdown on your schedule, not the asset's.</p>
-          </div>
-        </div>
+      <div class="container fp-limits">
+        <h2>What SAM4 won't do.</h2>
+        <p class="body">SAM4 is not a replacement for your experience. It doesn't diagnose every fault type. It doesn't eliminate all maintenance. What it does: give you earlier warning on the faults it can detect, so you have more time to make better decisions. You still need to inspect, verify, and use your judgement. SAM4 gives you better data to work with.</p>
       </div>
     </section>
 
-    <!-- Section 5: Terminal CTA (dark) -->
+    <!-- Section 7: Terminal CTA (dark) -->
     <section class="fp-section-dark section fp-terminal">
       <div class="container">
-        <h2 class="fp-terminal__headline">See what SAM4 saves your plant.</h2>
-        <p class="fp-terminal__subline">Book a demo to see live detection data. Then run a free ROI estimate for your critical assets.</p>
+        <h2 class="fp-terminal__headline">See what the alerts look like.</h2>
+        <p class="fp-terminal__subline">Request a walkthrough of the SAM4 platform. See real alerts, real workflows, and how it connects to your CMMS.</p>
         <div class="fp-terminal__actions">
-          <a href="/tools/roi-calculator" class="btn btn--primary">Calculate Your ROI</a>
-          <a href="/proof/" class="btn btn--ghost">See How Companies Like Yours Saved</a>
+          <a href="/platform/sam4" class="btn btn--primary">See How It Works</a>
+          <a href="/contact?intent=demo" class="btn btn--ghost">Talk to a Reliability Engineer</a>
         </div>
       </div>
     </section>
@@ -663,7 +672,7 @@
     <div class="sam-footer__bottom">
 
       <div class="sam-footer__bottom-left">
-        <span class="sam-footer__copyright">&copy; 2026 Samotics. Built in The Netherlands.</span>
+        <span class="sam-footer__copyright">&copy; 2026 Samotics &middot; Built in The Netherlands</span>
 
         <a href="https://www.linkedin.com/company/samotics/"
            target="_blank"

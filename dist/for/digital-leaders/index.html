@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@carbon/icons@11.52.0/css/carbon-icons.min.css">
   <style>
     /* ========================================
        SHARED TOKENS (sam- prefixed for header/footer)
@@ -310,10 +311,19 @@
       border-radius: var(--radius-default);
       padding: var(--space-8);
       transition: box-shadow var(--motion-normal);
+      display: flex;
+      flex-direction: column;
     }
 
     .fp-card:hover {
       box-shadow: 0 8px 24px rgba(31, 31, 51, 0.12);
+    }
+
+    .fp-card__icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: var(--space-6);
+      color: var(--orange);
     }
 
     .fp-card h3 {
@@ -326,6 +336,7 @@
       font: 400 14px/1.6 var(--font-primary);
       color: var(--comet);
       margin-bottom: var(--space-4);
+      flex: 1;
     }
 
     .fp-card a {
@@ -389,6 +400,13 @@
     .fp-item {
       display: flex;
       flex-direction: column;
+    }
+
+    .fp-item__icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: var(--space-6);
+      color: var(--orange);
     }
 
     .fp-item-label {
@@ -483,38 +501,20 @@
 
 <a href="#main" class="sam-skip-link">Skip to main content</a>
 
-<!-- ========================================
-     HEADER
-     ======================================== -->
+<!-- HEADER -->
 <header class="sam-header" role="banner">
   <div class="sam-header__inner">
     <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
-      <svg class="sam-logo" width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 16C0 7.163 7.163 0 16 0s16 7.163 16 16-7.163 16-16 16S0 24.837 0 16z" fill="white"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M23.636 13.091c0-.992-.814-1.818-1.818-1.818h-6.545v3.636h6.545c1.004 0 1.818-.826 1.818-1.818z" fill="#1F1F33"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.364 19.636h6.545c1.004 0 1.818.826 1.818 1.818 0 .992-.814 1.818-1.818 1.818h-6.545v-3.636z" fill="#FF5429"/>
-        <text x="42" y="24" font-family="IBM Plex Sans, sans-serif" font-size="20" font-weight="600" fill="white" letter-spacing="-0.5">
-          Samotics
-        </text>
-      </svg>
+      <img src="/assets/samotics-logo-white.svg" alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
     </a>
 
     <nav class="sam-nav" role="navigation">
       <div class="sam-nav__item sam-nav__item--has-dropdown">
-        <button class="sam-nav__link">Platform<span class="sam-nav__chevron">▼</span></button>
-        <div class="sam-dropdown">
-          <a href="/platform/sam4" class="sam-dropdown__item">
-            <span class="sam-dropdown__label">SAM4 Platform</span>
-            <span class="sam-dropdown__desc">Enterprise monitoring system</span>
-          </a>
-          <a href="/platform/integrations" class="sam-dropdown__item">
-            <span class="sam-dropdown__label">Integrations</span>
-            <span class="sam-dropdown__desc">CMMS, ERP, and API connections</span>
-          </a>
-          <a href="/platform/security" class="sam-dropdown__item">
-            <span class="sam-dropdown__label">Security</span>
-            <span class="sam-dropdown__desc">Compliance and data protection</span>
-          </a>
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">Platform <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/platform/sam4" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">SAM4 Platform</span><span class="sam-dropdown__desc">Enterprise monitoring system</span></a>
+          <a href="/platform/integrations" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Integrations</span><span class="sam-dropdown__desc">CMMS, ERP, and API connections</span></a>
+          <a href="/platform/security" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Security</span><span class="sam-dropdown__desc">Compliance and data protection</span></a>
         </div>
       </div>
       <a href="/industries" class="sam-nav__link">Industries</a>
@@ -534,10 +534,7 @@
 
   <div class="sam-mobile-menu" id="mobile-menu">
     <div class="sam-mobile-nav__group">
-      <button class="sam-mobile-nav__toggle">
-        Platform
-        <span class="sam-mobile-nav__arrow">▼</span>
-      </button>
+      <button class="sam-mobile-nav__toggle" aria-expanded="false">Platform <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="sam-mobile-nav__sub">
         <a href="/platform/sam4">SAM4 Platform</a>
         <a href="/platform/integrations">Integrations</a>
@@ -553,86 +550,86 @@
   </div>
 </header>
 
-<!-- ========================================
-     BREADCRUMB
-     ======================================== -->
+<!-- BREADCRUMB -->
 <nav class="fp-breadcrumb" aria-label="Breadcrumb">
   <a href="/">Home</a>
   <span> &gt; </span>
   <span>For Digital Leaders</span>
 </nav>
 
-<!-- ========================================
-     MAIN CONTENT
-     ======================================== -->
+<!-- MAIN CONTENT -->
 <main id="main">
 
-  <!-- 1. HERO (dark) -->
+  <!-- HERO (dark) -->
   <section class="fp-section fp-section--dark fp-hero">
-    <div class="fp-overline">For Digital Directors &amp; Technology Leaders</div>
+    <div class="fp-overline">For Enterprise Digital Leaders</div>
     <h1 class="fp-h1">Every rotating asset. One signal. Full visibility.</h1>
-    <p class="fp-subline">Electrical Signature Analysis changes the economics of enterprise condition monitoring. Monitor 100% of your fleet from the electrical cabinet. Eliminate blind spots. Reduce risk. Control costs.</p>
+    <p class="fp-subline">Electrical Signature Analysis scales condition monitoring across your entire fleet. Monitor 100 percent of assets from electrical infrastructure you already own. Eliminate blind spots, reduce risk, control costs.</p>
     <div class="fp-ctas">
-      <a href="/contact?intent=executive" class="fp-btn fp-btn--orange">Talk to Us</a>
-      <a href="/platform/sam4" class="fp-btn fp-btn--ghost">See the Platform</a>
+      <a href="/contact?intent=executive" class="fp-btn fp-btn--orange">Talk to Us About Enterprise Scale</a>
+      <a href="/platform/sam4" class="fp-btn fp-btn--ghost">See the Platform Architecture</a>
     </div>
   </section>
 
-  <!-- 2. THE BLIND SPOT (white) -->
+  <!-- THE BLIND SPOT (white) -->
   <section class="fp-section fp-section--white">
-    <h2 class="fp-h2">The monitoring gap is a strategic risk, not a maintenance problem.</h2>
-    <p class="fp-body">Enterprise fleets operate with a hard constraint: 30-40% of rotating assets sit beyond the reach of traditional sensors. Pumps in remote wells. Motors in distributed plants. Compressors in offshore facilities. Your operators can't place vibration sensors everywhere. But electrical current flows through every motor. Physics doesn't change. It just means you have a fleet-wide blind spot, and with it, a strategic vulnerability.</p>
+    <h2 class="fp-h2">The monitoring gap is a strategic risk. SAM4 is your answer at scale.</h2>
+    <p class="fp-body">Enterprise fleets operate under a hard constraint: 30 to 40 percent of rotating assets sit beyond traditional sensor reach. Remote wells, distributed plants, offshore facilities. Your team can't place sensors everywhere. But electrical current flows through every motor. This is your blind spot. And with ABB's partnership, it's now your competitive advantage. SAM4 deployed across your enterprise becomes a fleet of AI reliability engineers that scale expertise humans cannot.</p>
   </section>
 
-  <!-- 3. THE SHIFT (seashell) -->
+  <!-- SCALE & VISION (seashell) -->
   <section class="fp-section fp-section--seashell">
-    <h2 class="fp-h2">Monitor from the cabinet. Not the machine.</h2>
-    <p class="fp-body">SAM4 runs Electrical Signature Analysis from your motor control centers. No sensors on machines. No wireless networks. No installations. Current signature analysis detects the same faults as vibration before they become failures. But because it reads from existing electrical infrastructure, you reach every motor on your network.</p>
-    <p class="fp-body"><a href="/technology/how-it-works">See how ESA works →</a></p>
+    <h2 class="fp-h2">AI reliability engineers. At 10,000 assets.</h2>
+    <p class="fp-body">SAM4 runs Electrical Signature Analysis from your motor control centers. No hardware retrofits. No installation headaches. Current signature detection identifies the same faults as vibration, earlier. Because it reads from electrical cabinets instead of machine surfaces, you reach every motor in your network. 10,000 assets. 80 customers. 5 continents. One platform.</p>
+    <p class="fp-body"><a href="/technology/how-it-works">See how ESA scales →</a></p>
   </section>
 
-  <!-- 4. ENTERPRISE OUTCOMES (white) -->
+  <!-- ENTERPRISE OUTCOMES (white) -->
   <section class="fp-section fp-section--white">
     <h2 class="fp-h2">Outcomes that matter at board level.</h2>
     <div class="fp-cards">
       <article class="fp-card">
+        <svg class="fp-card__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/><path d="M16 8v8m-8 0h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <h3>Fleet-Wide Visibility</h3>
-        <p>Monitor 100% of your rotating assets. Close the blind spot. One system. One signal.</p>
+        <p>Monitor 100 percent of your rotating assets. Close the blind spot with one system, one signal, one platform.</p>
         <a href="/platform/sam4">Learn more →</a>
       </article>
       <article class="fp-card">
+        <svg class="fp-card__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 20l6-6 4 4 6-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/></svg>
         <h3>Operational Risk Reduction</h3>
-        <p>Detect faults before failure. Eliminate unplanned downtime. Control your maintenance rhythm.</p>
+        <p>Detect faults before failure. Eliminate unplanned downtime. Control your maintenance rhythm across the fleet.</p>
         <a href="/proof">See customer results →</a>
       </article>
       <article class="fp-card">
+        <svg class="fp-card__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 14l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8h16v14H8z" stroke="currentColor" stroke-width="2"/></svg>
         <h3>Maintenance Cost Optimisation</h3>
-        <p>Replace when needed, not by calendar. Extend asset life. Reduce spare parts spending.</p>
+        <p>Replace when needed, not by calendar. Extend asset life. Reduce spare parts and unplanned replacement spending.</p>
         <a href="/proof">See customer results →</a>
       </article>
       <article class="fp-card">
-        <h3>Energy &amp; ESG</h3>
-        <p>Healthy assets run efficiently. Detect efficiency loss early. Improve carbon footprint.</p>
-        <a href="/for/energy-managers">Energy management →</a>
+        <svg class="fp-card__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 4v24m-10-4l10-10 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Energy &amp; ESG Improvement</h3>
+        <p>Healthy assets run efficiently. Detect efficiency loss early. Improve carbon footprint and energy outcomes.</p>
+        <a href="/for/energy-managers">Energy strategy →</a>
       </article>
     </div>
   </section>
 
-  <!-- 5. SCALE PROOF (seashell) -->
+  <!-- SCALE PROOF (seashell) -->
   <section class="fp-section fp-section--seashell">
-    <h2 class="fp-h2">Trusted at enterprise scale.</h2>
+    <h2 class="fp-h2">Trusted at enterprise scale. ABB partnership validated.</h2>
     <div class="fp-stats">
       <div class="fp-stat">
-        <div class="fp-stat-value">200+</div>
-        <div class="fp-stat-label">Sites monitored</div>
-      </div>
-      <div class="fp-stat">
         <div class="fp-stat-value">10,000+</div>
-        <div class="fp-stat-label">Assets under watch</div>
+        <div class="fp-stat-label">Assets monitored</div>
       </div>
       <div class="fp-stat">
-        <div class="fp-stat-value">800%</div>
-        <div class="fp-stat-label">Average ROI</div>
+        <div class="fp-stat-value">80+</div>
+        <div class="fp-stat-label">Customer enterprises</div>
+      </div>
+      <div class="fp-stat">
+        <div class="fp-stat-value">200+</div>
+        <div class="fp-stat-label">Global sites</div>
       </div>
       <div class="fp-stat">
         <div class="fp-stat-value">6-12m</div>
@@ -640,78 +637,72 @@
       </div>
     </div>
     <blockquote class="fp-quote">
-      <p>"Condition monitoring was something we knew we needed, but couldn't achieve with traditional sensors. SAM4 gave us visibility into assets we'd written off. We've found critical faults before they became failures, and the ROI has been dramatic."</p>
-      <div class="fp-quote-attr">VP Operations, Global Manufacturing Company</div>
+      <p>"Condition monitoring was strategically necessary but operationally impossible at our scale. SAM4 gave us visibility into tens of thousands of assets using infrastructure we already owned. The impact on maintenance strategy and unplanned downtime has been transformational."</p>
+      <div class="fp-quote-attr">VP Operations, Global Enterprise Customer</div>
     </blockquote>
-    <p style="text-align: center; margin-top: var(--space-10);"><a href="/proof" style="font-weight: 600; color: var(--blue-600);">See customer results →</a></p>
+    <p style="text-align: center; margin-top: var(--space-10);"><a href="/proof" style="font-weight: 600; color: var(--blue-600);">See enterprise customer stories →</a></p>
   </section>
 
-  <!-- 6. INTEGRATION & ARCHITECTURE (white) -->
+  <!-- INTEGRATION & ARCHITECTURE (white) -->
   <section class="fp-section fp-section--white">
-    <h2 class="fp-h2">Built for your existing stack.</h2>
-    <p class="fp-body">SAM4 integrates into enterprise systems without disruption. API-first architecture. Non-intrusive deployment. CMMS integration for automated workflows.</p>
+    <h2 class="fp-h2">Built for enterprise architecture and governance.</h2>
+    <p class="fp-body">SAM4 integrates into your IT infrastructure without disruption. API-first architecture. Non-intrusive deployment. Enterprise-grade security. CMMS integration for automated workflows.</p>
     <div class="fp-items">
       <div class="fp-item">
+        <svg class="fp-item__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="10" width="10" height="10" stroke="currentColor" stroke-width="2"/><rect x="18" y="10" width="10" height="10" stroke="currentColor" stroke-width="2"/><path d="M9 20v2M23 20v2M9 22h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <div class="fp-item-label">Integration</div>
         <h3>CMMS Integration</h3>
-        <p>Connect to SAP, Maximo, Infor, or any CMMS via API. Alerts become work orders. Condition data flows into maintenance planning.</p>
+        <p>Connect to SAP, Maximo, Infor, or any CMMS via API. Alerts become work orders. Condition data flows into maintenance planning automatically.</p>
         <a href="/platform/integrations">See integrations →</a>
       </div>
       <div class="fp-item">
+        <svg class="fp-item__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 4c6.627 0 12 5.373 12 12s-5.373 12-12 12S4 22.627 4 16 9.373 4 16 4z" stroke="currentColor" stroke-width="2"/><path d="M16 10v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <div class="fp-item-label">Security</div>
         <h3>Enterprise Grade</h3>
-        <p>ISO 27001 certified. SOC 2 Type II compliant. End-to-end encryption. Role-based access control. Audit logs.</p>
+        <p>ISO 27001 and ISO 9001 certified. SOC 2 Type II compliant. End-to-end encryption. Role-based access. Audit logs for governance.</p>
         <a href="/platform/security">See security docs →</a>
       </div>
       <div class="fp-item">
+        <svg class="fp-item__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 16h20M16 6v20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="currentColor"/></svg>
         <div class="fp-item-label">Deployment</div>
-        <h3>Non-Intrusive</h3>
-        <p>MCC-mounted hardware. No production changes. Current transformer taps. Read-only from switchgear. Zero downtime installation.</p>
-        <a href="/platform/sam4">See how it installs →</a>
+        <h3>Non-Intrusive. Scalable.</h3>
+        <p>MCC-mounted hardware. No production changes. Current transformer taps. Read-only from switchgear. Deploy across 10,000 assets with zero downtime.</p>
+        <a href="/platform/sam4">See deployment approach →</a>
       </div>
     </div>
   </section>
 
-  <!-- 7. CUSTOMER VOICE (seashell) -->
+  <!-- CUSTOMER VOICE (seashell) -->
   <section class="fp-section fp-section--seashell">
     <blockquote class="fp-quote" style="border-left-color: var(--orange); margin-top: var(--space-16);">
-      <p>"We manage thousands of distributed assets. Traditional monitoring wasn't economically viable at scale. SAM4 lets us monitor everything from the electrical infrastructure we already have. We've gone from reactive to predictive across our entire fleet."</p>
+      <p>"We manage thousands of distributed assets across continents. Traditional monitoring wasn't economically viable at scale. SAM4 lets us monitor everything from electrical infrastructure we already control. We've moved from reactive maintenance to predictive across the entire fleet."</p>
       <div class="fp-quote-attr">Digital Transformation Director, Multi-Plant Operator</div>
     </blockquote>
-    <p style="text-align: center; margin-top: var(--space-10);"><a href="/proof" style="font-weight: 600; color: var(--blue-600);">See all customer stories →</a></p>
+    <p style="text-align: center; margin-top: var(--space-10);"><a href="/proof" style="font-weight: 600; color: var(--blue-600);">See all enterprise customer stories →</a></p>
   </section>
 
-  <!-- 8. TERMINAL CTA (dark) -->
+  <!-- TERMINAL CTA (dark) -->
   <section class="fp-section fp-section--dark fp-hero">
     <h2 class="fp-h2">See what SAM4 can do for your fleet.</h2>
-    <p class="fp-subline">Schedule a technical briefing with our platform team. Learn how enterprise operators close the blind spot.</p>
+    <p class="fp-subline">Schedule a technical briefing with our platform team. Learn how enterprise operators close the blind spot at scale.</p>
     <div class="fp-ctas">
-      <a href="/contact?intent=executive" class="fp-btn fp-btn--orange">Talk to Us</a>
+      <a href="/contact?intent=executive" class="fp-btn fp-btn--orange">Talk to Us About Enterprise Scale</a>
       <a href="/proof" class="fp-btn fp-btn--ghost">See Customer Results</a>
     </div>
   </section>
 
 </main>
 
-<!-- ========================================
-     FOOTER
-     ======================================== -->
+<!-- FOOTER -->
 <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
   <div class="sam-footer__inner">
-
-    <!-- Top: Logo + Tagline -->
     <div class="sam-footer__top">
       <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
-        <img src="/assets/samotics-logo-white.svg"
-             alt="Samotics" width="140" height="32">
+        <img src="/assets/samotics-logo-white.svg" alt="Samotics" width="140" height="32">
       </a>
       <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
     </div>
-
-    <!-- Nav Grid: 5 columns -->
     <div class="sam-footer__grid">
-
-      <!-- How It Works -->
       <div class="sam-footer__col" data-footer-accordion>
         <h3 class="sam-footer__col-heading">How It Works</h3>
         <div class="sam-footer__col-links">
@@ -722,8 +713,6 @@
           <a href="/technology/detection-boundaries">Detection Boundaries</a>
         </div>
       </div>
-
-      <!-- Platform -->
       <div class="sam-footer__col" data-footer-accordion>
         <h3 class="sam-footer__col-heading">Platform</h3>
         <div class="sam-footer__col-links">
@@ -734,8 +723,6 @@
           <a href="/platform/sam4/#service-model">Service Model</a>
         </div>
       </div>
-
-      <!-- Industries -->
       <div class="sam-footer__col" data-footer-accordion>
         <h3 class="sam-footer__col-heading">Industries</h3>
         <div class="sam-footer__col-links">
@@ -746,8 +733,6 @@
           <a href="/industries/pulp-paper">Pulp &amp; Paper</a>
         </div>
       </div>
-
-      <!-- Proof -->
       <div class="sam-footer__col" data-footer-accordion>
         <h3 class="sam-footer__col-heading">Resources</h3>
         <div class="sam-footer__col-links">
@@ -758,8 +743,6 @@
           <a href="/tools">Tools &amp; Calculators</a>
         </div>
       </div>
-
-      <!-- Company -->
       <div class="sam-footer__col" data-footer-accordion>
         <h3 class="sam-footer__col-heading">Company</h3>
         <div class="sam-footer__col-links">
@@ -767,13 +750,8 @@
           <a href="/contact">Contact</a>
         </div>
       </div>
-
     </div>
-
-    <!-- Divider -->
     <div class="sam-footer__divider"></div>
-
-    <!-- Certification Badges -->
     <div class="sam-footer__certs">
       <a href="/platform/security" aria-label="ISO 27001 certified by DNV">
         <img src="/assets/images/certifications/dnv-iso-27001.webp" alt="DNV ISO 27001 Management System Certificate" width="72" height="72" loading="lazy">
@@ -782,24 +760,15 @@
         <img src="/assets/images/certifications/dnv-iso-9001.webp" alt="DNV ISO 9001 Management System Certificate" width="72" height="72" loading="lazy">
       </a>
     </div>
-
-    <!-- Bottom Bar -->
     <div class="sam-footer__bottom">
-
       <div class="sam-footer__bottom-left">
         <span class="sam-footer__copyright">&copy; 2026 Samotics &middot; Built in The Netherlands</span>
-
-        <a href="https://www.linkedin.com/company/samotics/"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="sam-footer__social"
-           aria-label="Samotics on LinkedIn">
+        <a href="https://www.linkedin.com/company/samotics/" target="_blank" rel="noopener noreferrer" class="sam-footer__social" aria-label="Samotics on LinkedIn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
         </a>
       </div>
-
       <div class="sam-footer__legal">
         <a href="/privacy">Privacy</a>
         <span class="sam-footer__legal-sep">|</span>
@@ -807,15 +776,10 @@
         <span class="sam-footer__legal-sep">|</span>
         <a href="/cookies">Cookies</a>
       </div>
-
     </div>
-
   </div>
 </footer>
 
-<!-- ========================================
-     SHARED HEADER/FOOTER JS
-     ======================================== -->
 <script>
 (function () {
   'use strict';

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samotics for Operations Leaders — ROI from Condition Monitoring</title>
+  <title>Samotics for Reliability Managers — Prove It Works. Scale It Yourself.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
@@ -93,7 +93,7 @@
     .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
     .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
     .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
-    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
     .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
     .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
     .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
@@ -122,7 +122,7 @@
        SHARED FOOTER STYLES
        ======================================== */
 
-    .sam-footer { background: var(--sam-space-cadet); padding-top: 96px; }
+    .sam-footer { background: var(--sam-space-cadet, #1F1F33); padding-top: 96px; }
     .sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
     .sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
     .sam-footer__logo { display: inline-flex; text-decoration: none; }
@@ -180,79 +180,38 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { font-size: 16px; -webkit-font-smoothing: antialiased; }
     body { font-family: var(--font-primary); font-weight: 400; line-height: 1.75; color: var(--space-cadet); background: var(--white); }
-    img { max-width: 100%; display: block; height: auto; }
+    img { max-width: 100%; display: block; }
     a { color: var(--blue-600); text-decoration: none; transition: opacity var(--motion-fast) ease-out; }
     a:hover { opacity: 0.85; }
 
     /* ========================================
-       TYPOGRAPHY
-       ======================================== */
-
-    h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
-    h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
-    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
-    .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: var(--space-3); }
-    .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
-    .data-number { font-family: var(--font-data); font-weight: 700; }
-
-    /* ========================================
-       BUTTONS
-       ======================================== */
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 24px;
-      font-family: var(--font-primary);
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: var(--radius-default);
-      border: 2px solid transparent;
-      cursor: pointer;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: all var(--motion-fast) ease-out;
-    }
-
-    .btn--primary {
-      background: var(--orange);
-      color: var(--white);
-    }
-    .btn--primary:hover {
-      opacity: 0.9;
-    }
-
-    .btn--ghost {
-      background: transparent;
-      color: var(--white);
-      border-color: var(--white);
-    }
-    .btn--ghost:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .btn--ghost-dark {
-      background: transparent;
-      color: var(--space-cadet);
-      border-color: var(--border-grey);
-    }
-    .btn--ghost-dark:hover {
-      background: var(--seashell);
-    }
-
-    /* ========================================
-       CONTAINER & SECTIONS
+       TYPOGRAPHY & LAYOUT
        ======================================== */
 
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
     .section { padding: var(--space-24) 0; }
-    @media (max-width: 991px) {
-      .section { padding: var(--space-16) 0; }
+
+    h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+    h4 { font-size: 20px; font-weight: 600; line-height: 1.4; }
+    .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
+    .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); }
+    .data-number { font-family: var(--font-data); font-weight: 700; }
+
+    .btn {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-primary); font-size: 14px; font-weight: 600;
+      padding: 10px 24px; border-radius: var(--radius-default);
+      border: 2px solid transparent; cursor: pointer;
+      transition: all var(--motion-fast) ease-out; text-decoration: none; white-space: nowrap;
     }
-    @media (max-width: 640px) {
-      .section { padding: var(--space-12) 0; }
-    }
+    .btn--primary { background: var(--orange); color: var(--white); border-color: var(--orange); }
+    .btn--primary:hover { opacity: 0.9; }
+    .btn--ghost { background: transparent; color: var(--white); border-color: var(--white); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+    .btn--ghost-dark { background: transparent; color: var(--space-cadet); border-color: var(--border-grey); }
+    .btn--ghost-dark:hover { background: var(--seashell); opacity: 1; }
 
     /* ========================================
        BREADCRUMB
@@ -266,7 +225,7 @@
     .breadcrumb__current { color: var(--comet); }
 
     /* ========================================
-       PERSONA PAGE SECTIONS
+       PERSONA PAGE SECTIONS (FP- prefix)
        ======================================== */
 
     /* Hero */
@@ -294,11 +253,23 @@
     .fp-problem h2 { margin-bottom: var(--space-6); }
     .fp-problem .body { margin-bottom: 0; }
 
+    /* Detection Proof Cards */
+    .fp-proof { padding: var(--space-24) 0; }
+    .fp-proof h2 { margin-bottom: var(--space-6); }
+    .fp-proof__intro { font-size: 16px; line-height: 1.75; max-width: 65ch; margin-bottom: var(--space-16); color: var(--space-cadet); }
+    .fp-proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
+    .fp-proof-card {
+      background: var(--white); border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default); padding: var(--space-8);
+      display: flex; flex-direction: column; gap: var(--space-4);
+    }
+    .fp-proof-card h3 { font-size: 18px; color: var(--space-cadet); }
+    .fp-proof-card p { font-size: 15px; color: var(--comet); line-height: 1.6; }
+
     /* Results Section */
     .fp-results { padding: var(--space-24) 0; }
-    .fp-results h2 { margin-bottom: var(--space-6); }
-    .fp-results__intro { font-size: 16px; line-height: 1.75; max-width: 65ch; margin-bottom: var(--space-16); color: var(--space-cadet); }
-    .fp-results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
+    .fp-results h2 { margin-bottom: var(--space-16); }
+    .fp-results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-bottom: var(--space-16); }
     .fp-results-card {
       background: var(--white); border: 1px solid var(--border-grey);
       border-radius: var(--radius-default); padding: var(--space-8);
@@ -306,8 +277,6 @@
     }
     .fp-results-card h3 { font-size: 18px; color: var(--space-cadet); }
     .fp-results-card p { font-size: 15px; color: var(--comet); line-height: 1.6; }
-
-    /* KPI Row */
     .fp-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-top: var(--space-16); }
     .fp-kpi-stat {
       background: var(--seashell); border: 1px solid var(--border-grey);
@@ -332,6 +301,32 @@
     .fp-journey-step h3 { font-size: 18px; color: var(--space-cadet); }
     .fp-journey-step p { font-size: 15px; color: var(--comet); line-height: 1.6; }
 
+    /* Boundaries Section */
+    .fp-boundaries { padding: var(--space-24) 0; }
+    .fp-boundaries h2 { margin-bottom: var(--space-6); }
+    .fp-boundaries .body { margin-bottom: 0; }
+    .fp-boundaries__link { margin-top: var(--space-8); }
+    .fp-boundaries__link a { font-weight: 600; color: var(--blue-600); }
+
+    /* Customer Voice */
+    .fp-voice { padding: var(--space-24) 0; }
+    .fp-quote {
+      border-left: 3px solid var(--space-cadet);
+      padding-left: var(--space-8);
+      max-width: 720px;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--space-cadet);
+      margin-bottom: var(--space-6);
+    }
+    .fp-quote__attribution {
+      font-size: 14px;
+      font-style: normal;
+      color: var(--comet);
+      margin-left: var(--space-8);
+    }
+
     /* Terminal CTA */
     .fp-terminal { padding: var(--space-30) 0; text-align: center; }
     .fp-terminal__headline { color: var(--white); margin-bottom: var(--space-6); }
@@ -344,6 +339,7 @@
        ======================================== */
 
     @media (max-width: 1024px) {
+      .fp-proof-grid { grid-template-columns: repeat(2, 1fr); }
       .fp-results-grid { grid-template-columns: repeat(2, 1fr); }
       .fp-journey-steps { grid-template-columns: repeat(2, 1fr); }
       .fp-kpi-row { grid-template-columns: repeat(2, 1fr); }
@@ -356,6 +352,7 @@
       .fp-hero__actions { flex-direction: column; }
       .fp-hero__actions .btn { width: 100%; }
       .section { padding: var(--space-12) 0; }
+      .fp-proof-grid { grid-template-columns: 1fr; }
       .fp-results-grid { grid-template-columns: 1fr; }
       .fp-journey-steps { grid-template-columns: 1fr; }
       .fp-kpi-row { grid-template-columns: repeat(2, 1fr); }
@@ -366,7 +363,7 @@
   </style>
 </head>
 
-<body>
+<body class="sam-home">
 
   <!-- ======== SHARED HEADER ======== -->
   <header class="sam-header" role="navigation" aria-label="Main navigation">
@@ -385,7 +382,7 @@
         <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">Platform <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="sam-dropdown" role="menu">
           <a href="/platform/sam4" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">SAM4 Platform</span><span class="sam-dropdown__desc">Dashboard, diagnostics, and analytics</span></a>
-          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How It Installs</span><span class="sam-dropdown__desc">Less than 60 minutes, back online same shift</span></a>
+          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How It Installs</span><span class="sam-dropdown__desc">&lt;60 minutes, back online same shift</span></a>
           <a href="/platform/security" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Security & Compliance</span><span class="sam-dropdown__desc">ISO 27001, ISO 9001, NIS2 aligned, cellular architecture</span></a>
           <a href="/platform/integrations" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Integrations</span><span class="sam-dropdown__desc">CMMS, SCADA, and API connectivity</span></a>
           <a href="/platform/sam4/#service-model" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Service Model</span><span class="sam-dropdown__desc">Managed monitoring, not just software</span></a>
@@ -404,7 +401,7 @@
       <div class="sam-nav__item sam-nav__item--has-dropdown">
         <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">How It Works <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="sam-dropdown" role="menu">
-          <a href="/blind-spot" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">The Monitoring Blind Spot</span><span class="sam-dropdown__desc">Why 30-40% of critical assets go unmonitored</span></a>
+          <a href="/blind-spot" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">The Monitoring Blind Spot</span><span class="sam-dropdown__desc">Why 30–40% of critical assets go unmonitored</span></a>
           <a href="/technology/esa" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Electrical Signature Analysis</span><span class="sam-dropdown__desc">The science behind SAM4</span></a>
           <a href="/technology/esa-vs-vibration" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">ESA & Vibration</span><span class="sam-dropdown__desc">How ESA and vibration work together</span></a>
           <a href="/technology/how-sam4-works" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How SAM4 Works</span><span class="sam-dropdown__desc">Detection accuracy, methodology, and performance data</span></a>
@@ -462,7 +459,7 @@
       <ul class="breadcrumb__list">
         <li><a href="/" class="breadcrumb__link">Home</a></li>
         <li class="breadcrumb__sep">/</li>
-        <li class="breadcrumb__current">For Operations Leaders</li>
+        <li class="breadcrumb__current">For Reliability Managers</li>
       </ul>
     </nav>
 
@@ -470,12 +467,12 @@
     <section class="fp-hero">
       <div class="container">
         <div class="fp-hero__content">
-          <div class="fp-hero__overline">For Plant Directors & Operations Managers</div>
-          <h1 class="fp-hero__headline">Stop paying for failures you could have prevented.</h1>
-          <p class="fp-hero__subline">SAM4 detects rotating asset failures 4-8 weeks early. Eliminate unplanned downtime, recover lost capacity, and prove 800% ROI to the board.</p>
+          <div class="fp-hero__overline">For Reliability Managers & Maintenance Superintendents</div>
+          <h1 class="fp-hero__headline">Prove it works. Then scale it yourself.</h1>
+          <p class="fp-hero__subline">You know the monitoring gap exists. You've seen the failures nobody predicted. SAM4 gives you the detection data to prove the case internally and the tools to build it for the board.</p>
           <div class="fp-hero__actions">
             <a href="/tools/roi-calculator" class="btn btn--primary">Calculate Your ROI</a>
-            <a href="/proof" class="btn btn--ghost">See How Companies Like Yours Saved</a>
+            <a href="/contact?intent=proof-pack" class="btn btn--ghost">Get the Engineering Proof Pack</a>
           </div>
         </div>
       </div>
@@ -484,88 +481,128 @@
     <!-- Section 2: The Problem (white) -->
     <section class="fp-section-white section">
       <div class="container fp-problem">
-        <h2>Every unplanned shutdown has a price. Most plants pay it repeatedly.</h2>
-        <p class="body">Average cost per failure: 50,000 euros or more. Most industrial plants run blind to 30-40% of critical assets. A single preventable shutdown can erase a year's margin. SAM4 changes that by giving operations teams the foresight to act before motors fail, bearings seize, or gearboxes break.</p>
+        <h2>You can't fix what you can't see. And you can't fund what you can't prove.</h2>
+        <p class="body">30-40% of your rotating assets sit outside your monitoring programme. Submerged pumps, enclosed fans, remote compressors. You know they fail. You know the cost. But without continuous data, you can't build the case for investment. Every unplanned failure weakens your credibility. Every prevented failure strengthens it.</p>
       </div>
     </section>
 
-    <!-- Section 3: Named Results (seashell) -->
+    <!-- Section 3: Detection Proof (seashell) -->
     <section class="fp-section-seashell section">
+      <div class="container fp-proof">
+        <h2>Detection data you can use. Tools you can forward.</h2>
+        <div class="fp-proof-grid">
+          <div class="fp-proof-card">
+            <h3>Detection Proof</h3>
+            <p>SAM4 detects bearing wear, cavitation, misalignment, and electrical faults 4-8 weeks before failure. 0.32% false positive rate. Every alert reviewed by a Samotics diagnostics engineer.</p>
+          </div>
+          <div class="fp-proof-card">
+            <h3>ROI Calculator</h3>
+            <p>Input your asset count, failure frequency, and downtime cost. Get a credible business case you can present to your Plant Director. Based on validated customer data, not assumptions.</p>
+          </div>
+          <div class="fp-proof-card">
+            <h3>Champion Enablement Kit</h3>
+            <p>Internal presentation deck, pre-built business case, competitive positioning, security FAQ. Everything you need to sell condition monitoring to your buying committee.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Named Results (white) -->
+    <section class="fp-section-white section">
       <div class="container fp-results">
         <h2>Named customers. Quantified outcomes.</h2>
         <div class="fp-results-grid">
           <div class="fp-results-card">
             <h3>Yorkshire Water</h3>
-            <p>35 pollution incidents prevented. 70,000 manual inspections replaced. 10 million pounds avoided.</p>
+            <p>35 pollution incidents prevented. 70,000 manual inspections replaced. 10 million pound sole-supplier contract.</p>
+          </div>
+          <div class="fp-results-card">
+            <h3>ArcelorMittal</h3>
+            <p>Bearing fault detected 5 months before failure. 50,000 euros plus avoided per detection. Fleet expanded across European sites.</p>
           </div>
           <div class="fp-results-card">
             <h3>Schiphol Airport</h3>
-            <p>Baggage handling motor bearing degradation caught months early. Unplanned downtime reduced from 3+ hours to zero.</p>
-          </div>
-          <div class="fp-results-card">
-            <h3>Nyrstar</h3>
-            <p>Critical smelter asset failures detected weeks early. Avoided 2.1 million euros in emergency repairs.</p>
+            <p>100% detection accuracy (9 of 9 failures). HVAC motor bearing degradation caught months early.</p>
           </div>
         </div>
 
         <div class="fp-kpi-row">
           <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">800%</div>
-            <div class="fp-kpi-stat__label">ROI (first 3 years)</div>
+            <div class="fp-kpi-stat__number">0.32%</div>
+            <div class="fp-kpi-stat__label">false positive rate</div>
           </div>
           <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">6-12 mo</div>
-            <div class="fp-kpi-stat__label">payback period</div>
-          </div>
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">50K+</div>
-            <div class="fp-kpi-stat__label">saved per detection</div>
-          </div>
-          <div class="fp-kpi-stat">
-            <div class="fp-kpi-stat__number">4-8 wks</div>
+            <div class="fp-kpi-stat__number">4-8w</div>
             <div class="fp-kpi-stat__label">early warning</div>
+          </div>
+          <div class="fp-kpi-stat">
+            <div class="fp-kpi-stat__number">200+</div>
+            <div class="fp-kpi-stat__label">sites</div>
+          </div>
+          <div class="fp-kpi-stat">
+            <div class="fp-kpi-stat__number">80+</div>
+            <div class="fp-kpi-stat__label">customers</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 4: Your Journey (white) -->
-    <section class="fp-section-white section">
+    <!-- Section 5: Your Journey (seashell) -->
+    <section class="fp-section-seashell section">
       <div class="container fp-journey">
         <h2>From pilot to fleet. Here's how it works.</h2>
         <div class="fp-journey-steps">
           <div class="fp-journey-step">
             <div class="fp-journey-step__num">1</div>
-            <h3>Install</h3>
-            <p>Clip sensors onto power cables at the motor control cabinet. Less than 60 minutes. Same-shift deployment.</p>
+            <h3>Validate</h3>
+            <p>Start with 1-10 critical assets via SAM4-X. Predefined success criteria. OpEx funded. Below tender threshold.</p>
           </div>
           <div class="fp-journey-step">
             <div class="fp-journey-step__num">2</div>
-            <h3>Baseline</h3>
-            <p>Platform learns asset signatures over 2-4 weeks.</p>
+            <h3>Prove</h3>
+            <p>First insights in 30 days. Actionable detection in 30-90 days. Quantifiable ROI at 90 days.</p>
           </div>
           <div class="fp-journey-step">
             <div class="fp-journey-step__num">3</div>
-            <h3>Detect</h3>
-            <p>Anomaly alerts 4-8 weeks before failure. Every alert reviewed by a Samotics engineer.</p>
+            <h3>Equip</h3>
+            <p>Use the Champion Enablement Kit to present findings to your Plant Director and buying committee.</p>
           </div>
           <div class="fp-journey-step">
             <div class="fp-journey-step__num">4</div>
-            <h3>Act</h3>
-            <p>Maintenance plans the shutdown on your schedule, not the asset's.</p>
+            <h3>Scale</h3>
+            <p>Documented deployment playbook for fleet expansion. Multi-site rollout with enterprise governance.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 5: Terminal CTA (dark) -->
+    <!-- Section 6: Honest Boundaries (white) -->
+    <section class="fp-section-white section">
+      <div class="container fp-boundaries">
+        <h2>What ESA detects. And where it doesn't.</h2>
+        <p class="body">ESA monitors through the motor's electrical signature. It detects electrical faults (stator winding, rotor bar, eccentricity), process faults (cavitation, blockage), and late-stage mechanical degradation. It works on any AC motor connected to the MCC. Minimum 0.75 kW. Baseline: 2-4 weeks. VFD-driven motors require additional signal conditioning. ESA does not replace vibration monitoring on accessible, high-criticality assets where vibration has a direct measurement path. It extends monitoring to everything vibration cannot reach.</p>
+        <div class="fp-boundaries__link">
+          <a href="/technology/detection-boundaries">See full detection boundaries →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Customer Voice (seashell) -->
+    <section class="fp-section-seashell section">
+      <div class="container fp-voice">
+        <div class="fp-quote">We started with 12 pumps on a pilot. After six months and three confirmed fault detections, we expanded to 400 assets across four sites. The accuracy convinced our maintenance team.</div>
+        <div class="fp-quote__attribution">Senior Reliability Engineer, Industrial Customer</div>
+      </div>
+    </section>
+
+    <!-- Section 8: Terminal CTA (dark) -->
     <section class="fp-section-dark section fp-terminal">
       <div class="container">
-        <h2 class="fp-terminal__headline">See what SAM4 saves your plant.</h2>
-        <p class="fp-terminal__subline">Book a demo to see live detection data. Then run a free ROI estimate for your critical assets.</p>
+        <h2 class="fp-terminal__headline">Start with one asset. Prove it on ten.</h2>
+        <p class="fp-terminal__subline">SAM4-X is a paid validation programme. 1-10 critical assets. Predefined success criteria. The goal: portable proof you can use to build the enterprise case.</p>
         <div class="fp-terminal__actions">
           <a href="/tools/roi-calculator" class="btn btn--primary">Calculate Your ROI</a>
-          <a href="/proof/" class="btn btn--ghost">See How Companies Like Yours Saved</a>
+          <a href="/contact/asset-audit" class="btn btn--ghost">Start Your Asset Audit</a>
         </div>
       </div>
     </section>
@@ -663,7 +700,7 @@
     <div class="sam-footer__bottom">
 
       <div class="sam-footer__bottom-left">
-        <span class="sam-footer__copyright">&copy; 2026 Samotics. Built in The Netherlands.</span>
+        <span class="sam-footer__copyright">&copy; 2026 Samotics &middot; Built in The Netherlands</span>
 
         <a href="https://www.linkedin.com/company/samotics/"
            target="_blank"
