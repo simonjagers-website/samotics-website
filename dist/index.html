@@ -288,6 +288,8 @@
     .persona-card__question { font-size: 20px; font-weight: 600; color: var(--space-cadet); line-height: 1.3; }
     .persona-card__desc { font-size: 14px; color: var(--comet); line-height: 1.6; flex: 1; }
     .persona-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+    .persona-card__icon { width: 48px; height: 48px; min-width: 48px; background: var(--seashell); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; color: var(--space-cadet); margin-bottom: var(--space-2); }
+    .persona-card__icon svg { width: 24px; height: 24px; fill: currentColor; }
 
     /* ========================================
        SEASHELL ZONE A: METHOD + ESA STEPS + VALUE PROPS
@@ -303,7 +305,8 @@
     .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-6); position: relative; }
     .steps::before { content: ''; position: absolute; top: 36px; left: 40px; right: 40px; height: 2px; background: var(--border-grey); z-index: 0; }
     .step { position: relative; z-index: 1; text-align: center; }
-    .step__icon { width: 72px; height: 72px; background: var(--seashell); border: 1px solid var(--border-grey); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); }
+    .step__icon { width: 72px; height: 72px; background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); }
+    .step__icon svg { width: 36px; height: 36px; fill: var(--space-cadet); }
     .step__icon img { width: 56px; height: 56px; }
     .step__number { width: 40px; height: 40px; border-radius: 50%; background: var(--space-cadet); color: var(--white); font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); }
     .step__title { font-size: 14px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-2); }
@@ -377,7 +380,39 @@
     .industry-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
     .industry-card__title { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
     .industry-card__proof { font-size: 14px; color: var(--comet); line-height: 1.6; flex: 1; }
+    .industry-card__icon { width: 44px; height: 44px; min-width: 44px; background: var(--seashell); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; color: var(--space-cadet); margin-bottom: var(--space-2); }
+    .industry-card__icon svg { width: 22px; height: 22px; fill: currentColor; }
     .industry-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+
+    /* ========================================
+       BENEFITS
+       ======================================== */
+
+    .benefits { background: var(--white); }
+    .benefits h2 { margin-bottom: var(--space-3); }
+    .benefits__subtitle { color: var(--comet); max-width: 65ch; margin-bottom: var(--space-10); }
+    .benefits__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+    .benefit-card { background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default); padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-3); text-decoration: none; color: inherit; transition: box-shadow var(--motion-normal) ease-out; }
+    .benefit-card:hover { box-shadow: var(--shadow-sm); opacity: 1; }
+    .benefit-card__icon { width: 48px; height: 48px; min-width: 48px; background: var(--space-cadet); border-radius: var(--radius-default); display: flex; align-items: center; justify-content: center; color: var(--white); margin-bottom: var(--space-2); }
+    .benefit-card__icon svg { width: 24px; height: 24px; fill: currentColor; }
+    .benefit-card__title { font-size: 18px; font-weight: 600; color: var(--space-cadet); }
+    .benefit-card__desc { font-size: 14px; color: var(--comet); line-height: 1.6; flex: 1; }
+    .benefit-card__link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+
+    /* ========================================
+       FAQ
+       ======================================== */
+
+    .faq { background: var(--white); }
+    .faq h2 { margin-bottom: var(--space-8); }
+    .faq__list { max-width: 800px; }
+    .faq__item { border-bottom: 1px solid var(--border-grey); }
+    .faq__item summary { font-size: 16px; font-weight: 600; color: var(--space-cadet); padding: var(--space-6) 0; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+    .faq__item summary::-webkit-details-marker { display: none; }
+    .faq__item summary::after { content: '+'; font-size: 20px; font-weight: 400; color: var(--comet); transition: transform var(--motion-fast) ease-out; flex-shrink: 0; }
+    .faq__item[open] summary::after { content: '\2212'; color: var(--orange); }
+    .faq__item p { font-size: 15px; color: var(--comet); line-height: 1.7; padding: 0 0 var(--space-6) 0; max-width: 720px; }
 
     /* ========================================
        PLATFORM PREVIEW
@@ -420,6 +455,7 @@
     .logo-strip-zone { background: var(--white); padding: var(--space-4) 0; }
     .logo-strip-zone .proof__logos { justify-content: center; gap: var(--space-8); }
     .logo-strip-zone .proof__logo-img { height: 24px; opacity: 0.55; filter: grayscale(100%); }
+    .logo-strip__label { font-size: 14px; font-weight: 500; color: var(--comet); text-align: center; margin-bottom: var(--space-4); }
     .stats-zone { background: var(--seashell); }
     .stats-zone .hero__stats-heading { margin-top: 0; border-top: none; padding-top: 0; }
     .stats-zone .hero__stats-heading h3 { color: var(--space-cadet); }
