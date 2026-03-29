@@ -940,6 +940,109 @@
       display: block;
     }
 
+    /* Inline security docs form */
+    .sam-sec-form {
+      max-width: 640px;
+    }
+    .sam-sec-form__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+    .sam-sec-form__field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sam-sec-form__field--full {
+      grid-column: 1 / -1;
+    }
+    .sam-sec-form__label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--space-cadet);
+      letter-spacing: 0.01em;
+    }
+    .sam-sec-form__input {
+      font-family: var(--font-primary);
+      font-size: 15px;
+      padding: 10px 12px;
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      color: var(--space-cadet);
+      background: var(--white);
+      transition: border-color var(--motion-fast) ease-out;
+    }
+    .sam-sec-form__input:focus {
+      outline: none;
+      border-color: var(--space-cadet);
+    }
+    .sam-sec-form__input::placeholder {
+      color: var(--comet);
+      font-weight: 400;
+    }
+    .sam-sec-form__checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-top: var(--space-2);
+    }
+    .sam-sec-form__checkbox {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: 15px;
+      color: var(--space-cadet);
+      cursor: pointer;
+    }
+    .sam-sec-form__checkbox input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--orange);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .sam-sec-form__submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      background: var(--orange);
+      color: var(--white);
+      font: 600 15px/1 var(--font-primary);
+      border: none;
+      border-radius: var(--radius-default);
+      cursor: pointer;
+      transition: background var(--motion-fast) ease-out;
+      margin-top: var(--space-6);
+    }
+    .sam-sec-form__submit:hover {
+      background: #D7411B;
+    }
+    .sam-sec-form__note {
+      font-size: 13px;
+      color: var(--comet);
+      margin-top: var(--space-3);
+    }
+    .sam-sec-form__success {
+      display: none;
+      padding: var(--space-6);
+      background: var(--seashell);
+      border-radius: var(--radius-default);
+      text-align: center;
+    }
+    .sam-sec-form__success.is-visible {
+      display: block;
+    }
+    .sam-sec-form__success p {
+      margin-bottom: var(--space-2);
+    }
+    @media (max-width: 768px) {
+      .sam-sec-form__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .sam-cert-grid,
@@ -1419,8 +1522,72 @@
       </div>
     </section>
 
-    <!-- 8. IT/OT GATEKEEPER CHECKLIST (white bg) -->
-    <section class="sam-section">
+    <!-- 8. REQUEST SECURITY DOCS — inline form (white bg) -->
+    <section class="sam-section" id="request-docs">
+      <div class="sam-container">
+        <div class="sam-two-col">
+          <div>
+            <h2 class="sam-section__title" style="text-align:left;">Request security documentation</h2>
+            <p style="color:var(--comet);font-size:15px;line-height:1.6;max-width:480px;">Select the documents you need. We deliver them immediately. No sales follow-up unless you want it.</p>
+            <p class="sam-sec-form__note" style="margin-top:var(--space-6);">All documents are shared under NDA. Work email required.</p>
+          </div>
+          <div>
+            <form class="sam-sec-form" id="security-docs-form" action="/contact?intent=security-docs" method="POST">
+              <div class="sam-sec-form__grid">
+                <div class="sam-sec-form__field">
+                  <label class="sam-sec-form__label" for="sec-fname">First name</label>
+                  <input class="sam-sec-form__input" type="text" id="sec-fname" name="first_name" required placeholder="Jane">
+                </div>
+                <div class="sam-sec-form__field">
+                  <label class="sam-sec-form__label" for="sec-lname">Last name</label>
+                  <input class="sam-sec-form__input" type="text" id="sec-lname" name="last_name" required placeholder="van der Berg">
+                </div>
+                <div class="sam-sec-form__field">
+                  <label class="sam-sec-form__label" for="sec-email">Work email</label>
+                  <input class="sam-sec-form__input" type="email" id="sec-email" name="email" required placeholder="jane@company.com">
+                </div>
+                <div class="sam-sec-form__field">
+                  <label class="sam-sec-form__label" for="sec-company">Company</label>
+                  <input class="sam-sec-form__input" type="text" id="sec-company" name="company" required placeholder="Acme Industries">
+                </div>
+                <div class="sam-sec-form__field sam-sec-form__field--full">
+                  <label class="sam-sec-form__label" for="sec-title">Job title</label>
+                  <input class="sam-sec-form__input" type="text" id="sec-title" name="job_title" required placeholder="CISO / IT Director / OT Security Manager">
+                </div>
+                <div class="sam-sec-form__field sam-sec-form__field--full">
+                  <label class="sam-sec-form__label">Which documents do you need?</label>
+                  <div class="sam-sec-form__checkboxes">
+                    <label class="sam-sec-form__checkbox">
+                      <input type="checkbox" name="docs" value="soc2"> SOC 2 Type II Report
+                    </label>
+                    <label class="sam-sec-form__checkbox">
+                      <input type="checkbox" name="docs" value="iso27001"> ISO 27001 Certificate
+                    </label>
+                    <label class="sam-sec-form__checkbox">
+                      <input type="checkbox" name="docs" value="architecture"> Architecture Diagram
+                    </label>
+                    <label class="sam-sec-form__checkbox">
+                      <input type="checkbox" name="docs" value="nis2"> NIS2 Compliance Summary
+                    </label>
+                    <label class="sam-sec-form__checkbox">
+                      <input type="checkbox" name="docs" value="all"> All of the above
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="sam-sec-form__submit">Request Security Docs</button>
+            </form>
+            <div class="sam-sec-form__success" id="security-docs-success">
+              <p style="font-weight:600;font-size:18px;color:var(--space-cadet);">Downloading now.</p>
+              <p style="color:var(--comet);font-size:15px;">Check your inbox for the full security documentation package.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. IT/OT GATEKEEPER CHECKLIST (seashell bg) -->
+    <section class="sam-section" style="background:var(--seashell);">
       <div class="sam-container">
         <div class="sam-two-col">
           <div>
@@ -1441,8 +1608,8 @@
       </div>
     </section>
 
-    <!-- 9. SECURITY FAQ (seashell bg) -->
-    <section class="sam-section" style="background:var(--seashell);">
+    <!-- 10. SECURITY FAQ (white bg) -->
+    <section class="sam-section">
       <div class="sam-container">
         <h2 class="sam-section__title">Security FAQ</h2>
         <div class="sam-faq-list" style="margin-top:var(--space-8);">
@@ -1470,7 +1637,7 @@
       </div>
     </section>
 
-    <!-- 10. TERMINAL CTA (dark bg) — centre-aligned -->
+    <!-- 11. TERMINAL CTA (dark bg) — centre-aligned -->
     <section class="sam-section sam-section--dark" style="background:var(--space-cadet, #1F1F33);text-align:center;">
       <div class="sam-container" style="text-align:center;">
         <h2 class="sam-section__title" style="margin-bottom:var(--space-4);color:#fff;text-align:center;">Request security documentation</h2>
@@ -1702,6 +1869,44 @@
           col.classList.toggle('is-open');
         });
       });
+
+      // Security docs form: "All of the above" toggle
+      var secForm = document.getElementById('security-docs-form');
+      if (secForm) {
+        var allCheckbox = secForm.querySelector('input[value="all"]');
+        var docCheckboxes = secForm.querySelectorAll('input[name="docs"]:not([value="all"])');
+
+        if (allCheckbox) {
+          allCheckbox.addEventListener('change', function () {
+            docCheckboxes.forEach(function (cb) { cb.checked = allCheckbox.checked; });
+          });
+          docCheckboxes.forEach(function (cb) {
+            cb.addEventListener('change', function () {
+              allCheckbox.checked = Array.from(docCheckboxes).every(function (c) { return c.checked; });
+            });
+          });
+        }
+
+        // Form submission (client-side only — wire to backend later)
+        secForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var checked = secForm.querySelectorAll('input[name="docs"]:checked');
+          if (checked.length === 0) {
+            alert('Please select at least one document.');
+            return;
+          }
+          // Hide form, show success
+          secForm.style.display = 'none';
+          var success = document.getElementById('security-docs-success');
+          if (success) success.classList.add('is-visible');
+
+          // Track event (placeholder for GTM)
+          if (typeof dataLayer !== 'undefined') {
+            var docs = Array.from(checked).map(function (c) { return c.value; });
+            dataLayer.push({ event: 'security_docs_download', documents: docs });
+          }
+        });
+      }
     })();
   </script>
 </body>
