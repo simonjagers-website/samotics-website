@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="30–40% of critical rotating equipment has no condition monitoring. Submerged pumps, enclosed drives, ATEX motors — invisible until they fail. See the cost and the fix.">
-  <title>The Monitoring Blind Spot | Samotics</title>
-  <link rel="canonical" href="https://samoticstestpage.com/problem/">
+  <meta name="description" content="30–40% of critical rotating assets have no condition monitoring. The visibility layer reads the electrical signature of any AC motor from the motor control cabinet — no sensors on the asset.">
+  <title>The Visibility Layer | Samotics</title>
+  <link rel="canonical" href="https://samoticstestpage.com/problem/visibility-layer/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
@@ -40,10 +40,11 @@
       --white: #FFFFFF;
       --seashell: #F8F5F2;
       --orange: #FF5429;
+      --orange-hover: #E04A24;
       --comet: #6B6B7F;
       --border-grey: #E5E7EB;
       --blue-600: #005CBA;
-      --dark-blue-300: #A0A0B8;
+      --dark-blue-300: #BAC5E7;
 
       --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-data: 'JetBrains Mono', 'Consolas', monospace;
@@ -331,14 +332,15 @@
 
     h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
     h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
-    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.35; }
     h4 { font-size: 20px; font-weight: 600; line-height: 1.4; }
-    .body-large { font-size: 18px; line-height: 1.6; }
+    .body-large { font-size: 18px; line-height: 1.75; }
     .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
     .caption { font-size: 14px; color: var(--comet); }
     .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); }
     .data-number { font-family: var(--font-data); font-weight: 700; }
     .text-link { font-size: 14px; font-weight: 600; color: var(--blue-600); }
+    .text-link:hover { opacity: 0.85; }
 
     /* ========================================
        BUTTONS
@@ -352,258 +354,194 @@
       transition: all var(--motion-fast) ease-out; text-decoration: none; white-space: nowrap;
     }
     .btn--primary { background: var(--orange); color: var(--white); border-color: var(--orange); }
-    .btn--primary:hover { opacity: 0.9; }
+    .btn--primary:hover { background: var(--orange-hover); border-color: var(--orange-hover); opacity: 1; }
     .btn--ghost { background: transparent; color: var(--white); border-color: var(--white); }
     .btn--ghost:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+    .btn--ghost-dark { background: transparent; color: var(--space-cadet); border-color: var(--border-grey); }
+    .btn--ghost-dark:hover { background: var(--seashell); opacity: 1; }
 
     /* ========================================
        SECTION 1: HERO (DARK)
        ======================================== */
 
     .hero {
-      background: var(--space-cadet) url('/assets/images/heroes/hero-problem-v3.jpg') center/cover no-repeat;
+      background: var(--space-cadet) url('/assets/images/heroes/hero-visibility-layer.jpg') center/cover no-repeat;
       padding: calc(var(--space-30) + var(--sam-header-h, 80px)) 0 var(--space-30);
       color: var(--white); position: relative; overflow: hidden;
     }
     .hero__bg {
       position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(31,31,51,0.88) 0%, rgba(31,31,51,0.72) 50%, rgba(31,31,51,0.55) 100%);
+      background: linear-gradient(90deg, rgba(31,31,51,0.92) 0%, rgba(31,31,51,0.78) 50%, rgba(31,31,51,0.55) 100%);
       z-index: 1;
     }
     .hero .container { position: relative; z-index: 2; }
     .hero__content { max-width: 640px; }
     .hero__overline { margin-bottom: var(--space-4); }
-    .hero__headline { color: var(--white); margin-bottom: var(--space-6); }
-    .hero__lead { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); max-width: 56ch; }
+    .hero__headline { color: var(--white); margin-bottom: var(--space-6); max-width: 18ch; }
+    .hero__lead { font-size: 18px; color: var(--dark-blue-300); line-height: 1.75; margin-bottom: var(--space-8); max-width: 56ch; }
     .hero__actions { display: flex; gap: var(--space-3); align-items: center; }
 
     /* ========================================
-       SECTION 2: STATS BAR (WHITE)
+       SECTION 2: THREE BARRIERS (WHITE)
        ======================================== */
 
-    .stats-bar { background: var(--white); }
-    .stats-bar__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-8); }
-    .stat { text-align: center; padding: var(--space-6) 0; }
-    .stat__number { font-family: var(--font-data); font-weight: 700; font-size: 48px; line-height: 1; color: var(--space-cadet); margin-bottom: var(--space-2); }
-    .stat__label { font-size: 14px; color: var(--comet); line-height: 1.4; }
-    .stat__source { font-size: 12px; color: var(--dark-blue-300); margin-top: 4px; }
+    .barriers { background: var(--white); }
+    .barriers__header { margin-bottom: var(--space-10); }
+    .barriers__header h2 { margin-bottom: var(--space-3); }
+    .barriers__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-bottom: var(--space-10); }
 
-    /* ========================================
-       SECTION 3: HOW COMPANIES HANDLE IT (SEASHELL)
-       ======================================== */
-
-    .methods { background: var(--seashell); }
-    .methods__header { margin-bottom: var(--space-10); }
-    .methods__lead { color: var(--comet); max-width: 65ch; margin-top: var(--space-3); }
-    .methods__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
-
-    .method-card {
-      background: var(--white); border: 1px solid var(--border-grey);
-      border-radius: var(--radius-default); padding: 0; overflow: hidden;
-      display: flex; flex-direction: column;
-      transition: box-shadow var(--motion-normal) ease-out;
-    }
-    .method-card:hover { box-shadow: var(--shadow-sm); }
-    .method-card__icon-bar {
-      height: 56px; background: var(--space-cadet);
-      display: flex; align-items: center; justify-content: center; gap: var(--space-3);
-      color: var(--white); font-size: 14px; font-weight: 600;
-    }
-    .method-card__icon-bar svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .method-card__body { padding: var(--space-6) var(--space-8) var(--space-8); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
-    .method-card__desc { font-size: 14px; color: var(--comet); line-height: 1.6; flex: 1; }
-    .method-card__limitation {
-      font-size: 13px; line-height: 1.5; color: var(--orange);
-      padding-top: var(--space-3); border-top: 1px solid var(--border-grey); font-weight: 500;
-    }
-
-    /* ========================================
-       SECTION 4: THE PROXIMITY PENALTY (WHITE)
-       ======================================== */
-
-    .proximity { background: var(--white); }
-    .proximity__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: start; }
-    .proximity__text h2 { margin-bottom: var(--space-6); }
-    .proximity__text p { font-size: 16px; line-height: 1.75; max-width: 65ch; color: var(--space-cadet); margin-bottom: var(--space-4); }
-    .proximity__text p:last-child { margin-bottom: 0; }
-
-    .callout {
-      background: var(--seashell); border: 1px solid var(--border-grey);
-      border-radius: var(--radius-default); padding: var(--space-8);
-    }
-    .callout__title { font-size: 16px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-6); }
-    .callout__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-4); }
-    .callout__item { display: flex; gap: var(--space-3); align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--space-cadet); }
-    .callout__icon { width: 20px; height: 20px; min-width: 20px; margin-top: 1px; color: var(--orange); }
-    .callout__footer { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--border-grey); font-size: 14px; font-weight: 600; color: var(--space-cadet); }
-
-    /* ========================================
-       SECTION 5: ESA SOLVES THE BLIND SPOT (SEASHELL)
-       ======================================== */
-
-    .esa-approach { background: var(--seashell); }
-    .esa-approach__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
-    .esa-approach__text h2 { margin-bottom: var(--space-6); }
-    .esa-approach__text p { font-size: 16px; line-height: 1.75; max-width: 65ch; color: var(--space-cadet); margin-bottom: var(--space-4); }
-    .esa-approach__bullets { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-4); margin-bottom: var(--space-6); }
-    .esa-approach__bullet { display: flex; gap: var(--space-3); align-items: flex-start; font-size: 15px; line-height: 1.5; color: var(--space-cadet); }
-    .esa-approach__bullet-icon { width: 20px; height: 20px; min-width: 20px; margin-top: 2px; color: var(--blue-600); }
-    .esa-approach__visual {
-      width: 100%;
-      background: var(--white); border: 1px solid var(--border-grey); border-radius: var(--radius-default);
+    .barrier-card {
       padding: var(--space-8);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      display: flex; flex-direction: column; gap: var(--space-3);
     }
-    .esa-flow { display: flex; flex-direction: column; gap: 0; }
-    .esa-flow__step { display: flex; gap: var(--space-4); align-items: flex-start; position: relative; }
-    .esa-flow__rail { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 48px; }
-    .esa-flow__icon {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: var(--seashell); border: 2px solid var(--border-grey);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; position: relative; z-index: 1;
+    .barrier-card__label {
+      font-size: 14px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--comet);
     }
-    .esa-flow__icon svg { width: 22px; height: 22px; }
-    .esa-flow__line {
-      width: 2px; flex: 1; min-height: 24px;
-      background: var(--border-grey);
+    .barrier-card__title { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
+    .barrier-card__desc { font-size: 16px; line-height: 1.75; color: var(--space-cadet); max-width: 65ch; }
+
+    .barriers__conclusion {
+      font-size: 18px; font-weight: 600; line-height: 1.75; color: var(--space-cadet);
+      max-width: 65ch; margin-bottom: var(--space-6);
     }
-    .esa-flow__step:last-child .esa-flow__line { display: none; }
-    .esa-flow__content { padding: 10px 0 28px 0; }
-    .esa-flow__step:last-child .esa-flow__content { padding-bottom: 0; }
-    .esa-flow__label { font-weight: 600; font-size: 15px; color: var(--space-cadet); margin-bottom: 4px; }
-    .esa-flow__desc { font-size: 14px; line-height: 1.6; color: var(--comet); max-width: 30ch; }
-    .esa-flow__step--active .esa-flow__icon {
-      background: var(--space-cadet); border-color: var(--space-cadet);
-    }
-    .esa-flow__step--active .esa-flow__icon svg { stroke: var(--white); }
 
     /* ========================================
-       SECTION 6: ASSETS MOST AFFECTED (WHITE)
+       SECTION 3: WHY IT MATTERS NOW (WHITE)
        ======================================== */
 
-    .affected { background: var(--white); }
-    .affected__header { margin-bottom: var(--space-10); }
-    .affected__lead { color: var(--comet); max-width: 65ch; margin-top: var(--space-3); }
-    .affected__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
-
-    .affected-card {
-      background: var(--seashell); border-left: 4px solid var(--orange);
-      border-radius: var(--radius-default); padding: var(--space-6) var(--space-8);
-      transition: box-shadow var(--motion-normal) ease-out;
-    }
-    .affected-card:hover { box-shadow: var(--shadow-sm); }
-    .affected-card__title { font-size: 16px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-2); }
-    .affected-card__desc { font-size: 14px; color: var(--comet); line-height: 1.5; }
+    .digitalisation { background: var(--white); padding-top: 0; }
+    .digitalisation h2 { margin-bottom: var(--space-6); }
+    .digitalisation__body { max-width: 65ch; }
+    .digitalisation__body p { font-size: 16px; line-height: 1.75; color: var(--space-cadet); margin-bottom: var(--space-4); }
+    .digitalisation__body p:last-child { margin-bottom: 0; }
 
     /* ========================================
-       SECTION 7: THE ECONOMICS (SEASHELL)
+       SECTION 4: WHAT THE VISIBILITY LAYER IS (SEASHELL)
        ======================================== */
 
-    .economics { background: var(--seashell); }
-    .economics__header { margin-bottom: var(--space-10); }
-    .economics__lead { color: var(--comet); max-width: 65ch; margin-top: var(--space-3); }
-    .economics__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+    .vlayer { background: var(--seashell); }
+    .vlayer__header { margin-bottom: var(--space-10); }
+    .vlayer__header h2 { margin-bottom: var(--space-6); }
+    .vlayer__intro { font-size: 16px; line-height: 1.75; color: var(--space-cadet); max-width: 65ch; margin-bottom: var(--space-10); }
+    .vlayer__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-bottom: var(--space-10); }
 
-    .economics__column {
+    .vlayer-card {
+      background: var(--white);
+      padding: var(--space-8);
+      border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default);
+      display: flex; flex-direction: column; gap: var(--space-3);
+    }
+    .vlayer-card__title { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
+    .vlayer-card__desc { font-size: 16px; line-height: 1.75; color: var(--space-cadet); }
+
+    .vlayer__links { display: flex; gap: var(--space-6); align-items: center; }
+
+    /* ========================================
+       SECTION 5: WHAT IT SEES (WHITE)
+       ======================================== */
+
+    .detection { background: var(--white); }
+    .detection__header { margin-bottom: var(--space-10); }
+    .detection__header h2 { margin-bottom: var(--space-3); }
+
+    .detection__streams { display: flex; flex-direction: column; gap: var(--space-10); }
+
+    .stream { }
+    .stream__title { font-size: 24px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-4); }
+    .stream__body { max-width: 65ch; }
+    .stream__body p { font-size: 16px; line-height: 1.75; color: var(--space-cadet); margin-bottom: var(--space-4); }
+    .stream__body p:last-child { margin-bottom: 0; }
+
+    .detection__complement {
+      margin-top: var(--space-10); padding-top: var(--space-10);
+      border-top: 1px solid var(--border-grey); max-width: 65ch;
+    }
+    .detection__complement p { font-size: 16px; line-height: 1.75; color: var(--space-cadet); margin-bottom: var(--space-4); }
+    .detection__complement p:last-child { margin-bottom: 0; }
+
+    /* ========================================
+       SECTION 6: PROOF STRIP (WHITE)
+       ======================================== */
+
+    .proof { background: var(--white); padding-top: 0; }
+    .proof__header { margin-bottom: var(--space-10); }
+    .proof__header h2 { margin-bottom: var(--space-3); }
+    .proof__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-bottom: var(--space-6); }
+
+    .proof-card {
       background: var(--white); border: 1px solid var(--border-grey);
-      border-radius: var(--radius-default); overflow: hidden;
-    }
-    .economics__column-header {
-      padding: var(--space-4) var(--space-6);
-      font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
-    }
-    .economics__column--cost .economics__column-header { background: var(--space-cadet); color: var(--white); }
-    .economics__column--benefit .economics__column-header { background: var(--blue-600); color: var(--white); }
-    .economics__rows { padding: var(--space-4) 0; }
-    .economics__row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: var(--space-3) var(--space-6); border-bottom: 1px solid var(--border-grey);
-    }
-    .economics__row:last-child { border-bottom: none; }
-    .economics__row-label { font-size: 14px; color: var(--comet); }
-    .economics__row-value { font-family: var(--font-data); font-weight: 700; font-size: 18px; color: var(--space-cadet); }
-    .economics__column--benefit .economics__row-value { color: var(--blue-600); }
-
-    .economics__quote {
-      margin-top: var(--space-10); border-left: 3px solid var(--space-cadet);
-      padding-left: var(--space-8); max-width: 720px;
-    }
-    .economics__quote blockquote { font-size: 18px; font-style: italic; line-height: 1.6; color: var(--space-cadet); margin-bottom: var(--space-3); }
-    .economics__quote cite { font-size: 14px; font-style: normal; color: var(--comet); }
-
-    /* ========================================
-       SECTION 8: FIT CRITERIA (WHITE)
-       ======================================== */
-
-    .fit { background: var(--white); }
-    .fit__header { margin-bottom: var(--space-10); }
-    .fit__lead { color: var(--comet); max-width: 65ch; margin-top: var(--space-3); }
-    .fit__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
-
-    .fit-card {
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      padding: var(--space-6); background: var(--seashell); border-radius: var(--radius-default);
+      border-radius: var(--radius-default); padding: var(--space-8);
+      display: flex; flex-direction: column; gap: var(--space-3);
       transition: box-shadow var(--motion-normal) ease-out;
     }
-    .fit-card:hover { box-shadow: var(--shadow-sm); }
-    .fit-card__icon {
-      width: 48px; height: 48px; margin-bottom: var(--space-4);
-      background: var(--space-cadet); border-radius: var(--radius-default);
-      display: flex; align-items: center; justify-content: center; color: var(--white);
+    .proof-card:hover { box-shadow: var(--shadow-sm); }
+    .proof-card__customer { font-size: 20px; font-weight: 600; color: var(--space-cadet); }
+    .proof-card__industry { font-size: 14px; font-weight: 600; color: var(--comet); text-transform: uppercase; letter-spacing: 0.04em; }
+    .proof-card__outcome { font-size: 16px; line-height: 1.75; color: var(--space-cadet); flex: 1; }
+
+    .proof__row2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); max-width: calc((var(--max-width) - var(--space-6)) / 3 * 2 + var(--space-6)); margin-bottom: var(--space-10); }
+
+    .proof__actions { display: flex; gap: var(--space-4); align-items: center; }
+
+    /* ========================================
+       SECTION 7: ARCHITECTURAL SEED (SEASHELL)
+       ======================================== */
+
+    .seed { background: var(--seashell); }
+    .seed__body { max-width: 65ch; }
+    .seed__body p { font-size: 18px; line-height: 1.75; color: var(--space-cadet); }
+
+    /* ========================================
+       SECTION 8: TERMINAL CTA (DARK)
+       ======================================== */
+
+    .terminal-cta {
+      background: var(--space-cadet);
+      padding: var(--space-30) 0;
+      color: var(--white); text-align: left;
     }
-    .fit-card__icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .fit-card__title { font-size: 16px; font-weight: 600; color: var(--space-cadet); margin-bottom: var(--space-2); }
-    .fit-card__desc { font-size: 13px; color: var(--comet); line-height: 1.5; }
+    .terminal-cta h2 { color: var(--white); margin-bottom: var(--space-4); }
+    .terminal-cta__lead { font-size: 18px; color: var(--dark-blue-300); line-height: 1.75; margin-bottom: var(--space-8); max-width: 56ch; }
+    .terminal-cta__actions { display: flex; gap: var(--space-3); align-items: center; }
 
     /* ========================================
-       SECTION 9: CTA (DARK)
+       RESPONSIVE — PAGE CONTENT
        ======================================== */
 
-    .cta-block { background: var(--space-cadet); padding: var(--space-30) 0; color: var(--white); }
-    .cta-block__content { text-align: center; max-width: 640px; margin: 0 auto; }
-    .cta-block__headline { color: var(--white); margin-bottom: var(--space-6); }
-    .cta-block__lead { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); }
-    .cta-block__actions { display: flex; gap: var(--space-3); align-items: center; justify-content: center; margin-bottom: var(--space-4); }
-    .cta-block__escape { font-size: 14px; color: var(--dark-blue-300); }
-    .cta-block__escape a { color: var(--dark-blue-300); font-weight: 600; }
-    .cta-block__escape a:hover { color: var(--white); opacity: 1; }
-
-    /* ========================================
-       PAGE-SPECIFIC RESPONSIVE
-       ======================================== */
-
-    @media (max-width: 1024px) {
+    @media (max-width: 991px) {
+      .hero { padding: calc(var(--space-24) + var(--sam-header-h-compact, 64px)) 0 var(--space-24); }
       h1 { font-size: 36px; }
       h2 { font-size: 28px; }
-      .stats-bar__grid { grid-template-columns: repeat(2, 1fr); }
-      .methods__grid { grid-template-columns: repeat(2, 1fr); }
-      .proximity__grid { grid-template-columns: 1fr; }
-      .esa-approach__grid { grid-template-columns: 1fr; }
-      .esa-approach__visual { max-width: 480px; }
-      .affected__grid { grid-template-columns: repeat(2, 1fr); }
-      .economics__grid { grid-template-columns: 1fr; }
-      .fit__grid { grid-template-columns: repeat(2, 1fr); }
+      h3 { font-size: 20px; }
+      .section { padding: var(--space-16) 0; }
+      .barriers__grid { grid-template-columns: 1fr; }
+      .vlayer__grid { grid-template-columns: 1fr; }
+      .proof__grid { grid-template-columns: 1fr; }
+      .proof__row2 { grid-template-columns: 1fr; max-width: none; }
+      .vlayer__links { flex-direction: column; align-items: flex-start; }
+      .terminal-cta { padding: var(--space-24) 0; }
     }
 
-    @media (max-width: 640px) {
-      .section { padding: var(--space-16) 0; }
-      h1 { font-size: 28px; }
+    @media (max-width: 768px) {
+      h1 { font-size: 32px; }
       h2 { font-size: 24px; }
-      .stat__number { font-size: 36px; }
-      .stats-bar__grid { grid-template-columns: 1fr 1fr; }
-      .methods__grid { grid-template-columns: 1fr; }
-      .affected__grid { grid-template-columns: 1fr; }
-      .fit__grid { grid-template-columns: 1fr; }
-      .hero__actions { flex-direction: column; align-items: flex-start; }
-      .cta-block__actions { flex-direction: column; }
-      .cta-block { padding: var(--space-16) 0; }
-      .hero { padding: calc(var(--space-16) + var(--sam-header-h-compact, 64px)) 0 var(--space-16); }
+      .container { padding: 0 var(--space-4); }
+      .hero__lead { font-size: 16px; }
+      .section { padding: var(--space-12) 0; }
+      .terminal-cta { padding: var(--space-16) 0; }
+      .hero__actions, .terminal-cta__actions { flex-direction: column; align-items: flex-start; }
+      .proof__actions { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- ======== SHARED HEADER (from _partials/header.html) ======== -->
+  <!-- ======== SHARED HEADER ======== -->
   <header class="sam-header" role="navigation" aria-label="Main navigation">
   <a href="#main-content" class="sam-skip-link">Skip to content</a>
   <div class="sam-header__inner">
@@ -796,272 +734,221 @@
   <!-- ======== MAIN CONTENT ======== -->
   <main id="main-content">
 
-  <!-- ======== SECTION 1: HERO (DARK) ======== -->
-  <section class="hero">
-    <div class="hero__bg"></div>
-    <div class="container">
-      <div class="hero__content">
-        <p class="overline hero__overline">The Monitoring Blind Spot</p>
-        <h1 class="hero__headline">The assets you can't monitor are the ones most likely to fail.</h1>
-        <p class="hero__lead">30–40% of critical rotating equipment has no condition monitoring. Submerged pumps, enclosed drives, ATEX-zone motors. They run until they break. The failures are expensive, preventable, and invisible until they happen.</p>
-        <p class="hero__bridge" style="margin-top: var(--space-4); font-size: 18px; line-height: 1.7; color: var(--dark-blue-300); max-width: 640px;">Unplanned downtime comes from a gap in monitoring architecture, not a gap in maintenance effort. SAM4 monitors them through Electrical Signature Analysis at the motor control cabinet.</p>
-        <div class="hero__actions">
-          <a href="/contact/asset-audit" class="btn btn--primary">Start Your Asset Audit</a>
-          <a href="/technology/esa" class="btn btn--ghost">See How ESA Works</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ======== SECTION 2: STATS BAR (WHITE) ======== -->
-  <section class="stats-bar section">
-    <div class="container">
-      <div class="stats-bar__grid">
-        <div class="stat">
-          <div class="stat__number data-number">30–40%</div>
-          <div class="stat__label">of critical rotating assets have no condition monitoring</div>
-          <div class="stat__source">Industry estimates</div>
-        </div>
-        <div class="stat">
-          <div class="stat__number data-number">€170K</div>
-          <div class="stat__label">average cost per unplanned equipment failure in process industries</div>
-          <div class="stat__source">DuPont case study</div>
-        </div>
-        <div class="stat">
-          <div class="stat__number data-number">70,000</div>
-          <div class="stat__label">manual inspection trips replaced per year at a single water utility</div>
-          <div class="stat__source">Yorkshire Water</div>
-        </div>
-        <div class="stat">
-          <div class="stat__number data-number">£390K</div>
-          <div class="stat__label">potential fines avoided from a single pump failure detection</div>
-          <div class="stat__source">Yorkshire Water</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ======== SECTION 3: HOW COMPANIES HANDLE IT (SEASHELL) ======== -->
-  <section class="methods section">
-    <div class="container">
-      <div class="methods__header">
-        <h2>How companies handle it today</h2>
-        <p class="methods__lead body-large">Most industrial operators use one of three approaches to manage the assets they can't easily reach. Each has a hard ceiling.</p>
-      </div>
-      <div class="methods__grid">
-        <div class="method-card">
-          <div class="method-card__icon-bar">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1F1F33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><polyline points="10 16 12 14 14 16"></polyline><path d="M12 14v4"></path></svg>
-            Scheduled Maintenance
-          </div>
-          <div class="method-card__body">
-            <p class="method-card__desc">Fixed-interval servicing regardless of actual condition. Teams replace bearings, seals, and couplings on a calendar. Some assets get maintained too early. Others fail between visits.</p>
-            <p class="method-card__limitation">No visibility between service intervals. Failures still happen on schedule gaps.</p>
-          </div>
-        </div>
-        <div class="method-card">
-          <div class="method-card__icon-bar">
-            <svg viewBox="0 0 24 24"><path d="M2 12h2l3-9 4 18 3-9h2"/><circle cx="19" cy="12" r="3"/></svg>
-            Portable Vibration Rounds
-          </div>
-          <div class="method-card__body">
-            <p class="method-card__desc">Technicians walk routes with handheld vibration analysers. Effective where they can reach the asset. But submerged pumps, sealed compressors, and hazardous-zone motors are off-limits.</p>
-            <p class="method-card__limitation">Physical access required. Frequency is monthly at best. Faults develop between rounds.</p>
-          </div>
-        </div>
-        <div class="method-card">
-          <div class="method-card__icon-bar">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-            Online Vibration Sensors
-          </div>
-          <div class="method-card__body">
-            <p class="method-card__desc">Permanently mounted accelerometers with continuous data feeds. The gold standard for accessible, high-criticality assets. But installation costs €2,000–5,000 per point, requires shutdowns, and is physically impossible on many asset types.</p>
-            <p class="method-card__limitation">Too expensive and impractical for the 30–40% of assets that need it most.</p>
+    <!-- ======== SECTION 1: HERO (DARK) ======== -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero__bg"></div>
+      <div class="container">
+        <div class="hero__content">
+          <p class="overline hero__overline">The Visibility Layer</p>
+          <h1 class="hero__headline">Monitor the assets you can't reach.</h1>
+          <p class="hero__lead">30&#8211;40% of critical rotating assets have no condition monitoring. The visibility layer closes that gap from the motor control cabinet.</p>
+          <div class="hero__actions">
+            <a href="/contact?intent=demo" class="btn btn--primary">Request a Demo</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-
-  <!-- ======== SECTION 4: THE PROXIMITY PENALTY (WHITE) ======== -->
-  <section class="proximity section">
-    <div class="container">
-      <div class="proximity__grid">
-        <div class="proximity__text">
-          <p class="overline" style="margin-bottom: var(--space-3);">The Proximity Penalty</p>
-          <h2>Every monitoring method requires proximity to the machine. That's the problem.</h2>
-          <p>Vibration accelerometers bolt to the bearing housing. Thermal cameras need line of sight. Ultrasound probes need physical contact. Every established approach shares one constraint: the sensor must be on or near the asset.</p>
-          <p>This works for accessible machines on a plant floor. It fails for the assets that drive the most expensive unplanned shutdowns: submerged pumps in wet wells, sealed compressors in ATEX zones, motors enclosed inside process equipment, and drives at remote sites.</p>
-          <p>The result is a structural blind spot. The assets with the highest failure consequence have the least monitoring coverage. Not because of negligence. Because of physics.</p>
+    <!-- ======== SECTION 2: THREE BARRIERS (WHITE) ======== -->
+    <section class="section barriers" aria-label="Why existing monitoring can't close the gap">
+      <div class="container">
+        <div class="barriers__header">
+          <h2>Three barriers. One structural problem.</h2>
         </div>
-        <div class="callout">
-          <p class="callout__title">The common constraint</p>
-          <ul class="callout__list">
-            <li class="callout__item">
-              <svg class="callout__icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><line x1="6" y1="6" x2="14" y2="14" stroke="currentColor" stroke-width="1.5"/><line x1="14" y1="6" x2="6" y2="14" stroke="currentColor" stroke-width="1.5"/></svg>
-              <span>Vibration sensors need mounting on the bearing housing</span>
-            </li>
-            <li class="callout__item">
-              <svg class="callout__icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><line x1="6" y1="6" x2="14" y2="14" stroke="currentColor" stroke-width="1.5"/><line x1="14" y1="6" x2="6" y2="14" stroke="currentColor" stroke-width="1.5"/></svg>
-              <span>Thermal imaging needs line of sight to the asset</span>
-            </li>
-            <li class="callout__item">
-              <svg class="callout__icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><line x1="6" y1="6" x2="14" y2="14" stroke="currentColor" stroke-width="1.5"/><line x1="14" y1="6" x2="6" y2="14" stroke="currentColor" stroke-width="1.5"/></svg>
-              <span>Ultrasound needs physical contact with the surface</span>
-            </li>
-            <li class="callout__item">
-              <svg class="callout__icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><line x1="6" y1="6" x2="14" y2="14" stroke="currentColor" stroke-width="1.5"/><line x1="14" y1="6" x2="6" y2="14" stroke="currentColor" stroke-width="1.5"/></svg>
-              <span>Oil analysis needs fluid extraction from the machine</span>
-            </li>
-          </ul>
-          <p class="callout__footer">All require physical access. All fail where access is impossible.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-
-  <!-- ======== SECTION 4b: CATEGORY NAME (WHITE) ======== -->
-  <section class="category-name section" style="padding: var(--space-12) 0 var(--space-8); text-align: center;">
-    <div class="container">
-      <p class="overline" style="margin-bottom: var(--space-3);">A new category of monitoring</p>
-      <h2 style="margin-bottom: var(--space-4);"><em>Sensorless monitoring.</em></h2>
-      <p style="max-width: 560px; margin: 0 auto; color: var(--comet); font-size: 18px; line-height: 1.7;">No sensors on the machine. No access required. Monitor the full drivetrain through the electrical supply at the motor control cabinet.</p>
-    </div>
-  </section>
-
-
-  <!-- ======== SECTION 5: ESA SOLVES THE BLIND SPOT (SEASHELL) ======== -->
-  <section class="esa-approach section">
-    <div class="container">
-      <div class="esa-approach__content" style="max-width: 720px;">
-          <h2>Close the gap from the electrical cabinet.</h2>
-          <p>Electrical Signature Analysis reads the current and voltage waveforms at the motor control cabinet. Those waveforms carry the mechanical signature of the entire drivetrain: motor, coupling, gearbox, and driven load.</p>
-          <p>The electrical supply already carries the full mechanical, electrical, and operational signature of the drivetrain. Every bearing defect, every winding degradation, every efficiency loss changes the current and voltage waveforms. The information is there. It just needs to be read.</p>
-          <p>SAM4 captures those signatures continuously. AI algorithms detect developing faults. Samotics engineers validate every alert before it reaches your team. The result: confirmed maintenance recommendations weeks to months before failure. No sensors on the machine.</p>
-          <ul class="esa-approach__bullets">
-            <li class="esa-approach__bullet">
-              <svg class="esa-approach__bullet-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><polyline points="6,10 9,13 14,7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-              <span>Monitor submerged, enclosed, and hazardous-zone assets for the first time</span>
-            </li>
-            <li class="esa-approach__bullet">
-              <svg class="esa-approach__bullet-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><polyline points="6,10 9,13 14,7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-              <span>Install in under 60 minutes per asset. Back online the same shift.</span>
-            </li>
-            <li class="esa-approach__bullet">
-              <svg class="esa-approach__bullet-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><polyline points="6,10 9,13 14,7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-              <span>Detect bearing wear, cavitation, misalignment, and winding defects</span>
-            </li>
-            <li class="esa-approach__bullet">
-              <svg class="esa-approach__bullet-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><polyline points="6,10 9,13 14,7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-              <span>Every alert validated by a Samotics reliability engineer</span>
-            </li>
-          </ul>
-          <a href="/technology/esa" class="text-link">Learn how ESA works &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Section 6 (Does this apply?) removed — asset types folded into proximity penalty and moved to /platform/how-it-installs -->
-
-
-  <!-- ======== SECTION 7: THE ECONOMICS (SEASHELL) ======== -->
-  <section class="economics section">
-    <div class="container">
-      <div class="economics__header">
-        <h2>The economics of the blind spot</h2>
-        <p class="economics__lead body-large">Unmonitored assets don't just fail. They fail expensively. Here's what organisations report before and after closing the gap.</p>
-      </div>
-      <div class="economics__grid">
-        <div class="economics__column economics__column--cost">
-          <div class="economics__column-header">Without Monitoring</div>
-          <div class="economics__rows">
-            <div class="economics__row">
-              <span class="economics__row-label">Unplanned downtime per incident</span>
-              <span class="economics__row-value">€50–170K</span>
-            </div>
-            <div class="economics__row">
-              <span class="economics__row-label">Emergency repair premium</span>
-              <span class="economics__row-value">3–5×</span>
-            </div>
-            <div class="economics__row">
-              <span class="economics__row-label">Regulatory fines (single event)</span>
-              <span class="economics__row-value">£390K</span>
-            </div>
-            <div class="economics__row">
-              <span class="economics__row-label">Manual inspection trips / year</span>
-              <span class="economics__row-value">70,000+</span>
-            </div>
-            <div class="economics__row">
-              <span class="economics__row-label">Energy waste from undetected inefficiency</span>
-              <span class="economics__row-value">40–55%</span>
-            </div>
+        <div class="barriers__grid">
+          <div class="barrier-card">
+            <span class="barrier-card__label">Physical</span>
+            <p class="barrier-card__desc">The asset is underwater, sealed inside a machine, or buried in a location no technician can reach during operation. Vibration sensors need line-of-sight to the bearing housing. These assets don't allow it.</p>
+          </div>
+          <div class="barrier-card">
+            <span class="barrier-card__label">Economic</span>
+            <p class="barrier-card__desc">A vibration sensor costs &euro;500. Installed on a submerged pump or inside an ATEX zone, it costs &euro;5,000 or more. For the hundreds of auxiliary motors across a large site, the economics never close.</p>
+          </div>
+          <div class="barrier-card">
+            <span class="barrier-card__label">Regulatory</span>
+            <p class="barrier-card__desc">ATEX certification, confined space permits, and permit-to-work requirements turn a 30-minute sensor installation into a multi-day, multi-discipline project. Most sites don't bother.</p>
           </div>
         </div>
-        <div class="economics__column economics__column--benefit">
-          <div class="economics__column-header">With ESA Monitoring</div>
-          <div class="economics__rows">
-            <div class="economics__row">
-              <span class="economics__row-label">Equipment downtime reduction</span>
-              <span class="economics__row-value">40%</span>
-            </div>
-            <div class="economics__row">
-              <span class="economics__row-label">Cost prevented over 3 years</span>
-              <span class="economics__row-value">€1.7M</span>
-            </div>
-            <div class="economics__row">
-              <span class="economics__row-label">Average payback period</span>
-              <span class="economics__row-value">8 months</span>
-            </div>
-            <div class="economics__row">
-              <span class="economics__row-label">Pump efficiency improvement</span>
-              <span class="economics__row-value">7.1%</span>
-            </div>
-            <div class="economics__row">
-              <span class="economics__row-label">Pollution events prevented (single detection)</span>
-              <span class="economics__row-value">3</span>
-            </div>
+
+        <p class="barriers__conclusion">The result: the assets most likely to fail are the ones with no data.</p>
+
+        <a href="/problem/proximity-penalty" class="text-link">Read: The proximity penalty &rarr;</a>
+      </div>
+    </section>
+
+    <!-- ======== SECTION 3: WHY IT MATTERS NOW (WHITE) ======== -->
+    <section class="section digitalisation" aria-label="Why it matters now">
+      <div class="container">
+        <h2>Your digitalisation investment stops at assets with no data.</h2>
+
+        <div class="digitalisation__body">
+          <p>Every plant has invested in systems that depend on asset-level data. SCADA collects it. CMMS acts on it. Digital twins model it. Predictive maintenance programmes are built on it.</p>
+
+          <p>These systems need three types of data from every rotating asset: condition (is it degrading?), performance (is it running efficiently?), and energy (how much power is it consuming?). For assets with vibration sensors or VFDs, some of this data exists. For the rest, none of it does.</p>
+
+          <p>The gap is largest where it matters most: brownfield plants with DOL motors.</p>
+
+          <p>A direct-on-line motor connected to a contactor has no digital interface. No drive capturing speed or torque. No sensor reading vibration. No efficiency data. No condition data. Nothing. It runs until it fails. In most brownfield plants, these motors are the majority of the installed base. They're the pumps, fans, and compressors commissioned 15 or 30 years ago, before anyone planned for digitalisation.</p>
+
+          <p>A digital twin that models these assets without condition, performance, or energy data isn't predicting anything. It's a visualisation with a gap where intelligence should be. An automation layer that can't see the majority of the rotating fleet isn't autonomous. It has a blind spot the size of your most critical assets.</p>
+
+          <p>The monitoring gap isn't just a maintenance problem. It's the ceiling on every digitalisation programme that depends on asset-level data.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SECTION 4: WHAT THE VISIBILITY LAYER IS (SEASHELL) ======== -->
+    <section class="section vlayer" aria-label="What the visibility layer is">
+      <div class="container">
+        <div class="vlayer__header">
+          <h2>One layer. Every motor. No sensors on the asset.</h2>
+        </div>
+
+        <p class="vlayer__intro">The visibility layer reads the electrical signature of any AC motor from the motor control cabinet. Every motor draws current from its supply. When mechanical conditions change, the electrical signature changes in specific, measurable ways.</p>
+
+        <p class="vlayer__intro" style="margin-top: calc(-1 * var(--space-6));">Bearing wear shifts harmonic patterns. Cavitation alters load signatures. Misalignment creates characteristic sideband frequencies. The visibility layer captures these changes continuously, from the MCC, without touching the asset.</p>
+
+        <div class="vlayer__grid">
+          <div class="vlayer-card">
+            <h3 class="vlayer-card__title">Remote</h3>
+            <p class="vlayer-card__desc">Monitors from the motor control cabinet, not the asset. No sensors in hazardous zones. No cabling to submerged equipment. No access permits required.</p>
+          </div>
+          <div class="vlayer-card">
+            <h3 class="vlayer-card__title">Continuous</h3>
+            <p class="vlayer-card__desc">Samples the full electrical waveform, 24/7. Not route-based. Not periodic. Every operating hour generates data.</p>
+          </div>
+          <div class="vlayer-card">
+            <h3 class="vlayer-card__title">Scalable</h3>
+            <p class="vlayer-card__desc">One cabinet installation covers every motor connected to it. A site with 200 motors doesn't need 200 sensor installations. It needs access to the MCCs.</p>
           </div>
         </div>
-      </div>
 
-      <div class="economics__quote">
-        <blockquote>"SAM4 detected possible bearing damage to the gearbox motor, which we had not picked up through our vibration monitoring."</blockquote>
-        <cite>Schiphol Airport. Fault missed by vibration, caught by ESA.</cite>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Section 8 (Fit criteria) removed — moved to /platform/how-it-installs -->
-
-
-  <!-- ======== SECTION 9: CTA BLOCK (DARK) ======== -->
-  <section class="cta-block">
-    <div class="container">
-      <div class="cta-block__content">
-        <h2 class="cta-block__headline">Identify the assets your monitoring can't reach.</h2>
-        <p class="cta-block__lead">Our asset audit maps the critical rotating equipment in your plant with no condition monitoring. Takes 30 minutes. Reveals where failures are most likely.</p>
-        <div class="cta-block__actions">
-          <a href="/contact/asset-audit" class="btn btn--primary">Start Your Asset Audit</a>
-          <a href="/contact/?intent=demo" class="btn btn--ghost">Request a Demo</a>
+        <div class="vlayer__links">
+          <a href="/technology/esa" class="text-link">How does it work? &rarr;</a>
+          <a href="/platform/sam4" class="text-link">See the platform &rarr;</a>
         </div>
-        <p class="cta-block__escape">Or <a href="/technology/esa">explore how ESA works</a></p>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ======== SECTION 5: WHAT IT SEES (WHITE) ======== -->
+    <section class="section detection" aria-label="What the visibility layer detects">
+      <div class="container">
+        <div class="detection__header">
+          <h2>Condition, performance, and energy data from every connected motor.</h2>
+        </div>
+
+        <div class="detection__streams">
+
+          <!-- Stream 1: Condition -->
+          <div class="stream">
+            <h3 class="stream__title">Condition: developing faults detected early.</h3>
+            <div class="stream__body">
+              <p><strong>Mechanical:</strong> bearing degradation, imbalance, misalignment, coupling wear, looseness. Detected through changes in rotational harmonics and characteristic fault frequencies in the current spectrum.</p>
+              <p><strong>Hydraulic:</strong> cavitation, blockage, dry running, seal degradation. Detected through load pattern analysis and process-related frequency shifts.</p>
+              <p><strong>Electrical:</strong> insulation breakdown, winding faults, rotor bar defects, supply imbalance. Detected through voltage and current signature deviations.</p>
+            </div>
+          </div>
+
+          <!-- Stream 2: Performance -->
+          <div class="stream">
+            <h3 class="stream__title">Performance: operating efficiency tracked continuously.</h3>
+            <div class="stream__body">
+              <p>Load profiling, operating regime classification, and deviation from baseline performance. A pump drawing 15% more power than its baseline is degrading, undersized, or running against a blocked discharge. The visibility layer flags it before maintenance sees a work order.</p>
+            </div>
+          </div>
+
+          <!-- Stream 3: Energy -->
+          <div class="stream">
+            <h3 class="stream__title">Energy: consumption measured per asset, per hour.</h3>
+            <div class="stream__body">
+              <p>Continuous power consumption at asset level. Not estimated from nameplate data. Measured from the actual electrical signature. This is the data sustainability teams need for ESG reporting, energy audits, and efficiency improvement programmes. Vitens achieved a 7.1% efficiency gain across monitored pump stations using this data.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="detection__complement">
+          <p>ESA does not replace vibration monitoring on assets that already have it. It covers the assets vibration cannot reach. On shared assets, ESA often detects faults vibration misses. At Schiphol Airport, SAM4 identified bearing damage in a gearbox motor that vibration monitoring had not detected.</p>
+          <p>For DOL motors in brownfield plants, ESA is not supplementary monitoring. It is the only source of condition, performance, and energy data these assets have ever had.</p>
+          <a href="/technology/esa-vs-vibration" class="text-link" style="display:inline-block; margin-top: var(--space-4);">ESA vs vibration: what each method covers &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SECTION 6: PROOF STRIP (WHITE) ======== -->
+    <section class="section proof" aria-label="Customer proof">
+      <div class="container">
+        <div class="proof__header">
+          <h2>Named customers. Quantified outcomes. Five industries.</h2>
+        </div>
+
+        <div class="proof__grid">
+          <div class="proof-card">
+            <span class="proof-card__industry">Water &amp; Wastewater</span>
+            <h3 class="proof-card__customer">Yorkshire Water</h3>
+            <p class="proof-card__outcome">1,000+ sewage pumping stations monitored. 70,000 annual inspection trips replaced. Three pollution events prevented from a single detection. Sole supplier of ESA technology.</p>
+          </div>
+          <div class="proof-card">
+            <span class="proof-card__industry">Chemicals</span>
+            <h3 class="proof-card__customer">DuPont</h3>
+            <p class="proof-card__outcome">40% reduction in equipment downtime across three European sites. 15+ failures detected. &euro;1.7M in costs prevented over three years.</p>
+          </div>
+          <div class="proof-card">
+            <span class="proof-card__industry">Aviation</span>
+            <h3 class="proof-card__customer">Schiphol Airport</h3>
+            <p class="proof-card__outcome">9 out of 9 reported failures detected. Bearing damage in a gearbox motor caught by SAM4, missed by vibration. More than 5 hours of downtime avoided.</p>
+          </div>
+        </div>
+
+        <div class="proof__row2">
+          <div class="proof-card">
+            <span class="proof-card__industry">Metals</span>
+            <h3 class="proof-card__customer">ArcelorMittal</h3>
+            <p class="proof-card__outcome">Bearing defect in a blast furnace cooling pump detected 5 months before failure. &euro;50K+ in unplanned downtime avoided.</p>
+          </div>
+          <div class="proof-card">
+            <span class="proof-card__industry">Metals</span>
+            <h3 class="proof-card__customer">Nyrstar</h3>
+            <p class="proof-card__outcome">"The invisible pain points become visible." ROI within months of deployment.</p>
+          </div>
+        </div>
+
+        <div class="proof__actions">
+          <a href="/proof" class="text-link">See all customer results &rarr;</a>
+          <a href="/contact/asset-audit" class="btn btn--ghost-dark">Start your asset audit</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SECTION 7: ARCHITECTURAL SEED (SEASHELL) ======== -->
+    <section class="section seed" aria-label="Future direction">
+      <div class="container">
+        <div class="seed__body">
+          <p>The visibility layer doesn't just generate data. It's built to act on it.</p>
+          <p style="margin-top: var(--space-4);">As the condition dataset grows across industries, asset types, and failure modes, the layer evolves from monitoring to autonomous decision support, closing the loop between detection and action.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SECTION 8: TERMINAL CTA (DARK) ======== -->
+    <section class="terminal-cta" aria-label="Call to action">
+      <div class="container">
+        <h2>See what your assets are telling you.</h2>
+        <p class="terminal-cta__lead">Every AC motor already carries a signal. The visibility layer reads it.</p>
+        <div class="terminal-cta__actions">
+          <a href="/contact?intent=demo" class="btn btn--primary">Request a Demo</a>
+          <a href="/contact/asset-audit" class="btn btn--ghost">Start your asset audit</a>
+        </div>
+      </div>
+    </section>
 
   </main>
 
-  <!-- ======== SHARED FOOTER (from _partials/footer.html) ======== -->
-  <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <!-- ======== SHARED FOOTER ======== -->
+<footer class="sam-footer" role="contentinfo" aria-label="Site footer">
   <div class="sam-footer__inner">
 
-    <!-- Top: Logo + Tagline -->
     <div class="sam-footer__top">
       <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
         <img src="/assets/samotics-logo-white.svg"
@@ -1193,8 +1080,14 @@
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Problem",
+        "name": "The Blind Spot",
         "item": "https://samoticstestpage.com/problem/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "The Visibility Layer",
+        "item": "https://samoticstestpage.com/problem/visibility-layer/"
       }
     ]
   }
