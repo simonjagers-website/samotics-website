@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samotics for Energy Managers — Motor Efficiency Monitoring & Energy Waste Detection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       SHARED TOKENS (sam- prefixed for header/footer)
+       ======================================== */
+
+    :root {
+      --sam-space-cadet: #1F1F33;
+      --sam-orange: #FF5429;
+      --sam-orange-dark: #D7411B;
+      --sam-blue: #005CBA;
+      --sam-white: #FFFFFF;
+      --sam-seashell: #F8F5F2;
+      --sam-black: #111111;
+      --sam-comet: #6B6B7F;
+      --sam-border-light: #E8E4E0;
+      --sam-header-bg: #1F1F33;
+      --sam-font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sam-header-h: 80px;
+      --sam-header-h-compact: 64px;
+      --sam-transition: 150ms ease-out;
+
+      /* Page tokens */
+      --space-cadet: #1F1F33;
+      --white: #FFFFFF;
+      --seashell: #F8F5F2;
+      --orange: #FF5429;
+      --comet: #6B6B7F;
+      --border-grey: #E5E7EB;
+      --blue-600: #005CBA;
+      --dark-blue-300: #A0A0B8;
+
+      --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-data: 'JetBrains Mono', 'Consolas', monospace;
+
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-30: 120px;
+
+      --radius-default: 4px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 3px rgba(31, 31, 51, 0.08);
+      --motion-fast: 100ms;
+      --motion-normal: 300ms;
+      --max-width: 1120px;
+      --max-width-wide: 1280px;
+    }
+
+    /* ========================================
+       SHARED HEADER STYLES
+       ======================================== */
+
+    .sam-skip-link { position: fixed; top: 0; left: 16px; transform: translateY(-200%); z-index: 10001; padding: 8px 16px; background: var(--sam-orange); color: var(--sam-white); font: 600 14px/1 var(--sam-font); text-decoration: none; border-radius: 4px; }
+    .sam-skip-link:focus { top: 8px; transform: none; }
+    .sam-header {
+      position: sticky; top: 0; z-index: 1000; width: 100%;
+      height: var(--sam-header-h); background: var(--sam-header-bg);
+      transition: height var(--sam-transition), box-shadow var(--sam-transition);
+    }
+    .sam-header.is-scrolled { height: var(--sam-header-h-compact); box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25); }
+    .sam-header__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
+    .sam-header__logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .sam-logo { height: auto; transition: transform 200ms ease-out, filter 200ms ease-out; }
+    .sam-logo--dark { display: none; }
+    .sam-header.is-scrolled .sam-logo { transform: scale(0.92); }
+    .sam-nav { display: flex; align-items: center; justify-content: center; gap: 28px; flex: 1; }
+    .sam-nav__link { font: 500 15px/1 var(--sam-font); color: rgba(255, 255, 255, 0.85); text-decoration: none; padding: 8px 0; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; position: relative; transition: color var(--sam-transition); white-space: nowrap; }
+    .sam-nav__link:hover, .sam-nav__link:focus-visible { color: var(--sam-white); }
+    .sam-nav__link[aria-current="page"]::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--sam-orange); }
+    .sam-nav__chevron { transition: transform var(--sam-transition); flex-shrink: 0; }
+    .sam-nav__item { position: relative; }
+    .sam-dropdown { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(-4px); min-width: 300px; background: var(--sam-white); border: 1px solid var(--sam-border-light); border-radius: 0; padding: 8px 0; opacity: 0; visibility: hidden; transition: opacity var(--sam-transition), visibility var(--sam-transition), transform var(--sam-transition); pointer-events: none; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+    .sam-nav__item--has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
+    .sam-nav__item--has-dropdown:hover .sam-dropdown, .sam-nav__item--has-dropdown:focus-within .sam-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    .sam-nav__item--has-dropdown:hover .sam-nav__chevron, .sam-nav__item--has-dropdown:focus-within .sam-nav__chevron { transform: rotate(180deg); }
+    .sam-dropdown__item { display: flex; flex-direction: column; padding: 12px 24px; text-decoration: none; transition: background-color 100ms ease-out; }
+    .sam-dropdown__item:hover, .sam-dropdown__item:focus-visible { background: var(--sam-seashell); }
+    .sam-dropdown__label { font: 500 15px/1.3 var(--sam-font); color: var(--sam-black); }
+    .sam-dropdown__desc { font: 400 13px/1.4 var(--sam-font); color: var(--sam-comet); margin-top: 2px; }
+    .sam-cta { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: var(--sam-orange); color: var(--sam-black); font: 600 14px/1 var(--sam-font); letter-spacing: 0.01em; text-decoration: none; border-radius: 4px; border: none; white-space: nowrap; transition: background-color var(--sam-transition); cursor: pointer; }
+    .sam-cta:hover { background: var(--sam-orange-dark); color: var(--sam-white); }
+    .sam-header__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+    .sam-hamburger { display: none; width: 44px; height: 44px; padding: 0; background: none; border: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .sam-hamburger__line { display: block; width: 24px; height: 2px; background: var(--sam-white); transition: transform 200ms ease-out, opacity 200ms ease-out; border-radius: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(2) { opacity: 0; }
+    .sam-hamburger[aria-expanded="true"] .sam-hamburger__line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .sam-mobile-menu { display: none; position: fixed; top: var(--sam-header-h-compact); left: 0; right: 0; bottom: 0; background: var(--sam-white); overflow-y: auto; z-index: 999; padding: 24px 16px; flex-direction: column; }
+    .sam-mobile-menu.is-open { display: flex; animation: samSlideIn 200ms ease-out; }
+    @keyframes samSlideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    .sam-mobile-nav__link { display: block; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__link:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__group { border-bottom: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 16px 0; font: 500 16px/1 var(--sam-font); color: var(--sam-black); background: none; border: none; cursor: pointer; }
+    .sam-mobile-nav__arrow { transition: transform 200ms ease-out; flex-shrink: 0; }
+    .sam-mobile-nav__toggle[aria-expanded="true"] .sam-mobile-nav__arrow { transform: rotate(180deg); }
+    .sam-mobile-nav__sub { display: none; flex-direction: column; padding: 0 0 8px 16px; }
+    .sam-mobile-nav__group.is-open .sam-mobile-nav__sub { display: flex; }
+    .sam-mobile-nav__sub a { display: block; padding: 12px 0; font: 400 15px/1 var(--sam-font); color: var(--sam-black); text-decoration: none; }
+    .sam-mobile-nav__sub a:hover { color: var(--sam-orange); }
+    .sam-mobile-nav__cta-wrap { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--sam-border-light); }
+    .sam-mobile-nav__cta { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px 0; background: var(--sam-orange); color: var(--sam-white); font: 600 16px/1 var(--sam-font); text-decoration: none; border-radius: 4px; transition: background-color var(--sam-transition); }
+    .sam-mobile-nav__cta:hover { background: var(--sam-orange-dark); }
+
+    /* ========================================
+       SHARED FOOTER STYLES
+       ======================================== */
+
+    .sam-footer { background: var(--sam-space-cadet, #1F1F33); padding-top: 96px; }
+    .sam-footer__inner { max-width: 1584px; margin: 0 auto; padding: 0 32px; gap: 24px; }
+    .sam-footer__top { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
+    .sam-footer__logo { display: inline-flex; text-decoration: none; }
+    .sam-footer__logo img { width: 140px; height: auto; }
+    .sam-footer__tagline { font: 400 16px/1.6 var(--sam-font); color: rgba(255, 255, 255, 0.6); margin: 0; max-width: 360px; }
+    .sam-footer__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; margin-bottom: 64px; }
+    .sam-footer__col-heading { font: 600 14px/1 var(--sam-font); color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px 0; }
+    .sam-footer__col-links { display: flex; flex-direction: column; gap: 12px; }
+    .sam-footer__col-links a { font: 400 14px/1.4 var(--sam-font); color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__col-links a:hover, .sam-footer__col-links a:focus-visible { color: #FFFFFF; }
+    .sam-footer__divider { height: 1px; background: rgba(255, 255, 255, 0.15); }
+    .sam-footer__certs { display: flex; align-items: center; gap: 16px; padding: 24px 0; }
+    .sam-footer__certs a { display: block; opacity: 0.7; transition: opacity 150ms ease-out; }
+    .sam-footer__certs a:hover { opacity: 1; }
+    .sam-footer__certs img { display: block; background: var(--sam-white); border-radius: 4px; padding: 4px; }
+    .sam-footer__bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+    .sam-footer__bottom-left { display: flex; align-items: center; gap: 24px; }
+    .sam-footer__copyright { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); }
+    .sam-footer__social { display: inline-flex; align-items: center; color: rgba(255, 255, 255, 0.4); transition: color 150ms ease-out; }
+    .sam-footer__social:hover { color: #FFFFFF; }
+    .sam-footer__legal { display: flex; align-items: center; gap: 8px; }
+    .sam-footer__legal a { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.4); text-decoration: none; transition: color 150ms ease-out; }
+    .sam-footer__legal a:hover, .sam-footer__legal a:focus-visible { color: #FFFFFF; }
+    .sam-footer__legal-sep { font: 400 13px/1 var(--sam-font); color: rgba(255, 255, 255, 0.2); }
+
+    /* Shared focus & accessibility */
+    .sam-nav__link:focus-visible, .sam-dropdown__item:focus-visible, .sam-cta:focus-visible, .sam-hamburger:focus-visible, .sam-mobile-nav__toggle:focus-visible, .sam-mobile-nav__link:focus-visible, .sam-mobile-nav__sub a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    .sam-footer__col-links a:focus-visible, .sam-footer__social:focus-visible, .sam-footer__legal a:focus-visible { outline: 3px solid var(--sam-blue); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { .sam-header, .sam-dropdown, .sam-nav__chevron, .sam-hamburger__line, .sam-mobile-nav__arrow, .sam-logo, .sam-footer__col-links a, .sam-footer__social, .sam-footer__legal a { transition: none !important; animation: none !important; } }
+
+    /* Shared responsive (header/footer) */
+    @media (max-width: 991px) {
+      .sam-header { height: var(--sam-header-h-compact); }
+      .sam-header__inner { padding: 0 16px; }
+      .sam-nav { display: none; }
+      .sam-hamburger { display: flex; }
+      .sam-cta { padding: 8px 16px; font-size: 13px; }
+      .sam-footer { padding-top: 64px; }
+      .sam-footer__inner { padding: 0 16px; }
+      .sam-footer__top { margin-bottom: 48px; }
+      .sam-footer__grid { grid-template-columns: 1fr; gap: 0; margin-bottom: 48px; }
+      .sam-footer__col { border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 0; }
+      .sam-footer__col-heading { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; margin: 0; cursor: pointer; }
+      .sam-footer__col-heading::after { content: ''; width: 10px; height: 10px; border-right: 2px solid rgba(255, 255, 255, 0.4); border-bottom: 2px solid rgba(255, 255, 255, 0.4); transform: rotate(45deg); transition: transform 200ms ease-out; flex-shrink: 0; }
+      .sam-footer__col.is-open .sam-footer__col-heading::after { transform: rotate(-135deg); }
+      .sam-footer__col-links { display: none; padding: 0 0 16px 0; }
+      .sam-footer__col.is-open .sam-footer__col-links { display: flex; }
+      .sam-footer__bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-primary); font-weight: 400; line-height: 1.75; color: var(--space-cadet); background: var(--white); }
+    img { max-width: 100%; display: block; }
+    a { color: var(--blue-600); text-decoration: none; transition: opacity var(--motion-fast) ease-out; }
+    a:hover { opacity: 0.85; }
+
+    /* ========================================
+       TYPOGRAPHY & LAYOUT
+       ======================================== */
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
+    .section { padding: var(--space-24) 0; }
+
+    h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+    h4 { font-size: 20px; font-weight: 600; line-height: 1.4; }
+    .body { font-size: 16px; line-height: 1.75; max-width: 65ch; }
+    .overline { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); }
+    .data-number { font-family: var(--font-data); font-weight: 700; }
+
+    .btn {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-primary); font-size: 14px; font-weight: 600;
+      padding: 10px 24px; border-radius: var(--radius-default);
+      border: 2px solid transparent; cursor: pointer;
+      transition: all var(--motion-fast) ease-out; text-decoration: none; white-space: nowrap;
+    }
+    .btn--primary { background: var(--orange); color: var(--white); border-color: var(--orange); }
+    .btn--primary:hover { opacity: 0.9; }
+    .btn--ghost { background: transparent; color: var(--white); border-color: var(--white); }
+    .btn--ghost:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+    .btn--ghost-dark { background: transparent; color: var(--space-cadet); border-color: var(--border-grey); }
+    .btn--ghost-dark:hover { background: var(--seashell); opacity: 1; }
+
+    /* ========================================
+       BREADCRUMB
+       ======================================== */
+
+    .breadcrumb { padding: var(--space-6) 0; background: var(--white); }
+    .breadcrumb__list { display: flex; align-items: center; gap: var(--space-3); font-size: 14px; list-style: none; }
+    .breadcrumb__link { color: var(--blue-600); text-decoration: none; }
+    .breadcrumb__link:hover { opacity: 0.85; }
+    .breadcrumb__sep { color: var(--comet); }
+    .breadcrumb__current { color: var(--comet); }
+
+    /* ========================================
+       PERSONA PAGE SECTIONS (FP- prefix)
+       ======================================== */
+
+    /* Hero */
+    .fp-hero {
+      background: var(--space-cadet);
+      padding: calc(var(--space-30) + var(--sam-header-h, 80px)) 0 var(--space-30);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .fp-hero__content { max-width: 640px; }
+    .fp-hero__overline { margin-bottom: var(--space-4); color: var(--orange); font: 600 14px/1 var(--font-primary); text-transform: uppercase; letter-spacing: 0.08em; }
+    .fp-hero__headline { color: var(--white); margin-bottom: var(--space-6); }
+    .fp-hero__subline { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); max-width: 56ch; }
+    .fp-hero__actions { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; }
+    .fp-hero__actions .btn { padding: 12px 28px; font-size: 15px; }
+
+    /* Section backgrounds */
+    .fp-section-white { background: var(--white); }
+    .fp-section-seashell { background: var(--seashell); }
+    .fp-section-dark { background: var(--space-cadet); color: var(--white); }
+
+    /* Hidden Waste */
+    .fp-hidden-waste { padding: var(--space-24) 0; }
+    .fp-hidden-waste h2 { margin-bottom: var(--space-6); }
+    .fp-hidden-waste .body { margin-bottom: 0; }
+
+    /* How SAM4 Detects */
+    .fp-detection { padding: var(--space-24) 0; }
+    .fp-detection h2 { margin-bottom: var(--space-6); }
+    .fp-detection__intro { font-size: 16px; line-height: 1.75; max-width: 65ch; margin-bottom: var(--space-16); color: var(--space-cadet); }
+    .fp-detection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
+    .fp-detection-card {
+      background: var(--white); border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default); padding: var(--space-8);
+      display: flex; flex-direction: column; gap: var(--space-4);
+    }
+    .fp-detection-card h3 { font-size: 18px; color: var(--space-cadet); }
+    .fp-detection-card p { font-size: 15px; color: var(--comet); line-height: 1.6; }
+    .fp-detection__link { margin-top: var(--space-8); }
+    .fp-detection__link a { font-weight: 600; color: var(--blue-600); }
+
+    /* Quantified Impact */
+    .fp-impact { padding: var(--space-24) 0; }
+    .fp-impact h2 { margin-bottom: var(--space-16); }
+    .fp-impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+    .fp-impact-stat {
+      background: var(--seashell); border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default); padding: var(--space-8);
+      text-align: center; display: flex; flex-direction: column; gap: var(--space-3);
+    }
+    .fp-impact-stat__number { font-family: var(--font-data); font-weight: 700; font-size: 56px; line-height: 1; color: var(--space-cadet); }
+    .fp-impact-stat__label { font-size: 15px; font-weight: 500; color: var(--space-cadet); line-height: 1.4; }
+    .fp-impact-stat__source { font-size: 12px; color: var(--comet); margin-top: var(--space-2); }
+    .fp-impact__link { margin-top: var(--space-12); }
+    .fp-impact__link a { font-weight: 600; color: var(--blue-600); }
+
+    /* From Detection to Action */
+    .fp-action { padding: var(--space-24) 0; }
+    .fp-action h2 { margin-bottom: var(--space-6); }
+    .fp-action__intro { font-size: 16px; line-height: 1.75; max-width: 65ch; margin-bottom: var(--space-16); color: var(--space-cadet); }
+    .fp-action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); margin-top: var(--space-16); }
+    .fp-action-card {
+      background: var(--white); border: 1px solid var(--border-grey);
+      border-radius: var(--radius-default); padding: var(--space-8);
+      display: flex; flex-direction: column; gap: var(--space-4);
+    }
+    .fp-action-card h3 { font-size: 18px; color: var(--space-cadet); }
+    .fp-action-card p { font-size: 15px; color: var(--comet); line-height: 1.6; }
+    .fp-action__link { margin-top: var(--space-8); }
+    .fp-action__link a { font-weight: 600; color: var(--blue-600); }
+
+    /* ESG & Reporting */
+    .fp-esg { padding: var(--space-24) 0; }
+    .fp-esg h2 { margin-bottom: var(--space-6); }
+    .fp-esg .body { margin-bottom: var(--space-8); }
+    .fp-esg__link { margin-top: var(--space-8); }
+    .fp-esg__link a { font-weight: 600; color: var(--blue-600); }
+
+    /* Customer Voice */
+    .fp-voice { padding: var(--space-24) 0; }
+    .fp-quote {
+      border-left: 3px solid var(--space-cadet);
+      padding-left: var(--space-8);
+      max-width: 720px;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--space-cadet);
+      margin-bottom: var(--space-6);
+    }
+    .fp-quote__attribution {
+      font-size: 14px;
+      font-style: normal;
+      color: var(--comet);
+      margin-left: var(--space-8);
+    }
+    .fp-voice__link { margin-top: var(--space-8); }
+    .fp-voice__link a { font-weight: 600; color: var(--blue-600); }
+
+    /* Terminal CTA */
+    .fp-terminal { padding: var(--space-30) 0; text-align: center; }
+    .fp-terminal__headline { color: var(--white); margin-bottom: var(--space-6); }
+    .fp-terminal__subline { font-size: 18px; color: var(--dark-blue-300); line-height: 1.6; margin-bottom: var(--space-8); max-width: 640px; margin-left: auto; margin-right: auto; }
+    .fp-terminal__actions { display: flex; gap: var(--space-3); align-items: center; justify-content: center; margin-top: var(--space-8); flex-wrap: wrap; }
+    .fp-terminal__actions .btn { padding: 12px 28px; font-size: 15px; }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+
+    @media (max-width: 1024px) {
+      .fp-detection-grid { grid-template-columns: repeat(2, 1fr); }
+      .fp-impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .fp-action-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 36px; }
+      h2 { font-size: 28px; }
+      .fp-hero { padding: calc(var(--space-16) + var(--sam-header-h-compact, 64px)) 0 var(--space-16); }
+      .fp-hero__actions { flex-direction: column; }
+      .fp-hero__actions .btn { width: 100%; }
+      .section { padding: var(--space-12) 0; }
+      .fp-detection-grid { grid-template-columns: 1fr; }
+      .fp-impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .fp-action-grid { grid-template-columns: 1fr; }
+      .fp-terminal { padding: var(--space-16) 0; }
+      .fp-terminal__actions { flex-direction: column; }
+      .fp-terminal__actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+
+<body class="sam-home">
+
+  <!-- ======== SHARED HEADER ======== -->
+  <header class="sam-header" role="navigation" aria-label="Main navigation">
+  <a href="#main-content" class="sam-skip-link">Skip to content</a>
+  <div class="sam-header__inner">
+
+    <!-- Logo -->
+    <a href="/" class="sam-header__logo" aria-label="Samotics — Home">
+      <img src="/assets/samotics-logo-white.svg" alt="Samotics" class="sam-logo sam-logo--white" width="140" height="32">
+      <img src="/assets/samotics-logo-white.svg" alt="Samotics" class="sam-logo sam-logo--dark" width="140" height="32">
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="sam-nav" aria-label="Main navigation">
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">Platform <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/platform/sam4" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">SAM4 Platform</span><span class="sam-dropdown__desc">Dashboard, diagnostics, and analytics</span></a>
+          <a href="/platform/how-it-installs" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How It Installs</span><span class="sam-dropdown__desc">&lt;60 minutes, back online same shift</span></a>
+          <a href="/platform/security" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Security & Compliance</span><span class="sam-dropdown__desc">ISO 27001, ISO 9001, NIS2 aligned, cellular architecture</span></a>
+          <a href="/platform/integrations" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Integrations</span><span class="sam-dropdown__desc">CMMS, SCADA, and API connectivity</span></a>
+          <a href="/platform/sam4/#service-model" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Service Model</span><span class="sam-dropdown__desc">Managed monitoring, not just software</span></a>
+        </div>
+      </div>
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">Industries <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/industries/water" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Water & Wastewater</span></a>
+          <a href="/industries/oil-gas" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Oil & Gas</span></a>
+          <a href="/industries/metals-mining" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Metals & Mining</span></a>
+          <a href="/industries/chemicals" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Chemicals</span></a>
+          <a href="/industries/pulp-paper" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Pulp & Paper</span></a>
+        </div>
+      </div>
+      <div class="sam-nav__item sam-nav__item--has-dropdown">
+        <button class="sam-nav__link" aria-expanded="false" aria-haspopup="true">How It Works <svg class="sam-nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="sam-dropdown" role="menu">
+          <a href="/blind-spot" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">The Monitoring Blind Spot</span><span class="sam-dropdown__desc">Why 30–40% of critical assets go unmonitored</span></a>
+          <a href="/technology/esa" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Electrical Signature Analysis</span><span class="sam-dropdown__desc">The science behind SAM4</span></a>
+          <a href="/technology/esa-vs-vibration" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">ESA & Vibration</span><span class="sam-dropdown__desc">How ESA and vibration work together</span></a>
+          <a href="/technology/how-sam4-works" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">How SAM4 Works</span><span class="sam-dropdown__desc">Detection accuracy, methodology, and performance data</span></a>
+          <a href="/technology/detection-boundaries" class="sam-dropdown__item" role="menuitem"><span class="sam-dropdown__label">Detection Boundaries</span><span class="sam-dropdown__desc">What ESA can and can't detect</span></a>
+        </div>
+      </div>
+      <a href="/proof" class="sam-nav__link">Proof</a>
+      <a href="/about" class="sam-nav__link">About</a>
+    </nav>
+
+    <div class="sam-header__actions">
+      <a href="/contact?intent=demo" class="sam-cta">Request a Demo</a>
+      <button class="sam-hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+        <span class="sam-hamburger__line"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="sam-mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <nav class="sam-mobile-nav" aria-label="Mobile navigation">
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">Platform <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/integrations">Integrations</a>
+          <a href="/platform/security">Security</a>
+        </div>
+      </div>
+      <div class="sam-mobile-nav__group">
+        <button class="sam-mobile-nav__toggle" aria-expanded="false">How It Works <svg class="sam-mobile-nav__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="sam-mobile-nav__sub">
+          <a href="/blind-spot">The Monitoring Blind Spot</a>
+          <a href="/technology/esa">Electrical Signature Analysis</a>
+          <a href="/technology/how-sam4-works">How SAM4 Works</a>
+        </div>
+      </div>
+      <a href="/proof" class="sam-mobile-nav__link">Proof</a>
+      <a href="/about" class="sam-mobile-nav__link">About</a>
+      <div class="sam-mobile-nav__cta-wrap">
+        <a href="/contact?intent=demo" class="sam-mobile-nav__cta">Request a Demo</a>
+      </div>
+    </nav>
+  </div>
+
+  </header>
+
+  <main id="main-content">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ul class="breadcrumb__list">
+        <li><a href="/" class="breadcrumb__link">Home</a></li>
+        <li class="breadcrumb__sep">/</li>
+        <li class="breadcrumb__current">For Energy Managers</li>
+      </ul>
+    </nav>
+
+    <!-- Section 1: Hero -->
+    <section class="fp-hero">
+      <div class="container">
+        <div class="fp-hero__content">
+          <div class="fp-hero__overline">For Energy Managers & Sustainability Leads</div>
+          <h1 class="fp-hero__headline">Find the energy your motors are wasting.</h1>
+          <p class="fp-hero__subline">Electric motors consume 70% of industrial electricity. SAM4 monitors motor efficiency continuously and identifies energy anomalies across your entire fleet. No per-asset sensors. No production shutdowns.</p>
+          <div class="fp-hero__actions">
+            <a href="/contact?intent=demo" class="btn btn--primary">Request a Demo</a>
+            <a href="/platform/sam4" class="btn btn--ghost">See the Platform</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: The Hidden Waste (white) -->
+    <section class="fp-section-white section">
+      <div class="container fp-hidden-waste">
+        <h2>Most energy waste hides in motors nobody monitors.</h2>
+        <p class="body">Industrial plants spend millions on energy each year. A significant share is wasted by motors running outside optimal efficiency: oversized motors at low load, degraded bearings increasing friction, misaligned couplings adding mechanical resistance, and pumps cavitating against closed valves. The waste is invisible because most motors have no continuous monitoring. Manual energy audits catch snapshots. SAM4 captures the full picture, continuously.</p>
+      </div>
+    </section>
+
+    <!-- Section 3: How SAM4 Detects (seashell) -->
+    <section class="fp-section-seashell section">
+      <div class="container fp-detection">
+        <h2>Continuous motor efficiency monitoring. From the electrical panel.</h2>
+        <p class="fp-detection__intro">SAM4 analyses the current and voltage signature of every connected motor. It calculates real power, reactive power, and power factor continuously. When a motor's efficiency degrades — from bearing wear, mechanical loading changes, or electrical faults — the signature shifts. SAM4 detects that shift and quantifies the energy impact.</p>
+
+        <div class="fp-detection-grid">
+          <div class="fp-detection-card">
+            <h3>Efficiency Degradation</h3>
+            <p>Motors running below optimal efficiency due to mechanical or electrical faults. SAM4 quantifies the kWh impact.</p>
+          </div>
+          <div class="fp-detection-card">
+            <h3>Load Anomalies</h3>
+            <p>Motors operating at sustained low load or overload. Identifies rightsizing opportunities.</p>
+          </div>
+          <div class="fp-detection-card">
+            <h3>Power Quality Issues</h3>
+            <p>Voltage imbalance, harmonic distortion, and power factor degradation affecting motor performance.</p>
+          </div>
+        </div>
+
+        <div class="fp-detection__link">
+          <a href="/technology/esa">See how ESA works →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Quantified Impact (white) -->
+    <section class="fp-section-white section">
+      <div class="container fp-impact">
+        <h2>Energy savings you can measure</h2>
+
+        <div class="fp-impact-grid">
+          <div class="fp-impact-stat">
+            <div class="fp-impact-stat__number">70%</div>
+            <div class="fp-impact-stat__label">of industrial electricity consumed by motors</div>
+            <div class="fp-impact-stat__source">Industry data</div>
+          </div>
+          <div class="fp-impact-stat">
+            <div class="fp-impact-stat__number">5–15%</div>
+            <div class="fp-impact-stat__label">typical energy saving from condition-based motor management</div>
+            <div class="fp-impact-stat__source">Industry benchmark</div>
+          </div>
+          <div class="fp-impact-stat">
+            <div class="fp-impact-stat__number">7.1%</div>
+            <div class="fp-impact-stat__label">operational efficiency gain</div>
+            <div class="fp-impact-stat__source">Vitens case study</div>
+          </div>
+          <div class="fp-impact-stat">
+            <div class="fp-impact-stat__number">24/7</div>
+            <div class="fp-impact-stat__label">continuous monitoring vs. annual audits</div>
+            <div class="fp-impact-stat__source">SAM4 advantage</div>
+          </div>
+        </div>
+
+        <div class="fp-impact__link">
+          <a href="/proof">See all proof points →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: From Detection to Action (seashell) -->
+    <section class="fp-section-seashell section">
+      <div class="container fp-action">
+        <h2>Turn energy data into operational decisions</h2>
+        <p class="fp-action__intro">SAM4 doesn't just detect waste. It diagnoses the cause. A motor drawing excessive power might have a degraded bearing, a misaligned coupling, or a process issue upstream. SAM4 tells you which. Energy anomaly alerts route to your CMMS alongside fault diagnostics. Your maintenance team addresses the root cause. Your energy consumption drops.</p>
+
+        <div class="fp-action-grid">
+          <div class="fp-action-card">
+            <h3>Identify</h3>
+            <p>Continuous monitoring flags motors with abnormal energy consumption. No manual audits required.</p>
+          </div>
+          <div class="fp-action-card">
+            <h3>Diagnose</h3>
+            <p>SAM4 links energy anomalies to specific mechanical or electrical root causes.</p>
+          </div>
+          <div class="fp-action-card">
+            <h3>Verify</h3>
+            <p>Confirm energy savings after maintenance interventions. Build your evidence base for ESG reporting.</p>
+          </div>
+        </div>
+
+        <div class="fp-action__link">
+          <a href="/platform/sam4">See platform capabilities →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: ESG & Reporting (white) -->
+    <section class="fp-section-white section">
+      <div class="container fp-esg">
+        <h2>Feed verified energy data into sustainability reporting</h2>
+        <p class="body">Energy managers need auditable data for CSRD, ISO 50001, and internal ESG reporting. SAM4 provides continuous, timestamped energy performance data per asset. Track consumption trends, verify savings from interventions, and report with confidence. The data comes from the physics of the motor, not estimated models.</p>
+
+        <div class="fp-esg__link">
+          <a href="/platform/integrations">See integrations →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Customer Voice (seashell) -->
+    <section class="fp-section-seashell section">
+      <div class="container fp-voice">
+        <div class="fp-quote">We identified three motors running at 40% load that were consuming 15% more energy than expected. SAM4 flagged the anomaly, our team investigated, and we reduced consumption by replacing undersized impellers. Payback was eight weeks.</div>
+        <div class="fp-quote__attribution">— Energy Manager, Water Utility</div>
+
+        <div class="fp-voice__link">
+          <a href="/proof">Read customer stories →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Terminal CTA (dark) -->
+    <section class="fp-section-dark section fp-terminal">
+      <div class="container">
+        <h2 class="fp-terminal__headline">See what your motors are wasting.</h2>
+        <p class="fp-terminal__subline">Request a demo and get an energy impact assessment for your motor fleet.</p>
+        <div class="fp-terminal__actions">
+          <a href="/contact?intent=demo" class="btn btn--primary">Request a Demo</a>
+          <a href="/proof" class="btn btn--ghost">See Customer Results</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======== SHARED FOOTER ======== -->
+  <footer class="sam-footer" role="contentinfo" aria-label="Site footer">
+  <div class="sam-footer__inner">
+
+    <!-- Top: Logo + Tagline -->
+    <div class="sam-footer__top">
+      <a href="/" class="sam-footer__logo" aria-label="Samotics — Home">
+        <img src="/assets/samotics-logo-white.svg" alt="Samotics" width="140" height="32">
+      </a>
+      <p class="sam-footer__tagline">Monitoring the assets your sensors can't reach.</p>
+    </div>
+
+    <!-- Nav Grid: 5 columns -->
+    <div class="sam-footer__grid">
+
+      <!-- How It Works -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">How It Works</h3>
+        <div class="sam-footer__col-links">
+          <a href="/blind-spot">The Monitoring Blind Spot</a>
+          <a href="/technology/esa">ESA Technology</a>
+          <a href="/technology/esa-vs-vibration">ESA & Vibration</a>
+          <a href="/technology/how-sam4-works">How SAM4 Works</a>
+          <a href="/technology/detection-boundaries">Detection Boundaries</a>
+        </div>
+      </div>
+
+      <!-- Platform -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Platform</h3>
+        <div class="sam-footer__col-links">
+          <a href="/platform/sam4">SAM4 Platform</a>
+          <a href="/platform/how-it-installs">How It Installs</a>
+          <a href="/platform/security">Security & Compliance</a>
+          <a href="/platform/integrations">Integrations</a>
+          <a href="/platform/sam4/#service-model">Service Model</a>
+        </div>
+      </div>
+
+      <!-- Industries -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Industries</h3>
+        <div class="sam-footer__col-links">
+          <a href="/industries/water">Water & Wastewater</a>
+          <a href="/industries/oil-gas">Oil & Gas</a>
+          <a href="/industries/metals-mining">Metals & Mining</a>
+          <a href="/industries/chemicals">Chemicals</a>
+          <a href="/industries/pulp-paper">Pulp & Paper</a>
+        </div>
+      </div>
+
+      <!-- Resources -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Resources</h3>
+        <div class="sam-footer__col-links">
+          <a href="/resources/blog">Blog</a>
+          <a href="/resources/knowledge-base">Knowledge Base</a>
+          <a href="/resources/news">News & Press</a>
+          <a href="/resources/engineering-faq">Engineering FAQ</a>
+          <a href="/tools">Tools & Calculators</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div class="sam-footer__col" data-footer-accordion>
+        <h3 class="sam-footer__col-heading">Company</h3>
+        <div class="sam-footer__col-links">
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="sam-footer__divider"></div>
+
+    <!-- Certification Badges -->
+    <div class="sam-footer__certs">
+      <a href="/platform/security" aria-label="ISO 27001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-27001.webp" alt="DNV ISO 27001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+      <a href="/platform/security" aria-label="ISO 9001 certified by DNV">
+        <img src="/assets/images/certifications/dnv-iso-9001.webp" alt="DNV ISO 9001 Management System Certificate" width="72" height="72" loading="lazy">
+      </a>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="sam-footer__bottom">
+
+      <div class="sam-footer__bottom-left">
+        <span class="sam-footer__copyright">&copy; 2026 Samotics &middot; Built in The Netherlands</span>
+
+        <a href="https://www.linkedin.com/company/samotics/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="sam-footer__social"
+           aria-label="Samotics on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sam-footer__legal">
+        <a href="/privacy">Privacy</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/terms">Terms</a>
+        <span class="sam-footer__legal-sep">|</span>
+        <a href="/cookies">Cookies</a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+  <!-- ======== SHARED HEADER/FOOTER JS ======== -->
+  <script>
+  (function () {
+    'use strict';
+    var header = document.querySelector('.sam-header');
+    if (!header) return;
+    var scrollThreshold = 20;
+    function onScroll() {
+      if (window.scrollY > scrollThreshold) { header.classList.add('is-scrolled'); }
+      else { header.classList.remove('is-scrolled'); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    var hamburger = header.querySelector('.sam-hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function () {
+        var isOpen = mobileMenu.classList.toggle('is-open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+    }
+    document.querySelectorAll('.sam-mobile-nav__toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var group = btn.closest('.sam-mobile-nav__group');
+        var isOpen = group.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    });
+    document.querySelectorAll('[data-footer-accordion]').forEach(function (col) {
+      var heading = col.querySelector('.sam-footer__col-heading');
+      if (!heading) return;
+      heading.addEventListener('click', function () {
+        if (window.innerWidth > 991) return;
+        col.classList.toggle('is-open');
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>
